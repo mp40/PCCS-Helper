@@ -21,11 +21,40 @@ import "./App.css";
 // };
 
 class Popup extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  handleChange(event) {
+    console.log("KJGVG");
+    //console.log("event", event);
+    //console.log("target", target);
+    //console.log("value", value);
+    this.setState({ value: event.target.value });
+  }
+  handleSubmit(event) {
+    alert("submited name: ", this.state.characterName);
+    event.preventDefault();
+  }
+
   render() {
     return (
       <div className="popup">
         <div className="popup_inner">
-          <h1>Popup</h1>
+          <h1>
+            <form onSubmit={this.handleSubmit}>
+              <label>
+                New Name:
+                <input
+                  type="text"
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                />
+              </label>
+              <input type="submit" value="Submit" />
+            </form>
+          </h1>
           <button onClick={this.props.closePopup}>done</button>
         </div>
       </div>
