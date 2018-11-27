@@ -1,44 +1,90 @@
 import React, { Component } from "react";
 import "./App.css";
+//import db from './base'
 
+// import { ReactRadial } from "react-radial";
+
+class Popup extends React.Component {
+  render() {
+    return (
+      <div className="popup">
+        <div className="popup_inner">
+          <h1>
+            <form onSubmit={this.props.handleSubmit}>
+              <label>
+                New Name:
+                <input
+                  type="text"
+                  value={this.props.value}
+                  onChange={this.props.handleChange}
+                />
+              </label>
+              <input type="submit" value="Submit" />
+            </form>
+          </h1>
+          <button onClick={this.props.closePopup}>done</button>
+        </div>
+      </div>
+    );
+  }
+}
+// Stackoverflow example
+// class Parent extends React.Component {
+//   constructor(props) {
+//     super(props)
+
+//     this.handler = this.handler.bind(this)
+//   }
+
+//   handler(e) {
+//     e.preventDefault()
+//     this.setState({
+//       someVar: someValue
+//     })
+//   }
+
+//   render() {
+//     return <Child handler = {this.handler} />
+//   }
+// }
+
+// class Child extends React.Component {
+//   render() {
+//     return <Button onClick = {this.props.handler}/ >
+//   }
+// }
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       characterName: "Default",
       equipmentWeight: 5,
-      //attributeStats: [14, 10, 10, 10, 12],
-      str: 14,
-      int: 10,
-      wil: 10,
-      hlt: 10,
-      agi: 12,
+      attributeStats: [14, 10, 10, 10, 12],
       speed: [],
       skillLevels: [4, 2],
       combatStats: [],
-      CombatActions: []
+      CombatActions: [],
+      showPopup: false
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
-
-  addWeight() {
-    this.setState({ equipmentWeight: this.state.equipmentWeight + 5 });
+  handleChange(event) {
+    this.setState({ value: event.target.value });
+    console.log("handleChange fired");
+    console.log(this.state);
   }
-
-  minusWeight() {
-    if (this.state.equipmentWeight <= 5) {
-      this.setState({ equipmentWeight: this.state.equipmentWeight });
-    } else {
-      this.setState({ equipmentWeight: this.state.equipmentWeight - 5 });
-    }
+  handleSubmit(event) {
+    alert("submited name: ", this.state.characterName);
+    console.log("handleSubmit ran");
+    event.preventDefault();
   }
-
-  addSTR() {
-    if (this.state.str < 20) {
-      this.setState({ str: this.state.str + 1 });
-    }
+  togglePopup() {
+    this.setState({ showPopup: !this.state.showPopup });
   }
 
   render() {
+    console.log("Render Ran");
     return (
       <div className="App">
         <header className="App-header">
@@ -46,31 +92,31 @@ class App extends React.Component {
             <div className="Title">
               Phonix Command Character Generator *Mock Up*
             </div>
-            <div className="Equipment Weight">
-              <span>Equipment Weight: {this.state.equipmentWeight}</span>
-              <button className="Weight-Up" onClick={this.addWeight.bind(this)}>
-                Add 5lbs
-              </button>
+            <div className="Character-Name">
               <button
-                className="Weight-Down"
-                onClick={this.minusWeight.bind(this)}
+                className="Name-Button"
+                onClick={this.togglePopup.bind(this)}
               >
-                Minus 5lbs
+                Name: {this.state.characterName}
               </button>
+              {this.state.showPopup ? (
+                <Popup closePopup={this.togglePopup.bind(this)} />
+              ) : null}
+              <span>
+                <button className="Weight-Button">
+                  Equipment Weight: {this.state.equipmentWeight}
+                </button>
+              </span>
             </div>
             <div className="Stats">
               <p>
                 Strength
-                {/* <span> STR {this.state.attributeStats[0]}</span> */}
-                <span> STR {this.state.str}</span>
-                <button className="Stat-Up" onClick={this.addSTR.bind(this)}>
-                  +1
-                </button>
+                <span> STR </span>
                 <button
-                  className="Weight-Down"
-                  //onClick={this.minusSTR.bind(this)}
+                  className="STR-Button"
+                  // onClick={this.SelectSTR.bind(this)}
                 >
-                  -1
+                  {this.state.attributeStats[0]}
                 </button>
               </p>
               <p>
