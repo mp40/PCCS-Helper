@@ -4,52 +4,19 @@ import "./App.css";
 
 // import { ReactRadial } from "react-radial";
 
-// class Component extends React.Component {
-//   render() {
-//     return <ReactRadial />;
-//   }
-// }
-
-// class SelectSTR extends React.Component {
-//   constructor(props) {
-//     super(props);
-//   }
-// }
-
-// const SelectSTR = function() {
-//   console.log("test");
-// };
-
 class Popup extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  handleChange(event) {
-    console.log("KJGVG");
-    //console.log("event", event);
-    //console.log("target", target);
-    //console.log("value", value);
-    this.setState({ value: event.target.value });
-  }
-  handleSubmit(event) {
-    alert("submited name: ", this.state.characterName);
-    event.preventDefault();
-  }
-
   render() {
     return (
       <div className="popup">
         <div className="popup_inner">
           <h1>
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.props.handleSubmit}>
               <label>
                 New Name:
                 <input
                   type="text"
-                  value={this.state.value}
-                  onChange={this.handleChange}
+                  value={this.props.value}
+                  onChange={this.props.handleChange}
                 />
               </label>
               <input type="submit" value="Submit" />
@@ -61,7 +28,31 @@ class Popup extends React.Component {
     );
   }
 }
+// Stackoverflow example
+// class Parent extends React.Component {
+//   constructor(props) {
+//     super(props)
 
+//     this.handler = this.handler.bind(this)
+//   }
+
+//   handler(e) {
+//     e.preventDefault()
+//     this.setState({
+//       someVar: someValue
+//     })
+//   }
+
+//   render() {
+//     return <Child handler = {this.handler} />
+//   }
+// }
+
+// class Child extends React.Component {
+//   render() {
+//     return <Button onClick = {this.props.handler}/ >
+//   }
+// }
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -75,33 +66,25 @@ class App extends React.Component {
       CombatActions: [],
       showPopup: false
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
-
+  handleChange(event) {
+    this.setState({ value: event.target.value });
+    console.log("handleChange fired");
+    console.log(this.state);
+  }
+  handleSubmit(event) {
+    alert("submited name: ", this.state.characterName);
+    console.log("handleSubmit ran");
+    event.preventDefault();
+  }
   togglePopup() {
     this.setState({ showPopup: !this.state.showPopup });
   }
-  // SelectSTR() {
-  //   console.log("test");
-  // }
-
-  // changeName = () => {
-  //   console.log("test");
-  //   this.setState({
-  //     changeName: !this.state.updateName
-  //   });
-  // };
-
-  // class SelectSTR extends Component {
-  //   changeSTR(){
-
-  //   }
-  // }
 
   render() {
-    // let newName = null;
-    // if (this.state.updateName) {
-    //   newName = <div>Hello</div>;
-    // }
+    console.log("Render Ran");
     return (
       <div className="App">
         <header className="App-header">
