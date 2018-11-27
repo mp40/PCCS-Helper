@@ -7,12 +7,12 @@ class App extends React.Component {
     this.state = {
       characterName: "Default",
       equipmentWeight: 5,
-      //attributeStats: [14, 10, 10, 10, 12],
-      str: 14,
-      int: 10,
-      wil: 10,
-      hlt: 10,
-      agi: 12,
+      attributeStats: [14, 10, 10, 10, 12],
+      // str: 14,
+      // int: 10,
+      // wil: 10,
+      // hlt: 10,
+      // agi: 12,
       speed: [],
       skillLevels: [4, 2],
       combatStats: [],
@@ -32,11 +32,28 @@ class App extends React.Component {
     }
   }
 
-  addSTR() {
-    if (this.state.str < 20) {
-      this.setState({ str: this.state.str + 1 });
-    }
-  }
+  // addSTR() {
+  //   if (this.state.str < 20) {
+  //     let attributes = [...this.state.attributeStats];
+  //     let attribute = [...attributes[0]];
+  //     attribute++;
+  //     attributes[0] = attribute;
+  //     this.setState({ attributes });
+  //   }
+  // }
+
+  addSTR = index => {
+    this.setState(state => {
+      const attributeStats = state.attributeStats.map((item, dex) => {
+        if (dex === index) {
+          return item + 1;
+        } else {
+          return item;
+        }
+      });
+      return { attributeStats };
+    });
+  };
 
   render() {
     return (
@@ -61,9 +78,9 @@ class App extends React.Component {
             <div className="Stats">
               <p>
                 Strength
-                {/* <span> STR {this.state.attributeStats[0]}</span> */}
-                <span> STR {this.state.str}</span>
-                <button className="Stat-Up" onClick={this.addSTR.bind(this)}>
+                <span> STR {this.state.attributeStats[0]}</span>
+                {/* <span> STR {this.state.str}</span> */}
+                <button className="Stat-Up" onClick={this.addSTR.bind(this, 0)}>
                   +1
                 </button>
                 <button
