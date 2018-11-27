@@ -20,6 +20,19 @@ import "./App.css";
 //   console.log("test");
 // };
 
+class Popup extends React.Component {
+  render() {
+    return (
+      <div className="popup">
+        <div className="popup_inner">
+          <h1>Popup</h1>
+          <button onClick={this.props.closePopup}>done</button>
+        </div>
+      </div>
+    );
+  }
+}
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -30,14 +43,36 @@ class App extends React.Component {
       speed: [],
       skillLevels: [4, 2],
       combatStats: [],
-      CombatActions: []
+      CombatActions: [],
+      showPopup: false
     };
   }
 
-  SelectSTR() {
-    console.log("test");
+  togglePopup() {
+    this.setState({ showPopup: !this.state.showPopup });
   }
+  // SelectSTR() {
+  //   console.log("test");
+  // }
+
+  // changeName = () => {
+  //   console.log("test");
+  //   this.setState({
+  //     changeName: !this.state.updateName
+  //   });
+  // };
+
+  // class SelectSTR extends Component {
+  //   changeSTR(){
+
+  //   }
+  // }
+
   render() {
+    // let newName = null;
+    // if (this.state.updateName) {
+    //   newName = <div>Hello</div>;
+    // }
     return (
       <div className="App">
         <header className="App-header">
@@ -46,9 +81,15 @@ class App extends React.Component {
               Phonix Command Character Generator *Mock Up*
             </div>
             <div className="Character-Name">
-              <button className="Name-Button">
+              <button
+                className="Name-Button"
+                onClick={this.togglePopup.bind(this)}
+              >
                 Name: {this.state.characterName}
               </button>
+              {this.state.showPopup ? (
+                <Popup closePopup={this.togglePopup.bind(this)} />
+              ) : null}
               <span>
                 <button className="Weight-Button">
                   Equipment Weight: {this.state.equipmentWeight}
@@ -61,7 +102,7 @@ class App extends React.Component {
                 <span> STR </span>
                 <button
                   className="STR-Button"
-                  onClick={this.SelectSTR.bind(this)}
+                  // onClick={this.SelectSTR.bind(this)}
                 >
                   {this.state.attributeStats[0]}
                 </button>
