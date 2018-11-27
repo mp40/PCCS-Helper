@@ -7,6 +7,7 @@
     "re-base": "^4.0.0",
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
+    "react-radial": "^1.0.8",
     "react-scripts": "2.1.1"
   },
   "scripts": {

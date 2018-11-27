@@ -2,21 +2,23 @@ import React, { Component } from "react";
 import "./App.css";
 //import db from './base'
 
-// const updateName = function() {
-//   setState({ characterName: "test" });
-// };
+// import { ReactRadial } from "react-radial";
 
-// class NameForm extends React.Component {
+// class Component extends React.Component {
 //   render() {
-//     <form onSubmit={updateName}>
-//       <label>
-//         Name:
-//         <imput type="text" />
-//       </label>
-//       <button type="submit">Submit</button>
-//     </form>;
+//     return <ReactRadial />;
 //   }
 // }
+
+// class SelectSTR extends React.Component {
+//   constructor(props) {
+//     super(props);
+//   }
+// }
+
+// const SelectSTR = function() {
+//   console.log("test");
+// };
 
 class App extends React.Component {
   constructor(props) {
@@ -32,6 +34,9 @@ class App extends React.Component {
     };
   }
 
+  SelectSTR() {
+    console.log("test");
+  }
   render() {
     return (
       <div className="App">
@@ -41,7 +46,7 @@ class App extends React.Component {
               Phonix Command Character Generator *Mock Up*
             </div>
             <div className="Character-Name">
-              <button className="Name-Button" onClick="">
+              <button className="Name-Button">
                 Name: {this.state.characterName}
               </button>
               <span>
@@ -54,7 +59,10 @@ class App extends React.Component {
               <p>
                 Strength
                 <span> STR </span>
-                <button className="STR-Button">
+                <button
+                  className="STR-Button"
+                  onClick={this.SelectSTR.bind(this)}
+                >
                   {this.state.attributeStats[0]}
                 </button>
               </p>
