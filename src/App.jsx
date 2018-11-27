@@ -8,11 +8,6 @@ class App extends React.Component {
       characterName: "Default",
       equipmentWeight: 5,
       attributeStats: [14, 10, 10, 10, 12],
-      // str: 14,
-      // int: 10,
-      // wil: 10,
-      // hlt: 10,
-      // agi: 12,
       speed: [],
       skillLevels: [4, 2],
       combatStats: [],
@@ -32,17 +27,7 @@ class App extends React.Component {
     }
   }
 
-  // addSTR() {
-  //   if (this.state.str < 20) {
-  //     let attributes = [...this.state.attributeStats];
-  //     let attribute = [...attributes[0]];
-  //     attribute++;
-  //     attributes[0] = attribute;
-  //     this.setState({ attributes });
-  //   }
-  // }
-
-  addSTR = index => {
+  addToStat = index => {
     this.setState(state => {
       const attributeStats = state.attributeStats.map((item, dex) => {
         if (dex === index) {
@@ -52,6 +37,45 @@ class App extends React.Component {
         }
       });
       return { attributeStats };
+    });
+  };
+
+  minusFromStat = index => {
+    this.setState(state => {
+      const attributeStats = state.attributeStats.map((item, dex) => {
+        if (dex === index) {
+          return item - 1;
+        } else {
+          return item;
+        }
+      });
+      return { attributeStats };
+    });
+  };
+
+  addToLevel = index => {
+    this.setState(state => {
+      const skillLevels = state.skillLevels.map((item, dex) => {
+        if (dex === index) {
+          return item + 1;
+        } else {
+          return item;
+        }
+      });
+      return { skillLevels };
+    });
+  };
+
+  minusFromLevel = index => {
+    this.setState(state => {
+      const skillLevels = state.skillLevels.map((item, dex) => {
+        if (dex === index) {
+          return item - 1;
+        } else {
+          return item;
+        }
+      });
+      return { skillLevels };
     });
   };
 
@@ -78,44 +102,82 @@ class App extends React.Component {
             <div className="Stats">
               <p>
                 Strength
-                <span> STR {this.state.attributeStats[0]}</span>
-                {/* <span> STR {this.state.str}</span> */}
-                <button className="Stat-Up" onClick={this.addSTR.bind(this, 0)}>
+                <span> (STR) {this.state.attributeStats[0]} </span>
+                <button
+                  className="Stat-Up"
+                  onClick={this.addToStat.bind(this, 0)}
+                >
                   +1
                 </button>
                 <button
-                  className="Weight-Down"
-                  //onClick={this.minusSTR.bind(this)}
+                  className="Stat-Down"
+                  onClick={this.minusFromStat.bind(this, 0)}
                 >
                   -1
                 </button>
               </p>
               <p>
                 Intelligence
-                <span> INT </span>
-                <button className="INT-Button">
-                  {this.state.attributeStats[1]}
+                <span> (INT) {this.state.attributeStats[1]} </span>
+                <button
+                  className="Stat-Up"
+                  onClick={this.addToStat.bind(this, 1)}
+                >
+                  +1
+                </button>
+                <button
+                  className="Stat-Down"
+                  onClick={this.minusFromStat.bind(this, 1)}
+                >
+                  -1
                 </button>
               </p>
               <p>
                 Willpower
-                <span> WIL </span>
-                <button className="WIL-Button">
-                  {this.state.attributeStats[2]}
+                <span> (WIL) {this.state.attributeStats[2]} </span>
+                <button
+                  className="Stat-Up"
+                  onClick={this.addToStat.bind(this, 2)}
+                >
+                  +1
+                </button>
+                <button
+                  className="Stat-Down"
+                  onClick={this.minusFromStat.bind(this, 2)}
+                >
+                  -1
                 </button>
               </p>
               <p>
                 Health
-                <span> HLT </span>
-                <button className="STR-Button">
-                  {this.state.attributeStats[3]}
+                <span> (HLT) {this.state.attributeStats[3]} </span>
+                <button
+                  className="Stat-Up"
+                  onClick={this.addToStat.bind(this, 3)}
+                >
+                  +1
+                </button>
+                <button
+                  className="Stat-Down"
+                  onClick={this.minusFromStat.bind(this, 3)}
+                >
+                  -1
                 </button>
               </p>
               <p>
                 Agility
-                <span> AGI </span>
-                <button className="AGI-Button">
-                  {this.state.attributeStats[4]}
+                <span> (AGI) {this.state.attributeStats[4]} </span>
+                <button
+                  className="Stat-Up"
+                  onClick={this.addToStat.bind(this, 4)}
+                >
+                  +1
+                </button>
+                <button
+                  className="Stat-Down"
+                  onClick={this.minusFromStat.bind(this, 4)}
+                >
+                  -1
                 </button>
               </p>
             </div>
@@ -133,15 +195,35 @@ class App extends React.Component {
             </div>
             <div className="Combat-Level">
               <p>
-                Gun Combat Skill Level
-                <button className="GunLevel-Button">
-                  {this.state.skillLevels[0]}
+                <span>Gun Combat Skill Level {this.state.skillLevels[0]} </span>
+                <button
+                  className="Stat-Up"
+                  onClick={this.addToLevel.bind(this, 0)}
+                >
+                  +1
+                </button>
+                <button
+                  className="Stat-Down"
+                  onClick={this.minusFromLevel.bind(this, 0)}
+                >
+                  -1
                 </button>
               </p>
               <p>
-                Hand To Hand Skill Level
-                <button className="HandLevel-Button">
-                  {this.state.skillLevels[1]}
+                <span>
+                  Hand To Hand Skill Level {this.state.skillLevels[1]} {""}
+                </span>
+                <button
+                  className="Stat-Up"
+                  onClick={this.addToLevel.bind(this, 1)}
+                >
+                  +1
+                </button>
+                <button
+                  className="Stat-Down"
+                  onClick={this.minusFromLevel.bind(this, 1)}
+                >
+                  -1
                 </button>
               </p>
               <div className="Combat-Stats">
