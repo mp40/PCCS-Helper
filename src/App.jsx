@@ -31,7 +31,7 @@ class App extends React.Component {
     this.setState(state => {
       const attributeStats = state.attributeStats.map((item, dex) => {
         if (dex === index) {
-          return item + 1;
+          return item >= 20 ? 20 : item + 1;
         } else {
           return item;
         }
@@ -44,7 +44,7 @@ class App extends React.Component {
     this.setState(state => {
       const attributeStats = state.attributeStats.map((item, dex) => {
         if (dex === index) {
-          return item - 1;
+          return item <= 3 ? 3 : item - 1;
         } else {
           return item;
         }
@@ -57,7 +57,7 @@ class App extends React.Component {
     this.setState(state => {
       const skillLevels = state.skillLevels.map((item, dex) => {
         if (dex === index) {
-          return item + 1;
+          return item >= 20 ? 20 : item + 1;
         } else {
           return item;
         }
@@ -70,7 +70,7 @@ class App extends React.Component {
     this.setState(state => {
       const skillLevels = state.skillLevels.map((item, dex) => {
         if (dex === index) {
-          return item - 1;
+          return item <= 0 ? 0 : item - 1;
         } else {
           return item;
         }
