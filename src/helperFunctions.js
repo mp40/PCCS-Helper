@@ -6,7 +6,7 @@ const findSAL = function (level) {
 // console.log(findSAL(4))
 
 const table1A_BaseSpeed = {
-    lbs: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 70, 80, 90, 100, 125, 150, 200],
+    lbs: [0, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 70, 80, 90, 100, 125, 150, 200],
     21: [4.5, 4.5, 4, 4, 4, 3.5, 3.5, 3.5, 3.5, 3.5, 3, 3, 3, 3, 3, 2.5, 2.5, 2],
     20: [4.5, 4, 4, 3.5, 3.5, 3.5, 3.5, 3.5, 3, 3, 3, 3, 3, 2.5, 2.5, 2.5, 2.5, 2],
     19: [4, 4, 3.5, 3.5, 3, 3, 3, 3, 3, 2.5, 2.5, 2.5, 2.5, 2.5, 2, 2, 2, 1.5],
@@ -30,22 +30,15 @@ const table1A_BaseSpeed = {
     1: [1.5, 1.5, 1],
 }
 
+
 const calcBaseSpeed = (str, enc) => {
-    //need case for when result is not posible, eg STR 3 Enc 200
-    let index = undefined;
-    console.log("enc",
-        enc)
-    table1A_BaseSpeed.lbs.forEach(function (val, dex) {
-        //console.log(val, dex)
-        console.log("enc v val", enc, val)
-        console.log("dex v index", dex, index)
-        if (enc <= val) {
-            index = dex
+    return table1A_BaseSpeed.lbs.map(function (val, dex) {
+        if (enc <= val && enc > table1A_BaseSpeed.lbs[dex - 1]) {
+            if (table1A_BaseSpeed[str][dex]) {
+                return table1A_BaseSpeed[str][dex]
+            }
         }
     })
-    // console.log(table1A_BaseSpeed[str])
-    //console.log(index)
-    return table1A_BaseSpeed[str][index]
 }
 
 const table1B_MaxSpeed = {

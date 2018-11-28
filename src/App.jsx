@@ -1,41 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-// import Button from "@material-ui/core/Button";
-//import "../test.jsx";
 
-// import { test } from ".";
-
-// import { withStyles } from "@material-ui/core/styles";
-// import Paper from "@material-ui/core/Paper";
-// import Grid from "@material-ui/core/Grid";
-
-// const styles = theme => ({
-//   root: {
-//     flexGrow: 1
-//   },
-//   paper: {
-//     padding: theme.spacing.unit * 2,
-//     textAlign: "center",
-//     color: theme.palette.text.secondary
-//   }
-// });
-
-// const styles = theme => ({
-//   root: {
-//     flexGrow: 1
-//   },
-//   paper: {
-//     padding: theme.spacing.unit * 2,
-//     textAlign: "center",
-//     color: theme.palette.text.secondary
-//   }
-// });
-
-// function FullWidthGrid(props){
-//   const {classes} = props;
-// }
-
-// const { calcBaseSpeed } = require(".");
 const { calcBaseSpeed, findSAL } = require("./helperFunctions");
 
 class App extends React.Component {
@@ -44,17 +9,23 @@ class App extends React.Component {
     this.state = {
       equipmentWeight: 5,
       attributeStats: [14, 10, 10, 10, 12],
-      //speed: [],
       baseSpeed: 2,
       maxSpeed: 3.5,
       skillLevels: [4, 2],
-      combatStats: { SAL: 11, CE: 8, ISF: 24, ASF: 22 },
+      combatStats: { SAL: 10, CE: 7, ISF: 24, ASF: 22 },
       combatActions: [5, 4, 1.5]
     };
   }
 
   addWeight() {
     this.setState({ equipmentWeight: this.state.equipmentWeight + 5 });
+    const newBS = calcBaseSpeed(
+      this.state.attributeStats[0],
+      this.state.equipmentWeight
+    );
+    if (newBS) {
+      this.setState({ baseSpeed: newBS });
+    }
   }
 
   minusWeight() {
@@ -62,6 +33,13 @@ class App extends React.Component {
       this.setState({ equipmentWeight: this.state.equipmentWeight });
     } else {
       this.setState({ equipmentWeight: this.state.equipmentWeight - 5 });
+    }
+    const newBS = calcBaseSpeed(
+      this.state.attributeStats[0],
+      this.state.equipmentWeight
+    );
+    if (newBS) {
+      this.setState({ baseSpeed: newBS });
     }
   }
 
@@ -100,21 +78,15 @@ class App extends React.Component {
           return item;
         }
       });
-      console.log(skillLevels);
       const newSAL = skillLevels.map(level => {
         return findSAL(level);
       });
-      //console.log(newSAL);
-      // const newSAL = findSAL(lvls);
-      // console.log(newSAL);
       const combatStats = {
         SAL: newSAL[0],
         CE: newSAL[1],
         ISF: this.state.combatStats.ISF,
         ASF: this.state.combatStats.ASF
       };
-      console.log(combatStats);
-      //return { skillLevels: newSAL, combatStats };
       return { skillLevels, combatStats };
     });
   };
@@ -128,7 +100,17 @@ class App extends React.Component {
           return item;
         }
       });
-      return { skillLevels };
+
+      const newSAL = skillLevels.map(level => {
+        return findSAL(level);
+      });
+      const combatStats = {
+        SAL: newSAL[0],
+        CE: newSAL[1],
+        ISF: this.state.combatStats.ISF,
+        ASF: this.state.combatStats.ASF
+      };
+      return { skillLevels, combatStats };
     });
   };
 
