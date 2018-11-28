@@ -5,7 +5,8 @@ const {
   calcBaseSpeed,
   findSAL,
   calcMaxSpeed,
-  calcISF
+  calcISF,
+  calcCombatActions
 } = require("./helperFunctions");
 
 class App extends React.Component {
@@ -25,13 +26,6 @@ class App extends React.Component {
   addWeight() {
     this.setState({ equipmentWeight: this.state.equipmentWeight + 5 });
     this.updateBaseSpeed();
-    // const newBS = calcBaseSpeed(
-    //   this.state.attributeStats[0],
-    //   this.state.equipmentWeight
-    // );
-    // if (newBS) {
-    //   this.setState({ baseSpeed: newBS });
-    // }
   }
 
   minusWeight() {
@@ -40,7 +34,6 @@ class App extends React.Component {
     } else {
       this.setState({ equipmentWeight: this.state.equipmentWeight - 5 });
     }
-    console.log("down");
     this.updateBaseSpeed();
   }
 
@@ -52,6 +45,25 @@ class App extends React.Component {
   minusFromSTR = () => {
     this.updateBaseSpeed();
     this.minusFromStat(0);
+  };
+
+  addToINT = () => {
+    this.addToStat(1);
+    this.updateISFFromINT();
+  };
+
+  minusFromINT = () => {
+    this.minusFromStat(1);
+    this.updateISFFromINT();
+  };
+
+  updateISFFromINT = () => {
+    console.log("called");
+    const newISF = calcISF(
+      this.state.skillLevels[0],
+      this.state.attributeStats[1]
+    );
+    this.setState({ combatStats: { ISF: newISF } });
   };
 
   updateBaseSpeed = () => {
@@ -69,13 +81,20 @@ class App extends React.Component {
   };
 
   updateMS = newBS => {
-    const newMS = calcMaxSpeed(
-      this.state.attributeStats[4],
-      newBS,
-      this.state.maxSpeed
-    );
+    const newMS = calcMaxSpeed(this.state.attributeStats[4], newBS);
     if (newMS) {
       this.setState({ maxSpeed: newMS });
+    }
+  };
+
+  updateCombatACtions = () => {
+    const newGunActions = calcCombatActions(
+      this.state.maxSpeed,
+      this.state.combatActions.ISF
+    );
+    if (newGunActions) {
+      console.log("triggered", newGunActions);
+      this.setState({ combatActions: { ISF: newGunActions } });
     }
   };
 
@@ -123,6 +142,7 @@ class App extends React.Component {
         ISF: calcISF(newSAL[0], this.state.attributeStats[1]),
         ASF: calcISF(newSAL[1], this.state.attributeStats[4])
       };
+      //call CA fn
       return { skillLevels, combatStats };
     });
   };
@@ -197,13 +217,13 @@ class App extends React.Component {
                 <div>
                   <button
                     className="Stat-Up"
-                    onClick={this.addToStat.bind(this, 1)}
+                    onClick={this.addToINT.bind(this)}
                   >
                     +1
                   </button>
                   <button
                     className="Stat-Down"
-                    onClick={this.minusFromStat.bind(this, 1)}
+                    onClick={this.minusFromINT.bind(this)}
                   >
                     -1
                   </button>

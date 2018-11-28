@@ -23,7 +23,6 @@ const table1C_SAL = [
 ];
 
 const findSAL = function(level) {
-  //   const isf = calc(int);
   return table1C_SAL[level];
 };
 
@@ -145,18 +144,10 @@ const table1B_MaxSpeed = {
   1: [1, 1, 1, 2, 2, 2, 3, 3]
 };
 
-const calcMaxSpeed = (agi, baseSpd, maxSpd) => {
-  console.log("IN", agi, baseSpd);
-  //   if (baseSpd === undefined) {
-  //     return this.state.maxSpeed;
-  //   }
-  //   if (baseSpd === undefined) {
-  //     return maxSpd;
-  //};
+const calcMaxSpeed = (agi, baseSpd) => {
   return table1B_MaxSpeed.baseSpeed.map(function(val, dex) {
     if (baseSpd <= val && baseSpd > table1B_MaxSpeed.baseSpeed[dex - 1]) {
       if (table1B_MaxSpeed[agi][dex] && baseSpd) {
-        console.log("returning", table1B_MaxSpeed[agi][dex]);
         return table1B_MaxSpeed[agi][dex];
       }
     }
@@ -164,11 +155,12 @@ const calcMaxSpeed = (agi, baseSpd, maxSpd) => {
 };
 
 const calcISF = function(int, sal) {
+  console.log("calcing");
   return int + sal;
 };
 
 const table1D_CombatActions = {
-  isf: [7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39],
+  isf: [0, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39],
   1: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2],
   2: [1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4],
   3: [1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6],
@@ -185,19 +177,29 @@ const table1D_CombatActions = {
 };
 
 const calcCombatActions = (ms, isf) => {
-  //need case for when result is not posible
-  let index = undefined;
-  table1D_CombatActions.forEach(function(val, dex) {
-    if (isf <= val) {
-      index = dex;
+  console.log("firing");
+  return table1D_CombatActions.isf.map(function(val, dex) {
+    if (isf <= val && isf > table1D_CombatActions.isf[dex - 1]) {
+      if (table1D_CombatActions[ms][dex]) {
+        return table1D_CombatActions[ms][dex];
+      }
     }
   });
-  return table1B_MaxSpeed[ms][index];
 };
+// const calcMaxSpeed = (agi, baseSpd) => {
+//   return table1B_MaxSpeed.baseSpeed.map(function(val, dex) {
+//     if (baseSpd <= val && baseSpd > table1B_MaxSpeed.baseSpeed[dex - 1]) {
+//       if (table1B_MaxSpeed[agi][dex] && baseSpd) {
+//         return table1B_MaxSpeed[agi][dex];
+//       }
+//     }
+//   });
+// };
 
 module.exports = {
   calcBaseSpeed,
   findSAL,
   calcMaxSpeed,
-  calcISF
+  calcISF,
+  calcCombatActions
 };
