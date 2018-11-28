@@ -137,8 +137,8 @@ class App extends React.Component {
       const combatStats = {
         SAL: newSAL[0],
         CE: newSAL[1],
-        ISF: this.state.combatStats.ISF,
-        ASF: this.state.combatStats.ASF
+        ISF: calcISF(newSAL[0], this.state.attributeStats[1]),
+        ASF: calcISF(newSAL[1], this.state.attributeStats[4])
       };
       return { skillLevels, combatStats };
     });
