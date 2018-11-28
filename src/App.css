@@ -23,8 +23,85 @@
 } */
 
 .Wrapper {
-  padding-left: 20px;
+  margin-top: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
+  /* display: flex;
+  flex-direction: column; */
 }
+
+.Equipment-Weight {
+  /* display: flex;
+  flex-wrap: wrap; */
+  text-align: right;
+  background-color: brown;
+}
+
+.Weight-Up {
+  margin-left: 10px;
+}
+
+.Weight-Down {
+  margin-left: 10px;
+}
+
+.Stats {
+  margin-top: -38px;
+  background-color: aquamarine;
+  width: 40%;
+  /* display: flex;
+  flex-wrap: wrap;
+  justify-content: center; */
+
+}
+
+.Stat {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.Speed {
+  text-align: right;
+  background-color: blanchedalmond;
+  margin-top: -160px;
+}
+
+.Combat-Level {
+  text-align: right;
+  background-color: cadetblue;
+}
+
+.Stat-Up {
+  display: inline-block;
+  text-decoration: none;
+  background: #8cd460;
+  color: #fff;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  border-radius: 50%;
+  text-align: center;
+  font-weight: bold;
+  vertical-align: middle;
+  overflow: hidden;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+  border-bottom: solid 3px #6ead46;
+  transition: .4s
+}
+
+.Stat-Up:active {
+  -ms-transform: translateY(2px);
+  -webkit-transform: translate(2px);
+  transform: translateY(2px);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+  border-bottom: none;
+}
+
+/*
+.Stat-Down {
+  border-radius: 50%
+} */
 
 /* .Character-Name {
   background-color: aqua;

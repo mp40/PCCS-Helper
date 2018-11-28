@@ -1,13 +1,24 @@
 import React, { Component } from "react";
 import "./App.css";
-import Button from "@material-ui/core/Button";
+// import Button from "@material-ui/core/Button";
 //import "../test.jsx";
 
-import { test } from "./src/test";
+// import { test } from ".";
 
 // import { withStyles } from "@material-ui/core/styles";
 // import Paper from "@material-ui/core/Paper";
 // import Grid from "@material-ui/core/Grid";
+
+// const styles = theme => ({
+//   root: {
+//     flexGrow: 1
+//   },
+//   paper: {
+//     padding: theme.spacing.unit * 2,
+//     textAlign: "center",
+//     color: theme.palette.text.secondary
+//   }
+// });
 
 // const styles = theme => ({
 //   root: {
@@ -115,17 +126,11 @@ class App extends React.Component {
             <div className="Title">
               Phonix Command Character Generator *Mock Up*
             </div>
-            <div>{test()}</div>
-            <div className="Equipment Weight">
+            <div className="Equipment-Weight">
               <span>Equipment Weight: {this.state.equipmentWeight}</span>
-              <Button
-                className="Weight-Up"
-                variant="contained"
-                color="primary"
-                onClick={this.addWeight.bind(this)}
-              >
+              <button className="Weight-Up" onClick={this.addWeight.bind(this)}>
                 Add 5lbs
-              </Button>
+              </button>
               <button
                 className="Weight-Down"
                 onClick={this.minusWeight.bind(this)}
@@ -134,7 +139,7 @@ class App extends React.Component {
               </button>
             </div>
             <div className="Stats">
-              <p>
+              <p className="Stat">
                 Strength
                 <span> (STR) {this.state.attributeStats[0]} </span>
                 <button

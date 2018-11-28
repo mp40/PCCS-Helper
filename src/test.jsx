@@ -52,6 +52,6 @@ test.propTypes = {
 };
 
 // export default withStyles(styles)(CenteredGrid);
-// module.exports = { test };
+//module.exports = { test };
 
-export default test;
+// export default test;
