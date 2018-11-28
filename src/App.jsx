@@ -104,7 +104,7 @@ class App extends React.Component {
       const newSAL = skillLevels.map(level => {
         return findSAL(level);
       });
-      console.log(newSAL);
+      //console.log(newSAL);
       // const newSAL = findSAL(lvls);
       // console.log(newSAL);
       const combatStats = {
@@ -113,7 +113,9 @@ class App extends React.Component {
         ISF: this.state.combatStats.ISF,
         ASF: this.state.combatStats.ASF
       };
-      return { skillLevels: newSAL, combatStats };
+      console.log(combatStats);
+      //return { skillLevels: newSAL, combatStats };
+      return { skillLevels, combatStats };
     });
   };
 
@@ -151,38 +153,44 @@ class App extends React.Component {
               </button>
             </div>
             <div className="Stats">
-              <p className="Stat">
-                Strength
+              <div className="Stat-Text">
+                <span>Strength</span>
+                <span>Intelligence</span>
+              </div>
+              <div className="Stat-Value">
                 <span> (STR) {this.state.attributeStats[0]} </span>
-                <button
-                  className="Stat-Up"
-                  onClick={this.addToStat.bind(this, 0)}
-                >
-                  +1
-                </button>
-                <button
-                  className="Stat-Down"
-                  onClick={this.minusFromStat.bind(this, 0)}
-                >
-                  -1
-                </button>
-              </p>
-              <p className="Stat">
-                Intelligence
                 <span> (INT) {this.state.attributeStats[1]} </span>
-                <button
-                  className="Stat-Up"
-                  onClick={this.addToStat.bind(this, 1)}
-                >
-                  +1
-                </button>
-                <button
-                  className="Stat-Down"
-                  onClick={this.minusFromStat.bind(this, 1)}
-                >
-                  -1
-                </button>
-              </p>
+              </div>
+              <div className="Stat-Adjust">
+                <div>
+                  <button
+                    className="Stat-Up"
+                    onClick={this.addToStat.bind(this, 0)}
+                  >
+                    +1
+                  </button>
+                  <button
+                    className="Stat-Down"
+                    onClick={this.minusFromStat.bind(this, 0)}
+                  >
+                    -1
+                  </button>
+                </div>
+                <div>
+                  <button
+                    className="Stat-Up"
+                    onClick={this.addToStat.bind(this, 1)}
+                  >
+                    +1
+                  </button>
+                  <button
+                    className="Stat-Down"
+                    onClick={this.minusFromStat.bind(this, 1)}
+                  >
+                    -1
+                  </button>
+                </div>
+              </div>
               <p className="Stat">
                 Willpower
                 <span> (WIL) {this.state.attributeStats[2]} </span>
