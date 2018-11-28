@@ -110,13 +110,13 @@ class App extends React.Component {
       const newSAL = skillLevels.map(level => {
         return findSAL(level);
       });
-      console.log(newSAL);
       const combatStats = {
         SAL: newSAL[0],
         CE: newSAL[1],
-        ISF: calcISF(newSAL[0], this.state.attributeStats[4]),
-        ASF: this.state.combatStats.ASF
+        ISF: calcISF(newSAL[0], this.state.attributeStats[1]),
+        ASF: calcISF(newSAL[1], this.state.attributeStats[4])
       };
+      console.log(combatStats);
       return { skillLevels, combatStats };
     });
   };
@@ -310,7 +310,7 @@ class App extends React.Component {
                 </p>
                 <p>
                   AGI Skill Factor
-                  <span> (ASF) {this.state.combatStats.AGI} </span>
+                  <span> (ASF) {this.state.combatStats.ASF} </span>
                 </p>
               </div>
               <div className="Combat-Actions">
