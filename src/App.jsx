@@ -49,21 +49,31 @@ class App extends React.Component {
 
   addToINT = () => {
     this.addToStat(1);
-    this.updateISFFromINT();
+    this.updateISFFromINT(1);
+    //error - updates of last int val
   };
 
   minusFromINT = () => {
     this.minusFromStat(1);
-    this.updateISFFromINT();
+    this.updateISFFromINT(-1);
+    //error - updates from last int val
   };
 
-  updateISFFromINT = () => {
+  updateISFFromINT = adjust => {
     console.log("called");
     const newISF = calcISF(
       this.state.skillLevels[0],
-      this.state.attributeStats[1]
+      this.state.attributeStats[1],
+      adjust
     );
-    this.setState({ combatStats: { ISF: newISF } });
+    this.setState({
+      combatStats: {
+        SAL: this.state.combatStats.SAL,
+        CE: this.state.combatStats.CE,
+        ISF: newISF,
+        ASF: this.state.combatStats.ASF
+      }
+    });
   };
 
   updateBaseSpeed = () => {
@@ -94,7 +104,7 @@ class App extends React.Component {
     );
     if (newGunActions) {
       console.log("triggered", newGunActions);
-      this.setState({ combatActions: { ISF: newGunActions } });
+      this.setState({ combatActions: [newGunActions] });
     }
   };
 

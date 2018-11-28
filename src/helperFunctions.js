@@ -154,9 +154,9 @@ const calcMaxSpeed = (agi, baseSpd) => {
   });
 };
 
-const calcISF = function(int, sal) {
+const calcISF = function(int, sal, adjust = 0) {
   console.log("calcing");
-  return int + sal;
+  return int + sal + adjust;
 };
 
 const table1D_CombatActions = {
