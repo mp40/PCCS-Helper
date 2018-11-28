@@ -1,14 +1,18 @@
 import React, { Component } from "react";
 import "./App.css";
 
+// const { calcBaseSpeed } = require(".");
+// const { calcBaseSpeed, findSAL } = require(".");
+
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      characterName: "Default",
       equipmentWeight: 5,
       attributeStats: [14, 10, 10, 10, 12],
-      speed: [],
+      //speed: [],
+      baseSpeed: "",
+      maxSpeed: "",
       skillLevels: [4, 2],
       combatStats: [],
       CombatActions: []
@@ -64,6 +68,7 @@ class App extends React.Component {
       });
       return { skillLevels };
     });
+    this.updateSAL();
   };
 
   minusFromLevel = index => {
@@ -184,13 +189,11 @@ class App extends React.Component {
             <div className="Speed">
               <p>
                 Base Speed
-                <span> BS </span>
-                <span>1337 //to be rendered</span>
+                <span> BS {this.state.baseSpeed} </span>
               </p>
               <p>
                 Maximum Speed
-                <span> MS </span>
-                <span>1337 //to be rendered</span>
+                <span> MS {this.state.maxSpeed}</span>
               </p>
             </div>
             <div className="Combat-Level">
