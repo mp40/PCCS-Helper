@@ -34,6 +34,20 @@ class App extends React.Component {
     } else {
       this.setState({ equipmentWeight: this.state.equipmentWeight - 5 });
     }
+    this.updateBaseSpeed();
+  }
+
+  addToSTR = () => {
+    this.updateBaseSpeed();
+    this.addToStat(0);
+  };
+
+  minusFromSTR = () => {
+    this.updateBaseSpeed();
+    this.minusFromStat(0);
+  };
+
+  updateBaseSpeed = () => {
     const newBS = calcBaseSpeed(
       this.state.attributeStats[0],
       this.state.equipmentWeight
@@ -41,7 +55,7 @@ class App extends React.Component {
     if (newBS) {
       this.setState({ baseSpeed: newBS });
     }
-  }
+  };
 
   addToStat = index => {
     this.setState(state => {
@@ -147,13 +161,13 @@ class App extends React.Component {
                 <div>
                   <button
                     className="Stat-Up"
-                    onClick={this.addToStat.bind(this, 0)}
+                    onClick={this.addToSTR.bind(this)}
                   >
                     +1
                   </button>
                   <button
                     className="Stat-Down"
-                    onClick={this.minusFromStat.bind(this, 0)}
+                    onClick={this.minusFromSTR.bind(this)}
                   >
                     -1
                   </button>
