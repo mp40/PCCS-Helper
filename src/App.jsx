@@ -59,18 +59,33 @@ class App extends React.Component {
 
   addToAGI = () => {
     this.addToStat(4);
-    //to do trigger ASF update
+    this.updateASFFromAGI(1);
   };
 
   minusFromAGI = () => {
     this.minusFromStat(4);
-    //to do trigger ASF update
+    this.updateASFFromAGI(-1);
+  };
+
+  updateASFFromAGI = adjust => {
+    const newASF = calcISF(
+      this.state.combatStats.CE,
+      this.state.attributeStats[4],
+      adjust
+    );
+    this.setState({
+      combatStats: {
+        SAL: this.state.combatStats.SAL,
+        CE: this.state.combatStats.CE,
+        ISF: this.state.combatStats.ISF,
+        ASF: newASF
+      }
+    });
   };
 
   updateISFFromINT = adjust => {
-    console.log("called");
     const newISF = calcISF(
-      this.state.skillLevels[0],
+      this.state.combatStats.SAL,
       this.state.attributeStats[1],
       adjust
     );
