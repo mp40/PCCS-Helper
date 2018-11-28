@@ -60,11 +60,18 @@ class App extends React.Component {
       this.state.equipmentWeight
     );
     if (newBS) {
+      const filteredNewBS = newBS.filter(val => {
+        return val;
+      });
+      this.updateMS(filteredNewBS);
       this.setState({ baseSpeed: newBS });
     }
+  };
+
+  updateMS = newBS => {
     const newMS = calcMaxSpeed(
       this.state.attributeStats[4],
-      this.state.baseSpeed,
+      newBS,
       this.state.maxSpeed
     );
     if (newMS) {
@@ -116,7 +123,6 @@ class App extends React.Component {
         ISF: calcISF(newSAL[0], this.state.attributeStats[1]),
         ASF: calcISF(newSAL[1], this.state.attributeStats[4])
       };
-      console.log(combatStats);
       return { skillLevels, combatStats };
     });
   };
