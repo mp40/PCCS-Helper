@@ -155,7 +155,6 @@ const calcMaxSpeed = (agi, baseSpd) => {
 };
 
 const calcISF = function(int, sal, adjust = 0) {
-  console.log("calcing");
   return int + sal + adjust;
 };
 
@@ -177,7 +176,7 @@ const table1D_CombatActions = {
 };
 
 const calcCombatActions = (ms, isf) => {
-  console.log("firing");
+  console.log("firing", ms, isf);
   return table1D_CombatActions.isf.map(function(val, dex) {
     if (isf <= val && isf > table1D_CombatActions.isf[dex - 1]) {
       if (table1D_CombatActions[ms][dex]) {

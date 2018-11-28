@@ -116,14 +116,21 @@ class App extends React.Component {
   updateMS = newBS => {
     const newMS = calcMaxSpeed(this.state.attributeStats[4], newBS);
     if (newMS) {
+      console.log("newMS", newMS);
+      const filteredNewMS = newMS.filter(val => {
+        return val;
+      });
+      console.log(filteredNewMS);
+      this.updateCombatACtions(filteredNewMS);
       this.setState({ maxSpeed: newMS });
     }
   };
 
-  updateCombatACtions = () => {
+  updateCombatACtions = maxSp => {
+    console.log("MSarg", maxSp, "ISF?...", this.state.combatStats.ISF);
     const newGunActions = calcCombatActions(
-      this.state.maxSpeed,
-      this.state.combatActions.ISF
+      maxSp[0],
+      this.state.combatStats.ISF
     );
     if (newGunActions) {
       console.log("triggered", newGunActions);
