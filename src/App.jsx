@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-
+import Button from "@material-ui/core/Button";
 // const { calcBaseSpeed } = require(".");
 // const { calcBaseSpeed, findSAL } = require(".");
 
@@ -94,9 +94,14 @@ class App extends React.Component {
             </div>
             <div className="Equipment Weight">
               <span>Equipment Weight: {this.state.equipmentWeight}</span>
-              <button className="Weight-Up" onClick={this.addWeight.bind(this)}>
+              <Button
+                className="Weight-Up"
+                variant="contained"
+                color="primary"
+                onClick={this.addWeight.bind(this)}
+              >
                 Add 5lbs
-              </button>
+              </Button>
               <button
                 className="Weight-Down"
                 onClick={this.minusWeight.bind(this)}
