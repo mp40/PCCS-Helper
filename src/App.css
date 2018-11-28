@@ -2,37 +2,20 @@
   text-align: left;
 }
 
-/* .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-} */
-
 .App-header {
   background-color: whitesmoke;
   min-height: 100vh;
-  /* display: flex; */
-  /* flex-direction: column;
-  align-items: center;
-  justify-content: center; */
   font-size: calc(3px + 2vmin);
   color: black;
 }
-
-/* .App-link {
-  color: #61dafb;
-} */
 
 .Wrapper {
   margin-top: 20px;
   padding-left: 50px;
   padding-right: 50px;
-  /* display: flex;
-  flex-direction: column; */
 }
 
 .Equipment-Weight {
-  /* display: flex;
-  flex-wrap: wrap; */
   text-align: right;
   background-color: brown;
 }
@@ -52,6 +35,7 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 25px;
   display: flex;
+  line-height: 50px;
 }
 
 .Stat {
@@ -63,6 +47,11 @@
 .Stat-Text {
   display: flex;
   flex-direction: column;
+}
+
+.STR-Adjust {
+  display: flex;
+  flex-direction: row;
 }
 
 .Speed {
@@ -82,9 +71,9 @@
   text-decoration: none;
   background: #8cd460;
   color: #fff;
-  width: 60px;
-  height: 60px;
-  line-height: 60px;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
   border-radius: 50%;
   text-align: center;
   font-weight: bold;
@@ -103,26 +92,3 @@
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
   border-bottom: none;
 }
-
-/*
-.Stat-Down {
-  border-radius: 50%
-} */
-
-/* .Character-Name {
-  background-color: aqua;
-} */
-
-/* .Name-Button {
-  outline-color: crimson
-} */
-
-/* @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-} */

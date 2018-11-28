@@ -50,13 +50,21 @@ class App extends React.Component {
   addToINT = () => {
     this.addToStat(1);
     this.updateISFFromINT(1);
-    //error - updates of last int val
   };
 
   minusFromINT = () => {
     this.minusFromStat(1);
     this.updateISFFromINT(-1);
-    //error - updates from last int val
+  };
+
+  addToAGI = () => {
+    this.addToStat(4);
+    //to do trigger ASF update
+  };
+
+  minusFromAGI = () => {
+    this.minusFromStat(4);
+    //to do trigger ASF update
   };
 
   updateISFFromINT = adjust => {
@@ -204,13 +212,19 @@ class App extends React.Component {
               <div className="Stat-Text">
                 <span>Strength</span>
                 <span>Intelligence</span>
+                <span>Willpower</span>
+                <span>Health</span>
+                <span>Agility</span>
               </div>
               <div className="Stat-Value">
                 <span> (STR) {this.state.attributeStats[0]} </span>
                 <span> (INT) {this.state.attributeStats[1]} </span>
+                <span> (WIL) {this.state.attributeStats[2]} </span>
+                <span> (HLT) {this.state.attributeStats[3]} </span>
+                <span> (AGI) {this.state.attributeStats[4]} </span>
               </div>
               <div className="Stat-Adjust">
-                <div>
+                <div className="STR-Adjust">
                   <button
                     className="Stat-Up"
                     onClick={this.addToSTR.bind(this)}
@@ -238,55 +252,49 @@ class App extends React.Component {
                     -1
                   </button>
                 </div>
+                <div>
+                  <button
+                    className="Stat-Up"
+                    onClick={this.addToStat.bind(this, 2)}
+                  >
+                    +1
+                  </button>
+                  <button
+                    className="Stat-Down"
+                    onClick={this.minusFromStat.bind(this, 2)}
+                  >
+                    -1
+                  </button>
+                </div>
+                <div>
+                  <button
+                    className="Stat-Up"
+                    onClick={this.addToStat.bind(this, 3)}
+                  >
+                    +1
+                  </button>
+                  <button
+                    className="Stat-Down"
+                    onClick={this.minusFromStat.bind(this, 3)}
+                  >
+                    -1
+                  </button>
+                </div>
+                <div>
+                  <button
+                    className="Stat-Up"
+                    onClick={this.addToAGI.bind(this)}
+                  >
+                    +1
+                  </button>
+                  <button
+                    className="Stat-Down"
+                    onClick={this.minusFromAGI.bind(this)}
+                  >
+                    -1
+                  </button>
+                </div>
               </div>
-              <p className="Stat">
-                Willpower
-                <span> (WIL) {this.state.attributeStats[2]} </span>
-                <button
-                  className="Stat-Up"
-                  onClick={this.addToStat.bind(this, 2)}
-                >
-                  +1
-                </button>
-                <button
-                  className="Stat-Down"
-                  onClick={this.minusFromStat.bind(this, 2)}
-                >
-                  -1
-                </button>
-              </p>
-              <p className="Stat">
-                Health
-                <span> (HLT) {this.state.attributeStats[3]} </span>
-                <button
-                  className="Stat-Up"
-                  onClick={this.addToStat.bind(this, 3)}
-                >
-                  +1
-                </button>
-                <button
-                  className="Stat-Down"
-                  onClick={this.minusFromStat.bind(this, 3)}
-                >
-                  -1
-                </button>
-              </p>
-              <p className="Stat">
-                Agility
-                <span> (AGI) {this.state.attributeStats[4]} </span>
-                <button
-                  className="Stat-Up"
-                  onClick={this.addToStat.bind(this, 4)}
-                >
-                  +1
-                </button>
-                <button
-                  className="Stat-Down"
-                  onClick={this.minusFromStat.bind(this, 4)}
-                >
-                  -1
-                </button>
-              </p>
             </div>
             <div className="Speed">
               <p>
