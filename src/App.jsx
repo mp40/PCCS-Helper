@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import "./App.css";
 
-const { calcBaseSpeed, findSAL } = require("./helperFunctions");
+const {
+  calcBaseSpeed,
+  findSAL,
+  calcMaxSpeed,
+  calcISF
+} = require("./helperFunctions");
 
 class App extends React.Component {
   constructor(props) {
@@ -19,13 +24,14 @@ class App extends React.Component {
 
   addWeight() {
     this.setState({ equipmentWeight: this.state.equipmentWeight + 5 });
-    const newBS = calcBaseSpeed(
-      this.state.attributeStats[0],
-      this.state.equipmentWeight
-    );
-    if (newBS) {
-      this.setState({ baseSpeed: newBS });
-    }
+    this.updateBaseSpeed();
+    // const newBS = calcBaseSpeed(
+    //   this.state.attributeStats[0],
+    //   this.state.equipmentWeight
+    // );
+    // if (newBS) {
+    //   this.setState({ baseSpeed: newBS });
+    // }
   }
 
   minusWeight() {
@@ -34,6 +40,7 @@ class App extends React.Component {
     } else {
       this.setState({ equipmentWeight: this.state.equipmentWeight - 5 });
     }
+    console.log("down");
     this.updateBaseSpeed();
   }
 
@@ -54,6 +61,14 @@ class App extends React.Component {
     );
     if (newBS) {
       this.setState({ baseSpeed: newBS });
+    }
+    const newMS = calcMaxSpeed(
+      this.state.attributeStats[4],
+      this.state.baseSpeed,
+      this.state.maxSpeed
+    );
+    if (newMS) {
+      this.setState({ maxSpeed: newMS });
     }
   };
 
@@ -95,10 +110,11 @@ class App extends React.Component {
       const newSAL = skillLevels.map(level => {
         return findSAL(level);
       });
+      console.log(newSAL);
       const combatStats = {
         SAL: newSAL[0],
         CE: newSAL[1],
-        ISF: this.state.combatStats.ISF,
+        ISF: calcISF(newSAL[0], this.state.attributeStats[4]),
         ASF: this.state.combatStats.ASF
       };
       return { skillLevels, combatStats };
@@ -321,5 +337,4 @@ class App extends React.Component {
     );
   }
 }
-
 export default App;
