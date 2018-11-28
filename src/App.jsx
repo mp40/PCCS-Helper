@@ -11,11 +11,11 @@ class App extends React.Component {
       equipmentWeight: 5,
       attributeStats: [14, 10, 10, 10, 12],
       //speed: [],
-      baseSpeed: "",
-      maxSpeed: "",
+      baseSpeed: 2,
+      maxSpeed: 3.5,
       skillLevels: [4, 2],
-      combatStats: [],
-      CombatActions: []
+      combatStats: [11, 8, 24, 22],
+      combatActions: [5, 4, 1.5]
     };
   }
 
@@ -237,23 +237,19 @@ class App extends React.Component {
               <div className="Combat-Stats">
                 <p>
                   Skill Accuracy Level
-                  <span> SAL </span>
-                  <span>1337 //to be rendered</span>
+                  <span> (SAL) {this.state.combatStats[0]} </span>
                 </p>
                 <p>
                   Combat Efficiency
-                  <span> CE </span>
-                  <span>1337 //to be rendered</span>
+                  <span> (CE) {this.state.combatStats[1]}</span>
                 </p>
                 <p>
                   INT Skill Factor
-                  <span> ISF </span>
-                  <span>1337 //to be rendered</span>
+                  <span> (ISF) {this.state.combatStats[2]} </span>
                 </p>
                 <p>
                   AGI Skill Factor
-                  <span> ASF </span>
-                  <span>1337 //to be rendered</span>
+                  <span> (ASF) {this.state.combatStats[3]} </span>
                 </p>
               </div>
               <div className="Combat-Actions">
@@ -261,15 +257,15 @@ class App extends React.Component {
                 <div className="Actions">
                   <p>
                     Gun Combat
-                    <span> 1337 //to be rendered</span>
+                    <span> {this.state.combatActions[0]}</span>
                   </p>
                   <p>
                     Hand To Hand
-                    <span> 1337 //to be rendered</span>
+                    <span> {this.state.combatActions[1]}</span>
                   </p>
                   <p>
-                    DB
-                    <span> 1337 //to be rendered</span>
+                    Damage Bonus
+                    <span> {this.state.combatActions[2]}</span>
                   </p>
                 </div>
               </div>
