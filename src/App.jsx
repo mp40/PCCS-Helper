@@ -1,6 +1,29 @@
 import React, { Component } from "react";
 import "./App.css";
 import Button from "@material-ui/core/Button";
+//import "../test.jsx";
+
+import { test } from "./src/test";
+
+// import { withStyles } from "@material-ui/core/styles";
+// import Paper from "@material-ui/core/Paper";
+// import Grid from "@material-ui/core/Grid";
+
+// const styles = theme => ({
+//   root: {
+//     flexGrow: 1
+//   },
+//   paper: {
+//     padding: theme.spacing.unit * 2,
+//     textAlign: "center",
+//     color: theme.palette.text.secondary
+//   }
+// });
+
+// function FullWidthGrid(props){
+//   const {classes} = props;
+// }
+
 // const { calcBaseSpeed } = require(".");
 // const { calcBaseSpeed, findSAL } = require(".");
 
@@ -92,6 +115,7 @@ class App extends React.Component {
             <div className="Title">
               Phonix Command Character Generator *Mock Up*
             </div>
+            <div>{test()}</div>
             <div className="Equipment Weight">
               <span>Equipment Weight: {this.state.equipmentWeight}</span>
               <Button
