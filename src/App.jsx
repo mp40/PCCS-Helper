@@ -36,7 +36,7 @@ import "./App.css";
 // }
 
 // const { calcBaseSpeed } = require(".");
-// const { calcBaseSpeed, findSAL } = require(".");
+const { calcBaseSpeed, findSAL } = require("./helperFunctions");
 
 class App extends React.Component {
   constructor(props) {
@@ -48,7 +48,7 @@ class App extends React.Component {
       baseSpeed: 2,
       maxSpeed: 3.5,
       skillLevels: [4, 2],
-      combatStats: [11, 8, 24, 22],
+      combatStats: { SAL: 11, CE: 8, ISF: 24, ASF: 22 },
       combatActions: [5, 4, 1.5]
     };
   }
@@ -100,9 +100,21 @@ class App extends React.Component {
           return item;
         }
       });
-      return { skillLevels };
+      console.log(skillLevels);
+      const newSAL = skillLevels.map(level => {
+        return findSAL(level);
+      });
+      console.log(newSAL);
+      // const newSAL = findSAL(lvls);
+      // console.log(newSAL);
+      const combatStats = {
+        SAL: newSAL[0],
+        CE: newSAL[1],
+        ISF: this.state.combatStats.ISF,
+        ASF: this.state.combatStats.ASF
+      };
+      return { skillLevels: newSAL, combatStats };
     });
-    this.updateSAL();
   };
 
   minusFromLevel = index => {
@@ -155,7 +167,7 @@ class App extends React.Component {
                   -1
                 </button>
               </p>
-              <p>
+              <p className="Stat">
                 Intelligence
                 <span> (INT) {this.state.attributeStats[1]} </span>
                 <button
@@ -171,7 +183,7 @@ class App extends React.Component {
                   -1
                 </button>
               </p>
-              <p>
+              <p className="Stat">
                 Willpower
                 <span> (WIL) {this.state.attributeStats[2]} </span>
                 <button
@@ -187,7 +199,7 @@ class App extends React.Component {
                   -1
                 </button>
               </p>
-              <p>
+              <p className="Stat">
                 Health
                 <span> (HLT) {this.state.attributeStats[3]} </span>
                 <button
@@ -203,7 +215,7 @@ class App extends React.Component {
                   -1
                 </button>
               </p>
-              <p>
+              <p className="Stat">
                 Agility
                 <span> (AGI) {this.state.attributeStats[4]} </span>
                 <button
@@ -266,19 +278,19 @@ class App extends React.Component {
               <div className="Combat-Stats">
                 <p>
                   Skill Accuracy Level
-                  <span> (SAL) {this.state.combatStats[0]} </span>
+                  <span> (SAL) {this.state.combatStats.SAL} </span>
                 </p>
                 <p>
                   Combat Efficiency
-                  <span> (CE) {this.state.combatStats[1]}</span>
+                  <span> (CE) {this.state.combatStats.CE}</span>
                 </p>
                 <p>
                   INT Skill Factor
-                  <span> (ISF) {this.state.combatStats[2]} </span>
+                  <span> (ISF) {this.state.combatStats.ISF} </span>
                 </p>
                 <p>
                   AGI Skill Factor
-                  <span> (ASF) {this.state.combatStats[3]} </span>
+                  <span> (ASF) {this.state.combatStats.AGI} </span>
                 </p>
               </div>
               <div className="Combat-Actions">

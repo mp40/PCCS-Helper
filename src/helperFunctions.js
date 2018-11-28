@@ -122,7 +122,7 @@ const calcCombatActions = (ms, isf) => {
 //     calcBaseSpeed,
 // }
 
-// module.exports = {
-//     calcBaseSpeed,
-//     findSAL
-// }
+module.exports = {
+    calcBaseSpeed,
+    findSAL
+}

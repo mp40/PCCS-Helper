@@ -49,6 +49,8 @@
   margin-top: -38px;
   background-color: aquamarine;
   width: 40%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 25px;
   /* display: flex;
   flex-wrap: wrap;
   justify-content: center; */
@@ -72,7 +74,8 @@
   background-color: cadetblue;
 }
 
-.Stat-Up {
+.Stat-Up,
+.Stat-Down {
   display: inline-block;
   text-decoration: none;
   background: #8cd460;
@@ -90,7 +93,8 @@
   transition: .4s
 }
 
-.Stat-Up:active {
+.Stat-Up:active,
+.Stat-Down:active {
   -ms-transform: translateY(2px);
   -webkit-transform: translate(2px);
   transform: translateY(2px);
