@@ -1,9 +1,14 @@
+h1 {
+  color: #4a5840;
+  text-shadow: 2px 5px #292b28;
+}
+
+
 .App {
-  text-align: left;
+  background-color: #49531f;
 }
 
 .App-header {
-  background-color: whitesmoke;
   min-height: 100vh;
   font-size: calc(3px + 2vmin);
   color: black;
@@ -18,7 +23,7 @@
 }
 
 .Equipment-Weight {
-  margin-top: 5px;
+  margin-top: 15px;
   font-weight: bold;
   font-family: Helvetica;
   line-height: 60px;
@@ -66,7 +71,7 @@
 }
 
 .Stats {
-  margin-top: 5px;
+  margin-top: 15px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 25px;
   display: flex;
@@ -112,7 +117,7 @@
 }
 
 body {
-  background-color: #f1f1f1;
+  background-color: #2b3113;
 }
 
 .Level {

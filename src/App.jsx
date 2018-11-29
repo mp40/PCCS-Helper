@@ -362,6 +362,9 @@ class App extends React.Component {
                   </div>
                 </div>
               </div>
+              <div>
+                <h1>Phonenix Command Helper</h1>
+              </div>
             </div>
           </div>
         </header>
