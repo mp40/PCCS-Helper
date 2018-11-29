@@ -221,6 +221,9 @@ class App extends React.Component {
         return findSAL(level);
       });
       //XXXX ISF to trigger GunCA and ASF to trigger HandCA
+      this.updateCombatActionsViaISFFromINT(
+        calcISF(newSAL[0], this.state.attributeStats[1])
+      );
       const combatStats = {
         SAL: newSAL[0],
         CE: newSAL[1],
@@ -230,6 +233,35 @@ class App extends React.Component {
       return { skillLevels, combatStats };
     });
   };
+
+  // updateCombatActionsViaISFFromINT = updatedISF => {
+  //   console.log("Array?..", this.state.maxSpeed, updatedISF);
+  //   let tempMS = this.state.maxSpeed;
+  //   if (Array.isArray(tempMS)) {
+  //     tempMS = tempMS.filter(function(val) {
+  //       return val;
+  //     });
+  //     tempMS = tempMS[0];
+  //     console.log("temp", tempMS);
+  //   }
+  //   const newGunActions = calcCombatActions(tempMS, updatedISF);
+  //   if (newGunActions) {
+  //     //console.log("triggered", newGunActions);
+  //     this.setState({ combatActions: [newGunActions] });
+  //   }
+  // };
+
+  // updateCombatActions = maxSp => {
+  //   //console.log("MSarg", maxSp, "ISF?...", this.state.combatStats.ISF);
+  //   const newGunActions = calcCombatActions(
+  //     maxSp[0],
+  //     this.state.combatStats.ISF
+  //   );
+  //   if (newGunActions) {
+  //     //console.log("triggered", newGunActions);
+  //     this.setState({ combatActions: [newGunActions] });
+  //   }
+  // };
 
   minusFromLevel = index => {
     this.setState(state => {
