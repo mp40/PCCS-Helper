@@ -364,6 +364,15 @@ class App extends React.Component {
               </div>
               <div>
                 <h1>Phonenix Command Helper</h1>
+                <button
+                  className="Turbo"
+                  onClick={() => this.setState({ done: !this.state.done })}
+                >
+                  Turbo Mode
+                </button>
+                {this.state.done ? (
+                  <h2>I should have done another beer app</h2>
+                ) : null}
               </div>
             </div>
           </div>

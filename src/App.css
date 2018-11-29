@@ -70,6 +70,59 @@ h1 {
   margin-left: 10px;
 }
 
+.Turbo {
+  display: inline-block;
+  position: relative;
+  padding: 0.5em 1.4em;
+  text-decoration: none;
+  background: #e40505;
+  /*Button Color*/
+  border-bottom: solid 5px #bb1a1a;
+  /*daker than background*/
+  border-right: solid 5px #863e3e;
+  /*darker than background*/
+}
+
+.Turbo:before {
+  content: " ";
+  position: absolute;
+  bottom: -5px;
+  left: -1px;
+  width: 0;
+  height: 0;
+  border-width: 0 6px 6px 0px;
+  border-style: solid;
+  border-color: transparent;
+}
+
+.Turbo:after {
+  content: " ";
+  position: absolute;
+  top: -1px;
+  right: -5px;
+  width: 0;
+  height: 0;
+  border-width: 0px 6px 6px 0px;
+  border-style: solid;
+  border-bottom-color: transparent;
+}
+
+.Turbo:active {
+  /*on click*/
+  border: none;
+  -ms-transform: translate(6px, 6px);
+  -webkit-transform: translate(6px, 6px);
+  transform: translate(6px, 6px);
+  /*move LowerRight*/
+}
+
+.Turbo:active:after,
+.Turbo:active:before {
+  /*on click*/
+  content: none;
+  /*Border disappears*/
+}
+
 .Stats {
   margin-top: 15px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
