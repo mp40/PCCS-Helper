@@ -73,6 +73,8 @@ class App extends React.Component {
       this.state.attributeStats[4],
       adjust
     );
+    //XXXX need to trigger update HandCA
+    //this.updateCombatActionsViaASFFromAGI(newASF);
     this.setState({
       combatStats: {
         SAL: this.state.combatStats.SAL,
@@ -83,12 +85,24 @@ class App extends React.Component {
     });
   };
 
+  //this is new XXXX -> watch for issues due only did Gun CA before
+  // updateCombatActionsViaASFFromAGI = updatedASF => {
+  //   // console.log("MSarg", maxSp, "ISF?...", this.state.combatStats.ISF);
+  //   const newHandActions = calcCombatActions(this.state.maxSpeed, updatedASF);
+  //   if (newHandActions) {
+  //     //console.log("triggered", newHandActions);
+  //     this.setState({ combatActions: [newHandActions] });
+  //   }
+  // };
+
   updateISFFromINT = adjust => {
     const newISF = calcISF(
       this.state.combatStats.SAL,
       this.state.attributeStats[1],
       adjust
     );
+    //this is new XXXX
+    this.updateCombatActionsViaISFFromINT(newISF);
     this.setState({
       combatStats: {
         SAL: this.state.combatStats.SAL,
@@ -97,6 +111,15 @@ class App extends React.Component {
         ASF: this.state.combatStats.ASF
       }
     });
+  };
+  //this is new XXXX
+  updateCombatActionsViaISFFromINT = updatedISF => {
+    // console.log("MSarg", maxSp, "ISF?...", this.state.combatStats.ISF);
+    const newGunActions = calcCombatActions(this.state.maxSpeed, updatedISF);
+    if (newGunActions) {
+      //console.log("triggered", newGunActions);
+      this.setState({ combatActions: [newGunActions] });
+    }
   };
 
   updateBaseSpeed = () => {
@@ -121,12 +144,12 @@ class App extends React.Component {
         return val;
       });
       console.log(filteredNewMS);
-      this.updateCombatACtions(filteredNewMS);
+      this.updateCombatActions(filteredNewMS);
       this.setState({ maxSpeed: newMS });
     }
   };
 
-  updateCombatACtions = maxSp => {
+  updateCombatActions = maxSp => {
     console.log("MSarg", maxSp, "ISF?...", this.state.combatStats.ISF);
     const newGunActions = calcCombatActions(
       maxSp[0],
@@ -176,13 +199,13 @@ class App extends React.Component {
       const newSAL = skillLevels.map(level => {
         return findSAL(level);
       });
+      //XXXX ISF to trigger GunCA and ASF to trigger HandCA
       const combatStats = {
         SAL: newSAL[0],
         CE: newSAL[1],
         ISF: calcISF(newSAL[0], this.state.attributeStats[1]),
         ASF: calcISF(newSAL[1], this.state.attributeStats[4])
       };
-      //call CA fn
       return { skillLevels, combatStats };
     });
   };
@@ -200,6 +223,7 @@ class App extends React.Component {
       const newSAL = skillLevels.map(level => {
         return findSAL(level);
       });
+      //XXXX ISF to trigger GunCA and ASF to trigger HandCA
       const combatStats = {
         SAL: newSAL[0],
         CE: newSAL[1],
