@@ -102,6 +102,7 @@ class App extends React.Component {
       adjust
     );
     //this is new XXXX
+    //console.log("newISF", newISF, "maxS", this.state.maxSpeed);
     this.updateCombatActionsViaISFFromINT(newISF);
     this.setState({
       combatStats: {
@@ -114,13 +115,33 @@ class App extends React.Component {
   };
   //this is new XXXX
   updateCombatActionsViaISFFromINT = updatedISF => {
-    // console.log("MSarg", maxSp, "ISF?...", this.state.combatStats.ISF);
-    const newGunActions = calcCombatActions(this.state.maxSpeed, updatedISF);
+    console.log("Array?..", this.state.maxSpeed, updatedISF);
+    let tempMS = this.state.maxSpeed;
+    if (Array.isArray(tempMS)) {
+      tempMS = tempMS.filter(function(val) {
+        return val;
+      });
+      tempMS = tempMS[0];
+      console.log("temp", tempMS);
+    }
+    const newGunActions = calcCombatActions(tempMS, updatedISF);
     if (newGunActions) {
       //console.log("triggered", newGunActions);
       this.setState({ combatActions: [newGunActions] });
     }
   };
+
+  // updateCombatActions = maxSp => {
+  //   //console.log("MSarg", maxSp, "ISF?...", this.state.combatStats.ISF);
+  //   const newGunActions = calcCombatActions(
+  //     maxSp[0],
+  //     this.state.combatStats.ISF
+  //   );
+  //   if (newGunActions) {
+  //     //console.log("triggered", newGunActions);
+  //     this.setState({ combatActions: [newGunActions] });
+  //   }
+  // };
 
   updateBaseSpeed = () => {
     const newBS = calcBaseSpeed(
@@ -139,24 +160,24 @@ class App extends React.Component {
   updateMS = newBS => {
     const newMS = calcMaxSpeed(this.state.attributeStats[4], newBS);
     if (newMS) {
-      console.log("newMS", newMS);
+      //console.log("newMS", newMS);
       const filteredNewMS = newMS.filter(val => {
         return val;
       });
-      console.log(filteredNewMS);
+      //console.log(filteredNewMS);
       this.updateCombatActions(filteredNewMS);
       this.setState({ maxSpeed: newMS });
     }
   };
 
   updateCombatActions = maxSp => {
-    console.log("MSarg", maxSp, "ISF?...", this.state.combatStats.ISF);
+    //console.log("MSarg", maxSp, "ISF?...", this.state.combatStats.ISF);
     const newGunActions = calcCombatActions(
       maxSp[0],
       this.state.combatStats.ISF
     );
     if (newGunActions) {
-      console.log("triggered", newGunActions);
+      //console.log("triggered", newGunActions);
       this.setState({ combatActions: [newGunActions] });
     }
   };

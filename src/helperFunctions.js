@@ -22,7 +22,7 @@ const table1C_SAL = [
   26
 ];
 
-const findSAL = function(level) {
+const findSAL = function (level) {
   return table1C_SAL[level];
 };
 
@@ -110,7 +110,7 @@ const table1A_BaseSpeed = {
 };
 
 const calcBaseSpeed = (str, enc) => {
-  return table1A_BaseSpeed.lbs.map(function(val, dex) {
+  return table1A_BaseSpeed.lbs.map(function (val, dex) {
     if (enc <= val && enc > table1A_BaseSpeed.lbs[dex - 1]) {
       if (table1A_BaseSpeed[str][dex]) {
         return table1A_BaseSpeed[str][dex];
@@ -145,7 +145,7 @@ const table1B_MaxSpeed = {
 };
 
 const calcMaxSpeed = (agi, baseSpd) => {
-  return table1B_MaxSpeed.baseSpeed.map(function(val, dex) {
+  return table1B_MaxSpeed.baseSpeed.map(function (val, dex) {
     if (baseSpd <= val && baseSpd > table1B_MaxSpeed.baseSpeed[dex - 1]) {
       if (table1B_MaxSpeed[agi][dex] && baseSpd) {
         return table1B_MaxSpeed[agi][dex];
@@ -154,7 +154,7 @@ const calcMaxSpeed = (agi, baseSpd) => {
   });
 };
 
-const calcISF = function(int, sal, adjust = 0) {
+const calcISF = function (int, sal, adjust = 0) {
   return int + sal + adjust;
 };
 
@@ -177,14 +177,29 @@ const table1D_CombatActions = {
 
 const calcCombatActions = (ms, isf) => {
   console.log("firing", ms, isf);
-  return table1D_CombatActions.isf.map(function(val, dex) {
-    if (isf <= val && isf > table1D_CombatActions.isf[dex - 1]) {
+  return table1D_CombatActions.isf.map(function (val, dex) {
+    console.log("Inside", val, ms, isf)
+    //I think isf 8 is causing a crash
+    if ((isf <= val && isf > table1D_CombatActions.isf[dex - 1]) || isf == 8) {
       if (table1D_CombatActions[ms][dex]) {
         return table1D_CombatActions[ms][dex];
       }
     }
   });
 };
+
+// const calcCombatActions = (ms, isf) => {
+//   console.log("firing", ms, isf);
+//   return table1D_CombatActions.isf.map(function (val, dex) {
+//     console.log("Inside", ms, isf)
+//     if (isf <= val && isf > table1D_CombatActions.isf[dex - 1]) {
+//       if (table1D_CombatActions[ms][dex]) {
+//         return table1D_CombatActions[ms][dex];
+//       }
+//     }
+//   });
+// };
+
 // const calcMaxSpeed = (agi, baseSpd) => {
 //   return table1B_MaxSpeed.baseSpeed.map(function(val, dex) {
 //     if (baseSpd <= val && baseSpd > table1B_MaxSpeed.baseSpeed[dex - 1]) {
