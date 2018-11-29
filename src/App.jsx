@@ -1,5 +1,35 @@
 import React, { Component } from "react";
 import "./App.css";
+import StatBox from "./StatBox";
+
+// import PropTypes from 'prop-types';
+// import { withStyles } from '@material-ui/core/styles';
+// import Card from '@material-ui/core/Card';
+// import CardActions from '@material-ui/core/CardActions';
+// import CardContent from '@material-ui/core/CardContent';
+// import Button from '@material-ui/core/Button';
+// import Typography from '@material-ui/core/Typography';
+
+// const styles = {
+//  card: {
+//    minWidth: 275,
+//  },
+//  bullet: {
+//    display: 'inline-block',
+//    margin: '0 2px',
+//    transform: 'scale(0.8)',
+//  },
+//  title: {
+//    fontSize: 14,
+//  },
+//  pos: {
+//    marginBottom: 12,
+//  },
+// };
+
+// function SimpleCard(props) {
+//  const { classes } = props;
+//  const bull = <span className={classes.bullet}>•</span>;
 
 const {
   calcBaseSpeed,
@@ -7,19 +37,20 @@ const {
   calcMaxSpeed,
   calcISF,
   calcCombatActions
+  //calcGunCAAtOnce
 } = require("./helperFunctions");
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      equipmentWeight: 5,
+      equipmentWeight: 10,
       attributeStats: [14, 10, 10, 10, 12],
       baseSpeed: 2,
       maxSpeed: 3.5,
       skillLevels: [4, 2],
       combatStats: { SAL: 10, CE: 7, ISF: 24, ASF: 22 },
-      combatActions: [5, 4, 1.5]
+      combatActions: [5, 4]
     };
   }
 
@@ -29,43 +60,13 @@ class App extends React.Component {
   }
 
   minusWeight() {
-    if (this.state.equipmentWeight <= 5) {
+    if (this.state.equipmentWeight <= 10) {
       this.setState({ equipmentWeight: this.state.equipmentWeight });
     } else {
       this.setState({ equipmentWeight: this.state.equipmentWeight - 5 });
     }
     this.updateBaseSpeed();
   }
-
-  addToSTR = () => {
-    this.updateBaseSpeed();
-    this.addToStat(0);
-  };
-
-  minusFromSTR = () => {
-    this.updateBaseSpeed();
-    this.minusFromStat(0);
-  };
-
-  addToINT = () => {
-    this.addToStat(1);
-    this.updateISFFromINT(1);
-  };
-
-  minusFromINT = () => {
-    this.minusFromStat(1);
-    this.updateISFFromINT(-1);
-  };
-
-  addToAGI = () => {
-    this.addToStat(4);
-    this.updateASFFromAGI(1);
-  };
-
-  minusFromAGI = () => {
-    this.minusFromStat(4);
-    this.updateASFFromAGI(-1);
-  };
 
   updateASFFromAGI = adjust => {
     const newASF = calcISF(
@@ -275,152 +276,44 @@ class App extends React.Component {
       <div className="App">
         <header className="App-header">
           <div className="Wrapper">
-            <div className="Title">
-              Phonix Command Character Generator *Mock Up*
-            </div>
+            {/* <CardContent>
+              <div className="Title">Phonix Command Stat Generator</div>
+            </CardContent> */}
+
             <div className="Equipment-Weight">
-              <span>Equipment Weight: {this.state.equipmentWeight}</span>
-              <button className="Weight-Up" onClick={this.addWeight.bind(this)}>
-                Add 5lbs
-              </button>
-              <button
-                className="Weight-Down"
-                onClick={this.minusWeight.bind(this)}
-              >
-                Minus 5lbs
-              </button>
-            </div>
-            <div className="Stats">
-              <div className="Stat-Text">
-                <span>Strength</span>
-                <span>Intelligence</span>
-                <span>Willpower</span>
-                <span>Health</span>
-                <span>Agility</span>
-              </div>
-              <div className="Stat-Value">
-                <span> (STR) {this.state.attributeStats[0]} </span>
-                <span> (INT) {this.state.attributeStats[1]} </span>
-                <span> (WIL) {this.state.attributeStats[2]} </span>
-                <span> (HLT) {this.state.attributeStats[3]} </span>
-                <span> (AGI) {this.state.attributeStats[4]} </span>
-              </div>
-              <div className="Stat-Adjust">
-                <div className="STR-Adjust">
-                  <button
-                    className="Stat-Up"
-                    onClick={this.addToSTR.bind(this)}
-                  >
-                    +1
-                  </button>
-                  <button
-                    className="Stat-Down"
-                    onClick={this.minusFromSTR.bind(this)}
-                  >
-                    -1
-                  </button>
-                </div>
-                <div>
-                  <button
-                    className="Stat-Up"
-                    onClick={this.addToINT.bind(this)}
-                  >
-                    +1
-                  </button>
-                  <button
-                    className="Stat-Down"
-                    onClick={this.minusFromINT.bind(this)}
-                  >
-                    -1
-                  </button>
-                </div>
-                <div>
-                  <button
-                    className="Stat-Up"
-                    onClick={this.addToStat.bind(this, 2)}
-                  >
-                    +1
-                  </button>
-                  <button
-                    className="Stat-Down"
-                    onClick={this.minusFromStat.bind(this, 2)}
-                  >
-                    -1
-                  </button>
-                </div>
-                <div>
-                  <button
-                    className="Stat-Up"
-                    onClick={this.addToStat.bind(this, 3)}
-                  >
-                    +1
-                  </button>
-                  <button
-                    className="Stat-Down"
-                    onClick={this.minusFromStat.bind(this, 3)}
-                  >
-                    -1
-                  </button>
-                </div>
-                <div>
-                  <button
-                    className="Stat-Up"
-                    onClick={this.addToAGI.bind(this)}
-                  >
-                    +1
-                  </button>
-                  <button
-                    className="Stat-Down"
-                    onClick={this.minusFromAGI.bind(this)}
-                  >
-                    -1
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div className="Speed">
-              <p>
-                Base Speed
-                <span> BS {this.state.baseSpeed} </span>
-              </p>
-              <p>
-                Maximum Speed
-                <span> MS {this.state.maxSpeed}</span>
-              </p>
-            </div>
-            <div className="Combat-Level">
-              <p>
-                <span>Gun Combat Skill Level {this.state.skillLevels[0]} </span>
-                <button
-                  className="Stat-Up"
-                  onClick={this.addToLevel.bind(this, 0)}
-                >
-                  +1
-                </button>
-                <button
-                  className="Stat-Down"
-                  onClick={this.minusFromLevel.bind(this, 0)}
-                >
-                  -1
-                </button>
-              </p>
-              <p>
-                <span>
-                  Hand To Hand Skill Level {this.state.skillLevels[1]} {""}
+              <div>
+                <span className="Weight-Tag">
+                  Equipment Weight: {this.state.equipmentWeight}
                 </span>
                 <button
-                  className="Stat-Up"
-                  onClick={this.addToLevel.bind(this, 1)}
+                  className="Weight-Up"
+                  onClick={this.addWeight.bind(this)}
                 >
-                  +1
+                  Add 5lbs
                 </button>
                 <button
-                  className="Stat-Down"
-                  onClick={this.minusFromLevel.bind(this, 1)}
+                  className="Weight-Down"
+                  onClick={this.minusWeight.bind(this)}
                 >
-                  -1
+                  Minus 5lbs
                 </button>
-              </p>
+              </div>
+              <div />
+            </div>
+
+            <StatBox
+              attributeStats={this.state.attributeStats}
+              skillLevels={this.state.skillLevels}
+              updateBaseSpeed={this.updateBaseSpeed.bind(this)}
+              addToStat={this.addToStat.bind(this)}
+              minusFromStat={this.minusFromStat.bind(this)}
+              updateISFFromINT={this.updateISFFromINT.bind(this)}
+              updateASFFromAGI={this.updateASFFromAGI.bind(this)}
+              addToLevel={this.addToLevel.bind(this)}
+              minusFromLevel={this.addToLevel.bind(this)}
+            />
+
+            <div className="Combat-Level">
               <div className="Combat-Stats">
                 <p>
                   Skill Accuracy Level
@@ -439,20 +332,28 @@ class App extends React.Component {
                   <span> (ASF) {this.state.combatStats.ASF} </span>
                 </p>
               </div>
-              <div className="Combat-Actions">
-                Combat Actions
-                <div className="Actions">
+              <div className="Combat-Actions-Container">
+                <div className="Combat-Actions">
+                  Combat Actions
+                  <div className="Actions">
+                    <p>
+                      Gun Combat
+                      <span> {this.state.combatActions[0]}</span>
+                    </p>
+                    <p>
+                      Hand To Hand
+                      <span> {this.state.combatActions[1]}</span>
+                    </p>
+                  </div>
+                </div>
+                <div className="Speed">
                   <p>
-                    Gun Combat
-                    <span> {this.state.combatActions[0]}</span>
+                    Base Speed
+                    <span> BS {this.state.baseSpeed} </span>
                   </p>
                   <p>
-                    Hand To Hand
-                    <span> {this.state.combatActions[1]}</span>
-                  </p>
-                  <p>
-                    Damage Bonus
-                    <span> {this.state.combatActions[2]}</span>
+                    Maximum Speed
+                    <span> MS {this.state.maxSpeed}</span>
                   </p>
                 </div>
               </div>
@@ -463,4 +364,11 @@ class App extends React.Component {
     );
   }
 }
+
+// SimpleCard.propTypes = {
+//   classes: PropTypes.object.isRquired,
+// };
+
+/* eslint-disable*/
+// export default withStyles(styles(SimpleCard))
 export default App;

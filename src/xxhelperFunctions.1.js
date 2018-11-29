@@ -109,15 +109,15 @@ const table1A_BaseSpeed = {
   1: [1.5, 1.5, 1]
 };
 
-const calcBaseSpeed = (str, enc) => {
-  return table1A_BaseSpeed.lbs.map(function (val, dex) {
-    if (enc <= val && enc > table1A_BaseSpeed.lbs[dex - 1]) {
-      if (table1A_BaseSpeed[str][dex]) {
-        return table1A_BaseSpeed[str][dex];
-      }
-    }
-  });
-};
+// const calcBaseSpeed = (str, enc) => {
+//   return table1A_BaseSpeed.lbs.map(function (val, dex) {
+//     if (enc <= val && enc > table1A_BaseSpeed.lbs[dex - 1]) {
+//       if (table1A_BaseSpeed[str][dex]) {
+//         return table1A_BaseSpeed[str][dex];
+//       }
+//     }
+//   });
+// };
 
 const table1B_MaxSpeed = {
   baseSpeed: [0, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5],
@@ -144,19 +144,19 @@ const table1B_MaxSpeed = {
   1: [1, 1, 1, 2, 2, 2, 3, 3]
 };
 
-const calcMaxSpeed = (agi, baseSpd) => {
-  return table1B_MaxSpeed.baseSpeed.map(function (val, dex) {
-    if (baseSpd <= val && baseSpd > table1B_MaxSpeed.baseSpeed[dex - 1]) {
-      if (table1B_MaxSpeed[agi][dex] && baseSpd) {
-        return table1B_MaxSpeed[agi][dex];
-      }
-    }
-  });
-};
+// const calcMaxSpeed = (agi, baseSpd) => {
+//   return table1B_MaxSpeed.baseSpeed.map(function (val, dex) {
+//     if (baseSpd <= val && baseSpd > table1B_MaxSpeed.baseSpeed[dex - 1]) {
+//       if (table1B_MaxSpeed[agi][dex] && baseSpd) {
+//         return table1B_MaxSpeed[agi][dex];
+//       }
+//     }
+//   });
+// };
 
-const calcISF = function (int, sal, adjust = 0) {
-  return int + sal + adjust;
-};
+// const calcISF = function (int, sal, adjust = 0) {
+//   return int + sal + adjust;
+// };
 
 const table1D_CombatActions = {
   isf: [0, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39],
@@ -175,83 +175,77 @@ const table1D_CombatActions = {
   13: [6, 7, 9, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
 };
 
-const calcCombatActions = (ms, isf) => {
-  console.log("firing", ms, isf);
-  return table1D_CombatActions.isf.map(function (val, dex) {
-    isf === 19 ? isf++ : isf = isf
-    if ((isf <= val && isf > table1D_CombatActions.isf[dex - 1]) || isf === 8) {
-      if (table1D_CombatActions[ms][dex]) {
-        return table1D_CombatActions[ms][dex];
-      }
-    }
-  });
-};
-
-// const findBaseSpeed = function (str, enc) {
-//   return table1A_BaseSpeed.lbs.map(function (val, dex) {
-//     if (enc <= val && enc > table1A_BaseSpeed.lbs[dex - 1]) {
-//       if (table1A_BaseSpeed[str][dex]) {
-//         return table1A_BaseSpeed[str][dex];
-//       }
-//     }
-//   });
-// }
-
-// const findMaxSpeed = function (baseSpd, agi) {
-//   return table1B_MaxSpeed.baseSpeed.map(function (val, dex) {
-//     if (baseSpd <= val && baseSpd > table1B_MaxSpeed.baseSpeed[dex - 1]) {
-//       if (table1B_MaxSpeed[agi][dex] && baseSpd) {
-//         return table1B_MaxSpeed[agi][dex];
-//       }
-//     }
-//   });
-// }
-
-// const findCombatActions = function (isf, maxSpeed) {
-//   const ms = maxSpeed
+// const calcCombatActions = (ms, isf) => {
+//   console.log("firing", ms, isf);
 //   return table1D_CombatActions.isf.map(function (val, dex) {
+//     isf === 19 ? isf++ : isf = isf
 //     if ((isf <= val && isf > table1D_CombatActions.isf[dex - 1]) || isf === 8) {
 //       if (table1D_CombatActions[ms][dex]) {
 //         return table1D_CombatActions[ms][dex];
 //       }
 //     }
 //   });
-// }
+// };
 
-// const findISF = function(sal, int){
-//   return sal+int
-// }
+const findBaseSpeed = function (str, enc) {
+  return table1A_BaseSpeed.lbs.map(function (val, dex) {
+    if (enc <= val && enc > table1A_BaseSpeed.lbs[dex - 1]) {
+      if (table1A_BaseSpeed[str][dex]) {
+        return table1A_BaseSpeed[str][dex];
+      }
+    }
+  });
+}
 
-// //promises required?
-// const calcGunCAAtOnce = function (str, enc, agi, sl, int) {
-//   let promise = new Promise(function (resolve) {
-//     return findSAL(sl).then(function (findBaseSpeed) {
-//       return findBaseSpeed(str, enc).then(function(findMaxSpeed){
-//         return findMaxSpeed()
-//})
-//     })
-//   })
+const findMaxSpeed = function (baseSpd, agi) {
+  return table1B_MaxSpeed.baseSpeed.map(function (val, dex) {
+    if (baseSpd <= val && baseSpd > table1B_MaxSpeed.baseSpeed[dex - 1]) {
+      if (table1B_MaxSpeed[agi][dex] && baseSpd) {
+        return table1B_MaxSpeed[agi][dex];
+      }
+    }
+  });
+}
 
-//   const sal = findSAL(sl) //ok
-//   const baseSpeed = findBaseSpeed(str, enc) //ok
-//   const maxSpeed = findMaxSpeed(baseSpeed, agi) //ok
-//   const isf = sal + int
-//   const combatActions = findCombatActions(isf, maxSpeed)
-//   return {
-//     BS: baseSpeed,
-//     MS: maxSpeed,
-//     SAL: sal,
-//     ISF: isf,
-//     CA: combatActions
-//   }
-// }
+const findCombatActions = function (isf, maxSpeed) {
+  const ms = maxSpeed
+  return table1D_CombatActions.isf.map(function (val, dex) {
+    if ((isf <= val && isf > table1D_CombatActions.isf[dex - 1]) || isf === 8) {
+      if (table1D_CombatActions[ms][dex]) {
+        return table1D_CombatActions[ms][dex];
+      }
+    }
+  });
+}
+
+//promises required?
+const calcGunCAAtOnce = function (str, enc, agi, sl, int) {
+  let promise = new Promise(function (resolve) {
+    return findSAL(sl).then(function (response) {
+      return response(sal + int).then(function)
+    })
+  })
+
+  const sal = findSAL(sl) //ok
+  const baseSpeed = findBaseSpeed(str, enc) //ok
+  const maxSpeed = findMaxSpeed(baseSpeed, agi) //ok
+  const isf = sal + int
+  const combatActions = findCombatActions(isf, maxSpeed)
+  return {
+    BS: baseSpeed,
+    MS: maxSpeed,
+    SAL: sal,
+    ISF: isf,
+    CA: combatActions
+  }
+}
 
 
 module.exports = {
-  calcBaseSpeed,
-  findSAL,
-  calcMaxSpeed,
-  calcISF,
-  calcCombatActions,
-  //calcGunCAAtOnce
+  // calcBaseSpeed,
+  // findSAL,
+  // calcMaxSpeed,
+  // calcISF,
+  // calcCombatActions,
+  calcGunCAAtOnce
 };

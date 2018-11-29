@@ -15,9 +15,77 @@
   padding-right: 50px;
 }
 
+.Title {
+  color: #fff;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: Helvetica;
+  text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, .1), 0 0 5px rgba(0, 0, 0, .1), 0 1px 3px rgba(0, 0, 0, .3), 0 3px 5px rgba(0, 0, 0, .2), 0 5px 10px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .2), 0 20px 20px rgba(0, 0, 0, .15);
+}
+
+.hit-the-floor {
+  color: #fff;
+  font-size: 12em;
+  font-weight: bold;
+  font-family: Helvetica;
+  text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, .1), 0 0 5px rgba(0, 0, 0, .1), 0 1px 3px rgba(0, 0, 0, .3), 0 3px 5px rgba(0, 0, 0, .2), 0 5px 10px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .2), 0 20px 20px rgba(0, 0, 0, .15);
+}
+
+.hit-the-floor {
+  text-align: center;
+}
+
+body {
+  background-color: #f1f1f1;
+}
+
+
 .Equipment-Weight {
+  margin-top: 20px;
   text-align: right;
-  background-color: brown;
+  font-weight: bold;
+  font-family: Helvetica;
+  line-height: 60px;
+  font-size: 25px;
+  vertical-align: middle;
+  width: 44%;
+  position: absolute;
+  right: 50px;
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  border-radius: 4px;
+  color: #30362c;
+  background-image: -webkit-linear-gradient(#d1f0bf 0%, #dfebd7 100%);
+  background-image: linear-gradient(#d1f0bf 0%, #dfebd7 100%);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+  border-bottom: solid 3px #a1be8f;
+}
+
+.Combat-Actions-Container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: -400px;
+  font-weight: bold;
+  font-family: Helvetica;
+  font-size: 18px;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  border-radius: 4px;
+  width: 15%;
+  position: absolute;
+  right: 50px;
+  display: inline-block;
+  color: #30362c;
+  background-image: -webkit-linear-gradient(#d1f0bf 0%, #dfebd7 100%);
+  background-image: linear-gradient(#d1f0bf 0%, #dfebd7 100%);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+  border-bottom: solid 3px #a1be8f;
+}
+
+.Weight-Tag {
+  margin-right: 5px;
 }
 
 .Weight-Up {
@@ -29,13 +97,20 @@
 }
 
 .Stats {
-  margin-top: -38px;
-  background-color: aquamarine;
+  margin-top: 5px;
   width: 40%;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 25px;
   display: flex;
-  line-height: 50px;
+  line-height: 60px;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  border-radius: 4px;
+  color: #30362c;
+  background-image: -webkit-linear-gradient(#d1f0bf 0%, #dfebd7 100%);
+  background-image: linear-gradient(#d1f0bf 0%, #dfebd7 100%);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+  border-bottom: solid 3px #a1be8f;
 }
 
 .Stat {
@@ -47,6 +122,11 @@
 .Stat-Text {
   display: flex;
   flex-direction: column;
+  width: 175px;
+  font-weight: bold;
+  font-family: Helvetica;
+  /*color: #fff; */
+  /* -webkit-text-stroke: 1px black; */
 }
 
 .STR-Adjust {
@@ -54,15 +134,43 @@
   flex-direction: row;
 }
 
+.Stat-Value {
+  display: flex;
+  flex-direction: col;
+  flex-wrap: wrap;
+  width: 145px;
+  font-weight: bold;
+  font-family: Helvetica;
+}
+
+.hit-the-floor {
+  color: #fff;
+  font-size: 12em;
+  font-weight: bold;
+  font-family: Helvetica;
+  text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, .1), 0 0 5px rgba(0, 0, 0, .1), 0 1px 3px rgba(0, 0, 0, .3), 0 3px 5px rgba(0, 0, 0, .2), 0 5px 10px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .2), 0 20px 20px rgba(0, 0, 0, .15);
+}
+
+.hit-the-floor {
+  text-align: center;
+}
+
+body {
+  background-color: #f1f1f1;
+}
+
+.Level {
+  text-align: center;
+}
+
 .Speed {
   text-align: right;
-  background-color: blanchedalmond;
-  margin-top: -160px;
+  /* margin-top: -160px;
+  border: red; */
 }
 
 .Combat-Level {
   text-align: right;
-  background-color: cadetblue;
 }
 
 .Stat-Up,
@@ -90,5 +198,28 @@
   -webkit-transform: translate(2px);
   transform: translateY(2px);
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+  border-bottom: none;
+}
+
+.Weight-Up,
+.Weight-Down {
+
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  border-radius: 4px;
+  color: #ffffff;
+  background-image: -webkit-linear-gradient(#6ead46 0%, #8cd460 100%);
+  background-image: linear-gradient(#6ead46 0%, #8cd460 100%);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+  border-bottom: solid 3px #5a9437;
+}
+
+.Weight-Up:active,
+.Weight-Down:active {
+  -ms-transform: translateY(4px);
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
   border-bottom: none;
 }
