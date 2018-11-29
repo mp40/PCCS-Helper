@@ -257,7 +257,9 @@ class App extends React.Component {
       this.updateCombatActionsViaISFFromINT(
         calcISF(newSAL[0], this.state.attributeStats[1])
       );
-      //XXXX ISF to trigger GunCA and ASF to trigger HandCA
+      this.updateHandActionsViaASFFromAGI(
+        calcISF(newSAL[1], this.state.attributeStats[4])
+      );
       const combatStats = {
         SAL: newSAL[0],
         CE: newSAL[1],

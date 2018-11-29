@@ -178,37 +178,14 @@ const table1D_CombatActions = {
 const calcCombatActions = (ms, isf) => {
   console.log("firing", ms, isf);
   return table1D_CombatActions.isf.map(function (val, dex) {
-    console.log("Inside", val, ms, isf)
-    //I think isf 8 is causing a crash
-    if ((isf <= val && isf > table1D_CombatActions.isf[dex - 1]) || isf == 8) {
+    isf === 19 ? isf++ : isf = isf
+    if ((isf <= val && isf > table1D_CombatActions.isf[dex - 1]) || isf === 8) {
       if (table1D_CombatActions[ms][dex]) {
         return table1D_CombatActions[ms][dex];
       }
     }
   });
 };
-
-// const calcCombatActions = (ms, isf) => {
-//   console.log("firing", ms, isf);
-//   return table1D_CombatActions.isf.map(function (val, dex) {
-//     console.log("Inside", ms, isf)
-//     if (isf <= val && isf > table1D_CombatActions.isf[dex - 1]) {
-//       if (table1D_CombatActions[ms][dex]) {
-//         return table1D_CombatActions[ms][dex];
-//       }
-//     }
-//   });
-// };
-
-// const calcMaxSpeed = (agi, baseSpd) => {
-//   return table1B_MaxSpeed.baseSpeed.map(function(val, dex) {
-//     if (baseSpd <= val && baseSpd > table1B_MaxSpeed.baseSpeed[dex - 1]) {
-//       if (table1B_MaxSpeed[agi][dex] && baseSpd) {
-//         return table1B_MaxSpeed[agi][dex];
-//       }
-//     }
-//   });
-// };
 
 module.exports = {
   calcBaseSpeed,
