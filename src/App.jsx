@@ -180,6 +180,16 @@ class App extends React.Component {
       //console.log("triggered", newGunActions);
       this.setState({ combatActions: [newGunActions] });
     }
+    const newHandActions = calcCombatActions(
+      maxSp[0],
+      this.state.combatStats.ASF
+    );
+    if (newHandActions) {
+      //console.log("triggered", newGunActions);
+      this.setState({
+        combatActions: [this.state.combatActions[0], newHandActions]
+      });
+    }
   };
 
   addToStat = index => {
