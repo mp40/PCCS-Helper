@@ -74,7 +74,7 @@ class App extends React.Component {
       adjust
     );
     //XXXX need to trigger update HandCA
-    //this.updateCombatActionsViaASFFromAGI(newASF);
+    this.updateCombatActionsViaASFFromAGI(newASF);
     this.setState({
       combatStats: {
         SAL: this.state.combatStats.SAL,
@@ -86,14 +86,19 @@ class App extends React.Component {
   };
 
   //this is new XXXX -> watch for issues due only did Gun CA before
-  // updateCombatActionsViaASFFromAGI = updatedASF => {
-  //   // console.log("MSarg", maxSp, "ISF?...", this.state.combatStats.ISF);
-  //   const newHandActions = calcCombatActions(this.state.maxSpeed, updatedASF);
-  //   if (newHandActions) {
-  //     //console.log("triggered", newHandActions);
-  //     this.setState({ combatActions: [newHandActions] });
-  //   }
-  // };
+  updateCombatActionsViaASFFromAGI = updatedASF => {
+    // console.log("MSarg", maxSp, "ISF?...", this.state.combatStats.ISF);
+    let tempMS = this.state.maxSpeed.filter(function(val) {
+      return val;
+    });
+    const newHandActions = calcCombatActions(tempMS[0], updatedASF);
+    if (newHandActions) {
+      //console.log("triggered", newHandActions);
+      this.setState({
+        combatActions: [this.state.combatActions[0], newHandActions]
+      });
+    }
+  };
 
   updateISFFromINT = adjust => {
     const newISF = calcISF(
