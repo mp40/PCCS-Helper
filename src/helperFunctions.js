@@ -176,7 +176,6 @@ const table1D_CombatActions = {
 };
 
 const calcCombatActions = (ms, isf) => {
-  console.log("firing", ms, isf);
   return table1D_CombatActions.isf.map(function (val, dex) {
     isf === 19 ? isf++ : isf = isf
     if ((isf <= val && isf > table1D_CombatActions.isf[dex - 1]) || isf === 8) {
@@ -187,71 +186,10 @@ const calcCombatActions = (ms, isf) => {
   });
 };
 
-// const findBaseSpeed = function (str, enc) {
-//   return table1A_BaseSpeed.lbs.map(function (val, dex) {
-//     if (enc <= val && enc > table1A_BaseSpeed.lbs[dex - 1]) {
-//       if (table1A_BaseSpeed[str][dex]) {
-//         return table1A_BaseSpeed[str][dex];
-//       }
-//     }
-//   });
-// }
-
-// const findMaxSpeed = function (baseSpd, agi) {
-//   return table1B_MaxSpeed.baseSpeed.map(function (val, dex) {
-//     if (baseSpd <= val && baseSpd > table1B_MaxSpeed.baseSpeed[dex - 1]) {
-//       if (table1B_MaxSpeed[agi][dex] && baseSpd) {
-//         return table1B_MaxSpeed[agi][dex];
-//       }
-//     }
-//   });
-// }
-
-// const findCombatActions = function (isf, maxSpeed) {
-//   const ms = maxSpeed
-//   return table1D_CombatActions.isf.map(function (val, dex) {
-//     if ((isf <= val && isf > table1D_CombatActions.isf[dex - 1]) || isf === 8) {
-//       if (table1D_CombatActions[ms][dex]) {
-//         return table1D_CombatActions[ms][dex];
-//       }
-//     }
-//   });
-// }
-
-// const findISF = function(sal, int){
-//   return sal+int
-// }
-
-// //promises required?
-// const calcGunCAAtOnce = function (str, enc, agi, sl, int) {
-//   let promise = new Promise(function (resolve) {
-//     return findSAL(sl).then(function (findBaseSpeed) {
-//       return findBaseSpeed(str, enc).then(function(findMaxSpeed){
-//         return findMaxSpeed()
-//})
-//     })
-//   })
-
-//   const sal = findSAL(sl) //ok
-//   const baseSpeed = findBaseSpeed(str, enc) //ok
-//   const maxSpeed = findMaxSpeed(baseSpeed, agi) //ok
-//   const isf = sal + int
-//   const combatActions = findCombatActions(isf, maxSpeed)
-//   return {
-//     BS: baseSpeed,
-//     MS: maxSpeed,
-//     SAL: sal,
-//     ISF: isf,
-//     CA: combatActions
-//   }
-// }
-
-
 module.exports = {
   calcBaseSpeed,
   findSAL,
   calcMaxSpeed,
   calcISF,
   calcCombatActions,
-  //calcGunCAAtOnce
 };

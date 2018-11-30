@@ -288,7 +288,7 @@ class App extends React.Component {
               updateISFFromINT={this.updateISFFromINT.bind(this)}
               updateASFFromAGI={this.updateASFFromAGI.bind(this)}
               addToLevel={this.addToLevel.bind(this)}
-              minusFromLevel={this.addToLevel.bind(this)}
+              minusFromLevel={this.minusFromLevel.bind(this)}
             />
             <div className="Game-Info">
               <div className="Equipment-Weight">
@@ -363,7 +363,7 @@ class App extends React.Component {
                 </div>
               </div>
               <div>
-                <h1>Phonenix Command Helper</h1>
+                <h1>Phoenix Command Helper</h1>
                 <button
                   className="Turbo"
                   onClick={() => this.setState({ done: !this.state.done })}
@@ -371,7 +371,7 @@ class App extends React.Component {
                   Turbo Mode
                 </button>
                 {this.state.done ? (
-                  <h2>I should have done another beer app</h2>
+                  <h2>Maybe I should have done another beer app?</h2>
                 ) : null}
               </div>
             </div>
