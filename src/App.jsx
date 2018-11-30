@@ -37,7 +37,6 @@ const {
   calcMaxSpeed,
   calcISF,
   calcCombatActions
-  //calcGunCAAtOnce
 } = require("./helperFunctions");
 
 class App extends React.Component {
@@ -363,13 +362,20 @@ class App extends React.Component {
                 </div>
               </div>
               <div>
-                <h1>Phoenix Command Helper</h1>
-                <button
-                  className="Turbo"
-                  onClick={() => this.setState({ done: !this.state.done })}
+                <h1
+                  onClick={() => this.setState({ button: !this.state.button })}
                 >
-                  Turbo Mode
-                </button>
+                  Phoenix Command Helper
+                </h1>
+                {this.state.button ? (
+                  <button
+                    className="Turbo"
+                    onClick={() => this.setState({ done: !this.state.done })}
+                  >
+                    Turbo Mode
+                  </button>
+                ) : null}
+
                 {this.state.done ? (
                   <h2>Maybe I should have done another beer app?</h2>
                 ) : null}
