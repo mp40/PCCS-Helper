@@ -7,7 +7,7 @@ const {
   calcCombatActions
 } = require("./helperFunctions");
 
-const { table1A_BaseSpeed } = require("./tables");
+const { table1A_BaseSpeed, table1B_MaxSpeed } = require("./tables");
 
 describe("calculate SAL", () => {
   it("should return the correct SAL based on skill level", () => {
@@ -43,5 +43,32 @@ describe("calculate Base Speed", () => {
   it("should return error msg if weight exceeds carrying capicity", () => {
     expect(calcBaseSpeed(1, 25)).toEqual("Weight Limit Exceeded");
     expect(calcBaseSpeed(14, 200)).toEqual("Weight Limit Exceeded");
+  });
+});
+
+describe("calculate Max Speed", () => {
+  it("should find the correct index from Base Speed", () => {
+    expect(findKey(1, table1B_MaxSpeed.baseSpeed)).toEqual(0);
+    expect(findKey(1.5, table1B_MaxSpeed.baseSpeed)).toEqual(1);
+    expect(findKey(2, table1B_MaxSpeed.baseSpeed)).toEqual(2);
+    expect(findKey(2.5, table1B_MaxSpeed.baseSpeed)).toEqual(3);
+    expect(findKey(3, table1B_MaxSpeed.baseSpeed)).toEqual(4);
+    expect(findKey(3.5, table1B_MaxSpeed.baseSpeed)).toEqual(5);
+    expect(findKey(4, table1B_MaxSpeed.baseSpeed)).toEqual(6);
+    expect(findKey(4.5, table1B_MaxSpeed.baseSpeed)).toEqual(7);
+  });
+  it("should find max speed using AGI and base speed", () => {
+    expect(calcMaxSpeed(21, 1)).toEqual(2);
+    expect(calcMaxSpeed(21, 4.5)).toEqual(13);
+    expect(calcMaxSpeed(14, 1)).toEqual(2);
+    expect(calcMaxSpeed(14, 1.5)).toEqual(3);
+    expect(calcMaxSpeed(14, 2)).toEqual(4);
+    expect(calcMaxSpeed(14, 2.5)).toEqual(6);
+    expect(calcMaxSpeed(14, 3)).toEqual(7);
+    expect(calcMaxSpeed(14, 3.5)).toEqual(8);
+    expect(calcMaxSpeed(1, 1)).toEqual(1);
+    expect(calcMaxSpeed(1, 1.5)).toEqual(1);
+    expect(calcMaxSpeed(1, 4)).toEqual(3);
+    expect(calcMaxSpeed(1, 4.5)).toEqual(3);
   });
 });

@@ -27,39 +27,9 @@ const calcBaseSpeed = (str, enc) => {
   return table1A_BaseSpeed[str][index];
 };
 
-// const table1B_MaxSpeed = {
-//   baseSpeed: [0, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5],
-//   21: [2, 4, 5, 7, 9, 10, 12, 13],
-//   20: [2, 4, 5, 7, 8, 10, 11, 13],
-//   19: [2, 4, 5, 7, 8, 10, 11, 12],
-//   18: [2, 4, 5, 6, 8, 9, 11, 12],
-//   17: [2, 3, 5, 6, 8, 9, 10, 12],
-//   16: [2, 3, 5, 6, 8, 9, 10, 11],
-//   15: [2, 3, 5, 6, 7, 9, 10, 11],
-//   14: [2, 3, 4, 6, 7, 8, 9, 11],
-//   13: [2, 3, 4, 6, 7, 8, 9, 10],
-//   12: [2, 3, 4, 5, 7, 8, 9, 10],
-//   11: [2, 3, 4, 5, 6, 7, 8, 9],
-//   10: [2, 3, 4, 5, 6, 7, 8, 9],
-//   9: [2, 3, 4, 5, 6, 7, 8, 9],
-//   8: [2, 3, 4, 4, 5, 6, 7, 8],
-//   7: [2, 3, 3, 4, 5, 6, 7, 8],
-//   6: [2, 2, 3, 4, 5, 5, 6, 7],
-//   5: [1, 2, 3, 4, 4, 5, 6, 6],
-//   4: [1, 2, 3, 3, 4, 4, 5, 6],
-//   3: [1, 2, 2, 3, 3, 4, 4, 5],
-//   2: [1, 1, 2, 2, 3, 3, 4, 4],
-//   1: [1, 1, 1, 2, 2, 2, 3, 3]
-// };
-
 const calcMaxSpeed = (agi, baseSpd) => {
-  return table1B_MaxSpeed.baseSpeed.map(function(val, dex) {
-    if (baseSpd <= val && baseSpd > table1B_MaxSpeed.baseSpeed[dex - 1]) {
-      if (table1B_MaxSpeed[agi][dex] && baseSpd) {
-        return table1B_MaxSpeed[agi][dex];
-      }
-    }
-  });
+  const index = findKey(baseSpd, table1B_MaxSpeed.baseSpeed);
+  return table1B_MaxSpeed[agi][index];
 };
 
 const calcISF = function(int, sal, adjust = 0) {
