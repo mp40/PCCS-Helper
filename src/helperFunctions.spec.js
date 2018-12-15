@@ -112,6 +112,7 @@ describe("calculate combat actions", () => {
 });
 
 describe("calculate state object", () => {
+  // (STR, Weight, AGI, Gun Level, INTgit status)
   const result = calculateStateObject(14, 25, 12, 4, 10);
   it("should return an object", () => {
     expect(typeof { result }).toBe("object");
