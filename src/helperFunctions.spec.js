@@ -100,4 +100,12 @@ describe("calculate combat actions", () => {
     expect(findKey(19, table1D_CombatActions.isf)).toEqual(6);
     expect(findKey(20, table1D_CombatActions.isf)).toEqual(7);
   });
+  it("should find the total Combat Actions based on max speed and ISF", () => {
+    expect(calcCombatActions(1, 3)).toEqual(1);
+    expect(calcCombatActions(1, 7)).toEqual(1);
+    expect(calcCombatActions(1, 39)).toEqual(2);
+    expect(calcCombatActions(4, 20)).toEqual(5);
+    expect(calcCombatActions(13, 1)).toEqual(6);
+    expect(calcCombatActions(13, 39)).toEqual(24);
+  });
 });
