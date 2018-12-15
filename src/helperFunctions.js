@@ -12,7 +12,10 @@ const findSAL = function(level) {
 const findKey = (enc, arr) => {
   let result = undefined;
   arr.forEach(function(val, dex) {
-    if (enc === val || enc > val) {
+    if (dex === 0 && enc <= val) {
+      result = dex;
+    }
+    if (enc <= val && enc > arr[dex - 1]) {
       result = dex;
     }
   });

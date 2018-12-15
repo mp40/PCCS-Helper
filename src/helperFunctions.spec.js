@@ -7,7 +7,11 @@ const {
   calcCombatActions
 } = require("./helperFunctions");
 
-const { table1A_BaseSpeed, table1B_MaxSpeed } = require("./tables");
+const {
+  table1A_BaseSpeed,
+  table1B_MaxSpeed,
+  table1D_CombatActions
+} = require("./tables");
 
 describe("calculate SAL", () => {
   it("should return the correct SAL based on skill level", () => {
@@ -23,13 +27,18 @@ describe("calculate SAL", () => {
 
 describe("calculate Base Speed", () => {
   it("should find the correct index from weight", () => {
+    expect(findKey(5, table1A_BaseSpeed.lbs)).toEqual(0);
     expect(findKey(10, table1A_BaseSpeed.lbs)).toEqual(0);
+    expect(findKey(13, table1A_BaseSpeed.lbs)).toEqual(1);
     expect(findKey(15, table1A_BaseSpeed.lbs)).toEqual(1);
     expect(findKey(20, table1A_BaseSpeed.lbs)).toEqual(2);
+    expect(findKey(23, table1A_BaseSpeed.lbs)).toEqual(3);
     expect(findKey(25, table1A_BaseSpeed.lbs)).toEqual(3);
+    expect(findKey(99, table1A_BaseSpeed.lbs)).toEqual(14);
     expect(findKey(100, table1A_BaseSpeed.lbs)).toEqual(14);
     expect(findKey(125, table1A_BaseSpeed.lbs)).toEqual(15);
     expect(findKey(150, table1A_BaseSpeed.lbs)).toEqual(16);
+    expect(findKey(199, table1A_BaseSpeed.lbs)).toEqual(17);
     expect(findKey(200, table1A_BaseSpeed.lbs)).toEqual(17);
   });
   it("should find base speed using STR and Weight", () => {
@@ -70,5 +79,25 @@ describe("calculate Max Speed", () => {
     expect(calcMaxSpeed(1, 1.5)).toEqual(1);
     expect(calcMaxSpeed(1, 4)).toEqual(3);
     expect(calcMaxSpeed(1, 4.5)).toEqual(3);
+  });
+});
+
+describe("calculate ISF", () => {
+  it("should return INT plus SAL", () => {
+    expect(calcISF(10, 10)).toEqual(20);
+    expect(calcISF(10, 9)).toEqual(19);
+  });
+});
+
+describe("calculate combat actions", () => {
+  it("should find the correct index bsed on ISF", () => {
+    expect(findKey(3, table1D_CombatActions.isf)).toEqual(0);
+    expect(findKey(7, table1D_CombatActions.isf)).toEqual(0);
+    expect(findKey(8, table1D_CombatActions.isf)).toEqual(1);
+    expect(findKey(9, table1D_CombatActions.isf)).toEqual(1);
+    expect(findKey(17, table1D_CombatActions.isf)).toEqual(5);
+    expect(findKey(18, table1D_CombatActions.isf)).toEqual(6);
+    expect(findKey(19, table1D_CombatActions.isf)).toEqual(6);
+    expect(findKey(20, table1D_CombatActions.isf)).toEqual(7);
   });
 });
