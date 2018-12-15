@@ -44,11 +44,21 @@ const calcCombatActions = (ms, isf) => {
   return table1D_CombatActions[ms][index];
 };
 
+const calculateStateObject = function(str, enc, agi) {
+  const bs = calcBaseSpeed(str, enc);
+  const ms = calcMaxSpeed(agi, bs);
+  return {
+    baseSpeed: bs,
+    maxSpeed: ms
+  };
+};
+
 module.exports = {
   calcBaseSpeed,
   findKey,
   findSAL,
   calcMaxSpeed,
   calcISF,
-  calcCombatActions
+  calcCombatActions,
+  calculateStateObject
 };

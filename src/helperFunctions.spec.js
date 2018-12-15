@@ -4,7 +4,8 @@ const {
   findSAL,
   calcMaxSpeed,
   calcISF,
-  calcCombatActions
+  calcCombatActions,
+  calculateStateObject
 } = require("./helperFunctions");
 
 const {
@@ -107,5 +108,21 @@ describe("calculate combat actions", () => {
     expect(calcCombatActions(4, 20)).toEqual(5);
     expect(calcCombatActions(13, 1)).toEqual(6);
     expect(calcCombatActions(13, 39)).toEqual(24);
+  });
+});
+
+describe("calculate state object", () => {
+  const result = calculateStateObject(14, 25, 12);
+  it("should return an object", () => {
+    expect(typeof { result }).toBe("object");
+  });
+  it("should have a key called baseSpeed", () => {
+    expect(result).toHaveProperty("baseSpeed");
+  });
+  it("should have the correct calculation for baseSpeed value", () => {
+    expect(result).toHaveProperty("baseSpeed", 2);
+  });
+  it("should have a key and value for maxSpeed", () => {
+    expect(result).toHaveProperty("maxSpeed", 4);
   });
 });
