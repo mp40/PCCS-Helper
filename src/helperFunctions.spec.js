@@ -112,7 +112,7 @@ describe("calculate combat actions", () => {
 });
 
 describe("calculate state object", () => {
-  const result = calculateStateObject(14, 25, 12);
+  const result = calculateStateObject(14, 25, 12, 4, 10);
   it("should return an object", () => {
     expect(typeof { result }).toBe("object");
   });
@@ -124,5 +124,14 @@ describe("calculate state object", () => {
   });
   it("should have a key and value for maxSpeed", () => {
     expect(result).toHaveProperty("maxSpeed", 4);
+  });
+  it("should have a key and value for SAL", () => {
+    expect(result).toHaveProperty("sal", 10);
+  });
+  it("should have a key and value for ISF", () => {
+    expect(result).toHaveProperty("isf", 20);
+  });
+  it("should have a key and value for Gun Combat Actions", () => {
+    expect(result).toHaveProperty("gunActions", 5);
   });
 });

@@ -35,8 +35,8 @@ const calcMaxSpeed = (agi, baseSpd) => {
   return table1B_MaxSpeed[agi][index];
 };
 
-const calcISF = function(int, sal, adjust = 0) {
-  return int + sal + adjust;
+const calcISF = function(int, sal) {
+  return int + sal;
 };
 
 const calcCombatActions = (ms, isf) => {
@@ -44,12 +44,19 @@ const calcCombatActions = (ms, isf) => {
   return table1D_CombatActions[ms][index];
 };
 
-const calculateStateObject = function(str, enc, agi) {
+const calculateStateObject = function(str, enc, agi, gunSkill, int) {
   const bs = calcBaseSpeed(str, enc);
   const ms = calcMaxSpeed(agi, bs);
+  const salResult = findSAL(gunSkill);
+  const isfResult = calcISF(int, salResult);
+  const gunResults = calcCombatActions(ms, isfResult);
+
   return {
     baseSpeed: bs,
-    maxSpeed: ms
+    maxSpeed: ms,
+    sal: salResult,
+    isf: isfResult,
+    gunActions: gunResults
   };
 };
 
