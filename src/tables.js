@@ -24,7 +24,6 @@ const table1C_SAL = [
 
 const table1A_BaseSpeed = {
   lbs: [
-    0,
     10,
     15,
     20,
