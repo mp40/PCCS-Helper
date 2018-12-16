@@ -111,16 +111,28 @@ describe("calculate combat actions", () => {
   });
 });
 
+describe("calculate additional Hand to Hand data", () => {
+  it("should calculate Combat Effectivness (CE)", () => {
+    expect(findSAL(0)).toEqual(0);
+    expect(findSAL(5)).toEqual(11);
+  });
+  it("should calculate Agility Skill Factor (ASF) from AGI and CE", () => {
+    expect(calcISF(12, 7)).toEqual(19);
+  });
+  it("should calculate Hand to Hand Combat Actions", () => {
+    expect(calcCombatActions(2, 17)).toEqual(2);
+    expect(calcCombatActions(3, 13)).toEqual(2);
+    expect(calcCombatActions(6, 18)).toEqual(6);
+  });
+});
+
 describe("calculate state object", () => {
-  // (STR, Weight, AGI, Gun Level, INTgit status)
-  const result = calculateStateObject(14, 25, 12, 4, 10);
+  // (STR, Weight, AGI, Gun Level, INT, Hand Level)
+  const result = calculateStateObject(14, 25, 12, 4, 10, 2);
   it("should return an object", () => {
     expect(typeof { result }).toBe("object");
   });
-  it("should have a key called baseSpeed", () => {
-    expect(result).toHaveProperty("baseSpeed");
-  });
-  it("should have the correct calculation for baseSpeed value", () => {
+  it("should have a key and value for baseSpeed", () => {
     expect(result).toHaveProperty("baseSpeed", 2);
   });
   it("should have a key and value for maxSpeed", () => {
@@ -134,5 +146,14 @@ describe("calculate state object", () => {
   });
   it("should have a key and value for Gun Combat Actions", () => {
     expect(result).toHaveProperty("gunActions", 5);
+  });
+  it("should have a key and vale CE", () => {
+    expect(result).toHaveProperty("ce", 7);
+  });
+  it("should have a key and value for ASF", () => {
+    expect(result).toHaveProperty("asf", 19);
+  });
+  it("should have a key and value for Hand to Hand Combat Actions", () => {
+    expect(result).toHaveProperty("handActions", 4);
   });
 });

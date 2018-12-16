@@ -44,19 +44,25 @@ const calcCombatActions = (ms, isf) => {
   return table1D_CombatActions[ms][index];
 };
 
-const calculateStateObject = function(str, enc, agi, gunSkill, int) {
+const calculateStateObject = function(str, enc, agi, gunSkill, int, handSkill) {
   const bs = calcBaseSpeed(str, enc);
   const ms = calcMaxSpeed(agi, bs);
   const salResult = findSAL(gunSkill);
   const isfResult = calcISF(int, salResult);
   const gunResults = calcCombatActions(ms, isfResult);
+  const ceResult = findSAL(handSkill);
+  const asfResult = calcISF(agi, ceResult);
+  const handResults = calcCombatActions(ms, asfResult);
 
   return {
     baseSpeed: bs,
     maxSpeed: ms,
     sal: salResult,
+    ce: ceResult,
     isf: isfResult,
-    gunActions: gunResults
+    asf: asfResult,
+    gunActions: gunResults,
+    handActions: handResults
   };
 };
 
