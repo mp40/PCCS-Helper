@@ -3,27 +3,6 @@ class StatBox extends Component {
   constructor(props) {
     super(props);
   }
-  addToSTR = () => {
-    this.props.addToStat("str");
-  };
-  minusFromSTR = () => {
-    this.props.minusFromStat("str");
-  };
-  addToINT = () => {
-    this.props.addToStat("int");
-  };
-
-  minusFromINT = () => {
-    this.props.minusFromStat("int");
-  };
-
-  addToAGI = () => {
-    this.props.addToStat("agi");
-  };
-
-  minusFromAGI = () => {
-    this.props.minusFromStat("agi");
-  };
 
   render() {
     return (
@@ -48,23 +27,15 @@ class StatBox extends Component {
         </div>
         <div className="Stat-Adjust">
           <div className="STR-Adjust">
-            <button className="Stat-Up" onClick={this.addToSTR.bind(this)}>
-              +1
-            </button>
             <button
-              className="Stat-Down"
-              onClick={this.minusFromSTR.bind(this)}
+              className="Stat-Up"
+              onClick={this.props.addToStat.bind(this, "str")}
             >
-              -1
-            </button>
-          </div>
-          <div>
-            <button className="Stat-Up" onClick={this.addToINT.bind(this)}>
               +1
             </button>
             <button
               className="Stat-Down"
-              onClick={this.minusFromINT.bind(this)}
+              onClick={this.props.minusFromStat.bind(this, "str")}
             >
               -1
             </button>
@@ -72,13 +43,13 @@ class StatBox extends Component {
           <div>
             <button
               className="Stat-Up"
-              // onClick={this.props.addToStat.bind(this, 2)}
+              onClick={this.props.addToStat.bind(this, "int")}
             >
               +1
             </button>
             <button
               className="Stat-Down"
-              // onClick={this.props.minusFromStat.bind(this, 2)}
+              onClick={this.props.minusFromStat.bind(this, "int")}
             >
               -1
             </button>
@@ -86,24 +57,41 @@ class StatBox extends Component {
           <div>
             <button
               className="Stat-Up"
-              // onClick={this.props.addToStat.bind(this, 3)}
+              onClick={this.props.addToStat.bind(this, "wil")}
             >
               +1
             </button>
             <button
               className="Stat-Down"
-              // onClick={this.props.minusFromStat.bind(this, 3)}
+              onClick={this.props.minusFromStat.bind(this, "wil")}
             >
               -1
             </button>
           </div>
           <div>
-            <button className="Stat-Up" onClick={this.addToAGI.bind(this)}>
+            <button
+              className="Stat-Up"
+              onClick={this.props.addToStat.bind(this, "hlt")}
+            >
               +1
             </button>
             <button
               className="Stat-Down"
-              onClick={this.minusFromAGI.bind(this)}
+              onClick={this.props.minusFromStat.bind(this, "hlt")}
+            >
+              -1
+            </button>
+          </div>
+          <div>
+            <button
+              className="Stat-Up"
+              onClick={this.props.addToStat.bind(this, "agi")}
+            >
+              +1
+            </button>
+            <button
+              className="Stat-Down"
+              onClick={this.props.minusFromStat.bind(this, "agi")}
             >
               -1
             </button>

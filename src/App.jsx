@@ -9,19 +9,15 @@ class App extends React.Component {
     super(props);
     this.state = {
       equipmentWeight: 10,
-
       str: 14,
       int: 10,
       wil: 10,
       hlt: 10,
       agi: 12,
-
       baseSpeed: 0,
       maxSpeed: 0,
-
       gunLevel: 4,
       handLevel: 2,
-
       combatStats: { SAL: 0, CE: 0, ISF: 0, ASF: 0 },
       combatActions: [0, 0]
     };
@@ -29,10 +25,10 @@ class App extends React.Component {
 
   componentDidMount() {
     // (STR, Weight, AGI, Gun Level, INT, Hand Level)
-    const seedData = calculateStateObject(14, 25, 12, 4, 10, 2);
+    const seedData = calculateStateObject(14, 10, 12, 4, 10, 2);
     console.log(seedData);
     this.setState({
-      equipmentWeight: 25,
+      equipmentWeight: 10,
       baseSpeed: seedData.baseSpeed,
       maxSpeed: seedData.maxSpeed,
       combatStats: {
