@@ -4,31 +4,25 @@ class StatBox extends Component {
     super(props);
   }
   addToSTR = () => {
-    this.props.updateBaseSpeed();
-    this.props.addToStat(0);
+    this.props.addToStat("str");
   };
   minusFromSTR = () => {
-    this.props.updateBaseSpeed();
-    this.props.minusFromStat(0);
+    this.props.minusFromStat("str");
   };
   addToINT = () => {
-    this.props.addToStat(1);
-    this.props.updateISFFromINT(1);
+    this.props.addToStat("int");
   };
 
   minusFromINT = () => {
-    this.props.minusFromStat(1);
-    this.props.updateISFFromINT(-1);
+    this.props.minusFromStat("int");
   };
 
   addToAGI = () => {
-    this.props.addToStat(4);
-    this.props.updateASFFromAGI(1);
+    this.props.addToStat("agi");
   };
 
   minusFromAGI = () => {
-    this.props.minusFromStat(4);
-    this.props.updateASFFromAGI(-1);
+    this.props.minusFromStat("agi");
   };
 
   render() {
@@ -44,13 +38,13 @@ class StatBox extends Component {
           <span>Hand to Hand</span>
         </div>
         <div className="Stat-Value">
-          <span> (STR) {this.props.attributeStats[0]} </span>
-          <span> (INT) {this.props.attributeStats[1]} </span>
-          <span> (WIL) {this.props.attributeStats[2]} </span>
-          <span> (HLT) {this.props.attributeStats[3]} </span>
-          <span> (AGI) {this.props.attributeStats[4]} </span>
-          <span className="Level"> Level {this.props.skillLevels[0]}</span>
-          <span className="Level"> Level {this.props.skillLevels[1]}</span>
+          <span> (STR) {this.props.str} </span>
+          <span> (INT) {this.props.int} </span>
+          <span> (WIL) {this.props.wil} </span>
+          <span> (HLT) {this.props.hlt} </span>
+          <span> (AGI) {this.props.agi} </span>
+          <span className="Level"> Level {this.props.gunLevel}</span>
+          <span className="Level"> Level {this.props.handLevel}</span>
         </div>
         <div className="Stat-Adjust">
           <div className="STR-Adjust">
@@ -78,13 +72,13 @@ class StatBox extends Component {
           <div>
             <button
               className="Stat-Up"
-              onClick={this.props.addToStat.bind(this, 2)}
+              // onClick={this.props.addToStat.bind(this, 2)}
             >
               +1
             </button>
             <button
               className="Stat-Down"
-              onClick={this.props.minusFromStat.bind(this, 2)}
+              // onClick={this.props.minusFromStat.bind(this, 2)}
             >
               -1
             </button>
@@ -92,13 +86,13 @@ class StatBox extends Component {
           <div>
             <button
               className="Stat-Up"
-              onClick={this.props.addToStat.bind(this, 3)}
+              // onClick={this.props.addToStat.bind(this, 3)}
             >
               +1
             </button>
             <button
               className="Stat-Down"
-              onClick={this.props.minusFromStat.bind(this, 3)}
+              // onClick={this.props.minusFromStat.bind(this, 3)}
             >
               -1
             </button>
@@ -117,13 +111,13 @@ class StatBox extends Component {
           <div>
             <button
               className="Stat-Up"
-              onClick={this.props.addToLevel.bind(this, 0)}
+              onClick={this.props.addToLevel.bind(this, "gunLevel")}
             >
               +1
             </button>
             <button
               className="Stat-Down"
-              onClick={this.props.minusFromLevel.bind(this, 0)}
+              onClick={this.props.minusFromLevel.bind(this, "gunLevel")}
             >
               -1
             </button>
@@ -131,13 +125,13 @@ class StatBox extends Component {
           <div>
             <button
               className="Stat-Up"
-              onClick={this.props.addToLevel.bind(this, 1)}
+              onClick={this.props.addToLevel.bind(this, "handLevel")}
             >
               +1
             </button>
             <button
               className="Stat-Down"
-              onClick={this.props.minusFromLevel.bind(this, 1)}
+              onClick={this.props.minusFromLevel.bind(this, "handLevel")}
             >
               -1
             </button>
