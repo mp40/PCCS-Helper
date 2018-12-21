@@ -103,6 +103,38 @@ class App extends React.Component {
     });
   };
 
+  calcPreset = (newStr, newInt, newWil, newHlt, newAgi, newGun, newHand) => {
+    this.setState(
+      {
+        str: newStr,
+        int: newInt,
+        wil: newWil,
+        hlt: newHlt,
+        agi: newAgi,
+        gunLevel: newGun,
+        handLevel: newHand
+      },
+      () => {
+        this.updateAllStats();
+      }
+    );
+  };
+
+  calcRandom = () => {
+    this.setState(
+      {
+        str: Math.floor(Math.random() * 13 + 4),
+        int: Math.floor(Math.random() * 13 + 4),
+        wil: Math.floor(Math.random() * 13 + 4),
+        hlt: Math.floor(Math.random() * 13 + 4),
+        agi: Math.floor(Math.random() * 13 + 4)
+      },
+      () => {
+        this.updateAllStats();
+      }
+    );
+  };
+
   render() {
     return (
       <div className="App">
@@ -121,6 +153,7 @@ class App extends React.Component {
               addToLevel={this.addToLevel.bind(this)}
               minusFromLevel={this.minusFromLevel.bind(this)}
             />
+
             <div className="Game-Info">
               <div className="Equipment-Weight">
                 <div>
@@ -193,6 +226,7 @@ class App extends React.Component {
                   </div>
                 </div>
               </div>
+
               <div>
                 <h1
                   onClick={() => this.setState({ button: !this.state.button })}
@@ -207,11 +241,115 @@ class App extends React.Component {
                     Turbo Mode
                   </button>
                 ) : null}
-
+                <div className="Button-Spacer" />
+                {this.state.button ? (
+                  <button
+                    className="SelectPreset"
+                    onClick={() =>
+                      this.setState({ showPresets: !this.state.showPresets })
+                    }
+                  >
+                    Presets
+                  </button>
+                ) : null}
+                <div />
+                <div />
                 {this.state.done ? <h2>TDD - Go Fast!</h2> : null}
               </div>
             </div>
           </div>
+          {this.state.showPresets ? (
+            <div className="Presets">
+              <div className="Stats">
+                <div ClassName="Stat-Text">
+                  {" "}
+                  <button
+                    className="Preset-Button"
+                    onClick={this.calcPreset.bind(
+                      this,
+                      14,
+                      10,
+                      10,
+                      10,
+                      12,
+                      4,
+                      2
+                    )}
+                  >
+                    Military
+                  </button>
+                  {/* <button className="Preset-Button">Military Police</button> */}
+                  <button
+                    className="Preset-Button"
+                    onClick={this.calcPreset.bind(
+                      this,
+                      14,
+                      12,
+                      10,
+                      10,
+                      12,
+                      5,
+                      2
+                    )}
+                  >
+                    Veteran
+                  </button>
+                  <button
+                    className="Preset-Button"
+                    onClick={this.calcPreset.bind(
+                      this,
+                      14,
+                      13,
+                      10,
+                      10,
+                      13,
+                      4,
+                      2
+                    )}
+                  >
+                    SWAT
+                  </button>
+                  <button
+                    className="Preset-Button"
+                    onClick={this.calcPreset.bind(
+                      this,
+                      13,
+                      12,
+                      10,
+                      10,
+                      12,
+                      2,
+                      2
+                    )}
+                  >
+                    Police
+                  </button>
+                  <button
+                    className="Preset-Button"
+                    onClick={this.calcPreset.bind(
+                      this,
+                      10,
+                      10,
+                      10,
+                      10,
+                      10,
+                      0,
+                      0
+                    )}
+                  >
+                    Civilian
+                  </button>
+                  {/* <button className="Preset-Button">Secret Service</button> */}
+                  <button
+                    className="Preset-Button"
+                    onClick={this.calcRandom.bind(this)}
+                  >
+                    Random
+                  </button>
+                </div>
+              </div>
+            </div>
+          ) : null}
         </header>
       </div>
     );
