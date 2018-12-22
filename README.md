@@ -6,7 +6,7 @@ A React application to assist running calculations required for the Phoenix Comm
 
 Currently, it has the following inputs:
 
-- Characteristics, incremeted via buttons
+- Characteristics, incremented via buttons
 - Skill Levels, incremented via buttons
 - Encumbrance, incremented via buttons
 
