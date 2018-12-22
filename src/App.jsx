@@ -175,7 +175,6 @@ class App extends React.Component {
                 </div>
                 <div />
               </div>
-
               <div className="Combat-Actions-Container">
                 <div className="Combat-Actions">
                   <p>
