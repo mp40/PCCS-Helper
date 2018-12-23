@@ -32,9 +32,26 @@ h2 {
   justify-content: space-evenly;
 }
 
-/* .Game-Info {
-  width: 63.5%
-} */
+.Game-Info2 {
+  min-width: 63.3%;
+  flex-grow: 1;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.Game-Info {
+  flex-basis: 63.3%;
+}
+
+.Skill-Box {
+  flex-basis: 100%;
+  flex-grow: 1;
+  width: 252.3px;
+}
+
+/* .Factor-Box {
+  width: 25%
+}  */
 
 .Presets {
   margin-top: 20px;

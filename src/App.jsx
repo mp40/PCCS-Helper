@@ -175,57 +175,61 @@ class App extends React.Component {
                 </div>
                 <div />
               </div>
-              <div className="Combat-Actions-Container">
-                <div className="Combat-Actions">
-                  <p>
-                    Skill Accuracy Level
-                    <span> (SAL) {this.state.combatStats.SAL} </span>
-                  </p>
-                  <p>
-                    Combat Efficiency
-                    <span> (CE) {this.state.combatStats.CE}</span>
-                  </p>
+
+              <div className="Game-Info2">
+                <div className="Combat-Actions-Container">
+                  <div className="Combat-Actions">
+                    <div className="Skill-Box">
+                      <p>
+                        Skill Accuracy Level
+                        <span> (SAL) {this.state.combatStats.SAL} </span>
+                      </p>
+                      <p>
+                        Combat Efficiency
+                        <span> (CE) {this.state.combatStats.CE}</span>
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div className="Combat-Actions-Container">
-                <div className="Combat-Actions">
-                  <p>
-                    INT Skill Factor
-                    <span> (ISF) {this.state.combatStats.ISF} </span>
-                  </p>
-                  <p>
-                    AGI Skill Factor
-                    <span> (ASF) {this.state.combatStats.ASF} </span>
-                  </p>
-                </div>
-              </div>
-              <div className="Combat-Actions-Container">
-                <div className="Combat-Actions">
-                  <p>
-                    Gun Combat Actions
-                    <span> {this.state.combatActions[0]}</span>
-                  </p>
-                  <p>
-                    Hand To Hand Actions
-                    <span> {this.state.combatActions[1]}</span>
-                  </p>
-                </div>
-              </div>
-              <div className="Combat-Actions-Container">
-                <div className="Combat-Actions">
-                  <div className="Speed">
+                <div className="Combat-Actions-Container">
+                  <div className="Combat-Actions">
                     <p>
-                      Base Speed
-                      <span> BS {this.state.baseSpeed} </span>
+                      INT Skill Factor
+                      <span> (ISF) {this.state.combatStats.ISF} </span>
                     </p>
                     <p>
-                      Maximum Speed
-                      <span> MS {this.state.maxSpeed}</span>
+                      AGI Skill Factor
+                      <span> (ASF) {this.state.combatStats.ASF} </span>
                     </p>
                   </div>
                 </div>
+                <div className="Combat-Actions-Container">
+                  <div className="Combat-Actions">
+                    <p>
+                      Gun Combat Actions
+                      <span> {this.state.combatActions[0]}</span>
+                    </p>
+                    <p>
+                      Hand To Hand Actions
+                      <span> {this.state.combatActions[1]}</span>
+                    </p>
+                  </div>
+                </div>
+                <div className="Combat-Actions-Container">
+                  <div className="Combat-Actions">
+                    <div className="Speed">
+                      <p>
+                        Base Speed
+                        <span> BS {this.state.baseSpeed} </span>
+                      </p>
+                      <p>
+                        Maximum Speed
+                        <span> MS {this.state.maxSpeed}</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
-
               <div>
                 <h1
                   onClick={() => this.setState({ button: !this.state.button })}
