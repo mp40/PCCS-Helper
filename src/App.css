@@ -46,7 +46,8 @@ h2 {
 .Skill-Box {
   flex-basis: 100%;
   flex-grow: 1;
-  width: 252.3px;
+  flex-shrink: 0;
+  min-width: 252.3px;
 }
 
 /* .Factor-Box {
