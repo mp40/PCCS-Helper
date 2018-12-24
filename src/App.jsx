@@ -193,6 +193,7 @@ class App extends React.Component {
                 </div>
                 <div className="Combat-Actions-Container">
                   <div className="Combat-Actions">
+                  <div className="Factor-Box">
                     <p>
                       INT Skill Factor
                       <span> (ISF) {this.state.combatStats.ISF} </span>
@@ -201,6 +202,7 @@ class App extends React.Component {
                       AGI Skill Factor
                       <span> (ASF) {this.state.combatStats.ASF} </span>
                     </p>
+                    </div>
                   </div>
                 </div>
                 <div className="Combat-Actions-Container">

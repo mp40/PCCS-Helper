@@ -50,9 +50,9 @@ h2 {
   min-width: 252.3px;
 }
 
-/* .Factor-Box {
-  width: 25%
-}  */
+.Factor-Box {
+  min-width: 212px;
+}
 
 .Presets {
   margin-top: 20px;
@@ -62,8 +62,6 @@ h2 {
   margin-left: 35px;
   /* justify-content: space-evenly; */
 }
-
-
 
 .Equipment-Weight {
   margin-top: 15px;
@@ -304,7 +302,6 @@ body {
 
 .Weight-Up,
 .Weight-Down {
-
   display: inline-block;
   padding: 0.5em 1em;
   text-decoration: none;
