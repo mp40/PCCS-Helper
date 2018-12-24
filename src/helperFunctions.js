@@ -5,13 +5,13 @@ const {
   table1D_CombatActions
 } = require("./tables");
 
-const findSAL = function(level) {
+const findSAL = function (level) {
   return table1C_SAL[level];
 };
 
 const findKey = (enc, arr) => {
   let result = undefined;
-  arr.forEach(function(val, dex) {
+  arr.forEach(function (val, dex) {
     if (dex === 0 && enc <= val) {
       result = dex;
     }
@@ -25,7 +25,7 @@ const findKey = (enc, arr) => {
 const calcBaseSpeed = (str, enc) => {
   const index = findKey(enc, table1A_BaseSpeed.lbs);
   if (table1A_BaseSpeed[str][index] === undefined) {
-    return "Weight Limit Exceeded";
+    return 0;
   }
   return table1A_BaseSpeed[str][index];
 };
@@ -35,7 +35,7 @@ const calcMaxSpeed = (agi, baseSpd) => {
   return table1B_MaxSpeed[agi][index];
 };
 
-const calcISF = function(int, sal) {
+const calcISF = function (int, sal) {
   return int + sal;
 };
 
@@ -44,7 +44,7 @@ const calcCombatActions = (ms, isf) => {
   return table1D_CombatActions[ms][index];
 };
 
-const calculateStateObject = function(str, enc, agi, gunSkill, int, handSkill) {
+const calculateStateObject = function (str, enc, agi, gunSkill, int, handSkill) {
   const bs = calcBaseSpeed(str, enc);
   const ms = calcMaxSpeed(agi, bs);
   const salResult = findSAL(gunSkill);

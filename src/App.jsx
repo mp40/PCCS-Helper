@@ -41,6 +41,13 @@ class App extends React.Component {
     });
   }
 
+  weightWarningOn() {
+    this.setState({ weightWarningMsg: true });
+  }
+
+  weightWarningOff() {
+    this.setState({ weightWarningMsg: false });
+  }
   updateAllStats() {
     // (STR, Weight, AGI, Gun Level, INT, Hand Level)
     const str = this.state.str;
@@ -50,6 +57,11 @@ class App extends React.Component {
     const int = this.state.int;
     const hand = this.state.handLevel;
     const newData = calculateStateObject(str, weight, agi, gun, int, hand);
+    if (newData.baseSpeed === 0) {
+      this.weightWarningOn();
+    } else {
+      this.weightWarningOff();
+    }
     this.setState({
       baseSpeed: newData.baseSpeed,
       maxSpeed: newData.maxSpeed,
@@ -139,6 +151,12 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
+          <h1
+            className="App-title"
+            onClick={() => this.setState({ button: !this.state.button })}
+          >
+            Phoenix Command Tools
+          </h1>
           <div className="Wrapper">
             <StatBox
               str={this.state.str}
@@ -155,25 +173,38 @@ class App extends React.Component {
             />
 
             <div className="Game-Info">
+              <h1>Attributes</h1>
               <div className="Equipment-Weight">
-                <div>
+                <div className="Weight-Box">
                   <span className="Weight-Tag">
                     Equipment Weight: {this.state.equipmentWeight}
                   </span>
                   <button
                     className="Weight-Up"
-                    onClick={this.addWeight.bind(this)}
-                  >
-                    Add 5lbs
-                  </button>
-                  <button
-                    className="Weight-Down"
                     onClick={this.minusWeight.bind(this)}
                   >
                     Minus 5lbs
                   </button>
+                  <button
+                    className="Weight-Down"
+                    onClick={this.addWeight.bind(this)}
+                  >
+                    Add 5lbs
+                  </button>
+                  <div
+                    className="Warning-Box"
+                    style={{
+                      backgroundColor: this.state.weightWarningMsg
+                        ? "#f44336"
+                        : "#d1f0bf"
+                    }}
+                  >
+                    {this.state.weightWarningMsg
+                      ? "Weight Capacity Reached"
+                      : null}
+                    {/* {this.state.weightWarningMsg ? document.getElementById("Warning-Box").style.backgroundColor = "lightblue" :  null} */}
+                  </div>
                 </div>
-                <div />
               </div>
 
               <div className="Game-Info2">
@@ -193,15 +224,15 @@ class App extends React.Component {
                 </div>
                 <div className="Combat-Actions-Container">
                   <div className="Combat-Actions">
-                  <div className="Factor-Box">
-                    <p>
-                      INT Skill Factor
-                      <span> (ISF) {this.state.combatStats.ISF} </span>
-                    </p>
-                    <p>
-                      AGI Skill Factor
-                      <span> (ASF) {this.state.combatStats.ASF} </span>
-                    </p>
+                    <div className="Factor-Box">
+                      <p>
+                        INT Skill Factor
+                        <span> (ISF) {this.state.combatStats.ISF} </span>
+                      </p>
+                      <p>
+                        AGI Skill Factor
+                        <span> (ASF) {this.state.combatStats.ASF} </span>
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -233,11 +264,12 @@ class App extends React.Component {
                 </div>
               </div>
               <div>
-                <h1
+                {/* <h1
                   onClick={() => this.setState({ button: !this.state.button })}
                 >
                   Phoenix Command Helper
-                </h1>
+                </h1> */}
+                <div className="Line-Spacer" />
                 {this.state.button ? (
                   <button
                     className="Turbo"

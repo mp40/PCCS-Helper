@@ -50,9 +50,9 @@ describe("calculate Base Speed", () => {
     expect(calcBaseSpeed(14, 45)).toEqual(1.5);
     expect(calcBaseSpeed(14, 90)).toEqual(1);
   });
-  it("should return error msg if weight exceeds carrying capicity", () => {
-    expect(calcBaseSpeed(1, 25)).toEqual("Weight Limit Exceeded");
-    expect(calcBaseSpeed(14, 200)).toEqual("Weight Limit Exceeded");
+  it("should return 0 if weight exceeds carrying capicity", () => {
+    expect(calcBaseSpeed(1, 25)).toEqual(0);
+    expect(calcBaseSpeed(14, 200)).toEqual(0);
   });
 });
 
@@ -130,7 +130,9 @@ describe("calculate state object", () => {
   // (STR, Weight, AGI, Gun Level, INT, Hand Level)
   const result = calculateStateObject(14, 25, 12, 4, 10, 2);
   it("should return an object", () => {
-    expect(typeof { result }).toBe("object");
+    expect(typeof {
+      result
+    }).toBe("object");
   });
   it("should have a key and value for baseSpeed", () => {
     expect(result).toHaveProperty("baseSpeed", 2);
