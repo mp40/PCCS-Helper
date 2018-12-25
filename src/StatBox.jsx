@@ -19,11 +19,91 @@ class StatBox extends Component {
             <span>Hand to Hand</span>
           </div>
           <div className="Stat-Value">
-            <span> (STR) {this.props.str} </span>
-            <span> (INT) {this.props.int} </span>
-            <span> (WIL) {this.props.wil} </span>
-            <span> (HLT) {this.props.hlt} </span>
-            <span> (AGI) {this.props.agi} </span>
+            <span
+              style={{
+                color:
+                  this.props.str < 7
+                    ? "red"
+                    : this.props.str < 9
+                    ? "orange"
+                    : this.props.str > 15
+                    ? "blue"
+                    : this.props.str > 12
+                    ? "royalblue"
+                    : "black"
+              }}
+            >
+              {" "}
+              (STR) {this.props.str}{" "}
+            </span>
+            <span
+              style={{
+                color:
+                  this.props.int < 7
+                    ? "red"
+                    : this.props.int < 9
+                    ? "orange"
+                    : this.props.int > 15
+                    ? "blue"
+                    : this.props.int > 12
+                    ? "royalblue"
+                    : "black"
+              }}
+            >
+              {" "}
+              (INT) {this.props.int}{" "}
+            </span>
+            <span
+              style={{
+                color:
+                  this.props.wil < 7
+                    ? "red"
+                    : this.props.wil < 9
+                    ? "orange"
+                    : this.props.wil > 15
+                    ? "blue"
+                    : this.props.wil > 12
+                    ? "royalblue"
+                    : "black"
+              }}
+            >
+              {" "}
+              (WIL) {this.props.wil}{" "}
+            </span>
+            <span
+              style={{
+                color:
+                  this.props.hlt < 7
+                    ? "red"
+                    : this.props.hlt < 9
+                    ? "orange"
+                    : this.props.hlt > 15
+                    ? "blue"
+                    : this.props.hlt > 12
+                    ? "royalblue"
+                    : "black"
+              }}
+            >
+              {" "}
+              (HLT) {this.props.hlt}{" "}
+            </span>
+            <span
+              style={{
+                color:
+                  this.props.agi < 7
+                    ? "red"
+                    : this.props.agi < 9
+                    ? "orange"
+                    : this.props.agi > 15
+                    ? "blue"
+                    : this.props.agi > 12
+                    ? "royalblue"
+                    : "black"
+              }}
+            >
+              {" "}
+              (AGI) {this.props.agi}{" "}
+            </span>
             <span className="Level"> Level {this.props.gunLevel}</span>
             <span className="Level"> Level {this.props.handLevel}</span>
           </div>

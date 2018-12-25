@@ -9,15 +9,15 @@ class App extends React.Component {
     super(props);
     this.state = {
       equipmentWeight: 10,
-      str: 14,
+      str: 10,
       int: 10,
       wil: 10,
       hlt: 10,
-      agi: 12,
+      agi: 10,
       baseSpeed: 0,
       maxSpeed: 0,
-      gunLevel: 4,
-      handLevel: 2,
+      gunLevel: 0,
+      handLevel: 0,
       combatStats: { SAL: 0, CE: 0, ISF: 0, ASF: 0 },
       combatActions: [0, 0]
     };
@@ -25,7 +25,7 @@ class App extends React.Component {
 
   componentDidMount() {
     // (STR, Weight, AGI, Gun Level, INT, Hand Level)
-    const seedData = calculateStateObject(14, 10, 12, 4, 10, 2);
+    const seedData = calculateStateObject(10, 10, 10, 0, 10, 0);
     console.log(seedData);
     this.setState({
       equipmentWeight: 10,
@@ -238,13 +238,61 @@ class App extends React.Component {
                 </div>
                 <div className="Combat-Actions-Container">
                   <div className="Combat-Actions">
-                    <p>
+                    <p
+                      style={{
+                        backgroundColor: this.state.weightWarningMsg
+                          ? "#f44336"
+                          : "#d1f0bf"
+                      }}
+                    >
                       Gun Combat Actions
-                      <span> {this.state.combatActions[0]}</span>
+                      <span
+                        style={{
+                          color:
+                            this.state.combatActions[0] < 1
+                              ? "white"
+                              : this.state.combatActions[0] < 3
+                              ? "red"
+                              : this.state.combatActions[0] < 4
+                              ? "orange"
+                              : this.state.combatActions[0] > 6
+                              ? "blue"
+                              : this.state.combatActions[0] > 4
+                              ? "royalblue"
+                              : "black"
+                        }}
+                      >
+                        {" "}
+                        {this.state.combatActions[0]}
+                      </span>
                     </p>
-                    <p>
+                    <p
+                      style={{
+                        backgroundColor: this.state.weightWarningMsg
+                          ? "#f44336"
+                          : "#d1f0bf"
+                      }}
+                    >
                       Hand To Hand Actions
-                      <span> {this.state.combatActions[1]}</span>
+                      <span
+                        style={{
+                          color:
+                            this.state.combatActions[1] < 1
+                              ? "white"
+                              : this.state.combatActions[1] < 3
+                              ? "red"
+                              : this.state.combatActions[1] < 4
+                              ? "orange"
+                              : this.state.combatActions[1] > 6
+                              ? "blue"
+                              : this.state.combatActions[1] > 4
+                              ? "royalblue"
+                              : "black"
+                        }}
+                      >
+                        {" "}
+                        {this.state.combatActions[1]}
+                      </span>
                     </p>
                   </div>
                 </div>
