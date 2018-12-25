@@ -29,7 +29,7 @@ class StatBox extends Component {
                     : this.props.str > 15
                     ? "blue"
                     : this.props.str > 12
-                    ? "royalblue"
+                    ? "dodgerblue"
                     : "black"
               }}
             >
@@ -46,7 +46,7 @@ class StatBox extends Component {
                     : this.props.int > 15
                     ? "blue"
                     : this.props.int > 12
-                    ? "royalblue"
+                    ? "dodgerblue"
                     : "black"
               }}
             >
@@ -63,7 +63,7 @@ class StatBox extends Component {
                     : this.props.wil > 15
                     ? "blue"
                     : this.props.wil > 12
-                    ? "royalblue"
+                    ? "dodgerblue"
                     : "black"
               }}
             >
@@ -80,7 +80,7 @@ class StatBox extends Component {
                     : this.props.hlt > 15
                     ? "blue"
                     : this.props.hlt > 12
-                    ? "royalblue"
+                    ? "dodgerblue"
                     : "black"
               }}
             >
@@ -97,7 +97,7 @@ class StatBox extends Component {
                     : this.props.agi > 15
                     ? "blue"
                     : this.props.agi > 12
-                    ? "royalblue"
+                    ? "dodgerblue"
                     : "black"
               }}
             >

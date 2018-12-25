@@ -202,7 +202,6 @@ class App extends React.Component {
                     {this.state.weightWarningMsg
                       ? "Weight Capacity Reached"
                       : null}
-                    {/* {this.state.weightWarningMsg ? document.getElementById("Warning-Box").style.backgroundColor = "lightblue" :  null} */}
                   </div>
                 </div>
               </div>
@@ -258,7 +257,7 @@ class App extends React.Component {
                               : this.state.combatActions[0] > 6
                               ? "blue"
                               : this.state.combatActions[0] > 4
-                              ? "royalblue"
+                              ? "dodgerblue"
                               : "black"
                         }}
                       >
@@ -286,7 +285,7 @@ class App extends React.Component {
                               : this.state.combatActions[1] > 6
                               ? "blue"
                               : this.state.combatActions[1] > 4
-                              ? "royalblue"
+                              ? "dodgerblue"
                               : "black"
                         }}
                       >

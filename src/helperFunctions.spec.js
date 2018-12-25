@@ -81,6 +81,9 @@ describe("calculate Max Speed", () => {
     expect(calcMaxSpeed(1, 4)).toEqual(3);
     expect(calcMaxSpeed(1, 4.5)).toEqual(3);
   });
+  it("should return 0 if Base Speed is 0", () => {
+    expect(calcMaxSpeed(10, 0)).toEqual(0);
+  })
 });
 
 describe("calculate ISF", () => {
@@ -109,6 +112,9 @@ describe("calculate combat actions", () => {
     expect(calcCombatActions(13, 1)).toEqual(6);
     expect(calcCombatActions(13, 39)).toEqual(24);
   });
+  it("should return 0 if Max Speed is 0", () => {
+    expect(calcCombatActions(0, 20)).toEqual(0);
+  })
 });
 
 describe("calculate additional Hand to Hand data", () => {
