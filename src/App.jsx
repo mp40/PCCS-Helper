@@ -258,7 +258,7 @@ class App extends React.Component {
                               ? "blue"
                               : this.state.combatActions[0] > 4
                               ? "dodgerblue"
-                              : "black"
+                              : "#30362c"
                         }}
                       >
                         {" "}
@@ -286,7 +286,7 @@ class App extends React.Component {
                               ? "blue"
                               : this.state.combatActions[1] > 4
                               ? "dodgerblue"
-                              : "black"
+                              : "#30362c"
                         }}
                       >
                         {" "}

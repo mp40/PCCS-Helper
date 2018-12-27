@@ -1,3 +1,5 @@
+![PCCS Logo](/public/pccsBnW.png)
+
 # Phoenix Command Combat System Assistant
 
 This was started during my time as a student at Code Chrysalis
