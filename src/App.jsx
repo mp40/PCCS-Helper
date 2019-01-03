@@ -19,13 +19,15 @@ class App extends React.Component {
       gunLevel: 0,
       handLevel: 0,
       combatStats: { SAL: 0, CE: 0, ISF: 0, ASF: 0 },
-      combatActions: [0, 0]
+      combatActions: [0, 0],
+      knockoutValue: 0,
+      damageBonus: 0
     };
   }
 
   componentDidMount() {
-    // (STR, Weight, AGI, Gun Level, INT, Hand Level)
-    const seedData = calculateStateObject(10, 10, 10, 0, 10, 0);
+    // (STR, Weight, AGI, Gun Level, INT, Hand Level, wil)
+    const seedData = calculateStateObject(10, 10, 10, 0, 10, 0, 10);
     console.log(seedData);
     this.setState({
       equipmentWeight: 10,
@@ -37,7 +39,9 @@ class App extends React.Component {
         ISF: seedData.isf,
         ASF: seedData.asf
       },
-      combatActions: [seedData.gunActions, seedData.handActions]
+      combatActions: [seedData.gunActions, seedData.handActions],
+      knockoutValue: seedData.knockoutValue,
+      damageBonus: seedData.damageBonus
     });
   }
 
@@ -56,7 +60,8 @@ class App extends React.Component {
     const gun = this.state.gunLevel;
     const int = this.state.int;
     const hand = this.state.handLevel;
-    const newData = calculateStateObject(str, weight, agi, gun, int, hand);
+    const wil = this.state.wil;
+    const newData = calculateStateObject(str, weight, agi, gun, int, hand, wil);
     if (newData.baseSpeed === 0) {
       this.weightWarningOn();
     } else {
@@ -71,7 +76,9 @@ class App extends React.Component {
         ISF: newData.isf,
         ASF: newData.asf
       },
-      combatActions: [newData.gunActions, newData.handActions]
+      combatActions: [newData.gunActions, newData.handActions],
+      knockoutValue: newData.knockoutValue,
+      damageBonus: newData.damageBonus
     });
   }
 
