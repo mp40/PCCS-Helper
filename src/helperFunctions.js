@@ -72,7 +72,8 @@ const calculateStateObject = function (str, enc, agi, gunSkill, int, handSkill, 
   const ceResult = findSAL(handSkill);
   const asfResult = calcISF(agi, ceResult);
   const handResults = calcCombatActions(ms, asfResult);
-  const knockout = calcKV(wil, gunSkill > handSkill ? gunSkill : handSkill)
+  const knockout = calcKV(wil, gunSkill > handSkill ? gunSkill : handSkill);
+  const damBonus = calcDB(ms, asfResult);
 
   return {
     baseSpeed: bs,
@@ -83,7 +84,8 @@ const calculateStateObject = function (str, enc, agi, gunSkill, int, handSkill, 
     asf: asfResult,
     gunActions: gunResults,
     handActions: handResults,
-    knockoutValue: knockout
+    knockoutValue: knockout,
+    damageBonus: damBonus
   };
 };
 

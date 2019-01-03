@@ -158,6 +158,9 @@ describe('calculate Damage Bonus', () => {
     expect(calcDB(4, 13)).toEqual(1);
     expect(calcDB(4, 9)).toEqual(0.5);
     expect(calcDB(4, 10)).toEqual(1);
+    expect(calcDB(6, 23)).toEqual(2);
+    expect(calcDB(6, 24)).toEqual(2.5);
+
   })
   it('should return 0 if max speed is 0', () => {
     expect(calcDB(0, 20)).toEqual(0);
@@ -198,5 +201,8 @@ describe("calculate state object", () => {
   });
   it("should have a key and value for knockoutValue based on highest combat skill level", () => {
     expect(result).toHaveProperty("knockoutValue", 20);
+  })
+  it('should have a key and value for damage bonus', () => {
+    expect(result).toHaveProperty('damageBonus', 1);
   })
 });
