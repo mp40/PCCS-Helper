@@ -5,6 +5,7 @@ const {
   calcMaxSpeed,
   calcISF,
   calcCombatActions,
+  calcKV,
   calculateStateObject
 } = require("./helperFunctions");
 
@@ -131,6 +132,12 @@ describe("calculate additional Hand to Hand data", () => {
     expect(calcCombatActions(6, 18)).toEqual(6);
   });
 });
+
+describe("calculate Knockout Value", () => {
+  it("should return (0.5*WIL)* highest Skill Level", () => {
+    expect(calcKV(10, 4)).toEqual(20);
+  })
+})
 
 describe("calculate state object", () => {
   // (STR, Weight, AGI, Gun Level, INT, Hand Level)
