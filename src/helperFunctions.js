@@ -55,7 +55,7 @@ const calcKV = (wil, highestSkill) => {
   return Math.floor(0.5 * wil) * highestSkill;
 }
 
-const calculateStateObject = function (str, enc, agi, gunSkill, int, handSkill) {
+const calculateStateObject = function (str, enc, agi, gunSkill, int, handSkill, wil) {
   const bs = calcBaseSpeed(str, enc);
   const ms = calcMaxSpeed(agi, bs);
   const salResult = findSAL(gunSkill);
@@ -64,6 +64,7 @@ const calculateStateObject = function (str, enc, agi, gunSkill, int, handSkill) 
   const ceResult = findSAL(handSkill);
   const asfResult = calcISF(agi, ceResult);
   const handResults = calcCombatActions(ms, asfResult);
+  const knockout = calcKV(wil, gunSkill > handSkill ? gunSkill : handSkill)
 
   return {
     baseSpeed: bs,
@@ -73,7 +74,8 @@ const calculateStateObject = function (str, enc, agi, gunSkill, int, handSkill) 
     isf: isfResult,
     asf: asfResult,
     gunActions: gunResults,
-    handActions: handResults
+    handActions: handResults,
+    knockoutValue: knockout
   };
 };
 

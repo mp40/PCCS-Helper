@@ -145,8 +145,8 @@ describe("calculate Knockout Value", () => {
 })
 
 describe("calculate state object", () => {
-  // (STR, Weight, AGI, Gun Level, INT, Hand Level)
-  const result = calculateStateObject(14, 25, 12, 4, 10, 2);
+  // (STR, Weight, AGI, Gun Level, INT, Hand Level, knockoutValue)
+  const result = calculateStateObject(14, 25, 12, 4, 10, 2, 10);
   it("should return an object", () => {
     expect(typeof {
       result
@@ -167,7 +167,7 @@ describe("calculate state object", () => {
   it("should have a key and value for Gun Combat Actions", () => {
     expect(result).toHaveProperty("gunActions", 5);
   });
-  it("should have a key and vale CE", () => {
+  it("should have a key and value CE", () => {
     expect(result).toHaveProperty("ce", 7);
   });
   it("should have a key and value for ASF", () => {
@@ -176,4 +176,7 @@ describe("calculate state object", () => {
   it("should have a key and value for Hand to Hand Combat Actions", () => {
     expect(result).toHaveProperty("handActions", 4);
   });
+  it("should have a key and value for knockoutValue based on highest combat skill level", () => {
+    expect(result).toHaveProperty("knockoutValue", 20);
+  })
 });
