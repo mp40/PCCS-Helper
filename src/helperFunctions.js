@@ -52,7 +52,7 @@ const calcCombatActions = (ms, isf) => {
 
 
 const calcKV = (wil, highestSkill) => {
-  return (wil * 0.5) * highestSkill
+  return Math.floor(0.5 * wil) * highestSkill;
 }
 
 const calculateStateObject = function (str, enc, agi, gunSkill, int, handSkill) {

@@ -138,10 +138,10 @@ describe("calculate Knockout Value", () => {
     expect(calcKV(10, 4)).toEqual(20);
     expect(calcKV(6, 2)).toEqual(6);
   })
-  it('should round down in case of fractions'), () => {
+  it('should round down in case of fractions', () => {
     expect(calcKV(11, 4)).toEqual(20);
     expect(calcKV(7, 2)).toEqual(6);
-  }
+  })
 })
 
 describe("calculate state object", () => {
