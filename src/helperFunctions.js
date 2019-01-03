@@ -2,7 +2,8 @@ const {
   table1C_SAL,
   table1A_BaseSpeed,
   table1B_MaxSpeed,
-  table1D_CombatActions
+  table1D_CombatActions,
+  table1D_DamageBonus
 } = require("./tables");
 
 const findSAL = function (level) {
@@ -50,9 +51,16 @@ const calcCombatActions = (ms, isf) => {
   return table1D_CombatActions[ms][index];
 };
 
-
 const calcKV = (wil, highestSkill) => {
   return Math.floor(0.5 * wil) * highestSkill;
+}
+
+const calcDB = (ms, asf) => {
+  if (ms === 0) {
+    return 0;
+  }
+  const index = findKey(asf, table1D_DamageBonus.asf);
+  return table1D_DamageBonus[ms][index];
 }
 
 const calculateStateObject = function (str, enc, agi, gunSkill, int, handSkill, wil) {
@@ -87,5 +95,6 @@ module.exports = {
   calcISF,
   calcCombatActions,
   calcKV,
+  calcDB,
   calculateStateObject
 };

@@ -6,13 +6,15 @@ const {
   calcISF,
   calcCombatActions,
   calcKV,
+  calcDB,
   calculateStateObject
 } = require("./helperFunctions");
 
 const {
   table1A_BaseSpeed,
   table1B_MaxSpeed,
-  table1D_CombatActions
+  table1D_CombatActions,
+  table1D_DamageBonus
 } = require("./tables");
 
 describe("calculate SAL", () => {
@@ -100,6 +102,7 @@ describe("calculate combat actions", () => {
     expect(findKey(7, table1D_CombatActions.isf)).toEqual(0);
     expect(findKey(8, table1D_CombatActions.isf)).toEqual(1);
     expect(findKey(9, table1D_CombatActions.isf)).toEqual(1);
+    expect(findKey(10, table1D_CombatActions.isf)).toEqual(2);
     expect(findKey(17, table1D_CombatActions.isf)).toEqual(5);
     expect(findKey(18, table1D_CombatActions.isf)).toEqual(6);
     expect(findKey(19, table1D_CombatActions.isf)).toEqual(6);
@@ -144,8 +147,25 @@ describe("calculate Knockout Value", () => {
   })
 })
 
+describe('calculate Damage Bonus', () => {
+  it('should find the correct key based on asf', () => {
+    expect(findKey(3, table1D_DamageBonus.asf)).toEqual(0);
+    expect(findKey(7, table1D_DamageBonus.asf)).toEqual(0);
+    expect(findKey(9, table1D_DamageBonus.asf)).toEqual(1);
+    expect(findKey(10, table1D_DamageBonus.asf)).toEqual(2);
+  })
+  it("should return the correct value based on max speed and ASF", () => {
+    expect(calcDB(4, 13)).toEqual(1);
+    expect(calcDB(4, 9)).toEqual(0.5);
+    expect(calcDB(4, 10)).toEqual(1);
+  })
+  it('should return 0 if max speed is 0', () => {
+    expect(calcDB(0, 20)).toEqual(0);
+  })
+})
+
 describe("calculate state object", () => {
-  // (STR, Weight, AGI, Gun Level, INT, Hand Level, knockoutValue)
+  // (STR, Weight, AGI, Gun Level, INT, Hand Level, WIL)
   const result = calculateStateObject(14, 25, 12, 4, 10, 2, 10);
   it("should return an object", () => {
     expect(typeof {
