@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {shallow} from 'enzyme'
 import App from './App';
 
 it('renders without crashing', () => {
@@ -8,8 +9,17 @@ it('renders without crashing', () => {
   ReactDOM.unmountComponentAtNode(div);
 });
 
-describe('the weight warning lights',()=>{
-  it('should display weight warning if base speed = 0',()=>{
-    expect(true).toEqual(true)
+// describe('the weight warning lights',()=>{
+//   it('should display weight warning if base speed = 0',()=>{
+//     expect(true).toEqual(true)
+//   })
+// })
+
+describe('addToStat',()=>{
+  it('should increment by one when clicked',()=>{
+
+  })
+  it('should not increment over 18',()=>{
+    
   })
 })
