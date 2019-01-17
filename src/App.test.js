@@ -16,7 +16,7 @@ it('renders without crashing', () => {
 // })
 
 describe('addToStat',()=>{
-  it('should increment by one when clicked',()=>{
+  it('should increment stat by one when called',()=>{
 
   })
   it('should not increment over 18',()=>{
