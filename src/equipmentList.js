@@ -1,59 +1,11 @@
-// const equipment = {
-//     basicPouch:{
-//         name: "Basic Pouch",
-//         weight: 0.4,
-//         type: ['Load Bearing', 'ALICE']
-//     },
-//     belt:{
-//         name: "Belt",
-//         weight: 0.7,
-//         type: ['Load Bearing', 'ALICE']
-//     },
-//     beltPistolM1923:{
-//         name: "Belt, pistol M1923",
-//         weight: 0.56,
-//         type: ['Load Bearing', 'WW2']
-//     },
-//     bumPack:{
-//         name: "Bum Pack",
-//         weight: 0.7,
-//         type: ['Load Bearing', 'ALICE']
-//     },
-//     canteen:{
-//         name: "Canteen",
-//         weight: 2.5,
-//         type: ['Load Bearing', 'ALICE']
-//     },
-//     hHarness:{
-//         name: "H Harness",
-//         weight: 0.7,
-//         type: ['Load Bearing', 'ALICE']
-//     },
-//     type56Rig:{
-//         name: "Type 56 AK Chest Rig",
-//         weight: 0.89,
-//         type: ['Load Bearing', 'Chest Rig']
-//     },
-//     type56Rig:{
-//         name: "Type 56 SKS Chest Rig",
-//         weight: 0.88,
-//         type: ['Load Bearing', 'Chest Rig']
-//     },
-//     sobrVest:{
-//         name: 'SOBR Assault Vest',
-//         weight: 2.86,
-//         type: ["Load Bearing", 'Modern Russian LBE']
-//     },
-//     sniperHarness:{
-//         name: "SNIPERS Harness",
-//         weight: 1.76,
-//         type: ["Load Bearing", 'Modern Russian LBE']
-//     },
-// }
 const equipment = {
+        "Baseball Bat": {
+            weight: 2.2,
+            tags:["Melee"]
+        },
         "Basic Pouch": {
             weight: 0.4,
-            tags:[]
+            tags:['Load Bearing', 'ALICE']
         },
         "Bayonet": {
             weight: 1,
@@ -65,11 +17,11 @@ const equipment = {
         },
         "Belt": {
             weight: 0.7,
-            tags:[]
+            tags:['Load Bearing', 'ALICE']
         },
         "Belt, pistol M1923": {
             weight: 0.56,
-            tags: []
+            tags: ['Load Bearing', 'WW2']
         },
         "Bergen": {
             weight: 3,
@@ -77,7 +29,7 @@ const equipment = {
         },
         "Billy Club":{
             weight:0.5,
-            tags:[]
+            tags:["Melee"]
         },
         "Binoculars w/case": {
             weight: 3.5,
@@ -89,11 +41,11 @@ const equipment = {
         },
         "Bum Pack": {
             weight: 0.7,
-            tags: []
+            tags: ['Load Bearing', 'ALICE']
         },
         "Canteen":{
             weight: 2.5,
-            tags:[]
+            tags:['Load Bearing', 'ALICE']
         },
         "Canteen, M1910 ":{
             weight:3.69,
@@ -101,11 +53,11 @@ const equipment = {
         },
         "Cartridge Belt, M1923":{
             weight:1.44,
-            tags:[]
+            tags:['Load Bearing', 'WW2']
         },
         "Cartridge Belt, M1937":{
             weight:1.88,
-            tags:[]
+            tags:['Load Bearing', 'WW2']
         },
         "D-Ration (1 day)":{
             weight:0.25,
@@ -113,11 +65,11 @@ const equipment = {
         },
         "Entrenching Tool":{
             weight: 1.5,
-            tags:[]
+            tags:["Melee","Tools"]
         },
         "Entrenching tool, M1943 w/carrier":{
             weight:2.94,
-            tags:[]
+            tags:["Melee","Tools","WW2"]
         },
         "Field Dressing":{
             weight: 0.1,
@@ -125,7 +77,7 @@ const equipment = {
         },
         "Field Radio": {
             weight: 12,
-            tags:[]
+            tags:["Comms"]
         },
         "Flash Bang": {
             weight: 0.6,
@@ -133,11 +85,11 @@ const equipment = {
         },
         "H Harness": {
             weight:0.7,
-            tags:[]
+            tags:['Load Bearing', 'ALICE']
         },
         "Harness, M1936": {
             weight:0.95,
-            tags:[],
+            tags:['Load Bearing', 'WW2'],
         },
         "Hatchet": {            
             weight: 2.5,
@@ -145,31 +97,31 @@ const equipment = {
         },   
         "Headset Coms": {          
             weight:1,
-            tags:[],
+            tags:["Comms"],
         },
         "Holster": {            
             weight: 0.4,
-            tags:[],
+            tags:["Load Bearing", "Generic"],
         },   
         "Holster, M1916": {
             weight:0.59,
-            tags:[],
+            tags:['Load Bearing', 'WW2'],
         },
         "Katana ": {
             weight:3,
-            tags:[],
+            tags:["Melee"],
         },
         "Knife, Bowie": {
             weight:1.1,
-            tags:[],
+            tags:["Melee"],
         },
         "Knife, Combat": {
             weight:0.6,
-            tags:[],
+            tags:["Melee"],
         },
         "Knife, Switch Blade": {
             weight:0.3,
-            tags:[],
+            tags:["Melee"],
         },
         "K-Ration (1 day)": {
             weight: 2.31,
@@ -193,15 +145,15 @@ const equipment = {
         },
         "Magazine Pouch, M1 carbine": {
             weight: 0.16,
-            tags:[],
+            tags:['Load Bearing', 'WW2'],
         },
         "Magazine pouch, M1923 (.45)": {
             weight: 0.13,
-            tags:[],
+            tags:['Load Bearing', 'WW2'],
         },
         "Magazine Pouch, SMG (US WW2)": {
             weight: 0.53,
-            tags:[],
+            tags:['Load Bearing', 'WW2'],
         },
         "Misc 1.0lbs": {
             weight: 1,
@@ -221,11 +173,11 @@ const equipment = {
         },
         "Pack, M1936": {
             weight:1.81,
-            tags:[],
+            tags:['Load Bearing', 'WW2'],
         },
         "Pipe, 24": {
             weight: 2.2,
-            tags:[],
+            tags:["Melee"],
         },
         "Rat Pack (1 day)": {
             weight: 3.5,
@@ -233,15 +185,15 @@ const equipment = {
         },
         "Rock": {
             weight: 1.5,
-            tags:[]
+            tags:["Melee"]
         },
         "Saber": {
             weight: 2.6,
-            tags:[]
+            tags:["Melee"]
         },
         "Scimitar ": {
             weight: 3.7,
-            tags:[]
+            tags:["Melee"]
         },
         "Smoke Grenade": {
             weight: 1.5,
@@ -249,31 +201,31 @@ const equipment = {
         },
         "SNIPERS Harness": {
             weight:1.76,
-            tags:[]
+            tags:["Load Bearing", 'Modern Russian LBE']
         },
         "SOBR Assault Vest": {
             weight:2.86,
-            tags:[]
+            tags:["Load Bearing", 'Modern Russian LBE']
         },
         "Stick": {
             weight: 2,
-            tags:[]
+            tags:["Melee"]
         },
         "Tarzan M21 Assault Vest": {
             weight:2.2,
-            tags:[]
+            tags:["Load Bearing", 'Modern Russian LBE']
         },
         "Tarzan M22 Assault Vest": {
             weight:1.5,
-            tags:[]
+            tags:["Load Bearing", 'Modern Russian LBE']
         },
         "Tarzan M24 Assault Vest": {
             weight:1.5,
-            tags:[]
+            tags:["Load Bearing", 'Modern Russian LBE']
         },
         "Tarzan M32 Assault Vest": {
             weight:1.5,
-            tags:[]
+            tags:["Load Bearing", 'Modern Russian LBE']
         },
         "Tripod, M1919A4": {            
             weight: 14,
@@ -281,15 +233,15 @@ const equipment = {
         },
         "Two by Four": {
             weight:3,
-            tags:[]
+            tags:["Melee"]
         },
         "Type 56 AK Chest Rig": {
             weight:0.89,
-            tags:[]
+            tags:['Load Bearing', 'Chest Rig']
         },
         "Type 56 SKS Chest Rig": {
             weight:0.88,
-            tags:[]
+            tags:['Load Bearing', 'Chest Rig']
         },
         "Type 65 Canteen": {           
             weight:2.6,
@@ -297,15 +249,15 @@ const equipment = {
         },
         "Webbing, ALICE": {            
             weight: 6.5,
-            tags:[]
+            tags:["Load Bearing", "Webbing Set"]
         },
         "Webbing, M1956": {
             weight: 7.4,
-            tags:[]
+            tags:["Load Bearing", "Webbing Set"]
         },
         "Webbing, M1967": {
             weight:7.2,
-            tags:[]
+            tags:["Load Bearing", "Webbing Set"]
         },
         "MCI Ration": {
             weight:2.6,
@@ -321,11 +273,11 @@ const equipment = {
         },
         "PRC-25 Radio": {
             weight:23.5,
-            tags:[]
+            tags:["Comms", "Vietnam"]
         },
         "PRC-25 Battery": {
             weight: 2.86,
-            tags:[]
+            tags:["Comms", "Vietnam"]
         },
         "Water, 1 quart": {
             weight:2,
@@ -345,7 +297,7 @@ const equipment = {
         },
         "Bandolier, 7 pocket": {
             weight:0.18,
-            tags:[]
+            tags:["Load Bearing", "Vietnam", "Generic"]
         },
         "Canteen, 2 quart colapsable": {
             weight:0.35,
@@ -357,7 +309,7 @@ const equipment = {
         },
         "Webbing, WWII": {
             weight:7.8,
-            tags:[]
+            tags:["Load Bearing", "Webbing Set"]
             },
         "Wood Axe": {
             weight:3.5,
