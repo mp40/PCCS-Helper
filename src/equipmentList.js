@@ -87,210 +87,278 @@ const equipment = {
             weight: 0.8,
             tags: []
         },
-        "Bum Pack": 0.7,
-            weight:
-            tags:
-        "Canteen": 2.5,
-            weight:
-            tags:
-        "Canteen, M1910 ": 3.69,
-            weight:
-            tags:
-        "Cartridge Belt, M1923": 1.44,
-            weight:
-            tags:
-        "Cartridge Belt, M1937": 1.88,
-            weight:
-            tags:
-        "D-Ration (1 day)": 0.25,
-            weight:
-            tags:
-        "Entrenching Tool": 1.5,
-            weight:
-            tags:
-        "Entrenching tool, M1943 w/carrier": 2.94,
-            weight:
-            tags:
-        "Field Dressing": 0.1,
-            weight:
-            tags:
-        "Field Radio": 12,
-            weight:
-            tags:
-        "Flash Bang": 0.6,
-            weight:
-            tags:
-        "H Harness": 0.7,
-            weight:
-            tags:
-        "Harness, M1936": 0.95,
-            weight:
-            tags:
-        "Hatchet": 2.5,
-            weight:
-            tags:
-        "Headset Coms": 1,
-            weight:
-            tags:
-        "Holster": 0.4,
-            weight:
-            tags:
-        "Holster, M1916": 0.59,
-            weight:
-            tags:
-        "Katana ": 3,
-            weight:
-            tags:
-        "Knife, Bowie": 1.1,
-            weight:
-            tags:
-        "Knife, Combat": 0.6,
-            weight:
-            tags:
-        "Knife, Switch Blade": 0.3,
-            weight:
-            tags:
-        "K-Ration (1 day)": 2.31,
-            weight:
-            tags:
-        "M14 Toe Popper": 0.22,
-            weight:
-            tags:
-        "M15 WP Grenade": 1.9,
-            weight:
-            tags:
-        "M18A1 Claymore": 3.5,
-            weight:
-            tags:
-        "Machete": 2.4,
-            weight:
-            tags:
-        "Magazine Pouch, M1 carbine": 0.16,
-            weight:
-            tags:
-        "Magazine pouch, M1923 (.45)": 0.13,
-            weight:
-            tags:
-        "Magazine Pouch, SMG (US WW2)": 0.53,
-            weight:
-            tags:
-        "Misc 1.0lbs": 1,
-            weight:
-            tags:
-        "Misc 0.1lbs": 0.1,
-            weight:
-            tags:
-        "Misc 0.25lbs": 0.25,
-            weight:
-            tags:
-        "MRE": 1.5,
-            weight:
-            tags:
-        "Pack, M1936": 1.81,
-            weight:
-            tags:
-        "Pipe, 24": 2.2,
-            weight:
-            tags:
-        "Rat Pack (1 day)": 3.5,
-            weight:
-            tags:
-        "Rock": 1.5,
-            weight:
-            tags:
-        "Saber": 2.6,
-            weight:
-            tags:
-        "Scimitar ": 3.7,
-            weight:
-            tags:
-        "Smoke Grenade": 1.5,
-            weight:
-            tags:
-        "SNIPERS Harness": 1.76,
-            weight:
-            tags:
-        "SOBR Assault Vest": 2.86,
-            weight:
-            tags:
-        "Stick": 2,
-            weight:
-            tags:
-        "Tarzan M21 Assault Vest": 2.2,
-            weight:
-            tags:
-        "Tarzan M22 Assault Vest": 1.5,
-            weight:
-            tags:
-        "Tarzan M24 Assault Vest": 1.5,
-            weight:
-            tags:
-        "Tarzan M32 Assault Vest": 1.5,
-            weight:
-            tags:
-        "Tripod, M1919A4": 14,
-            weight:
-            tags:
+        "Bum Pack": {
+            weight: 0.7,
+            tags: []
+        },
+        "Canteen":{
+            weight: 2.5,
+            tags:[]
+        },
+        "Canteen, M1910 ":{
+            weight:3.69,
+            tags:[]
+        },
+        "Cartridge Belt, M1923":{
+            weight:1.44,
+            tags:[]
+        },
+        "Cartridge Belt, M1937":{
+            weight:1.88,
+            tags:[]
+        },
+        "D-Ration (1 day)":{
+            weight:0.25,
+            tags:[]
+        },
+        "Entrenching Tool":{
+            weight: 1.5,
+            tags:[]
+        },
+        "Entrenching tool, M1943 w/carrier":{
+            weight:2.94,
+            tags:[]
+        },
+        "Field Dressing":{
+            weight: 0.1,
+            tags:[]
+        },
+        "Field Radio": {
+            weight: 12,
+            tags:[]
+        },
+        "Flash Bang": {
+            weight: 0.6,
+            tags:[]
+        },
+        "H Harness": {
+            weight:0.7,
+            tags:[]
+        },
+        "Harness, M1936": {
+            weight:0.95,
+            tags:[],
+        },
+        "Hatchet": {            
+            weight: 2.5,
+            tags:[],
+        },   
+        "Headset Coms": {          
+            weight:1,
+            tags:[],
+        },
+        "Holster": {            
+            weight: 0.4,
+            tags:[],
+        },   
+        "Holster, M1916": {
+            weight:0.59,
+            tags:[],
+        },
+        "Katana ": {
+            weight:3,
+            tags:[],
+        },
+        "Knife, Bowie": {
+            weight:1.1,
+            tags:[],
+        },
+        "Knife, Combat": {
+            weight:0.6,
+            tags:[],
+        },
+        "Knife, Switch Blade": {
+            weight:0.3,
+            tags:[],
+        },
+        "K-Ration (1 day)": {
+            weight: 2.31,
+            tags:[],
+        },
+        "M14 Toe Popper": {
+            weight:0.22,
+            tags:[],
+        },
+        "M15 WP Grenade": {
+            weight:1.9,
+            tags:[],
+        },
+        "M18A1 Claymore": {
+            weight:3.5,
+            tags:[],
+        },
+        "Machete": {
+            weight:2.4,
+            tags:[],
+        },
+        "Magazine Pouch, M1 carbine": {
+            weight: 0.16,
+            tags:[],
+        },
+        "Magazine pouch, M1923 (.45)": {
+            weight: 0.13,
+            tags:[],
+        },
+        "Magazine Pouch, SMG (US WW2)": {
+            weight: 0.53,
+            tags:[],
+        },
+        "Misc 1.0lbs": {
+            weight: 1,
+            tags:[],
+        },
+        "Misc 0.1lbs": {
+            weight: 0.1,
+            tags:[],
+        },
+        "Misc 0.25lbs": {
+            weight: 0.25,
+            tags:[],
+        },
+        "MRE": {
+            weight: 1.5,
+            tags:[],
+        },
+        "Pack, M1936": {
+            weight:1.81,
+            tags:[],
+        },
+        "Pipe, 24": {
+            weight: 2.2,
+            tags:[],
+        },
+        "Rat Pack (1 day)": {
+            weight: 3.5,
+            tags:[]
+            },
+        "Rock": {
+            weight: 1.5,
+            tags:[]
+            },
+        "Saber": {
+            weight: 2.6,
+            tags:[]
+            },
+        "Scimitar ": {
+            weight: 3.7,
+            tags:[]
+            },
+        "Smoke Grenade": {
+            weight: 1.5,
+            tags:[]
+            },
+        "SNIPERS Harness": {
+            weight:1.76,
+            tags:[]
+            },
+        "SOBR Assault Vest": {
+            weight:2.86,
+            tags:[]
+            },
+        "Stick": {
+            weight: 2,
+            tags:[]
+            },
+        "Tarzan M21 Assault Vest": {
+            weight:2.2,
+            tags:[]
+            },
+        "Tarzan M22 Assault Vest": {
+            weight:1.5,
+            tags:[]
+            },
+        "Tarzan M24 Assault Vest": {
+            weight:1.5,
+            tags:[]
+            },
+        "Tarzan M32 Assault Vest": {
+            weight:1.5,
+            tags:[]
+            },
+        "Tripod, M1919A4": {            
+            weight: 14,
+            tags:[]
+            },
         "Two by Four": 3,
             weight:
-            tags:
+            tags:[]
+            },
         "Type 56 AK Chest Rig": 0.89,
             weight:
-            tags:
+            tags:[]
+            },
         "Type 56 SKS Chest Rig": 0.88,
             weight:
-            tags:
+            tags:[]
+            },
         "Type 65 Canteen": 2.6,
             weight:
-            tags:
+            tags:[]
+            },
         "Webbing, ALICE": 6.5,
             weight:
-            tags:
+            tags:[]
+            },
         "Webbing, M1956": 7.4,
             weight:
-            tags:
+            tags:[]
+            },
         "Webbing, M1967": 7.2,
             weight:
-            tags:
+            tags:[]
+            },
         "MCI Ration": 2.6,
             weight:
-            tags:
+            tags:[]
+            },
         "MCI Ration (reduced packaging ect)": 2,
             weight:
-            tags:
+            tags:[]
+            },
         "LRP Ration": 0.69,
             weight:
-            tags:
+            tags:[]
+            },
         "PRC-25 Radio": 23.5,
             weight:
-            tags:
+            tags:[]
+            },
         "PRC-25 Battery": 2.86,
             weight:
-            tags:
+            tags:[]
+            },
         "Water, 1 quart": 2,
             weight:
-            tags:
+            tags:[]
+            },
         "Bladder (Mil-Spec), 5 quart with cover": 1.5,
             weight:
-            tags:
+            tags:[]
+            },
         "Jerry Can, Plastic (20L)": 5,
             weight:
-            tags:
+            tags:[]
+            },
         "Jerry Can, Plastic (10L)": 3.4,
             weight:
-            tags:
+            tags:[]
+            },
         "Bandolier, 7 pocket": 0.18,
             weight:
-            tags:
+            tags:[]
+            },
         "Canteen, 2 quart colapsable": 0.35,
             weight:
-            tags:
+            tags:[]
+            },
         "Canteen, 2 quart with cover and sling": 1.05,
             weight:
-            tags:
+            tags:[]
+            },
         "Webbing, WWII": 7.8,
             weight:
-            tags:
+            tags:[]
+            },
         "Wood Axe": 3.5,
             weight:
             tags:
