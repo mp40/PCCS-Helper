@@ -77,4 +77,4 @@ const shotguns = {
     }
 }
 
-module.exports = firearms
+module.exports = {firearms, shotguns}
