@@ -230,172 +230,175 @@ const equipment = {
         "Rat Pack (1 day)": {
             weight: 3.5,
             tags:[]
-            },
+        },
         "Rock": {
             weight: 1.5,
             tags:[]
-            },
+        },
         "Saber": {
             weight: 2.6,
             tags:[]
-            },
+        },
         "Scimitar ": {
             weight: 3.7,
             tags:[]
-            },
+        },
         "Smoke Grenade": {
             weight: 1.5,
             tags:[]
-            },
+        },
         "SNIPERS Harness": {
             weight:1.76,
             tags:[]
-            },
+        },
         "SOBR Assault Vest": {
             weight:2.86,
             tags:[]
-            },
+        },
         "Stick": {
             weight: 2,
             tags:[]
-            },
+        },
         "Tarzan M21 Assault Vest": {
             weight:2.2,
             tags:[]
-            },
+        },
         "Tarzan M22 Assault Vest": {
             weight:1.5,
             tags:[]
-            },
+        },
         "Tarzan M24 Assault Vest": {
             weight:1.5,
             tags:[]
-            },
+        },
         "Tarzan M32 Assault Vest": {
             weight:1.5,
             tags:[]
-            },
+        },
         "Tripod, M1919A4": {            
             weight: 14,
             tags:[]
-            },
-        "Two by Four": 3,
-            weight:
+        },
+        "Two by Four": {
+            weight:3,
+            tags:[]
+        },
+        "Type 56 AK Chest Rig": {
+            weight:0.89,
+            tags:[]
+        },
+        "Type 56 SKS Chest Rig": {
+            weight:0.88,
+            tags:[]
+        },
+        "Type 65 Canteen": {           
+            weight:2.6,
+            tags:[]
+        },
+        "Webbing, ALICE": {            
+            weight: 6.5,
+            tags:[]
+        },
+        "Webbing, M1956": {
+            weight: 7.4,
+            tags:[]
+        },
+        "Webbing, M1967": {
+            weight:7.2,
+            tags:[]
+        },
+        "MCI Ration": {
+            weight:2.6,
+            tags:[]
+        },
+        "MCI Ration (reduced packaging ect)": {
+            weight: 2,
+             tags:[]
+        },
+        "LRP Ration": {
+            weight: 0.69,
+            tags:[]
+        },
+        "PRC-25 Radio": {
+            weight:23.5,
+            tags:[]
+        },
+        "PRC-25 Battery": {
+            weight: 2.86,
+            tags:[]
+        },
+        "Water, 1 quart": {
+            weight:2,
+            tags:[]
+        },
+        "Bladder (Mil-Spec), 5 quart with cover": {
+            weight:1.5,
+            tags:[]
+        },
+        "Jerry Can, Plastic (20L)": {           
+            weight: 5,
+            tags:[]
+        },
+        "Jerry Can, Plastic (10L)": {
+            weight:3.4,
+            tags:[]
+        },
+        "Bandolier, 7 pocket": {
+            weight:0.18,
+            tags:[]
+        },
+        "Canteen, 2 quart colapsable": {
+            weight:0.35,
+            tags:[]
+        },
+        "Canteen, 2 quart with cover and sling": {
+            weight:1.05,
+            tags:[]
+        },
+        "Webbing, WWII": {
+            weight:7.8,
             tags:[]
             },
-        "Type 56 AK Chest Rig": 0.89,
-            weight:
+        "Wood Axe": {
+            weight:3.5,
             tags:[]
-            },
-        "Type 56 SKS Chest Rig": 0.88,
-            weight:
+        },
+        "Survival Kit": {
+            weight:0.88,
             tags:[]
-            },
-        "Type 65 Canteen": 2.6,
-            weight:
+        },
+        "IFAK": {
+            weight: 2.4,
             tags:[]
-            },
-        "Webbing, ALICE": 6.5,
-            weight:
+        },
+        "M3 Medic Bag":{ 
+            weight: 3.9,
             tags:[]
-            },
-        "Webbing, M1956": 7.4,
-            weight:
+        },
+        "M17 Medic Bag": {
+            weight:12.25,
             tags:[]
-            },
-        "Webbing, M1967": 7.2,
-            weight:
+        },
+        "Tactical Trauma Kit": {
+            weight:1.15,
             tags:[]
-            },
-        "MCI Ration": 2.6,
-            weight:
+        },
+        "Rapid Response Bag": {
+            weight:2.5,
             tags:[]
-            },
-        "MCI Ration (reduced packaging ect)": 2,
-            weight:
+        },
+        "M39 Medic Bag": {
+            weight:10,
             tags:[]
-            },
-        "LRP Ration": 0.69,
-            weight:
+        },
+        "Surgical Set": {
+            weight:0.7,
             tags:[]
-            },
-        "PRC-25 Radio": 23.5,
-            weight:
-            tags:[]
-            },
-        "PRC-25 Battery": 2.86,
-            weight:
-            tags:[]
-            },
-        "Water, 1 quart": 2,
-            weight:
-            tags:[]
-            },
-        "Bladder (Mil-Spec), 5 quart with cover": 1.5,
-            weight:
-            tags:[]
-            },
-        "Jerry Can, Plastic (20L)": 5,
-            weight:
-            tags:[]
-            },
-        "Jerry Can, Plastic (10L)": 3.4,
-            weight:
-            tags:[]
-            },
-        "Bandolier, 7 pocket": 0.18,
-            weight:
-            tags:[]
-            },
-        "Canteen, 2 quart colapsable": 0.35,
-            weight:
-            tags:[]
-            },
-        "Canteen, 2 quart with cover and sling": 1.05,
-            weight:
-            tags:[]
-            },
-        "Webbing, WWII": 7.8,
-            weight:
-            tags:[]
-            },
-        "Wood Axe": 3.5,
-            weight:
-            tags:
-        "Survival Kit": 0.88,
-            weight:
-            tags:
-        "IFAK": 2.4,
-            weight:
-            tags:
-        "M3 Medic Bag": 3.9,
-            weight:
-            tags:
-        "M17 Medic Bag": 12.25,
-            weight:
-            tags:
-        "Tactical Trauma Kit": 1.15,
-            weight:
-            tags:
-        "Rapid Response Bag": 2.5,
-            weight:
-            tags:
-        "M39 Medic Bag": 10,
-            weight:
-            tags:
-        "Surgical Set": 0.7,
-            weight:
-            tags:
-        "Combat Stretcher, Folding": 15
-            weight:
-            tags:
-      
-            weight:
-            tags:
-      
-            weight:
-            tags:
-      
+        },
+        "Combat Stretcher, Folding": {
+            weight: 15,
+            tags: []
+        }
   }
   
   
