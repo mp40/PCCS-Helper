@@ -157,15 +157,15 @@ const equipment = {
         },
         "Misc 1.0lbs": {
             weight: 1,
-            tags:[],
+            tags:['Misc'],
         },
         "Misc 0.1lbs": {
             weight: 0.1,
-            tags:[],
+            tags:['Misc'],
         },
         "Misc 0.25lbs": {
             weight: 0.25,
-            tags:[],
+            tags:['Misc'],
         },
         "MRE": {
             weight: 1.5,
