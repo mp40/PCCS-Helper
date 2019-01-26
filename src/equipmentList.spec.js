@@ -7,6 +7,9 @@ describe("finding things in the equipment list",()=>{
         expect(findGear("Rock").weight).toBe(1.5)
         expect(findGear("Combat Stretcher, Folding").weight).toBe(15)
     })
+})
+    
+describe('filtering the equipment list',()=>{
     it('should filter based on type key value',()=>{
         expect(Object.keys(filterEquipment("WW2")).length).toBe(14)
         expect(filterEquipment('WW2')["Bayonet, M1 w/M7 scabard"].weight).toBe(1.56)
@@ -17,4 +20,6 @@ describe("finding things in the equipment list",()=>{
         expect(typeof filterEquipment("WW2")).toEqual("object")
         expect(filterEquipment('WW2')).toHaveProperty('Bayonet, M1 w/M7 scabard')
     })
-})
+})    
+    
+
