@@ -252,22 +252,7 @@ class App extends React.Component {
                       }}
                     >
                       Gun Combat Actions
-                      <span
-                        style={{
-                          color:
-                            this.state.combatActions[0] < 1
-                              ? "white"
-                              : this.state.combatActions[0] < 3
-                              ? "red"
-                              : this.state.combatActions[0] < 4
-                              ? "orange"
-                              : this.state.combatActions[0] > 6
-                              ? "blue"
-                              : this.state.combatActions[0] > 4
-                              ? "dodgerblue"
-                              : "#30362c"
-                        }}
-                      >
+                      <span>
                         {" "}
                         {this.state.combatActions[0]}
                       </span>
@@ -280,22 +265,7 @@ class App extends React.Component {
                       }}
                     >
                       Hand To Hand Actions
-                      <span
-                        style={{
-                          color:
-                            this.state.combatActions[1] < 1
-                              ? "white"
-                              : this.state.combatActions[1] < 3
-                              ? "red"
-                              : this.state.combatActions[1] < 4
-                              ? "orange"
-                              : this.state.combatActions[1] > 6
-                              ? "blue"
-                              : this.state.combatActions[1] > 4
-                              ? "dodgerblue"
-                              : "#30362c"
-                        }}
-                      >
+                      <span>
                         {" "}
                         {this.state.combatActions[1]}
                       </span>
