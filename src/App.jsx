@@ -28,7 +28,6 @@ class App extends React.Component {
   componentDidMount() {
     // (STR, Weight, AGI, Gun Level, INT, Hand Level, wil)
     const seedData = calculateStateObject(10, 10, 10, 0, 10, 0, 10);
-    console.log(seedData);
     this.setState({
       equipmentWeight: 10,
       baseSpeed: seedData.baseSpeed,
