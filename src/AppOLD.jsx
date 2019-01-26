@@ -1,4 +1,8 @@
-import React from 'react'
+// import React, { Component } from "react";
+// import "./App.css";
+// import StatBox from "./StatBox";
+// import NavBar from "./NavBar";
+
 const { calculateStateObject } = require("./helperFunctions");
 
 class App extends React.Component {
@@ -413,3 +417,5 @@ class App extends React.Component {
     );
   }
 }
+
+// export default App;
