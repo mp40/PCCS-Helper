@@ -10,10 +10,10 @@ const findGear = function(findName){
 
 
 const filterEquipment = function(findType){
-    let results = []
+    let results = {}
     for(let obj in equipment){
         if(equipment[obj].tags.includes(findType)){
-            results.push(equipment[obj])
+            results[obj] = equipment[obj]
         }
     }
     return results
