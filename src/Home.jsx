@@ -10,17 +10,17 @@ const styles = theme => ({
   input: {
     display: 'none',
   },
-
 });
 
 function HomePage(props) {
   const { classes } = props;
+
   return (
     <div style={{textAlign: 'center'}}>
         <h1>
             Welcome To Phoenix Command Tools
         </h1>
-      <Button variant="contained" className={classes.button}>
+      <Button  onClick={props.setDisplay.bind(this, "createChar")} variant="contained" className={classes.button}>
         Create Character
       </Button>
     </div>

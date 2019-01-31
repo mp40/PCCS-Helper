@@ -1,7 +1,8 @@
 import React from 'react'
+import StatBox from "./StatBox";
 const { calculateStateObject } = require("./helperFunctions");
 
-class App extends React.Component {
+class CreateChar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -152,16 +153,16 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <NavBar/>
-          <h1
-            className="App-title"
-            onClick={() => this.setState({ button: !this.state.button })}
-          >
-            Phoenix Command Tools
-          </h1>
-          <div className="Wrapper">
+      // <div className="App">
+      //   <header className="App-header">
+      //     <NavBar/>
+      //     <h1
+      //       className="App-title"
+      //       onClick={() => this.setState({ button: !this.state.button })}
+      //     >
+      //       Phoenix Command Tools
+      //     </h1>
+      //     <div className="Wrapper">
             <StatBox
               str={this.state.str}
               int={this.state.int}
@@ -176,240 +177,237 @@ class App extends React.Component {
               minusFromLevel={this.minusFromLevel.bind(this)}
             />
 
-            <div className="Game-Info">
-              <h1>Attributes</h1>
-              <div className="Equipment-Weight">
-                <div className="Weight-Box">
-                  <span className="Weight-Tag">
-                    Equipment Weight: {this.state.equipmentWeight}
-                  </span>
-                  <button
-                    className="Weight-Up"
-                    onClick={this.minusWeight.bind(this)}
-                  >
-                    Minus 5lbs
-                  </button>
-                  <button
-                    className="Weight-Down"
-                    onClick={this.addWeight.bind(this)}
-                  >
-                    Add 5lbs
-                  </button>
-                  <div
-                    className="Warning-Box"
-                    style={{
-                      backgroundColor: this.state.weightWarningMsg
-                        ? "#f44336"
-                        : "#d1f0bf"
-                    }}
-                  >
-                    {this.state.weightWarningMsg
-                      ? "Weight Capacity Reached"
-                      : null}
-                  </div>
-                </div>
-              </div>
+            // <div className="Game-Info">
+            //   <h1>Attributes</h1>
+            //   <div className="Equipment-Weight">
+            //     <div className="Weight-Box">
+            //       <span className="Weight-Tag">
+            //         Equipment Weight: {this.state.equipmentWeight}
+            //       </span>
+            //       <button
+            //         className="Weight-Up"
+            //         onClick={this.minusWeight.bind(this)}
+            //       >
+            //         Minus 5lbs
+            //       </button>
+            //       <button
+            //         className="Weight-Down"
+            //         onClick={this.addWeight.bind(this)}
+            //       >
+            //         Add 5lbs
+            //       </button>
+            //       <div
+            //         className="Warning-Box"
+            //         style={{
+            //           backgroundColor: this.state.weightWarningMsg
+            //             ? "#f44336"
+            //             : "#d1f0bf"
+            //         }}
+            //       >
+            //         {this.state.weightWarningMsg
+            //           ? "Weight Capacity Reached"
+            //           : null}
+            //       </div>
+            //     </div>
+            //   </div>
 
-              <div className="Game-Info2">
-                <div className="Combat-Actions-Container">
-                  <div className="Combat-Actions">
-                    <div className="Skill-Box">
-                      <p>
-                        Skill Accuracy Level
-                        <span> (SAL) {this.state.combatStats.SAL} </span>
-                      </p>
-                      <p>
-                        Combat Efficiency
-                        <span> (CE) {this.state.combatStats.CE}</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="Combat-Actions-Container">
-                  <div className="Combat-Actions">
-                    <div className="Factor-Box">
-                      <p>
-                        INT Skill Factor
-                        <span> (ISF) {this.state.combatStats.ISF} </span>
-                      </p>
-                      <p>
-                        AGI Skill Factor
-                        <span> (ASF) {this.state.combatStats.ASF} </span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="Combat-Actions-Container">
-                  <div className="Combat-Actions">
-                    <p
-                      style={{
-                        backgroundColor: this.state.weightWarningMsg
-                          ? "#f44336"
-                          : "#d1f0bf"
-                      }}
-                    >
-                      Gun Combat Actions
-                      <span>
-                        {" "}
-                        {this.state.combatActions[0]}
-                      </span>
-                    </p>
-                    <p
-                      style={{
-                        backgroundColor: this.state.weightWarningMsg
-                          ? "#f44336"
-                          : "#d1f0bf"
-                      }}
-                    >
-                      Hand To Hand Actions
-                      <span>
-                        {" "}
-                        {this.state.combatActions[1]}
-                      </span>
-                    </p>
-                  </div>
-                </div>
-                <div className="Combat-Actions-Container">
-                  <div className="Combat-Actions">
-                    <div className="Speed">
-                      <p>
-                        Base Speed
-                        <span> BS {this.state.baseSpeed} </span>
-                      </p>
-                      <p>
-                        Maximum Speed
-                        <span> MS {this.state.maxSpeed}</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div>
-                {/* <h1
-                  onClick={() => this.setState({ button: !this.state.button })}
-                >
-                  Phoenix Command Helper
-                </h1> */}
-                <div className="Line-Spacer" />
-                {this.state.button ? (
-                  <button
-                    className="Turbo"
-                    onClick={() => this.setState({ done: !this.state.done })}
-                  >
-                    Turbo Mode
-                  </button>
-                ) : null}
-                <div className="Button-Spacer" />
-                {this.state.button ? (
-                  <button
-                    className="SelectPreset"
-                    onClick={() =>
-                      this.setState({ showPresets: !this.state.showPresets })
-                    }
-                  >
-                    Presets
-                  </button>
-                ) : null}
-                <div />
-                <div />
-                {this.state.done ? <h2>TDD - Go Fast!</h2> : null}
-              </div>
-            </div>
-          </div>
-          {this.state.showPresets ? (
-            <div className="Presets">
-              <div className="Stats">
-                <div ClassName="Stat-Text">
-                  {" "}
-                  <button
-                    className="Preset-Button"
-                    onClick={this.calcPreset.bind(
-                      this,
-                      14,
-                      10,
-                      10,
-                      10,
-                      12,
-                      4,
-                      2
-                    )}
-                  >
-                    Military
-                  </button>
-                  {/* <button className="Preset-Button">Military Police</button> */}
-                  <button
-                    className="Preset-Button"
-                    onClick={this.calcPreset.bind(
-                      this,
-                      14,
-                      12,
-                      10,
-                      10,
-                      12,
-                      5,
-                      2
-                    )}
-                  >
-                    Veteran
-                  </button>
-                  <button
-                    className="Preset-Button"
-                    onClick={this.calcPreset.bind(
-                      this,
-                      14,
-                      13,
-                      10,
-                      10,
-                      13,
-                      4,
-                      2
-                    )}
-                  >
-                    SWAT
-                  </button>
-                  <button
-                    className="Preset-Button"
-                    onClick={this.calcPreset.bind(
-                      this,
-                      13,
-                      12,
-                      10,
-                      10,
-                      12,
-                      2,
-                      2
-                    )}
-                  >
-                    Police
-                  </button>
-                  <button
-                    className="Preset-Button"
-                    onClick={this.calcPreset.bind(
-                      this,
-                      10,
-                      10,
-                      10,
-                      10,
-                      10,
-                      0,
-                      0
-                    )}
-                  >
-                    Civilian
-                  </button>
-                  {/* <button className="Preset-Button">Secret Service</button> */}
-                  <button
-                    className="Preset-Button"
-                    onClick={this.calcRandom.bind(this)}
-                  >
-                    Random
-                  </button>
-                </div>
-              </div>
-            </div>
-          ) : null}
-        </header>
-      </div>
+            //   <div className="Game-Info2">
+            //     <div className="Combat-Actions-Container">
+            //       <div className="Combat-Actions">
+            //         <div className="Skill-Box">
+            //           <p>
+            //             Skill Accuracy Level
+            //             <span> (SAL) {this.state.combatStats.SAL} </span>
+            //           </p>
+            //           <p>
+            //             Combat Efficiency
+            //             <span> (CE) {this.state.combatStats.CE}</span>
+            //           </p>
+            //         </div>
+            //       </div>
+            //     </div>
+            //     <div className="Combat-Actions-Container">
+            //       <div className="Combat-Actions">
+            //         <div className="Factor-Box">
+            //           <p>
+            //             INT Skill Factor
+            //             <span> (ISF) {this.state.combatStats.ISF} </span>
+            //           </p>
+            //           <p>
+            //             AGI Skill Factor
+            //             <span> (ASF) {this.state.combatStats.ASF} </span>
+            //           </p>
+            //         </div>
+            //       </div>
+            //     </div>
+            //     <div className="Combat-Actions-Container">
+            //       <div className="Combat-Actions">
+            //         <p
+            //           style={{
+            //             backgroundColor: this.state.weightWarningMsg
+            //               ? "#f44336"
+            //               : "#d1f0bf"
+            //           }}
+            //         >
+            //           Gun Combat Actions
+            //           <span>
+            //             {" "}
+            //             {this.state.combatActions[0]}
+            //           </span>
+            //         </p>
+            //         <p
+            //           style={{
+            //             backgroundColor: this.state.weightWarningMsg
+            //               ? "#f44336"
+            //               : "#d1f0bf"
+            //           }}
+            //         >
+            //           Hand To Hand Actions
+            //           <span>
+            //             {" "}
+            //             {this.state.combatActions[1]}
+            //           </span>
+            //         </p>
+            //       </div>
+            //     </div>
+            //     <div className="Combat-Actions-Container">
+            //       <div className="Combat-Actions">
+            //         <div className="Speed">
+            //           <p>
+            //             Base Speed
+            //             <span> BS {this.state.baseSpeed} </span>
+            //           </p>
+            //           <p>
+            //             Maximum Speed
+            //             <span> MS {this.state.maxSpeed}</span>
+            //           </p>
+            //         </div>
+            //       </div>
+            //     </div>
+            //   </div>
+            //   <div>
+          //       <div className="Line-Spacer" />
+          //       {this.state.button ? (
+          //         <button
+          //           className="Turbo"
+          //           onClick={() => this.setState({ done: !this.state.done })}
+          //         >
+          //           Turbo Mode
+          //         </button>
+          //       ) : null}
+          //       <div className="Button-Spacer" />
+          //       {this.state.button ? (
+          //         <button
+          //           className="SelectPreset"
+          //           onClick={() =>
+          //             this.setState({ showPresets: !this.state.showPresets })
+          //           }
+          //         >
+          //           Presets
+          //         </button>
+          //       ) : null}
+          //       <div />
+          //       <div />
+          //       {this.state.done ? <h2>TDD - Go Fast!</h2> : null}
+          //     </div>
+          //   </div>
+          // </div>
+          // {this.state.showPresets ? (
+          //   <div className="Presets">
+          //     <div className="Stats">
+          //       <div ClassName="Stat-Text">
+          //         {" "}
+          //         <button
+          //           className="Preset-Button"
+          //           onClick={this.calcPreset.bind(
+          //             this,
+          //             14,
+          //             10,
+          //             10,
+          //             10,
+          //             12,
+          //             4,
+          //             2
+          //           )}
+          //         >
+          //           Military
+          //         </button>
+          //         {/* <button className="Preset-Button">Military Police</button> */}
+          //         <button
+          //           className="Preset-Button"
+          //           onClick={this.calcPreset.bind(
+          //             this,
+          //             14,
+          //             12,
+          //             10,
+          //             10,
+          //             12,
+          //             5,
+          //             2
+          //           )}
+          //         >
+          //           Veteran
+          //         </button>
+          //         <button
+          //           className="Preset-Button"
+          //           onClick={this.calcPreset.bind(
+          //             this,
+          //             14,
+          //             13,
+          //             10,
+          //             10,
+          //             13,
+          //             4,
+          //             2
+          //           )}
+          //         >
+          //           SWAT
+          //         </button>
+          //         <button
+          //           className="Preset-Button"
+          //           onClick={this.calcPreset.bind(
+          //             this,
+          //             13,
+          //             12,
+          //             10,
+          //             10,
+          //             12,
+          //             2,
+          //             2
+          //           )}
+          //         >
+          //           Police
+          //         </button>
+          //         <button
+          //           className="Preset-Button"
+          //           onClick={this.calcPreset.bind(
+          //             this,
+          //             10,
+          //             10,
+          //             10,
+          //             10,
+          //             10,
+          //             0,
+          //             0
+          //           )}
+          //         >
+          //           Civilian
+          //         </button>
+          //         {/* <button className="Preset-Button">Secret Service</button> */}
+          //         <button
+          //           className="Preset-Button"
+          //           onClick={this.calcRandom.bind(this)}
+          //         >
+          //           Random
+          //         </button>
+          //       </div>
+          //     </div>
+          //   </div>
+          // ) : null}
+      //   </header>
+      // </div>
     );
   }
 }
+
+export default CreateChar
