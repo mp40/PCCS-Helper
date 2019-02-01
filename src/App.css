@@ -426,3 +426,5 @@ body {
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
   border-bottom: none;
 }
+
+button:focus { outline: none; }
