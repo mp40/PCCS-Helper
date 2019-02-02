@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^3.9.0",
     "@material-ui/icons": "^3.0.2",
+    "circular-menu": "^1.0.6",
     "enzyme-adapter-react-16": "^1.7.1",
     "prop-types": "^15.6.2",
     "react": "^16.6.1",

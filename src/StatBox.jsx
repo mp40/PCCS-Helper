@@ -9,6 +9,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import RadialStats from "./radialStats";
 
 const styles = theme => ({
   root: {
@@ -62,9 +63,11 @@ class StatBox extends Component {
                 {row.name}
               </TableCell>
               <TableCell>
+                {/* <RadialStats/> */}
                 <button className="round">
                 {row.value}
                 </button>
+                
               </TableCell>
             </TableRow>
           ))}
