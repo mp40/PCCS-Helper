@@ -63,10 +63,10 @@ class StatBox extends Component {
                 {row.name}
               </TableCell>
               <TableCell>
-                {/* <RadialStats/> */}
-                <button className="round">
+                <RadialStats/>
+                {/* <button className="round">
                 {row.value}
-                </button>
+                </button> */}
                 
               </TableCell>
             </TableRow>
