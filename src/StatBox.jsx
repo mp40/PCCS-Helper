@@ -35,10 +35,10 @@ function createData(name, value) {
 
 const rows = [
   createData('Strength', 18),
-  createData('Intelligence',3),
-  createData('Willpower',3),
-  createData('Health',3),
-  createData('Agility',3),
+  // createData('Intelligence',3),
+  // createData('Willpower',3),
+  // createData('Health',3),
+  // createData('Agility',3),
 ];
 
 class StatBox extends Component {

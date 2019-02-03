@@ -12,6 +12,7 @@ function RadialStats(props) {
             centerRadius="30px"
             centerX="0"
             centerY="0"
+            Center = 'React.ComponentType<T></T>'
           >
                 <Slice>1</Slice>
                 <Slice>2</Slice>
