@@ -1,4 +1,45 @@
 import React from 'react'
+import PieMenu, { Slice } from 'react-pie-menu';
+// import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+
+function RadialStats(props) {
+    const { classes } = props;
+  
+    return (
+        <div>
+            <PieMenu
+            radius="125px"
+            centerRadius="30px"
+            centerX="0"
+            centerY="0"
+          >
+                <Slice>1</Slice>
+                <Slice>2</Slice>
+                <Slice>3</Slice>
+                <Slice>4</Slice>
+                <Slice>5</Slice>
+                <Slice>6</Slice>
+                <Slice>7</Slice>
+                <Slice>8</Slice>
+                <Slice>9</Slice>
+                <Slice>10</Slice>
+                <Slice>11</Slice>
+                <Slice>12</Slice>
+                <Slice>13</Slice>
+                <Slice>14</Slice>
+                <Slice>15</Slice>
+                <Slice>16</Slice>
+                <Slice>17</Slice>
+                <Slice>18</Slice>
+            </PieMenu>
+        </div>
+    );
+  }
+
+  export default RadialStats
+
+
+
 
 // function RadialStats(props) {
 //     const { classes } = props;
@@ -22,143 +63,3 @@ import React from 'react'
 
 //   export default RadialStats
 
-
-  const menu = CMenu("#menu1")
-  .config({
-      menus: [
-        {
-            title: "3",
-            click: function() {
-                alert('click event callback');
-                }   
-            },
-        {
-            title: "4",
-            click: function() {
-                alert('click event callback');
-                }   
-            },
-        {
-            title: "5",
-            click: function() {
-                alert('click event callback');
-                }   
-            },
-        {
-            title: "6",
-            click: function() {
-                alert('click event callback');
-                }   
-            },
-        {
-            title: "7",
-            click: function() {
-                alert('click event callback');
-                }   
-            },
-        {
-            title: "8",
-            click: function() {
-                alert('click event callback');
-                }   
-            },
-        {
-            title: "9",
-            click: function() {
-                alert('click event callback');
-                }   
-            },
-        {
-            title: "10",
-            click: function() {
-                alert('click event callback');
-                }   
-            },
-        {
-            title: "11",
-            click: function() {
-                alert('click event callback');
-                }   
-            },
-        {
-        title: "12",
-        click: function() {
-            alert('click event callback');
-            }   
-        },
-        {
-        title: "13",
-        click: function() {
-            alert('click event callback');
-            }
-        },
-        {
-        title: "14",
-        click: function() {
-            alert('click event callback');
-            }
-        },
-        {
-        title: "15",
-        click: function() {
-          alert('click event callback');
-            }
-        },
-        {
-        title: "16",
-        click: function() {
-          alert('click event callback');
-            }
-        },
-        {
-        title: "17",
-        click: function() {
-          alert('click event callback');
-            }
-        },
-        {
-        title: "18",
-        click: function() {
-            alert('click event callback');
-        }
-        },
-        {
-        disabled: true,
-        title: "disabled"
-        }
-    ]
-  });
-
-
-
-$(document).click(function() {
-  menu.hide();
-});
-$(document).contextmenu(function(e) {
-  menu.show([e.pageX, e.pageY]);
-  return false;
-});
-
-function RadialStats(props) {
-    const { classes } = props;
-  
-    return (
-        <div>
-            <div class="tips">
-                Right click in page.
-            </div>
-        <div id="menu1" class="menu1">
-    </div>
-     </div>
-    );
-  }
-
-  export default RadialStats
-
-
-{/* <div class="tips">
-  Right click in page.
-</div>
-<div id="menu1" class="menu1">
-
-</div> */}

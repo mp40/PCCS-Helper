@@ -10,6 +10,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import RadialStats from "./radialStats";
+import { PieCenter } from "react-pie-menu/dist/index.prod";
 
 const styles = theme => ({
   root: {
@@ -43,6 +44,15 @@ const rows = [
 class StatBox extends Component {
   constructor(props) {
     super(props);
+    this.state ={
+      Strength: false
+    }
+    this.toggleMenu = this.toggleMenu.bind(this)
+  }
+
+  toggleMenu(key){
+    console.log("HI",key)
+    this.setState({[key]: !this.state[key]})
   }
 
   render() {
@@ -63,7 +73,13 @@ class StatBox extends Component {
                 {row.name}
               </TableCell>
               <TableCell>
-                <RadialStats/>
+                {/* <RadialStats/> */}
+                {/* <button className="round" onClick={this.toggleMenu.bind(this,row.name)}> */}
+                <button 
+                  className="round" 
+                  onClick={()=>this.toggleMenu(row.name)}>
+                  {this.state.Strength ? (<RadialStats/>) : null}
+                </button>
                 {/* <button className="round">
                 {row.value}
                 </button> */}
