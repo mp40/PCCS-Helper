@@ -1,5 +1,8 @@
 import React from 'react'
 import PieMenu, { Slice } from 'react-pie-menu';
+
+import AttributeButton from "./AttributeButton";
+import { PieCenter } from 'react-pie-menu/dist/index.prod';
 // import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
 function RadialStats(props) {
@@ -10,10 +13,14 @@ function RadialStats(props) {
             <PieMenu
             radius="125px"
             centerRadius="30px"
-            centerX="0"
-            centerY="0"
-            Center = 'React.ComponentType<T></T>'
+            centerX="110px"
+            centerY="110px"
+
+            // Center = '<PieCenter/>'
+            // Center = {PieMenu}
+            // Center = {React.AttributeButton}
           >
+          {/* <AttributeButton> */}
                 <Slice>1</Slice>
                 <Slice>2</Slice>
                 <Slice>3</Slice>
@@ -32,6 +39,7 @@ function RadialStats(props) {
                 <Slice>16</Slice>
                 <Slice>17</Slice>
                 <Slice>18</Slice>
+            {/* </AttributeButton> */}
             </PieMenu>
         </div>
     );
@@ -39,7 +47,18 @@ function RadialStats(props) {
 
   export default RadialStats
 
-
+//   export default () => (
+//     <Router>
+//       <ThemeProvider theme={theme}>
+//         <PieMenu Center={Center} startOffsetAngle={45}>
+//           <Button backgroundColor="red" />
+//           <Button backgroundColor="blue" />
+//           <Button backgroundColor="yellow" />
+//           <Button backgroundColor="green" />
+//         </PieMenu>
+//       </ThemeProvider>
+//     </Router>
+//   );
 
 
 // function RadialStats(props) {
