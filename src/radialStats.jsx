@@ -1,7 +1,7 @@
 import React from 'react'
 import PieMenu, { Slice } from 'react-pie-menu';
 
-import AttributeButton from "./AttributeButton";
+import AttributeButton from "./AttributeMenu";
 import { PieCenter } from 'react-pie-menu/dist/index.prod';
 // import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 

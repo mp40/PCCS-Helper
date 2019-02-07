@@ -9,9 +9,9 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import RadialStats from "./radialStats";
-import { PieCenter } from "react-pie-menu/dist/index.prod";
-import AttributeButton from "./AttributeButton";
+import Button from '@material-ui/core/Button';
+import SimpleMenu from "./AttributeMenu";
+import AttributeButton from "./AttributeMenu";
 
 const styles = theme => ({
   root: {
@@ -26,33 +26,29 @@ const styles = theme => ({
   fab: {
     margin: theme.spacing.unit,
   },
+  button: {
+    margin: theme.spacing.unit,
+    backgroundColor: '#aeb885',
+  },
+  input: {
+    display: 'none',
+  },
 });
-
-let id = 0;
-function createData(name, value) {
-  id += 1;
-  return { id, name, value};
-}
-
-const rows = [
-  createData('Strength', 18),
-  // createData('Intelligence',3),
-  // createData('Willpower',3),
-  // createData('Health',3),
-  // createData('Agility',3),
-];
 
 class StatBox extends Component {
   constructor(props) {
     super(props);
     this.state ={
-      Strength: false
+      Strength: false,
+      Intelligence: false,
+      Willpower: false,
+      Health: false,
+      Agility: false
     }
     this.toggleMenu = this.toggleMenu.bind(this)
   }
 
   toggleMenu(key){
-    console.log("HI",key)
     this.setState({[key]: !this.state[key]})
   }
 
@@ -68,23 +64,57 @@ class StatBox extends Component {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
-            <TableRow key={row.id}>
+            <TableRow>
               <TableCell component="th" scope="row">
-                {row.name}
+                Strength
               </TableCell>
               <TableCell>
-                
-                <button 
-                  className="round" 
-                  onClick={()=>this.toggleMenu(row.name)}>
-                  
-                </button>
-                {/* <AttributeButton/> */}
-                {this.state.Strength ? (<RadialStats/>) : null}
+                <Button variant="contained" className={classes.button} onClick={this.toggleMenu.bind(this, 'Strength')}>
+                  {this.props.str}
+                  {this.state.Strength ? <AttributeButton/> : null}
+                </Button>
               </TableCell>
             </TableRow>
-          ))}
+            <TableRow>
+              <TableCell component="th" scope="row">
+                Intelligence
+              </TableCell>
+              <TableCell>
+                <Button variant="contained" className={classes.button}>
+                  {this.props.int}
+                </Button>
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell component="th" scope="row">
+                Health
+              </TableCell>
+              <TableCell>
+                <Button variant="contained" className={classes.button}>
+                  {this.props.hlt}
+                </Button>
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell component="th" scope="row">
+                Willpower
+              </TableCell>
+              <TableCell>
+                <Button variant="contained" className={classes.button}>
+                  {this.props.wil}
+                </Button>
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell component="th" scope="row">
+                Agility
+              </TableCell>
+              <TableCell>
+                <Button variant="contained" className={classes.button}>
+                  {this.props.agi}
+                </Button>
+              </TableCell>
+            </TableRow>
         </TableBody>
       </Table>
     </Paper>
