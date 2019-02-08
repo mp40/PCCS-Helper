@@ -10,6 +10,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import MenuItem from '@material-ui/core/MenuItem';
 import SimpleMenu from "./AttributeMenu";
 import AttributeButton from "./AttributeMenu";
 
@@ -29,6 +31,13 @@ const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
     backgroundColor: '#aeb885',
+  },
+  // textField: {
+  //   marginLeft: theme.spacing.unit,
+  //   marginRight: theme.spacing.unit,
+  // },
+  menu: {
+    width: 200,
   },
   input: {
     display: 'none',
@@ -69,10 +78,20 @@ class StatBox extends Component {
                 Strength
               </TableCell>
               <TableCell>
-                <Button variant="contained" className={classes.button} onClick={this.toggleMenu.bind(this, 'Strength')}>
+                <form className={classes.container} noValidate autoComplete="off">
+                  <TextField
+                  id="outlined-bare"
+                  className={classes.textField}
+                  defaultValue={this.props.str}
+                  margin="normal"
+                  variant="outlined"
+                  style = {{width: 60, height: 40}}
+                  />
+                </form>
+                {/* <Button variant="contained" className={classes.button} onClick={this.toggleMenu.bind(this, 'Strength')}>
                   {this.props.str}
                   {this.state.Strength ? <AttributeButton/> : null}
-                </Button>
+                </Button> */}
               </TableCell>
             </TableRow>
             <TableRow>
