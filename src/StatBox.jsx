@@ -36,9 +36,9 @@ const styles = theme => ({
   //   marginLeft: theme.spacing.unit,
   //   marginRight: theme.spacing.unit,
   // },
-  menu: {
-    width: 200,
-  },
+  // menu: {
+  //   width: 200,
+  // },
   input: {
     display: 'none',
   },

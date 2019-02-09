@@ -21,5 +21,3 @@ describe('filtering the equipment list',()=>{
         expect(filterEquipment('WW2')).toHaveProperty('Bayonet, M1 w/M7 scabard')
     })
 })    
-    
-
