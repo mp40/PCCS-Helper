@@ -1,3 +1,5 @@
+// Kept for record keeping for time being
+
 // import React, { Component } from "react";
 // import "./App.css";
 // import StatBox from "./StatBox";
