@@ -20,7 +20,7 @@ function HomePage(props) {
         <h1>
             Welcome To Phoenix Command Tools
         </h1>
-      <Button  onClick={props.setDisplay.bind(this, "createChar")} variant="contained" className={classes.button}>
+      <Button  id="activateCreateChar" onClick={props.setDisplay.bind(this, "createChar")} variant="contained" className={classes.button}>
         Create Character
       </Button>
     </div>

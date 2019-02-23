@@ -45,21 +45,21 @@ const styles = theme => ({
 });
 
 class StatBox extends Component {
-  constructor(props) {
-    super(props);
-    this.state ={
-      Strength: false,
-      Intelligence: false,
-      Willpower: false,
-      Health: false,
-      Agility: false
-    }
-    this.toggleMenu = this.toggleMenu.bind(this)
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state ={
+  //     Strength: false,
+  //     Intelligence: false,
+  //     Willpower: false,
+  //     Health: false,
+  //     Agility: false
+  //   }
+  //   this.toggleMenu = this.toggleMenu.bind(this)
+  // }
 
-  toggleMenu(key){
-    this.setState({[key]: !this.state[key]})
-  }
+  // toggleMenu(key){
+  //   this.setState({[key]: !this.state[key]})
+  // }
 
   render() {
     const { classes } = this.props;
@@ -83,6 +83,7 @@ class StatBox extends Component {
                   id="outlined-bare"
                   className={classes.textField}
                   defaultValue={this.props.str}
+                  onKeyPress={this.props.updateAttribute.bind(this, 'str')}
                   margin="normal"
                   variant="outlined"
                   style = {{width: 60, height: 40}}

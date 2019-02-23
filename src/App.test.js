@@ -8,18 +8,3 @@ it('renders without crashing', () => {
   ReactDOM.render(<App />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
-
-// describe('the weight warning lights',()=>{
-//   it('should display weight warning if base speed = 0',()=>{
-//     expect(true).toEqual(true)
-//   })
-// })
-
-describe('addToStat',()=>{
-  it('should increment stat by one when called',()=>{
-
-  })
-  it('should not increment over 18',()=>{
-    
-  })
-})

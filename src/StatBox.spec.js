@@ -7,13 +7,16 @@ import Adapter from 'enzyme-adapter-react-16';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-// describe("the Stat-Ip buttons",()=>{
-//     const statButton = mount(<button className="Stat-Up" onClick={this.props.addToStat.bind(this,"str")}/>)
-//     it('should increment stat by one',()=>{
-//         statButton.find('button').simulate('click')
-//         expect().toEqual()
-//     })
-// })
+describe('Attribute entry',()=>{
+    const statBox = shallow(<StatBox/>)
+    it('should update state when number entered in text box',()=>{
+        expect(statBox.find()).
+    })
+})
+
+
+
+
 it('should have a test to pass',()=>{
     expect(true).toBe(true)
 })
