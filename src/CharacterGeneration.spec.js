@@ -25,4 +25,10 @@ describe('Character Generation',()=>{
     //     })
     //     expect(wrapper.text()).toContain('11')
     // })
+    describe('Combat Lecels',()=>{
+        it('should render Gun Comabat',()=>{
+            expect(wrapper.text()).toContain('Gun')
+        })
+    })
+
 })

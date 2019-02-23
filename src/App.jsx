@@ -95,7 +95,6 @@ class App extends Component {
           <CreateChar
             {...this.state}
             updateAttribute={this.updateAttribute.bind(this)}
-            // setAttribute={this.setAttribute.bind(this)}
             settingAttribute={this.settingAttribute.bind(this)}
           /> :
           null}
