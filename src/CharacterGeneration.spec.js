@@ -19,13 +19,32 @@ describe('Character Generation',()=>{
     it('shoulder render attribute values',()=>{
         expect(wrapper.text()).toContain('10')
     })
-    // describe('changing values',()=>{
-    //     wrapper.find('#updateStr').simulate('change', {
-    //         target: {value: '11'}
-    //     })
-    //     expect(wrapper.text()).toContain('11')
-    // })
-    describe('Combat Lecels',()=>{
+    describe('changing values',()=>{
+        it('should update strength',()=>{
+            wrapper.instance().updateAttribute('str',11)
+            expect(wrapper.text()).toContain('11')
+        })
+        it('should update intelligence',()=>{
+            wrapper.instance().updateAttribute('int',12)
+            expect(wrapper.text()).toContain('12')
+        })
+        it('should update health',()=>{
+            wrapper.instance().updateAttribute('hlt',14)
+            expect(wrapper.text()).toContain('14')
+        })
+        it('should update willpower',()=>{
+            wrapper.instance().updateAttribute('wil',17)
+            expect(wrapper.text()).toContain('17')
+        })
+        it('should update agility',()=>{
+            wrapper.instance().updateAttribute('agi',18)
+            expect(wrapper.text()).toContain('18')
+        })
+        
+        
+        
+    })
+    describe('Combat Levels',()=>{
         it('should render Gun Comabat',()=>{
             expect(wrapper.text()).toContain('Gun')
         })
