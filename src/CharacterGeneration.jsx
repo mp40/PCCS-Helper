@@ -41,6 +41,29 @@ class CreateChar extends Component {
     return (
       <div>
         Place Holder
+        <table className="attributeContainer">
+        <tbody>
+          <tr>
+            <th>Attribute</th>
+            <th>Value</th>
+          </tr>
+          <tr>
+            <td>Strength</td>
+          </tr>
+          <tr>
+            <td>Intelligence</td>
+          </tr>
+          <tr>
+            <td>Health</td>
+          </tr>
+          <tr>
+            <td>Willpower</td>
+          </tr>
+          <tr>
+            <td>Agility</td>
+          </tr>
+          </tbody>
+        </table>
       </div>
     );
   }

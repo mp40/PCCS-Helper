@@ -4,13 +4,16 @@ import App from './App';
 import {mount} from 'enzyme'
 
 describe('Character Generation',()=>{
+    const wrapper = mount(<App/>)
+    wrapper.find('#activateCreateChar').simulate('click')
     it('should render Character Generation page',()=>{
-      const wrapper = mount(<App/>)
-      wrapper.find('#activateCreateChar').simulate('click')
-      expect(wrapper.text()).toContain('Place Holder')
+        expect(wrapper.text()).toContain('Place Holder')
     })
-})
-
-it('shoiuld have test',()=>{
-    expect(true).toBe(true)
+    it('should render the attributes',()=>{
+        expect(wrapper.text()).toContain('Strength')
+        expect(wrapper.text()).toContain('Intelligence')
+        expect(wrapper.text()).toContain('Health')
+        expect(wrapper.text()).toContain('Willpower')
+        expect(wrapper.text()).toContain('Agility')
+    })
 })
