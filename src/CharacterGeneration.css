@@ -40,6 +40,10 @@
     margin-bottom: .5rem;
 }
 
+.attInput {
+    max-width: 2rem;
+}
+
 th, td {
     border-bottom: 1px solid #ddd;
   }
