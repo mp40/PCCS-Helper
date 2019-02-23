@@ -1,19 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-
-const styles = theme => ({
-  button: {
-    margin: theme.spacing.unit,
-  },
-  input: {
-    display: 'none',
-  },
-});
+import './Home.css'
 
 function HomePage(props) {
-  const { classes } = props;
 
   return (
     <div style={{textAlign: 'center'}}>
@@ -27,8 +15,4 @@ function HomePage(props) {
   );
 }
 
-HomePage.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(HomePage);
+export default HomePage;

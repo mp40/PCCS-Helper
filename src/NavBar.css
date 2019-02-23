@@ -1,0 +1,17 @@
+.menuBar {
+    font-family: sans-serif;
+    background-color: #49531f;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    height: 4rem;
+    position: relative;
+}
+
+.menuTitle {
+    color: whitesmoke;
+    margin-left: 2rem;
+    width: 4%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
