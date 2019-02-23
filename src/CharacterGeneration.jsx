@@ -10,6 +10,11 @@ class CreateChar extends Component {
         <AttributeCard
           {...this.props}
         />
+        <div className="tableContainer">
+          <div className="attributeContainer">
+
+          </div>
+        </div>
       </div>
     );
   }
