@@ -10,3 +10,7 @@ describe('Character Generation',()=>{
       expect(wrapper.text()).toContain('Place Holder')
     })
 })
+
+it('shoiuld have test',()=>{
+    expect(true).toBe(true)
+})
