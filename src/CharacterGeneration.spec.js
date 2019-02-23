@@ -7,7 +7,7 @@ describe('Character Generation',()=>{
     const wrapper = mount(<App/>)
     wrapper.find('#activateCreateChar').simulate('click')
     it('should render Character Generation page',()=>{
-        expect(wrapper.text()).toContain('Place Holder')
+        expect(wrapper.text()).toContain('Attribute')
     })
     it('should render the attributes',()=>{
         expect(wrapper.text()).toContain('Strength')
@@ -16,4 +16,11 @@ describe('Character Generation',()=>{
         expect(wrapper.text()).toContain('Willpower')
         expect(wrapper.text()).toContain('Agility')
     })
+    it('shoulder render attribute values',()=>{
+        expect(wrapper.text()).toContain('10')
+    })
+    // describe('changing values',()=>{
+    //     wrapper.find('#updateStr').simulate()
+    //     expect(wrapper.text()).toContain('11')
+    // })
 })

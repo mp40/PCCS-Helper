@@ -1,77 +1,45 @@
 import React, { Component } from "react";
-
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-// import Table from '@material-ui/core/Table';
-// import TableBody from '@material-ui/core/TableBody';
-// import TableCell from '@material-ui/core/TableCell';
-// import TableHead from '@material-ui/core/TableHead';
-// import TableRow from '@material-ui/core/TableRow';
-// import Paper from '@material-ui/core/Paper';
-// import Button from '@material-ui/core/Button';
-// import TextField from '@material-ui/core/TextField';
-
-const styles = theme => ({
-  root: {
-    width: '15%',
-    marginTop: theme.spacing.unit * 3,
-    marginLeft: theme.spacing.unit * 3,
-    overflowX: 'hidden',
-  },
-  table: {
-    minWidth: 500,
-  },
-  fab: {
-    margin: theme.spacing.unit,
-  },
-  button: {
-    margin: theme.spacing.unit,
-    backgroundColor: '#aeb885',
-  },
-  input: {
-    display: 'none',
-  },
-});
-
+import './CharacterGeneration.css'
 
 class CreateChar extends Component {
   
   render() {
-    const { classes } = this.props;
+    // const { classes } = this.props;
     return (
       <div>
-        Place Holder
+        <div className="tableContainer">
         <table className="attributeContainer">
         <tbody>
           <tr>
-            <th>Attribute</th>
-            <th>Value</th>
+            <th className="attHeading">Attribute</th>
+            <th className="attValHeading">Value</th>
           </tr>
-          <tr>
-            <td>Strength</td>
+          <tr className="attributeRow">
+            <td className="attName">Strength</td>
+            <td>{this.props.str}</td>
           </tr>
-          <tr>
-            <td>Intelligence</td>
+          <tr className="attributeRow">
+            <td className="attName">Intelligence</td>
+            <td>{this.props.int}</td>
           </tr>
-          <tr>
-            <td>Health</td>
+          <tr className="attributeRow">
+            <td className="attName">Health</td>
+            <td>{this.props.hlt}</td>
           </tr>
-          <tr>
-            <td>Willpower</td>
+          <tr className="attributeRow">
+            <td className="attName">Willpower</td>
+            <td>{this.props.wil}</td>
           </tr>
-          <tr>
-            <td>Agility</td>
+          <tr className="attributeRow">
+            <td className="attName">Agility</td>
+            <td>{this.props.agi}</td>
           </tr>
           </tbody>
         </table>
+        </div>
       </div>
     );
   }
 }
 
-
-CreateChar.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(CreateChar);
+export default CreateChar;
