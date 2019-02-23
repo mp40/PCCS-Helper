@@ -20,7 +20,9 @@ describe('Character Generation',()=>{
         expect(wrapper.text()).toContain('10')
     })
     // describe('changing values',()=>{
-    //     wrapper.find('#updateStr').simulate()
+    //     wrapper.find('#updateStr').simulate('change', {
+    //         target: {value: '11'}
+    //     })
     //     expect(wrapper.text()).toContain('11')
     // })
 })

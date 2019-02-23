@@ -11,6 +11,7 @@ class App extends Component {
     super(props);
     this.state = {
       currentView: 'home',
+      toggleEditValue: false,
       equipmentWeight: 10,
       str: 10,
       int: 10,
@@ -65,17 +66,24 @@ class App extends Component {
       },
       combatActions: [newData.gunActions, newData.handActions],
       knockoutValue: newData.knockoutValue,
-      damageBonus: newData.damageBonus
+      damageBonus: newData.damageBonus,
+      toggleEditValue: false
     });
   }
 
-  updateAttribute = (key, event)=>{
-    if(event.key === 'Enter'){
-      this.setState({[key]: event.target.value}, ()=>{
+  updateAttribute = (attribute, value)=>{
+      this.setState({[attribute]: value}, ()=>{
         this.updateAllStats();
       })
-    }
   };
+
+  settingAttribute(key){
+    this.setState({toggleEditValue: key})
+  }
+
+  // setAttribute(key){
+  //   this.setState({[key]: false})
+  // }
 
   render() {
     return (
@@ -90,8 +98,9 @@ class App extends Component {
           {this.state.currentView === 'createChar' ?
           <CreateChar
             {...this.state}
-            updateAllStats={this.updateAllStats.bind(this)}
             updateAttribute={this.updateAttribute.bind(this)}
+            // setAttribute={this.setAttribute.bind(this)}
+            settingAttribute={this.settingAttribute.bind(this)}
           /> :
           null}
         </header>
