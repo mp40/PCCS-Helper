@@ -81,10 +81,6 @@ class App extends Component {
     this.setState({toggleEditValue: key})
   }
 
-  // setAttribute(key){
-  //   this.setState({[key]: false})
-  // }
-
   render() {
     return (
       <div className="App">

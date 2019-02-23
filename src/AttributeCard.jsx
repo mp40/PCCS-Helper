@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import './CharacterGeneration.css'
 
 class AttributeCard extends Component {
 
