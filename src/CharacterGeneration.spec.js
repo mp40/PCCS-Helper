@@ -19,7 +19,7 @@ describe('Character Generation',()=>{
     it('shoulder render attribute values',()=>{
         expect(wrapper.text()).toContain('10')
     })
-    describe('changing values',()=>{
+    describe('changing attribute values',()=>{
         it('should update strength',()=>{
             wrapper.instance().updateAttribute('str',11)
             expect(wrapper.text()).toContain('11')
@@ -41,12 +41,21 @@ describe('Character Generation',()=>{
             expect(wrapper.text()).toContain('18')
         })
         
-        
-        
     })
     describe('Combat Levels',()=>{
         it('should render Gun Comabat',()=>{
             expect(wrapper.text()).toContain('Gun')
+        })
+        it('should render Hand to Hand Combat',()=>{
+            expect(wrapper.text()).toContain('Hand')
+        })
+        it('should update gun combat level',()=>{
+            wrapper.instance().updateAttribute('gunLevel',4)
+            expect(wrapper.text()).toContain('4')
+        })
+        it('should update agility',()=>{
+            wrapper.instance().updateAttribute('handLevel',4)
+            expect(wrapper.text()).toContain('4')
         })
     })
 
