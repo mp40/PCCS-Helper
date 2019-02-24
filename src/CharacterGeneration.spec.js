@@ -21,7 +21,10 @@ describe('Character Generation',()=>{
     })
     describe('changing attribute values',()=>{
         it('should update strength',()=>{
-            wrapper.instance().updateAttribute('str',11)
+            wrapper.find('#updateStr').simulate('click')
+            wrapper.find('#updateStr input').simulate('keyUp', {
+                target:{value: '11'},
+                keyCode: 13})
             expect(wrapper.text()).toContain('11')
         })
         it('should update intelligence',()=>{

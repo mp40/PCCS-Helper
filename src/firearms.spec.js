@@ -9,7 +9,7 @@ const checkArrayLength = function(key, len){
     return true
 }
 
-describe("Check data input",()=>{
+xdescribe("Check data input",()=>{
     it('should have an array length of 8 for key value fmj',()=>{
         expect(checkArrayLength("fmj", 8)).toBe(true)
     })

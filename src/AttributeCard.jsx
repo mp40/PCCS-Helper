@@ -14,9 +14,9 @@ class AttributeCard extends Component {
             </tr>
             <tr className="attributeRow">
               <td className="attName">Strength</td>
-              <td onClick={this.props.settingAttribute.bind(this,'toggleStr')}>
+              <td id="updateStr" onClick={this.props.settingAttribute.bind(this,'toggleStr')}>
                 {this.props.toggleEditValue === 'toggleStr' ?
-                <input id="updateStr" type="text" className="attInput" onKeyUp={event => {
+                <input type="text" className="attInput" onKeyUp={event => {
                   if (event.keyCode === 13) {
                       this.props.updateAttribute('str',event.target.value)
                   }
