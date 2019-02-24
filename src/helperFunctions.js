@@ -92,24 +92,27 @@ const calculateStateObject = function (str, enc, agi, gunSkill, int, handSkill, 
 function actionsPerImpulse(actions){
   let impulseArray = [0,0,0,0]
 
-  if (actions === 4){
-    impulseArray[1]++
-    actions--
-  }
-
-  if (actions === 3){
-    impulseArray[3]++
-    actions--
-  }
+  while(actions>0){
+    if (actions%4 === 0){
+      impulseArray[1]++
+      actions--
+    }
   
-  if (actions === 2){
-    impulseArray[2]++
-    actions--
+    if (actions%4 === 3){
+      impulseArray[3]++
+      actions--
+    }
+    
+    if (actions%4 === 2){
+      impulseArray[2]++
+      actions--
+    }
+  
+    if(actions%4 === 1){
+      impulseArray[0]++
+      actions--
+    }
   }
-
-  if(actions === 1){
-    impulseArray[0]++
-  } 
 
   return impulseArray
 }
