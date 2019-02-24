@@ -58,5 +58,11 @@ describe('Character Generation',()=>{
             expect(wrapper.text()).toContain('4')
         })
     })
-
+    describe('Comabt Data',()=>{
+        describe('Combat Actions',()=>{
+            it('should render gun combat actions',()=>{
+                expect(wrapper.text()).toContain('')
+            })
+        })
+    })
 })

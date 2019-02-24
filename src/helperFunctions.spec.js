@@ -7,7 +7,8 @@ const {
   calcCombatActions,
   calcKV,
   calcDB,
-  calculateStateObject
+  calculateStateObject,
+  actionsPerImpulse
 } = require("./helperFunctions");
 
 const {
@@ -206,3 +207,14 @@ describe("calculate state object", () => {
     expect(result).toHaveProperty('damageBonus', 1);
   })
 });
+
+describe('converting actions per phase to actions per impulse',()=>{
+  it('should return an array',()=>{
+    const result = actionsPerImpulse()
+    expect(Array.isArray(result)).toEqual(true)
+  })
+  it('should return correct result for 1 action',()=>{
+    const correctResult = [1,0,0,0]
+    expect(actionsPerImpulse(1)).toEqual(correctResult)
+  })
+})

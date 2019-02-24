@@ -89,6 +89,10 @@ const calculateStateObject = function (str, enc, agi, gunSkill, int, handSkill, 
   };
 };
 
+function actionsPerImpulse(actions){
+  return [1,0,0,0]
+}
+
 module.exports = {
   calcBaseSpeed,
   findKey,
@@ -98,5 +102,6 @@ module.exports = {
   calcCombatActions,
   calcKV,
   calcDB,
-  calculateStateObject
+  calculateStateObject,
+  actionsPerImpulse
 };
