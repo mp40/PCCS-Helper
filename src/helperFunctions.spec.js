@@ -221,4 +221,12 @@ describe('converting actions per phase to actions per impulse',()=>{
     const correctResult = [1,0,1,0]
     expect(actionsPerImpulse(2)).toEqual(correctResult)
   })
+  it('should return correct result for 3 action',()=>{
+    const correctResult = [1,0,1,1]
+    expect(actionsPerImpulse(3)).toEqual(correctResult)
+  })
+  it('should return correct result for 4 actions',()=>{
+    const correctResult = [1,1,1,1]
+    expect(actionsPerImpulse(4)).toEqual(correctResult)
+  })
 })
