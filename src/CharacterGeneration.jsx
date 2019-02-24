@@ -7,11 +7,9 @@ const {actionsPerImpulse} = require('./helperFunctions')
 
 class CreateChar extends Component {
 
-  gunActions = actionsPerImpulse(this.props.combatActions[0])
-  
   render() {
-    // const gunActions = actionsPerImpulse(this.props.combatActions[0])
-    const handActions = actionsPerImpulse(this.props.combatActions[1])
+    const gunActions = actionsPerImpulse(this.props.combatStats.combatActions[0])
+    const handActions = actionsPerImpulse(this.props.combatStats.combatActions[1])
     return (
       <div>
         <AttributeCard
@@ -40,17 +38,17 @@ class CreateChar extends Component {
               
               <tr>
                 <td>Gun</td>
-                <td>{this.gunActions[0]}</td>
-                <td>{this.gunActions[1]}</td>
-                <td>{this.gunActions[2]}</td>
-                <td>{this.gunActions[3]}</td>
+                <td>{gunActions[0]}</td>
+                <td>{gunActions[1]}</td>
+                <td>{gunActions[2]}</td>
+                <td>{gunActions[3]}</td>
               </tr>
               <tr>
                 <td>Hand</td>
-                <td>?</td>
-                <td>?</td>
-                <td>?</td>
-                <td>?</td>
+                <td>{handActions[0]}</td>
+                <td>{handActions[1]}</td>
+                <td>{handActions[2]}</td>
+                <td>{handActions[3]}</td>
               </tr>
             </tbody>
             

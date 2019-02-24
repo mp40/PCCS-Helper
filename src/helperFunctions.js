@@ -7,7 +7,7 @@ const {
 } = require("./tables");
 
 const findSAL = function (level) {
-  return table1C_SAL[level];
+  return table1C_SAL[level] * 1;
 };
 
 const findKey = (enc, arr) => {
@@ -28,7 +28,7 @@ const calcBaseSpeed = (str, enc) => {
   if (table1A_BaseSpeed[str][index] === undefined) {
     return 0;
   }
-  return table1A_BaseSpeed[str][index];
+  return table1A_BaseSpeed[str][index] * 1;
 };
 
 const calcMaxSpeed = (agi, baseSpd) => {
@@ -36,10 +36,12 @@ const calcMaxSpeed = (agi, baseSpd) => {
   if (baseSpd === 0) {
     return 0;
   }
-  return table1B_MaxSpeed[agi][index];
+  return table1B_MaxSpeed[agi][index] * 1;
 };
 
 const calcISF = function (int, sal) {
+  int = int * 1
+  sal = sal * 1
   return int + sal;
 };
 
@@ -48,7 +50,7 @@ const calcCombatActions = (ms, isf) => {
     return 0;
   }
   const index = findKey(isf, table1D_CombatActions.isf);
-  return table1D_CombatActions[ms][index];
+  return table1D_CombatActions[ms][index] * 1;
 };
 
 const calcKV = (wil, highestSkill) => {
@@ -60,19 +62,19 @@ const calcDB = (ms, asf) => {
     return 0;
   }
   const index = findKey(asf, table1D_DamageBonus.asf);
-  return table1D_DamageBonus[ms][index];
+  return table1D_DamageBonus[ms][index] * 1;
 }
 
-const calculateStateObject = function (str, enc, agi, gunSkill, int, handSkill, wil) {
-  const bs = calcBaseSpeed(str, enc);
-  const ms = calcMaxSpeed(agi, bs);
-  const salResult = findSAL(gunSkill);
-  const isfResult = calcISF(int, salResult);
+const calculateStateObject = function (characterStats, weight) {
+  const bs = calcBaseSpeed(characterStats.str, weight);
+  const ms = calcMaxSpeed(characterStats.agi, bs);
+  const salResult = findSAL(characterStats.gunLevel);
+  const isfResult = calcISF(characterStats.int, salResult);
   const gunResults = calcCombatActions(ms, isfResult);
-  const ceResult = findSAL(handSkill);
-  const asfResult = calcISF(agi, ceResult);
+  const ceResult = findSAL(characterStats.handLevel);
+  const asfResult = calcISF(characterStats.agi, ceResult);
   const handResults = calcCombatActions(ms, asfResult);
-  const knockout = calcKV(wil, gunSkill > handSkill ? gunSkill : handSkill);
+  const knockout = calcKV(characterStats.wil, characterStats.gunLevel > characterStats.handLevel ? characterStats.gunLevel : characterStats.handLevel);
   const damBonus = calcDB(ms, asfResult);
 
   return {

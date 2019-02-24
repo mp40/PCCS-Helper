@@ -22,7 +22,7 @@ class CombatCard extends Component {
                   }
                 }}
                 /> :
-                this.props.gunLevel}
+                this.props.characterStats.gunLevel}
               </td>
               </tr>
               <tr className="attributeRow">
@@ -35,7 +35,7 @@ class CombatCard extends Component {
                   }
                 }}
                 /> :
-                this.props.handLevel}
+                this.props.characterStats.handLevel}
               </td>
               </tr>
             </tbody>

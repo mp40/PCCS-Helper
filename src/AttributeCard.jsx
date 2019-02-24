@@ -22,7 +22,7 @@ class AttributeCard extends Component {
                   }
                 }}
                 /> :
-                this.props.str}
+                this.props.characterStats.str}
               </td>
             </tr>
             <tr className="attributeRow">
@@ -35,7 +35,7 @@ class AttributeCard extends Component {
                   }
                 }}
                 /> :
-                this.props.int}
+                this.props.characterStats.int}
               </td>
             </tr>
             <tr className="attributeRow">
@@ -48,7 +48,7 @@ class AttributeCard extends Component {
                   }
                 }}
                 /> :
-                this.props.hlt}
+                this.props.characterStats.hlt}
               </td>
             </tr>
             <tr className="attributeRow">
@@ -61,7 +61,7 @@ class AttributeCard extends Component {
                   }
                 }}
                 /> :
-                this.props.wil}
+                this.props.characterStats.wil}
               </td>
             </tr>
             <tr className="attributeRow">
@@ -74,7 +74,7 @@ class AttributeCard extends Component {
                   }
                 }}
                 /> :
-                this.props.agi}
+                this.props.characterStats.agi}
               </td>
             </tr>
             </tbody>

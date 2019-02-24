@@ -12,21 +12,28 @@ class App extends Component {
     this.state = {
       currentView: 'home',
       toggleEditValue: false,
-      equipmentWeight: 10,
-      str: 10,
-      int: 10,
-      wil: 10,
-      hlt: 10,
-      agi: 10,
-      baseSpeed: 0,
-      maxSpeed: 0,
-      gunLevel: 0,
-      handLevel: 0,
-      combatStats: { SAL: 0, CE: 0, ISF: 0, ASF: 0 },
-      combatActions: [4, 0],
-      knockoutValue: 0,
-      damageBonus: 0
-    };
+      equipmentWeight: 5,
+      characterStats:{
+          str: 10,
+          int: 10,
+          wil: 10,
+          hlt: 10,
+          agi: 10,
+          gunLevel: 0,
+          handLevel: 0,
+      },
+      combatStats: {
+        baseSpeed: 0,
+        maxSpeed: 0,
+        SAL: 0, 
+        CE: 0, 
+        ISF: 0, 
+        ASF: 0,
+        knockoutValue: 0,
+        damageBonus: 0,
+        combatActions: [4, 4],
+      },
+    }
   }
 
   setDisplay(view){
@@ -41,38 +48,42 @@ class App extends Component {
     this.setState({ weightWarningMsg: false });
   }
   updateAllStats() {
-    // (STR, Weight, AGI, Gun Level, INT, Hand Level)
-    const str = this.state.str;
     const weight = this.state.equipmentWeight;
-    const agi = this.state.agi;
-    const gun = this.state.gunLevel;
-    const int = this.state.int;
-    const hand = this.state.handLevel;
-    const wil = this.state.wil;
-    const newData = calculateStateObject(str, weight, agi, gun, int, hand, wil);
+
+    const playerObject = {
+      str: this.state.characterStats.str,
+      int: this.state.characterStats.int,
+      wil: this.state.characterStats.wil,
+      hlt: this.state.characterStats.hlt,
+      agi: this.state.characterStats.agi,
+      gunLevel: this.state.characterStats.gunLevel,
+      handLevel: this.state.characterStats.handLevel,
+    }
+
+    const newData = calculateStateObject(playerObject, weight);
     if (newData.baseSpeed === 0) {
       this.weightWarningOn();
     } else {
       this.weightWarningOff();
     }
     this.setState({
-      baseSpeed: newData.baseSpeed,
-      maxSpeed: newData.maxSpeed,
       combatStats: {
+        baseSpeed: newData.baseSpeed,
+        maxSpeed: newData.maxSpeed,
         SAL: newData.sal,
         CE: newData.ce,
         ISF: newData.isf,
-        ASF: newData.asf
+        ASF: newData.asf,
+        knockoutValue: newData.knockoutValue,
+        damageBonus: newData.damageBonus,
+        combatActions: [newData.gunActions, newData.handActions],
       },
-      combatActions: [newData.gunActions, newData.handActions],
-      knockoutValue: newData.knockoutValue,
-      damageBonus: newData.damageBonus,
       toggleEditValue: false
     });
   }
 
   updateAttribute = (attribute, value)=>{
-      this.setState({[attribute]: value}, ()=>{
+      this.setState({characterStats:{...this.state.characterStats,[attribute]: value}}, ()=>{
         this.updateAllStats();
       })
   };

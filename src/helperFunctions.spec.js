@@ -169,8 +169,27 @@ describe('calculate Damage Bonus', () => {
 })
 
 describe("calculate state object", () => {
-  // (STR, Weight, AGI, Gun Level, INT, Hand Level, WIL)
-  const result = calculateStateObject(14, 25, 12, 4, 10, 2, 10);
+  const str = 14
+  const int = 10
+  const wil = 10
+  const hlt = 10
+  const agi = 12
+  const gunLevel = 4
+  const handLevel = 2
+  const weight = 25
+  
+  const characterStats = {
+          str: str,
+          int: int,
+          wil: wil,
+          hlt: hlt,
+          agi: agi,
+          gunLevel: gunLevel,
+          handLevel: handLevel,
+  }
+
+  const result = calculateStateObject(characterStats, weight);
+  
   it("should return an object", () => {
     expect(typeof {
       result
