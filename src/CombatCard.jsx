@@ -14,9 +14,9 @@ class CombatCard extends Component {
               </tr>
               <tr className="attributeRow">
                 <td className="attName">Gun</td>
-              <td onClick={this.props.settingAttribute.bind(this,'toggleGun')}>
+              <td id="updateGun" onClick={this.props.settingAttribute.bind(this,'toggleGun')}>
                 {this.props.toggleEditValue === 'toggleGun' ?
-                <input id="updateGun" type="text" className="attInput" onKeyUp={event => {
+                <input type="text" className="attInput" onKeyUp={event => {
                   if (event.keyCode === 13) {
                       this.props.updateAttribute('gunLevel',event.target.value)
                   }
@@ -27,9 +27,9 @@ class CombatCard extends Component {
               </tr>
               <tr className="attributeRow">
                 <td className="attName">Hand</td>
-                <td onClick={this.props.settingAttribute.bind(this,'toggleHand')}>
+                <td id="updateHand" onClick={this.props.settingAttribute.bind(this,'toggleHand')}>
                 {this.props.toggleEditValue === 'toggleHand' ?
-                <input id="updateHand" type="text" className="attInput" onKeyUp={event => {
+                <input type="text" className="attInput" onKeyUp={event => {
                   if (event.keyCode === 13) {
                       this.props.updateAttribute('handLevel',event.target.value)
                   }

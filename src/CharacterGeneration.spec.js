@@ -6,6 +6,14 @@ import {mount} from 'enzyme'
 describe('Character Generation',()=>{
     const wrapper = mount(<App/>)
     wrapper.find('#activateCreateChar').simulate('click')
+
+    function inputAttribute (attributeId, newValue) {
+        wrapper.find(attributeId).simulate('click')
+        wrapper.find(`${attributeId} input`).simulate('keyUp', {
+        target:{value: newValue},
+        keyCode: 13})
+    }
+
     it('should render Character Generation page',()=>{
         expect(wrapper.text()).toContain('Attribute')
     })
@@ -20,12 +28,6 @@ describe('Character Generation',()=>{
         expect(wrapper.text()).toContain('10')
     })
     describe('changing attribute values',()=>{
-        function inputAttribute (attributeId, newValue) {
-            wrapper.find(attributeId).simulate('click')
-            wrapper.find(`${attributeId} input`).simulate('keyUp', {
-            target:{value: newValue},
-            keyCode: 13})
-        }
         it('should update strength',()=>{
             inputAttribute('#updateStr', '11')
             expect(wrapper.text()).toContain('11')
@@ -56,12 +58,12 @@ describe('Character Generation',()=>{
             expect(wrapper.text()).toContain('Hand')
         })
         it('should update gun combat level',()=>{
-            wrapper.instance().updateAttribute('gunLevel',4)
+            inputAttribute('#updateGun', '4')
             expect(wrapper.text()).toContain('4')
         })
-        it('should update agility',()=>{
-            wrapper.instance().updateAttribute('handLevel',4)
-            expect(wrapper.text()).toContain('4')
+        it('should update hand to hand combat level',()=>{
+            inputAttribute('#updateHand','2')
+            expect(wrapper.text()).toContain('2')
         })
     })
     describe('Comabt Data',()=>{
