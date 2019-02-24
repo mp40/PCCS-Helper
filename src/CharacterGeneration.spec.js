@@ -66,6 +66,9 @@ describe('Character Generation',()=>{
         })
     })
     describe('Comabt Data',()=>{
+        const wrapper = mount(<App/>)
+        wrapper.find('#activateCreateChar').simulate('click')
+        
         describe('Combat Actions',()=>{
             it('should render gun combat actions',()=>{
                 const rows = wrapper.find('.combatActions tbody tr')
