@@ -23,7 +23,7 @@ class App extends Component {
       gunLevel: 0,
       handLevel: 0,
       combatStats: { SAL: 0, CE: 0, ISF: 0, ASF: 0 },
-      combatActions: [0, 0],
+      combatActions: [4, 0],
       knockoutValue: 0,
       damageBonus: 0
     };

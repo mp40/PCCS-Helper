@@ -69,7 +69,12 @@ describe('Character Generation',()=>{
     describe('Comabt Data',()=>{
         describe('Combat Actions',()=>{
             it('should render gun combat actions',()=>{
-                expect(wrapper.text()).toContain('')
+                const rows = wrapper.find('.combatActions tbody tr')
+                expect(rows.at(0).text()).toEqual('Gun1111')
+            })
+            it('should render gun combat actions',()=>{
+                const rows = wrapper.find('.combatActions tbody tr')
+                expect(rows.at(1).text()).toEqual('Hand1111')
             })
         })
     })
