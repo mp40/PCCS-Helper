@@ -90,7 +90,18 @@ const calculateStateObject = function (str, enc, agi, gunSkill, int, handSkill, 
 };
 
 function actionsPerImpulse(actions){
-  return [1,0,0,0]
+  let impulseArray = [0,0,0,0]
+  
+  if (actions === 2){
+    impulseArray[2]++
+    actions--
+  }
+
+  if(actions === 1){
+    impulseArray[0]++
+  } 
+  
+  return impulseArray
 }
 
 module.exports = {
