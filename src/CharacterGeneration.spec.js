@@ -20,27 +20,30 @@ describe('Character Generation',()=>{
         expect(wrapper.text()).toContain('10')
     })
     describe('changing attribute values',()=>{
+        function inputAttribute (attributeId, newValue) {
+            wrapper.find(attributeId).simulate('click')
+            wrapper.find(`${attributeId} input`).simulate('keyUp', {
+            target:{value: newValue},
+            keyCode: 13})
+        }
         it('should update strength',()=>{
-            wrapper.find('#updateStr').simulate('click')
-            wrapper.find('#updateStr input').simulate('keyUp', {
-                target:{value: '11'},
-                keyCode: 13})
+            inputAttribute('#updateStr', '11')
             expect(wrapper.text()).toContain('11')
         })
         it('should update intelligence',()=>{
-            wrapper.instance().updateAttribute('int',12)
+            inputAttribute('#updateInt', '12')
             expect(wrapper.text()).toContain('12')
         })
         it('should update health',()=>{
-            wrapper.instance().updateAttribute('hlt',14)
+            inputAttribute('#updateHlt', '14')
             expect(wrapper.text()).toContain('14')
         })
         it('should update willpower',()=>{
-            wrapper.instance().updateAttribute('wil',17)
+            inputAttribute('#updateWil', '17')
             expect(wrapper.text()).toContain('17')
         })
         it('should update agility',()=>{
-            wrapper.instance().updateAttribute('agi',18)
+            inputAttribute('#updateAgi', '18')
             expect(wrapper.text()).toContain('18')
         })
         
