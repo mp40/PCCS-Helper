@@ -23,14 +23,14 @@ class App extends Component {
           handLevel: 0,
       },
       combatStats: {
-        baseSpeed: 0,
-        maxSpeed: 0,
+        baseSpeed: 3,
+        maxSpeed: 6,
         SAL: 0, 
         CE: 0, 
         ISF: 0, 
         ASF: 0,
         knockoutValue: 0,
-        damageBonus: 0,
+        damageBonus: 1,
         combatActions: [4, 4],
       },
     }

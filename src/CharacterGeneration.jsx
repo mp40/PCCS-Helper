@@ -54,10 +54,10 @@ class CreateChar extends Component {
             
           </table>
 
-          <div>
-              <span>BS</span>
-              <span>MS</span>
-              <span>DB</span>
+          <div className="additionalCombatData">
+              <span>BS{this.props.combatStats.baseSpeed}</span>
+              <span>MS{this.props.combatStats.maxSpeed}</span>
+              <span>DB{this.props.combatStats.damageBonus}</span>
             </div>
 
         </div>  
