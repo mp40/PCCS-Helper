@@ -92,4 +92,16 @@ describe('Character Generation',()=>{
             })
         })
     })
+    describe('the equipment list',()=>{
+        const wrapper = mount(<App/>)
+        wrapper.find('#activateCreateChar').simulate('click')
+        it('should render',()=>{
+            expect(wrapper.text()).toContain('Equipment')
+        })
+        it('should add equipment to the list',()=>{
+            wrapper.find('#addEquipment').simulate('click')
+            wrapper.find('Basball Bat').simulate('click')
+            expect(wrapper.text()).toContain('2.2')
+        })
+    })
 })
