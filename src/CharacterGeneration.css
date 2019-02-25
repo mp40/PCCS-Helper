@@ -50,15 +50,21 @@
 .attName,
 .attHeading{
     text-align: left;
+    border-bottom: 1px solid #ddd;
 }
 
 .attHeading,
 .attValHeading{
     margin-bottom: .5rem;
+    border-bottom: 1px solid #ddd;
 }
 
 .attValHeading {
     width: 8%
+}
+
+.attValue {
+    border-bottom: 1px solid #ddd;
 }
 
 .attInput {
@@ -70,6 +76,7 @@
     margin-top: 0.5rem;
     margin-left: 2rem;
     padding: 1rem;
+    color: rgb(85, 83, 83);
     background: whitesmoke;
     border-radius: 3px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -77,14 +84,28 @@
     display: inline-block;
 }
 
-.impulse {
-    width: 25%;
+.actionsHeader {
+    background: rgb(85, 83, 83);
+    color: whitesmoke;
 }
 
 .combatActions {
-    width: 25%;
+    border-collapse: collapse;
+    border: 1px solid rgb(85, 83, 83);
 }
 
-th, td {
-    border-bottom: 1px solid #ddd;
-  }
+.actionType {
+    text-align: left;
+    padding-left: .5rem;
+}
+
+.actions {
+    text-align: center;
+}
+
+.additionalCombatData {
+    width: 100%;
+    text-align: center;
+    font-size: small;
+    margin-top: .1rem;
+}
