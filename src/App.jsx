@@ -5,6 +5,8 @@ import HomePage from "./Home";
 import CreateChar from "./CharacterGeneration";
 
 const { calculateStateObject } = require("./helperFunctions");
+const {equipment} = require ('./equipmentList');
+const {findGear} = require('./equipmentListFunctions')
 
 class App extends Component {
   constructor(props) {
@@ -33,6 +35,11 @@ class App extends Component {
         damageBonus: 1,
         combatActions: [4, 4],
       },
+      gear:{
+        equipment: [],
+        firearms: [],
+        grenades: [],
+      }
     }
   }
 
@@ -92,6 +99,14 @@ class App extends Component {
     this.setState({toggleEditValue: key})
   }
 
+  addEquipment(obj){
+    obj.qty = 1
+    this.setState({
+      gear:{equipment: [...this.state.gear.equipment, obj]}}, ()=>{
+        this.updateAllStats();
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -107,6 +122,7 @@ class App extends Component {
             {...this.state}
             updateAttribute={this.updateAttribute.bind(this)}
             settingAttribute={this.settingAttribute.bind(this)}
+            addEquipment={this.addEquipment.bind(this)}
           /> :
           null}
         </header>

@@ -141,3 +141,33 @@
     background: rgb(85, 83, 83);
     color: whitesmoke;
 }
+
+.equipmentButton {
+    position: relative;
+    display: inline-block;
+    padding: 0.25em 0.5em;
+    text-decoration: none;
+    color: rgb(85, 83, 83);
+    background: whitesmoke;
+    border: solid 1px #aeb885;
+    border-radius: 4px;
+    /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); */
+    /* transition: 0.3s; */
+}
+
+.equipmentButton:hover {
+    border: solid 1.5px #d7ec80;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    /* box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);  */
+    /* border: 1px solid white; */
+}
+
+/* .addEquipment {
+    position: block;
+    display: inline-block;
+}
+
+.equipmentDropdown {
+    display: block;
+    position: absolute;
+} */

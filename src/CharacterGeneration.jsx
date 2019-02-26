@@ -5,6 +5,17 @@ import './CharacterGeneration.css'
 import ActionsCard from "./ActionsCard";
 
 class CreateChar extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      showEquipment: false
+    }
+  }
+
+  toggleShowEquipment(){
+    this.setState({showEquipment: !this.state.showEquipment})
+    console.log(this.state)
+  }
 
   render() {
     return (
@@ -33,12 +44,26 @@ class CreateChar extends Component {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td id="addEquipment">Add Equipment</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+              <tr className="addEquipment">
+              <td>
+                <button 
+                  id="addEquipment" 
+                  className="equipmentButton" 
+                  onClick={this.toggleShowEquipment.bind(this)}
+                >Add Equipment</button>
+              </td>
+              <td>
+                {this.state.ShowEquipment ?
+                <div className="equipmentDropdown">
+                  <p>
+                    TODO add dropdown equipment list
+                  </p>
+                  <p>
+                    TODO add dropdown equipment list
+                  </p>
+                </div> :
+                null}
+              </td>  
               </tr>
             </tbody>
           </table>
