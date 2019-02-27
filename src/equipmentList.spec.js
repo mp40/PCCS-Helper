@@ -28,4 +28,22 @@ describe('creating an array of equipment',()=>{
         const result = createArrayOfEquipment(equipmentList)
         expect(Array.isArray(result)).toBe(true)
     })
+    it('should have a length equal to the equipment objects',()=>{
+        const smallList = {
+            "Baseball Bat": {
+                weight: 2.2,
+                tags:["Melee"]
+            },
+            "Basic Pouch": {
+                weight: 0.4,
+                tags:['Load Bearing', 'ALICE']
+            },
+            "Bayonet": {
+                weight: 1,
+                tags:["Melee"]
+            },
+        }
+        const result = createArrayOfEquipment(smallList)
+        expect(result.length).toBe(3)
+    })
 })
