@@ -1,4 +1,5 @@
-const {findGear, filterEquipment} = require('./equipmentListFunctions')
+const {findGear, filterEquipment, createArrayOfEquipment} = require('./equipmentListFunctions')
+const {equipmentList} = require ('./equipmentList')
 
 describe("finding things in the equipment list",()=>{
     it('should return items based on name',()=>{
@@ -21,3 +22,10 @@ describe('filtering the equipment list',()=>{
         expect(filterEquipment('WW2')).toHaveProperty('Bayonet, M1 w/M7 scabard')
     })
 })    
+
+describe('creating an array of equipment',()=>{
+    it('should take nested objects and convert to an array of objects',()=>{
+        const result = createArrayOfEquipment(equipmentList)
+        expect(Array.isArray(result)).toBe(true)
+    })
+})

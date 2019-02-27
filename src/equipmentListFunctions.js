@@ -19,4 +19,9 @@ const filterEquipment = function(findType){
     return results
 }
 
-module.exports = {findGear, filterEquipment}
+function createArrayOfEquipment(equipmentList){
+    const equipmentArray = []
+    return equipmentArray
+}
+
+module.exports = {findGear, filterEquipment, createArrayOfEquipment}
