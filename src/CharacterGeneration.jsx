@@ -3,6 +3,8 @@ import AttributeCard from "./AttributeCard";
 import CombatCard from "./CombatCard";
 import './CharacterGeneration.css'
 import ActionsCard from "./ActionsCard";
+import EquipmentDropdown from "./EquipmentDropdown";
+
 
 class CreateChar extends Component {
   constructor(props){
@@ -52,21 +54,12 @@ class CreateChar extends Component {
                   onClick={this.toggleShowEquipment.bind(this)}
                 >Add Equipment</button>
               </td>
-              <td>
-                {this.state.ShowEquipment ?
-                <div className="equipmentDropdown">
-                  <p>
-                    TODO add dropdown equipment list
-                  </p>
-                  <p>
-                    TODO add dropdown equipment list
-                  </p>
-                </div> :
-                null}
-              </td>  
               </tr>
             </tbody>
           </table>
+          {this.state.showEquipment ?
+             <EquipmentDropdown/> :
+            null}
       </div>  
     </div>    
     );
