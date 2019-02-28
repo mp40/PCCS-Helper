@@ -18,6 +18,10 @@ class CreateChar extends Component {
     this.setState({showEquipment: !this.state.showEquipment})
   }
 
+  closeShowEquipment(){
+    this.setState({showEquipment: false})
+  }
+
   render() {
     return (
       <div className="createCharContainer">
@@ -57,7 +61,9 @@ class CreateChar extends Component {
             </tbody>
           </table>
           {this.state.showEquipment ?
-             <EquipmentDropdown/> :
+             <EquipmentDropdown
+              closeShowEquipment={this.closeShowEquipment.bind(this)}
+             /> :
             null}
       </div>  
     </div>    

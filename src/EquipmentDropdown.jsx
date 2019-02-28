@@ -13,7 +13,13 @@ class EquipmentDropdown extends Component {
         <div className='equipmentModalContainer'>
             
             <div className="equipmentListCard">
-                <div className="equipmentListHeader">Select Equipment</div>
+                <div className="equipmentListHeader">
+                    Select Equipment
+                    <button 
+                        id="closeEquipmentModal"
+                        onClick={this.props.closeShowEquipment.bind(this)}
+                        >Close List</button>
+                </div>
                 <div className="equipmentListBody">
                 {this.equipmentArray.map((equipObj, index)=>{
                     return <div className="equipmentEntry" key={index}>

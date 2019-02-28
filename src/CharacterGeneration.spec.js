@@ -103,6 +103,9 @@ describe('Character Generation',()=>{
             expect(wrapper.text()).toContain('Baseball Bat')
         })
         it('should have a button to close the equipment modal',()=>{
+            const wrapper = mount(<App/>)
+            wrapper.find('#activateCreateChar').simulate('click')
+            wrapper.find('#addEquipment').simulate('click')
             wrapper.find('#closeEquipmentModal').simulate('click')
             expect(wrapper.text()).not.toContain('Baseball Bat')
         })
