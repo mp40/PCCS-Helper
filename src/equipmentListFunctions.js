@@ -24,7 +24,7 @@ function createArrayOfEquipment(equipmentList){
     for(let obj in equipmentList){
         const newObj = {
             name: obj,
-            weight: obj['weight']
+            weight: equipmentList[obj].weight
         }
         equipmentArray.push(newObj)
     }

@@ -16,7 +16,6 @@ class CreateChar extends Component {
 
   toggleShowEquipment(){
     this.setState({showEquipment: !this.state.showEquipment})
-    console.log(this.state)
   }
 
   render() {

@@ -45,7 +45,11 @@ describe('creating an array of equipment',()=>{
     it('should have a length equal to the equipment objects',()=>{
         expect(result.length).toBe(3)
     })
-    it('objects in the array should have a name',()=>{
-        expect(result[0]).toEqual({name:'Baseball Bat'})
+    it('should create objects with a name',()=>{
+        expect(result[0]).toEqual({name:'Baseball Bat', weight: 2.2})
     })
+    it('should create objects with a weight',()=>{
+        expect(result[0]).toEqual({name: "Baseball Bat", weight: 2.2})
+    })
+
 })
