@@ -5,8 +5,6 @@ import HomePage from "./Home";
 import CreateChar from "./CharacterGeneration";
 
 const { calculateStateObject } = require("./helperFunctions");
-const {equipment} = require ('./equipmentList');
-const {findGear} = require('./equipmentListFunctions')
 
 class App extends Component {
   constructor(props) {

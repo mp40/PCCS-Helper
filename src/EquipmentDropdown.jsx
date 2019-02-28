@@ -10,12 +10,24 @@ class EquipmentDropdown extends Component {
 
   render() {
     return (
-        <div className="equipmentListCard">
-            {this.equipmentArray.map((equipObj, index)=>{
-                return <div key={index}>
-                    {`${equipObj.name} ${equipObj.weight} lbs`}
+        <div className='equipmentModalContainer'>
+            
+            <div className="equipmentListCard">
+                <div className="equipmentListHeader">Select Equipment</div>
+                <div className="equipmentListBody">
+                {this.equipmentArray.map((equipObj, index)=>{
+                    return <div className="equipmentEntry" key={index}>
+                        <div>
+                            {equipObj.name}
+                        </div>
+                        <div>
+                            {`${equipObj.weight} lbs`}
+                        </div>
                     </div>
-            })}   
+                })}  
+                </div>
+             
+            </div>
         </div>
     );
   }

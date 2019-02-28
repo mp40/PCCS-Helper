@@ -98,14 +98,13 @@ describe('Character Generation',()=>{
         it('should render',()=>{
             expect(wrapper.text()).toContain('Equipment')
         })
-        it('should render equioment list',()=>{
+        it('should render equipment list',()=>{
             wrapper.find('#addEquipment').simulate('click')
             expect(wrapper.text()).toContain('Baseball Bat')
         })
-        // it('should add equipment to the list',()=>{
-        //     wrapper.find('#addEquipment').simulate('click')
-        //     wrapper.find('Baseball Bat').simulate('click')
-        //     expect(wrapper.text()).toContain('2.2')
-        // })
+        it('should have a button to close the equipment modal',()=>{
+            wrapper.find('#closeEquipmentModal').simulate('click')
+            expect(wrapper.text()).not.toContain('Baseball Bat')
+        })
     })
 })
