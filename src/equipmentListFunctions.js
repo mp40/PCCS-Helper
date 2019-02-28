@@ -21,6 +21,13 @@ const filterEquipment = function(findType){
 
 function createArrayOfEquipment(equipmentList){
     const equipmentArray = []
+    for(let obj in equipmentList){
+        const newObj = {
+            name: obj,
+            weight: obj['weight']
+        }
+        equipmentArray.push(newObj)
+    }
     return equipmentArray
 }
 

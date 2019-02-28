@@ -24,26 +24,28 @@ describe('filtering the equipment list',()=>{
 })    
 
 describe('creating an array of equipment',()=>{
+    const smallList = {
+        "Baseball Bat": {
+            weight: 2.2,
+            tags:["Melee"]
+        },
+        "Basic Pouch": {
+            weight: 0.4,
+            tags:['Load Bearing', 'ALICE']
+        },
+        "Bayonet": {
+            weight: 1,
+            tags:["Melee"]
+        },
+    }
+    const result = createArrayOfEquipment(smallList)
     it('should take nested objects and convert to an array of objects',()=>{
-        const result = createArrayOfEquipment(equipmentList)
         expect(Array.isArray(result)).toBe(true)
     })
     it('should have a length equal to the equipment objects',()=>{
-        const smallList = {
-            "Baseball Bat": {
-                weight: 2.2,
-                tags:["Melee"]
-            },
-            "Basic Pouch": {
-                weight: 0.4,
-                tags:['Load Bearing', 'ALICE']
-            },
-            "Bayonet": {
-                weight: 1,
-                tags:["Melee"]
-            },
-        }
-        const result = createArrayOfEquipment(smallList)
         expect(result.length).toBe(3)
+    })
+    it('objects in the array should have a name',()=>{
+        expect(result[0]).toEqual({name:'Baseball Bat'})
     })
 })

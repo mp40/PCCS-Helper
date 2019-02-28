@@ -11,11 +11,6 @@ class EquipmentDropdown extends Component {
     return (
         <div className="equipmentListCard">
             Equipment List Goes Here
-            {/* {Object.keys(equipment).map((objKey, index)=>{
-                return <div key={index}>
-                        {equipment[objKey]}
-                    </div>
-            })} */}
         </div>
     );
   }
