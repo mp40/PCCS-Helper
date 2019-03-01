@@ -8,12 +8,14 @@ const findGear = function(findName){
     }
 }
 
-
-const filterEquipment = function(findType){
+const filterEquipment = function(findTypes){
+    if(findTypes.length === 0){
+        return equipment
+    }
     let results = {}
     for(let obj in equipment){
-        if(equipment[obj].tags.includes(findType)){
-            results[obj] = equipment[obj]
+            if(equipment[obj].tags.includes(...findTypes)){
+                results[obj] = equipment[obj]
         }
     }
     return results
@@ -31,4 +33,8 @@ function createArrayOfEquipment(equipmentList){
     return equipmentArray
 }
 
-module.exports = {findGear, filterEquipment, createArrayOfEquipment}
+export {
+    findGear, 
+    filterEquipment,
+    createArrayOfEquipment
+    }

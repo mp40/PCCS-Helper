@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import './EquipmentDropdown.css'
 
+import {createArrayOfEquipment, filterEquipment} from './equipmentListFunctions.js'
+
 const equipment = require('./equipmentList')
-const {createArrayOfEquipment} = require('./equipmentListFunctions')
  
 class EquipmentDropdown extends Component {
 
-    equipmentArray = createArrayOfEquipment(equipment)
+    // equipment = equipment
+    filteredEquipment = filterEquipment(this.props.requiredEquipment)
+    equipmentArray = createArrayOfEquipment(this.filteredEquipment)
 
   render() {
     return (

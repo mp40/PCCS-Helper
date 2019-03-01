@@ -109,5 +109,16 @@ describe('Character Generation',()=>{
             wrapper.find('#closeEquipmentModal').simulate('click')
             expect(wrapper.text()).not.toContain('Baseball Bat')
         })
+        describe('filtering the equipment list',()=>{
+            it('should filter the list based on slected criteria',()=>{
+                const wrapper = mount(<App/>)
+                wrapper.find('#activateCreateChar').simulate('click')
+                wrapper.find('#filterEquipmentList').simulate('click')
+                //TODO fix this test
+                wrapper.find('???').simulate('click')
+                expect(wrapper.text()).toContain("Boil In The Bag")
+                expect(wrapper.text()).not.toContain("Baseball Bat")
+            })
+        })
     })
 })

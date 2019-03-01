@@ -10,7 +10,8 @@ class CreateChar extends Component {
   constructor(props){
     super(props)
     this.state = {
-      showEquipment: false
+      showEquipment: false,
+      requiredEquipment: []
     }
   }
 
@@ -63,6 +64,7 @@ class CreateChar extends Component {
           {this.state.showEquipment ?
              <EquipmentDropdown
               closeShowEquipment={this.closeShowEquipment.bind(this)}
+              requiredEquipment = {this.state.requiredEquipment}
              /> :
             null}
       </div>  
