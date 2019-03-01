@@ -110,6 +110,13 @@ describe('Character Generation',()=>{
             expect(wrapper.text()).not.toContain('Baseball Bat')
         })
         describe('filtering the equipment list',()=>{
+            it('should display filter tags',()=>{
+                const wrapper = mount(<App/>)
+                wrapper.find('#activateCreateChar').simulate('click')
+                wrapper.find('#filterEquipmentList').simulate('click')
+                expect(wrapper.text()).toContain('ALICE')
+                
+            })
             it('should filter the list based on slected criteria',()=>{
                 const wrapper = mount(<App/>)
                 wrapper.find('#activateCreateChar').simulate('click')

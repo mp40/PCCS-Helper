@@ -7,7 +7,6 @@ const equipment = require('./equipmentList')
  
 class EquipmentDropdown extends Component {
 
-    // equipment = equipment
     filteredEquipment = filterEquipment(this.props.requiredEquipment)
     equipmentArray = createArrayOfEquipment(this.filteredEquipment)
 
@@ -21,7 +20,14 @@ class EquipmentDropdown extends Component {
                     <button 
                         id="closeEquipmentModal"
                         onClick={this.props.closeShowEquipment.bind(this)}
-                        >Close List</button>
+                    >
+                        Close List
+                    </button>
+                    <button
+                        id="filterEquipmentList"
+                    >
+                        Filter List
+                    </button>
                 </div>
                 <div className="equipmentListBody">
                 {this.equipmentArray.map((equipObj, index)=>{
