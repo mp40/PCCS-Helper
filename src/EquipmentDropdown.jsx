@@ -3,7 +3,7 @@ import './EquipmentDropdown.css'
 
 import {createArrayOfEquipment, filterEquipment} from './equipmentListFunctions.js'
 
-const equipment = require('./equipmentList')
+// const equipment = require('./equipmentList')
  
 class EquipmentDropdown extends Component {
 
@@ -25,10 +25,27 @@ class EquipmentDropdown extends Component {
                     </button>
                     <button
                         id="filterEquipmentList"
+                        onClick={this.props.toggleFilters.bind(this)}
                     >
                         Filter List
                     </button>
                 </div>
+                {this.props.showFilters ?
+
+                // <div className="equipmentListBody">
+                // {this.equipmentArray.map((equipObj, index)=>{
+                //     return <div className="equipmentEntry" key={index}>
+                //         <div>
+                //             {equipObj.name}
+                //         </div>
+                //         <div>
+                //             {`${equipObj.weight} lbs`}
+                //         </div>
+                //     </div>
+                // })}  
+                // </div> 
+                <div>Test for Filters ALICE</div> 
+                :
                 <div className="equipmentListBody">
                 {this.equipmentArray.map((equipObj, index)=>{
                     return <div className="equipmentEntry" key={index}>
@@ -40,8 +57,10 @@ class EquipmentDropdown extends Component {
                         </div>
                     </div>
                 })}  
-                </div>
-             
+                </div> 
+
+                // <div>Test for Filters ALICE</div> 
+            }
             </div>
         </div>
     );

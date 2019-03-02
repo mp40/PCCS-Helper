@@ -8,14 +8,15 @@ const findGear = function(findName){
     }
 }
 
-const filterEquipment = function(findTypes){
-    if(findTypes.length === 0){
+const filterEquipment = function(findType){
+    if(findType.length === 0){
         return equipment
     }
     let results = {}
+    
     for(let obj in equipment){
-            if(equipment[obj].tags.includes(...findTypes)){
-                results[obj] = equipment[obj]
+        if(equipment[obj].tags.includes(findType)){
+            results[obj] = equipment[obj]
         }
     }
     return results
@@ -33,8 +34,23 @@ function createArrayOfEquipment(equipmentList){
     return equipmentArray
 }
 
+function createFilterSet(equipmentList){
+    // const tagSet = new Set()
+    // for(let obj in equipmentList){
+    //     tagSet.add(obj.tags)
+    // }
+    // return tagSet
+    const tags = []
+    for(let obj in equipmentList){
+        console.log(equipmentList[obj])
+        tags.push(equipmentList[obj].tags)
+    }
+    return tags
+}
+
 export {
     findGear, 
     filterEquipment,
-    createArrayOfEquipment
+    createArrayOfEquipment,
+    createFilterSet
     }

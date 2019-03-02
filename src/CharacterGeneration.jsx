@@ -11,6 +11,7 @@ class CreateChar extends Component {
     super(props)
     this.state = {
       showEquipment: false,
+      showFilters: false,
       requiredEquipment: []
     }
   }
@@ -20,7 +21,14 @@ class CreateChar extends Component {
   }
 
   closeShowEquipment(){
-    this.setState({showEquipment: false})
+    this.setState({
+      showEquipment: false,
+      showFilters: false
+    })
+  }
+
+  toggleFilters(){
+    this.setState({showFilters: !this.state.showFilters})
   }
 
   render() {
@@ -64,7 +72,9 @@ class CreateChar extends Component {
           {this.state.showEquipment ?
              <EquipmentDropdown
               closeShowEquipment={this.closeShowEquipment.bind(this)}
+              toggleFilters={this.toggleFilters.bind(this)}
               requiredEquipment = {this.state.requiredEquipment}
+              showFilters = {this.state.showFilters}
              /> :
             null}
       </div>  
