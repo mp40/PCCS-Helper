@@ -74,7 +74,7 @@ describe('making a set of equipment tags',()=>{
             }
         }
         const tags = createFilterSet(smallList)
-        expect(tags.size).toBe(1)
+        expect(tags.length).toBe(1)
     })
     it('should add multiple tags from singlr target array',()=>{
         const list = {
@@ -92,7 +92,7 @@ describe('making a set of equipment tags',()=>{
             }
         }
         const tags = createFilterSet(list)
-        expect(tags.size).toBe(3)
+        expect(tags.length).toBe(3)
     })
 })
 

@@ -35,17 +35,12 @@ function createArrayOfEquipment(equipmentList){
 }
 
 function createFilterSet(equipmentList){
-    // const tagSet = new Set()
-    // for(let obj in equipmentList){
-    //     tagSet.add(obj.tags)
-    // }
-    // return tagSet
-    const tags = []
+    const tagArray = []
+
     for(let obj in equipmentList){
-        console.log(equipmentList[obj])
-        tags.push(equipmentList[obj].tags)
+        tagArray.push(equipmentList[obj].tags)
     }
-    return tags
+    return Array.from(new Set(tagArray.flat()))
 }
 
 export {
