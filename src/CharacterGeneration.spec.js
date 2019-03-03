@@ -109,23 +109,24 @@ describe('Character Generation',()=>{
             wrapper.find('#closeEquipmentModal').simulate('click')
             expect(wrapper.text()).not.toContain('Baseball Bat')
         })
-        // describe('filtering the equipment list',()=>{
-        //     it('should display filter tags',()=>{
-        //         const wrapper = mount(<App/>)
-        //         wrapper.find('#activateCreateChar').simulate('click')
-        //         wrapper.find('#filterEquipmentList').simulate('click')
-        //         expect(wrapper.text()).toContain('ALICE')
+        describe('filtering the equipment list',()=>{
+            it('should display filter tags',()=>{
+                const wrapper = mount(<App/>)
+                wrapper.find('#activateCreateChar').simulate('click')
+                wrapper.find('#addEquipment').simulate('click')
+                wrapper.find('#filterEquipmentList').simulate('click')
+                expect(wrapper.text()).toContain('ALICE')
                 
-        //     })
-            // it('should filter the list based on slected criteria',()=>{
-            //     const wrapper = mount(<App/>)
-            //     wrapper.find('#activateCreateChar').simulate('click')
-            //     wrapper.find('#filterEquipmentList').simulate('click')
-            //     //TODO fix this test
-            //     wrapper.find('???').simulate('click')
-            //     expect(wrapper.text()).toContain("Boil In The Bag")
-            //     expect(wrapper.text()).not.toContain("Baseball Bat")
-            // })
-        // })
+            })
+            it('should filter the list based on slected criteria',()=>{
+                const wrapper = mount(<App/>)
+                wrapper.find('#activateCreateChar').simulate('click')
+                wrapper.find('#filterEquipmentList').simulate('click')
+                //TODO fix this test
+                wrapper.find('???').simulate('click')
+                expect(wrapper.text()).toContain("Boil In The Bag")
+                expect(wrapper.text()).not.toContain("Baseball Bat")
+            })
+        })
     })
 })

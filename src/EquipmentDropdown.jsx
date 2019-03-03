@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import './EquipmentDropdown.css'
 
-import {createArrayOfEquipment, filterEquipment} from './equipmentListFunctions.js'
+import {createArrayOfEquipment, filterEquipment, createFilterSet} from './equipmentListFunctions.js'
 
-// const equipment = require('./equipmentList')
+const equipment = require('./equipmentList')
  
 class EquipmentDropdown extends Component {
 
     filteredEquipment = filterEquipment(this.props.requiredEquipment)
     equipmentArray = createArrayOfEquipment(this.filteredEquipment)
+    equipmentTags = createFilterSet(equipment)
 
   render() {
     return (
@@ -44,7 +45,11 @@ class EquipmentDropdown extends Component {
                 //     </div>
                 // })}  
                 // </div> 
-                <div>Test for Filters ALICE</div> 
+                <div>
+                    {this.equipmentTags.map((tag, index)=>{
+                        return <div key={index}>{tag}</div>
+                    })}
+                </div> 
                 :
                 <div className="equipmentListBody">
                 {this.equipmentArray.map((equipObj, index)=>{

@@ -137,7 +137,7 @@ const equipment = {
         },
         "M18A1 Claymore": {
             weight:3.5,
-            tags:["Comabat"],
+            tags:["Combat"],
         },
         "Machete": {
             weight:2.4,
@@ -197,7 +197,7 @@ const equipment = {
         },
         "Smoke Grenade": {
             weight: 1.5,
-            tags:["Comabt"]
+            tags:["Combat"]
         },
         "SNIPERS Harness": {
             weight:1.76,
