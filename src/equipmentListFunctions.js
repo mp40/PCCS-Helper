@@ -15,10 +15,13 @@ const filterEquipment = function(findType){
     let results = {}
     
     for(let obj in equipment){
-        if(equipment[obj].tags.includes(findType)){
-            results[obj] = equipment[obj]
+        for(let i = 0; i < findType.length; i++){
+            if(equipment[obj].tags.includes(findType[i])){
+                results[obj] = equipment[obj]
+            }
         }
     }
+
     return results
 }
 
@@ -43,16 +46,9 @@ function createFilterSet(equipmentList){
     return Array.from(new Set(tagArray.flat()))
 }
 
-function filterTags(list, tag){
-    return list.filter((element)=>{
-        return tag.includes(element)
-    })
-}
-
 export {
     findGear, 
     filterEquipment,
     createArrayOfEquipment,
     createFilterSet,
-    filterTags
     }

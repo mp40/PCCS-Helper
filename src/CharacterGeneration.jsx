@@ -12,7 +12,8 @@ class CreateChar extends Component {
     this.state = {
       showEquipment: false,
       showFilters: false,
-      requiredEquipment: []
+      requiredEquipment: [],
+      filteredTags: []
     }
   }
 
@@ -30,6 +31,12 @@ class CreateChar extends Component {
   toggleFilters(){
     this.setState({showFilters: !this.state.showFilters})
   }
+
+  filterTags(tag) {
+        const tags = this.state.filteredTags
+        tags.push(tag)
+        this.setState({filteredTags: tags})
+    }
 
   render() {
     return (
@@ -73,8 +80,10 @@ class CreateChar extends Component {
              <EquipmentDropdown
               closeShowEquipment={this.closeShowEquipment.bind(this)}
               toggleFilters={this.toggleFilters.bind(this)}
+              filterTags={this.filterTags.bind(this)}
               requiredEquipment = {this.state.requiredEquipment}
               showFilters = {this.state.showFilters}
+              filteredTags = {this.state.filteredTags}
              /> :
             null}
       </div>  

@@ -1,4 +1,4 @@
-import {findGear, createArrayOfEquipment, filterEquipment, createFilterSet, filterTags} from './equipmentListFunctions.js'
+import {findGear, createArrayOfEquipment, filterEquipment, createFilterSet} from './equipmentListFunctions.js'
 
 const {equipmentList} = require ('./equipmentList')
 
@@ -13,22 +13,21 @@ describe("finding things in the equipment list",()=>{
     
 describe('filtering the equipment list',()=>{
     it('should filter based on type key value',()=>{
-        expect(Object.keys(filterEquipment("WW2")).length).toBe(14)
-        expect(filterEquipment('WW2')["Bayonet, M1 w/M7 scabard"].weight).toBe(1.56)
-        expect(Object.keys(filterEquipment('ALICE')).length).toBe(5)
-        expect(Object.keys(filterEquipment('Load Bearing')).length).toBe(34)
+        expect(Object.keys(filterEquipment(["WW2"])).length).toBe(14)
+        expect(filterEquipment(['WW2'])["Bayonet, M1 w/M7 scabard"].weight).toBe(1.56)
+        expect(Object.keys(filterEquipment(['ALICE'])).length).toBe(5)
+        expect(Object.keys(filterEquipment(['Load Bearing'])).length).toBe(34)
     })
     it('should return filtered list with correct key names',()=>{
-        expect(typeof filterEquipment("WW2")).toEqual("object")
-        expect(filterEquipment('WW2')).toHaveProperty('Bayonet, M1 w/M7 scabard')
+        expect(typeof filterEquipment(["WW2"])).toEqual("object")
+        expect(filterEquipment(['WW2'])).toHaveProperty('Bayonet, M1 w/M7 scabard')
     })
-    // it('should be able to filter more than one tag',()=>{
-    //     const filteredList = filterEquipment(["rations","medical"])
-    //     expect(Object.keys(filteredList).length).toBe(21)
-    // })
-    // it('should not filter if parameter is empty array',()=>{
-    //     expect(Object.keys(filterEquipment([])).length).toBe(88)
-    // })
+    it('should be able to filter more than one tag',()=>{
+        expect(Object.keys(filterEquipment(['Rations', 'Medical'])).length).toBe(21)
+    })
+    it('should not filter if parameter is empty array',()=>{
+        expect(Object.keys(filterEquipment([])).length).toBe(88)
+    })
 })    
 
 describe('creating an array of equipment',()=>{
@@ -93,11 +92,6 @@ describe('making a set of equipment tags',()=>{
         }
         const tags = createFilterSet(list)
         expect(tags.length).toBe(3)
-    })
-    it('should have a list of filtered tags',()=>{
-        const list = ['Load Bearing', 'ALICE', "Melee"]
-        const tag = ["Melee"]
-        expect(filterTags(list, tag).length).toBe(1)
     })
 })
 
