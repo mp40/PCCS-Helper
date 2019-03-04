@@ -43,9 +43,16 @@ function createFilterSet(equipmentList){
     return Array.from(new Set(tagArray.flat()))
 }
 
+function filterTags(list, tag){
+    return list.filter((element)=>{
+        return tag.includes(element)
+    })
+}
+
 export {
     findGear, 
     filterEquipment,
     createArrayOfEquipment,
-    createFilterSet
+    createFilterSet,
+    filterTags
     }

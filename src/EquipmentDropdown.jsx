@@ -16,10 +16,12 @@ class EquipmentDropdown extends Component {
     filteredEquipment = filterEquipment(this.props.requiredEquipment)
     equipmentArray = createArrayOfEquipment(this.filteredEquipment)
     equipmentTags = createFilterSet(equipment)
+    // filteredTags = 
 
     filterTags(tag) {
-        //TODO
-
+        const tags = this.state.filterTags
+        tags.push(tag)
+        this.setState({filterTags: tags})
     }
 
   render() {

@@ -1,4 +1,4 @@
-import {findGear, createArrayOfEquipment, filterEquipment, createFilterSet} from './equipmentListFunctions.js'
+import {findGear, createArrayOfEquipment, filterEquipment, createFilterSet, filterTags} from './equipmentListFunctions.js'
 
 const {equipmentList} = require ('./equipmentList')
 
@@ -93,6 +93,11 @@ describe('making a set of equipment tags',()=>{
         }
         const tags = createFilterSet(list)
         expect(tags.length).toBe(3)
+    })
+    it('should have a list of filtered tags',()=>{
+        const list = ['Load Bearing', 'ALICE', "Melee"]
+        const tag = ["Melee"]
+        expect(filterTags(list, tag).length).toBe(1)
     })
 })
 
