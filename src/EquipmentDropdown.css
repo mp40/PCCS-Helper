@@ -39,3 +39,15 @@
     padding-left: .2rem;
     padding-right: .2rem;
 }
+
+.tagContainer {
+    /* font-size: small; */
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: space-evenly; */
+}
+
+.equipTags {
+    width: 33.33%;
+    text-align: center;
+}

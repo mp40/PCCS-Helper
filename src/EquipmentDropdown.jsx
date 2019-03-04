@@ -6,10 +6,21 @@ import {createArrayOfEquipment, filterEquipment, createFilterSet} from './equipm
 const equipment = require('./equipmentList')
  
 class EquipmentDropdown extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            filterTags: []
+        }
+    }
 
     filteredEquipment = filterEquipment(this.props.requiredEquipment)
     equipmentArray = createArrayOfEquipment(this.filteredEquipment)
     equipmentTags = createFilterSet(equipment)
+
+    filterTags(tag) {
+        //TODO
+
+    }
 
   render() {
     return (
@@ -20,34 +31,27 @@ class EquipmentDropdown extends Component {
                     Select Equipment
                     <button 
                         id="closeEquipmentModal"
+                        className="equipmentButton"
                         onClick={this.props.closeShowEquipment.bind(this)}
                     >
                         Close List
                     </button>
                     <button
                         id="filterEquipmentList"
+                        className="equipmentButton"
                         onClick={this.props.toggleFilters.bind(this)}
                     >
                         Filter List
                     </button>
                 </div>
                 {this.props.showFilters ?
-
-                // <div className="equipmentListBody">
-                // {this.equipmentArray.map((equipObj, index)=>{
-                //     return <div className="equipmentEntry" key={index}>
-                //         <div>
-                //             {equipObj.name}
-                //         </div>
-                //         <div>
-                //             {`${equipObj.weight} lbs`}
-                //         </div>
-                //     </div>
-                // })}  
-                // </div> 
-                <div>
+                <div className="tagContainer">
                     {this.equipmentTags.map((tag, index)=>{
-                        return <div key={index}>{tag}</div>
+                        return <div 
+                            className="equipTags" 
+                            onclick={this.filterTags.bind(this, tag)}
+                            key={index}
+                            >{tag}</div>
                     })}
                 </div> 
                 :
@@ -63,8 +67,6 @@ class EquipmentDropdown extends Component {
                     </div>
                 })}  
                 </div> 
-
-                // <div>Test for Filters ALICE</div> 
             }
             </div>
         </div>

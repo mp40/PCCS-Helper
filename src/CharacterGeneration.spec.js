@@ -123,7 +123,8 @@ describe('Character Generation',()=>{
                 wrapper.find('#activateCreateChar').simulate('click')
                 wrapper.find('#filterEquipmentList').simulate('click')
                 //TODO fix this test
-                wrapper.find('???').simulate('click')
+                const tagToClick = warpper.find('.equipTags div')
+                tagToClick.at(8).simulate('click')
                 expect(wrapper.text()).toContain("Boil In The Bag")
                 expect(wrapper.text()).not.toContain("Baseball Bat")
             })
