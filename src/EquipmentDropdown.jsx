@@ -42,7 +42,7 @@ class EquipmentDropdown extends Component {
                             style={{fontWeight: this.props.filteredTags.includes(tag) ? 
                                 'bold' : 
                                 null}}
-                            onClick={this.props.filterTags.bind(this, tag)}
+                            onClick={this.props.handleTags.bind(this, tag)}
                             key={index}
                             >{tag}</div>
                     })}

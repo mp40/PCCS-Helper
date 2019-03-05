@@ -32,11 +32,28 @@ class CreateChar extends Component {
     this.setState({showFilters: !this.state.showFilters})
   }
 
-  filterTags(tag) {
-        const tags = this.state.filteredTags
-        tags.push(tag)
-        this.setState({filteredTags: tags})
+  handleTags(tag) {
+      if(this.state.filteredTags.includes(tag)){
+        this.unfilterTag(tag)
+      } else {
+        this.filterTag(tag)
+      }
     }
+
+  filterTag(tag) {
+    const tags = this.state.filteredTags
+    tags.push(tag)
+    this.setState({filteredTags: tags})
+  }
+
+  unfilterTag(tag){
+    let tags = this.state.filteredTags
+    tags = tags.filter((element)=>{
+      return element !== tag
+    })
+    this.setState({filteredTags: tags})
+  }
+
 
   render() {
     return (
@@ -80,7 +97,7 @@ class CreateChar extends Component {
              <EquipmentDropdown
               closeShowEquipment={this.closeShowEquipment.bind(this)}
               toggleFilters={this.toggleFilters.bind(this)}
-              filterTags={this.filterTags.bind(this)}
+              handleTags={this.handleTags.bind(this)}
               requiredEquipment = {this.state.requiredEquipment}
               showFilters = {this.state.showFilters}
               filteredTags = {this.state.filteredTags}
