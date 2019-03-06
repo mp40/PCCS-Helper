@@ -2,6 +2,7 @@ import React from 'react';
 import App from './App';
 import {mount} from 'enzyme'
 
+//TODO - look at updating to react/redux
 describe('Character Generation',()=>{
     const wrapper = mount(<App/>)
     wrapper.find('#activateCreateChar').simulate('click')
