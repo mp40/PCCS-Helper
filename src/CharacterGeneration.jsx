@@ -5,7 +5,6 @@ import './CharacterGeneration.css'
 import ActionsCard from "./ActionsCard";
 import EquipmentDropdown from "./EquipmentDropdown";
 
-
 class CreateChar extends Component {
   constructor(props){
     super(props)
@@ -38,7 +37,7 @@ class CreateChar extends Component {
       } else {
         this.filterTag(tag)
       }
-    }
+  }
 
   filterTag(tag) {
     const tags = this.state.filteredTags
@@ -53,7 +52,6 @@ class CreateChar extends Component {
     })
     this.setState({filteredTags: tags})
   }
-
 
   render() {
     return (
