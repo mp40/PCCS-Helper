@@ -1,20 +1,20 @@
 import React, { Component } from "react";
  
-const {actionsPerImpulse} = require('./helperFunctions')
+const {actionsPerImpulse} = require('./helperFunctions');
 
 class ActionsCard extends Component {
 
   render() {
-    const gunActions = actionsPerImpulse(this.props.combatStats.combatActions[0])
-    const handActions = actionsPerImpulse(this.props.combatStats.combatActions[1])
+    const gunActions = actionsPerImpulse(this.props.combatStats.combatActions[0]);
+    const handActions = actionsPerImpulse(this.props.combatStats.combatActions[1]);
     return (
       <div>
-        <div className="combatDataContainer">
+        <div className = "combatDataContainer">
 
           <table style={{width:'100%'}} className="combatActions">
             <thead>
-              <tr className="actionsHeader">
-                <th className="actionType" style={{width:'32%'}}> Imp</th>
+              <tr className = "actionsHeader">
+                <th className="actionType" style = {{width:'32%'}}> Imp</th>
                 <th style={{width:'17%'}}>1</th>
                 <th style={{width:'17%'}}>2</th>
                 <th style={{width:'17%'}}>3</th>
@@ -44,9 +44,9 @@ class ActionsCard extends Component {
           <table className="additionalCombatData">
             <tbody>
               <tr>
-              <td style={{width: '33.33%'}}>BS {this.props.combatStats.baseSpeed}</td>
-              <td style={{width: '33.33%'}}>MS {this.props.combatStats.maxSpeed}</td>
-              <td style={{width: '33.33%'}}>DB {this.props.combatStats.damageBonus}</td>
+              <td style = {{width: '33.33%'}}>BS {this.props.combatStats.baseSpeed}</td>
+              <td style = {{width: '33.33%'}}>MS {this.props.combatStats.maxSpeed}</td>
+              <td style = {{width: '33.33%'}}>DB {this.props.combatStats.damageBonus}</td>
               </tr>
             </tbody>
               
