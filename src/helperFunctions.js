@@ -55,7 +55,7 @@ const calcCombatActions = (ms, isf) => {
 
 const calcKV = (wil, highestSkill) => {
   return Math.floor(0.5 * wil) * highestSkill;
-}
+};
 
 const calcDB = (ms, asf) => {
   if (ms === 0) {
@@ -63,7 +63,7 @@ const calcDB = (ms, asf) => {
   }
   const index = findKey(asf, table1D_DamageBonus.asf);
   return table1D_DamageBonus[ms][index] * 1;
-}
+};
 
 const calculateStateObject = function (characterStats, weight) {
   const bs = calcBaseSpeed(characterStats.str, weight);
@@ -117,7 +117,7 @@ function actionsPerImpulse(actions){
   }
 
   return impulseArray
-}
+};
 
 module.exports = {
   calcBaseSpeed,

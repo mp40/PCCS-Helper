@@ -43,15 +43,16 @@ class App extends Component {
 
   setDisplay(view){
     this.setState({currentView: view})
-  }
+  };
 
   weightWarningOn() {
     this.setState({ weightWarningMsg: true });
-  }
+  };
 
   weightWarningOff() {
     this.setState({ weightWarningMsg: false });
-  }
+  };
+
   updateAllStats() {
     const weight = this.state.equipmentWeight;
 
@@ -63,14 +64,15 @@ class App extends Component {
       agi: this.state.characterStats.agi,
       gunLevel: this.state.characterStats.gunLevel,
       handLevel: this.state.characterStats.handLevel,
-    }
+    };
 
     const newData = calculateStateObject(playerObject, weight);
     if (newData.baseSpeed === 0) {
       this.weightWarningOn();
     } else {
       this.weightWarningOff();
-    }
+    };
+
     this.setState({
       combatStats: {
         baseSpeed: newData.baseSpeed,
@@ -84,8 +86,8 @@ class App extends Component {
         combatActions: [newData.gunActions, newData.handActions],
       },
       toggleEditValue: false
-    });
-  }
+    })
+  };
 
   updateAttribute = (attribute, value)=>{
       this.setState({characterStats:{...this.state.characterStats,[attribute]: value}}, ()=>{
@@ -95,7 +97,7 @@ class App extends Component {
 
   settingAttribute(key){
     this.setState({toggleEditValue: key})
-  }
+  };
 
   addEquipment(obj){
     obj.qty = 1
@@ -103,7 +105,7 @@ class App extends Component {
       gear:{equipment: [...this.state.gear.equipment, obj]}}, ()=>{
         this.updateAllStats();
     })
-  }
+  };
 
   render() {
     return (

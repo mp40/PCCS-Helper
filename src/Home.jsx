@@ -13,6 +13,6 @@ function HomePage(props) {
       </button>
     </div>
   );
-}
+};
 
 export default HomePage;
