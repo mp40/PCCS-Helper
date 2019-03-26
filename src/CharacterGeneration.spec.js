@@ -122,10 +122,11 @@ describe('Character Generation',()=>{
             it('should filter the list based on slected criteria',()=>{
                 const wrapper = mount(<App/>)
                 wrapper.find('#activateCreateChar').simulate('click')
+                wrapper.find('#addEquipment').simulate('click')
                 wrapper.find('#filterEquipmentList').simulate('click')
-                //TODO fix this test
-                const tagToClick = warpper.find('.equipTags div')
-                tagToClick.at(8).simulate('click')
+                const tagContainer = wrapper.find('.tagContainer div')
+                tagContainer.at(8).simulate('click')
+                // TODO, Need a add some simulate clicks here to get to equipment list or change how feature works
                 expect(wrapper.text()).toContain("Boil In The Bag")
                 expect(wrapper.text()).not.toContain("Baseball Bat")
             })
