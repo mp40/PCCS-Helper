@@ -31,7 +31,9 @@ class EquipmentDropdown extends Component {
                         className="equipmentButton"
                         onClick={this.props.toggleFilters.bind(this)}
                     >
-                        Filter List
+                        {this.props.showFilters ?
+                        'Apply Filter' :
+                        'Filter List'}
                     </button>
                 </div>
                 {this.props.showFilters ?
