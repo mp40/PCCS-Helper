@@ -110,6 +110,15 @@ describe('Character Generation',()=>{
             wrapper.find('#closeEquipmentModal').simulate('click')
             expect(wrapper.text()).not.toContain('Baseball Bat')
         })
+        it('should add equipment to character equipmentTable',()=>{
+            const wrapper = mount(<App/>)
+            wrapper.find('#activateCreateChar').simulate('click')
+            wrapper.find('#addEquipment').simulate('click')
+            const availableEquipment = wrapper.find('.equipmentListBody')
+            const requiredEquipment = availableEquipment.at(0).childAt(0).childAt(0)
+            requiredEquipment.simulate('click')
+            expect(wrapper.find('#equipmentTable')).toContain('Baseball Bat')
+        })
         describe('filtering the equipment list',()=>{
             it('should display filter tags',()=>{
                 const wrapper = mount(<App/>)
