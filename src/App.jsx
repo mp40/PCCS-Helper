@@ -100,6 +100,7 @@ class App extends Component {
   };
 
   addEquipment(obj){
+    //TODO I have confirmed below adds equip to state
     obj.qty = 1
     this.setState({
       gear:{equipment: [...this.state.gear.equipment, obj]}}, ()=>{
@@ -123,6 +124,7 @@ class App extends Component {
             updateAttribute={this.updateAttribute.bind(this)}
             settingAttribute={this.settingAttribute.bind(this)}
             addEquipment={this.addEquipment.bind(this)}
+            // addEquipmentToCharacter={this.addEquipmentToCharacter.bind(this)}
           /> :
           null}
         </header>

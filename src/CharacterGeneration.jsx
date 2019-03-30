@@ -89,6 +89,7 @@ class CreateChar extends Component {
                 >Add Equipment</button>
               </td>
               </tr>
+              <tr>TODO render selected eqipment here</tr>
             </tbody>
           </table>
           {this.state.showEquipment ?
@@ -99,6 +100,9 @@ class CreateChar extends Component {
               requiredEquipment = {this.state.requiredEquipment}
               showFilters = {this.state.showFilters}
               filteredTags = {this.state.filteredTags}
+              // addEquipmentToCharacter = {this.props.addEquipmentToCharacter.bind(this)}
+              addEquipment = {this.props.addEquipment.bind(this)}
+              // toggleShowEquipment = {this.state.toggleShowEquipment.bind(this)}
              /> :
             null}
       </div>  

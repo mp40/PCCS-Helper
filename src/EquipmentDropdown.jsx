@@ -7,6 +7,14 @@ const equipment = require('./equipmentList')
  
 class EquipmentDropdown extends Component {
 
+  
+    handleAddEquip(equipObj){
+        console.log('firing', this.props.gear)
+        //TODO close equipment selector or not?
+        // this.props.toggleShowEquipment.bind(this)
+        this.props.addEquipment(equipObj)
+    }  
+
   render() {
 
     const filteredEquipment = filterEquipment(this.props.filteredTags)
@@ -52,14 +60,16 @@ class EquipmentDropdown extends Component {
                 :
                 <div className="equipmentListBody">
                 {equipmentArray.map((equipObj, index)=>{
-                    return <div className="equipmentEntry" key={index}>
-                        <div>
-                            {equipObj.name}
-                        </div>
-                        <div>
-                            {`${equipObj.weight} lbs`}
-                        </div>
-                    </div>
+                    return <div className="equipmentEntry"
+                            key={index}
+                            onClick={this.handleAddEquip.bind(this, equipObj)}>
+                                <div>
+                                    {equipObj.name}
+                                </div>
+                                <div>
+                                    {`${equipObj.weight} lbs`}
+                                </div>
+                            </div>
                 })}  
                 </div> 
             }
