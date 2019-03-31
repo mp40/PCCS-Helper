@@ -101,10 +101,10 @@ class CreateChar extends Component {
                       {equipObj.weight}
                     </td>
                     <td>
-                        {equipObj.qty}
+                      {equipObj.qty}
                     </td>
                     <td>
-                      TODO calculate
+                      {equipObj.qty * equipObj.weight}
                     </td>
                     <td className="arrowBox">
                       <button 

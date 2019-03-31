@@ -145,11 +145,13 @@ describe('Character Generation',()=>{
             expect(wrapper.find('#characterEquipmentList').childAt(1).childAt(2).text()).toContain(1)
         })
         //TODO fix and add this test after adding an increment up and down for qty
-        // it('should calculate weight * qty',()=>{
-        //     const wrapper = mount(<App/>)
-        //     addEquipment(wrapper)
-        //     expect(wrapper.find('#characterEquipmentList').text()).toContain(1)
-        // })
+        it('should calculate weight * qty',()=>{
+            const wrapper = mount(<App/>)
+            addEquipment(wrapper)
+            expect(wrapper.find('#characterEquipmentList').childAt(1).childAt(3).text()).toContain(2.2)
+            wrapper.find('#qtyUp').simulate('click')
+            expect(wrapper.find('#characterEquipmentList').childAt(1).childAt(3).text()).toContain(4.4)
+        })
         describe('filtering the equipment list',()=>{
             it('should display filter tags',()=>{
                 const wrapper = mount(<App/>)
