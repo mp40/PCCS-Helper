@@ -70,16 +70,16 @@ class CreateChar extends Component {
           {...this.props}
         />
         </div>
-        <div style={{width:'50%'}} className="equipmentSelect">
+        <div style={{width:'40%'}} className="equipmentSelect">
 
           <table style={{width:'100%'}} className="equipmentTable">
             <thead>
               <tr className="equipmentHeader">
                 <th>Equipment</th>
-                <th>Weight</th>
-                <th>Qty</th>
-                <th>Total lbs</th>
-                <th></th>
+                <th style={{width:'9%'}}>Weight</th>
+                <th style={{width:'9%'}}>Qty</th>
+                <th style={{width:'9%'}}>lbs</th>
+                <th style={{width:'9%'}}>XXX</th>
               </tr>
             </thead>
             <tbody id="characterEquipmentList">
@@ -101,7 +101,21 @@ class CreateChar extends Component {
                       {equipObj.weight}
                     </td>
                     <td>
-                      {equipObj.qty}
+                        {equipObj.qty}
+                      {/* {equipObj.qty}
+                      {String.fromCharCode(8593)}
+                      {String.fromCharCode(8595)} */}
+                    </td>
+                    <td>
+                      TODO calculate
+                    </td>
+                    <td className="arrowBox">
+                      <div>
+                        {String.fromCharCode(8593)}
+                      </div>
+                      <div>
+                        {String.fromCharCode(8595)}
+                      </div>
                     </td>
                   </tr>
                 })}
