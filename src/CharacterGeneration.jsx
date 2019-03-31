@@ -102,20 +102,17 @@ class CreateChar extends Component {
                     </td>
                     <td>
                         {equipObj.qty}
-                      {/* {equipObj.qty}
-                      {String.fromCharCode(8593)}
-                      {String.fromCharCode(8595)} */}
                     </td>
                     <td>
                       TODO calculate
                     </td>
                     <td className="arrowBox">
-                      <div>
+                      <button id="qtyUp" className="equipmentButton">
                         {String.fromCharCode(8593)}
-                      </div>
-                      <div>
+                      </button>
+                      <button id="qtyDown" className="equipmentButton">
                         {String.fromCharCode(8595)}
-                      </div>
+                      </button>
                     </td>
                   </tr>
                 })}

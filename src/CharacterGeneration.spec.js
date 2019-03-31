@@ -134,7 +134,12 @@ describe('Character Generation',()=>{
         it('should add selected equipment quantity to character equipmentTable',()=>{
             const wrapper = mount(<App/>)
             addEquipment(wrapper)
-            expect(wrapper.find('#characterEquipmentList').text()).toContain(1)
+            expect(wrapper.find('#characterEquipmentList').childAt(1).childAt(2).text()).toContain(1)
+        })
+        it('should be possible increment qty up and down',()=>{
+            const wrapper = mount(<App/>)
+            addEquipment(wrapper)
+            expect(wrapper.find('#characterEquipmentList').childAt(1).childAt(2).text()).toContain(2)
         })
         //TODO fix and add this test after adding an increment up and down for qty
         // it('should calculate weight * qty',()=>{
