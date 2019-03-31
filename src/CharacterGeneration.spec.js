@@ -105,6 +105,12 @@ describe('Character Generation',()=>{
         it('should render',()=>{
             expect(wrapper.text()).toContain('Equipment')
         })
+        it('should show total equipment weight',()=>{
+            const wrapper = mount(<App/>)
+            addEquipment(wrapper)
+            expect(wrapper.find('.equipmentHeader').childAt(4).text()).toContain(2.2)
+            
+        })
         it('should render equipment list',()=>{
             wrapper.find('#addEquipment').simulate('click')
             expect(wrapper.text()).toContain('Baseball Bat')
@@ -144,7 +150,6 @@ describe('Character Generation',()=>{
             wrapper.find('#qtyDown').simulate('click')
             expect(wrapper.find('#characterEquipmentList').childAt(1).childAt(2).text()).toContain(1)
         })
-        //TODO fix and add this test after adding an increment up and down for qty
         it('should calculate weight * qty',()=>{
             const wrapper = mount(<App/>)
             addEquipment(wrapper)

@@ -56,6 +56,9 @@ class CreateChar extends Component {
   render() {
 
     const charEquip = this.props.gear.equipment
+    const totalEquipWeight = charEquip.reduce((accumulator,obj)=>{
+      return accumulator + (obj.weight*obj.qty)
+    },0)
 
     return (
       <div className="createCharContainer">
@@ -79,7 +82,9 @@ class CreateChar extends Component {
                 <th style={{width:'9%'}}>Weight</th>
                 <th style={{width:'9%'}}>Qty</th>
                 <th style={{width:'9%'}}>lbs</th>
-                <th style={{width:'9%'}}>XXX</th>
+                <th style={{width:'9%'}}>
+                {Math.round(totalEquipWeight*1000)/1000}
+                </th>
               </tr>
             </thead>
             <tbody id="characterEquipmentList">
