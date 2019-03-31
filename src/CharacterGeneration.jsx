@@ -100,6 +100,9 @@ class CreateChar extends Component {
                     <td>
                       {equipObj.weight}
                     </td>
+                    <td>
+                      {equipObj.qty}
+                    </td>
                   </tr>
                 })}
             </tbody>

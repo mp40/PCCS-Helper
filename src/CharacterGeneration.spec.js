@@ -126,7 +126,11 @@ describe('Character Generation',()=>{
             addEquipment(wrapper)
             expect(wrapper.find('#characterEquipmentList').text()).toContain(2.2)
         })
-
+        it('should add selected equipment quantity to character equipmentTable',()=>{
+            const wrapper = mount(<App/>)
+            addEquipment(wrapper)
+            expect(wrapper.find('#characterEquipmentList').text()).toContain(1)
+        })
         describe('filtering the equipment list',()=>{
             it('should display filter tags',()=>{
                 const wrapper = mount(<App/>)
