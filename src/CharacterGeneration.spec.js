@@ -110,16 +110,23 @@ describe('Character Generation',()=>{
             wrapper.find('#closeEquipmentModal').simulate('click')
             expect(wrapper.text()).not.toContain('Baseball Bat')
         })
-        it('should add equipment to character equipmentTable',()=>{
+        it('should add selected equipment name to character equipmentTable',()=>{
             const wrapper = mount(<App/>)
             wrapper.find('#activateCreateChar').simulate('click')
             wrapper.find('#addEquipment').simulate('click')
-            const availableEquipment = wrapper.find('.equipmentListBody')
-            const requiredEquipment = availableEquipment.at(0).childAt(0).childAt(0)
+            const requiredEquipment = wrapper.find('.equipmentListBody').at(0).childAt(0).childAt(0)
             requiredEquipment.simulate('click')
-            wrapper.find('#closeEquipmentModal').simulate('click')
             expect(wrapper.find('#characterEquipmentList').text()).toContain('Baseball Bat')
         })
+        it('should add selected equipment weight to character equipmentTable',()=>{
+            const wrapper = mount(<App/>)
+            wrapper.find('#activateCreateChar').simulate('click')
+            wrapper.find('#addEquipment').simulate('click')
+            const requiredEquipment = wrapper.find('.equipmentListBody').at(0).childAt(0).childAt(0)
+            requiredEquipment.simulate('click')
+            expect(wrapper.find('#characterEquipmentList').text()).toContain(2.2)
+        })
+
         describe('filtering the equipment list',()=>{
             it('should display filter tags',()=>{
                 const wrapper = mount(<App/>)
