@@ -96,6 +96,12 @@ describe('Character Generation',()=>{
     describe('the equipment list',()=>{
         const wrapper = mount(<App/>)
         wrapper.find('#activateCreateChar').simulate('click')
+        function addEquipment(wrapper) {
+            wrapper.find('#activateCreateChar').simulate('click')
+            wrapper.find('#addEquipment').simulate('click')
+            const requiredEquipment = wrapper.find('.equipmentListBody').at(0).childAt(0).childAt(0)
+            requiredEquipment.simulate('click')
+        }
         it('should render',()=>{
             expect(wrapper.text()).toContain('Equipment')
         })
@@ -112,18 +118,12 @@ describe('Character Generation',()=>{
         })
         it('should add selected equipment name to character equipmentTable',()=>{
             const wrapper = mount(<App/>)
-            wrapper.find('#activateCreateChar').simulate('click')
-            wrapper.find('#addEquipment').simulate('click')
-            const requiredEquipment = wrapper.find('.equipmentListBody').at(0).childAt(0).childAt(0)
-            requiredEquipment.simulate('click')
+            addEquipment(wrapper)
             expect(wrapper.find('#characterEquipmentList').text()).toContain('Baseball Bat')
         })
         it('should add selected equipment weight to character equipmentTable',()=>{
             const wrapper = mount(<App/>)
-            wrapper.find('#activateCreateChar').simulate('click')
-            wrapper.find('#addEquipment').simulate('click')
-            const requiredEquipment = wrapper.find('.equipmentListBody').at(0).childAt(0).childAt(0)
-            requiredEquipment.simulate('click')
+            addEquipment(wrapper)
             expect(wrapper.find('#characterEquipmentList').text()).toContain(2.2)
         })
 
