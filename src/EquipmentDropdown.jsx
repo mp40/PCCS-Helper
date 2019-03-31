@@ -9,7 +9,6 @@ class EquipmentDropdown extends Component {
 
   
     handleAddEquip(equipObj){
-        console.log('firing', this.props.gear)
         //TODO close equipment selector or not?
         // this.props.toggleShowEquipment.bind(this)
         this.props.addEquipment(equipObj)

@@ -54,6 +54,9 @@ class CreateChar extends Component {
   }
 
   render() {
+
+    const charEquip = this.props.gear.equipment
+
     return (
       <div className="createCharContainer">
         <div className="dataCardContainer">
@@ -79,7 +82,7 @@ class CreateChar extends Component {
                 <th></th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="characterEquipmentList">
               <tr className="addEquipment">
               <td>
                 <button 
@@ -89,7 +92,13 @@ class CreateChar extends Component {
                 >Add Equipment</button>
               </td>
               </tr>
-              <tr>TODO render selected eqipment here</tr>
+                {charEquip.map((equipObj, index)=>{
+                  return <tr key={index}>
+                    <td>
+                      {equipObj.name}
+                    </td>
+                  </tr>
+                })}
             </tbody>
           </table>
           {this.state.showEquipment ?

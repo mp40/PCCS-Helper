@@ -117,7 +117,8 @@ describe('Character Generation',()=>{
             const availableEquipment = wrapper.find('.equipmentListBody')
             const requiredEquipment = availableEquipment.at(0).childAt(0).childAt(0)
             requiredEquipment.simulate('click')
-            expect(wrapper.find('#equipmentTable')).toContain('Baseball Bat')
+            wrapper.find('#closeEquipmentModal').simulate('click')
+            expect(wrapper.find('#characterEquipmentList').text()).toContain('Baseball Bat')
         })
         describe('filtering the equipment list',()=>{
             it('should display filter tags',()=>{
