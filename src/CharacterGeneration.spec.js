@@ -141,6 +141,8 @@ describe('Character Generation',()=>{
             addEquipment(wrapper)
             wrapper.find('#qtyUp').simulate('click')
             expect(wrapper.find('#characterEquipmentList').childAt(1).childAt(2).text()).toContain(2)
+            wrapper.find('#qtyDown').simulate('click')
+            expect(wrapper.find('#characterEquipmentList').childAt(1).childAt(2).text()).toContain(1)
         })
         //TODO fix and add this test after adding an increment up and down for qty
         // it('should calculate weight * qty',()=>{
