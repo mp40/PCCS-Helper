@@ -113,7 +113,10 @@ class CreateChar extends Component {
                         onClick={this.props.incrementEquipmentQty.bind(this,equipObj,1)}>
                         {String.fromCharCode(8593)}
                       </button>
-                      <button id="qtyDown" className="equipmentButton">
+                      <button 
+                        id="qtyDown" 
+                        className="equipmentButton"
+                        onClick={this.props.incrementEquipmentQty.bind(this,equipObj,-1)}>
                         {String.fromCharCode(8595)}
                       </button>
                     </td>
