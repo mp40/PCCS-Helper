@@ -107,7 +107,10 @@ class CreateChar extends Component {
                       TODO calculate
                     </td>
                     <td className="arrowBox">
-                      <button id="qtyUp" className="equipmentButton">
+                      <button 
+                        id="qtyUp" 
+                        className="equipmentButton"
+                        onClick={this.props.incrementEquipmentQty.bind(this,equipObj,1)}>
                         {String.fromCharCode(8593)}
                       </button>
                       <button id="qtyDown" className="equipmentButton">

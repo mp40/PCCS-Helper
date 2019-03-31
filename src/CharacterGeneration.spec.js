@@ -139,6 +139,7 @@ describe('Character Generation',()=>{
         it('should be possible increment qty up and down',()=>{
             const wrapper = mount(<App/>)
             addEquipment(wrapper)
+            wrapper.find('#qtyUp').simulate('click')
             expect(wrapper.find('#characterEquipmentList').childAt(1).childAt(2).text()).toContain(2)
         })
         //TODO fix and add this test after adding an increment up and down for qty

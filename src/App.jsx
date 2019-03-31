@@ -100,11 +100,25 @@ class App extends Component {
   };
 
   addEquipment(obj){
-    //TODO I have confirmed below adds equip to state
     obj.qty = 1
     this.setState({
       gear:{equipment: [...this.state.gear.equipment, obj]}}, ()=>{
         this.updateAllStats();
+    })
+  };
+
+  incrementEquipmentQty(equipObj, modifier){
+    const gear = this.state.gear.equipment
+    const updated = gear.map((obj)=>{
+      if(obj.name === equipObj.name){
+        obj.qty = obj.qty + modifier
+      }
+      return obj
+    })
+    this.setState({
+      gear:{equipment: updated}
+    }, ()=>{
+      this.updateAllStats()
     })
   };
 
@@ -124,7 +138,7 @@ class App extends Component {
             updateAttribute={this.updateAttribute.bind(this)}
             settingAttribute={this.settingAttribute.bind(this)}
             addEquipment={this.addEquipment.bind(this)}
-            // addEquipmentToCharacter={this.addEquipmentToCharacter.bind(this)}
+            incrementEquipmentQty={this.incrementEquipmentQty.bind(this)}
           /> :
           null}
         </header>
