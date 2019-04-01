@@ -9,7 +9,9 @@ function NavBar(props) {
         PCCS
       </div>
       {props.currentView === 'createChar' ?
-          <NavBarCreateChar/> :
+          <NavBarCreateChar
+            {...props}
+          /> :
           null}
     </div>
   );
