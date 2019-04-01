@@ -157,6 +157,9 @@ describe('Character Generation',()=>{
             wrapper.find('#qtyUp').simulate('click')
             expect(wrapper.find('#characterEquipmentList').childAt(1).childAt(3).text()).toContain(4.4)
         })
+        it('should add equipment weight to total weight',()=>{
+            //TODO
+        })
         describe('filtering the equipment list',()=>{
             it('should display filter tags',()=>{
                 const wrapper = mount(<App/>)

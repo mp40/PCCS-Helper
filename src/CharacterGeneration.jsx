@@ -83,7 +83,7 @@ class CreateChar extends Component {
                 <th style={{width:'9%'}}>Qty</th>
                 <th style={{width:'9%'}}>lbs</th>
                 <th style={{width:'9%'}}>
-                {Math.round(totalEquipWeight*1000)/1000}
+                  {Math.round(totalEquipWeight*1000)/1000}
                 </th>
               </tr>
             </thead>

@@ -6,6 +6,14 @@ import CreateChar from "./CharacterGeneration";
 
 const { calculateStateObject } = require("./helperFunctions");
 
+//TODO stop same equipment object getting entered twice
+//TODO fix length of Equipment card, make scrollable if many items added
+//TODO have equipment weight update state.equipmentWeight
+//TODO make it impossibe to enter non valid int ranges in stats
+//TODO add CSS to hightlight equipment when selecting
+//TODO Uniform Weight/s
+//TODO Body armour
+//TO Firearms
 class App extends Component {
   constructor(props) {
     super(props);
@@ -126,7 +134,10 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <NavBar/>
+          <NavBar
+            // currentView={this.state.currentView}
+            {...this.state}
+          />
           {this.state.currentView === 'home' ?
           <HomePage
             setDisplay={this.setDisplay.bind(this)}
