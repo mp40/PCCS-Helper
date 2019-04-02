@@ -105,9 +105,12 @@ class App extends Component {
   };
 
   updateAttribute = (attribute, value)=>{
-      this.setState({characterStats:{...this.state.characterStats,[attribute]: value}}, ()=>{
-        this.updateAllStats();
-      })
+    if(value < 3){
+      return
+    }
+    this.setState({characterStats:{...this.state.characterStats,[attribute]: value}}, ()=>{
+      this.updateAllStats();
+    })
   };
 
   settingAttribute(key){
