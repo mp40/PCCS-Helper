@@ -164,6 +164,14 @@ describe('Character Generation',()=>{
             wrapper.find('#removeEquip').simulate('click')
             expect(wrapper.text()).not.toContain('Baseball Bat')
         })
+        it('should remove weight of deleted quipment',()=>{
+            const wrapper = mount(<App/>)
+            addEquipment(wrapper)
+            wrapper.find('#filterEquipmentList').simulate('click')
+            wrapper.find('#qtyUp').simulate('click')
+            wrapper.find('#removeEquip').simulate('click')
+            expect(wrapper.find('.menuBar').text()).toContain(5)
+        })
         describe('filtering the equipment list',()=>{
             it('should display filter tags',()=>{
                 const wrapper = mount(<App/>)

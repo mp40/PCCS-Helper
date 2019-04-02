@@ -64,7 +64,8 @@ class App extends Component {
 
   updateWeight(weightToAdd) {
     const weight = this.state.equipmentWeight;
-    this.setState({equipmentWeight: weight + weightToAdd}, ()=>{
+    const newWeight = Math.round((weight + weightToAdd)*1000)/1000
+    this.setState({equipmentWeight: newWeight}, ()=>{
       this.updateAllStats()
     })
   }
@@ -124,11 +125,12 @@ class App extends Component {
   };
 
   removeEquipment(objToRemove){
+    const weightToRemove = Math.round((objToRemove.weight * objToRemove.qty)*1000)/1000
     const newList = this.state.gear.equipment.filter((obj)=>{
       return obj.name !== objToRemove.name
     })
     this.setState({gear:{equipment: newList}}, ()=>{
-      this.updateWeight(objToRemove.weight * -1)
+      this.updateWeight(weightToRemove * -1)
     })
   }
 
