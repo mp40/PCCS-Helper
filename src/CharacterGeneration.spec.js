@@ -157,8 +157,11 @@ describe('Character Generation',()=>{
             wrapper.find('#qtyUp').simulate('click')
             expect(wrapper.find('#characterEquipmentList').childAt(1).childAt(3).text()).toContain(4.4)
         })
-        it('should add equipment weight to total weight',()=>{
-            //TODO
+        it('should be possible to remove equipment fromn list',()=>{
+            const wrapper = mount(<App/>)
+            addEquipment(wrapper)
+            wrapper.find('.removeEquip').simulate('click')
+            expect(wrapper.text()).not.toContain('Baseball Bat')
         })
         describe('filtering the equipment list',()=>{
             it('should display filter tags',()=>{

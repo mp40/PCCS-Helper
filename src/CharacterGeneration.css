@@ -163,3 +163,7 @@
     flex-direction: row;
     justify-content: space-around;
 }
+
+#removeEquip {
+    margin: .3rem;
+}

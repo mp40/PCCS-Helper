@@ -100,6 +100,7 @@ class CreateChar extends Component {
                 {charEquip.map((equipObj, index)=>{
                   return <tr key={index}>
                     <td>
+                      <button id="removeEquip" className="equipmentButton">X</button>
                       {equipObj.name}
                     </td>
                     <td>

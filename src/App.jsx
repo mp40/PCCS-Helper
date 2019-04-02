@@ -144,7 +144,6 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <NavBar
-            // currentView={this.state.currentView}
             {...this.state}
           />
           {this.state.currentView === 'home' ?
