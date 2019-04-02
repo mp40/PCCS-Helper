@@ -42,10 +42,8 @@
 }
 
 .tagContainer {
-    /* font-size: small; */
     display: flex;
     flex-wrap: wrap;
-    /* justify-content: space-evenly; */
 }
 
 .equipTags {

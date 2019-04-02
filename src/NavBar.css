@@ -5,10 +5,10 @@
     transition: 0.3s;
     height: 4rem;
     position: relative;
+    color: whitesmoke;
 }
 
 .menuTitle {
-    color: whitesmoke;
     margin-left: 2rem;
     width: 4%;
     position: absolute;
