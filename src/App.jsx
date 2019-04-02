@@ -62,6 +62,13 @@ class App extends Component {
     this.setState({ weightWarningMsg: false });
   };
 
+  updateWeight(weightToAdd) {
+    const weight = this.state.equipmentWeight;
+    this.setState({equipmentWeight: weight + weightToAdd}, ()=>{
+      this.updateAllStats()
+    })
+  }
+
   updateAllStats() {
     const weight = this.state.equipmentWeight;
 
@@ -110,9 +117,10 @@ class App extends Component {
 
   addEquipment(obj){
     obj.qty = 1
+
     this.setState({
       gear:{equipment: [...this.state.gear.equipment, obj]}}, ()=>{
-        this.updateAllStats();
+        this.updateWeight(obj.weight)
     })
   };
 
@@ -127,7 +135,7 @@ class App extends Component {
     this.setState({
       gear:{equipment: updated}
     }, ()=>{
-      this.updateAllStats()
+      this.updateWeight(equipObj.weight * modifier)
     })
   };
 
