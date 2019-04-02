@@ -2,7 +2,6 @@ import React from 'react';
 import App from './App';
 import {mount} from 'enzyme'
 
-//TODO - look at updating to react/redux
 describe('Character Generation',()=>{
     const wrapper = mount(<App/>)
     wrapper.find('#activateCreateChar').simulate('click')
@@ -48,7 +47,12 @@ describe('Character Generation',()=>{
             inputAttribute('#updateAgi', '18')
             expect(wrapper.text()).toContain('18')
         })
-        
+        describe('edge cases',()=>{
+            it('should not be possible to enter values under 3',()=>{
+                inputAttribute('#updateAgi', '2')
+                expect(wrapper.find('.attributeRow').at(4).text()).not.toContain('2')
+            })
+        })
     })
     describe('Combat Levels',()=>{
         it('should render Gun Comabat',()=>{
