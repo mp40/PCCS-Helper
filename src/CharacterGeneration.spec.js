@@ -52,7 +52,7 @@ describe('Character Generation',()=>{
                 inputAttribute('#updateAgi', '2')
                 expect(wrapper.find('.attributeRow').at(4).text()).not.toContain('2')
             })
-            it('should not be possible to enter values over 20',()=>{
+            it('should not be possible to enter values over 19',()=>{
                 inputAttribute('#updateAgi', '20')
                 expect(wrapper.find('.attributeRow').at(4).text()).not.toContain('20')
             })
