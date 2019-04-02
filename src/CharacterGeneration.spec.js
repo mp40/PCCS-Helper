@@ -180,6 +180,14 @@ describe('Character Generation',()=>{
             wrapper.find('#removeEquip').simulate('click')
             expect(wrapper.find('.menuBar').text()).toContain(5)
         })
+        it('should not be possible to add the same item twice to list',()=>{
+            //mpTODO write this test
+            const wrapper = mount(<App/>)
+            addEquipment(wrapper)
+            wrapper.find('.equipmentListBody').at(0).childAt(0).childAt(0).simulate('click')
+            wrapper.find('#closeEquipmentModal').simulate('click')
+            expect(wrapper.find('#characterEquipmentList').children()).toHaveLength(2)
+        })
         describe('filtering the equipment list',()=>{
             it('should display filter tags',()=>{
                 const wrapper = mount(<App/>)
