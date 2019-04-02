@@ -160,7 +160,8 @@ describe('Character Generation',()=>{
         it('should be possible to remove equipment fromn list',()=>{
             const wrapper = mount(<App/>)
             addEquipment(wrapper)
-            wrapper.find('.removeEquip').simulate('click')
+            wrapper.find('#filterEquipmentList').simulate('click')
+            wrapper.find('#removeEquip').simulate('click')
             expect(wrapper.text()).not.toContain('Baseball Bat')
         })
         describe('filtering the equipment list',()=>{

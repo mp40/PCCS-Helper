@@ -100,7 +100,13 @@ class CreateChar extends Component {
                 {charEquip.map((equipObj, index)=>{
                   return <tr key={index}>
                     <td>
-                      <button id="removeEquip" className="equipmentButton">X</button>
+                      <button
+                        id="removeEquip" 
+                        className="equipmentButton"
+                        onClick={this.props.removeEquipment.bind(this, equipObj)}
+                        >
+                          X
+                        </button>
                       {equipObj.name}
                     </td>
                     <td>

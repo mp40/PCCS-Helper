@@ -117,12 +117,20 @@ class App extends Component {
 
   addEquipment(obj){
     obj.qty = 1
-
     this.setState({
       gear:{equipment: [...this.state.gear.equipment, obj]}}, ()=>{
         this.updateWeight(obj.weight)
     })
   };
+
+  removeEquipment(objToRemove){
+    const newList = this.state.gear.equipment.filter((obj)=>{
+      return obj.name !== objToRemove.name
+    })
+    this.setState({gear:{equipment: newList}}, ()=>{
+      this.updateWeight(objToRemove.weight * -1)
+    })
+  }
 
   incrementEquipmentQty(equipObj, modifier){
     const gear = this.state.gear.equipment
@@ -157,6 +165,7 @@ class App extends Component {
             updateAttribute={this.updateAttribute.bind(this)}
             settingAttribute={this.settingAttribute.bind(this)}
             addEquipment={this.addEquipment.bind(this)}
+            removeEquipment={this.removeEquipment.bind(this)}
             incrementEquipmentQty={this.incrementEquipmentQty.bind(this)}
           /> :
           null}
