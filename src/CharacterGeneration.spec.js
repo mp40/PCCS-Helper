@@ -181,7 +181,6 @@ describe('Character Generation',()=>{
             expect(wrapper.find('.menuBar').text()).toContain(5)
         })
         it('should not be possible to add the same item twice to list',()=>{
-            //mpTODO write this test
             const wrapper = mount(<App/>)
             addEquipment(wrapper)
             wrapper.find('.equipmentListBody').at(0).childAt(0).childAt(0).simulate('click')

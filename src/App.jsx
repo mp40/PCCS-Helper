@@ -117,9 +117,14 @@ class App extends Component {
   };
 
   addEquipment(obj){
+    const equip = this.state.gear.equipment
+    if(equip.find(exisitingObj=>exisitingObj.name === obj.name)) {
+        return
+      }
+
     obj.qty = 1
     this.setState({
-      gear:{equipment: [...this.state.gear.equipment, obj]}}, ()=>{
+      gear:{equipment: [...equip, obj]}}, ()=>{
         this.updateWeight(obj.weight)
     })
   };
