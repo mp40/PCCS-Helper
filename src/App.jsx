@@ -6,12 +6,10 @@ import CreateChar from "./CharacterGeneration";
 
 const { calculateStateObject } = require("./helperFunctions");
 
-//TODO stop same equipment object getting entered twice
-//TODO fix length of Equipment card, make scrollable if many items added
 //TODO add CSS to hightlight equipment when selecting
 //TODO Uniform Weight/s
 //TODO Body armour
-//TO Firearms
+//TODO Firearms
 class App extends Component {
   constructor(props) {
     super(props);
