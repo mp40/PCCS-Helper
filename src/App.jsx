@@ -6,7 +6,6 @@ import CreateChar from "./CharacterGeneration";
 
 const { calculateStateObject } = require("./helperFunctions");
 
-//TODO add CSS to hightlight equipment when selecting
 //TODO Uniform Weight/s
 //TODO Body armour
 //TODO Firearms

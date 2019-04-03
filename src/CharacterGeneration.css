@@ -172,13 +172,9 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    padding-top: 0.3em;
 }
 
 #removeEquip {
     margin: .3rem;
 }
-
-/* #characterEquipmentList {
-    height: 2px;
-    line-height: 2px;
-} */
