@@ -3,8 +3,9 @@ import AttributeCard from "./AttributeCard";
 import CombatCard from "./CombatCard";
 import './CharacterGeneration.css'
 import ActionsCard from "./ActionsCard";
-import EquipmentDropdown from "./EquipmentDropdown";
-
+// import EquipmentDropdown from "./EquipmentDropdown";
+import EquipmentListCard from "./EquipmentListCard";
+//TODO finsih migration required props and functions to EquipmentListCard
 class CreateChar extends Component {
   constructor(props){
     super(props)
@@ -17,7 +18,8 @@ class CreateChar extends Component {
   }
 
   toggleShowEquipment(){
-    this.setState({showEquipment: !this.state.showEquipment})
+    console.log('working')
+    this.setState({showEquipment: !this.state.showEquipment},()=>{console.log('?',this.state.showEquipment)})
   }
 
   closeShowEquipment(){
@@ -55,10 +57,10 @@ class CreateChar extends Component {
 
   render() {
 
-    const charEquip = this.props.gear.equipment
-    const totalEquipWeight = charEquip.reduce((accumulator,obj)=>{
-      return accumulator + (obj.weight*obj.qty)
-    },0)
+    // const charEquip = this.props.gear.equipment
+    // const totalEquipWeight = charEquip.reduce((accumulator,obj)=>{
+    //   return accumulator + (obj.weight*obj.qty)
+    // },0)
 
     return (
       <div className="createCharContainer">
@@ -73,83 +75,10 @@ class CreateChar extends Component {
           {...this.props}
         />
         </div>
-        <div style={{width:'40%'}} className="equipmentSelect">
-
-          <table style={{width:'100%'}} className="equipmentTable">
-            <thead>
-              <tr className="equipmentHeader">
-                <th>Equipment</th>
-                <th style={{width:'9%'}}>Weight</th>
-                <th style={{width:'9%'}}>Qty</th>
-                <th style={{width:'9%'}}>lbs</th>
-                <th style={{width:'9%'}}>
-                  {Math.round(totalEquipWeight*1000)/1000}
-                </th>
-              </tr>
-            </thead>
-            <tbody id="characterEquipmentList">
-              <tr className="addEquipment">
-              <td>
-                <button 
-                  id="addEquipment" 
-                  className="equipmentButton" 
-                  onClick={this.toggleShowEquipment.bind(this)}
-                >Add Equipment</button>
-              </td>
-              </tr>
-                {charEquip.map((equipObj, index)=>{
-                  return <tr key={index} className="addedEqipRow">
-                    <td>
-                      <button
-                        id="removeEquip" 
-                        className="equipmentButton"
-                        onClick={this.props.removeEquipment.bind(this, equipObj)}
-                        >
-                          X
-                        </button>
-                      {equipObj.name}
-                    </td>
-                    <td>
-                      {equipObj.weight}
-                    </td>
-                    <td>
-                      {equipObj.qty}
-                    </td>
-                    <td>
-                      {Math.round((equipObj.qty * equipObj.weight)*100)/100}
-                    </td>
-                    <td className="arrowBox">
-                      <button 
-                        id="qtyUp" 
-                        className="equipmentButton"
-                        onClick={this.props.incrementEquipmentQty.bind(this,equipObj,1)}>
-                        {String.fromCharCode(8593)}
-                      </button>
-                      <button 
-                        id="qtyDown" 
-                        className="equipmentButton"
-                        onClick={this.props.incrementEquipmentQty.bind(this,equipObj,-1)}>
-                        {String.fromCharCode(8595)}
-                      </button>
-                    </td>
-                  </tr>
-                })}
-            </tbody>
-          </table>
-          {this.state.showEquipment ?
-             <EquipmentDropdown
-              closeShowEquipment={this.closeShowEquipment.bind(this)}
-              toggleFilters={this.toggleFilters.bind(this)}
-              handleTags={this.handleTags.bind(this)}
-              requiredEquipment = {this.state.requiredEquipment}
-              showFilters = {this.state.showFilters}
-              filteredTags = {this.state.filteredTags}
-              // addEquipmentToCharacter = {this.props.addEquipmentToCharacter.bind(this)}
-              addEquipment = {this.props.addEquipment.bind(this)}
-              // toggleShowEquipment = {this.state.toggleShowEquipment.bind(this)}
-             /> :
-            null}
-      </div>  
+        <EquipmentListCard
+          {...this.props}
+          toggleShowEquipment={this.toggleShowEquipment.bind(this)}
+        />
     </div>    
     );
   }
