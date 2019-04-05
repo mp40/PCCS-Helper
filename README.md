@@ -1,16 +1,17 @@
-![PCCS Logo](/public/pccsBnW.png)
-
 # Phoenix Command Combat System Assistant
 
 This was started during my time as a student at Code Chrysalis
 
 A React application to assist running calculations required for the Phoenix Command Combat System wargaming/roleplaying rules.
 
+#####Built with TDD/BDD.
+
 Currently, it has the following inputs:
 
-- Characteristics, incremented via buttons
-- Skill Levels, incremented via buttons
-- Encumbrance, incremented via buttons
+- Characteristics, incremented via text input
+- Skill Levels, incremented via text input
+- Equipment, select from list, filterable by type
+- Encumbrance, increments indirectly via equipment input 
 
 The application returns the following:
 
@@ -22,6 +23,8 @@ The application returns the following:
 - Agility Skill Factor
 - Gun Combat Actions
 - Melee Combat Actions
+- Knockout Value
+- Damage Bonus
 
 ## Install procedure
 
@@ -29,16 +32,28 @@ The application returns the following:
 yarn start
 ```
 
+## Build procedure
+
+```
+yarn build
+```
+
+## Run tests
+
+```
+yarn test
+```
+
 ### This is a work in progress
 
 #### Next
 
-- Return Knockout Value
-- Return Damage Bonus
 - Refactor code
-- Improve UI
+- Improve UI/UX
 
 #### To Come
 
-- Upgrade Encumbrance to include equipment list
-- Weapon selection
+- Firearm selection
+- Grenade selection
+- Uniform selection
+- Body Armour selection
