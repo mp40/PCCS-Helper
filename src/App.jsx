@@ -101,9 +101,6 @@ class App extends Component {
   };
 
   updateAttribute = (attribute, value)=>{
-    if(value < 3 || value > 19){
-      return
-    }
     this.setState({characterStats:{...this.state.characterStats,[attribute]: value}}, ()=>{
       this.updateAllStats();
     })
