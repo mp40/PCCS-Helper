@@ -101,13 +101,23 @@ class App extends Component {
   };
 
   updateAttribute = (attribute, value)=>{
-    if(value < 3 || value > 19){
-      return
-    }
+    //TODO fix so hand and gun level can be 0 to 3
     this.setState({characterStats:{...this.state.characterStats,[attribute]: value}}, ()=>{
       this.updateAllStats();
     })
   };
+
+  // updateStatsAttribute(attribute, value){
+  //   if(value < 3 || value > 19) {
+  //     return
+  //   }
+  //   updateAttribute(attribute, value)
+  // }
+
+  // updateCombatAttribute(attribute, value){
+
+  //   updateAttribute(attribute, value)
+  // }
 
   settingAttribute(key){
     this.setState({toggleEditValue: key})
