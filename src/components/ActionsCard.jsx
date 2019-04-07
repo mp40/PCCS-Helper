@@ -1,6 +1,6 @@
 import React, { Component } from "react";
  
-const {actionsPerImpulse} = require('./helperFunctions');
+const {actionsPerImpulse} = require('../helpers/helperFunctions');
 
 class ActionsCard extends Component {
 
