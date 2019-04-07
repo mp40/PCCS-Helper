@@ -2,6 +2,13 @@ import React, { Component } from "react";
 
 class AttributeCard extends Component {
 
+  handleUpdateAttribute(attribute, value){
+    if(value < 3 || value > 19){
+      return
+    }
+    this.props.updateAttribute(attribute, value)
+  }
+
   render() {
     return (
       <div>
@@ -18,7 +25,7 @@ class AttributeCard extends Component {
                 {this.props.toggleEditValue === 'toggleStr' ?
                 <input type="text" className="attInput" onKeyUp={event => {
                   if (event.keyCode === 13) {
-                      this.props.updateAttribute('str',event.target.value)
+                      this.handleUpdateAttribute('str',event.target.value)
                   }
                 }}
                 /> :
@@ -31,7 +38,7 @@ class AttributeCard extends Component {
                 {this.props.toggleEditValue === 'toggleInt' ?
                 <input type="text" className="attInput" onKeyUp={event => {
                   if (event.keyCode === 13) {
-                      this.props.updateAttribute('int',event.target.value)
+                      this.handleUpdateAttribute('int',event.target.value)
                   }
                 }}
                 /> :
@@ -44,7 +51,7 @@ class AttributeCard extends Component {
                 {this.props.toggleEditValue === 'toggleHlt' ?
                 <input type="text" className="attInput" onKeyUp={event => {
                   if (event.keyCode === 13) {
-                      this.props.updateAttribute('hlt',event.target.value)
+                      this.handleUpdateAttribute('hlt',event.target.value)
                   }
                 }}
                 /> :
@@ -57,7 +64,7 @@ class AttributeCard extends Component {
                 {this.props.toggleEditValue === 'toggleWil' ?
                 <input type="text" className="attInput" onKeyUp={event => {
                   if (event.keyCode === 13) {
-                      this.props.updateAttribute('wil',event.target.value)
+                      this.handleUpdateAttribute('wil',event.target.value)
                   }
                 }}
                 /> :
@@ -70,7 +77,7 @@ class AttributeCard extends Component {
                 {this.props.toggleEditValue === 'toggleAgi' ?
                 <input type="text" className="attInput" onKeyUp={event => {
                   if (event.keyCode === 13) {
-                      this.props.updateAttribute('agi',event.target.value)
+                      this.handleUpdateAttribute('agi',event.target.value)
                   }
                 }}
                 /> :

@@ -2,6 +2,13 @@ import React, { Component } from "react";
 
 class CombatCard extends Component {
 
+  handleUpdateAttribute(attribute, value){
+    if(value < 0){
+      return
+    }
+    this.props.updateAttribute(attribute, value)
+  }
+
   render() {
     return (
       <div>
@@ -18,7 +25,7 @@ class CombatCard extends Component {
                 {this.props.toggleEditValue === 'toggleGun' ?
                 <input type="text" className="attInput" onKeyUp={event => {
                   if (event.keyCode === 13) {
-                      this.props.updateAttribute('gunLevel',event.target.value)
+                      this.handleUpdateAttribute('gunLevel',event.target.value)
                   }
                 }}
                 /> :
@@ -31,7 +38,7 @@ class CombatCard extends Component {
                 {this.props.toggleEditValue === 'toggleHand' ?
                 <input type="text" className="attInput" onKeyUp={event => {
                   if (event.keyCode === 13) {
-                      this.props.updateAttribute('handLevel',event.target.value)
+                      this.handleUpdateAttribute('handLevel',event.target.value)
                   }
                 }}
                 /> :
