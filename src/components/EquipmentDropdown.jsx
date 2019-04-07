@@ -1,16 +1,14 @@
 import React, { Component } from "react";
 import './EquipmentDropdown.css'
 
-import {createArrayOfEquipment, filterEquipment, createFilterSet} from './equipmentListFunctions.js'
+import {createArrayOfEquipment, filterEquipment, createFilterSet} from '../helpers/equipmentListFunctions.js'
 
-const equipment = require('./equipmentList')
+const equipment = require('../helpers/equipmentList')
  
 class EquipmentDropdown extends Component {
 
   
     handleAddEquip(equipObj){
-        //TODO close equipment selector or not?
-        // this.props.toggleShowEquipment.bind(this)
         this.props.addEquipment(equipObj)
     }  
 

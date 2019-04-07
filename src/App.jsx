@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import "./App.css";
-import NavBar from "./NavBar";
-import HomePage from "./Home";
-import CreateChar from "./CharacterGeneration";
+import NavBar from "./components/NavBar";
+import HomePage from "./components/Home";
+import CreateChar from "./components/CharacterGeneration";
 
-const { calculateStateObject } = require("./helperFunctions");
+const { calculateStateObject } = require("./helpers/helperFunctions");
 
 //TODO Uniform Weight/s
 //TODO Body armour

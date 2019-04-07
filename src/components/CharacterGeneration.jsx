@@ -18,8 +18,7 @@ class CreateChar extends Component {
   }
 
   toggleShowEquipment(){
-    console.log('working')
-    this.setState({showEquipment: !this.state.showEquipment},()=>{console.log('?',this.state.showEquipment)})
+    this.setState({showEquipment: !this.state.showEquipment})
   }
 
   closeShowEquipment(){
@@ -56,11 +55,6 @@ class CreateChar extends Component {
   }
 
   render() {
-
-    // const charEquip = this.props.gear.equipment
-    // const totalEquipWeight = charEquip.reduce((accumulator,obj)=>{
-    //   return accumulator + (obj.weight*obj.qty)
-    // },0)
 
     return (
       <div className="createCharContainer">

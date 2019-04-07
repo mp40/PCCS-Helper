@@ -1,4 +1,4 @@
-import {findGear, createArrayOfEquipment, filterEquipment, createFilterSet} from './equipmentListFunctions.js'
+import {findGear, createArrayOfEquipment, filterEquipment, createFilterSet} from '../helpers/equipmentListFunctions.js/index.js.js'
 
 const {equipmentList} = require ('./equipmentList')
 

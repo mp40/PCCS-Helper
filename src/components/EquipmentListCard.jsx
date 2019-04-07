@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import EquipmentDropdown from "./EquipmentDropdown";
-//TODO put this tag in charatercreation and pass props
+
 class EquipmentListCard extends Component {
 
   render() {
-    console.log(this.props)
     const charEquip = this.props.gear.equipment
     const totalEquipWeight = charEquip.reduce((accumulator,obj)=>{
       return accumulator + (obj.weight*obj.qty)
