@@ -1,10 +1,10 @@
 # Phoenix Command Combat System Assistant
 
+#####Built with TDD/BDD.
+
 This was started during my time as a student at Code Chrysalis
 
 A React application to assist running calculations required for the Phoenix Command Combat System wargaming/roleplaying rules.
-
-#####Built with TDD/BDD.
 
 Currently, it has the following inputs:
 
