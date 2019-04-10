@@ -50,6 +50,7 @@ yarn test
 
 - Refactor code
 - Improve UI/UX
+- Add user defined equipment to list
 
 #### To Come
 
