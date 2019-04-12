@@ -4,12 +4,14 @@ import CombatCard from "./CombatCard";
 import './CharacterGeneration.css'
 import ActionsCard from "./ActionsCard";
 import EquipmentDropdown from "./EquipmentDropdown";
+import CustomEquipmentModal from "./CustomEquipmentModal";
 
 class CreateChar extends Component {
   constructor(props){
     super(props)
     this.state = {
       showEquipment: false,
+      showCustomInput: false,
       showFilters: false,
       requiredEquipment: [],
       filteredTags: []
@@ -18,6 +20,10 @@ class CreateChar extends Component {
 
   toggleShowEquipment(){
     this.setState({showEquipment: !this.state.showEquipment})
+  }
+
+  toggleCustomEquipment(){
+    this.setState({showCustomInput: !this.state.showCustomInput})
   }
 
   closeShowEquipment(){
@@ -95,6 +101,11 @@ class CreateChar extends Component {
                   className="equipmentButton" 
                   onClick={this.toggleShowEquipment.bind(this)}
                 >Add Equipment</button>
+                <button 
+                  id="toggleCustomEquipment" 
+                  className="equipmentButton" 
+                  onClick={this.toggleCustomEquipment.bind(this)}
+                >Add Custom</button>
               </td>
               </tr>
                 {charEquip.map((equipObj, index)=>{
@@ -144,11 +155,16 @@ class CreateChar extends Component {
               requiredEquipment = {this.state.requiredEquipment}
               showFilters = {this.state.showFilters}
               filteredTags = {this.state.filteredTags}
-              // addEquipmentToCharacter = {this.props.addEquipmentToCharacter.bind(this)}
               addEquipment = {this.props.addEquipment.bind(this)}
-              // toggleShowEquipment = {this.state.toggleShowEquipment.bind(this)}
              /> :
             null}
+          {this.state.showCustomInput ?
+            <CustomEquipmentModal
+              toggleCustomEquipment={this.toggleCustomEquipment.bind(this)}
+              addEquipment = {this.props.addEquipment.bind(this)}
+            /> :
+            null  
+          }  
       </div>  
     </div>    
     );

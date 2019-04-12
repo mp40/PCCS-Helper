@@ -187,6 +187,20 @@ describe('Character Generation',()=>{
             wrapper.find('#closeEquipmentModal').simulate('click')
             expect(wrapper.find('#characterEquipmentList').children()).toHaveLength(2)
         })
+        it('should be posible to add custom equipment to the list',()=>{
+            const wrapper = mount(<App/>)
+            wrapper.find('#activateCreateChar').simulate('click')
+            wrapper.find('#toggleCustomEquipment').simulate('click')
+            wrapper.find('#equipNameInput').simulate('change', {
+                target:{value: 'CustomEquipment'}
+            })
+            wrapper.find('#equipWeightInput').simulate('change', {
+                target:{value: '666'}
+            })
+            wrapper.find('#submitCustomEquipButton').simulate('click')
+            expect(wrapper.text()).toContain(666)
+            expect(wrapper.text()).toContain('CustomEquipment')
+        })
         describe('filtering the equipment list',()=>{
             it('should display filter tags',()=>{
                 const wrapper = mount(<App/>)

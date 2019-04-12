@@ -25,7 +25,8 @@ class EquipmentListCard extends Component {
             </tr>
           </thead>
           <tbody id="characterEquipmentList">
-            <tr className="addEquipment">
+          {/* TODO do I need this code below? */}
+            {/* <tr className="addEquipment">
             <td>
               <button 
                 id="addEquipment" 
@@ -33,7 +34,7 @@ class EquipmentListCard extends Component {
                 onClick={this.props.toggleShowEquipment.bind(this)}
               >Add Equipment</button>
             </td>
-            </tr>
+            </tr> */}
               {charEquip.map((equipObj, index)=>{
                 return <tr key={index} className="addedEqipRow">
                   <td>
@@ -81,9 +82,7 @@ class EquipmentListCard extends Component {
             requiredEquipment = {this.state.requiredEquipment}
             showFilters = {this.state.showFilters}
             filteredTags = {this.state.filteredTags}
-            // addEquipmentToCharacter = {this.props.addEquipmentToCharacter.bind(this)}
             addEquipment = {this.props.addEquipment.bind(this)}
-            // toggleShowEquipment = {this.state.toggleShowEquipment.bind(this)}
            /> :
           null}
     </div>
