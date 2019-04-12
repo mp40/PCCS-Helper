@@ -8,6 +8,7 @@ class CustomEquipmentModal extends Component {
         this.state = {
             equipmentName: '',
             equipmentWeight: '',
+            errorMsg: false
         }
     }
 
@@ -24,7 +25,14 @@ class CustomEquipmentModal extends Component {
         const name = this.state.equipmentName
         const weight = this.state.equipmentWeight * 1
 
-        if (typeof name !== 'string' || typeof weight !== 'number' ) {
+        const isValidInput = (
+            name.length > 0 && 
+            weight > 0 && 
+            typeof name === 'string' && 
+            typeof weight === 'number'
+            )
+
+        if (isValidInput === false) {
             this.setState({errorMsg: true})
             return
         }
@@ -70,6 +78,10 @@ class CustomEquipmentModal extends Component {
                     onClick={this.submitEquipment.bind(this)}>
                     Submit
                 </button>
+                {this.state.errorMsg ?
+                <div>Please Enter Valid Equipment Name and Weight</div> :
+                 null  
+                }
             </div>
         </div>
     )

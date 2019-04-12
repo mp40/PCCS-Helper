@@ -187,19 +187,54 @@ describe('Character Generation',()=>{
             wrapper.find('#closeEquipmentModal').simulate('click')
             expect(wrapper.find('#characterEquipmentList').children()).toHaveLength(2)
         })
-        it('should be posible to add custom equipment to the list',()=>{
-            const wrapper = mount(<App/>)
-            wrapper.find('#activateCreateChar').simulate('click')
-            wrapper.find('#toggleCustomEquipment').simulate('click')
-            wrapper.find('#equipNameInput').simulate('change', {
-                target:{value: 'CustomEquipment'}
+        describe('adding custom equipment',()=>{
+            function goToCustomEquipment(wrapper){
+                wrapper.find('#activateCreateChar').simulate('click')
+                wrapper.find('#toggleCustomEquipment').simulate('click')
+            }
+            it('should be posible to add custom equipment to the list',()=>{
+                const wrapper = mount(<App/>)
+                goToCustomEquipment(wrapper)
+                wrapper.find('#equipNameInput').simulate('change', {
+                    target:{value: 'CustomEquipment'}
+                })
+                wrapper.find('#equipWeightInput').simulate('change', {
+                    target:{value: '666'}
+                })
+                wrapper.find('#submitCustomEquipButton').simulate('click')
+                expect(wrapper.text()).toContain(666)
+                expect(wrapper.text()).toContain('CustomEquipment')
             })
-            wrapper.find('#equipWeightInput').simulate('change', {
-                target:{value: '666'}
+            it('should display error msg if custom equipment name not provided',()=>{
+                const wrapper = mount(<App/>)
+                goToCustomEquipment(wrapper)
+                wrapper.find('#equipWeightInput').simulate('change', {
+                    target:{value: '666'}
+                })
+                wrapper.find('#submitCustomEquipButton').simulate('click')
+                expect(wrapper.text()).toContain('Please Enter Valid Equipment Name and Weight')
             })
-            wrapper.find('#submitCustomEquipButton').simulate('click')
-            expect(wrapper.text()).toContain(666)
-            expect(wrapper.text()).toContain('CustomEquipment')
+            it('should display error msg if custom equipment weight not provided',()=>{
+                const wrapper = mount(<App/>)
+                goToCustomEquipment(wrapper)
+                wrapper.find('#equipNameInput').simulate('change', {
+                    target:{value: 'newEquipment'}
+                })
+                wrapper.find('#submitCustomEquipButton').simulate('click')
+                expect(wrapper.text()).toContain('Please Enter Valid Equipment Name and Weight')
+            })
+            it('should display error msg if custom equipment weight input not a number',()=>{
+                const wrapper = mount(<App/>)
+                goToCustomEquipment(wrapper)
+                wrapper.find('#equipNameInput').simulate('change', {
+                    target:{value: 'newEquipment'}
+                })
+                wrapper.find('#equipWeightInput').simulate('change', {
+                    target:{value: 'x666'}
+                })
+                wrapper.find('#submitCustomEquipButton').simulate('click')
+                expect(wrapper.text()).toContain('Please Enter Valid Equipment Name and Weight')
+            })
         })
         describe('filtering the equipment list',()=>{
             it('should display filter tags',()=>{
