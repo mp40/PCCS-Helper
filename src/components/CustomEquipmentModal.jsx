@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import './EquipmentDropdown.css'
+import './CustomEquipmentModal.css'
 
 class CustomEquipmentModal extends Component {
     constructor(props){
@@ -51,37 +51,56 @@ class CustomEquipmentModal extends Component {
   render() {
 
     return (
-        <div className='equipmentModalContainer'>
-            <div className="equipmentListCard">
-                <div className="equipmentListHeader">
-                    Add Equipment To List
-                </div> 
-                <button onClick={this.props.toggleCustomEquipment.bind(this)}>
-                    Cancel
-                </button>
-                <div>Equipment Name</div>
-                <input 
-                    type="text"
-                    id='equipNameInput' 
-                    className="equipInput" 
-                    value={this.state.equipmentName} 
-                    onChange={this.handleChange.bind(this, 'name')}/>
-                <div>Equipment Weight in lbs</div>
-                <input 
-                    type="text"
-                    id='equipWeightInput' 
-                    className="equipInput" 
-                    value={this.state.equipmentWeight} 
-                    onChange={this.handleChange.bind(this, 'weight')}/>
-                <button
-                    id='submitCustomEquipButton' 
-                    onClick={this.submitEquipment.bind(this)}>
-                    Submit
-                </button>
-                {this.state.errorMsg ?
-                <div>Please Enter Valid Equipment Name and Weight</div> :
-                 null  
-                }
+        <div className='customEquipmentModalContainer'>
+            <div className="customEquipmentListCard">
+                <div className="customContainer">
+
+                    <div className="subContainer">
+                        <div className="customEquipmentListHeader">
+                            Add Equipment To List
+                        </div> 
+                        <button 
+                            className="equipmentButton" 
+                            style={{marginTop: '.5rem'}}
+                            onClick={this.props.toggleCustomEquipment.bind(this)}
+                            >
+                            Cancel
+                        </button>
+                    </div>
+
+                    <div className="subContainer">
+                        <div>Equipment Name</div>
+                        <input 
+                            type="text"
+                            id='equipNameInput' 
+                            className="equipInput" 
+                            value={this.state.equipmentName} 
+                            onChange={this.handleChange.bind(this, 'name')}/>
+                    </div>
+                    
+                    <div className="subContainer">
+                        <div>Equipment Weight (lbs)</div>
+                        <input 
+                            type="text"
+                            id='equipWeightInput' 
+                            className="equipInput" 
+                            value={this.state.equipmentWeight} 
+                            onChange={this.handleChange.bind(this, 'weight')}/>
+                    </div>
+
+                    <button
+                        id='submitCustomEquipButton'
+                        className="equipmentButton" 
+                        onClick={this.submitEquipment.bind(this)}>
+                        Submit
+                    </button>
+                    
+                    {this.state.errorMsg ?
+                    <div>Please Enter Valid Equipment Name and Weight</div> :
+                     null  
+                    }
+
+                </div>    
             </div>
         </div>
     )
