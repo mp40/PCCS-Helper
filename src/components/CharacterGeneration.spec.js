@@ -187,6 +187,21 @@ describe('Character Generation',()=>{
             wrapper.find('#closeEquipmentModal').simulate('click')
             expect(wrapper.find('#characterEquipmentList').children()).toHaveLength(2)
         })
+        it('should clear all equipment from list',()=>{
+            //TODO write this test
+            const wrapper = mount(<App/>)
+            addEquipment(wrapper)
+            wrapper.find('.equipmentListBody').at(0).childAt(1).childAt(0).simulate('click')
+            wrapper.find('.equipmentListBody').at(0).childAt(2).childAt(0).simulate('click')
+            wrapper.find('#closeEquipmentModal').simulate('click')
+            wrapper.find('#clearAllEquipment').simulate('click')
+            // console.log(wrapper.find('.navEquipWeight').debug())
+            expect(wrapper.text()).not.toContain('Bayonet')
+            expect(wrapper.text()).not.toContain('Basic Pouch')
+            expect(wrapper.text()).not.toContain('Baseball Bat')
+            expect(wrapper.text()).toContain(5)
+            
+        })
         describe('adding custom equipment',()=>{
             function goToCustomEquipment(wrapper){
                 wrapper.find('#activateCreateChar').simulate('click')

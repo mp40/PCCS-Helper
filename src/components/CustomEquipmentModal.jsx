@@ -96,7 +96,7 @@ class CustomEquipmentModal extends Component {
                     </button>
                     
                     {this.state.errorMsg ?
-                    <div>Please Enter Valid Equipment Name and Weight</div> :
+                    <div style={{color:'red'}}>Please Enter Valid Equipment Name and Weight</div> :
                      null  
                     }
 

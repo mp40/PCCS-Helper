@@ -96,16 +96,25 @@ class CreateChar extends Component {
             <tbody id="characterEquipmentList">
               <tr className="addEquipment">
               <td>
+
                 <button 
                   id="addEquipment" 
                   className="equipmentButton" 
                   onClick={this.toggleShowEquipment.bind(this)}
                 >Add Equipment</button>
+
                 <button 
                   id="toggleCustomEquipment" 
                   className="equipmentButton" 
                   onClick={this.toggleCustomEquipment.bind(this)}
                 >Add Custom</button>
+
+                <button
+                  id="clearAllEquipment"
+                  className="equipmentButton"
+                  onClick={this.props.removeAllEquipment.bind(this, charEquip)}
+                  >Clear All</button>
+
               </td>
               </tr>
                 {charEquip.map((equipObj, index)=>{

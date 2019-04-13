@@ -3,6 +3,7 @@ import "./App.css";
 import NavBar from "./components/NavBar";
 import HomePage from "./components/Home";
 import CreateChar from "./components/CharacterGeneration";
+import { all } from "rsvp";
 
 const { calculateStateObject } = require("./helpers/helperFunctions");
 
@@ -133,6 +134,17 @@ class App extends Component {
     })
   }
 
+  removeAllEquipment(allEquip){
+    const equipWeight = allEquip.reduce((sum, obj)=>{
+      const totalObjWeight = Math.round((obj.weight * obj.qty)*1000)/1000
+      return sum + totalObjWeight
+    },0)
+    console.log('dd',equipWeight)
+    this.setState({
+      gear:{equipment: []}
+    }, this.updateWeight(equipWeight * -1))
+  }
+
   incrementEquipmentQty(equipObj, modifier){
     const gear = this.state.gear.equipment
     const updated = gear.map((obj)=>{
@@ -168,6 +180,7 @@ class App extends Component {
             addEquipment={this.addEquipment.bind(this)}
             removeEquipment={this.removeEquipment.bind(this)}
             incrementEquipmentQty={this.incrementEquipmentQty.bind(this)}
+            removeAllEquipment={this.removeAllEquipment.bind(this)}
           /> :
           null}
         </header>
