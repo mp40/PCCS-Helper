@@ -3,7 +3,6 @@ import "./App.css";
 import NavBar from "./components/NavBar";
 import HomePage from "./components/Home";
 import CreateChar from "./components/CharacterGeneration";
-import { all } from "rsvp";
 
 const { calculateStateObject } = require("./helpers/helperFunctions");
 
@@ -38,6 +37,7 @@ class App extends Component {
         combatActions: [4, 4],
       },
       gear:{
+        uniform: 'Normal',
         equipment: [],
         firearms: [],
         grenades: [],

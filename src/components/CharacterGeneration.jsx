@@ -1,10 +1,13 @@
 import React, { Component } from "react";
+
 import AttributeCard from "./AttributeCard";
 import CombatCard from "./CombatCard";
-import './CharacterGeneration.css'
 import ActionsCard from "./ActionsCard";
 import EquipmentDropdown from "./EquipmentDropdown";
 import CustomEquipmentModal from "./CustomEquipmentModal";
+import ClothingAndArmourCard from "./ClothingAndArmourCard";
+
+import './CharacterGeneration.css'
 
 class CreateChar extends Component {
   constructor(props){
@@ -77,6 +80,10 @@ class CreateChar extends Component {
         />
         <ActionsCard
           {...this.props}
+        />
+        <ClothingAndArmourCard
+          {...this.props}
+          // TODO
         />
         </div>
         <div style={{width:'40%'}} className="equipmentSelect">
