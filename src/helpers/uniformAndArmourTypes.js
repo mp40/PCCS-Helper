@@ -168,14 +168,15 @@ const bodyArmorStats = [
         weight:16,
         tags: ['Russian', 'Modern']
     },
-    {
-        name:'6B23 CC',
-        pf:'8/16',
-        bpf:,
-        ac:'i',
-        weight:,
-        tags: ['Russian','Modern']
-    },
+    //TODO fix below data
+    // {
+    //     name:'6B23 CC',
+    //     pf:'8/16',
+    //     bpf:,
+    //     ac:'i',
+    //     weight:,
+    //     tags: ['Russian','Modern']
+    // },
     {
         name:'6B23 SC',
         pf:'13/16',
@@ -315,4 +316,14 @@ const bodyArmorStats = [
 ]
 
 
-module.exports = {uniformWeights, helmetStats}
+// module.exports = {
+//     uniformWeights, 
+//     helmetStats, 
+//     bodyArmorStats
+//     }
+
+module.exports = {
+    uniformWeights, 
+    helmetStats, 
+    bodyArmorStats
+}

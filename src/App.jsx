@@ -38,6 +38,8 @@ class App extends Component {
       },
       gear:{
         uniform: 'Normal',
+        helmet: 'None',
+        bodyArmour: 'None',
         equipment: [],
         firearms: [],
         grenades: [],
@@ -111,6 +113,15 @@ class App extends Component {
     this.setState({toggleEditValue: key})
   };
 
+  changeUniform = (uniformType)=>{
+    //TODO
+    console.log('JGH', uniformType)
+    // this.setState({gear: {uniform: unifromType}})
+    this.setState({
+      gear:{uniform: 'Winter'}
+    })
+  }
+
   addEquipment(obj){
     const equip = this.state.gear.equipment
     if(equip.find(exisitingObj=>exisitingObj.name === obj.name)) {
@@ -181,6 +192,7 @@ class App extends Component {
             removeEquipment={this.removeEquipment.bind(this)}
             incrementEquipmentQty={this.incrementEquipmentQty.bind(this)}
             removeAllEquipment={this.removeAllEquipment.bind(this)}
+            changeUniform={this.changeUniform.bind(this)}
           /> :
           null}
         </header>

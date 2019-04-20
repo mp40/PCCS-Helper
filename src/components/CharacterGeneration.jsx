@@ -5,7 +5,7 @@ import CombatCard from "./CombatCard";
 import ActionsCard from "./ActionsCard";
 import EquipmentDropdown from "./EquipmentDropdown";
 import CustomEquipmentModal from "./CustomEquipmentModal";
-import ClothingAndArmourCard from "./ClothingAndArmourCard";
+import ClothingCard from "./ClothingCard";
 
 import './CharacterGeneration.css'
 
@@ -81,13 +81,13 @@ class CreateChar extends Component {
         <ActionsCard
           {...this.props}
         />
-        <ClothingAndArmourCard
+        <ClothingCard
           {...this.props}
           // TODO
         />
         </div>
-        <div style={{width:'40%'}} className="equipmentSelect">
 
+        <div style={{width:'40%'}} className="equipmentSelect">
           <table style={{width:'100%'}} className="equipmentTable">
             <thead>
               <tr className="equipmentHeader">

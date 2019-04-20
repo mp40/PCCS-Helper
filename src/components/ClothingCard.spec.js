@@ -12,11 +12,14 @@ describe('the Clothing and Body Armour Card',()=>{
         const wrapper = mount(<App/>)
         wrapper.find('#activateCreateChar').simulate('click')
         expect(wrapper.text()).toContain('Normal')
-        expect(wrapper.text()).toContain('5')
+        expect(wrapper.find('#uniformWeight').text()).toContain('5')
     })
     it('should be possible to change uniform types',()=>{
         const wrapper = mount(<App/>)
         wrapper.find('#activateCreateChar').simulate('click')
         //TODO finish this test
+        wrapper.find('.uniformStats').simulate('click')
+        // console.log(wrapper.debug())
+        expect(wrapper.find('.uniformStats').text()).toContain('Tropical')
     })
 })
