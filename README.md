@@ -10,7 +10,7 @@ Currently, it has the following inputs:
 
 - Characteristics, incremented via text input
 - Skill Levels, incremented via text input
-- Equipment, select from list, filterable by type
+- Equipment, select from list, filterable by type, add equipment not in default list
 - Encumbrance, increments indirectly via equipment input 
 
 The application returns the following:
