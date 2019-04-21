@@ -1,18 +1,27 @@
 import React from 'react';
 import './Home.css'
 
-function HomePage(props) {
 
+import { connect } from 'react-redux';
+import { selectCurrentView } from '../actions'
+
+function HomePage(props) {
   return (
     <div style={{textAlign: 'center'}}>
         <h1>
             Welcome To Phoenix Command Tools
         </h1>
-      <button  id="activateCreateChar" className="buttonStandard" onClick={props.setDisplay.bind(this, "createChar")}>
+      <button  id="activateCreateChar" className="buttonStandard" onClick={()=>props.selectCurrentView('createChar')}>
         Create Character
       </button>
     </div>
   );
 };
 
-export default HomePage;
+
+const mapStateToProps = (state) => {
+  return ({ currentView: state.currentView });
+}
+
+export default connect(mapStateToProps, { selectCurrentView })(HomePage)
+// export default HomePage;

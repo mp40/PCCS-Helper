@@ -4,6 +4,10 @@ import NavBar from "./components/NavBar";
 import HomePage from "./components/Home";
 import CreateChar from "./components/CharacterGeneration";
 
+import { connect } from 'react-redux';
+
+import { selectCurrentView } from './actions'
+
 const { calculateStateObject } = require("./helpers/helperFunctions");
 
 //TODO Uniform Weight/s
@@ -13,7 +17,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentView: 'home',
       toggleEditValue: false,
       equipmentWeight: 5,
       characterStats:{
@@ -46,10 +49,6 @@ class App extends Component {
       }
     }
   }
-
-  setDisplay(view){
-    this.setState({currentView: view})
-  };
 
   weightWarningOn() {
     this.setState({ weightWarningMsg: true });
@@ -150,7 +149,6 @@ class App extends Component {
       const totalObjWeight = Math.round((obj.weight * obj.qty)*1000)/1000
       return sum + totalObjWeight
     },0)
-    console.log('dd',equipWeight)
     this.setState({
       gear:{equipment: []}
     }, this.updateWeight(equipWeight * -1))
@@ -178,12 +176,10 @@ class App extends Component {
           <NavBar
             {...this.state}
           />
-          {this.state.currentView === 'home' ?
-          <HomePage
-            setDisplay={this.setDisplay.bind(this)}
-          /> :
+          {this.props.currentView === 'home' ?
+          <HomePage/> :
           null}
-          {this.state.currentView === 'createChar' ?
+          {this.props.currentView === 'createChar' ?
           <CreateChar
             {...this.state}
             updateAttribute={this.updateAttribute.bind(this)}
@@ -201,4 +197,8 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return ({ currentView: state.currentView });
+}
+
+export default connect(mapStateToProps, { selectCurrentView })(App)
