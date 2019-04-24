@@ -1,9 +1,7 @@
-import React from 'react';
-import App from '../App';
-import {mount} from 'enzyme'
+import {mountAppWithStore} from '../helpers/testHelpers'
 
 describe('Character Generation',()=>{
-    const wrapper = mount(<App/>)
+    const wrapper = mountAppWithStore()
     wrapper.find('#activateCreateChar').simulate('click')
 
     function inputAttribute (attributeId, newValue) {
@@ -75,7 +73,7 @@ describe('Character Generation',()=>{
         })
     })
     describe('Comabt Data',()=>{
-        const wrapper = mount(<App/>)
+        const wrapper = mountAppWithStore()
         wrapper.find('#activateCreateChar').simulate('click')
 
         describe('Combat Actions',()=>{
@@ -102,7 +100,7 @@ describe('Character Generation',()=>{
         })
     })
     describe('the equipment list',()=>{
-        const wrapper = mount(<App/>)
+        const wrapper = mountAppWithStore()
         wrapper.find('#activateCreateChar').simulate('click')
         function addEquipment(wrapper) {
             wrapper.find('#activateCreateChar').simulate('click')
@@ -114,7 +112,7 @@ describe('Character Generation',()=>{
             expect(wrapper.text()).toContain('Equipment')
         })
         it('should show total equipment weight',()=>{
-            const wrapper = mount(<App/>)
+            const wrapper = mountAppWithStore()
             addEquipment(wrapper)
             expect(wrapper.find('.equipmentHeader').childAt(4).text()).toContain(2.2)
             
@@ -124,34 +122,34 @@ describe('Character Generation',()=>{
             expect(wrapper.text()).toContain('Baseball Bat')
         })
         it('should have a button to close the equipment modal',()=>{
-            const wrapper = mount(<App/>)
+            const wrapper = mountAppWithStore()
             wrapper.find('#activateCreateChar').simulate('click')
             wrapper.find('#addEquipment').simulate('click')
             wrapper.find('#closeEquipmentModal').simulate('click')
             expect(wrapper.text()).not.toContain('Baseball Bat')
         })
         it('should add selected equipment name to character equipmentTable',()=>{
-            const wrapper = mount(<App/>)
+            const wrapper = mountAppWithStore()
             addEquipment(wrapper)
             expect(wrapper.find('#characterEquipmentList').text()).toContain('Baseball Bat')
         })
         it('should add selected equipment weight to character equipmentTable',()=>{
-            const wrapper = mount(<App/>)
+            const wrapper = mountAppWithStore()
             addEquipment(wrapper)
             expect(wrapper.find('#characterEquipmentList').text()).toContain(2.2)
         })
         it('should add selected equipment quantity to character equipmentTable',()=>{
-            const wrapper = mount(<App/>)
+            const wrapper = mountAppWithStore()
             addEquipment(wrapper)
             expect(wrapper.find('#characterEquipmentList').text()).toContain(1)
         })
         it('should add selected equipment quantity to character equipmentTable',()=>{
-            const wrapper = mount(<App/>)
+            const wrapper = mountAppWithStore()
             addEquipment(wrapper)
             expect(wrapper.find('#characterEquipmentList').childAt(1).childAt(2).text()).toContain(1)
         })
         it('should be possible increment qty up and down',()=>{
-            const wrapper = mount(<App/>)
+            const wrapper = mountAppWithStore()
             addEquipment(wrapper)
             wrapper.find('#qtyUp').simulate('click')
             expect(wrapper.find('#characterEquipmentList').childAt(1).childAt(2).text()).toContain(2)
@@ -159,21 +157,21 @@ describe('Character Generation',()=>{
             expect(wrapper.find('#characterEquipmentList').childAt(1).childAt(2).text()).toContain(1)
         })
         it('should calculate weight * qty',()=>{
-            const wrapper = mount(<App/>)
+            const wrapper = mountAppWithStore()
             addEquipment(wrapper)
             expect(wrapper.find('#characterEquipmentList').childAt(1).childAt(3).text()).toContain(2.2)
             wrapper.find('#qtyUp').simulate('click')
             expect(wrapper.find('#characterEquipmentList').childAt(1).childAt(3).text()).toContain(4.4)
         })
         it('should be possible to remove equipment fromn list',()=>{
-            const wrapper = mount(<App/>)
+            const wrapper = mountAppWithStore()
             addEquipment(wrapper)
             wrapper.find('#filterEquipmentList').simulate('click')
             wrapper.find('#removeEquip').simulate('click')
             expect(wrapper.text()).not.toContain('Baseball Bat')
         })
         it('should remove weight of deleted quipment',()=>{
-            const wrapper = mount(<App/>)
+            const wrapper = mountAppWithStore()
             addEquipment(wrapper)
             wrapper.find('#filterEquipmentList').simulate('click')
             wrapper.find('#qtyUp').simulate('click')
@@ -181,14 +179,14 @@ describe('Character Generation',()=>{
             expect(wrapper.find('.menuBar').text()).toContain(5)
         })
         it('should not be possible to add the same item twice to list',()=>{
-            const wrapper = mount(<App/>)
+            const wrapper = mountAppWithStore()
             addEquipment(wrapper)
             wrapper.find('.equipmentListBody').at(0).childAt(0).childAt(0).simulate('click')
             wrapper.find('#closeEquipmentModal').simulate('click')
             expect(wrapper.find('#characterEquipmentList').children()).toHaveLength(2)
         })
         it('should clear all equipment from list',()=>{
-            const wrapper = mount(<App/>)
+            const wrapper = mountAppWithStore()
             addEquipment(wrapper)
             wrapper.find('.equipmentListBody').at(0).childAt(1).childAt(0).simulate('click')
             wrapper.find('.equipmentListBody').at(0).childAt(2).childAt(0).simulate('click')
@@ -206,7 +204,7 @@ describe('Character Generation',()=>{
                 wrapper.find('#toggleCustomEquipment').simulate('click')
             }
             it('should be posible to add custom equipment to the list',()=>{
-                const wrapper = mount(<App/>)
+                const wrapper = mountAppWithStore()
                 goToCustomEquipment(wrapper)
                 wrapper.find('#equipNameInput').simulate('change', {
                     target:{value: 'CustomEquipment'}
@@ -219,7 +217,7 @@ describe('Character Generation',()=>{
                 expect(wrapper.text()).toContain('CustomEquipment')
             })
             it('should display error msg if custom equipment name not provided',()=>{
-                const wrapper = mount(<App/>)
+                const wrapper = mountAppWithStore()
                 goToCustomEquipment(wrapper)
                 wrapper.find('#equipWeightInput').simulate('change', {
                     target:{value: '666'}
@@ -228,7 +226,7 @@ describe('Character Generation',()=>{
                 expect(wrapper.text()).toContain('Please Enter Valid Equipment Name and Weight')
             })
             it('should display error msg if custom equipment weight not provided',()=>{
-                const wrapper = mount(<App/>)
+                const wrapper = mountAppWithStore()
                 goToCustomEquipment(wrapper)
                 wrapper.find('#equipNameInput').simulate('change', {
                     target:{value: 'newEquipment'}
@@ -237,7 +235,7 @@ describe('Character Generation',()=>{
                 expect(wrapper.text()).toContain('Please Enter Valid Equipment Name and Weight')
             })
             it('should display error msg if custom equipment weight input not a number',()=>{
-                const wrapper = mount(<App/>)
+                const wrapper = mountAppWithStore()
                 goToCustomEquipment(wrapper)
                 wrapper.find('#equipNameInput').simulate('change', {
                     target:{value: 'newEquipment'}
@@ -251,7 +249,7 @@ describe('Character Generation',()=>{
         })
         describe('filtering the equipment list',()=>{
             it('should display filter tags',()=>{
-                const wrapper = mount(<App/>)
+                const wrapper = mountAppWithStore()
                 wrapper.find('#activateCreateChar').simulate('click')
                 wrapper.find('#addEquipment').simulate('click')
                 wrapper.find('#filterEquipmentList').simulate('click')
@@ -259,7 +257,7 @@ describe('Character Generation',()=>{
                 
             })
             it('should filter the list based on slected criteria',()=>{
-                const wrapper = mount(<App/>)
+                const wrapper = mountAppWithStore()
                 wrapper.find('#activateCreateChar').simulate('click')
                 wrapper.find('#addEquipment').simulate('click')
                 wrapper.find('#filterEquipmentList').simulate('click')
@@ -270,7 +268,7 @@ describe('Character Generation',()=>{
                 expect(wrapper.text()).not.toContain("Baseball Bat")
             })
             it('should change the filterEquipmentList button text when filter modal open',()=>{
-                const wrapper = mount(<App/>)
+                const wrapper = mountAppWithStore()
                 wrapper.find('#activateCreateChar').simulate('click')
                 wrapper.find('#addEquipment').simulate('click')
                 const button = wrapper.find('#filterEquipmentList')

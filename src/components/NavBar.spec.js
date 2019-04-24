@@ -1,18 +1,18 @@
-import React from 'react';
-import App from '../App';
-import {mount} from 'enzyme'
+
+import {mountAppWithStore} from '../helpers/testHelpers'
 
 describe('The Nav Bar',()=>{
     describe('when in Create Character',()=>{
         it('should render a title',()=>{
-            const wrapper = mount(<App/>)
+            const wrapper = mountAppWithStore()
             const menuWrapper= wrapper.find('.menuBar')
+            const targetButton = wrapper.find('#activateCreateChar')
             expect(menuWrapper.text()).not.toContain('Create Character')
-            wrapper.find('#activateCreateChar').simulate('click')
+            targetButton.simulate('click')
             expect(menuWrapper.text()).toContain('Create Character')
         })
         it('should add equipment weight to total weight',()=>{
-            const wrapper = mount(<App/>)
+            const wrapper = mountAppWithStore()
             const menuWrapper= wrapper.find('.menuBar')
             wrapper.find('#activateCreateChar').simulate('click')
             wrapper.find('#addEquipment').simulate('click')
@@ -22,4 +22,3 @@ describe('The Nav Bar',()=>{
         })
     })
 })
-

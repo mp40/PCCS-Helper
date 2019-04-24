@@ -6,10 +6,14 @@ import { createStore } from 'redux';
 
 import './index.css';
 import App from './App';
+// import ProviderApp from './ProviderApp'
 import reducers from './reducers';
 
 import * as serviceWorker from './serviceWorker';
 
+// React.ReactDOM.render(
+//     <ProviderApp/>, document.getElementById('root')
+// )
 ReactDOM.render(
     <Provider store={createStore(reducers)}>
         <App />

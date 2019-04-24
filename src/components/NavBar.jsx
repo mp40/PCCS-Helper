@@ -1,8 +1,9 @@
 import React from 'react';
-import './NavBar.css';
+import { connect } from 'react-redux';
 import NavBarCreateChar from './NavBarCreateChar';
+import './NavBar.css';
 
-function NavBar(props) {
+export function NavBar(props) {
   return (
     <div className="menuBar">
       <div className="menuTitle">
@@ -10,11 +11,15 @@ function NavBar(props) {
       </div>
       {props.currentView === 'createChar' ?
           <NavBarCreateChar
-            {...props}
+            {...props} //TODO send in single value
           /> :
           null}
     </div>
   );
 };
 
-export default NavBar;
+const mapStateToProps = (state) => {
+  return ({ currentView: state.currentView });
+}
+
+export default connect(mapStateToProps)(NavBar)

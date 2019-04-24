@@ -5,7 +5,7 @@ import './Home.css'
 import { connect } from 'react-redux';
 import { selectCurrentView } from '../actions'
 
-function HomePage(props) {
+export function HomePage(props) {
   return (
     <div style={{textAlign: 'center'}}>
         <h1>

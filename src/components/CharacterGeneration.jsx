@@ -9,7 +9,7 @@ import ClothingCard from "./ClothingCard";
 
 import './CharacterGeneration.css'
 
-class CreateChar extends Component {
+export class CreateChar extends Component {
   constructor(props){
     super(props)
     this.state = {
