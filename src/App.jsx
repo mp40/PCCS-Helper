@@ -6,14 +6,12 @@ import CreateChar from "./components/CharacterGeneration";
 
 import { connect } from 'react-redux';
 
-import { selectCurrentView } from './actions'
-
 const { calculateStateObject } = require("./helpers/helperFunctions");
 
 //TODO Uniform Weight/s
 //TODO Body armour
 //TODO Firearms
-class App extends Component {
+export class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -201,4 +199,4 @@ const mapStateToProps = (state) => {
   return ({ currentView: state.currentView });
 }
 
-export default connect(mapStateToProps, { selectCurrentView })(App)
+export default connect(mapStateToProps)(App)

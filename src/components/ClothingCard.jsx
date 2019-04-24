@@ -5,7 +5,8 @@ class ClothingCard extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            showUniformSelect: true //todo change back to false
+            showUniformSelect: false
+            // showUniformSelect: true //todo change back to false
         }
     }
 
