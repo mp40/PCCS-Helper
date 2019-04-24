@@ -1,3 +1,5 @@
+![PCCS Logo](/public/pccsBnW.png)
+
 # Phoenix Command Combat System Assistant
 
 ### Built with TDD/BDD.
