@@ -11,7 +11,7 @@ export function NavBar(props) {
       </div>
       {props.currentView === 'createChar' ?
           <NavBarCreateChar
-            {...props} //TODO send in single value
+              totalWeight = {props.totalWeight}
           /> :
           null}
     </div>
@@ -19,7 +19,10 @@ export function NavBar(props) {
 };
 
 const mapStateToProps = (state) => {
-  return ({ currentView: state.currentView });
+  return ({ 
+    currentView: state.currentView,
+    totalWeight: state.totalWeight 
+  });
 }
 
 export default connect(mapStateToProps)(NavBar)

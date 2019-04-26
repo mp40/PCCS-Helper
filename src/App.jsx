@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import HomePage from "./components/Home";
-import CreateChar from "./components/CharacterGeneration";
+import CharacterGeneration from "./components/CharacterGeneration";
 
 import { connect } from 'react-redux';
+
+import { updateWeight, addEquipment } from './actions';
 
 const { calculateStateObject } = require("./helpers/helperFunctions");
 
@@ -16,7 +18,7 @@ export class App extends Component {
     super(props);
     this.state = {
       toggleEditValue: false,
-      equipmentWeight: 5,
+      // equipmentWeight: 5,//TODO add this to store //change equipmentWeight to totalWeight
       characterStats:{
           str: 10,
           int: 10,
@@ -48,6 +50,7 @@ export class App extends Component {
     }
   }
 
+  //TODO WIRE THIS UP
   weightWarningOn() {
     this.setState({ weightWarningMsg: true });
   };
@@ -56,13 +59,14 @@ export class App extends Component {
     this.setState({ weightWarningMsg: false });
   };
 
-  updateWeight(weightToAdd) {
-    const weight = this.state.equipmentWeight;
-    const newWeight = Math.round((weight + weightToAdd)*1000)/1000
-    this.setState({equipmentWeight: newWeight}, ()=>{
-      this.updateAllStats()
-    })
-  }
+  //TODO update - equipmentWeight now totalWeight and handled by store, accepts new weight not a modifier to weight
+  // updateWeight(weightToAdd) {
+  //   const weight = this.state.equipmentWeight;
+  //   const newWeight = Math.round((weight + weightToAdd)*1000)/1000
+  //   this.setState({equipmentWeight: newWeight}, ()=>{
+  //     this.updateAllStats()
+  //   })
+  // }
 
   updateAllStats() {
     const weight = this.state.equipmentWeight;
@@ -119,17 +123,22 @@ export class App extends Component {
     })
   }
 
+  //TODO redo this to use actions/reducers
   addEquipment(obj){
-    const equip = this.state.gear.equipment
-    if(equip.find(exisitingObj=>exisitingObj.name === obj.name)) {
-        return
-      }
+    console.log(this.props)
+    this.props.addEquipment(this.props, obj)
 
-    obj.qty = 1
-    this.setState({
-      gear:{equipment: [...equip, obj]}}, ()=>{
-        this.updateWeight(obj.weight)
-    })
+    // const equip = this.state.gear.equipment
+    // if(equip.find(exisitingObj=>exisitingObj.name === obj.name)) {
+    //     return
+    //   }
+
+    // obj.qty = 1
+    // this.setState({
+    //   gear:{equipment: [...equip, obj]}}, ()=>{
+    //     const newWeight = Math.round((this.props.totalWeight + obj.weight)*1000)/1000
+    //     this.props.updateWeight(newWeight)//TODO this is temp fix - massive refactor of weight stuff needed
+    // })
   };
 
   removeEquipment(objToRemove){
@@ -138,21 +147,24 @@ export class App extends Component {
       return obj.name !== objToRemove.name
     })
     this.setState({gear:{equipment: newList}}, ()=>{
-      this.updateWeight(weightToRemove * -1)
+      const newWeight = this.props.totalWeight - weightToRemove
+      this.props.updateWeight(newWeight) //TODO this is temp fix - massive refactor of weight stuff needed
     })
   }
 
   removeAllEquipment(allEquip){
+    //TODO simplify when convert to action/reducers
     const equipWeight = allEquip.reduce((sum, obj)=>{
       const totalObjWeight = Math.round((obj.weight * obj.qty)*1000)/1000
       return sum + totalObjWeight
     },0)
     this.setState({
       gear:{equipment: []}
-    }, this.updateWeight(equipWeight * -1))
+    }, this.props.updateWeight(this.props.totalWeight - equipWeight)) //TODO this is temp fix - massive refactor of weight stuff needed
   }
 
   incrementEquipmentQty(equipObj, modifier){
+    //TODO simplify when convert to action/reducers
     const gear = this.state.gear.equipment
     const updated = gear.map((obj)=>{
       if(obj.name === equipObj.name){
@@ -163,11 +175,12 @@ export class App extends Component {
     this.setState({
       gear:{equipment: updated}
     }, ()=>{
-      this.updateWeight(equipObj.weight * modifier)
+      this.props.updateWeight(this.props.totalWeight - (equipObj.weight * modifier)) // TODO this is a temp fix
     })
   };
 
   render() {
+    console.log(this.props)
     return (
       <div className="App">
         <header className="App-header">
@@ -178,7 +191,7 @@ export class App extends Component {
           <HomePage/> :
           null}
           {this.props.currentView === 'createChar' ?
-          <CreateChar
+          <CharacterGeneration
             {...this.state}
             updateAttribute={this.updateAttribute.bind(this)}
             settingAttribute={this.settingAttribute.bind(this)}
@@ -196,7 +209,11 @@ export class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return ({ currentView: state.currentView });
+  return ({ 
+    currentView: state.currentView,
+    totalWeight: state.totalWeight,
+    gear: state.gear
+   });
 }
 
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps, {updateWeight, addEquipment})(App)

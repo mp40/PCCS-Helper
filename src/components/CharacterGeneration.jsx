@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import {connect} from 'react';
 import AttributeCard from "./AttributeCard";
 import CombatCard from "./CombatCard";
 import ActionsCard from "./ActionsCard";
@@ -7,9 +7,12 @@ import EquipmentDropdown from "./EquipmentDropdown";
 import CustomEquipmentModal from "./CustomEquipmentModal";
 import ClothingCard from "./ClothingCard";
 
+
+import { updateWeight, addEquipment } from '../actions';
+
 import './CharacterGeneration.css'
 
-export class CreateChar extends Component {
+export class CharacterGeneration extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -187,4 +190,14 @@ export class CreateChar extends Component {
   }
 }
 
-export default CreateChar;
+
+const mapStateToProps = (state) => {
+  return ({ 
+    currentView: state.currentView,
+    totalWeight: state.totalWeight,
+    gear: state.gear
+   });
+}
+
+
+export default connect(mapStateToProps, {updateWeight, addEquipment})(CharacterGeneration)
