@@ -1,7 +1,3 @@
-import { dispatch } from "rxjs/internal/observable/range";
-
-// action creator 
-
 export const selectCurrentView = (view) => {
     //return an action
     return {

@@ -178,8 +178,6 @@ export class App extends Component {
   };
 
   render() {
-    console.log('App Props',this.props)
-    console.log('App State', this.state)
     return (
       <div className="App">
         <header className="App-header">
