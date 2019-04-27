@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import gearReducer from './gearReducer';
 
 
 const viewSelectReducer = (selectedView = 'home', action) => {
@@ -15,17 +16,8 @@ const updateWeightReducer = (totalWeight = 0, action) => {
     return totalWeight
 }
 
-const addEquipment = (equipArray = [], action) => {
-    if (action.type === 'ADD_EQUIPMENT'){
-        return action.payload
-    }
-    return equipArray
-}
-
 export default combineReducers({
     currentView: viewSelectReducer,
     totalWeight: updateWeightReducer,
-    gear: {
-        equipment: addEquipment
-    }
+    gear: gearReducer
 })

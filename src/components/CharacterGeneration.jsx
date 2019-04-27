@@ -1,18 +1,16 @@
 import React, { Component } from "react";
-import {connect} from 'react';
+import { connect } from 'react-redux';
 import AttributeCard from "./AttributeCard";
 import CombatCard from "./CombatCard";
 import ActionsCard from "./ActionsCard";
 import EquipmentDropdown from "./EquipmentDropdown";
 import CustomEquipmentModal from "./CustomEquipmentModal";
 import ClothingCard from "./ClothingCard";
-
-
 import { updateWeight, addEquipment } from '../actions';
 
 import './CharacterGeneration.css'
 
-export class CharacterGeneration extends Component {
+export class CreateChar extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -67,6 +65,7 @@ export class CharacterGeneration extends Component {
 
   render() {
 
+    console.log('createChar', this.props)
     const charEquip = this.props.gear.equipment
     const totalEquipWeight = charEquip.reduce((accumulator,obj)=>{
       return accumulator + (obj.weight*obj.qty)
@@ -190,14 +189,15 @@ export class CharacterGeneration extends Component {
   }
 }
 
-
 const mapStateToProps = (state) => {
   return ({ 
     currentView: state.currentView,
     totalWeight: state.totalWeight,
-    gear: state.gear
+    // gear: state.gear
+    gear: {
+      equipment: state.gear.equipment
+    }
    });
 }
 
-
-export default connect(mapStateToProps, {updateWeight, addEquipment})(CharacterGeneration)
+export default connect(mapStateToProps, {updateWeight, addEquipment})(CreateChar)

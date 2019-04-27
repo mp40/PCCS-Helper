@@ -1,12 +1,10 @@
 import React, { Component } from "react";
-import "./App.css";
+import { connect } from 'react-redux';
 import NavBar from "./components/NavBar";
 import HomePage from "./components/Home";
-import CharacterGeneration from "./components/CharacterGeneration";
-
-import { connect } from 'react-redux';
-
+import CreateChar from "./components/CharacterGeneration";
 import { updateWeight, addEquipment } from './actions';
+import "./App.css";
 
 const { calculateStateObject } = require("./helpers/helperFunctions");
 
@@ -43,7 +41,7 @@ export class App extends Component {
         uniform: 'Normal',
         helmet: 'None',
         bodyArmour: 'None',
-        equipment: [],
+        // equipment: [],
         firearms: [],
         grenades: [],
       }
@@ -180,7 +178,8 @@ export class App extends Component {
   };
 
   render() {
-    console.log(this.props)
+    console.log('App Props',this.props)
+    console.log('App State', this.state)
     return (
       <div className="App">
         <header className="App-header">
@@ -191,7 +190,7 @@ export class App extends Component {
           <HomePage/> :
           null}
           {this.props.currentView === 'createChar' ?
-          <CharacterGeneration
+          <CreateChar
             {...this.state}
             updateAttribute={this.updateAttribute.bind(this)}
             settingAttribute={this.settingAttribute.bind(this)}
@@ -212,7 +211,9 @@ const mapStateToProps = (state) => {
   return ({ 
     currentView: state.currentView,
     totalWeight: state.totalWeight,
-    gear: state.gear
+    gear: {
+      equipment: state.gear.equipment
+    }
    });
 }
 

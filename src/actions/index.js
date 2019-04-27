@@ -18,7 +18,7 @@ export const updateWeight = (newWeight) => {
 }
 
 export const addEquipment = (props, equipObj) => {
-    console.log("HJG", props)
+    console.log('AEaction', props)
     equipObj.qty = 1
     const newWeight = props.totalWeight - equipObj.weight
     const newEquipArray = [...props.gear.equipment, equipObj]
