@@ -4,6 +4,8 @@
 
 ### Built with TDD/BDD.
 
+#### Currently migrating from React to React/Redux
+
 This was started during my time as a student at Code Chrysalis
 
 A React application to assist running calculations required for the Phoenix Command Combat System wargaming/roleplaying rules.
