@@ -1,13 +1,14 @@
 import { combineReducers } from 'redux';
 
-const addEquipment = (equipArray = [], action) => {
-    console.log('reducer fired')
-    if (action.type === 'ADD_EQUIPMENT'){
+const modifyEquipment = (equipArray = [], action) => {
+    if (action.type === 'MODIFY_EQUIPMENT'){
         return action.payload
     }
     return equipArray
 }
 
 export default combineReducers({
-    equipment: addEquipment
+    equipment: modifyEquipment
 })
+
+

@@ -1,21 +1,28 @@
 import React, { Component } from "react";
 import {connect} from 'react-redux';
-import{addEquipment} from '../actions'
+// import{addEquipment} from '../actions'
+import{modifyEquipment} from '../actions'
 import './EquipmentDropdown.css'
 
 import {createArrayOfEquipment, filterEquipment, createFilterSet} from '../helpers/equipmentListFunctions.js'
-
+import {addEquipment} from '../helpers/actionHelpers'
 const equipment = require('../helpers/equipmentList')
+
+
  
 class EquipmentDropdown extends Component {
 
   
-    // handleAddEquip(equipObj){
-    //     this.props.addEquipment(this.props, equipObj)
-    // }  
+    handleAddEquipment(equipObj){
+        const arrayContainsObj = this.props.gear.equipment.filter(obj => obj.name === equipObj.name)
+        if(arrayContainsObj.length){
+            return
+        }
+        const newData = addEquipment(this.props.totalWeight, this.props.gear.equipment, equipObj)
+        this.props.modifyEquipment(newData.totalWeight, newData.equipArray)
+    }  
 
   render() {
-    console.log("ED", this.props)
     const filteredEquipment = filterEquipment(this.props.filteredTags)
     const equipmentArray = createArrayOfEquipment(filteredEquipment)
     const equipmentTags = createFilterSet(equipment)
@@ -61,8 +68,7 @@ class EquipmentDropdown extends Component {
                 {equipmentArray.map((equipObj, index)=>{
                     return <div className="equipmentEntry"
                             key={index}
-                            // onClick={this.handleAddEquip.bind(this, equipObj)}>
-                            onClick={()=>this.props.addEquipment(this.props, equipObj)}>
+                            onClick={this.handleAddEquipment.bind(this, equipObj)}>
                                 <div>
                                     {equipObj.name}
                                 </div>
@@ -91,5 +97,5 @@ const mapStateToProps = (state) => {
      });
   }
   
-  export default connect(mapStateToProps, {addEquipment})(EquipmentDropdown)
+  export default connect(mapStateToProps, {modifyEquipment})(EquipmentDropdown)
   

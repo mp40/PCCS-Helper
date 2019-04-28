@@ -6,7 +6,8 @@ import ActionsCard from "./ActionsCard";
 import EquipmentDropdown from "./EquipmentDropdown";
 import CustomEquipmentModal from "./CustomEquipmentModal";
 import ClothingCard from "./ClothingCard";
-import { updateWeight, addEquipment } from '../actions';
+import { updateWeight, modifyEquipment } from '../actions';
+import {removeEquipment, removeAllEquipment, incrementEquipmentQty} from '../helpers/actionHelpers'
 
 import './CharacterGeneration.css'
 
@@ -63,9 +64,24 @@ export class CreateChar extends Component {
     this.setState({filteredTags: tags})
   }
 
+  handleRemoveEquipment(equipObj){
+    const newData = removeEquipment(this.props.totalWeight,this.props.gear.equipment, equipObj)
+    this.props.modifyEquipment(newData.totalWeight, newData.equipArray)
+  }
+
+  handleRemoveAllEquipment(){
+    const newWeight = removeAllEquipment(this.props.totalWeight, this.props.gear.equipment)
+    this.props.modifyEquipment(newWeight, [])
+  }
+
+  handleIncrementEquipmentQty(equipObj, modifier){
+    const newData = incrementEquipmentQty(this.props.totalWeight,this.props.gear.equipment, equipObj, modifier)
+    this.props.modifyEquipment(newData.totalWeight, newData.equipArray)
+  }
+
+
   render() {
 
-    console.log('createChar', this.props)
     const charEquip = this.props.gear.equipment
     const totalEquipWeight = charEquip.reduce((accumulator,obj)=>{
       return accumulator + (obj.weight*obj.qty)
@@ -121,7 +137,7 @@ export class CreateChar extends Component {
                 <button
                   id="clearAllEquipment"
                   className="equipmentButton"
-                  onClick={this.props.removeAllEquipment.bind(this, charEquip)}
+                  onClick={this.handleRemoveAllEquipment.bind(this)}
                   >Clear All</button>
 
               </td>
@@ -132,7 +148,7 @@ export class CreateChar extends Component {
                       <button
                         id="removeEquip" 
                         className="equipmentButton"
-                        // onClick={this.props.removeEquipment.bind(this, equipObj)}
+                        onClick={this.handleRemoveEquipment.bind(this, equipObj)}
                         >
                           X
                         </button>
@@ -151,13 +167,13 @@ export class CreateChar extends Component {
                       <button 
                         id="qtyUp" 
                         className="equipmentButton"
-                        onClick={this.props.incrementEquipmentQty.bind(this,equipObj,1)}>
+                        onClick={this.handleIncrementEquipmentQty.bind(this,equipObj,1)}>
                         {String.fromCharCode(8593)}
                       </button>
                       <button 
                         id="qtyDown" 
                         className="equipmentButton"
-                        onClick={this.props.incrementEquipmentQty.bind(this,equipObj,-1)}>
+                        onClick={this.handleIncrementEquipmentQty.bind(this,equipObj,-1)}>
                         {String.fromCharCode(8595)}
                       </button>
                     </td>
@@ -173,7 +189,7 @@ export class CreateChar extends Component {
               requiredEquipment = {this.state.requiredEquipment}
               showFilters = {this.state.showFilters}
               filteredTags = {this.state.filteredTags}
-              addEquipment = {this.props.addEquipment.bind(this)}
+              // addEquipment = {this.props.addEquipment.bind(this)}
              /> :
             null}
           {this.state.showCustomInput ?
@@ -200,4 +216,4 @@ const mapStateToProps = (state) => {
    });
 }
 
-export default connect(mapStateToProps, {updateWeight, addEquipment})(CreateChar)
+export default connect(mapStateToProps, {updateWeight, modifyEquipment})(CreateChar)
