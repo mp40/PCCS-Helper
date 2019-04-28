@@ -122,9 +122,9 @@ export class App extends Component {
   }
 
   //TODO redo this to use actions/reducers
-  addEquipment(obj){
-    console.log(this.props)
-    this.props.addEquipment(this.props, obj)
+  // addEquipment(obj){
+  //   console.log(this.props)
+  //   this.props.addEquipment(this.props, obj)
 
     // const equip = this.state.gear.equipment
     // if(equip.find(exisitingObj=>exisitingObj.name === obj.name)) {
@@ -137,18 +137,18 @@ export class App extends Component {
     //     const newWeight = Math.round((this.props.totalWeight + obj.weight)*1000)/1000
     //     this.props.updateWeight(newWeight)//TODO this is temp fix - massive refactor of weight stuff needed
     // })
-  };
+  // };
 
-  removeEquipment(objToRemove){
-    const weightToRemove = Math.round((objToRemove.weight * objToRemove.qty)*1000)/1000
-    const newList = this.state.gear.equipment.filter((obj)=>{
-      return obj.name !== objToRemove.name
-    })
-    this.setState({gear:{equipment: newList}}, ()=>{
-      const newWeight = this.props.totalWeight - weightToRemove
-      this.props.updateWeight(newWeight) //TODO this is temp fix - massive refactor of weight stuff needed
-    })
-  }
+  // removeEquipment(objToRemove){
+  //   const weightToRemove = Math.round((objToRemove.weight * objToRemove.qty)*1000)/1000
+  //   const newList = this.state.gear.equipment.filter((obj)=>{
+  //     return obj.name !== objToRemove.name
+  //   })
+  //   this.setState({gear:{equipment: newList}}, ()=>{
+  //     const newWeight = this.props.totalWeight - weightToRemove
+  //     this.props.updateWeight(newWeight) //TODO this is temp fix - massive refactor of weight stuff needed
+  //   })
+  // }
 
   removeAllEquipment(allEquip){
     //TODO simplify when convert to action/reducers
@@ -192,8 +192,8 @@ export class App extends Component {
             {...this.state}
             updateAttribute={this.updateAttribute.bind(this)}
             settingAttribute={this.settingAttribute.bind(this)}
-            addEquipment={this.addEquipment.bind(this)}
-            removeEquipment={this.removeEquipment.bind(this)}
+            // addEquipment={this.addEquipment.bind(this)}
+            // removeEquipment={this.removeEquipment.bind(this)}
             incrementEquipmentQty={this.incrementEquipmentQty.bind(this)}
             removeAllEquipment={this.removeAllEquipment.bind(this)}
             changeUniform={this.changeUniform.bind(this)}

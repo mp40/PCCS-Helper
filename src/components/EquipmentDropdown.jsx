@@ -62,7 +62,7 @@ class EquipmentDropdown extends Component {
                     return <div className="equipmentEntry"
                             key={index}
                             // onClick={this.handleAddEquip.bind(this, equipObj)}>
-                            onClick={this.props.addEquipment(this.props, equipObj)}>
+                            onClick={()=>this.props.addEquipment(this.props, equipObj)}>
                                 <div>
                                     {equipObj.name}
                                 </div>

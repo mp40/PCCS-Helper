@@ -132,7 +132,7 @@ export class CreateChar extends Component {
                       <button
                         id="removeEquip" 
                         className="equipmentButton"
-                        onClick={this.props.removeEquipment.bind(this, equipObj)}
+                        // onClick={this.props.removeEquipment.bind(this, equipObj)}
                         >
                           X
                         </button>
