@@ -14,7 +14,7 @@ Currently, it has the following inputs:
 
 - Characteristics, incremented via text input
 - Skill Levels, incremented via text input
-- Equipment, select from list, filterable by type, add equipment not in default list
+- Equipment, select from list, filterable by type, add user defined equipment
 - Encumbrance, increments indirectly via equipment input 
 
 The application returns the following:
@@ -54,11 +54,10 @@ yarn test
 
 - Refactor code
 - Improve UI/UX
-- Add user defined equipment to list
+- Uniform selection
+- Body Armour selection
 
 #### To Come
 
 - Firearm selection
 - Grenade selection
-- Uniform selection
-- Body Armour selection
