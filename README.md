@@ -33,13 +33,13 @@ The application returns the following:
 ## Install procedure
 
 ```
-yarn start
+yarn
 ```
 
 ## Build procedure
 
 ```
-yarn build
+yarn start
 ```
 
 ## Run tests
