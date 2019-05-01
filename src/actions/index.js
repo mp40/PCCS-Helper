@@ -12,12 +12,11 @@ export const updateWeight = (newWeight) => {
     }
 }
 
-export const updateAttributes = (attributeObj, attribute, value) => {
-    const newObj = attributeObj
-    newObj[attribute] = value
+export const updateAttributes = (attributeObj) => {
+    console.log("UPDATE_ATTRIBUTES", attributeObj)
     return {
         type: 'UPDATE_ATTRIBUTES',
-        payload: newObj
+        payload: attributeObj
     }
 }
 

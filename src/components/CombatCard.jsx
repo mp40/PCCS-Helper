@@ -21,7 +21,11 @@ class CombatCard extends Component {
       this.setState({toggleEditValue: false})
       return
     }
-    updateAttributes(this.props.characterStats, attribute, value)
+
+    const attributeObj = this.props.characterStats
+    attributeObj[attribute] = value
+
+    updateAttributes(attributeObj)
     this.setState({toggleEditValue: false})
   }
 

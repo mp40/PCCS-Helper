@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import NavBar from "./components/NavBar";
 import HomePage from "./components/Home";
 import CreateChar from "./components/CharacterGeneration";
-import { updateWeight, modifyEquipment} from './actions';
+import { updateWeight, modifyEquipment, updateAttributes} from './actions';
 import "./App.css";
 
 const { calculateStateObject } = require("./helpers/helperFunctions");
@@ -112,4 +112,4 @@ const mapStateToProps = (state) => {
    });
 }
 
-export default connect(mapStateToProps, {updateWeight, modifyEquipment})(App)
+export default connect(mapStateToProps, {updateWeight, modifyEquipment, updateAttributes})(App)

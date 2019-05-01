@@ -6,10 +6,20 @@ import ActionsCard from "./ActionsCard";
 import EquipmentDropdown from "./EquipmentDropdown";
 import CustomEquipmentModal from "./CustomEquipmentModal";
 import ClothingCard from "./ClothingCard";
-import { updateWeight, modifyEquipment } from '../actions';
+import { updateWeight, modifyEquipment, updateAttributes } from '../actions';
 import {removeEquipment, removeAllEquipment, incrementEquipmentQty} from '../helpers/actionHelpers'
 
 import './CharacterGeneration.css'
+
+const defaultStats = {
+  str: 10,
+  int: 10,
+  wil: 10,
+  hlt: 10,
+  agi: 10,
+  gunLevel: 0,
+  handLevel: 0,
+}
 
 export class CreateChar extends Component {
   constructor(props){
@@ -23,6 +33,18 @@ export class CreateChar extends Component {
       filteredTags: []
     }
   }
+
+  componentDidMount(){
+    this.props.updateAttributes(defaultStats)
+  }
+
+  // componentDidMount(){
+  //   this.hydrate()
+  // }
+
+  // hydrate(){
+  //   this.props.updateAttributes(defaultStats)
+  // }
 
   settingAttribute(key){
     this.setState({toggleEditValue: key})
@@ -90,7 +112,6 @@ export class CreateChar extends Component {
 
 
   render() {
-
     const charEquip = this.props.gear.equipment
     const totalEquipWeight = charEquip.reduce((accumulator,obj)=>{
       return accumulator + (obj.weight*obj.qty)
@@ -217,11 +238,31 @@ const mapStateToProps = (state) => {
   return ({ 
     currentView: state.currentView,
     totalWeight: state.totalWeight,
-    // gear: state.gear
+    characterStats: {
+      str: state.characterStats.str,
+      int: state.characterStats.int,
+      wil: state.characterStats.wil,
+      hlt: state.characterStats.hlt,
+      agi: state.characterStats.agi,
+      gunLevel: state.characterStats.gunLevel,
+      handLevel: state.characterStats.handLevel,
+    },
+    combatStats: {
+      baseSpeed: state.combatStats.baseSpeed,
+      maxSpeed: state.combatStats.maxSpeed,
+      SAL: state.combatStats.SAL, 
+      CE: state.combatStats.CE, 
+      ISF: state.combatStats.ISF, 
+      ASF: state.combatStats.ASF,
+      knockoutValue: state.combatStats.knockoutValue,
+      damageBonus: state.combatStats.damageBonus,
+      combatActions: state.combatStats.combatActions,
+  },
     gear: {
       equipment: state.gear.equipment
     }
    });
 }
 
-export default connect(mapStateToProps, {updateWeight, modifyEquipment})(CreateChar)
+
+export default connect(mapStateToProps, {updateWeight, modifyEquipment, updateAttributes})(CreateChar)
