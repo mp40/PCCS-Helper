@@ -15,12 +15,21 @@ export class CreateChar extends Component {
   constructor(props){
     super(props)
     this.state = {
+      toggleEditValue: false,
       showEquipment: false,
       showCustomInput: false,
       showFilters: false,
       requiredEquipment: [],
       filteredTags: []
     }
+  }
+
+  settingAttribute(key){
+    this.setState({toggleEditValue: key})
+  };
+
+  resetToggleEditValue(){
+    this.setState({toggleEditValue: false})
   }
 
   toggleShowEquipment(){
@@ -189,7 +198,6 @@ export class CreateChar extends Component {
               requiredEquipment = {this.state.requiredEquipment}
               showFilters = {this.state.showFilters}
               filteredTags = {this.state.filteredTags}
-              // addEquipment = {this.props.addEquipment.bind(this)}
              /> :
             null}
           {this.state.showCustomInput ?

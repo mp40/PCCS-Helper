@@ -15,28 +15,6 @@ export class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      toggleEditValue: false,
-      // equipmentWeight: 5,//TODO add this to store //change equipmentWeight to totalWeight
-      characterStats:{
-          str: 10,
-          int: 10,
-          wil: 10,
-          hlt: 10,
-          agi: 10,
-          gunLevel: 0,
-          handLevel: 0,
-      },
-      combatStats: {
-        baseSpeed: 3,
-        maxSpeed: 6,
-        SAL: 0, 
-        CE: 0, 
-        ISF: 0, 
-        ASF: 0,
-        knockoutValue: 0,
-        damageBonus: 1,
-        combatActions: [4, 4],
-      },
       gear:{
         uniform: 'Normal',
         helmet: 'None',
@@ -93,16 +71,6 @@ export class App extends Component {
     })
   };
 
-  updateAttribute = (attribute, value)=>{
-    this.setState({characterStats:{...this.state.characterStats,[attribute]: value}}, ()=>{
-      this.updateAllStats();
-    })
-  };
-
-  settingAttribute(key){
-    this.setState({toggleEditValue: key})
-  };
-
   changeUniform = (uniformType)=>{
     //TODO
     console.log('JGH', uniformType)
@@ -125,8 +93,6 @@ export class App extends Component {
           {this.props.currentView === 'createChar' ?
           <CreateChar
             {...this.state}
-            updateAttribute={this.updateAttribute.bind(this)}
-            settingAttribute={this.settingAttribute.bind(this)}
             changeUniform={this.changeUniform.bind(this)}
           /> :
           null}
@@ -140,9 +106,9 @@ const mapStateToProps = (state) => {
   return ({ 
     currentView: state.currentView,
     totalWeight: state.totalWeight,
-    gear: {
-      equipment: state.gear.equipment
-    }
+    characterStats: state.characterStats,
+    conbatStats: state.combatStats,
+    gear: state.gear
    });
 }
 

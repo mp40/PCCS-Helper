@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import gearReducer from './gearReducer';
-
+import characterStatReducer from './characterStatReducer';
+import combatStatReducer from './combatStatReducer';
 
 const viewSelectReducer = (selectedView = 'home', action) => {
     if (action.type === 'VIEW_SELECTED'){
@@ -19,5 +20,7 @@ const updateWeightReducer = (totalWeight = 0, action) => {
 export default combineReducers({
     currentView: viewSelectReducer,
     totalWeight: updateWeightReducer,
+    characterStats: characterStatReducer,
+    combatStats: combatStatReducer,
     gear: gearReducer
 })
