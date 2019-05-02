@@ -9,17 +9,19 @@ const defaultStats = {
     gunLevel: 0,
     handLevel: 0,
 }
-const updateAttributes = (obj=defaultStats, action) => {
+// const characterStats = (obj=defaultStats, action) => {
+
+const characterStats = (state = {}, action) => {
     console.log('called', action)
     if (action.type === 'UPDATE_ATTRIBUTES'){
         console.log('reducing', action.payload)
-        return {characterStates: action.payload}
+        return {...state, characterStats: action.payload}
     }
-    return obj
+    return state
 }
 
 export default combineReducers({
-    characterStats: updateAttributes
+    characterStats
 })
 
 
