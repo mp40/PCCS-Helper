@@ -61,4 +61,5 @@ yarn test
 
 - Firearm selection
 - Grenade selection
+- Hand to hand data
 - Backend
