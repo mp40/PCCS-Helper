@@ -9,11 +9,11 @@ const defaultStats = {
     gunLevel: 0,
     handLevel: 0,
 }
-const updateAttributes = (obj={}, action) => {
+const updateAttributes = (obj=defaultStats, action) => {
     console.log('called', action)
     if (action.type === 'UPDATE_ATTRIBUTES'){
         console.log('reducing', action.payload)
-        return action.payload
+        return {characterStates: action.payload}
     }
     return obj
 }
