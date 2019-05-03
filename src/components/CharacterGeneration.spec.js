@@ -1,4 +1,4 @@
-import {mountAppWithStore} from '../helpers/testHelpers'
+import {mountAppWithStore, storeWithEquipment} from '../helpers/testHelpers'
 
 describe('Character Generation',()=>{
     const wrapper = mountAppWithStore()
@@ -45,6 +45,17 @@ describe('Character Generation',()=>{
             inputAttribute('#updateAgi', '18')
             expect(wrapper.text()).toContain('18')
         })
+        it('updates actions when attributes change',()=>{
+            const actionsTable = wrapper.find('#gunActionTable')
+            const firstImpulse = actionsTable.childAt(1)
+            const secondImpulse = actionsTable.childAt(2)
+            const thirdImpulse = actionsTable.childAt(3)
+            const fourthImpulse = actionsTable.childAt(4)
+            expect(firstImpulse.text()).toContain('2')
+            expect(secondImpulse.text()).toContain('1')
+            expect(thirdImpulse.text()).toContain('2')
+            expect(fourthImpulse.text()).toContain('1')
+        })
         describe('edge cases',()=>{
             it('should not be possible to enter values under 3',()=>{
                 inputAttribute('#updateAgi', '2')
@@ -57,6 +68,7 @@ describe('Character Generation',()=>{
         })
     })
     describe('Combat Levels',()=>{
+        const combatLevels = wrapper.find('#combatLevelInputContainer')
         it('should render Gun Comabat',()=>{
             expect(wrapper.text()).toContain('Gun')
         })
@@ -65,11 +77,22 @@ describe('Character Generation',()=>{
         })
         it('should update gun combat level',()=>{
             inputAttribute('#updateGun', '4')
-            expect(wrapper.text()).toContain('4')
+            expect(combatLevels.text()).toContain('4')
         })
         it('should update hand to hand combat level',()=>{
             inputAttribute('#updateHand','2')
-            expect(wrapper.text()).toContain('2')
+            expect(combatLevels.text()).toContain('2')
+        })
+        it('updates actions when attributes change',()=>{
+            const actionsTable = wrapper.find('#gunActionTable')
+            const firstImpulse = actionsTable.childAt(1)
+            const secondImpulse = actionsTable.childAt(2)
+            const thirdImpulse = actionsTable.childAt(3)
+            const fourthImpulse = actionsTable.childAt(4)
+            expect(firstImpulse.text()).toContain('3')
+            expect(secondImpulse.text()).toContain('2')
+            expect(thirdImpulse.text()).toContain('3')
+            expect(fourthImpulse.text()).toContain('2')
         })
     })
     describe('Comabt Data',()=>{
@@ -245,6 +268,19 @@ describe('Character Generation',()=>{
                 })
                 wrapper.find('#submitCustomEquipButton').simulate('click')
                 expect(wrapper.text()).toContain('Please Enter Valid Equipment Name and Weight')
+            })
+            it('should display error msg if equipment name already selected',()=>{
+                const wrapper = mountAppWithStore(storeWithEquipment)
+                wrapper.find('#activateCreateChar').simulate('click')
+                wrapper.find('#toggleCustomEquipment').simulate('click')
+                wrapper.find('#equipNameInput').simulate('change', {
+                    target:{value: 'newEquipment'}
+                })
+                wrapper.find('#equipWeightInput').simulate('change', {
+                    target:{value: '666'}
+                })
+                wrapper.find('#submitCustomEquipButton').simulate('click')
+                expect(wrapper.text()).toContain('Already In List, Please Enter Valid Equipment Name')
             })
         })
         describe('filtering the equipment list',()=>{

@@ -1,12 +1,15 @@
 import React, { Component } from "react"; 
+import {connect} from 'react-redux';
+import {changeUniform} from '../actions'
 import {uniformWeights} from '../helpers/uniformAndArmourTypes'
+
+import './ClothingCard.css'
 
 class ClothingCard extends Component {
     constructor(props) {
         super(props)
         this.state = {
             showUniformSelect: false
-            // showUniformSelect: true //todo change back to false
         }
     }
 
@@ -14,18 +17,18 @@ class ClothingCard extends Component {
         this.setState({showUniformSelect: true})
     }
 
-    handleChangeUniform(event){
-        console.log('hgj',event.target.value)
-        // this.props.changeUniform(event.target.value)
-        // console.log(this.state)
-        
+    handleChangeUniform = (event) =>{
+        const newUniform = event.target.value
+        const newWeight = this.props.totalWeight - (uniformWeights[this.props.gear.uniform] - uniformWeights[newUniform])
+        const attributeObj = this.props.characterStats
+        this.props.changeUniform(newUniform, newWeight, attributeObj)
+        this.setState({showUniformSelect: false})
 
     }
 
     render() {
-  
       const currentUniform = this.props.gear.uniform
-      const currentWeight = uniformWeights[currentUniform]
+      const currentUniformWeight = uniformWeights[currentUniform]  
 
       if(!this.state.showUniformSelect){
         return (
@@ -35,12 +38,13 @@ class ClothingCard extends Component {
                         <th className="uniformHeading">Uniform</th>
                         <th className="uniformValHeading">lbs</th>
                     </tr>
+
                     <tr
                       className="uniformStats"
                       onClick={this.toggleSelectUniform}
                     >
                         <td id="currentUniform">{currentUniform}</td>
-                        <td id="uniformWeight" style={{textAlign: 'center'}}>{currentWeight}</td>
+                        <td id="uniformWeight" style={{textAlign: 'center'}}>{currentUniformWeight}</td>
                     </tr>
                 </thead>
             </table>
@@ -49,33 +53,55 @@ class ClothingCard extends Component {
       
       if(this.state.showUniformSelect) {
         return (
-            <form className="uniformTableContainer">
-                <label>Select Uniform
-                    <select onChange={this.handleChangeUniform}>
-                        <option>Tropical</option>
-                        <option>Normal</option>
-                        <option>Winter</option>
-                    </select>
-                </label>
-            </form>
-        )
+            <table className="uniformTableContainer">
+                <thead>
+                    <tr className="uniformTableHeader">
+                        <th className="uniformHeading">Uniform</th>
+                        <th className="uniformValHeading">lbs</th>
+                    </tr>
 
-        // return (
-        //     <form className="uniformTableContainer">
-        //         <div>Select Uniform</div>
-        //         <input type="radio" value="Tropical" checked={currentUniform === 'Tropical'} onChange={this.handleChangeUniform}></input>
-        //         <span style={{fontSize:"smaller"}}>Tropical</span>
-        //         <br/>
-        //         <input type="radio" value="Normal" checked={currentUniform === 'Normal'} onChange={this.handleChangeUniform}></input>
-        //         <span style={{fontSize:"smaller"}}>Normal</span>
-        //         <br/>
-        //         <input type="radio" value="Winter" checked={currentUniform === 'Winter'} onChange={this.handleChangeUniform}></input>
-        //         <span style={{fontSize:"smaller"}}>Winter</span>
-        //     </form>
-            
-        // )
-      }   
+                    <tr>
+                    <div>
+                         <select id="uniformDropdownSelector" onChange={this.handleChangeUniform}>
+                             <option>Select Uniform</option>
+                             <option>Normal</option>
+                             <option>Tropical</option>
+                             <option>Winter</option>
+                         </select>
+                     </div>
+                    </tr>
+                </thead>
+            </table>
+        )
+      }
+
+
+
+    //   if(this.state.showUniformSelect) {
+    //     return (
+    //         <form className="uniformTableContainer">
+    //             {/* <label>Select Uniform */}
+    //                 <div>
+    //                     <select id="uniformDropdownSelector" onChange={this.handleChangeUniform}>
+    //                         <option>Select Uniform</option>
+    //                         <option>Normal</option>
+    //                         <option>Tropical</option>
+    //                         <option>Winter</option>
+    //                     </select>
+    //                 </div>
+    //             {/* </label> */}
+    //         </form>
+    //     )
+    //   }   
     }
   }
+
+  const mapStateToProps = (state) => {
+      return ({
+          totalWeight: state.totalWeight,
+          characterStats: state.characterStats,
+          gear: state.gear
+      })
+  }
   
-  export default ClothingCard
+  export default connect(mapStateToProps,{changeUniform})(ClothingCard)

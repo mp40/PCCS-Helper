@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {connect} from 'react-redux';
  
 const {actionsPerImpulse} = require('../helpers/helperFunctions');
 
@@ -23,14 +24,14 @@ class ActionsCard extends Component {
             </thead>
             <tbody>
               
-              <tr className="actionsTable">
+              <tr id="gunActionTable" className="actionsTable">
                 <td className="actionType">Gun</td>
                 <td className="actions">{gunActions[0]}</td>
                 <td className="actions">{gunActions[1]}</td>
                 <td className="actions">{gunActions[2]}</td>
                 <td className="actions">{gunActions[3]}</td>
               </tr>
-              <tr className="actionsTable">
+              <tr id="handActionTable" className="actionsTable">
                 <td className="actionType">Hand</td>
                 <td className="actions">{handActions[0]}</td>
                 <td className="actions">{handActions[1]}</td>
@@ -58,4 +59,34 @@ class ActionsCard extends Component {
   }
 }
 
-export default ActionsCard;
+const mapStateToProps = (state) => {
+  return ({ 
+    currentView: state.currentView,
+    totalWeight: state.totalWeight,
+    characterStats: {
+      str: state.characterStats.str,
+      int: state.characterStats.int,
+      wil: state.characterStats.wil,
+      hlt: state.characterStats.hlt,
+      agi: state.characterStats.agi,
+      gunLevel: state.characterStats.gunLevel,
+      handLevel: state.characterStats.handLevel,
+    },
+    combatStats: {
+      baseSpeed: state.combatStats.baseSpeed,
+      maxSpeed: state.combatStats.maxSpeed,
+      SAL: state.combatStats.SAL, 
+      CE: state.combatStats.CE, 
+      ISF: state.combatStats.ISF, 
+      ASF: state.combatStats.ASF,
+      knockoutValue: state.combatStats.knockoutValue,
+      damageBonus: state.combatStats.damageBonus,
+      combatActions: state.combatStats.combatActions,
+  },
+    gear: {
+      equipment: state.gear.equipment
+    }
+   });
+}
+
+export default connect(mapStateToProps)(ActionsCard);

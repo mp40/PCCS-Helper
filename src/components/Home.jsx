@@ -1,9 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { selectCurrentView } from '../actions'
 import './Home.css'
 
 
-import { connect } from 'react-redux';
-import { selectCurrentView } from '../actions'
 
 export function HomePage(props) {
   return (
@@ -20,7 +20,14 @@ export function HomePage(props) {
 
 
 const mapStateToProps = (state) => {
-  return ({ currentView: state.currentView });
+  return ({ 
+    currentView: state.currentView,
+    totalWeight: state.totalWeight,
+    // gear: state.gear
+    gear: {
+      equipment: state.gear.equipment
+    }
+   });
 }
 
 export default connect(mapStateToProps, { selectCurrentView })(HomePage)

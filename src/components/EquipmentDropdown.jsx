@@ -1,19 +1,27 @@
 import React, { Component } from "react";
+import {connect} from 'react-redux';
+import{modifyEquipment} from '../actions'
 import './EquipmentDropdown.css'
 
 import {createArrayOfEquipment, filterEquipment, createFilterSet} from '../helpers/equipmentListFunctions.js'
-
+import {addEquipment} from '../helpers/actionHelpers'
 const equipment = require('../helpers/equipmentList')
+
+
  
 class EquipmentDropdown extends Component {
 
   
-    handleAddEquip(equipObj){
-        this.props.addEquipment(equipObj)
+    handleAddEquipment(equipObj){
+        const arrayContainsObj = this.props.gear.equipment.filter(obj => obj.name === equipObj.name)
+        if(arrayContainsObj.length){
+            return
+        }
+        const newData = addEquipment(this.props.totalWeight, this.props.gear.equipment, equipObj)
+        this.props.modifyEquipment(newData.totalWeight, newData.equipArray, this.props.characterStats)
     }  
 
   render() {
-
     const filteredEquipment = filterEquipment(this.props.filteredTags)
     const equipmentArray = createArrayOfEquipment(filteredEquipment)
     const equipmentTags = createFilterSet(equipment)
@@ -59,7 +67,7 @@ class EquipmentDropdown extends Component {
                 {equipmentArray.map((equipObj, index)=>{
                     return <div className="equipmentEntry"
                             key={index}
-                            onClick={this.handleAddEquip.bind(this, equipObj)}>
+                            onClick={this.handleAddEquipment.bind(this, equipObj)}>
                                 <div>
                                     {equipObj.name}
                                 </div>
@@ -76,4 +84,17 @@ class EquipmentDropdown extends Component {
   }
 }
 
-export default EquipmentDropdown;
+// export default EquipmentDropdown;
+const mapStateToProps = (state) => {
+    return ({ 
+      currentView: state.currentView,
+      totalWeight: state.totalWeight,
+      characterStats:state.characterStats,
+      gear: {
+        equipment: state.gear.equipment
+      }
+     });
+  }
+  
+  export default connect(mapStateToProps, {modifyEquipment})(EquipmentDropdown)
+  

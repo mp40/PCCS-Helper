@@ -1,12 +1,31 @@
 import React, { Component } from "react";
+import {connect} from 'react-redux';
+import {updateAttributes} from '../actions';
 
 class AttributeCard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      toggleEditValue: false,
+    }
+  }
 
-  handleUpdateAttribute(attribute, value){
-    if(value < 3 || value > 19){
+  settingAttribute(key){
+    this.setState({toggleEditValue: key})
+  };
+
+  handleUpdateAttributes(attribute, value){
+    value = parseInt(value)
+    if(value < 3 || value > 18 || typeof value !== 'number' || isNaN(value)) {
+      this.setState({toggleEditValue: false})
       return
     }
-    this.props.updateAttribute(attribute, value)
+    const attributeObj = this.props.characterStats
+    attributeObj[attribute] = value
+
+    this.props.updateAttributes(attributeObj, this.props.totalWeight)
+    this.setState({toggleEditValue: false})
+    
   }
 
   render() {
@@ -21,11 +40,11 @@ class AttributeCard extends Component {
             </tr>
             <tr className="attributeRow">
               <td className="attName">Strength</td>
-              <td className="attValue" id="updateStr" onClick={this.props.settingAttribute.bind(this,'toggleStr')}>
-                {this.props.toggleEditValue === 'toggleStr' ?
+              <td className="attValue" id="updateStr" onClick={this.settingAttribute.bind(this,'toggleStr')}>
+                {this.state.toggleEditValue === 'toggleStr' ?
                 <input type="text" className="attInput" onKeyUp={event => {
                   if (event.keyCode === 13) {
-                      this.handleUpdateAttribute('str',event.target.value)
+                      this.handleUpdateAttributes('str',event.target.value)
                   }
                 }}
                 /> :
@@ -34,11 +53,11 @@ class AttributeCard extends Component {
             </tr>
             <tr className="attributeRow">
               <td className="attName">Intelligence</td>
-              <td className="attValue" id="updateInt" onClick={this.props.settingAttribute.bind(this,'toggleInt')}>
-                {this.props.toggleEditValue === 'toggleInt' ?
+              <td className="attValue" id="updateInt" onClick={this.settingAttribute.bind(this,'toggleInt')}>
+                {this.state.toggleEditValue === 'toggleInt' ?
                 <input type="text" className="attInput" onKeyUp={event => {
                   if (event.keyCode === 13) {
-                      this.handleUpdateAttribute('int',event.target.value)
+                    this.handleUpdateAttributes('int',event.target.value)
                   }
                 }}
                 /> :
@@ -47,11 +66,11 @@ class AttributeCard extends Component {
             </tr>
             <tr className="attributeRow">
               <td className="attName">Health</td>
-              <td className="attValue" id="updateHlt" onClick={this.props.settingAttribute.bind(this,'toggleHlt')}>
-                {this.props.toggleEditValue === 'toggleHlt' ?
+              <td className="attValue" id="updateHlt" onClick={this.settingAttribute.bind(this,'toggleHlt')}>
+                {this.state.toggleEditValue === 'toggleHlt' ?
                 <input type="text" className="attInput" onKeyUp={event => {
                   if (event.keyCode === 13) {
-                      this.handleUpdateAttribute('hlt',event.target.value)
+                    this.handleUpdateAttributes('hlt',event.target.value)
                   }
                 }}
                 /> :
@@ -60,11 +79,11 @@ class AttributeCard extends Component {
             </tr>
             <tr className="attributeRow">
               <td className="attName">Willpower</td>
-              <td className="attValue" id="updateWil" onClick={this.props.settingAttribute.bind(this,'toggleWil')}>
-                {this.props.toggleEditValue === 'toggleWil' ?
+              <td className="attValue" id="updateWil" onClick={this.settingAttribute.bind(this,'toggleWil')}>
+                {this.state.toggleEditValue === 'toggleWil' ?
                 <input type="text" className="attInput" onKeyUp={event => {
                   if (event.keyCode === 13) {
-                      this.handleUpdateAttribute('wil',event.target.value)
+                    this.handleUpdateAttributes('wil',event.target.value)
                   }
                 }}
                 /> :
@@ -73,11 +92,11 @@ class AttributeCard extends Component {
             </tr>
             <tr className="attributeRow">
               <td className="attName">Agility</td>
-              <td className="attValue" id="updateAgi" onClick={this.props.settingAttribute.bind(this,'toggleAgi')}>
-                {this.props.toggleEditValue === 'toggleAgi' ?
+              <td className="attValue" id="updateAgi" onClick={this.settingAttribute.bind(this,'toggleAgi')}>
+                {this.state.toggleEditValue === 'toggleAgi' ?
                 <input type="text" className="attInput" onKeyUp={event => {
                   if (event.keyCode === 13) {
-                      this.handleUpdateAttribute('agi',event.target.value)
+                    this.handleUpdateAttributes('agi',event.target.value)
                   }
                 }}
                 /> :
@@ -92,4 +111,14 @@ class AttributeCard extends Component {
   }
 }
 
-export default AttributeCard;
+const mapStateToProps = (state) => {
+  return ({ 
+    totalWeight: state.totalWeight,
+    characterStats: state.characterStats,
+    gear: {
+      equipment: state.gear.equipment
+    }
+   });
+}
+
+export default connect(mapStateToProps,{updateAttributes})(AttributeCard)

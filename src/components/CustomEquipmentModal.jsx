@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
+import { modifyEquipment } from '../actions';
+import {addEquipment} from '../helpers/actionHelpers'
 
 import './CustomEquipmentModal.css'
 
@@ -8,7 +11,8 @@ class CustomEquipmentModal extends Component {
         this.state = {
             equipmentName: '',
             equipmentWeight: '',
-            errorMsg: false
+            errorMsgInvalidEntry: false,
+            errorMsgExistsInArray: false
         }
     }
 
@@ -33,23 +37,28 @@ class CustomEquipmentModal extends Component {
             )
 
         if (isValidInput === false) {
-            this.setState({errorMsg: true})
+            this.setState({errorMsgInvalidEntry: true})
             return
         }
 
+        const arrayContainsObj = this.props.gear.equipment.filter(obj => obj.name === name)
+
+        if(arrayContainsObj.length){
+            this.setState({errorMsgExistsInArray: true})
+            return
+        }
         const equipObj = {
             name: name,
             weight: weight,
             tags: ['Custom']
         }
 
-        this.props.addEquipment(equipObj)
-
+        const newData = addEquipment(this.props.totalWeight, this.props.gear.equipment, equipObj)
+        this.props.modifyEquipment(newData.totalWeight, newData.equipArray, this.props.characterStats)
         this.props.toggleCustomEquipment()
     }
 
   render() {
-
     return (
         <div className='customEquipmentModalContainer'>
             <div className="customEquipmentListCard">
@@ -95,8 +104,13 @@ class CustomEquipmentModal extends Component {
                         Submit
                     </button>
                     
-                    {this.state.errorMsg ?
+                    {this.state.errorMsgInvalidEntry ?
                     <div style={{color:'red'}}>Please Enter Valid Equipment Name and Weight</div> :
+                     null  
+                    }
+
+                    {this.state.errorMsgExistsInArray ?
+                    <div style={{color:'red'}}>Already In List, Please Enter Valid Equipment Name</div> :
                      null  
                     }
 
@@ -107,4 +121,12 @@ class CustomEquipmentModal extends Component {
   }
 }
 
-export default CustomEquipmentModal;
+const mapStateToProps = (state) => {
+    return ({
+        totalWeight: state.totalWeight,
+        characterStats: state.characterStats,
+        gear: state.gear
+    });
+}
+
+export default connect(mapStateToProps,{modifyEquipment})(CustomEquipmentModal);

@@ -5,7 +5,7 @@ function NavBarCreateChar(props) {
   return (
           <div className="navCreateCharacterContainer">
               <div>Create Character</div>
-              <div className="navEquipWeight">{`total lbs ${props.equipmentWeight}`}</div>
+              <div className="navEquipWeight">{`total lbs ${props.totalWeight}`}</div>
           </div> 
   );
 };
