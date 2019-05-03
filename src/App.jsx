@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import NavBar from "./components/NavBar";
 import HomePage from "./components/Home";
 import CreateChar from "./components/CharacterGeneration";
-import { updateWeight, modifyEquipment, updateAttributes} from './actions';
 import "./App.css";
 
 //TODO Uniform Weight/s
@@ -46,11 +45,7 @@ export class App extends Component {
 const mapStateToProps = (state) => {
   return ({ 
     currentView: state.currentView,
-    totalWeight: state.totalWeight,
-    characterStats: state.characterStats,
-    conbatStats: state.combatStats,
-    gear: state.gear
    });
 }
 
-export default connect(mapStateToProps, {updateWeight, modifyEquipment, updateAttributes})(App)
+export default connect(mapStateToProps)(App)

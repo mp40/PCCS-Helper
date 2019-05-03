@@ -23,8 +23,9 @@ class AttributeCard extends Component {
     const attributeObj = this.props.characterStats
     attributeObj[attribute] = value
 
-    updateAttributes(attributeObj)
+    this.props.updateAttributes(attributeObj, this.props.totalWeight)
     this.setState({toggleEditValue: false})
+    
   }
 
   render() {
@@ -112,18 +113,8 @@ class AttributeCard extends Component {
 
 const mapStateToProps = (state) => {
   return ({ 
-    currentView: state.currentView,
     totalWeight: state.totalWeight,
     characterStats: state.characterStats,
-    // characterStats: {
-    //   str: state.characterStats.str,
-    //   int: state.characterStats.int,
-    //   wil: state.characterStats.wil,
-    //   hlt: state.characterStats.hlt,
-    //   agi: state.characterStats.agi,
-    //   gunLevel: state.characterStats.gunLevel,
-    //   handLevel: state.characterStats.handLevel,
-    // },
     gear: {
       equipment: state.gear.equipment
     }

@@ -1,15 +1,7 @@
 export const initialStore = {
     currentView: 'home',
     totalWeight: 0,
-    characterStats:{
-        // str: 0,
-        // int: 0,
-        // wil: 0,
-        // hlt: 0,
-        // agi: 0,
-        // gunLevel: 0,
-        // handLevel: 0,
-    },
+    characterStats:{},
     combatStats: {
         baseSpeed: 0,
         maxSpeed: 0,

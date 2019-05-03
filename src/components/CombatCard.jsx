@@ -25,14 +25,14 @@ class CombatCard extends Component {
     const attributeObj = this.props.characterStats
     attributeObj[attribute] = value
 
-    updateAttributes(attributeObj)
+    this.props.updateAttributes(attributeObj, this.props.totalWeight)
     this.setState({toggleEditValue: false})
   }
 
   render() {
     return (
       <div>
-        <div className="tableContainerCombat">
+        <div id="combatLevelInputContainer" className="tableContainerCombat">
           <table className="attributeContainer">
             <tbody>
               <tr>
@@ -77,18 +77,7 @@ const mapStateToProps = (state) => {
   return ({ 
     currentView: state.currentView,
     totalWeight: state.totalWeight,
-    characterStats: {
-      str: state.characterStats.str,
-      int: state.characterStats.int,
-      wil: state.characterStats.wil,
-      hlt: state.characterStats.hlt,
-      agi: state.characterStats.agi,
-      gunLevel: state.characterStats.gunLevel,
-      handLevel: state.characterStats.handLevel,
-    },
-    gear: {
-      equipment: state.gear.equipment
-    }
+    characterStats: state.characterStats,
    });
 }
 

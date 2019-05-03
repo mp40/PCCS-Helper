@@ -24,14 +24,14 @@ class ActionsCard extends Component {
             </thead>
             <tbody>
               
-              <tr className="actionsTable">
+              <tr id="gunActionTable" className="actionsTable">
                 <td className="actionType">Gun</td>
                 <td className="actions">{gunActions[0]}</td>
                 <td className="actions">{gunActions[1]}</td>
                 <td className="actions">{gunActions[2]}</td>
                 <td className="actions">{gunActions[3]}</td>
               </tr>
-              <tr className="actionsTable">
+              <tr id="handActionTable" className="actionsTable">
                 <td className="actionType">Hand</td>
                 <td className="actions">{handActions[0]}</td>
                 <td className="actions">{handActions[1]}</td>

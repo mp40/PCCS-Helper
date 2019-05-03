@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import {connect} from 'react-redux';
-// import{addEquipment} from '../actions'
 import{modifyEquipment} from '../actions'
 import './EquipmentDropdown.css'
 

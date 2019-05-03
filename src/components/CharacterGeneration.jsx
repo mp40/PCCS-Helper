@@ -217,7 +217,6 @@ export class CreateChar extends Component {
           {this.state.showCustomInput ?
             <CustomEquipmentModal
               toggleCustomEquipment={this.toggleCustomEquipment.bind(this)}
-              addEquipment = {this.props.addEquipment.bind(this)}
             /> :
             null  
           }  
