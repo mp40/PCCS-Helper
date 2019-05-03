@@ -17,6 +17,14 @@ const updateWeightReducer = (totalWeight = 0, action) => {
     return totalWeight
 }
 
+// export default combineReducers({
+//     currentView: viewSelectReducer,
+//     totalWeight: updateWeightReducer,
+//     characterStats: characterStatReducer,
+//     combatStats: combatStatReducer,
+//     gear: gearReducer
+// })
+
 export default combineReducers({
     currentView: viewSelectReducer,
     totalWeight: updateWeightReducer,

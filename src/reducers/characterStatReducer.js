@@ -11,17 +11,16 @@ const defaultStats = {
 }
 // const characterStats = (obj=defaultStats, action) => {
 
-const characterStats = (state = {}, action) => {
+const characterStats = (obj=defaultStats, action) => {
     console.log('called', action)
     if (action.type === 'UPDATE_ATTRIBUTES'){
         console.log('reducing', action.payload)
-        return {...state, characterStats: action.payload}
+        return action.payload
     }
-    return state
+    return obj
 }
 
-export default combineReducers({
-    characterStats
-})
+export default characterStats
+
 
 

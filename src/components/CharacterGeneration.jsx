@@ -35,7 +35,6 @@ export class CreateChar extends Component {
   }
 
   componentDidMount(){
-    console.log('C.D.M')
     this.props.updateAttributes(defaultStats)
   }
 
