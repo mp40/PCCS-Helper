@@ -14,6 +14,11 @@ export const initialStore = {
         combatActions: [0, 0],
     },
     gear: {
-        equipment: []
+        uniform: 'Normal',
+        // helmet: 'None', TODO
+        // bodyArmour: 'None', TODO
+        equipment: [],
+        // firearms: [], TODO
+        // grenades: [] TODO
     }
 }

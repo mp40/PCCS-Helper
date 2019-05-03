@@ -42,3 +42,13 @@ export const modifyEquipment = (newWeight, equipArray, attributeObj) => {
     }
 }
 
+export const changeUniform = (newUniform, newWeight, attributeObj) => {
+    return (dispatch) => {
+        dispatch({
+            type: 'CHANGE_UNIFORM',
+            payload: newUniform
+        })
+        dispatch(updateWeight(newWeight, attributeObj))
+    }
+}
+

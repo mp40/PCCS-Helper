@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import gearReducer from './gearReducer';
+import {modifyEquipmentReducer, changeUniformReducer} from './gearReducer';
 import characterStatReducer from './characterStatReducer';
 import combatStatReducer from './combatStatReducer';
 
@@ -17,18 +17,13 @@ const updateWeightReducer = (totalWeight = 0, action) => {
     return totalWeight
 }
 
-// export default combineReducers({
-//     currentView: viewSelectReducer,
-//     totalWeight: updateWeightReducer,
-//     characterStats: characterStatReducer,
-//     combatStats: combatStatReducer,
-//     gear: gearReducer
-// })
-
 export default combineReducers({
     currentView: viewSelectReducer,
     totalWeight: updateWeightReducer,
     characterStats: characterStatReducer,
     combatStats: combatStatReducer,
-    gear: gearReducer
+    gear: combineReducers({
+        uniform: changeUniformReducer,
+        equipment: modifyEquipmentReducer
+    })
 })

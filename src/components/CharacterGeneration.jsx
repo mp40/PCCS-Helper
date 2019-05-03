@@ -122,10 +122,7 @@ export class CreateChar extends Component {
         <ActionsCard
           {...this.props}
         />
-        <ClothingCard
-          {...this.props}
-          // TODO
-        />
+        <ClothingCard/>
         </div>
 
         <div style={{width:'40%'}} className="equipmentSelect">

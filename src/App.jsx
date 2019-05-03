@@ -9,19 +9,6 @@ import "./App.css";
 //TODO Body armour
 //TODO Firearms
 export class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      gear:{
-        // uniform: 'Normal',
-        helmet: 'None',
-        bodyArmour: 'None',
-        // equipment: [],
-        firearms: [],
-        grenades: [],
-      }
-    }
-  }
 
   render() {
     return (

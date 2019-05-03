@@ -13,12 +13,26 @@ describe('the Clothing and Body Armour Card',()=>{
         expect(wrapper.text()).toContain('Normal')
         expect(wrapper.find('#uniformWeight').text()).toContain('5')
     })
-    xit('should be possible to change uniform types',()=>{
+    it('should be possible to change uniform types',()=>{
         const wrapper = mountAppWithStore()
         wrapper.find('#activateCreateChar').simulate('click')
-        //TODO finish this test
         wrapper.find('.uniformStats').simulate('click')
-        // console.log(wrapper.debug())
+        wrapper.find('#uniformDropdownSelector').simulate('change', {
+            target:{value: 'Tropical'}
+        })
         expect(wrapper.find('.uniformStats').text()).toContain('Tropical')
+        expect(wrapper.find('.uniformStats').text()).toContain('4.5')
+
+    })
+    it('should update the total weight on change',()=>{
+        const wrapper = mountAppWithStore()
+        wrapper.find('#activateCreateChar').simulate('click')
+        wrapper.find('.uniformStats').simulate('click')
+        wrapper.find('#uniformDropdownSelector').simulate('change', {
+            target:{value: 'Tropical'}
+        })
+        const navBar = wrapper.find('.navCreateCharacterContainer')
+        expect(navBar.text()).toContain('4.5')
+        expect(navBar.text()).not.toContain('-4.5')
     })
 })
