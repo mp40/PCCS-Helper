@@ -80,14 +80,13 @@ const calculateStateObject = function (characterStats, weight) {
   return {
     baseSpeed: bs,
     maxSpeed: ms,
-    sal: salResult,
-    ce: ceResult,
-    isf: isfResult,
-    asf: asfResult,
-    gunActions: gunResults,
-    handActions: handResults,
+    SAL: salResult,
+    CE: ceResult,
+    ISF: isfResult,
+    ASF: asfResult,
     knockoutValue: knockout,
-    damageBonus: damBonus
+    damageBonus: damBonus,
+    combatActions: [gunResults, handResults]
   };
 };
 

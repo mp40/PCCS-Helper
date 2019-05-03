@@ -35,16 +35,9 @@ export class CreateChar extends Component {
   }
 
   componentDidMount(){
-    this.props.updateAttributes(defaultStats)
+    this.props.updateAttributes(defaultStats, 0)
+    this.props.updateWeight(defaultStats, 5)
   }
-
-  // componentDidMount(){
-  //   this.hydrate()
-  // }
-
-  // hydrate(){
-  //   this.props.updateAttributes(defaultStats)
-  // }
 
   settingAttribute(key){
     this.setState({toggleEditValue: key})

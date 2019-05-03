@@ -1,3 +1,5 @@
+const { calculateStateObject } = require("../helpers/helperFunctions");
+
 export const selectCurrentView = (view) => {
     return {
         type: 'VIEW_SELECTED',
@@ -5,25 +7,32 @@ export const selectCurrentView = (view) => {
     }
 }
 
-export const updateWeight = (newWeight) => {
-    return {
-        type: 'TOTAL_WEIGHT',
-        payload: newWeight
+export const updateWeight = (attributeObj, newWeight) => {
+    return (dispatch) => {
+        dispatch({
+            type: 'TOTAL_WEIGHT',
+            payload: newWeight
+        })
+        dispatch(updateCombatStats(attributeObj, newWeight))
     }
 }
 
-export const updateAttributes = (attributeObj) => {
-    console.log("UPDATE_ATTRIBUTES", attributeObj)
-    return {
-        type: 'UPDATE_ATTRIBUTES',
-        payload: attributeObj
+export const updateAttributes = (attributeObj, weight) => {
+    return (dispatch) => {
+        dispatch({
+            type: 'UPDATE_ATTRIBUTES',
+            payload: attributeObj
+        })
+        dispatch(updateCombatStats(attributeObj, weight))
     }
 }
 
-export const updateCombatStats = (combatStatObject) => {
+export const updateCombatStats = (attributeObj, weight=0) => {
+    console.log('called', weight)
+    const newCombatData = calculateStateObject(attributeObj, weight)
     return {
         type: 'UPDATE_ALL_COMBAT_STATS',
-        payload: combatStatObject
+        payload: newCombatData
     }
 }
 
