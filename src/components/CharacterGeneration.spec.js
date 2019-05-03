@@ -170,7 +170,7 @@ describe('Character Generation',()=>{
             wrapper.find('#removeEquip').simulate('click')
             expect(wrapper.text()).not.toContain('Baseball Bat')
         })
-        it.only('should remove weight of deleted quipment',()=>{
+        it('should remove weight of deleted quipment',()=>{
             const wrapper = mountAppWithStore()
             addEquipment(wrapper)
             wrapper.find('#filterEquipmentList').simulate('click')
@@ -185,7 +185,7 @@ describe('Character Generation',()=>{
             wrapper.find('#closeEquipmentModal').simulate('click')
             expect(wrapper.find('#characterEquipmentList').children()).toHaveLength(2)
         })
-        it.only('should clear all equipment from list',()=>{
+        it('should clear all equipment from list',()=>{
             const wrapper = mountAppWithStore()
             addEquipment(wrapper)
             wrapper.find('.equipmentListBody').at(0).childAt(1).childAt(0).simulate('click')

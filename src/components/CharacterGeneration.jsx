@@ -36,7 +36,7 @@ export class CreateChar extends Component {
 
   componentDidMount(){
     this.props.updateAttributes(defaultStats, 0)
-    this.props.updateWeight(defaultStats, 5)
+    this.props.updateWeight(5, defaultStats)
   }
 
   settingAttribute(key){
@@ -90,17 +90,17 @@ export class CreateChar extends Component {
 
   handleRemoveEquipment(equipObj){
     const newData = removeEquipment(this.props.totalWeight,this.props.gear.equipment, equipObj)
-    this.props.modifyEquipment(newData.totalWeight, newData.equipArray)
+    this.props.modifyEquipment(newData.totalWeight, newData.equipArray, this.props.characterStats)
   }
 
   handleRemoveAllEquipment(){
     const newWeight = removeAllEquipment(this.props.totalWeight, this.props.gear.equipment)
-    this.props.modifyEquipment(newWeight, [])
+    this.props.modifyEquipment(newWeight, [], this.props.characterStats)
   }
 
   handleIncrementEquipmentQty(equipObj, modifier){
     const newData = incrementEquipmentQty(this.props.totalWeight,this.props.gear.equipment, equipObj, modifier)
-    this.props.modifyEquipment(newData.totalWeight, newData.equipArray)
+    this.props.modifyEquipment(newData.totalWeight, newData.equipArray, this.props.characterStats)
   }
 
 
@@ -232,29 +232,8 @@ const mapStateToProps = (state) => {
     currentView: state.currentView,
     totalWeight: state.totalWeight,
     characterStats: state.characterStats,
-    // characterStats: {
-    //   str: state.characterStats.str,
-    //   int: state.characterStats.int,
-    //   wil: state.characterStats.wil,
-    //   hlt: state.characterStats.hlt,
-    //   agi: state.characterStats.agi,
-    //   gunLevel: state.characterStats.gunLevel,
-    //   handLevel: state.characterStats.handLevel,
-    // },
-    combatStats: {
-      baseSpeed: state.combatStats.baseSpeed,
-      maxSpeed: state.combatStats.maxSpeed,
-      SAL: state.combatStats.SAL, 
-      CE: state.combatStats.CE, 
-      ISF: state.combatStats.ISF, 
-      ASF: state.combatStats.ASF,
-      knockoutValue: state.combatStats.knockoutValue,
-      damageBonus: state.combatStats.damageBonus,
-      combatActions: state.combatStats.combatActions,
-  },
-    gear: {
-      equipment: state.gear.equipment
-    }
+    combatStats: state.combatStats,
+    gear: state.gear
    });
 }
 

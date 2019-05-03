@@ -19,7 +19,7 @@ class EquipmentDropdown extends Component {
             return
         }
         const newData = addEquipment(this.props.totalWeight, this.props.gear.equipment, equipObj)
-        this.props.modifyEquipment(newData.totalWeight, newData.equipArray)
+        this.props.modifyEquipment(newData.totalWeight, newData.equipArray, this.props.characterStats)
     }  
 
   render() {
@@ -90,7 +90,7 @@ const mapStateToProps = (state) => {
     return ({ 
       currentView: state.currentView,
       totalWeight: state.totalWeight,
-      // gear: state.gear
+      characterStats:state.characterStats,
       gear: {
         equipment: state.gear.equipment
       }

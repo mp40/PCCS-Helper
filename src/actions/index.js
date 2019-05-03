@@ -7,7 +7,7 @@ export const selectCurrentView = (view) => {
     }
 }
 
-export const updateWeight = (attributeObj, newWeight) => {
+export const updateWeight = (newWeight, attributeObj) => {
     return (dispatch) => {
         dispatch({
             type: 'TOTAL_WEIGHT',
@@ -28,7 +28,6 @@ export const updateAttributes = (attributeObj, weight) => {
 }
 
 export const updateCombatStats = (attributeObj, weight=0) => {
-    console.log('called', weight)
     const newCombatData = calculateStateObject(attributeObj, weight)
     return {
         type: 'UPDATE_ALL_COMBAT_STATS',
@@ -36,10 +35,10 @@ export const updateCombatStats = (attributeObj, weight=0) => {
     }
 }
 
-export const modifyEquipment = (newWeight, equipArray) => {
+export const modifyEquipment = (newWeight, equipArray, attributeObj) => {
     return (dispatch) => {
         dispatch({type:'MODIFY_EQUIPMENT', payload: equipArray})
-        dispatch(updateWeight(newWeight))
+        dispatch(updateWeight(newWeight, attributeObj))
     }
 }
 

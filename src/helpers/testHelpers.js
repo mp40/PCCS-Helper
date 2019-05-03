@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux'
 import reducers from '../reducers'
 import thunk from 'redux-thunk'
-import {initialStore} from './helpers/initialStore';
+import {initialStore} from '../helpers/initialStore';
 
 export const mountAppWithStore = () => {
 

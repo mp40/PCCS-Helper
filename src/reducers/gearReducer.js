@@ -7,7 +7,15 @@ const modifyEquipment = (equipArray = [], action) => {
     return equipArray
 }
 
+const changeUniform = (uniform = 'Normal', action) => {
+    if (action.type === 'CHANGE_UNIFORM'){
+        return action.payload
+    }
+    return uniform
+}
+
 export default combineReducers({
+    uniform: changeUniform,
     equipment: modifyEquipment
 })
 
