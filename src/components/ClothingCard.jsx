@@ -51,48 +51,29 @@ class ClothingCard extends Component {
             )
       }
       
+      //TODO stop this from changing size from above
       if(this.state.showUniformSelect) {
         return (
-            <table className="uniformTableContainer">
-                <thead>
-                    <tr className="uniformTableHeader">
-                        <th className="uniformHeading">Uniform</th>
-                        <th className="uniformValHeading">lbs</th>
-                    </tr>
-
-                    <tr>
-                    <div>
-                         <select id="uniformDropdownSelector" onChange={this.handleChangeUniform}>
-                             <option>Select Uniform</option>
-                             <option>Normal</option>
-                             <option>Tropical</option>
-                             <option>Winter</option>
-                         </select>
-                     </div>
-                    </tr>
-                </thead>
-            </table>
+            <div className="uniformTableContainer">
+                <table>
+                    <thead>
+                        <tr className="uniformTableHeader">
+                            <th className="uniformHeading">Uniform</th>
+                            <th className="uniformValHeading">lbs</th>
+                        </tr>
+                    </thead>
+                </table>
+                <div>
+                    <select id="uniformDropdownSelector" onChange={this.handleChangeUniform}>
+                        <option>Select Uniform</option>
+                        <option>Normal</option>
+                        <option>Tropical</option>
+                        <option>Winter</option>
+                    </select>
+                </div>
+            </div>
         )
       }
-
-
-
-    //   if(this.state.showUniformSelect) {
-    //     return (
-    //         <form className="uniformTableContainer">
-    //             {/* <label>Select Uniform */}
-    //                 <div>
-    //                     <select id="uniformDropdownSelector" onChange={this.handleChangeUniform}>
-    //                         <option>Select Uniform</option>
-    //                         <option>Normal</option>
-    //                         <option>Tropical</option>
-    //                         <option>Winter</option>
-    //                     </select>
-    //                 </div>
-    //             {/* </label> */}
-    //         </form>
-    //     )
-    //   }   
     }
   }
 

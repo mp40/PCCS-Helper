@@ -81,6 +81,7 @@ class CustomEquipmentModal extends Component {
                         <div>Equipment Name</div>
                         <input 
                             type="text"
+                            autoComplete="off"
                             id='equipNameInput' 
                             className="equipInput" 
                             value={this.state.equipmentName} 
@@ -91,6 +92,7 @@ class CustomEquipmentModal extends Component {
                         <div>Equipment Weight (lbs)</div>
                         <input 
                             type="text"
+                            autoComplete="off"
                             id='equipWeightInput' 
                             className="equipInput" 
                             value={this.state.equipmentWeight} 
