@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import {modifyEquipmentReducer, changeUniformReducer} from './gearReducer';
+import {modifyEquipmentReducer, changeUniformReducer, firearmsReducer} from './gearReducer';
 import characterStatReducer from './characterStatReducer';
 import combatStatReducer from './combatStatReducer';
 
@@ -24,6 +24,7 @@ export default combineReducers({
     combatStats: combatStatReducer,
     gear: combineReducers({
         uniform: changeUniformReducer,
-        equipment: modifyEquipmentReducer
+        equipment: modifyEquipmentReducer,
+        firearms: firearmsReducer
     })
 })

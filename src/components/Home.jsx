@@ -23,12 +23,8 @@ const mapStateToProps = (state) => {
   return ({ 
     currentView: state.currentView,
     totalWeight: state.totalWeight,
-    // gear: state.gear
-    gear: {
-      equipment: state.gear.equipment
-    }
+    gear: state.gear
    });
 }
 
 export default connect(mapStateToProps, { selectCurrentView })(HomePage)
-// export default HomePage;

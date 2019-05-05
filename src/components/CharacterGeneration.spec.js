@@ -137,8 +137,8 @@ describe('Character Generation',()=>{
         it('should show total equipment weight',()=>{
             const wrapper = mountAppWithStore()
             addEquipment(wrapper)
-            expect(wrapper.find('.equipmentHeader').childAt(4).text()).toContain(2.2)
-            
+            const listWrapper = wrapper.find('.equipmentListBody')
+            expect(listWrapper.text()).toContain(2.2)
         })
         it('should render equipment list',()=>{
             wrapper.find('#addEquipment').simulate('click')
@@ -219,7 +219,6 @@ describe('Character Generation',()=>{
             expect(wrapper.text()).not.toContain('Basic Pouch')
             expect(wrapper.text()).not.toContain('Baseball Bat')
             expect(wrapper.text()).toContain(5)
-            
         })
         describe('adding custom equipment',()=>{
             function goToCustomEquipment(wrapper){

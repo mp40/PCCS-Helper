@@ -5,6 +5,7 @@ import CombatCard from "./CombatCard";
 import ActionsCard from "./ActionsCard";
 import EquipmentCard from './EquipmentCard';
 import ClothingCard from "./ClothingCard";
+import WeaponsCard from "./WeaponsCard";
 import { updateWeight, updateAttributes } from '../actions';
 
 import './CharacterGeneration.css'
@@ -37,6 +38,7 @@ export class CreateChar extends Component {
         <ClothingCard/>
         </div>
         <EquipmentCard/>
+        <WeaponsCard/>
     </div>    
     );
   }

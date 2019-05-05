@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import EquipmentDropdown from "./EquipmentDropdown";
 import CustomEquipmentModal from "./CustomEquipmentModal";
 
-import { updateWeight, modifyEquipment, updateAttributes } from '../actions';
+import { modifyEquipment, updateAttributes } from '../actions';
 import {removeEquipment, removeAllEquipment, incrementEquipmentQty} from '../helpers/actionHelpers'
 
 export class EquipmentCard extends Component {
@@ -115,9 +115,9 @@ export class EquipmentCard extends Component {
                     className="equipmentButton"
                     onClick={this.handleRemoveAllEquipment.bind(this)}
                     >Clear All</button>
-  
                 </td>
                 </tr>
+                
                   {charEquip.map((equipObj, index)=>{
                     return <tr key={index} className="addedEqipRow">
                       <td>
@@ -179,14 +179,12 @@ export class EquipmentCard extends Component {
   
   const mapStateToProps = (state) => {
     return ({ 
-      currentView: state.currentView,
       totalWeight: state.totalWeight,
       characterStats: state.characterStats,
-      combatStats: state.combatStats,
       gear: state.gear
      });
   }
   
   
-  export default connect(mapStateToProps, {updateWeight, modifyEquipment, updateAttributes})(EquipmentCard)
+  export default connect(mapStateToProps, {modifyEquipment, updateAttributes})(EquipmentCard)
   
