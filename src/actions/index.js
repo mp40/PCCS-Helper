@@ -52,3 +52,10 @@ export const changeUniform = (newUniform, newWeight, attributeObj) => {
     }
 }
 
+export const modifyFirearmList = (newWeight, firearmsArray, attributeObj) => {
+    return (dispatch) => {
+        dispatch({type:'MODIFY_FIREARMS', payload: firearmsArray})
+        dispatch(updateWeight(newWeight, attributeObj))
+    }
+}
+

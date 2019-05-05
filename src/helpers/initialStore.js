@@ -18,7 +18,7 @@ export const initialStore = {
         // helmet: 'None', TODO
         // bodyArmour: 'None', TODO
         equipment: [],
-        // firearms: [], TODO
+        firearms: [],
         // grenades: [] TODO
     }
 }

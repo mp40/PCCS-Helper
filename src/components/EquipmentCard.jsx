@@ -115,9 +115,9 @@ export class EquipmentCard extends Component {
                     className="equipmentButton"
                     onClick={this.handleRemoveAllEquipment.bind(this)}
                     >Clear All</button>
-  
                 </td>
                 </tr>
+                
                   {charEquip.map((equipObj, index)=>{
                     return <tr key={index} className="addedEqipRow">
                       <td>

@@ -14,3 +14,9 @@ export const changeUniformReducer = (uniform = 'Normal', action) => {
     return uniform
 }
 
+export const firearmsReducer = (firearmArray = [], action) => {
+    if (action.type === 'MODIFY_FIREARMS'){
+        return action.payload
+    }
+    return firearmArray
+}
