@@ -20,7 +20,7 @@ export class WeaponsCardAmmo extends Component {
                                 <button 
                                 id="qtyUpMag"
                                 className="equipmentButton"
-                                // onClick={this.handleIncrementGunQty.bind(this,gunObj,1)}
+                                onClick={this.props.handleIncrementMagQty.bind(this,this.props.gunObj,magObj,1)}
                                 >
                                   {String.fromCharCode(8593)}
                                 </button>

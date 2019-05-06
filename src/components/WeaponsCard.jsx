@@ -5,7 +5,7 @@ import WeaponsCardBody from "./WeaponsCardBody";
 import {modifyFirearmList} from '../actions'
 import FirearmsSelectModal from './FirearmsSelectModal'
 
-import {removeEquipment, removeAllEquipment, incrementEquipmentQty} from '../helpers/actionHelpers'
+import {removeEquipment, removeAllEquipment, incrementEquipmentQty, incrementMagQty} from '../helpers/actionHelpers'
 
 // import { modifyEquipment, updateAttributes } from '../actions';
 // import {removeEquipment, removeAllEquipment, incrementEquipmentQty} from '../helpers/actionHelpers'
@@ -34,11 +34,24 @@ export class WeaponsCard extends Component {
     this.props.modifyFirearmList(newData.totalWeight, newData.equipArray, this.props.characterStats)
   }
 
+  handleIncrementMagQty(gunObj, magObj, modifier){
+    const newData = incrementMagQty(this.props.totalWeight,this.props.gear.firearms, gunObj, magObj, modifier)
+    this.props.modifyFirearmList(newData.totalWeight, newData.equipArray, this.props.characterStats)
+  }
+
     render() {
       const selectedGuns = this.props.gear.firearms
-      const weaponsWeight = selectedGuns.reduce((accumulator, obj)=>{
+      const gunWeight = selectedGuns.reduce((accumulator, obj)=>{
         return accumulator + (obj.weight*obj.qty)
       },0)
+
+      const ammoWeight = selectedGuns.reduce((total, gunObj)=>{
+        const ammo = gunObj.mag.reduce((accumulator, magObj)=>{
+          return accumulator + (magObj.weight*magObj.qty)
+        },0)
+        return total + ammo
+      },0)
+      const weaponsWeight = Math.round((gunWeight + ammoWeight)*1000)/1000
 
       return (
         <div style={{width:'33%'}} className="WeaponSelect">
@@ -52,6 +65,7 @@ export class WeaponsCard extends Component {
             selectedGuns={selectedGuns}
             handleRemoveGun={this.handleRemoveGun.bind(this)}
             handleIncrementGunQty={this.handleIncrementGunQty.bind(this)}
+            handleIncrementMagQty={this.handleIncrementMagQty.bind(this)}
           />
 
           {this.state.showFirearms ?
@@ -61,8 +75,6 @@ export class WeaponsCard extends Component {
             null}
 
         </div>
-
-
            
       );
     }
@@ -78,124 +90,3 @@ export class WeaponsCard extends Component {
   
   
   export default connect(mapStateToProps,{modifyFirearmList})(WeaponsCard)
-
-  // <div style={{width:'100%'}} className="equipmentTable">
-  //               <div>
-  //                 <div className="equipmentHeader" id='weaponsHeader'>
-  //                   <span>Weapons</span>
-  //                   <span style={{width:'9%'}}>Weight</span>
-  //                   <span style={{width:'9%'}}>Qty</span>
-  //                   <span style={{width:'9%'}}>lbs</span>
-  //                   <span style={{width:'9%'}}>
-  //                     {weaponsWeight}
-  //                   </span>
-  //                 </div>
-  //               </div>
-  //               {/* TODO confirm if below id has css */}
-  //               {/* <tbody id="characterEquipmentList"> */}
-  //               <div id="characterWeaponList">
-  //                 <tr className="addEquipment">
-  //                 <td>
-  //                   <button 
-  //                     id="addFirearm" 
-  //                     className="equipmentButton" 
-  //                     onClick={this.toggleShowFirearms.bind(this)}
-  //                   >Add Firearm</button> */}
-  
-  //                   {/* <button 
-  //                     id="toggleCustomEquipment" 
-  //                     className="equipmentButton" 
-  //                     onClick={this.toggleCustomEquipment.bind(this)}
-  //                   >Add Custom</button> */}
-  
-  //                   <button
-  //                     id="clearAllFirearms"
-  //                     className="equipmentButton"
-  //                     // onClick={this.handleRemoveAllEquipment.bind(this)}
-  //                   >Clear All</button>
-  //               </td>
-  //               </tr>
-
-  //               {selectedGuns.map((gunObj, index)=>{
-  //                   return <Fragment key={index}>
-  //                     <tr className="addedEqipRow">
-  //                       <td>
-  //                         <button
-  //                           id="removeGun" 
-  //                           className="equipmentButton"
-  //                           onClick={this.handleRemoveGun.bind(this, gunObj)}
-  //                           >
-  //                             X
-  //                           </button>
-  //                         {gunObj.name}
-  //                       </td>
-  //                       <td>
-  //                         {gunObj.weight}
-  //                       </td>
-  //                       <td>
-  //                         {gunObj.qty}
-  //                       </td>
-  //                       <td>
-  //                         {Math.round((gunObj.qty * gunObj.weight)*100)/100}
-  //                       </td>
-  //                       <td className="arrowBox">
-  //                         <button 
-  //                           id="qtyUpGun"
-  //                           className="equipmentButton"
-  //                           onClick={this.handleIncrementGunQty.bind(this,gunObj,1)}
-  //                           >
-  //                           {String.fromCharCode(8593)}
-  //                         </button>
-  //                         <button 
-  //                           id="qtyDownGun" 
-  //                           className="equipmentButton"
-  //                           onClick={this.handleIncrementGunQty.bind(this,gunObj,-1)}
-  //                           >
-  //                           {String.fromCharCode(8595)}
-  //                         </button>
-  //                       </td>
-  //                     </tr>
-  //                     <Fragment>
-  //                       <div className="additionalAmmoTag">
-  //                         additional ammo
-  //                       </div>
-  //                         {gunObj.mag.map((magObj, index)=>{
-  //                           return <div key={index} className="spareMags">
-  //                             <span>{magObj.qty} x </span>
-  //                             {magObj.type !== 'Rnd' ?
-  //                             <span>{magObj.cap} round {magObj.type}</span> :
-  //                             <span>single rounds</span>
-  //                             }
-  //                             <span>(??) lbs</span>
-  //                             {/* <span className="arrowBox" style={{width:'9%'}}> */}
-  //                               <button 
-  //                               id="qtyUpMag"
-  //                               className="equipmentButton"
-  //                               // onClick={this.handleIncrementGunQty.bind(this,gunObj,1)}
-  //                               >
-  //                                 {String.fromCharCode(8593)}
-  //                               </button>
-  //                               <button 
-  //                               id="qtyDownMag" 
-  //                               className="equipmentButton"
-  //                               // onClick={this.handleIncrementGunQty.bind(this,gunObj,-1)}
-  //                               >
-  //                                 {String.fromCharCode(8595)}
-  //                               </button>
-  //                             {/* </span> */}
-  //                         </div>
-  //                     })}
-  //                   </Fragment>
-  //                   </Fragment>
-  //                 })}                          
-                
-  //               </div>
-  //            </div>
-
-  //            {this.state.showFirearms ?
-  //              <FirearmsSelectModal
-  //               closeShowFirearms={this.toggleShowFirearms.bind(this)}
-  //              /> :
-  //             null}
-
-  //       </div>

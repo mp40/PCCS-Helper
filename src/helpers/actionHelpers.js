@@ -38,3 +38,25 @@ export const incrementEquipmentQty = (oldWeight, oldArray, equipObj, modifier) =
         equipArray: newArray
     }
   }
+
+  export const incrementMagQty = (oldWeight, oldArray, gunObj, magObj, modifier) => {
+    const newGunObj = gunObj.mag.map((obj)=>{
+        if(obj.cap === magObj.cap){
+            obj.qty += modifier
+        }
+        return obj
+    })
+
+    const newWeight = oldWeight += (magObj.weight * modifier)
+    const newArray = oldArray.map((obj)=>{
+        if(obj.name === newGunObj.name){
+            obj = newGunObj
+        }
+        return obj
+    })
+
+    return {
+        totalWeight: Math.round(newWeight*1000)/1000,
+        equipArray: newArray
+    }
+  }
