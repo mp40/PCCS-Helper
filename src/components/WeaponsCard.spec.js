@@ -10,8 +10,10 @@ describe('The Weapons Card',()=>{
         })
         it('should be able to select a weapon',()=>{
             const gunList = wrapper.find('.equipmentListBody')
+            // console.log(gunList.debug())
             gunList.find('#M16').simulate('click')
             const selectedWeapons = wrapper.find('#characterWeaponList')
+            console.log(selectedWeapons.debug())
             expect(selectedWeapons.text()).toContain('M16')
         })
         it('should be possible to close the weapon select list',()=>{
@@ -40,5 +42,13 @@ describe('The Weapons Card',()=>{
             wrapper.find('#removeGun').simulate('click')
             expect(wrapper.text()).not.toContain('M16')
         })
+        // it('should be possible to increase spare ammo',()=>{
+        //     //TODO
+        //     wrapper.find('#addFirearm').simulate('click')
+        //     const gunList = wrapper.find('.equipmentListBody')
+        //     gunList.find('#MAT 49').simulate('click')
+        //     const spareMags = wrapper.find('.sparemags')
+        //     console.log(spareMags.debug())
+        // })
     })
 })

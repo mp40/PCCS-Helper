@@ -16,3 +16,46 @@
 .WeaponSelect:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); 
 }
+
+.additionalAmmoTag {
+    font-size: x-small;
+    margin-left: 2rem;
+    margin-top: -0.5rem;
+}
+
+.spareMags {
+    font-size: small;
+    margin-left: 2rem;
+    margin-top: -0.2rem;
+}
+
+#qtyUpGun,
+#qtyDownGun {
+    font-size: xx-small;
+}
+
+#weaponsHeader,
+#weaponsBody {
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 1px;
+    font-weight: bold;
+}
+
+#weaponsHeaderStats {
+    text-align: center;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+#weaponsBodyStats {
+    text-align: center;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+#gunArrowBox {
+    justify-content: center;
+}
