@@ -16,8 +16,7 @@ export class WeaponsCardAmmo extends Component {
                                 <span>{magObj.cap} round {magObj.type}</span> :
                                 <span>single rounds</span>
                                 }
-                                <span>(??) lbs</span>
-                                {/* <span className="arrowBox" style={{width:'9%'}}> */}
+                                <span> ({magObj.weight}) lbs </span>
                                 <button 
                                 id="qtyUpMag"
                                 className="equipmentButton"
@@ -32,8 +31,7 @@ export class WeaponsCardAmmo extends Component {
                                 >
                                   {String.fromCharCode(8595)}
                                 </button>
-                              {/* </span> */}
-                              </div>
+                            </div>
                  })}
             </div>
         )   
