@@ -47,6 +47,7 @@ export class WeaponsCardBody extends Component {
                     </div>
                     <WeaponsCardAmmo
                         gunObj={gunObj}
+                        handleIncrementMagQty={this.props.handleIncrementMagQty.bind(this)}
                     />
                 </div>
             })}
