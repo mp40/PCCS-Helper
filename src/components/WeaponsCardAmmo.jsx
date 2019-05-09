@@ -11,7 +11,7 @@ export class WeaponsCardAmmo extends Component {
 
                 {this.props.gunObj.mag.map((magObj, index)=>{
                     return <div key={index} className="spareMags">
-                                <span>{magObj.qty} x </span>
+                                <span className='magQtySpan'>{magObj.qty} x </span>
                                 {magObj.type !== 'Rnd' ?
                                 <span>{magObj.cap} round {magObj.type}</span> :
                                 <span>single rounds</span>

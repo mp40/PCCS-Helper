@@ -1,9 +1,8 @@
-import WeaponsCard from './WeaponsCard'
 import {mountAppWithStore} from '../helpers/testHelpers'
 import {storeWithCreateCharacterView} from '../helpers/testHelpers'
 
 describe('The Weapons Card',()=>{
-    const wrapper = mountAppWithStore(storeWithCreateCharacterView)
+    const wrapper = mountAppWithStore(storeWithCreateCharacterView())
     const gunList = () => wrapper.find('.equipmentListBody')
     const selectedWeapons = () => wrapper.find('#characterWeaponList')
     const header = () => wrapper.find('#weaponsHeader')
@@ -66,27 +65,17 @@ describe('The Weapons Card',()=>{
         })
     })
     describe('firearms edge cases', ()=> {
-        beforeEach(()=>{
+        it('should increment only the intended mag when weapons have multiple mag types', ()=>{
             wrapper.mount()
             wrapper.find('#addFirearm').simulate('click')
-        })
-        afterEach(()=>{
-            wrapper.unmount()
-        })
-        it('should render re-selected guns with no additional ammo', ()=>{
-            gunList().find('#M1911A1').simulate('click')
-            expect(selectedWeapons().text()).toContain('M1911A1')
-            wrapper.find('#qtyUpMag').simulate('click')
-            expect(header().text()).toContain('3.7')
-            wrapper.find('#removeGun').simulate('click')
-            expect(header().text()).not.toContain('3.7')
-            // TODO get the below to work
-            // wrapper.find('#addFirearm').simulate('click')
-            // gunList().find('#M1911A1').simulate('click')
-            // expect(selectedWeapons().text()).toContain('M1911A1')
-        })
-        it('should increment only the intended mag when weapons have multiple mag types', ()=>{
-            //TODO
+            gunList().find('#M16').simulate('click')
+            expect(selectedWeapons().text()).toContain('M16')
+            const spareMags = wrapper.find('.spareMags')
+            const firstMag = spareMags.at(0)
+            const secondMag = spareMags.at(1)
+            firstMag.find('#qtyUpMag').simulate('click')
+            expect(firstMag.find('.magQtySpan').text()).toContain('1')
+            expect(secondMag.find('.magQtySpan').text()).not.toContain('1')
         })
     })
 })

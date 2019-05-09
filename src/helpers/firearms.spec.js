@@ -1,6 +1,6 @@
 import {rifles, pistols, smgs, mgs, shotguns, sniperRifles} from './firearms'
 
-const allGuns = [...rifles, ...pistols, ...smgs, ...mgs, ...sniperRifles, ...shotguns]
+const allGuns = [...rifles(), ...pistols(), ...smgs(), ...mgs(), ...sniperRifles(), ...shotguns()]
 
 const checkArrayLength = function(key, subKey = false){
     for(let gun of allGuns){
