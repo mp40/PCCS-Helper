@@ -6,10 +6,15 @@ import {rifles, pistols, smgs, mgs, sniperRifles, shotguns} from '../helpers/fir
 
 class FirearmsSelectModal extends Component {
 
+    //TODO refactor below method 
     handleAddFirearm = (gunObj) => {
         const newWeight = this.props.totalWeight + gunObj.weight;
         const attributeObj = this.props.characterStats;
         gunObj.qty = 1
+        gunObj.mag.map((magObj)=>{
+            magObj.qty = 0
+            return magObj
+        })
         const newFirearmsArray = [...this.props.gear.firearms, ...[gunObj]]
 
         this.props.modifyFirearmList(newWeight, newFirearmsArray, attributeObj)
