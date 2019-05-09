@@ -269,7 +269,7 @@ describe('Character Generation',()=>{
                 expect(wrapper.text()).toContain('Please Enter Valid Equipment Name and Weight')
             })
             it('should display error msg if equipment name already selected',()=>{
-                const wrapper = mountAppWithStore(storeWithEquipment)
+                const wrapper = mountAppWithStore(storeWithEquipment())
                 wrapper.find('#activateCreateChar').simulate('click')
                 wrapper.find('#toggleCustomEquipment').simulate('click')
                 wrapper.find('#equipNameInput').simulate('change', {

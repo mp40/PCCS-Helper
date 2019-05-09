@@ -11,17 +11,15 @@ class FirearmsSelectModal extends Component {
         const newWeight = this.props.totalWeight + gunObj.weight;
         const attributeObj = this.props.characterStats;
         gunObj.qty = 1
-        gunObj.mag.map((magObj)=>{
-            magObj.qty = 0
-            return magObj
-        })
+        
         const newFirearmsArray = [...this.props.gear.firearms, ...[gunObj]]
 
         this.props.modifyFirearmList(newWeight, newFirearmsArray, attributeObj)
     }
 
     render(){
-        const firearmsArray = [...rifles, ...pistols, ...smgs, ...mgs, ...sniperRifles, ...shotguns]
+        const firearmsArray = [...rifles(), ...pistols(), ...smgs(), ...mgs(), ...sniperRifles(), ...shotguns()]
+        
         return (
             <div className='equipmentModalContainer'>
                 <div className="equipmentListCard">
