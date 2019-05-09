@@ -6,20 +6,12 @@ import {modifyFirearmList} from '../actions'
 import FirearmsSelectModal from './FirearmsSelectModal'
 
 import {
-  removeEquipment, 
-  removeAllEquipment, 
-  incrementEquipmentQty, 
-  incrementMagQty, 
   calculateFirearmsArrayWeight,
   calculateObjectWeightDifference,
   modifyObjectQtyInArray,
-  calculateAmmoWeight,
   calculateGunAndAmmoWeight,
   removeObjectFromArray
 } from '../helpers/actionHelpers'
-
-// import { modifyEquipment, updateAttributes } from '../actions';
-// import {removeEquipment, removeAllEquipment, incrementEquipmentQty} from '../helpers/actionHelpers'
 
 import './WeaponsCard.css' 
 
