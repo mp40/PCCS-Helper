@@ -45,7 +45,7 @@ describe('The Weapons Card',()=>{
         it('should be possible to increase spare ammo',()=>{
             wrapper.find('#addFirearm').simulate('click')
             gunList().find('#M1911A1').simulate('click')
-            wrapper.find('#qtyUpMag').simulate('click')
+            wrapper.find('#qtyUpMagType1').simulate('click')
             expect(header().text()).toContain('3.7')
             expect(navBarWeight().text()).toContain('8.7')
         })
@@ -57,7 +57,7 @@ describe('The Weapons Card',()=>{
             expect(navBarWeight().text()).not.toContain('8.7')
         })
         it('should remove spare ammo weight from total when weapon removed',()=>{
-            wrapper.find('#qtyUpMag').simulate('click')
+            wrapper.find('#qtyUpMagType1').simulate('click')
             wrapper.find('#removeGun').simulate('click')
             expect(header().text()).toContain('0')
             expect(navBarWeight().text()).toContain('5')
@@ -73,7 +73,7 @@ describe('The Weapons Card',()=>{
             const spareMags = wrapper.find('.spareMags')
             const firstMag = spareMags.at(0)
             const secondMag = spareMags.at(1)
-            firstMag.find('#qtyUpMag').simulate('click')
+            firstMag.find('#qtyUpMagType1').simulate('click')
             expect(firstMag.find('.magQtySpan').text()).toContain('1')
             expect(secondMag.find('.magQtySpan').text()).not.toContain('1')
         })

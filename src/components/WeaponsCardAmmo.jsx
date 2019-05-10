@@ -18,7 +18,8 @@ export class WeaponsCardAmmo extends Component {
                                 }
                                 <span> ({magObj.weight}) lbs </span>
                                 <button 
-                                id="qtyUpMag"
+                                // id="qtyUpMag"
+                                id={`qtyUpMagType${index+1}`}
                                 className="equipmentButton"
                                 onClick={this.props.handleIncrementMagQty.bind(this,this.props.gunObj,magObj,1)}
                                 >
