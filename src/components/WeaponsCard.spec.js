@@ -9,9 +9,6 @@ describe('The Weapons Card',()=>{
     const navBarWeight = () => wrapper.find('.navEquipWeight')
 
     describe('Firearms',()=>{
-        afterAll(()=>{
-            wrapper.unmount()
-        })
         it('should be possible to open a list of selectable weapons',()=>{
             wrapper.find('#addFirearm').simulate('click')
             expect(wrapper.text()).toContain('M16')
@@ -108,4 +105,10 @@ describe('The Weapons Card',()=>{
             expect(firstMag.find('.magQtySpan').text()).toContain('0')
         })
     })
+    // describe('firearms features',()=>{
+    //     it('should be possible to view firearms stats',()=>{
+    //         //TODO
+    //         expect(false).toEqual(true)
+    //     })
+    // })
 })

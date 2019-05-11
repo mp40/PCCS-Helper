@@ -4,7 +4,7 @@ import { modifyFirearmList } from '../actions'
 
 import {rifles, pistols, smgs, mgs, sniperRifles, shotguns} from '../helpers/firearms';
 
-class FirearmsSelectModal extends Component {
+class WeaponsCardSelectModal extends Component {
 
     //TODO refactor below method 
     handleAddFirearm = (gunObj) => {
@@ -64,4 +64,4 @@ const mapStateToProps = (state) => {
        });
 }
 
-export default connect(mapStateToProps,{modifyFirearmList})(FirearmsSelectModal)
+export default connect(mapStateToProps,{modifyFirearmList})(WeaponsCardSelectModal)

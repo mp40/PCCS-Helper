@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import WeaponsCardHeader from './WeaponsCardHeader'
 import WeaponsCardBody from "./WeaponsCardBody";
 import {modifyFirearmList} from '../actions'
-import FirearmsSelectModal from './FirearmsSelectModal'
+import WeaponsCardSelectModal from './WeaponsCardSelectModal'
 
 import {
   calculateFirearmsArrayWeight,
@@ -77,7 +77,7 @@ export class WeaponsCard extends Component {
           />
 
           {this.state.showFirearms ?
-            <FirearmsSelectModal
+            <WeaponsCardSelectModal
               closeShowFirearms={this.toggleShowFirearms.bind(this)}
             /> :
             null}
