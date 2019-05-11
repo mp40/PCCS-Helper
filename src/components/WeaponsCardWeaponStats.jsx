@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import WeaponDataRow from './WeaponDataRow'
+
 export class WeaponsCardWeaponStats extends Component {
     
     render() {
@@ -27,176 +29,93 @@ export class WeaponsCardWeaponStats extends Component {
 
                     <tbody>
                         {/* first row */}
-                        <tr id="GunTableLineOne">
-                            <td id="WeaponStatLength">
-                                <span>L</span>
-                                <span>{gunObj.length}</span>
-                            </td>
-                            <td>
-                                <span>{gunObj.aim.ac[0]}</span>
-                                <span>{gunObj.aim.mod[0]}</span>
-                            </td>
-                            <td>
-                                <span>{gunObj.projectiles[0].type}</span>
-                                <span>PEN</span>
-                            </td>
-                            {gunObj.projectiles[0].pen.map((penData, index)=>{
-                                return penData.toString().length === 1 ?
-                                <td key={index}>{penData.toFixed(1)}</td> :
-                                <td key={index}>{penData}</td>
-                            })}
-                        </tr>
+                        <WeaponDataRow
+                        gunObj = {gunObj}
+                        dataType = {{name:'Length', short:'L', data:gunObj.length}}
+                        index = {0}
+                        tag = {['FMJ', 'PEN']}
+                        array = {gunObj.projectiles[0].pen}
+                        />
                         {/* second row */}
-                        <tr id="GunTableLineTwo">
-                            <td id="WeaponStatWeight">
-                                <span>W</span>
-                                <span>{gunObj.weight}</span>
-                            </td>
-                            <td>
-                                <span>{gunObj.aim.ac[1]}</span>
-                                <span>{gunObj.aim.mod[1]}</span>
-                            </td>
-                            <td>
-                                <span>DC</span>
-                            </td>
-                            {gunObj.projectiles[0].dc.map((dcData, index)=>{
-                                return <td key={index}>{dcData}</td>
-                            })}
-                        </tr>
+                        <WeaponDataRow
+                        gunObj = {gunObj}
+                        dataType = {{name:'Weight', short:'W', data:gunObj.weight}}
+                        index = {1}
+                        tag = {['', 'DC']}
+                        array = {gunObj.projectiles[0].dc}
+                        />
                         {/* third row */}
-                        <tr id="GunTableLineThree">
-                            <td></td>
-                            <td>
-                                <span>{gunObj.aim.ac[2]}</span>
-                                <span>{gunObj.aim.mod[2]}</span>
-                            </td>
-                        </tr>
+                        <WeaponDataRow
+                        gunObj = {gunObj}
+                        dataType = {{name:'', short:'', data:''}}
+                        index = {2}
+                        tag = {['', '']}
+                        array = {[]}
+                        />
                         {/* fourth row */}
-                        <tr id="GunTableLineFour">
-                            <td id="WeaponStatReload">
-                                <span>RT</span>
-                                <span>{gunObj.rt}</span>
-                            </td>
-                            <td>
-                                <span>{gunObj.aim.ac[3]}</span>
-                                <span>{gunObj.aim.mod[3]}</span>
-                            </td>
-                            <td>
-                                <span>{gunObj.projectiles[1].type}</span>
-                                <span>PEN</span>
-                            </td>
-                            {gunObj.projectiles[1].pen.map((penData, index)=>{
-                                return penData.toString().length === 1 ?
-                                <td key={index}>{penData.toFixed(1)}</td> :
-                                <td key={index}>{penData}</td>
-                            })}
-                        </tr>
+                        <WeaponDataRow
+                        gunObj = {gunObj}
+                        dataType = {{name:'Reload', short:'RT', data:gunObj.rt}}
+                        index = {3}
+                        tag = {[gunObj.projectiles[1].type, 'PEN']}
+                        array = {gunObj.projectiles[1].pen}
+                        />
                         {/* fifth row */}
-                        <tr id="GunTableLineFive">
-                            <td id="WeaponStatROF">
-                                <span>ROF</span>
-                                <span>{gunObj.rof}</span>
-                            </td>
-                            <td>
-                                <span>{gunObj.aim.ac[4]}</span>
-                                <span>{gunObj.aim.mod[4]}</span>
-                            </td>
-                            <td>
-                                <span>DC</span>
-                            </td>
-                            {gunObj.projectiles[1].dc.map((dcData, index)=>{
-                                return <td key={index}>{dcData}</td>
-                            })}
-                        </tr>
+                        <WeaponDataRow
+                        gunObj = {gunObj}
+                        dataType = {{name:'ROF', short:'ROF', data:gunObj.rof}}
+                        index = {4}
+                        tag = {['', 'DC']}
+                        array = {gunObj.projectiles[1].dc}
+                        />
                         {/* sixth row */}
-                        <tr id="GunTableLineSix">
-                            <td></td>
-                            <td>
-                                <span>{gunObj.aim.ac[5]}</span>
-                                <span>{gunObj.aim.mod[5]}</span>
-                            </td>
-                        </tr>
+                        <WeaponDataRow
+                        gunObj = {gunObj}
+                        dataType = {{name:'', short:'', data:''}}
+                        index = {5}
+                        tag = {['', '']}
+                        array = {[]}
+                        />
                         {/* seventh row */}
-                        <tr id="GunTableLineSeven">
-                            <td id="WeaponStatCapacity">
-                                <span>Cap</span>
-                                <span>{gunObj.mag[0].cap}</span>
-                            </td>
-                            <td>
-                                <span>{gunObj.aim.ac[6]}</span>
-                                <span>{gunObj.aim.mod[6]}</span>
-                            </td>
-                            <td>
-                                <span>{gunObj.projectiles[2].type}</span>
-                                <span>PEN</span>
-                            </td>
-                            {gunObj.projectiles[2].pen.map((penData, index)=>{
-                                return penData.toString().length === 1 ?
-                                <td key={index}>{penData.toFixed(1)}</td> :
-                                <td key={index}>{penData}</td>
-                            })}
-                        </tr>
+                        <WeaponDataRow
+                        gunObj = {gunObj}
+                        dataType = {{name:'Capacity', short:'Cap', data:gunObj.mag[0].cap}}
+                        index = {6}
+                        tag = {[gunObj.projectiles[2].type, 'PEN']}
+                        array = {gunObj.projectiles[2].pen}
+                        />
                         {/* eighth row */}
-                        <tr id="GunTableLineEight">
-                            <td id="WeaponStatAW">
-                                <span>AW</span>
-                                <span>{gunObj.mag[0].weight}</span>
-                            </td>
-                            <td>
-                                <span>{gunObj.aim.ac[7]}</span>
-                                <span>{gunObj.aim.mod[7]}</span>
-                            </td>
-                            <td>
-                                <span>DC</span>
-                            </td>
-                            {gunObj.projectiles[2].dc.map((dcData, index)=>{
-                                return <td key={index}>{dcData}</td>
-                            })}
-                        </tr>
+                        <WeaponDataRow
+                        gunObj = {gunObj}
+                        dataType = {{name:'AW', short:'AW', data:gunObj.mag[0].weight}}
+                        index = {7}
+                        tag = {['', 'DC']}
+                        array = {gunObj.projectiles[2].dc}
+                        />
                         {/* ninth row */}
-                        <tr id="GunTableLineNine">
-                            <td>
-                                <span>{gunObj.mag[0].type}</span>
-                            </td>
-                            <td>
-                                <span>{gunObj.aim.ac[8]}</span>
-                                <span>{gunObj.aim.mod[8]}</span>
-                            </td>
-                        </tr>
+                        <WeaponDataRow
+                        gunObj = {gunObj}
+                        dataType = {{name:'', short:'', data:gunObj.mag[0].type}}
+                        index = {8}
+                        tag = {['', '']}
+                        array = {[]}
+                        />
                         {/* tenth row */}
-                        <tr id="GunTableLineTen">
-                            <td id="WeaponStatKnockDown">
-                                <span>KD</span>
-                                <span>{gunObj.kd}</span>
-                            </td>
-                            <td>
-                                <span>{gunObj.aim.ac[9]}</span>
-                                <span>{gunObj.aim.mod[9]}</span>
-                            </td>
-                            <td>
-                                <span>BA</span>
-                            </td>
-                            {gunObj.ba.map((dcData, index)=>{
-                                return <td key={index}>{dcData}</td>
-                            })}
-                        </tr>
+                        <WeaponDataRow
+                        gunObj = {gunObj}
+                        dataType = {{name:'KnockDown', short:'KD', data:gunObj.kd}}
+                        index = {9}
+                        tag = {['', 'BA']}
+                        array = {gunObj.ba}
+                        />
                         {/* eleventh row */}
-                        <tr id="GunTableLineEleven">
-                            <td id="WeaponStatSAB">
-                                <span>SAB</span>
-                                <span>{gunObj.sab}</span>
-                            </td>
-                            <td>
-                                <span>{gunObj.aim.ac[10]}</span>
-                                <span>{gunObj.aim.mod[10]}</span>
-                            </td>
-                            <td>
-                                <span>TOF</span>
-                            </td>
-                            {gunObj.tof.map((dcData, index)=>{
-                                return <td key={index}>{dcData}</td>
-                            })}
-                        </tr>
+                        <WeaponDataRow
+                        gunObj = {gunObj}
+                        dataType = {{name:'SAB', short:'SAB', data:gunObj.sab}}
+                        index = {10}
+                        tag = {['', 'TOF']}
+                        array = {gunObj.tof}
+                        />
                     </tbody>
 
                 </table>

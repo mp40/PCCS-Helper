@@ -1,21 +1,21 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import {mount} from 'enzyme';
 import WeaponsCardWeaponStats from './WeaponsCardWeaponStats';
-import {testM1911A1} from '../helpers/testHelpers'
+import {testM1911A1, testM203} from '../helpers/testHelpers'
 
 describe('<WeaponsCardWeaponStats/> component',()=>{
-    const wrapper = shallow(<WeaponsCardWeaponStats gunObj={testM1911A1()}/>)
-    const lineOne = wrapper.find('#GunTableLineOne')
-    const lineTwo = wrapper.find('#GunTableLineTwo')
-    const lineThree = wrapper.find('#GunTableLineThree')
-    const lineFour = wrapper.find('#GunTableLineFour')
-    const lineFive = wrapper.find('#GunTableLineFive')
-    const lineSix = wrapper.find('#GunTableLineSix')
-    const lineSeven = wrapper.find('#GunTableLineSeven')
-    const lineEight = wrapper.find('#GunTableLineEight')
-    const lineNine = wrapper.find('#GunTableLineNine')
-    const lineTen = wrapper.find('#GunTableLineTen')
-    const lineEleven = wrapper.find('#GunTableLineEleven')
+    const wrapper = mount(<WeaponsCardWeaponStats gunObj={testM1911A1()}/>)
+    const lineOne = wrapper.find('#GunTableLine0')
+    const lineTwo = wrapper.find('#GunTableLine1')
+    const lineThree = wrapper.find('#GunTableLine2')
+    const lineFour = wrapper.find('#GunTableLine3')
+    const lineFive = wrapper.find('#GunTableLine4')
+    const lineSix = wrapper.find('#GunTableLine5')
+    const lineSeven = wrapper.find('#GunTableLine6')
+    const lineEight = wrapper.find('#GunTableLine7')
+    const lineNine = wrapper.find('#GunTableLine8')
+    const lineTen = wrapper.find('#GunTableLine9')
+    const lineEleven = wrapper.find('#GunTableLine10')
 
     it('should render the table header',()=>{
         expect(wrapper.find(".WeaponStatHeader").text()).toContain('M1911A1')
@@ -185,6 +185,13 @@ describe('<WeaponsCardWeaponStats/> component',()=>{
                 expect(lineEleven.childAt(9).text()).toContain('31')
                 expect(lineEleven.childAt(10).text()).toContain('45')
             })
+        })
+    })
+    describe('automatic weapons',()=>{
+        const wrapper = mount(<WeaponsCardWeaponStats gunObj={testM203()}/>)
+        const lineNine = wrapper.find('#GunTableLineNine')
+        it('should render the minimum arc tag',()=>{
+            expect(lineNine.childAt(2).text()).toContain('MA')
         })
     })
 })
