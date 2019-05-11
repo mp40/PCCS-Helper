@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { selectCurrentView } from '../actions'
 import './Home.css'
 
-
-
 export function HomePage(props) {
   return (
     <div style={{textAlign: 'center'}}>
