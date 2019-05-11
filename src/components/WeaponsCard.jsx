@@ -28,6 +28,9 @@ export class WeaponsCard extends Component {
   }
 
   handleIncrementGunQty(gunObj, modifier){
+    if (gunObj.qty === 1 && modifier === -1){
+      return
+    }
     const newWeight = this.props.totalWeight + calculateObjectWeightDifference(gunObj, modifier)
     const newArray = modifyObjectQtyInArray(this.props.gear.firearms, gunObj, modifier)
     this.props.modifyFirearmList(newWeight, newArray, this.props.characterStats)
@@ -40,10 +43,18 @@ export class WeaponsCard extends Component {
   }
 
   handleIncrementMagQty(gunObj, magObj, modifier){
+    if (magObj.qty === 0 && modifier === -1){
+      return
+    }
     const newWeight = this.props.totalWeight + calculateObjectWeightDifference(magObj, modifier)
     gunObj.mag = modifyObjectQtyInArray(gunObj.mag, magObj, modifier)
     const newArray = modifyObjectQtyInArray(this.props.gear.firearms, gunObj)
     this.props.modifyFirearmList(newWeight, newArray, this.props.characterStats)
+  }
+
+  handleRemoveAllGuns(){
+    const newWeight = this.props.totalWeight - calculateFirearmsArrayWeight(this.props.gear.firearms)
+    this.props.modifyFirearmList(newWeight,[], this.props.characterStats)
   }
 
     render() {
@@ -55,7 +66,7 @@ export class WeaponsCard extends Component {
           <WeaponsCardHeader
             weaponsWeight={weaponsWeight}
             toggleShowFirearms={this.toggleShowFirearms.bind(this)}
-            // handleRemoveAllEquipment={this.handleRemoveAllEquipment.bind(this)}
+            handleRemoveAllGuns={this.handleRemoveAllGuns.bind(this)}
           />
 
           <WeaponsCardBody

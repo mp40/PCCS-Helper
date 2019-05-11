@@ -101,6 +101,6 @@ export const modifyObjectQtyInArray = (array, obj, modifier = 0) => {
 
 export const removeObjectFromArray = (array, obj) => {
     return array.filter((element)=>{
-        return element.name !== obj.name
+        return element.name && element.name !== obj.name
     })
 }

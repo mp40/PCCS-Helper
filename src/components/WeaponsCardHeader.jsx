@@ -28,7 +28,7 @@ export class WeaponsCardHeader extends Component {
                         <button
                             id="clearAllFirearms"
                             className="equipmentButton"
-                            // onClick={this.props.handleRemoveAllEquipment.bind(this)}
+                            onClick={this.props.handleRemoveAllGuns.bind(this)}
                         >
                             Clear All
                         </button>
