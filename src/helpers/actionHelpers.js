@@ -89,7 +89,10 @@ export const calculateObjectWeightDifference = (obj, modifier) => {
 
 export const modifyObjectQtyInArray = (array, obj, modifier = 0) => {
     return array.map((element)=>{
-        if(element.name === obj.name){
+        if(element.name && element.name === obj.name){
+            element.qty += modifier
+        }
+        if(element.cap && element.cap === obj.cap){
             element.qty += modifier
         }
         return element
@@ -98,6 +101,6 @@ export const modifyObjectQtyInArray = (array, obj, modifier = 0) => {
 
 export const removeObjectFromArray = (array, obj) => {
     return array.filter((element)=>{
-        return element.name !== obj.name
+        return element.name && element.name !== obj.name
     })
 }

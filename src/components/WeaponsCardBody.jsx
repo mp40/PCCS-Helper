@@ -22,7 +22,7 @@ export class WeaponsCardBody extends Component {
 
                         <div id="weaponsBodyStats" style={{width:'100%'}}>
                             <span style={{width:'25%', paddingTop:'6px', paddingBottom:'6px'}}>{gunObj.weight}</span>
-                            <span style={{width:'25%', paddingTop:'6px', paddingBottom:'6px'}}>{gunObj.qty}</span>
+                            <span id={`${gunObj.name}_qty`} style={{width:'25%', paddingTop:'6px', paddingBottom:'6px'}}>{gunObj.qty}</span>
                             <span style={{width:'25%', paddingTop:'6px', paddingBottom:'6px'}}>{Math.round((gunObj.qty * gunObj.weight)*100)/100}</span>
                             <span className="arrowBox" id="gunArrowBox" style={{width:'25%', paddingTop:'6px', paddingBottom:'6px'}}>
                                 <span style={{paddingLeft:'6px'}}/>

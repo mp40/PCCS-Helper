@@ -2,7 +2,7 @@ import {
     calculateAmmoWeight, 
     calculateGunAndAmmoWeight, 
     calculateFirearmsArrayWeight, 
-    calculateObjectWeightDifference
+    calculateObjectWeightDifference,
 } from './actionHelpers'
 
 const testPistol = (qty = 1) => {
