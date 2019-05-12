@@ -64,7 +64,7 @@ export const testM1911A1 = () => {
         name: 'M1911A1',	
         type: ['Automatic Pistol', 'USA', 'Cold War', 'WW2', '.45 ACP', 'West Is Best'],
         qty: 1,								
-        length: 8,									
+        length: 9,									
         weight: 3,									
         rt:	4,									
         rof: '*',									
@@ -110,7 +110,7 @@ export const testM203 = () => {
         kd: 4,											
         sab: 3,
         aim: {
-            ac:[1,2,3,4,5,6,7,8,9,10],
+            ac:[1,2,3,4,5,6,7,8,9,10,11],
             mod:[-25, -15, -9, -8, -6, -5, -4, -3, -2, -1, 0]
         },
         projectiles: [

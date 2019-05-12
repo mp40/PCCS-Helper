@@ -32,7 +32,7 @@ describe('<WeaponsCardWeaponStats/> component',()=>{
     describe('the physcial data',()=>{
         it('should render the length',()=>{
             expect(wrapper.find('#WeaponStatLength').text()).toContain('L')
-            expect(wrapper.find('#WeaponStatLength').text()).toContain('8')
+            expect(wrapper.find('#WeaponStatLength').text()).toContain('9')
         })
         it('should render the weight',()=>{
             expect(wrapper.find('#WeaponStatWeight').text()).toContain('W')
@@ -189,9 +189,33 @@ describe('<WeaponsCardWeaponStats/> component',()=>{
     })
     describe('automatic weapons',()=>{
         const wrapper = mount(<WeaponsCardWeaponStats gunObj={testM203()}/>)
-        const lineNine = wrapper.find('#GunTableLineNine')
+        const lineNine = wrapper.find('#GunTableLine8')
         it('should render the minimum arc tag',()=>{
             expect(lineNine.childAt(2).text()).toContain('MA')
         })
     })
+    describe('edge cases',()=>{
+        const wrapper = mount(<WeaponsCardWeaponStats gunObj={testM203()}/>)
+        const lineFour = wrapper.find('#GunTableLine3')
+        const lineFive = wrapper.find('#GunTableLine4')
+        const lineSeven = wrapper.find('#GunTableLine6')
+        const lineEight = wrapper.find('#GunTableLine7')
+        describe('no data for JHP/AP',()=>{
+            it('should not render JHP data ',()=>{
+                expect(lineFour.childAt(2).text()).not.toContain('JHP')
+                expect(lineFour.childAt(2).text()).not.toContain('PEN')
+                expect(lineFive.childAt(2).text()).not.toContain('DC')
+                expect(lineFour.childAt(3).exists()).toBe(false)
+                expect(lineFive.childAt(3).exists()).toBe(false)
+            })
+            it('should not render AP tags',()=>{
+                expect(lineSeven.childAt(2).text()).not.toContain('AP')
+                expect(lineSeven.childAt(2).text()).not.toContain('PEN')
+                expect(lineEight.childAt(2).text()).not.toContain('DC')
+                expect(lineSeven.childAt(3).exists()).toBe(false)
+                expect(lineEight.childAt(3).exists()).toBe(false)
+            })
+        })
+    })
+    
 })
