@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { modifyEquipment } from '../actions';
 import {addEquipment} from '../helpers/actionHelpers'
 
+import ButtonStandard from './buttons/ButtonStandard'
+
 import './CustomEquipmentModal.css'
 
 class CustomEquipmentModal extends Component {
@@ -68,13 +70,11 @@ class CustomEquipmentModal extends Component {
                         <div className="customEquipmentListHeader">
                             Add Equipment To List
                         </div> 
-                        <button 
-                            className="equipmentButton" 
+                        <ButtonStandard
                             style={{marginTop: '.5rem'}}
+                            name={'Cancel'}
                             onClick={this.props.toggleCustomEquipment.bind(this)}
-                            >
-                            Cancel
-                        </button>
+                        />
                     </div>
 
                     <div className="subContainer">
@@ -99,12 +99,11 @@ class CustomEquipmentModal extends Component {
                             onChange={this.handleChange.bind(this, 'weight')}/>
                     </div>
 
-                    <button
+                    <ButtonStandard
                         id='submitCustomEquipButton'
-                        className="equipmentButton" 
-                        onClick={this.submitEquipment.bind(this)}>
-                        Submit
-                    </button>
+                        name={'Submit'}
+                        onClick={this.submitEquipment.bind(this)}
+                    />
                     
                     {this.state.errorMsgInvalidEntry ?
                     <div style={{color:'red'}}>Please Enter Valid Equipment Name and Weight</div> :

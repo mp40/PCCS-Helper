@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {connect} from 'react-redux';
 import{modifyEquipment} from '../actions'
+import ButtonStandard from './buttons/ButtonStandard'
 import './EquipmentDropdown.css'
 
 import {createArrayOfEquipment, filterEquipment, createFilterSet} from '../helpers/equipmentListFunctions.js'
@@ -32,22 +33,19 @@ class EquipmentDropdown extends Component {
             <div className="equipmentListCard">
                 <div className="equipmentListHeader">
                     Select Equipment
-                    <button 
+                    <ButtonStandard
                         id="closeEquipmentModal"
-                        className="equipmentButton"
+                        name={'Close List'}
                         onClick={this.props.closeShowEquipment.bind(this)}
-                    >
-                        Close List
-                    </button>
-                    <button
+                    />
+                    <ButtonStandard
                         id="filterEquipmentList"
-                        className="equipmentButton"
+                        name={this.props.showFilters ?
+                            'Apply Filter' :
+                            'Filter List'}
                         onClick={this.props.toggleFilters.bind(this)}
-                    >
-                        {this.props.showFilters ?
-                        'Apply Filter' :
-                        'Filter List'}
-                    </button>
+
+                    />
                 </div>
                 {this.props.showFilters ?
                 <div className="tagContainer">
@@ -84,7 +82,6 @@ class EquipmentDropdown extends Component {
   }
 }
 
-// export default EquipmentDropdown;
 const mapStateToProps = (state) => {
     return ({ 
       currentView: state.currentView,

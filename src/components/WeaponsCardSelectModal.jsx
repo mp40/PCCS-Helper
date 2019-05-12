@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { modifyFirearmList } from '../actions'
 
+import ButtonStandard from './buttons/ButtonStandard'
+
 import {rifles, pistols, smgs, mgs, sniperRifles, shotguns} from '../helpers/firearms';
 
 class WeaponsCardSelectModal extends Component {
@@ -25,13 +27,11 @@ class WeaponsCardSelectModal extends Component {
                 <div className="equipmentListCard">
                     <div className="equipmentListHeader">
                         Select firearms
-                        <button 
+                        <ButtonStandard
                             id="closeFirearmModal"
-                            className="equipmentButton"
+                            name={'Close List'}
                             onClick={this.props.closeShowFirearms.bind(this)}
-                        >
-                            Close List
-                        </button>
+                        />
                     </div>
 
                     <div className="equipmentListBody">
