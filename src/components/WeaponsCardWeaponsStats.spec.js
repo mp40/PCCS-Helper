@@ -1,7 +1,7 @@
 import React from 'react';
 import {mount} from 'enzyme';
 import WeaponsCardWeaponStats from './WeaponsCardWeaponStats';
-import {testM1911A1, testM203} from '../helpers/testHelpers'
+import {testM1911A1, testM203, testFAMAS} from '../helpers/testHelpers'
 
 describe('<WeaponsCardWeaponStats/> component',()=>{
     const wrapper = mount(<WeaponsCardWeaponStats gunObj={testM1911A1()}/>)
@@ -32,7 +32,7 @@ describe('<WeaponsCardWeaponStats/> component',()=>{
     describe('the physcial data',()=>{
         it('should render the length',()=>{
             expect(wrapper.find('#WeaponStatLength').text()).toContain('L')
-            expect(wrapper.find('#WeaponStatLength').text()).toContain('8')
+            expect(wrapper.find('#WeaponStatLength').text()).toContain('9')
         })
         it('should render the weight',()=>{
             expect(wrapper.find('#WeaponStatWeight').text()).toContain('W')
@@ -188,10 +188,53 @@ describe('<WeaponsCardWeaponStats/> component',()=>{
         })
     })
     describe('automatic weapons',()=>{
-        const wrapper = mount(<WeaponsCardWeaponStats gunObj={testM203()}/>)
-        const lineNine = wrapper.find('#GunTableLineNine')
-        it('should render the minimum arc tag',()=>{
+        const wrapper = mount(<WeaponsCardWeaponStats gunObj={testFAMAS()}/>)
+        const lineNine = wrapper.find('#GunTableLine8')
+        const lineEight = wrapper.find('#GunTableLine7')
+        it('should render the minimum arc values',()=>{
             expect(lineNine.childAt(2).text()).toContain('MA')
+            expect(lineNine.childAt(3).text()).toContain('.4')
+            expect(lineNine.childAt(4).text()).toContain('.8')
+            expect(lineNine.childAt(5).text()).toContain('2')
+            expect(lineNine.childAt(6).text()).toContain('3')
+            expect(lineNine.childAt(7).text()).toContain('4')
+            expect(lineNine.childAt(8).text()).toContain('8')
+            expect(lineNine.childAt(9).text()).toContain('12')
+            expect(lineNine.childAt(10).text()).toContain('16')
+        })
+        it('should render the three round burst values',()=>{
+            expect(lineEight.childAt(2).text()).toContain('3RB')
+            expect(lineEight.childAt(3).text()).toContain('-6')
+            expect(lineEight.childAt(4).text()).toContain('-1')
+            expect(lineEight.childAt(5).text()).toContain('4')
+            expect(lineEight.childAt(6).text()).toContain('8')
+            expect(lineEight.childAt(7).text()).toContain('10')
+            expect(lineEight.childAt(8).text()).toContain('15')
+            expect(lineEight.childAt(9).text()).toContain('18')
+            expect(lineEight.childAt(10).text()).toContain('20')
+        })
+    })
+    describe('edge cases',()=>{
+        describe('no data for JHP/AP',()=>{
+            const wrapper = mount(<WeaponsCardWeaponStats gunObj={testM203()}/>)
+            const lineFour = wrapper.find('#GunTableLine3')
+            const lineFive = wrapper.find('#GunTableLine4')
+            const lineSeven = wrapper.find('#GunTableLine6')
+            const lineEight = wrapper.find('#GunTableLine7')
+            it('should not render JHP data ',()=>{
+                expect(lineFour.childAt(2).text()).not.toContain('JHP')
+                expect(lineFour.childAt(2).text()).not.toContain('PEN')
+                expect(lineFive.childAt(2).text()).not.toContain('DC')
+                expect(lineFour.childAt(3).exists()).toBe(false)
+                expect(lineFive.childAt(3).exists()).toBe(false)
+            })
+            it('should not render AP tags',()=>{
+                expect(lineSeven.childAt(2).text()).not.toContain('AP')
+                expect(lineSeven.childAt(2).text()).not.toContain('PEN')
+                expect(lineEight.childAt(2).text()).not.toContain('DC')
+                expect(lineSeven.childAt(3).exists()).toBe(false)
+                expect(lineEight.childAt(3).exists()).toBe(false)
+            })
         })
     })
 })

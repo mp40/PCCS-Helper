@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import WeaponsCardHeader from './WeaponsCardHeader'
 import WeaponsCardBody from "./WeaponsCardBody";
 import {modifyFirearmList} from '../actions'
 import WeaponsCardSelectModal from './WeaponsCardSelectModal'
@@ -63,14 +62,12 @@ export class WeaponsCard extends Component {
 
       return (
         <div style={{width:'33%'}} className="WeaponSelect">
-          <WeaponsCardHeader
-            weaponsWeight={weaponsWeight}
-            toggleShowFirearms={this.toggleShowFirearms.bind(this)}
-            handleRemoveAllGuns={this.handleRemoveAllGuns.bind(this)}
-          />
 
           <WeaponsCardBody
             selectedGuns={selectedGuns}
+            weaponsWeight={weaponsWeight}
+            toggleShowFirearms={this.toggleShowFirearms.bind(this)}
+            handleRemoveAllGuns={this.handleRemoveAllGuns.bind(this)}
             handleRemoveGun={this.handleRemoveGun.bind(this)}
             handleIncrementGunQty={this.handleIncrementGunQty.bind(this)}
             handleIncrementMagQty={this.handleIncrementMagQty.bind(this)}

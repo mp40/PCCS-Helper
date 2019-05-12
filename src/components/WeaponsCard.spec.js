@@ -90,6 +90,7 @@ describe('The Weapons Card',()=>{
         })
         it('should not allow gun qty to be less than one',()=>{
             gunList().find('#M60').simulate('click')
+            console.log(wrapper.debug())
             wrapper.find('#qtyDownGun').simulate('click')
             expect(selectedWeapons().find('#M60_qty').text()).toContain('1')
             expect(selectedWeapons().find('#M60_qty').text()).not.toContain('0')
@@ -105,10 +106,10 @@ describe('The Weapons Card',()=>{
             expect(firstMag.find('.magQtySpan').text()).toContain('0')
         })
     })
-    // describe('firearms features',()=>{
-    //     it('should be possible to view firearms stats',()=>{
-    //         //TODO
-    //         expect(false).toEqual(true)
-    //     })
-    // })
+    describe('firearms features',()=>{
+        it('should be possible to view firearms stats',()=>{
+            //TODO
+            expect(false).toEqual(true)
+        })
+    })
 })

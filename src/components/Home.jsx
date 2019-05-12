@@ -16,7 +16,6 @@ export function HomePage(props) {
   );
 };
 
-
 const mapStateToProps = (state) => {
   return ({ 
     currentView: state.currentView,

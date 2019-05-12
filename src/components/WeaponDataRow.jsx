@@ -3,28 +3,24 @@ import React, { Component } from "react";
 export class WeaponsDataRow extends Component {
     
     render() {
-        const gunObj = this.props.gunObj
-        const dataType = this.props.dataType
-        const index = this.props.index
-        const tag = this.props.tag
-        const array = this.props.array
-
+        const tableLine = this.props.tableLine
+        
         return (
-            <tr id={`GunTableLine${index}`}>
-                <td id={`WeaponStat${dataType.name}`}>
-                    <span>{dataType.short}</span>
-                    <span>{dataType.data}</span>
+            <tr id={`GunTableLine${this.props.index}`}>
+                <td id={`WeaponStat${tableLine.dataType.name}`}>
+                    <span>{tableLine.dataType.short}</span>
+                    <span>{tableLine.dataType.data}</span>
                 </td>
                 <td>
-                    <span>{gunObj.aim.ac[index]}</span>
-                    <span>{gunObj.aim.mod[index]}</span>
+                    <span>{tableLine.aim[0]}</span>
+                    <span>{tableLine.aim[1]}</span>
                 </td>
                 <td>
-                    <span>{tag[0]}</span>
-                    <span>{tag[1]}</span>
+                    <span>{tableLine.tag[0]}</span>
+                    <span>{tableLine.tag[1]}</span>
                 </td>
-                {array.map((data, index)=>{
-                    if(tag[1] === 'PEN'){
+                {tableLine.array.map((data, index)=>{
+                    if(tableLine.tag[1] === 'PEN' && data.toString().length === 1){
                         data = data.toFixed(1)
                     }
                     return <td key={index}>{data}</td>

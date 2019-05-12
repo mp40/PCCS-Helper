@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import EquipmentDropdown from "./EquipmentDropdown";
 import CustomEquipmentModal from "./CustomEquipmentModal";
+import ButtonStandard from './buttons/ButtonStandard'
+import ButtonDeleteX from './buttons/ButtonDeleteX'
+import ButtonIncrementArrows from './buttons/ButtonIncrementArrows'
 
 import { modifyEquipment, updateAttributes } from '../actions';
 import {removeEquipment, removeAllEquipment, incrementEquipmentQty} from '../helpers/actionHelpers'
@@ -97,38 +100,33 @@ export class EquipmentCard extends Component {
               <tbody id="characterEquipmentList">
                 <tr className="addEquipment">
                 <td>
-  
-                  <button 
-                    id="addEquipment" 
-                    className="equipmentButton" 
+                  <ButtonStandard
+                    id="addEquipment"
+                    name={'Add Equipment'}
                     onClick={this.toggleShowEquipment.bind(this)}
-                  >Add Equipment</button>
-  
-                  <button 
-                    id="toggleCustomEquipment" 
-                    className="equipmentButton" 
+                  />
+                  <ButtonStandard
+                    id="toggleCustomEquipment"
+                    name={'Add Custom'}
                     onClick={this.toggleCustomEquipment.bind(this)}
-                  >Add Custom</button>
-  
-                  <button
+                  />
+                  <ButtonStandard
                     id="clearAllEquipment"
-                    className="equipmentButton"
+                    name={'Clear All'}
                     onClick={this.handleRemoveAllEquipment.bind(this)}
-                    >Clear All</button>
+                  />
                 </td>
                 </tr>
-                
                   {charEquip.map((equipObj, index)=>{
                     return <tr key={index} className="addedEqipRow">
                       <td>
-                        <button
-                          id="removeEquip" 
-                          className="equipmentButton"
+                        <ButtonDeleteX
+                          id="removeEquip"
                           onClick={this.handleRemoveEquipment.bind(this, equipObj)}
-                          >
-                            X
-                          </button>
-                        {equipObj.name}
+                        />
+                        <span style={{marginLeft:'1rem'}}>
+                          {equipObj.name}
+                        </span>
                       </td>
                       <td>
                         {equipObj.weight}
@@ -140,18 +138,12 @@ export class EquipmentCard extends Component {
                         {Math.round((equipObj.qty * equipObj.weight)*100)/100}
                       </td>
                       <td className="arrowBox">
-                        <button 
-                          id="qtyUp" 
-                          className="equipmentButton"
-                          onClick={this.handleIncrementEquipmentQty.bind(this,equipObj,1)}>
-                          {String.fromCharCode(8593)}
-                        </button>
-                        <button 
-                          id="qtyDown" 
-                          className="equipmentButton"
-                          onClick={this.handleIncrementEquipmentQty.bind(this,equipObj,-1)}>
-                          {String.fromCharCode(8595)}
-                        </button>
+                        <ButtonIncrementArrows
+                          idUp={'qtyUp'}
+                          idDown={"qtyDown"}
+                          onClickUp={this.handleIncrementEquipmentQty.bind(this,equipObj,1)}
+                          onClickDown={this.handleIncrementEquipmentQty.bind(this,equipObj,-1)}
+                        />
                       </td>
                     </tr>
                   })}

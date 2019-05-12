@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import EquipmentDropdown from "./EquipmentDropdown";
+import ButtonIncrementArrows from './buttons/ButtonIncrementArrows';
+import ButtonDeleteX from './buttons/ButtonDeleteX'
 
 class EquipmentListCard extends Component {
 
@@ -25,26 +27,13 @@ class EquipmentListCard extends Component {
             </tr>
           </thead>
           <tbody id="characterEquipmentList">
-          {/* TODO do I need this code below? */}
-            {/* <tr className="addEquipment">
-            <td>
-              <button 
-                id="addEquipment" 
-                className="equipmentButton" 
-                onClick={this.props.toggleShowEquipment.bind(this)}
-              >Add Equipment</button>
-            </td>
-            </tr> */}
               {charEquip.map((equipObj, index)=>{
                 return <tr key={index} className="addedEqipRow">
                   <td>
-                    <button
-                      id="removeEquip" 
-                      className="equipmentButton"
+                    <ButtonDeleteX
+                      id="removeEquip"
                       onClick={this.props.removeEquipment.bind(this, equipObj)}
-                      >
-                        X
-                      </button>
+                    />
                     {equipObj.name}
                   </td>
                   <td>
@@ -57,18 +46,12 @@ class EquipmentListCard extends Component {
                     {Math.round((equipObj.qty * equipObj.weight)*100)/100}
                   </td>
                   <td className="arrowBox">
-                    <button 
-                      id="qtyUp" 
-                      className="equipmentButton"
-                      onClick={this.props.incrementEquipmentQty.bind(this,equipObj,1)}>
-                      {String.fromCharCode(8593)}
-                    </button>
-                    <button 
-                      id="qtyDown" 
-                      className="equipmentButton"
-                      onClick={this.props.incrementEquipmentQty.bind(this,equipObj,-1)}>
-                      {String.fromCharCode(8595)}
-                    </button>
+                    <ButtonIncrementArrows
+                      idUp={'qtyUp'}
+                      idDown={'qtyDown'}
+                      onClickUp={this.props.incrementEquipmentQty.bind(this,equipObj,1)}
+                      onClickDown={this.props.incrementEquipmentQty.bind(this,equipObj,-1)}
+                    />
                   </td>
                 </tr>
               })}
