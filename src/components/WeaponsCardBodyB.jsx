@@ -9,43 +9,101 @@ export class WeaponsCardBodyB extends Component {
 
         return (
             <div className="WeaponTableContainer">
-                <table>
-                    <thead>
+                <table style={{width:'100%'}} className="equipmentTable">
+                    <thead className="equipmentHeader" id='weaponsHeader'>
                         <tr>
                             <td>Weapons</td>
                             <td>Weight</td>
                             <td>Qty</td>
                             <td>lbs</td>
-                            <td>1337</td>
+                            <td>{this.props.weaponsWeight}</td>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="characterWeaponList">
+                        <tr>
+                            <td>
+                                <button 
+                                id="addFirearm" 
+                                className="equipmentButton" 
+                                onClick={this.props.toggleShowFirearms.bind(this)}
+                                >
+                                    Add Firearm
+                                </button>
+                                <button
+                                    id="clearAllFirearms"
+                                    className="equipmentButton"
+                                    onClick={this.props.handleRemoveAllGuns.bind(this)}
+                                >
+                                    Clear All
+                                </button>
+                            </td>
+                        </tr>
                         {this.props.selectedGuns.map((gunObj, index)=>{
                             return <Fragment key={index}>
                             <tr>
                                 <td>
-                                    <span>X</span>
+                                    <span>
+                                        <button
+                                        id="removeGun" 
+                                        className="equipmentButton"
+                                        onClick={this.props.handleRemoveGun.bind(this, gunObj)}
+                                        >
+                                            X
+                                        </button>
+                                    </span>
                                     <span>{gunObj.name}</span>
                                 </td>
                                 <td>
                                     {gunObj.weight}
                                 </td>
-                                <td>
+                                <td id={`${gunObj.name}_qty`}>
                                     {gunObj.qty}
                                 </td>
                                 <td>
                                     {gunObj.qty * gunObj.weight}
                                 </td>
                                 <td>
-                                    Up Dn
+                                    <button 
+                                        id="qtyUpGun"
+                                        className="equipmentButton"
+                                        onClick={this.props.handleIncrementGunQty.bind(this,gunObj,1)}
+                                    >
+                                        {String.fromCharCode(8593)}
+                                    </button>
+                                    <span style={{paddingLeft:'6px'}}/>
+                                    <button 
+                                        id="qtyDownGun" 
+                                        className="equipmentButton"
+                                        onClick={this.props.handleIncrementGunQty.bind(this,gunObj,-1)}
+                                    >
+                                        {String.fromCharCode(8595)}
+                                    </button>
                                 </td>
                             </tr>
-                            {gunObj.mag.map((magObj, index)=>{
-                                return <tr key={index}>
+                            {gunObj.mag.map((magObj, dex)=>{
+                                return <tr key={dex} className="spareMags">
                                     <td>
-                                        <span>{`${magObj.qty} x ${magObj.cap} round ${magObj.type}`}</span>
+                                        {magObj.type === 'Rnd' ? 
+                                            <span className='magQtySpan'>{`${magObj.qty} x Single Rounds`}</span> :    
+                                            <span className='magQtySpan'>{`${magObj.qty} x ${magObj.cap} round ${magObj.type}`}</span>
+                                        }
                                         <span>{}</span>
-                                        <span>Up Dn</span>
+                                        <span>
+                                        <button 
+                                            id={`qtyUpMagType${dex+1}`}
+                                            className="equipmentButton"
+                                            onClick={this.props.handleIncrementMagQty.bind(this,gunObj,magObj,1)}
+                                            >
+                                              {String.fromCharCode(8593)}
+                                            </button>
+                                            <button 
+                                            id={`qtyDownMagType${dex+1}`}
+                                            className="equipmentButton"
+                                            onClick={this.props.handleIncrementMagQty.bind(this,gunObj,magObj,-1)}
+                                            >
+                                              {String.fromCharCode(8595)}
+                                            </button>
+                                        </span>
                                     </td>
                                 </tr>
                             })}

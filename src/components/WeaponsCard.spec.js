@@ -90,6 +90,7 @@ describe('The Weapons Card',()=>{
         })
         it('should not allow gun qty to be less than one',()=>{
             gunList().find('#M60').simulate('click')
+            console.log(wrapper.debug())
             wrapper.find('#qtyDownGun').simulate('click')
             expect(selectedWeapons().find('#M60_qty').text()).toContain('1')
             expect(selectedWeapons().find('#M60_qty').text()).not.toContain('0')
