@@ -3,11 +3,6 @@ import { connect } from 'react-redux';
 import { selectCurrentView } from '../actions'
 import './Home.css'
 
-
-import WeaponsCardBodyB from './WeaponsCardBodyB'
-
-
-
 export function HomePage(props) {
   return (
     <div style={{textAlign: 'center'}}>
@@ -17,7 +12,6 @@ export function HomePage(props) {
       <button  id="activateCreateChar" className="buttonStandard" onClick={()=>props.selectCurrentView('createChar')}>
         Create Character
       </button>
-    {/* <WeaponsCardBodyB/> */}
     </div>
   );
 };
