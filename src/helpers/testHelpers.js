@@ -164,6 +164,30 @@ export const testFAMAS = () => {
         ma:	[.4, .8, 2,	3, 4, 8, 12, 16], 	 	 	
         ba:	[60, 51, 42, 35, 30, 20, 15, 11],		
         tof: [0, 0, 1, 1, 2, 5,	8, 11],
+        offical: true,
         bipod: true
+    }
+}
+
+export const testM16 = () => {
+    return {
+        name:'M16',
+            type: ['Battle/Assault Rifle', 'USA', 'Cold War', '5.56 NATO', 'West Is Best'],									
+            length: 39,											
+            weight: 8.7,											
+            rt: 8,									
+            rof: '*7',											
+            mag:[{type:'Mag', weight: 0.7, cap: 20, qty: 0}, {type:'Mag', weight: 1, cap: 30, qty: 0}],					
+            kd: 4,											
+            sab: 3,											
+            aim: [-22, -12, -9, -7, -6, -5, -4, -3, -2, -1, 0],
+            fmj: {
+                pen:[17,16,15,13,11,7.1,4.5,2.9],				
+                dc:[6, 6, 6, 6, 5, 4, 3, 2]	
+            },										
+            ma:	[.4, .8, 2,	3, 4, 8, 11, 15], 	 	 	
+            ba:	[60, 51, 42, 35, 30, 20, 15, 11],		
+            tof: [0, 0, 1, 1, 2, 4,	7, 10],
+            offical: true
     }
 }

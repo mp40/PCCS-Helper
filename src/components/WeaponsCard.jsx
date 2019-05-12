@@ -5,6 +5,8 @@ import WeaponsCardBody from "./WeaponsCardBody";
 import {modifyFirearmList} from '../actions'
 import WeaponsCardSelectModal from './WeaponsCardSelectModal'
 
+import WeaponsCardBodyB from './WeaponsCardBodyB'
+
 import {
   calculateFirearmsArrayWeight,
   calculateObjectWeightDifference,
@@ -69,7 +71,14 @@ export class WeaponsCard extends Component {
             handleRemoveAllGuns={this.handleRemoveAllGuns.bind(this)}
           />
 
-          <WeaponsCardBody
+          {/* <WeaponsCardBody
+            selectedGuns={selectedGuns}
+            handleRemoveGun={this.handleRemoveGun.bind(this)}
+            handleIncrementGunQty={this.handleIncrementGunQty.bind(this)}
+            handleIncrementMagQty={this.handleIncrementMagQty.bind(this)}
+          /> */}
+
+          <WeaponsCardBodyB
             selectedGuns={selectedGuns}
             handleRemoveGun={this.handleRemoveGun.bind(this)}
             handleIncrementGunQty={this.handleIncrementGunQty.bind(this)}

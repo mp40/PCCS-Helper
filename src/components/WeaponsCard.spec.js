@@ -105,10 +105,10 @@ describe('The Weapons Card',()=>{
             expect(firstMag.find('.magQtySpan').text()).toContain('0')
         })
     })
-    // describe('firearms features',()=>{
-    //     it('should be possible to view firearms stats',()=>{
-    //         //TODO
-    //         expect(false).toEqual(true)
-    //     })
-    // })
+    describe('firearms features',()=>{
+        it('should be possible to view firearms stats',()=>{
+            //TODO
+            expect(false).toEqual(true)
+        })
+    })
 })
