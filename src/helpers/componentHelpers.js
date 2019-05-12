@@ -1,12 +1,14 @@
 export const buildArrayForGunTable = (gunObj) => {
+
+    const has3RB = Boolean(gunObj.trb)
     const lineOne = createLineOne(gunObj)
     const lineTwo = createLineTwo(gunObj)
-    const lineThree = createLineThree(gunObj)
-    const lineFour = createLineFour(gunObj)
-    const lineFive = createLineFive(gunObj)
-    const lineSix = createLineSix(gunObj)
-    const lineSeven = createLineSeven(gunObj)
-    const lineEight = createLineEight(gunObj)
+    const lineThree = createLineThree(gunObj, has3RB)
+    const lineFour = createLineFour(gunObj, has3RB)
+    const lineFive = createLineFive(gunObj, has3RB)
+    const lineSix = createLineSix(gunObj, has3RB)
+    const lineSeven = createLineSeven(gunObj, has3RB)
+    const lineEight = createLineEight(gunObj, has3RB)
     const lineNine = createLineNine(gunObj)
     const lineTen = createLineTen(gunObj)
     const lineEleven = createLineEleven(gunObj)
@@ -40,7 +42,7 @@ const createLineTwo = (gunObj) => {
     }
 }
 
-const createLineThree = (gunObj) => {
+const createLineThree = (gunObj, has3RB) => {
     return {
         dataType: {
             name: '',
@@ -48,12 +50,26 @@ const createLineThree = (gunObj) => {
             data: '',
         },
         aim: [gunObj.aim.ac[2], gunObj.aim.mod[2]],
-        tag:['', ''],
-        array: [],
+        tag: has3RB ? [gunObj.projectiles[1].type ,'PEN'] : ['', ''],
+        array: has3RB ? gunObj.projectiles[1].pen : [],
     }
 }
 
-const createLineFour = (gunObj) => {
+const createLineFour = (gunObj, has3RB) => {
+    let tag = undefined
+    let array = undefined
+    if(gunObj.projectiles.length > 1 && !has3RB){
+        tag = [gunObj.projectiles[1].type ,'PEN']
+        array = gunObj.projectiles[1].pen
+    }
+    if(gunObj.projectiles.length > 1 && has3RB){
+        tag = ['', 'DC']
+        array = gunObj.projectiles[1].dc
+    }
+    if(gunObj.projectiles.length <= 1){
+        tag = ['', '']
+        array = []
+    }
     return {
         dataType: {
             name: 'Reload',
@@ -61,12 +77,22 @@ const createLineFour = (gunObj) => {
             data: gunObj.rt,
         },
         aim: [gunObj.aim.ac[3], gunObj.aim.mod[3]],
-        tag: gunObj.projectiles.length > 1 ? [gunObj.projectiles[1].type ,'PEN'] : ['', ''],
-        array: gunObj.projectiles.length > 1 ? gunObj.projectiles[1].pen : [],
+        tag,
+        array,
     }
 }
 
-const createLineFive = (gunObj) => {
+const createLineFive = (gunObj, has3RB) => {
+    let tag = ['','']
+    let array = []
+    if(gunObj.projectiles.length > 1 && !has3RB){
+        tag = ['','DC']
+        array = gunObj.projectiles[1].dc
+    }
+    if(gunObj.projectiles.length > 2 && has3RB){
+        tag = [gunObj.projectiles[2].type,'PEN']
+        array = gunObj.projectiles[2].pen
+    }
     return {
         dataType: {
             name: 'ROF',
@@ -74,12 +100,18 @@ const createLineFive = (gunObj) => {
             data: gunObj.rof,
         },
         aim: [gunObj.aim.ac[4], gunObj.aim.mod[4]],
-        tag: gunObj.projectiles.length > 1 ? ['', 'DC'] : ['',''],
-        array: gunObj.projectiles.length > 1 ? gunObj.projectiles[1].dc : [],
+        tag,
+        array,
     }
 }
 
-const createLineSix = (gunObj) => {
+const createLineSix = (gunObj, has3RB) => {
+    let tag = ['','']
+    let array = []
+    if(gunObj.projectiles.length > 2 && has3RB){
+        tag = ['','DC']
+        array = gunObj.projectiles[2].dc
+    }
     return {
         dataType: {
             name: '',
@@ -87,12 +119,20 @@ const createLineSix = (gunObj) => {
             data: '',
         },
         aim: [gunObj.aim.ac[5], gunObj.aim.mod[5]],
-        tag:['', ''],
-        array: [],
+        tag,
+        array,
     }
 }
 
-const createLineSeven = (gunObj) => {
+const createLineSeven = (gunObj, has3RB) => {
+    let tag = ['','']
+    let array = []
+    
+    if(gunObj.projectiles.length > 2 && !has3RB){
+        tag = [gunObj.projectiles[2].type ,'PEN']
+        array = gunObj.projectiles[2].pen
+    }
+
     return {
         dataType: {
             name: 'Capacity',
@@ -100,12 +140,22 @@ const createLineSeven = (gunObj) => {
             data: gunObj.mag[0].cap,
         },
         aim: [gunObj.aim.ac[6], gunObj.aim.mod[6]],
-        tag: gunObj.projectiles.length > 2 ? [gunObj.projectiles[2].type ,'PEN'] : ['', ''],
-        array: gunObj.projectiles.length > 2 ? gunObj.projectiles[2].pen : [],
+        tag,
+        array,
     }
 }
 
-const createLineEight = (gunObj) => {
+const createLineEight = (gunObj, has3RB) => {
+    let tag = ['','']
+    let array = []
+    if (gunObj.projectiles.length > 2 && !has3RB){
+        tag = ['', 'DC']
+        array = gunObj.projectiles[2].dc
+    }
+    if (has3RB){
+        tag = ['', '3RB']
+        array = gunObj.trb
+    }
     return {
         dataType: {
             name: 'AW',
@@ -113,8 +163,8 @@ const createLineEight = (gunObj) => {
             data: gunObj.mag[0].weight,
         },
         aim: [gunObj.aim.ac[7], gunObj.aim.mod[7]],
-        tag: gunObj.projectiles.length > 2 ? ['', 'DC'] : ['',''],
-        array: gunObj.projectiles.length > 2 ? gunObj.projectiles[2].dc : [],
+        tag,
+        array,
     }
 }
 

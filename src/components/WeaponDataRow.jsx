@@ -20,7 +20,7 @@ export class WeaponsDataRow extends Component {
                     <span>{tableLine.tag[1]}</span>
                 </td>
                 {tableLine.array.map((data, index)=>{
-                    if(tableLine.tag[1] === 'PEN'){
+                    if(tableLine.tag[1] === 'PEN' && data.toString().length === 1){
                         data = data.toFixed(1)
                     }
                     return <td key={index}>{data}</td>
