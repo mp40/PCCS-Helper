@@ -2,7 +2,7 @@
 
 # Phoenix Command Combat System Assistant
 
-### Built with TDD/BDD.
+### Built with TDD & BDD.
 
 This was started during my time as a student at Code Chrysalis
 
