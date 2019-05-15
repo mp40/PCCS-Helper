@@ -202,22 +202,19 @@ describe("calculate state object", () => {
     expect(result).toHaveProperty("maxSpeed", 4);
   });
   it("should have a key and value for SAL", () => {
-    expect(result).toHaveProperty("sal", 10);
+    expect(result).toHaveProperty("SAL", 10);
   });
   it("should have a key and value for ISF", () => {
-    expect(result).toHaveProperty("isf", 20);
-  });
-  it("should have a key and value for Gun Combat Actions", () => {
-    expect(result).toHaveProperty("gunActions", 5);
+    expect(result).toHaveProperty("ISF", 20);
   });
   it("should have a key and value CE", () => {
-    expect(result).toHaveProperty("ce", 7);
+    expect(result).toHaveProperty("CE", 7);
   });
   it("should have a key and value for ASF", () => {
-    expect(result).toHaveProperty("asf", 19);
+    expect(result).toHaveProperty("ASF", 19);
   });
-  it("should have a key and value for Hand to Hand Combat Actions", () => {
-    expect(result).toHaveProperty("handActions", 4);
+  it("should have a key combatActions, it's value an array containing Gun and Hand actions", () => {
+    expect(result).toHaveProperty("combatActions", [5, 4]);
   });
   it("should have a key and value for knockoutValue based on highest combat skill level", () => {
     expect(result).toHaveProperty("knockoutValue", 20);

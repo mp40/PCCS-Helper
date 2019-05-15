@@ -4,18 +4,18 @@ import WeaponDataRow from './WeaponDataRow'
 
 import {buildArrayForGunTable} from '../helpers/componentHelpers'
 
-export class WeaponsCardWeaponStats extends Component {
+class WeaponsCardWeaponStats extends Component {
     
     render() {
         const gunObj = this.props.gunObj
         const gunTableArray = buildArrayForGunTable(gunObj)
 
         return (
-            <div className="WeaponStatTableContainer">
+            <div className="equipmentListCard" style={{fontSize:'medium'}}>
                 <table>
                     
                     <thead>
-                        <tr className="WeaponStatHeader">
+                        <tr className="equipmentListHeader">
                             <th>{gunObj.name}</th>
                             <th>Aim Time</th>
                             <th></th>

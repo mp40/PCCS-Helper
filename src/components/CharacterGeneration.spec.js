@@ -311,6 +311,9 @@ describe('Character Generation',()=>{
                 button.simulate('click')
                 expect(button.text()).toEqual('Apply Filter')
             })
+            it('should be able to clear filters',()=>{
+                //TODO
+            })
         })
     })
 })

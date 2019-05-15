@@ -132,23 +132,39 @@ export const pistols = () => {
     return [
         {
             name: 'M1911A1',	
-            type: ['Automatic Pistol', 'USA', 'Cold War', 'WW2', '.45 ACP', 'West Is Best'],								
-            length: 8,									
+            type: ['Automatic Pistol', 'USA', 'Cold War', 'WW2', '.45 ACP', 'West Is Best'],
+            length: 9,									
             weight: 3,									
             rt:	4,									
             rof: '*',									
             mag: [{type: 'Mag',	weight: 0.7, cap: 7, qty: 0}],					
             kd:	5,								
             sab: 5,									
-            aim: [-18,-11,-10,-9,-8,-7]	,		
-            fmj: {
-                pen:[1.6, 1.5, 1.2, 1.0, 0.8, 0.3, 0.2, 0.1],	
-                dc:[3, 3 ,2, 1, 1, 1, 1, 1]
-            },								
+            aim: {
+                ac:[1,2,3,4,5,6],
+                mod:[-18,-11,-10,-9,-8,-7]
+            },
+            projectiles: [
+                {
+                    type: 'FMJ',
+                    pen:[1.6, 1.5, 1.2, 1.0, 0.8, 0.3, 0.2, 0.1],	
+                    dc:[3, 3 ,2, 1, 1, 1, 1, 1]
+                },
+                {
+                    type: 'JHP',
+                    pen:[1.5, 1.4, 1.2, .9, .7, .3, .1, .1],	
+                    dc:[4, 4, 3, 2, 1, 1, 1, 1]
+                },
+                {
+                    type: 'AP',
+                    pen:[2.2, 2.1, 1.8, 1.4, 1.1, .5, .2, .1],	
+                    dc:[3, 3 ,2, 1, 1, 1, 1, 1]
+                },
+            ],
             ba:[45, 36, 27, 20, 15, 5, 0, -4],
-            tof:[1, 1, 3, 5, 8, 19, 31, 45],
+            tof:[1, 2, 3, 5, 8, 19, 31, 45],
             offical: true
-        },
+        }
     ]
 }
 
