@@ -1,14 +1,20 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
+import WeaponsCardWeaponStats from "./WeaponsCardWeaponStats";
+import WeaponsModalSelection from "./WeaponsModalSelection";
 import { modifyFirearmList } from '../actions'
-
-import ButtonStandard from './buttons/ButtonStandard'
 
 import {rifles, pistols, smgs, mgs, sniperRifles, shotguns} from '../helpers/firearms';
 
 class WeaponsCardSelectModal extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+          showGunStats: false,
+          gunStatsToView: undefined
+        }
+      }
 
-    //TODO refactor below method 
     handleAddFirearm = (gunObj) => {
         const newWeight = this.props.totalWeight + gunObj.weight;
         const attributeObj = this.props.characterStats;
@@ -19,38 +25,27 @@ class WeaponsCardSelectModal extends Component {
         this.props.modifyFirearmList(newWeight, newFirearmsArray, attributeObj)
     }
 
+    handleShowGunStats = (gunObj) => {
+        this.setState({showGunStats: !this.state.showGunStats, gunStatsToView: gunObj})
+    }
+
     render(){
         const firearmsArray = [...rifles(), ...pistols(), ...smgs(), ...mgs(), ...sniperRifles(), ...shotguns()]
-        
+        const gunObj = this.state.gunStatsToView
+
         return (
             <div className='equipmentModalContainer'>
-                <div className="equipmentListCard">
-                    <div className="equipmentListHeader">
-                        Select firearms
-                        <ButtonStandard
-                            id="closeFirearmModal"
-                            name={'Close List'}
-                            onClick={this.props.closeShowFirearms.bind(this)}
-                        />
-                    </div>
-
-                    <div className="equipmentListBody">
-                        {firearmsArray.map((gunObj, index)=>{
-                        return <div className="equipmentEntry"
-                            key={index}
-                            id={gunObj.name}
-                            onClick={this.handleAddFirearm.bind(this, gunObj)}
-                            >
-                                <div>
-                                    {gunObj.name}
-                                </div>
-                                <div>
-                                    {`${gunObj.weight} lbs`}
-                                </div>
-                            </div>
-                        })}
-                    </div>
-                </div>
+                {this.state.showGunStats ?
+                    <WeaponsCardWeaponStats
+                        gunObj={gunObj}
+                    /> :
+                    <WeaponsModalSelection
+                        firearmsArray={firearmsArray}
+                        closeShowFirearms={this.props.closeShowFirearms.bind(this)}
+                        handleAddFirearm={this.handleAddFirearm.bind(this)}
+                        handleShowGunStats={this.handleShowGunStats.bind(this)}
+                    />
+            }
             </div>
         )
     }
