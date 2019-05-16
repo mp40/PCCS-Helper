@@ -7,7 +7,8 @@
     background: rgba(0,0,0,0.3);
 }
 
-.equipmentListCard  {
+.equipmentListCard,
+.WeaponStatTableContainer  {
     margin-top: 2rem;
     background: whitesmoke;
     border-radius: 3px;
@@ -21,7 +22,7 @@
     overflow: auto;
 }
 
-.equipmentListHeader {
+.equipmentListHeader{
     padding-left: 1rem;
     padding-bottom: .5rem;
 }

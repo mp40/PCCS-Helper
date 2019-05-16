@@ -18,7 +18,7 @@ describe('<WeaponsCardWeaponStats/> component',()=>{
     const lineEleven = wrapper.find('#GunTableLine10')
 
     it('should render the table header',()=>{
-        expect(wrapper.find(".WeaponStatHeader").text()).toContain('M1911A1')
+        expect(wrapper.find(".WeaponStatHeader").text()).toContain('Data')
         expect(wrapper.find(".WeaponStatHeader").text()).toContain('Aim Time')
         expect(wrapper.find(".WeaponStatHeader").text()).toContain('10')
         expect(wrapper.find(".WeaponStatHeader").text()).toContain('20')
@@ -225,15 +225,15 @@ describe('<WeaponsCardWeaponStats/> component',()=>{
                 expect(lineFour.childAt(2).text()).not.toContain('JHP')
                 expect(lineFour.childAt(2).text()).not.toContain('PEN')
                 expect(lineFive.childAt(2).text()).not.toContain('DC')
-                expect(lineFour.childAt(3).exists()).toBe(false)
-                expect(lineFive.childAt(3).exists()).toBe(false)
+                expect(lineFour.childAt(3).text().length).toBe(0)
+                expect(lineFive.childAt(3).text().length).toBe(0)
             })
             it('should not render AP tags',()=>{
                 expect(lineSeven.childAt(2).text()).not.toContain('AP')
                 expect(lineSeven.childAt(2).text()).not.toContain('PEN')
                 expect(lineEight.childAt(2).text()).not.toContain('DC')
-                expect(lineSeven.childAt(3).exists()).toBe(false)
-                expect(lineEight.childAt(3).exists()).toBe(false)
+                expect(lineSeven.childAt(3).text().length).toBe(0)
+                expect(lineEight.childAt(3).text().length).toBe(0)
             })
         })
     })

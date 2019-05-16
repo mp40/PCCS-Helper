@@ -1,3 +1,5 @@
+const emptyLine = ['','','','','','','','']
+
 export const buildArrayForGunTable = (gunObj) => {
 
     const has3RB = Boolean(gunObj.trb)
@@ -51,7 +53,7 @@ const createLineThree = (gunObj, has3RB) => {
         },
         aim: [gunObj.aim.ac[2], gunObj.aim.mod[2]],
         tag: has3RB ? [gunObj.projectiles[1].type ,'PEN'] : ['', ''],
-        array: has3RB ? gunObj.projectiles[1].pen : [],
+        array: has3RB ? gunObj.projectiles[1].pen : emptyLine,
     }
 }
 
@@ -68,7 +70,7 @@ const createLineFour = (gunObj, has3RB) => {
     }
     if(gunObj.projectiles.length <= 1){
         tag = ['', '']
-        array = []
+        array = emptyLine
     }
     return {
         dataType: {
@@ -84,7 +86,7 @@ const createLineFour = (gunObj, has3RB) => {
 
 const createLineFive = (gunObj, has3RB) => {
     let tag = ['','']
-    let array = []
+    let array = emptyLine
     if(gunObj.projectiles.length > 1 && !has3RB){
         tag = ['','DC']
         array = gunObj.projectiles[1].dc
@@ -107,7 +109,7 @@ const createLineFive = (gunObj, has3RB) => {
 
 const createLineSix = (gunObj, has3RB) => {
     let tag = ['','']
-    let array = []
+    let array = emptyLine
     if(gunObj.projectiles.length > 2 && has3RB){
         tag = ['','DC']
         array = gunObj.projectiles[2].dc
@@ -126,7 +128,7 @@ const createLineSix = (gunObj, has3RB) => {
 
 const createLineSeven = (gunObj, has3RB) => {
     let tag = ['','']
-    let array = []
+    let array = emptyLine
     
     if(gunObj.projectiles.length > 2 && !has3RB){
         tag = [gunObj.projectiles[2].type ,'PEN']
@@ -147,7 +149,7 @@ const createLineSeven = (gunObj, has3RB) => {
 
 const createLineEight = (gunObj, has3RB) => {
     let tag = ['','']
-    let array = []
+    let array = emptyLine
     if (gunObj.projectiles.length > 2 && !has3RB){
         tag = ['', 'DC']
         array = gunObj.projectiles[2].dc
@@ -177,7 +179,7 @@ const createLineNine = (gunObj) => {
         },
         aim: [gunObj.aim.ac[8], gunObj.aim.mod[8]],
         tag: gunObj.ma ? ['', 'MA'] : ['', ''],
-        array: gunObj.ma ? gunObj.ma : [],
+        array: gunObj.ma ? gunObj.ma : emptyLine,
     }
 }
 
