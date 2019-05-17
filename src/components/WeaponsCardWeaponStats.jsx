@@ -24,7 +24,15 @@ class WeaponsCardWeaponStats extends Component {
 
         return (
             <div className="WeaponStatTableContainer" style={{fontSize:'medium'}}>
+                <button
+                    className="closeGunStatView"
+                    onClick={this.props.handleShowGunStats}
+                >
+                    Close
+                </button>
+
             <div style={{marginTop:'1.5rem', marginLeft:'5.5%', fontWeight:'bold'}}>{gunObj.name}</div>
+                
                 <table className='WeaponStatTable' style={{border: '1px solid rgb(85, 83, 83)', borderCollapse:'collapse'}}>
                     
                     <thead>
@@ -35,14 +43,6 @@ class WeaponsCardWeaponStats extends Component {
                             {rangeBrackets.map((range, index)=>{
                                 return <th key={index} style={{textAlign:'center',borderBottom}}>{range}</th>
                             })}
-                            {/* <th style={{textAlign:'center',borderBottom}}>10</th>
-                            <th style={{textAlign:'center',borderBottom}}>20</th>
-                            <th style={{textAlign:'center',borderBottom}}>40</th>
-                            <th style={{textAlign:'center',borderBottom}}>70</th>
-                            <th style={{textAlign:'center',borderBottom}}>100</th>
-                            <th style={{textAlign:'center',borderBottom}}>200</th>
-                            <th style={{textAlign:'center',borderBottom}}>300</th>
-                            <th style={{textAlign:'center',borderBottom}}>400</th> */}
                         </tr>
                     </thead>
 

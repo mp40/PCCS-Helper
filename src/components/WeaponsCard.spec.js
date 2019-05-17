@@ -110,5 +110,9 @@ describe('The Weapons Card',()=>{
             wrapper.find('#viewM1911A1').simulate('click')
             expect(wrapper.text()).toContain('ROF')
         })
+        it('should be possible to close firearms stats', ()=> {
+            wrapper.find('.closeGunStatView').simulate('click')
+            expect(wrapper.text()).not.toContain('ROF')
+        })
     })
 })

@@ -6,7 +6,7 @@ import ButtonStandard from './buttons/ButtonStandard'
 import './CharacterGeneration.css'
 import './WeaponsCard.css'
 
-export class WeaponsCardBodyB extends Component {
+export class WeaponsCardBody extends Component {
 
     render() {
 
@@ -96,4 +96,4 @@ export class WeaponsCardBodyB extends Component {
 
 }
 
-export default WeaponsCardBodyB
+export default WeaponsCardBody

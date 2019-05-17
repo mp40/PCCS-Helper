@@ -38,6 +38,7 @@ class WeaponsCardSelectModal extends Component {
                 {this.state.showGunStats ?
                     <WeaponsCardWeaponStats
                         gunObj={gunObj}
+                        handleShowGunStats={this.handleShowGunStats.bind(this)}
                     /> :
                     <WeaponsModalSelection
                         firearmsArray={firearmsArray}
