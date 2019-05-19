@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import WeaponDataRow from './WeaponDataRow'
+import ButtonDeleteX from './buttons/ButtonDeleteX'
 
 import {buildArrayForGunTable} from '../helpers/componentHelpers'
 
@@ -24,14 +25,14 @@ class WeaponsCardWeaponStats extends Component {
 
         return (
             <div className="WeaponStatTableContainer" style={{fontSize:'medium'}}>
-                <button
-                    className="closeGunStatView"
-                    onClick={this.props.handleShowGunStats}
-                >
-                    Close
-                </button>
+                <div style={{marginTop:"2px", marginLeft: "2px"}}>
+                    <ButtonDeleteX
+                        id="closeGunStatView"
+                        onClick={this.props.handleShowGunStats}
+                    />
+                </div>
 
-            <div style={{marginTop:'1.5rem', marginLeft:'5.5%', fontWeight:'bold'}}>{gunObj.name}</div>
+                <div style={{marginTop:'0.5rem', marginLeft:'5.5%', fontWeight:'bold'}}>{gunObj.name}</div>
                 
                 <table className='WeaponStatTable' style={{border: '1px solid rgb(85, 83, 83)', borderCollapse:'collapse'}}>
                     

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import ButtonStandard from './buttons/ButtonStandard'
+import ButtonInfo from './buttons/ButtonInfo'
 
 class WeaponsModalSelection extends Component {
 
@@ -22,12 +23,10 @@ class WeaponsModalSelection extends Component {
                     <div className="equipmentListBody">
                         {firearmsArray.map((gunObj, index)=>{
                         return <div key={index} style={{display:'flex', width:'30%', paddingLeft:'.2rem', paddingRight:'.2rem'}}>
-                        <button
+                        <ButtonInfo
                             id={`view${gunObj.name}`}
                             onClick={this.props.handleShowGunStats.bind(this, gunObj)}
-                        >
-                            i
-                        </button>
+                        />
                         <div className="equipmentEntry"
                             style={{width:'100%'}}
                             id={gunObj.name}

@@ -76,7 +76,7 @@ export class WeaponsCardBody extends Component {
                                             <span className='magQtySpan' style={{marginLeft:'2rem'}}>{`${magObj.qty} x Single Rounds`}</span> :    
                                             <span className='magQtySpan' style={{marginLeft:'2rem'}}>{`${magObj.qty} x ${magObj.cap} round ${magObj.type}`}</span>
                                         }
-                                        <span>
+                                        <span style={{marginLeft:'2px', marginRight:'2px'}}>
                                             <ButtonIncrementArrows
                                                 idUp={`qtyUpMagType${dex+1}`}
                                                 idDown={`qtyDownMagType${dex+1}`}

@@ -159,7 +159,7 @@
     font-size: medium;
 }
 
-.equipmentButton {
+/* .equipmentButton {
     position: relative;
     display: inline-block;
     padding: 0.25em 0.5em;
@@ -173,7 +173,7 @@
 .equipmentButton:hover {
     border: solid 1.5px #d7ec80;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-}
+} */
 
 .arrowBox {
     display: flex;
@@ -186,3 +186,8 @@
 #removeGun {
     margin: .3rem;
 }
+
+/* .select {
+    background: grey;
+    border: solid 1px red;
+} */
