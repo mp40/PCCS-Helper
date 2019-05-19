@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import './buttons.css'
  
-class ButtonStandard extends Component {
+class ButtonSelector extends Component {
 
   render() {
         return (
             <button 
-                className="button" 
+                className="select" 
                 onClick={this.props.onClick}
             >
                     {this.props.name}
@@ -15,4 +15,5 @@ class ButtonStandard extends Component {
     }
 }
 
-export default ButtonStandard
+export default ButtonSelector
+

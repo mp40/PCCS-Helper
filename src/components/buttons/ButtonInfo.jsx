@@ -1,18 +1,19 @@
 import React, { Component } from "react";
 import './buttons.css'
 
-class ButtonDeleteX extends Component {
+class ButtonInfo extends Component {
 
   render() {
         return (
             <button
                 className="button"
+                style={{lineHeight:'70%', padding:"0.25em 0.4em"}}
                 onClick={this.props.onClick}
             >
-                X
+                ?
             </button>
         )
     }
 }
 
-export default ButtonDeleteX
+export default ButtonInfo

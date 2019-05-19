@@ -16,6 +16,15 @@ class WeaponsCardSelectModal extends Component {
       }
 
     handleAddFirearm = (gunObj) => {
+
+        const gunAlreadyInList = this.props.gear.firearms.filter((obj)=>{
+            return obj.name === gunObj.name
+        }).length
+
+        if(gunAlreadyInList){
+            return
+        }
+
         const newWeight = this.props.totalWeight + gunObj.weight;
         const attributeObj = this.props.characterStats;
         gunObj.qty = 1
@@ -38,6 +47,7 @@ class WeaponsCardSelectModal extends Component {
                 {this.state.showGunStats ?
                     <WeaponsCardWeaponStats
                         gunObj={gunObj}
+                        handleShowGunStats={this.handleShowGunStats.bind(this)}
                     /> :
                     <WeaponsModalSelection
                         firearmsArray={firearmsArray}

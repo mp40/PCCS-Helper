@@ -6,7 +6,7 @@ import ButtonStandard from './buttons/ButtonStandard'
 import './CharacterGeneration.css'
 import './WeaponsCard.css'
 
-export class WeaponsCardBodyB extends Component {
+export class WeaponsCardBody extends Component {
 
     render() {
 
@@ -76,7 +76,7 @@ export class WeaponsCardBodyB extends Component {
                                             <span className='magQtySpan' style={{marginLeft:'2rem'}}>{`${magObj.qty} x Single Rounds`}</span> :    
                                             <span className='magQtySpan' style={{marginLeft:'2rem'}}>{`${magObj.qty} x ${magObj.cap} round ${magObj.type}`}</span>
                                         }
-                                        <span>
+                                        <span style={{marginLeft:'2px', marginRight:'2px'}}>
                                             <ButtonIncrementArrows
                                                 idUp={`qtyUpMagType${dex+1}`}
                                                 idDown={`qtyDownMagType${dex+1}`}
@@ -96,4 +96,4 @@ export class WeaponsCardBodyB extends Component {
 
 }
 
-export default WeaponsCardBodyB
+export default WeaponsCardBody
