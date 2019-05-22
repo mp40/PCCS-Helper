@@ -7,7 +7,6 @@ class WeaponsModalSelection extends Component {
 
     render(){
         const firearmsArray = this.props.firearmsArray
-        // const closeShowFirearms = this.props.closeShowFirearms.bind(this)
 
         return (
             <div className="equipmentListCard">

@@ -48,7 +48,13 @@ export class WeaponsCardBody extends Component {
                                             onClick={this.props.handleRemoveGun.bind(this, gunObj)}
                                         />
                                     </span>
-                                    <span style={{marginLeft:'0.5rem'}}>{gunObj.name}</span>
+                                    <span 
+                                        style={{marginLeft:'0.5rem', paddingLeft:'5px', paddingRight:'5px'}}
+                                        className="selectFirearmToModify"
+                                        onClick={this.props.toggleModifyWeapon.bind(this, gunObj)}
+                                        >
+                                            {gunObj.name}
+                                        </span>
                                 </td>
                                 <td>
                                     {gunObj.weight}
