@@ -14,6 +14,7 @@ import {
 
 import './WeaponsCard.css' 
 import WeaponsCardWeaponStats from "./WeaponsCardWeaponStats";
+import WeaponsCardModifyWeapon from "./WeaponsCardModifyFirearm";
 
 export class WeaponsCard extends Component {
   constructor(props){
@@ -93,9 +94,10 @@ export class WeaponsCard extends Component {
 
           {this.state.modifyFirearm ? 
             <div className='equipmentModalContainer'>
-              <WeaponsCardWeaponStats
-                gunObj={this.state.firearmToModify}
-              />
+                <WeaponsCardWeaponStats
+                  gunObj={this.state.firearmToModify}
+                  modifyFirearm={this.state.modifyFirearm}
+                />
             </div> :
             null}
 

@@ -5,6 +5,7 @@ import ButtonDeleteX from './buttons/ButtonDeleteX'
 import {buildArrayForGunTable} from '../helpers/componentHelpers'
 
 import './WeaponsCard.css'
+import WeaponsCardModifyWeapon from "./WeaponsCardModifyFirearm";
 
 class WeaponsCardWeaponStats extends Component {
 
@@ -34,6 +35,7 @@ class WeaponsCardWeaponStats extends Component {
 
                 <div style={{marginTop:'0.5rem', marginLeft:'5.5%', fontWeight:'bold'}}>{gunObj.name}</div>
                 
+                <div style={{display:'flex'}}>
                 <table className='WeaponStatTable' style={{border: '1px solid rgb(85, 83, 83)', borderCollapse:'collapse'}}>
                     
                     <thead>
@@ -59,6 +61,13 @@ class WeaponsCardWeaponStats extends Component {
                     </tbody>
 
                 </table>
+
+                {this.props.modifyFirearm ? 
+                    <WeaponsCardModifyWeapon
+                        gunObj={this.props.gunObj}
+                    /> :    
+                    null}     
+                </div>
             </div>
         )   
     }
