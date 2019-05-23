@@ -13,17 +13,24 @@ import {
 } from '../helpers/actionHelpers'
 
 import './WeaponsCard.css' 
+import WeaponsCardWeaponStats from "./WeaponsCardWeaponStats";
 
 export class WeaponsCard extends Component {
   constructor(props){
     super(props)
     this.state = {
       showFirearms: false,
+      modifyFirearm: false,
+      firearmToModify: null,
     }
   }
 
   toggleShowFirearms(){
     this.setState({showFirearms: !this.state.showFirearms})
+  }
+
+  toggleModifyWeapon(gunObj){
+    this.setState({modifyFirearm: !this.state.modifyFirearm, firearmToModify: gunObj})
   }
 
   handleIncrementGunQty(gunObj, modifier){
@@ -56,6 +63,10 @@ export class WeaponsCard extends Component {
     this.props.modifyFirearmList(newWeight,[], this.props.characterStats)
   }
 
+  handleModifyFirearm(newGun){
+    this.setState({firearmToModify: newGun})
+  }
+
     render() {
       const selectedGuns = this.props.gear.firearms
       const weaponsWeight = calculateFirearmsArrayWeight(selectedGuns)
@@ -71,12 +82,23 @@ export class WeaponsCard extends Component {
             handleRemoveGun={this.handleRemoveGun.bind(this)}
             handleIncrementGunQty={this.handleIncrementGunQty.bind(this)}
             handleIncrementMagQty={this.handleIncrementMagQty.bind(this)}
+            toggleModifyWeapon={this.toggleModifyWeapon.bind(this)}
           />
 
           {this.state.showFirearms ?
             <WeaponsCardSelectModal
               closeShowFirearms={this.toggleShowFirearms.bind(this)}
             /> :
+            null}
+
+          {this.state.modifyFirearm ? 
+            <div className='equipmentModalContainer'>
+                <WeaponsCardWeaponStats
+                  gunObj={this.state.firearmToModify}
+                  modifyFirearm={this.state.modifyFirearm}
+                  handleModifyFirearm={this.handleModifyFirearm.bind(this)}
+                />
+            </div> :
             null}
 
         </div>
