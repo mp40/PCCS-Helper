@@ -14,7 +14,6 @@ import {
 
 import './WeaponsCard.css' 
 import WeaponsCardWeaponStats from "./WeaponsCardWeaponStats";
-import WeaponsCardModifyWeapon from "./WeaponsCardModifyFirearm";
 
 export class WeaponsCard extends Component {
   constructor(props){
@@ -64,8 +63,8 @@ export class WeaponsCard extends Component {
     this.props.modifyFirearmList(newWeight,[], this.props.characterStats)
   }
 
-  modifyFirearm(){
-
+  handleModifyFirearm(newGun){
+    this.setState({firearmToModify: newGun})
   }
 
     render() {
@@ -97,6 +96,7 @@ export class WeaponsCard extends Component {
                 <WeaponsCardWeaponStats
                   gunObj={this.state.firearmToModify}
                   modifyFirearm={this.state.modifyFirearm}
+                  handleModifyFirearm={this.handleModifyFirearm.bind(this)}
                 />
             </div> :
             null}

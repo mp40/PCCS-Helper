@@ -16,18 +16,18 @@ class WeaponsCardModifyWeapon extends Component {
         const gunObj = this.props.gunObj
 
         return (
-            <div style={{marginLeft:'5rem'}}>
+            <div style={{marginLeft:'5rem'}} className="modifyWeaponPanel">
                 <div>Modify Weapon</div>
 
                 <div className='modifyMagazines'>
                     <div>Magazines</div>
                     {gunObj.mag.map((magObj, index)=>{
-                        return <div id={`${gunObj.name}MagAtIndex${index}`} key={index}>
+                        return <div  key={index}>
                             {`${magObj.cap} round ${magObj.type}`}
                             {`${magObj.weight} lbs`}
                             {index > 0 ? 
-                                <button onClick={this.setPrimaryMag.bind(this,index)} style = {{opacity: '0.6'}}>primary</button> :
-                                <button>primary</button>
+                                <button id={`${gunObj.name}MagAtIndex${index}`} onClick={this.setPrimaryMag.bind(this,index)} style = {{opacity: '0.6'}}>primary</button> :
+                                <button id={`${gunObj.name}MagAtIndex${index}`}>primary</button>
                             }
                         </div>
                     })}

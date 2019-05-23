@@ -51,6 +51,7 @@ export class WeaponsCardBody extends Component {
                                     <span 
                                         style={{marginLeft:'0.5rem', paddingLeft:'5px', paddingRight:'5px'}}
                                         className="selectFirearmToModify"
+                                        id={`modify${gunObj.name}`}
                                         onClick={this.props.toggleModifyWeapon.bind(this, gunObj)}
                                         >
                                             {gunObj.name}

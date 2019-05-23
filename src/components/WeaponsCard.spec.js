@@ -128,14 +128,21 @@ describe('The Weapons Card',()=>{
         let wrapper;
         const gunList = () => wrapper.find('.equipmentListBody')
         const selectedWeapons = () => wrapper.find('#characterWeaponList')
+        const modifyPanel = () => wrapper.find('.modifyWeaponPanel')
         beforeEach(()=>{
             wrapper = mountAppWithStore(storeWithCreateCharacterView())
             wrapper.find('#addFirearm').simulate('click')
             gunList(wrapper).find('#M16').simulate('click')
+            selectedWeapons(wrapper).find('#modifyM16').simulate('click')
         })
         it('should be possible to change default magazine type when magazine options are available',()=>{
-            // selectedWeapons(wrapper).find('#modifyM16').simulate('click')
-            // TODO finish this test
+            modifyPanel().find('#M16MagAtIndex1').simulate('click')
+            expect(modifyPanel().find('.modifyMagazines').childAt(1).text()).toContain('30')
+        })
+        it('should update weight when primary mags changed',()=>{
+            modifyPanel().find('#M16MagAtIndex1').simulate('click')
+            expect(wrapper.find('#WeaponStatAW').text()).toContain('1')
+            expect(wrapper.find('#WeaponStatWeight').text()).toContain('9')
         })
     })
 })
