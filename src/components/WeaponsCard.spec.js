@@ -144,5 +144,11 @@ describe('The Weapons Card',()=>{
             expect(wrapper.find('#WeaponStatAW').text()).toContain('1')
             expect(wrapper.find('#WeaponStatWeight').text()).toContain('9')
         })
+        it('should be possible to add custom magazine',()=>{
+            modifyPanel().find('#addCustomMagazine').simulate('click')
+            
+            //TODO finish the middle part of this test
+            // expect(modifyPanel().find('.modifyMagazines').childAt(3).text()).toContain('18')
+        })
     })
 })

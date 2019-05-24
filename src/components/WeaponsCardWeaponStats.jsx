@@ -65,7 +65,9 @@ class WeaponsCardWeaponStats extends Component {
                 {this.props.modifyFirearm ? 
                     <WeaponsCardModifyWeapon
                         gunObj={this.props.gunObj}
+                        createCustomMag={this.props.createCustomMag}
                         handleModifyFirearm={this.props.handleModifyFirearm.bind(this)}
+                        toggleCreateCustomMag={this.props.toggleCreateCustomMag.bind(this)}
                     /> :    
                     null}     
                 </div>

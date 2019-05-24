@@ -22,6 +22,7 @@ export class WeaponsCard extends Component {
       showFirearms: false,
       modifyFirearm: false,
       firearmToModify: null,
+      createCustomMag: false,
     }
   }
 
@@ -67,6 +68,10 @@ export class WeaponsCard extends Component {
     this.setState({firearmToModify: newGun})
   }
 
+  toggleCreateCustomMag(){
+    this.setState({createCustomMag: !this.state.createCustomMag})
+  }
+
     render() {
       const selectedGuns = this.props.gear.firearms
       const weaponsWeight = calculateFirearmsArrayWeight(selectedGuns)
@@ -96,7 +101,9 @@ export class WeaponsCard extends Component {
                 <WeaponsCardWeaponStats
                   gunObj={this.state.firearmToModify}
                   modifyFirearm={this.state.modifyFirearm}
+                  createCustomMag={this.state.createCustomMag}
                   handleModifyFirearm={this.handleModifyFirearm.bind(this)}
+                  toggleCreateCustomMag={this.toggleCreateCustomMag.bind(this)}
                 />
             </div> :
             null}
