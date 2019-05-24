@@ -16,4 +16,10 @@ describe('the <WeaponsCardCustomMag/> component',()=>{
         })
         expect(wrapper.state('weight')).toEqual(.7)
     })
+    it('should take an input for magazine type',()=>{
+        wrapper.find('#customMagTypeInput').simulate('change', {
+            target:{value: 'Drum'}
+        })
+        expect(wrapper.state('type')).toEqual('Drum')
+    })
 })

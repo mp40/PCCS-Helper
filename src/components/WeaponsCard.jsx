@@ -68,6 +68,14 @@ export class WeaponsCard extends Component {
     this.setState({firearmToModify: newGun})
   }
 
+  handleAddCustomMag(newCustomMag){
+    console.log('MONKIES!')
+    const newGun = this.state.firearmToModify
+    newGun.mag.push(newCustomMag)
+    this.handleModifyFirearm(newGun)
+    this.toggleCreateCustomMag()
+  }
+
   toggleCreateCustomMag(){
     this.setState({createCustomMag: !this.state.createCustomMag})
   }
@@ -104,6 +112,7 @@ export class WeaponsCard extends Component {
                   createCustomMag={this.state.createCustomMag}
                   handleModifyFirearm={this.handleModifyFirearm.bind(this)}
                   toggleCreateCustomMag={this.toggleCreateCustomMag.bind(this)}
+                  handleAddCustomMag={this.handleAddCustomMag.bind(this)}
                 />
             </div> :
             null}

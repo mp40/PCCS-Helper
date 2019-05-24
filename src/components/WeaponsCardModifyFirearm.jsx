@@ -45,7 +45,9 @@ class WeaponsCardModifyWeapon extends Component {
         if(this.props.createCustomMag){
             return (
                 <div style={{marginLeft:'5rem'}}>
-                    <WeaponsCardCustomMag/>
+                    <WeaponsCardCustomMag
+                        handleAddCustomMag={this.props.handleAddCustomMag.bind(this)}
+                    />
                 </div>
             )
         }

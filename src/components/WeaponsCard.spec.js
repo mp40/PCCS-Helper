@@ -146,9 +146,18 @@ describe('The Weapons Card',()=>{
         })
         it('should be possible to add custom magazine',()=>{
             modifyPanel().find('#addCustomMagazine').simulate('click')
-            
+            wrapper.find('#customMagCapacityInput').simulate('change', {
+                target:{value: '18'}
+            })
+            wrapper.find('#customMagWeightInput').simulate('change', {
+                target:{value: '.65'}
+            })
+            wrapper.find('#customMagTypeInput').simulate('change', {
+                target:{value: 'Mag'}
+            })
+            wrapper.find('#submitCustomMag').simulate('click')
+            expect(modifyPanel().find('.modifyMagazines').childAt(3).text()).toContain('18')
             //TODO finish the middle part of this test
-            // expect(modifyPanel().find('.modifyMagazines').childAt(3).text()).toContain('18')
         })
     })
 })

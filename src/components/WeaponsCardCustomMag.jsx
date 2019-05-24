@@ -10,6 +10,7 @@ class WeaponsCardCustomMag extends Component {
             weight: '',
             type: ''
         }
+        this.handleAddCustomMag = this.props.handleAddCustomMag
     }
 
     handleCapacity(event){
@@ -20,6 +21,23 @@ class WeaponsCardCustomMag extends Component {
     handleWeight(event){
         const newWeight = Number(event.target.value)
         this.setState({weight: newWeight})
+    }
+
+    handleType(event){
+        this.setState({type: event.target.value})
+    }
+
+    handleSubmit(){
+        console.log('hi')
+        const newCustomMag = {
+            type: this.state.type, 
+            weight: this.state.weight,
+            cap: this.state.capacity,
+            qty: 0,
+            custom: true
+        }
+        console.log(this.props)
+        this.handleAddCustomMag(newCustomMag)
     }
 
 
@@ -48,6 +66,22 @@ class WeaponsCardCustomMag extends Component {
                         onChange={this.handleWeight.bind(this)}
                     />
                 </div>
+                <div style={{display:'flex'}} >
+                    <div>Type</div>
+                    <input
+                        type="text"
+                        autoComplete="off"
+                        id='customMagTypeInput'
+                        value={this.state.type}
+                        onChange={this.handleType.bind(this)}
+                    />
+                </div>
+                <button
+                    id="submitCustomMag"
+                    onClick={this.handleSubmit.bind(this)}
+                >
+                    Submit
+                </button>
             </div>
         )   
     }
