@@ -157,7 +157,17 @@ describe('The Weapons Card',()=>{
             })
             wrapper.find('#submitCustomMag').simulate('click')
             expect(modifyPanel().find('.modifyMagazines').childAt(3).text()).toContain('18')
-            //TODO finish the middle part of this test
+        })
+        it('should be possible to modify firearm weight',()=>{
+            modifyPanel().find('#modifyWeaponWeight').simulate('click')
+            wrapper.find('#modifyWeightNoteInput').simulate('change', {
+                target:{value: 'added torch'}
+            })
+            wrapper.find('#modifyWeightValueInput').simulate('change', {
+                target:{value: '.5'}
+            })
+            wrapper.find('#submitModifiedWeight').simulate('click')
+            expect(wrapper.find('#WeaponStatWeight').text()).toContain('9.2')
         })
     })
 })

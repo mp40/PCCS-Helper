@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 
-import './WeaponsCard.css'
 import WeaponsCardCustomMag from "./WeaponsCardCustomMag";
+import WeaponsCardModifyWeight from './WeaponsCardModifyWeight';
+import ButtonStandard from './buttons/ButtonStandard';
+
+import './WeaponsCard.css'
 
 class WeaponsCardModifyWeapon extends Component {
 
@@ -15,18 +18,26 @@ class WeaponsCardModifyWeapon extends Component {
         this.props.handleModifyFirearm(newGunObj)
     }
 
+    setFirearmWeight(note, weightMod){
+        this.props.handleModifyFirearmWeight(note, weightMod)
+    }
+
     render() {
         const gunObj = this.props.gunObj
 
-        if(!this.props.createCustomMag){
+        if(!this.props.createCustomMag && !this.props.modifyFirearmWeight){
             return (
                 <div style={{marginLeft:'5rem'}} className="modifyWeaponPanel">
                     <div>Modify Weapon</div>
     
                     <div className='modifyMagazines'>
                         <div style={{display:'flex'}}>
-                            <div>Magazines</div>
-                            <button id='addCustomMagazine' onClick={this.props.toggleCreateCustomMag.bind(this)}>+</button>
+                            <div style={{paddingRight:'5px', paddingTop:'5px'}}>Magazines</div>
+                            <ButtonStandard
+                                name="+"
+                                id='addCustomMagazine'
+                                onClick={this.props.toggleCreateCustomMag.bind(this)}
+                            />
                         </div>
                         {gunObj.mag.map((magObj, index)=>{
                             return <div  key={index}>
@@ -39,6 +50,8 @@ class WeaponsCardModifyWeapon extends Component {
                             </div>
                         })}
                     </div>
+                    <div style={{paddingTop:'5px'}}>Weight</div>
+                    <button id='modifyWeaponWeight' onClick={this.props.toggleModifyFirearmWeight.bind(this)}>set</button>
                 </div>
             )  
         }
@@ -47,6 +60,15 @@ class WeaponsCardModifyWeapon extends Component {
                 <div style={{marginLeft:'5rem'}}>
                     <WeaponsCardCustomMag
                         handleAddCustomMag={this.props.handleAddCustomMag.bind(this)}
+                    />
+                </div>
+            )
+        }
+        if(this.props.modifyFirearmWeight){
+            return (
+                <div style={{marginLeft:'5rem'}}>
+                    <WeaponsCardModifyWeight
+                      handleModifyFirearmWeight={this.props.handleModifyFirearmWeight}  
                     />
                 </div>
             )

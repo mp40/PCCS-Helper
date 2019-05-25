@@ -23,6 +23,7 @@ export class WeaponsCard extends Component {
       modifyFirearm: false,
       firearmToModify: null,
       createCustomMag: false,
+      modifyFirearmWeight: false
     }
   }
 
@@ -69,7 +70,6 @@ export class WeaponsCard extends Component {
   }
 
   handleAddCustomMag(newCustomMag){
-    console.log('MONKIES!')
     const newGun = this.state.firearmToModify
     newGun.mag.push(newCustomMag)
     this.handleModifyFirearm(newGun)
@@ -78,6 +78,22 @@ export class WeaponsCard extends Component {
 
   toggleCreateCustomMag(){
     this.setState({createCustomMag: !this.state.createCustomMag})
+  }
+
+  toggleModifyFirearmWeight(){
+    this.setState({modifyFirearmWeight: !this.state.modifyFirearmWeight})
+  }
+
+  handleModifyFirearmWeight(noteObj){
+    const newGun = this.state.firearmToModify
+    newGun.weight += noteObj.weightMod
+    if(newGun.modNotes){
+      newGun.modNotes.push(noteObj)
+    } else {
+      newGun.modNotes = [noteObj]
+    }
+    this.handleModifyFirearm(newGun)
+    this.toggleModifyFirearmWeight()
   }
 
     render() {
@@ -110,9 +126,12 @@ export class WeaponsCard extends Component {
                   gunObj={this.state.firearmToModify}
                   modifyFirearm={this.state.modifyFirearm}
                   createCustomMag={this.state.createCustomMag}
+                  modifyFirearmWeight={this.state.modifyFirearmWeight}
                   handleModifyFirearm={this.handleModifyFirearm.bind(this)}
                   toggleCreateCustomMag={this.toggleCreateCustomMag.bind(this)}
                   handleAddCustomMag={this.handleAddCustomMag.bind(this)}
+                  toggleModifyFirearmWeight={this.toggleModifyFirearmWeight.bind(this)}
+                  handleModifyFirearmWeight={this.handleModifyFirearmWeight.bind(this)}
                 />
             </div> :
             null}
