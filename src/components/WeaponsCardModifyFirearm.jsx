@@ -52,6 +52,14 @@ class WeaponsCardModifyWeapon extends Component {
                     </div>
                     <div style={{paddingTop:'5px'}}>Weight</div>
                     <button id='modifyWeaponWeight' onClick={this.props.toggleModifyFirearmWeight.bind(this)}>set</button>
+                    {gunObj.modNotes ? 
+                    gunObj.modNotes.map((noteObj, index)=>{
+                        return <div key={index}>
+                            <span>{noteObj.note}</span>
+                            <span>{noteObj.weightMod} lbs</span>
+                        </div>
+                    }) :
+                    null}
                 </div>
             )  
         }

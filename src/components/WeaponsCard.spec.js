@@ -240,6 +240,18 @@ describe('The Weapons Card',()=>{
             wrapper.find('#submitModifiedWeight').simulate('click')
             expect(wrapper.find('#WeaponStatWeight').text()).toContain('9.2')
         })
+        it('should render the weight modifications',()=>{
+            modifyPanel().find('#modifyWeaponWeight').simulate('click')
+            wrapper.find('#modifyWeightNoteInput').simulate('change', {
+                target:{value: 'added torch'}
+            })
+            wrapper.find('#modifyWeightValueInput').simulate('change', {
+                target:{value: '.5'}
+            })
+            wrapper.find('#submitModifiedWeight').simulate('click')
+            expect(modifyPanel().text()).toContain('added torch')
+            expect(modifyPanel().text()).toContain('0.5')
+        })
         describe('modify weapon weight gaurd clauses',()=>{
             let wrapper;
             const gunList = () => wrapper.find('.equipmentListBody')
