@@ -157,7 +157,88 @@ describe('The Weapons Card',()=>{
             })
             wrapper.find('#submitCustomMag').simulate('click')
             expect(modifyPanel().find('.modifyMagazines').childAt(3).text()).toContain('18')
-            //TODO finish the middle part of this test
+            expect(modifyPanel().find('.modifyMagazines').childAt(3).text()).toContain('0.65')
+            expect(modifyPanel().find('.modifyMagazines').childAt(3).text()).toContain('Mag')
+        })
+        describe('custom magazine gaurd clases', ()=> {
+            let wrapper;
+            const gunList = () => wrapper.find('.equipmentListBody')
+            const selectedWeapons = () => wrapper.find('#characterWeaponList')
+            const modifyPanel = () => wrapper.find('.modifyWeaponPanel')
+            
+            const enterMagCapacity = (wrapper) => {
+                wrapper.find('#customMagCapacityInput').simulate('change', {
+                    target:{value: '18'}
+                })
+            }
+            const enterMagType = (wrapper) => {
+                wrapper.find('#customMagTypeInput').simulate('change', {
+                    target:{value: "Mag"}
+                })
+            }
+            const enterMagWeight = (wrapper) => {
+                wrapper.find('#customMagWeightInput').simulate('change', {
+                    target:{value: '.65'}
+                })
+            }
+            const enterMagWeightAndType = (wrapper) => {
+                enterMagWeight(wrapper)
+                enterMagType(wrapper)
+            }
+
+            beforeEach(()=>{
+                wrapper = mountAppWithStore(storeWithCreateCharacterView())
+                wrapper.find('#addFirearm').simulate('click')
+                gunList(wrapper).find('#M16').simulate('click')
+                selectedWeapons(wrapper).find('#modifyM16').simulate('click')
+                modifyPanel().find('#addCustomMagazine').simulate('click')
+            })
+            it('should only accept numbers for capacity',()=>{
+                wrapper.find('#customMagCapacityInput').simulate('change', {
+                    target:{value: 'six'}
+                })
+                enterMagWeightAndType(wrapper)
+                wrapper.find('#submitCustomMag').simulate('click')
+                expect(wrapper.text()).toContain('Please Enter Valid Data')
+            })
+            it('should only accept whole numbers for capacity',()=>{
+                wrapper.find('#customMagCapacityInput').simulate('change', {
+                    target:{value: '18.5'}
+                })
+                enterMagWeightAndType(wrapper)
+                wrapper.find('#submitCustomMag').simulate('click')
+                expect(wrapper.text()).toContain('Please Enter Valid Data')
+            })
+            it('should only accept numbers for weight',()=>{
+                enterMagCapacity(wrapper)
+                wrapper.find('#customMagWeightInput').simulate('change', {
+                    target:{value: 'point six five'}
+                })
+                enterMagType(wrapper)
+                wrapper.find('#submitCustomMag').simulate('click')
+                expect(wrapper.text()).toContain('Please Enter Valid Data')
+            })
+            it('should have a value at least two characters long for type',()=>{
+                enterMagCapacity(wrapper)
+                enterMagWeight(wrapper)
+                wrapper.find('#customMagTypeInput').simulate('change', {
+                    target:{value: "!"}
+                })
+                wrapper.find('#submitCustomMag').simulate('click')
+                expect(wrapper.text()).toContain('Please Enter Valid Data')
+            })
+
+        })
+        it('should be possible to modify firearm weight',()=>{
+            modifyPanel().find('#modifyWeaponWeight').simulate('click')
+            wrapper.find('#modifyWeightNoteInput').simulate('change', {
+                target:{value: 'added torch'}
+            })
+            wrapper.find('#modifyWeightValueInput').simulate('change', {
+                target:{value: '.5'}
+            })
+            wrapper.find('#submitModifiedWeight').simulate('click')
+            expect(wrapper.find('#WeaponStatWeight').text()).toContain('9.2')
         })
     })
 })

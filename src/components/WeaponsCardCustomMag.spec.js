@@ -8,13 +8,13 @@ describe('the <WeaponsCardCustomMag/> component',()=>{
         wrapper.find('#customMagCapacityInput').simulate('change', {
             target:{value: '18'}
         })
-        expect(wrapper.state('capacity')).toEqual(18)
+        expect(wrapper.state('capacity')).toEqual('18')
     })
     it('should take an input for weight',()=>{
         wrapper.find('#customMagWeightInput').simulate('change', {
             target:{value: '.7'}
         })
-        expect(wrapper.state('weight')).toEqual(.7)
+        expect(wrapper.state('weight')).toEqual('.7')
     })
     it('should take an input for magazine type',()=>{
         wrapper.find('#customMagTypeInput').simulate('change', {

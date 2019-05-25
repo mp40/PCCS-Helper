@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import ButtonStandard from './buttons/ButtonStandard'
 import './WeaponsCard.css'
 
 class WeaponsCardCustomMag extends Component {
@@ -8,19 +8,18 @@ class WeaponsCardCustomMag extends Component {
         this.state = {
             capacity: '',
             weight: '',
-            type: ''
+            type: '',
+            warning: false
         }
         this.handleAddCustomMag = this.props.handleAddCustomMag
     }
 
     handleCapacity(event){
-        const newCapacity = Number(event.target.value)
-        this.setState({capacity: newCapacity})
+        this.setState({capacity: event.target.value})
     }
 
     handleWeight(event){
-        const newWeight = Number(event.target.value)
-        this.setState({weight: newWeight})
+        this.setState({weight: event.target.value})
     }
 
     handleType(event){
@@ -28,15 +27,26 @@ class WeaponsCardCustomMag extends Component {
     }
 
     handleSubmit(){
-        console.log('hi')
+        if(!Number(this.state.weight)){
+            this.setState({warning: true})
+            return
+        }
+        if(!Number(this.state.capacity) || this.state.capacity % 1 !== 0){
+            this.setState({warning: true})
+            return
+        }
+        if(this.state.type.length < 2){
+            this.setState({warning: true})
+            return
+        }
+
         const newCustomMag = {
             type: this.state.type, 
-            weight: this.state.weight,
-            cap: this.state.capacity,
+            weight: Number(this.state.weight),
+            cap: Number(this.state.capacity),
             qty: 0,
             custom: true
         }
-        console.log(this.props)
         this.handleAddCustomMag(newCustomMag)
     }
 
@@ -46,9 +56,10 @@ class WeaponsCardCustomMag extends Component {
         return (
             <div className="customMagazineForm">
                 <div>Custom Magazine Details</div>
-                <div style={{display:'flex'}} >
-                    <div>Capacity</div>
+                <div style={{display:'flex', width:"100%", justifyContent: "space-between"}} >
+                    <div style={{width:'50%'}}>Capacity</div>
                     <input
+                        style={{width:'30%'}}
                         type="text"
                         autoComplete="off"
                         id='customMagCapacityInput'
@@ -56,9 +67,10 @@ class WeaponsCardCustomMag extends Component {
                         onChange={this.handleCapacity.bind(this)}
                     /> 
                 </div>
-                <div style={{display:'flex'}} >
+                <div style={{display:'flex', width:"100%", justifyContent: "space-between"}} >
                     <div>Weight</div>
                     <input
+                        style={{width:'30%'}}
                         type="text"
                         autoComplete="off"
                         id='customMagWeightInput'
@@ -66,9 +78,10 @@ class WeaponsCardCustomMag extends Component {
                         onChange={this.handleWeight.bind(this)}
                     />
                 </div>
-                <div style={{display:'flex'}} >
+                <div style={{display:'flex', width:"100%", justifyContent: "space-between"}} >
                     <div>Type</div>
                     <input
+                        style={{width:'30%'}}
                         type="text"
                         autoComplete="off"
                         id='customMagTypeInput'
@@ -76,12 +89,14 @@ class WeaponsCardCustomMag extends Component {
                         onChange={this.handleType.bind(this)}
                     />
                 </div>
-                <button
+                <ButtonStandard
+                    name='Submit'
                     id="submitCustomMag"
                     onClick={this.handleSubmit.bind(this)}
-                >
-                    Submit
-                </button>
+                />
+                {this.state.warning ?
+                    <div style={{color:'red', fontWeight:'bold'}}>Please Enter Valid Data</div> :
+                    null}
             </div>
         )   
     }
