@@ -8,19 +8,18 @@ class WeaponsCardCustomMag extends Component {
         this.state = {
             capacity: '',
             weight: '',
-            type: ''
+            type: '',
+            warning: false
         }
         this.handleAddCustomMag = this.props.handleAddCustomMag
     }
 
     handleCapacity(event){
-        const newCapacity = Number(event.target.value)
-        this.setState({capacity: newCapacity})
+        this.setState({capacity: event.target.value})
     }
 
     handleWeight(event){
-        const newWeight = Number(event.target.value)
-        this.setState({weight: newWeight})
+        this.setState({weight: event.target.value})
     }
 
     handleType(event){
@@ -28,10 +27,23 @@ class WeaponsCardCustomMag extends Component {
     }
 
     handleSubmit(){
+        if(!Number(this.state.weight)){
+            this.setState({warning: true})
+            return
+        }
+        if(!Number(this.state.capacity) || this.state.capacity % 1 !== 0){
+            this.setState({warning: true})
+            return
+        }
+        if(this.state.type.length < 2){
+            this.setState({warning: true})
+            return
+        }
+
         const newCustomMag = {
             type: this.state.type, 
-            weight: this.state.weight,
-            cap: this.state.capacity,
+            weight: Number(this.state.weight),
+            cap: Number(this.state.capacity),
             qty: 0,
             custom: true
         }
@@ -82,6 +94,9 @@ class WeaponsCardCustomMag extends Component {
                     id="submitCustomMag"
                     onClick={this.handleSubmit.bind(this)}
                 />
+                {this.state.warning ?
+                    <div style={{color:'red', fontWeight:'bold'}}>Please Enter Valid Data</div> :
+                    null}
             </div>
         )   
     }
