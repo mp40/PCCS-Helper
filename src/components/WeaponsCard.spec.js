@@ -240,5 +240,36 @@ describe('The Weapons Card',()=>{
             wrapper.find('#submitModifiedWeight').simulate('click')
             expect(wrapper.find('#WeaponStatWeight').text()).toContain('9.2')
         })
+        describe('modify weapon weight gaurd clauses',()=>{
+            let wrapper;
+            const gunList = () => wrapper.find('.equipmentListBody')
+            const selectedWeapons = () => wrapper.find('#characterWeaponList')
+            const modifyPanel = () => wrapper.find('.modifyWeaponPanel')
+            
+            beforeEach(()=>{
+                wrapper = mountAppWithStore(storeWithCreateCharacterView())
+                wrapper.find('#addFirearm').simulate('click')
+                gunList(wrapper).find('#M16').simulate('click')
+                selectedWeapons(wrapper).find('#modifyM16').simulate('click')
+                modifyPanel().find('#modifyWeaponWeight').simulate('click')
+            })
+            it('should only accept numbers for weight value',()=>{
+                wrapper.find('#modifyWeightNoteInput').simulate('change', {
+                    target:{value: 'added torch'}
+                })
+                wrapper.find('#modifyWeightValueInput').simulate('change', {
+                    target:{value: 'one pound'}
+                })
+                wrapper.find('#submitModifiedWeight').simulate('click')
+                expect(wrapper.text()).toContain('Please Enter Valid Data')
+            })
+            it('should have a value entered in type nore feild',()=>{
+                wrapper.find('#modifyWeightValueInput').simulate('change', {
+                    target:{value: '1'}
+                })
+                wrapper.find('#submitModifiedWeight').simulate('click')
+                expect(wrapper.text()).toContain('Please Enter Valid Data')
+            })
+        })
     })
 })
