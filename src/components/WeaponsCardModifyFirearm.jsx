@@ -22,6 +22,16 @@ class WeaponsCardModifyWeapon extends Component {
         this.props.handleModifyFirearmWeight(note, weightMod)
     }
 
+    handleRemoveMod(noteObj){
+        const newGunObj = this.props.gunObj
+        newGunObj.weight += noteObj.weightMod * -1
+        newGunObj.weight = Math.round(newGunObj.weight * 1000) /1000
+        newGunObj.modNotes = newGunObj.modNotes.filter((note)=>{
+            return note.note !== noteObj.note
+        })
+        this.props.handleModifyFirearm(newGunObj)
+    }
+
     render() {
         const gunObj = this.props.gunObj
 
@@ -57,6 +67,12 @@ class WeaponsCardModifyWeapon extends Component {
                         return <div key={index}>
                             <span>{noteObj.note}</span>
                             <span>{noteObj.weightMod} lbs</span>
+                            <button
+                                className="removeModification"
+                                onClick={this.handleRemoveMod.bind(this, noteObj)}
+                            >
+                                remove
+                            </button>
                         </div>
                     }) :
                     null}

@@ -252,6 +252,19 @@ describe('The Weapons Card',()=>{
             expect(modifyPanel().text()).toContain('added torch')
             expect(modifyPanel().text()).toContain('0.5')
         })
+        it('should be possible to remove weapon weight modifications',()=>{
+            modifyPanel().find('#modifyWeaponWeight').simulate('click')
+            wrapper.find('#modifyWeightNoteInput').simulate('change', {
+                target:{value: 'added torch'}
+            })
+            wrapper.find('#modifyWeightValueInput').simulate('change', {
+                target:{value: '.5'}
+            })
+            wrapper.find('#submitModifiedWeight').simulate('click')
+            wrapper.find('.removeModification').simulate('click')
+            expect(wrapper.find('#WeaponStatWeight').text()).toContain('8.7')
+            expect(wrapper.text()).not.toContain('added torch')
+        })
         describe('modify weapon weight gaurd clauses',()=>{
             let wrapper;
             const gunList = () => wrapper.find('.equipmentListBody')
