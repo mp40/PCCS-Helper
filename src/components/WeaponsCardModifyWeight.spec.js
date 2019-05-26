@@ -14,6 +14,6 @@ describe('the <WeaponsCardCustomMag/> component',()=>{
         wrapper.find('#modifyWeightValueInput').simulate('change', {
             target:{value: '1.2'}
         })
-        expect(wrapper.state('modWeightNumber')).toEqual(1.2)
+        expect(wrapper.state('modWeightNumber')).toEqual('1.2')
     })
 })

@@ -87,6 +87,7 @@ export class WeaponsCard extends Component {
   handleModifyFirearmWeight(noteObj){
     const newGun = this.state.firearmToModify
     newGun.weight += noteObj.weightMod
+    newGun.weight = Math.round(newGun.weight*1000)/1000
     if(newGun.modNotes){
       newGun.modNotes.push(noteObj)
     } else {
