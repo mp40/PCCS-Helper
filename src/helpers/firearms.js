@@ -2,6 +2,7 @@ export const rifles = () => {
     return [
         {
             name: "AK47",
+            list: 'rifles',
             type: ["Battle/Assault Rifle", "Soviet", "Cold War", "7.62x39"],
             length: 34,
             weight: 11.3,
@@ -28,6 +29,7 @@ export const rifles = () => {
         },
         {
             name: "AKM 47",
+            list: 'rifles',
             type: ["Battle/Assault Rifle", "Soviet", "Cold War", "7.62x39"],
             length: 35,
             weight: 8.7,
@@ -54,6 +56,7 @@ export const rifles = () => {
         },
         {
             name: "AK 74",
+            list: 'rifles',
             type:["Battle/Assault Rifle", "Soviet", "Cold War", "5.45x39"],
             length: 37,
             weight: 8.7,
@@ -80,6 +83,7 @@ export const rifles = () => {
         },
         {
             name:'M16',
+            list: 'rifles',
             type: ['Battle/Assault Rifle', 'USA', 'Cold War', '5.56 NATO', 'West Is Best'],									
             length: 39,											
             weight: 8.7,											
@@ -106,6 +110,7 @@ export const rifles = () => {
         },
         {
             name:'M16A1',
+            list: 'rifles',
             type: ['Battle/Assault Rifle', 'USA', 'Cold War', '5.56 NATO', 'West Is Best'],									
             length: 39,											
             weight: 8,											
@@ -136,7 +141,8 @@ export const rifles = () => {
 export const smgs = () => {
     return [
         {
-            name: 'MAT 49',	
+            name: 'MAT 49',
+            list: 'smgs',
             type: ['France', 'Cold War', '9mm Parabellum', 'SMG'],								
             length: '18/28',									
             weight:	9.2,									
@@ -167,7 +173,8 @@ export const smgs = () => {
 export const pistols = () => {
     return [
         {
-            name: 'M1911A1',	
+            name: 'M1911A1',
+            list: 'pistols',	
             type: ['Automatic Pistol', 'USA', 'Cold War', 'WW2', '.45 ACP', 'West Is Best'],
             length: 9,									
             weight: 3,									
@@ -208,6 +215,7 @@ export const sniperRifles = () => {
     return [
         {
             name: 'Dragunov SVD',
+            list: 'sniperRifles',
             type: ["Sniper Rifle", "Soviet", "Cold War", "7.62x54"],											
             length: 48,												
             weight: 10.2,												
@@ -250,6 +258,7 @@ export const mgs = () => {
     return [
         {
             name: 'M60',
+            list: 'mgs',
             type: ['GPMG', 'USA', 'Cold War', '7.62 NATO', 'West Is Best'],											
             length: 44,											
             weight: 29.7,											
@@ -282,6 +291,7 @@ export const shotguns = () => {
     return [
         {
             name: 'Remington M870',
+            list: 'shotguns',
             type: ['Shotgun', 'USA', 'Cold War', '12 gauge', 'West Is Best'],
             length: 42,
             weight: 8.8,

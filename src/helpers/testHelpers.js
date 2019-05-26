@@ -40,8 +40,8 @@ export const storeWithEquipment = () => {
     }
 }
 
-export const storeWithCreateCharacterView = () => {
-    return {
+export const storeWithCreateCharacterView = (gun = null) => {
+    const character = {
         currentView: 'createChar',
         totalWeight: 0,
         characterStats:{},
@@ -55,13 +55,23 @@ export const storeWithCreateCharacterView = () => {
             knockoutValue: 0,
             damageBonus: 0,
             combatActions: [0, 0],
+        },
+        gear: {
+            equipment: [],
+            firearms: []
         }
     }
+    
+    if(gun){
+        character.gear.firearms = [gun]
+    }
+    return character
 }
 
 export const testM1911A1 = () => {
     return {
-        name: 'M1911A1',	
+        name: 'M1911A1',
+        list: 'pistols',
         type: ['Automatic Pistol', 'USA', 'Cold War', 'WW2', '.45 ACP', 'West Is Best'],
         qty: 1,								
         length: 9,									
@@ -101,6 +111,7 @@ export const testM1911A1 = () => {
 export const testM203 = () => {
     return {
         name:'M203',
+        list: 'rifles',
         type: ['Battle/Assault Rifle', 'USA', 'Cold War', '5.56 NATO', 'West Is Best'],									
         length: 39,											
         weight: 11.6,											
@@ -131,6 +142,7 @@ export const testM203 = () => {
 export const testFAMAS = () => {
     return {
         name:'FAMAS',
+        list: 'rifles',
         type: ['Battle/Assault Rifle', 'France', 'Cold War', '5.56 NATO', 'West Is Best'],									
         length: 30,											
         weight: 9,											
@@ -172,29 +184,31 @@ export const testFAMAS = () => {
 export const testM16 = () => {
     return {
         name:'M16',
-            type: ['Battle/Assault Rifle', 'USA', 'Cold War', '5.56 NATO', 'West Is Best'],									
-            length: 39,											
-            weight: 8.7,											
-            rt: 8,									
-            rof: '*7',											
-            mag:[{type:'Mag', weight: 0.7, cap: 20, qty: 0}, {type:'Mag', weight: 1, cap: 30, qty: 0}],					
-            kd: 4,											
-            sab: 3,											
-            aim: [-22, -12, -9, -7, -6, -5, -4, -3, -2, -1, 0],
-            fmj: {
-                pen:[17,16,15,13,11,7.1,4.5,2.9],				
-                dc:[6, 6, 6, 6, 5, 4, 3, 2]	
-            },										
-            ma:	[.4, .8, 2,	3, 4, 8, 11, 15], 	 	 	
-            ba:	[60, 51, 42, 35, 30, 20, 15, 11],		
-            tof: [0, 0, 1, 1, 2, 4,	7, 10],
-            offical: true
+        list: 'rifles',
+        type: ['Battle/Assault Rifle', 'USA', 'Cold War', '5.56 NATO', 'West Is Best'],									
+        length: 39,											
+        weight: 8.7,											
+        rt: 8,									
+        rof: '*7',											
+        mag:[{type:'Mag', weight: 0.7, cap: 20, qty: 0}, {type:'Mag', weight: 1, cap: 30, qty: 0}],					
+        kd: 4,											
+        sab: 3,											
+        aim: [-22, -12, -9, -7, -6, -5, -4, -3, -2, -1, 0],
+        fmj: {
+            pen:[17,16,15,13,11,7.1,4.5,2.9],				
+            dc:[6, 6, 6, 6, 5, 4, 3, 2]	
+        },										
+        ma:	[.4, .8, 2,	3, 4, 8, 11, 15], 	 	 	
+        ba:	[60, 51, 42, 35, 30, 20, 15, 11],		
+        tof: [0, 0, 1, 1, 2, 4,	7, 10],
+        offical: true
     }
 }
 
 export const testRemington = () => {
     return {
         name: 'Remington M870',
+        list: 'shotguns',
         type: ['Shotgun', 'USA', 'Cold War', '12 gauge', 'West Is Best'],
         length: 42,
         weight: 8.8,
@@ -225,5 +239,46 @@ export const testRemington = () => {
         ba: [67, 58, 48, 42, 38, 35, 29, 25, 19, 15, 5],
         tof: [0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 4],
         offical: true
+    }
+}
+
+export const testM1911A1WithMods = () => {
+    return {
+        name: 'M1911A1',
+        list: 'pistols',
+        type: ['Automatic Pistol', 'USA', 'Cold War', 'WW2', '.45 ACP', 'West Is Best'],
+        qty: 1,								
+        length: 9,									
+        weight: 4,									
+        rt:	4,									
+        rof: '*',									
+        mag: [{type: 'Mag',	weight: 0.7, cap: 7, qty: 0},{type:'TestMag', weight: 1, cap: 10, qty: 0, custom:true}],					
+        kd:	5,								
+        sab: 5,									
+        aim: {
+            ac:[1,2,3,4,5,6],
+            mod:[-18,-11,-10,-9,-8,-7]
+        },
+        projectiles: [
+            {
+                type: 'FMJ',
+                pen:[1.6, 1.5, 1.2, 1.0, 0.8, 0.3, 0.2, 0.1],	
+                dc:[3, 3 ,2, 1, 1, 1, 1, 1]
+            },
+            {
+                type: 'JHP',
+                pen:[1.5, 1.4, 1.2, .9, .7, .3, .1, .1],	
+                dc:[4, 4, 3, 2, 1, 1, 1, 1]
+            },
+            {
+                type: 'AP',
+                pen:[2.2, 2.1, 1.8, 1.4, 1.1, .5, .2, .1],	
+                dc:[3, 3 ,2, 1, 1, 1, 1, 1]
+            },
+        ],
+        ba:[45, 36, 27, 20, 15, 5, 0, -4],
+        tof:[1, 2, 3, 5, 8, 19, 31, 45],
+        offical: true,
+        modNotes:[{note:'test', weightMod: 1}]
     }
 }

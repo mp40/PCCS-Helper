@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import WeaponsCardBody from "./WeaponsCardBody";
 import {modifyFirearmList} from '../actions'
-import WeaponsCardSelectModal from './WeaponsCardSelectModal'
+import WeaponsCardSelectModal from './WeaponsCardSelectModal';
+
+import {rifles, smgs, mgs, pistols, sniperRifles, shotguns} from '../helpers/firearms'
 
 import {
   calculateFirearmsArrayWeight,
@@ -97,6 +99,15 @@ export class WeaponsCard extends Component {
     this.toggleModifyFirearmWeight()
   }
 
+  removeAllGunMods(gunObj){
+    const firearmsList = [...rifles(), ...smgs(), ...mgs(), ...pistols(), ...sniperRifles(), ...shotguns()]
+    const originalGunObj = firearmsList.filter((gun)=>{
+      return gun.name === gunObj.name
+    })
+    // this.handleModifyFirearm(originalGunObj)
+    this.setState({firearmToModify: originalGunObj})
+  }
+
     render() {
       const selectedGuns = this.props.gear.firearms
       const weaponsWeight = calculateFirearmsArrayWeight(selectedGuns)
@@ -133,6 +144,7 @@ export class WeaponsCard extends Component {
                   handleAddCustomMag={this.handleAddCustomMag.bind(this)}
                   toggleModifyFirearmWeight={this.toggleModifyFirearmWeight.bind(this)}
                   handleModifyFirearmWeight={this.handleModifyFirearmWeight.bind(this)}
+                  removeAllGunMods={this.removeAllGunMods.bind(this)}
                 />
             </div> :
             null}
