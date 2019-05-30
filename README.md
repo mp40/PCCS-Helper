@@ -1,6 +1,6 @@
 ![PCCS Logo](/public/pccsBnW.png)
 
-# Phoenix Command Combat System Assistant
+# Phoenix Command Combat System Assistant [![Build Status](https://travis-ci.org/mp40/PCCS-Helper.png?branch=master)](https://travis-ci.org/mp40/PCCS-Helper)
 
 ### Built with TDD/BDD.
 
