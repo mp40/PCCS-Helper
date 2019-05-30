@@ -80,4 +80,24 @@ describe('calculating total weight of all equipment', ()=>{
         const firearms = [testRifle(), testPistol()]
         expect(calculateTotalWeight(uniform, equipment, firearms)).toEqual(5+1.5+17)
     })
+    it('should return a number if the equipment array is empty',()=>{
+        const equipment = []
+        expect(findEquipmentWeight(equipment)).toEqual(0)
+    })
+    it('should return 0 if no guns are selected',()=>{
+        const firearms = []
+        expect(calculateFirearmsArrayWeight(firearms)).toEqual(0)
+    })
+    it('should calculate correct weight if equipment array is empty',()=>{
+        const uniform = 'Normal'
+        const equipment = []
+        const firearms = [testRifle(), testPistol()]
+        expect(calculateTotalWeight(uniform, equipment, firearms)).toEqual(5+17)
+    })
+    it('should calculate correct weight if firearm array is empty',()=>{
+        const uniform = 'Normal'
+        const equipment = [belt, pouch]
+        const firearms = []
+        expect(calculateTotalWeight(uniform, equipment, firearms)).toEqual(5+1.5)
+    })
 })
