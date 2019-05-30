@@ -11,7 +11,8 @@ import {
   calculateObjectWeightDifference,
   modifyObjectQtyInArray,
   calculateGunAndAmmoWeight,
-  removeObjectFromArray
+  removeObjectFromArray,
+  calculateTotalWeight
 } from '../helpers/actionHelpers'
 
 import './WeaponsCard.css' 
@@ -34,7 +35,8 @@ export class WeaponsCard extends Component {
   }
 
   toggleModifyWeapon(gunObj){
-    this.setState({modifyFirearm: !this.state.modifyFirearm, firearmToModify: gunObj})
+    this.setState({firearmToModify: gunObj.name})
+    this.setState({modifyFirearm: !this.state.modifyFirearm})
   }
 
   handleIncrementGunQty(gunObj, modifier){
@@ -68,13 +70,27 @@ export class WeaponsCard extends Component {
   }
 
   handleModifyFirearm(newGun){
-    this.setState({firearmToModify: newGun})
+
+    const newGunArray = this.props.gear.firearms.map((gunObj)=>{
+      return gunObj.name === newGun.name ? newGun : gunObj
+    })
+
+    const newWeight = calculateTotalWeight(this.props.gear.uniform, this.props.gear.equipment, newGunArray)
+
+    this.props.modifyFirearmList(newWeight, newGunArray, this.props.characterStats)
   }
 
   handleAddCustomMag(newCustomMag){
-    const newGun = this.state.firearmToModify
-    newGun.mag.push(newCustomMag)
-    this.handleModifyFirearm(newGun)
+
+    const newGunArray = this.props.gear.firearms.map((gunObj)=>{
+      if(gunObj.name === this.state.firearmToModify){
+        gunObj.mag.push(newCustomMag)
+      }
+      return gunObj
+    })
+
+    const newWeight = calculateTotalWeight(this.props.gear.uniform, this.props.gear.equipment, newGunArray)
+    this.props.modifyFirearmList(newWeight, newGunArray, this.props.characterStats)
     this.toggleCreateCustomMag()
   }
 
@@ -87,30 +103,43 @@ export class WeaponsCard extends Component {
   }
 
   handleModifyFirearmWeight(noteObj){
-    const newGun = this.state.firearmToModify
-    newGun.weight += noteObj.weightMod
-    newGun.weight = Math.round(newGun.weight*1000)/1000
-    if(newGun.modNotes){
-      newGun.modNotes.push(noteObj)
-    } else {
-      newGun.modNotes = [noteObj]
-    }
-    this.handleModifyFirearm(newGun)
-    this.toggleModifyFirearmWeight()
+
+    // TODO
+
+    // const newGun = this.state.firearmToModify <- replace this in other places to
+
+    const newGunArray = this.props.gear.firearms.map((gunObj)=>{
+      if(gunObj.name === this.state.firearmToModify){
+        gunObj.weight = Math.round((gunObj.weight + noteObj.weightMod)*1000)/1000
+        if(gunObj.modNotes){
+          gunObj.modNotes.push(noteObj)
+        } else {
+          gunObj.modNotes = [noteObj]
+        }
+      }
+      
+      return gunObj
+    })
+    
+    const newWeight = calculateTotalWeight(this.props.gear.uniform, this.props.gear.equipment, newGunArray)
+    this.props.modifyFirearmList(newWeight, newGunArray, this.props.characterStats)
   }
 
   removeAllGunMods(gunObj){
     const firearmsList = [...rifles(), ...smgs(), ...mgs(), ...pistols(), ...sniperRifles(), ...shotguns()]
     const originalGunObj = firearmsList.filter((gun)=>{
       return gun.name === gunObj.name
-    })
-    // this.handleModifyFirearm(originalGunObj)
+    })[0]
+    this.handleModifyFirearm(originalGunObj)
     this.setState({firearmToModify: originalGunObj})
   }
 
     render() {
       const selectedGuns = this.props.gear.firearms
       const weaponsWeight = calculateFirearmsArrayWeight(selectedGuns)
+      const firearmToModify = selectedGuns.filter((gunObj)=>{
+        return gunObj.name === this.state.firearmToModify
+      })[0]
 
       return (
         <div style={{width:'33%'}} className="WeaponSelect">
@@ -135,7 +164,7 @@ export class WeaponsCard extends Component {
           {this.state.modifyFirearm ? 
             <div className='equipmentModalContainer'>
                 <WeaponsCardWeaponStats
-                  gunObj={this.state.firearmToModify}
+                  gunObj={firearmToModify}
                   modifyFirearm={this.state.modifyFirearm}
                   createCustomMag={this.state.createCustomMag}
                   modifyFirearmWeight={this.state.modifyFirearmWeight}

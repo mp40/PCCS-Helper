@@ -1,3 +1,5 @@
+import {uniformWeights} from './uniformAndArmourTypes'
+
 export const addEquipment = (oldWeight, oldArray, equipObj) => {
     equipObj.qty = 1
     const newWeight = (oldWeight + equipObj.weight)
@@ -103,4 +105,18 @@ export const removeObjectFromArray = (array, obj) => {
     return array.filter((element)=>{
         return element.name && element.name !== obj.name
     })
+}
+
+export const findUniformWeight = (uniform) => {
+    return uniformWeights[uniform]
+}
+
+export const findEquipmentWeight = (equipment) => {
+    return equipment.reduce((sum, obj)=>{
+        return sum + obj.weight * obj.qty
+    },0)
+}
+
+export const calculateTotalWeight = (uniform, equipment, firearms) => {
+    return findUniformWeight(uniform) + findEquipmentWeight(equipment) + calculateFirearmsArrayWeight(firearms)
 }
