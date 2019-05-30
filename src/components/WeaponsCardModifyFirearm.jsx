@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 import WeaponsCardCustomMag from "./WeaponsCardCustomMag";
 import WeaponsCardModifyWeight from './WeaponsCardModifyWeight';
-import ButtonStandard from './buttons/ButtonStandard';
 import ButtonSlim from './buttons/ButtonSlim';
 
 import './WeaponsCard.css'

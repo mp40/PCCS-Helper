@@ -39,13 +39,21 @@ export class WeaponsCard extends Component {
     this.setState({modifyFirearm: !this.state.modifyFirearm})
   }
 
-  handleIncrementGunQty(gunObj, modifier){
-    if (gunObj.qty === 1 && modifier === -1){
+  handleIncrementGunQty(modGunObj, modifier){
+    if (modGunObj.qty === 1 && modifier === -1){
       return
     }
-    const newWeight = this.props.totalWeight + calculateObjectWeightDifference(gunObj, modifier)
-    const newArray = modifyObjectQtyInArray(this.props.gear.firearms, gunObj, modifier)
-    this.props.modifyFirearmList(newWeight, newArray, this.props.characterStats)
+
+    const newGunArray = this.props.gear.firearms.map((gunObj)=>{
+      if(gunObj.name === this.state.firearmToModify){
+        gunObj.qty += modifier
+      }
+      return gunObj
+    })
+
+    const newWeight = calculateTotalWeight(this.props.gear.uniform, this.props.gear.equipment, newGunArray)
+
+    this.props.modifyFirearmList(newWeight, newGunArray, this.props.characterStats)
   }
 
   handleRemoveGun(gunObj){
@@ -104,10 +112,6 @@ export class WeaponsCard extends Component {
 
   handleModifyFirearmWeight(noteObj){
 
-    // TODO
-
-    // const newGun = this.state.firearmToModify <- replace this in other places to
-
     const newGunArray = this.props.gear.firearms.map((gunObj)=>{
       if(gunObj.name === this.state.firearmToModify){
         gunObj.weight = Math.round((gunObj.weight + noteObj.weightMod)*1000)/1000
@@ -120,18 +124,25 @@ export class WeaponsCard extends Component {
       
       return gunObj
     })
-    
+
     const newWeight = calculateTotalWeight(this.props.gear.uniform, this.props.gear.equipment, newGunArray)
     this.props.modifyFirearmList(newWeight, newGunArray, this.props.characterStats)
+    this.toggleModifyFirearmWeight()
   }
 
-  removeAllGunMods(gunObj){
+  removeAllGunMods(){
     const firearmsList = [...rifles(), ...smgs(), ...mgs(), ...pistols(), ...sniperRifles(), ...shotguns()]
-    const originalGunObj = firearmsList.filter((gun)=>{
-      return gun.name === gunObj.name
+
+    const freshGun = firearmsList.filter((gunObj)=>{
+      return gunObj.name === this.state.firearmToModify
     })[0]
-    this.handleModifyFirearm(originalGunObj)
-    this.setState({firearmToModify: originalGunObj})
+
+    const newGunArray = this.props.gear.firearms.map((gunObj)=>{
+      return gunObj.name === this.state.firearmToModify ? freshGun : gunObj
+    })
+
+    const newWeight = calculateTotalWeight(this.props.gear.uniform, this.props.gear.equipment, newGunArray)
+    this.props.modifyFirearmList(newWeight, newGunArray, this.props.characterStats)
   }
 
     render() {
