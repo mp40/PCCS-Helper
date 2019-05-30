@@ -3,17 +3,14 @@ const emptyLine = (lineLength) => {
 
 }
 
-const checkIfShotgun = (projectiles) => {
-    if(projectiles.length > 1 && Array.isArray(projectiles[1].type)) {
-        return true
-    }
-    return false
+const checkIfShotgun = (list) => {
+    return list === 'shotguns' ? true : false
 }
 
 export const buildArrayForGunTable = (gunObj) => {
 
     const has3RB = Boolean(gunObj.trb)
-    const isShotgun = checkIfShotgun(gunObj.projectiles)
+    const isShotgun = checkIfShotgun(gunObj.list)
 
     return [
         createLineOne(gunObj),

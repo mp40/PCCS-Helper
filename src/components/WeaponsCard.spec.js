@@ -1,5 +1,6 @@
 import {mountAppWithStore} from '../helpers/testHelpers'
 import {storeWithCreateCharacterView} from '../helpers/testHelpers'
+import {testM1911A1WithMods} from '../helpers/testHelpers'
 
 describe('The Weapons Card',()=>{
     const gunList = (wrapper) => wrapper.find('.equipmentListBody')
@@ -295,6 +296,15 @@ describe('The Weapons Card',()=>{
                 wrapper.find('#submitModifiedWeight').simulate('click')
                 expect(wrapper.text()).toContain('Please Enter Valid Data')
             })
+        })
+        it('should be possible to remove all mods',()=>{
+            const wrapper = mountAppWithStore(storeWithCreateCharacterView(testM1911A1WithMods()))
+            const modifyPanel = () => wrapper.find('.modifyWeaponPanel')
+            const selectedWeapons = () => wrapper.find('#characterWeaponList')
+            selectedWeapons(wrapper).find('#modifyM1911A1').simulate('click')
+            modifyPanel().find('.removeAllMods').simulate('click')
+            expect(modifyPanel().text()).not.toContain('TestMag')
+            expect(wrapper.find('#WeaponStatWeight').text()).toContain('3')
         })
     })
 })

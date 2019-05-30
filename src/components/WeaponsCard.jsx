@@ -1,19 +1,20 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import WeaponsCardBody from "./WeaponsCardBody";
+import WeaponsCardWeaponStats from "./WeaponsCardWeaponStats";
+import WeaponsCardSelectModal from './WeaponsCardSelectModal';
 import {modifyFirearmList} from '../actions'
-import WeaponsCardSelectModal from './WeaponsCardSelectModal'
+
+import {rifles, smgs, mgs, pistols, sniperRifles, shotguns} from '../helpers/firearms'
 
 import {
   calculateFirearmsArrayWeight,
-  calculateObjectWeightDifference,
   modifyObjectQtyInArray,
-  calculateGunAndAmmoWeight,
-  removeObjectFromArray
+  removeObjectFromArray,
+  calculateTotalWeight
 } from '../helpers/actionHelpers'
 
 import './WeaponsCard.css' 
-import WeaponsCardWeaponStats from "./WeaponsCardWeaponStats";
 
 export class WeaponsCard extends Component {
   constructor(props){
@@ -27,52 +28,70 @@ export class WeaponsCard extends Component {
     }
   }
 
+
+  calculateNewWeight = (newGunArray) => calculateTotalWeight(this.props.gear.uniform, this.props.gear.equipment, newGunArray)
+
   toggleShowFirearms(){
     this.setState({showFirearms: !this.state.showFirearms})
   }
 
   toggleModifyWeapon(gunObj){
-    this.setState({modifyFirearm: !this.state.modifyFirearm, firearmToModify: gunObj})
+    this.setState({firearmToModify: gunObj.name})
+    this.setState({modifyFirearm: !this.state.modifyFirearm})
   }
 
-  handleIncrementGunQty(gunObj, modifier){
-    if (gunObj.qty === 1 && modifier === -1){
+  handleIncrementGunQty(modGunObj, modifier){
+    if (modGunObj.qty === 1 && modifier === -1){
       return
     }
-    const newWeight = this.props.totalWeight + calculateObjectWeightDifference(gunObj, modifier)
-    const newArray = modifyObjectQtyInArray(this.props.gear.firearms, gunObj, modifier)
-    this.props.modifyFirearmList(newWeight, newArray, this.props.characterStats)
+
+    const newGunArray = this.props.gear.firearms.map((gunObj)=>{
+      if(gunObj.name === this.state.firearmToModify){
+        gunObj.qty += modifier
+      }
+      return gunObj
+    })
+
+    this.props.modifyFirearmList(this.calculateNewWeight(newGunArray), newGunArray, this.props.characterStats)
   }
 
   handleRemoveGun(gunObj){
-    const newWeight = this.props.totalWeight - calculateGunAndAmmoWeight(gunObj)
-    const newArray = removeObjectFromArray(this.props.gear.firearms, gunObj)
-    this.props.modifyFirearmList(newWeight, newArray, this.props.characterStats)
+    const newGunArray = removeObjectFromArray(this.props.gear.firearms, gunObj)
+    this.props.modifyFirearmList(this.calculateNewWeight(newGunArray), newGunArray, this.props.characterStats)
   }
 
   handleIncrementMagQty(gunObj, magObj, modifier){
     if (magObj.qty === 0 && modifier === -1){
       return
     }
-    const newWeight = this.props.totalWeight + calculateObjectWeightDifference(magObj, modifier)
     gunObj.mag = modifyObjectQtyInArray(gunObj.mag, magObj, modifier)
-    const newArray = modifyObjectQtyInArray(this.props.gear.firearms, gunObj)
-    this.props.modifyFirearmList(newWeight, newArray, this.props.characterStats)
+    const newGunArray = modifyObjectQtyInArray(this.props.gear.firearms, gunObj)
+    this.props.modifyFirearmList(this.calculateNewWeight(newGunArray), newGunArray, this.props.characterStats)
   }
 
   handleRemoveAllGuns(){
-    const newWeight = this.props.totalWeight - calculateFirearmsArrayWeight(this.props.gear.firearms)
-    this.props.modifyFirearmList(newWeight,[], this.props.characterStats)
+    this.props.modifyFirearmList(this.calculateNewWeight([]),[], this.props.characterStats)
   }
 
   handleModifyFirearm(newGun){
-    this.setState({firearmToModify: newGun})
+
+    const newGunArray = this.props.gear.firearms.map((gunObj)=>{
+      return gunObj.name === newGun.name ? newGun : gunObj
+    })
+
+    this.props.modifyFirearmList(this.calculateNewWeight(newGunArray), newGunArray, this.props.characterStats)
   }
 
   handleAddCustomMag(newCustomMag){
-    const newGun = this.state.firearmToModify
-    newGun.mag.push(newCustomMag)
-    this.handleModifyFirearm(newGun)
+
+    const newGunArray = this.props.gear.firearms.map((gunObj)=>{
+      if(gunObj.name === this.state.firearmToModify){
+        gunObj.mag.push(newCustomMag)
+      }
+      return gunObj
+    })
+
+    this.props.modifyFirearmList(this.calculateNewWeight(newGunArray), newGunArray, this.props.characterStats)
     this.toggleCreateCustomMag()
   }
 
@@ -85,21 +104,46 @@ export class WeaponsCard extends Component {
   }
 
   handleModifyFirearmWeight(noteObj){
-    const newGun = this.state.firearmToModify
-    newGun.weight += noteObj.weightMod
-    newGun.weight = Math.round(newGun.weight*1000)/1000
-    if(newGun.modNotes){
-      newGun.modNotes.push(noteObj)
-    } else {
-      newGun.modNotes = [noteObj]
-    }
-    this.handleModifyFirearm(newGun)
+
+    const newGunArray = this.props.gear.firearms.map((gunObj)=>{
+      if(gunObj.name === this.state.firearmToModify){
+        gunObj.weight = Math.round((gunObj.weight + noteObj.weightMod)*1000)/1000
+        if(gunObj.modNotes){
+          gunObj.modNotes.push(noteObj)
+        } else {
+          gunObj.modNotes = [noteObj]
+        }
+      }
+      
+      return gunObj
+    })
+    this.props.modifyFirearmList(this.calculateNewWeight(newGunArray), newGunArray, this.props.characterStats)
     this.toggleModifyFirearmWeight()
+  }
+
+  removeAllGunMods(gunObj){
+    const gunQty = gunObj.qty
+    const firearmsList = [...rifles(), ...smgs(), ...mgs(), ...pistols(), ...sniperRifles(), ...shotguns()]
+
+    const freshGun = firearmsList.filter((gunObj)=>{
+      return gunObj.name === this.state.firearmToModify
+    })[0]
+
+    freshGun.qty = gunQty
+
+    const newGunArray = this.props.gear.firearms.map((gunObj)=>{
+      return gunObj.name === this.state.firearmToModify ? freshGun : gunObj
+    })
+
+    this.props.modifyFirearmList(this.calculateNewWeight(newGunArray), newGunArray, this.props.characterStats)
   }
 
     render() {
       const selectedGuns = this.props.gear.firearms
       const weaponsWeight = calculateFirearmsArrayWeight(selectedGuns)
+      const firearmToModify = selectedGuns.filter((gunObj)=>{
+        return gunObj.name === this.state.firearmToModify
+      })[0]
 
       return (
         <div style={{width:'33%'}} className="WeaponSelect">
@@ -124,7 +168,7 @@ export class WeaponsCard extends Component {
           {this.state.modifyFirearm ? 
             <div className='equipmentModalContainer'>
                 <WeaponsCardWeaponStats
-                  gunObj={this.state.firearmToModify}
+                  gunObj={firearmToModify}
                   modifyFirearm={this.state.modifyFirearm}
                   createCustomMag={this.state.createCustomMag}
                   modifyFirearmWeight={this.state.modifyFirearmWeight}
@@ -133,6 +177,7 @@ export class WeaponsCard extends Component {
                   handleAddCustomMag={this.handleAddCustomMag.bind(this)}
                   toggleModifyFirearmWeight={this.toggleModifyFirearmWeight.bind(this)}
                   handleModifyFirearmWeight={this.handleModifyFirearmWeight.bind(this)}
+                  removeAllGunMods={this.removeAllGunMods.bind(this)}
                 />
             </div> :
             null}

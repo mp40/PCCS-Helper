@@ -9,7 +9,18 @@
     border-radius: 4px;
 }
 
-.button:hover{
+.buttonSlim {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    color: rgb(85, 83, 83);
+    background: whitesmoke;
+    border: solid 1px #aeb885;
+    border-radius: 4px;
+}
+
+.button:hover,
+.buttonSlim:hover {
     border: solid 1.5px #d7ec80;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }

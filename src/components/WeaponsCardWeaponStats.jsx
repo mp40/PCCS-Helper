@@ -72,6 +72,7 @@ class WeaponsCardWeaponStats extends Component {
                         handleAddCustomMag={this.props.handleAddCustomMag.bind(this)}
                         toggleModifyFirearmWeight={this.props.toggleModifyFirearmWeight.bind(this)}
                         handleModifyFirearmWeight={this.props.handleModifyFirearmWeight.bind(this)}
+                        removeAllGunMods={this.props.removeAllGunMods.bind(this)}
                     /> :    
                     null}     
                 </div>

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import WeaponsCardCustomMag from "./WeaponsCardCustomMag";
 import WeaponsCardModifyWeight from './WeaponsCardModifyWeight';
-import ButtonStandard from './buttons/ButtonStandard';
+import ButtonSlim from './buttons/ButtonSlim';
 
 import './WeaponsCard.css'
 
@@ -39,15 +39,23 @@ class WeaponsCardModifyWeapon extends Component {
             return (
                 <div style={{marginLeft:'5rem'}} className="modifyWeaponPanel">
                     <div>Modify Weapon</div>
+                    <button 
+                        className="removeAllMods"
+                        onClick={this.props.removeAllGunMods.bind(this, gunObj)}
+                    >
+                            Remove All Mods 
+                    </button>
     
                     <div className='modifyMagazines'>
                         <div style={{display:'flex'}}>
                             <div style={{paddingRight:'5px', paddingTop:'5px'}}>Magazines</div>
-                            <ButtonStandard
-                                name="+"
-                                id='addCustomMagazine'
-                                onClick={this.props.toggleCreateCustomMag.bind(this)}
-                            />
+                            <div>
+                                <ButtonSlim
+                                    name="+"
+                                    id='addCustomMagazine'
+                                    onClick={this.props.toggleCreateCustomMag.bind(this)}
+                                />
+                            </div>
                         </div>
                         {gunObj.mag.map((magObj, index)=>{
                             return <div  key={index}>
@@ -60,8 +68,17 @@ class WeaponsCardModifyWeapon extends Component {
                             </div>
                         })}
                     </div>
-                    <div style={{paddingTop:'5px'}}>Weight</div>
-                    <button id='modifyWeaponWeight' onClick={this.props.toggleModifyFirearmWeight.bind(this)}>set</button>
+                    <div style={{display:'flex'}}>
+                        <div style={{paddingTop:'5px'}}>Weight</div>
+                        <div style={{marginLeft: '5px', paddingTop:'4px', display:'inline-block', height:'5px'}}>
+                            <ButtonSlim
+                                name='set'
+                                id='modifyWeaponWeight' 
+                                onClick={this.props.toggleModifyFirearmWeight.bind(this)}
+                            />
+                        </div>
+                        
+                    </div>
                     {gunObj.modNotes ? 
                     gunObj.modNotes.map((noteObj, index)=>{
                         return <div key={index}>
