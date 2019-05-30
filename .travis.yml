@@ -1,0 +1,12 @@
+language: node_js
+dist: trusty
+node_js:
+  - '11.6.0'
+  
+script:
+  - yarn run test --verbose --no-watch
+
+notifications:
+  email:
+    on_success: always
+    on_failure: always
