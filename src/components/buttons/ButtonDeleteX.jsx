@@ -1,18 +1,19 @@
-import React, { Component } from "react";
-import './buttons.css'
+import React from 'react';
+import PropTypes from 'prop-types';
+import './buttons.css';
 
-class ButtonDeleteX extends Component {
-
-  render() {
-        return (
-            <button
-                className="button"
-                onClick={this.props.onClick}
-            >
+const ButtonDeleteX = ({ onClick }) => (
+  <button
+    type="button"
+    className="button"
+    onClick={onClick}
+  >
                 X
-            </button>
-        )
-    }
-}
+  </button>
+);
 
-export default ButtonDeleteX
+ButtonDeleteX.propTypes = {
+  onClick: PropTypes.func,
+};
+
+export default ButtonDeleteX;

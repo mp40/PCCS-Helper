@@ -1,18 +1,20 @@
-import React, { Component } from "react";
-import './buttons.css'
- 
-class ButtonSlim extends Component {
+import React from 'react';
+import PropTypes from 'prop-types';
+import './buttons.css';
 
-  render() {
-        return (
-            <button 
-                className="buttonSlim" 
-                onClick={this.props.onClick}
-            >
-                    {this.props.name}
-            </button>        
-        )
-    }
-}
+const ButtonSlim = ({ onClick, name }) => (
+  <button
+    type="button"
+    className="buttonSlim"
+    onClick={onClick}
+  >
+    {name}
+  </button>
+);
 
-export default ButtonSlim
+ButtonSlim.propTypes = {
+  onClick: PropTypes.func,
+  name: PropTypes.string,
+};
+
+export default ButtonSlim;

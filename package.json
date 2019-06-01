@@ -6,6 +6,7 @@
     "node": "11.6.0"
   },
   "dependencies": {
+    "prop-types": "^15.7.2",
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
     "react-redux": "^6.0.1",

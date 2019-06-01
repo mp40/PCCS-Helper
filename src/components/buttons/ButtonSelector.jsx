@@ -1,19 +1,20 @@
-import React, { Component } from "react";
-import './buttons.css'
- 
-class ButtonSelector extends Component {
+import React from 'react';
+import PropTypes from 'prop-types';
+import './buttons.css';
 
-  render() {
-        return (
-            <button 
-                className="select" 
-                onClick={this.props.onClick}
-            >
-                    {this.props.name}
-            </button>        
-        )
-    }
-}
+const ButtonSelector = ({ onClick, name }) => (
+  <button
+    type="button"
+    className="select"
+    onClick={onClick}
+  >
+    {name}
+  </button>
+);
 
-export default ButtonSelector
+ButtonSelector.propTypes = {
+  onClick: PropTypes.func,
+  name: PropTypes.string,
+};
 
+export default ButtonSelector;

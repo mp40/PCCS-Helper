@@ -1,18 +1,20 @@
-import React, { Component } from "react";
-import './buttons.css'
- 
-class ButtonStandard extends Component {
+import React from 'react';
+import PropTypes from 'prop-types';
+import './buttons.css';
 
-  render() {
-        return (
-            <button 
-                className="button" 
-                onClick={this.props.onClick}
-            >
-                    {this.props.name}
-            </button>        
-        )
-    }
-}
+const ButtonStandard = ({ onClick, name }) => (
+  <button
+    type="button"
+    className="button"
+    onClick={onClick}
+  >
+    {name}
+  </button>
+);
 
-export default ButtonStandard
+ButtonStandard.propTypes = {
+  onClick: PropTypes.func,
+  name: PropTypes.string,
+};
+
+export default ButtonStandard;
