@@ -3,16 +3,16 @@ const {
   table1A_BaseSpeed,
   table1B_MaxSpeed,
   table1D_CombatActions,
-  table1D_DamageBonus
-} = require("./tables");
+  table1D_DamageBonus,
+} = require('./tables');
 
 const findSAL = function (level) {
   return table1C_SAL[level] * 1;
 };
 
 const findKey = (enc, arr) => {
-  let result = undefined;
-  arr.forEach(function (val, dex) {
+  let result;
+  arr.forEach((val, dex) => {
     if (dex === 0 && enc <= val) {
       result = dex;
     }
@@ -40,8 +40,8 @@ const calcMaxSpeed = (agi, baseSpd) => {
 };
 
 const calcISF = function (int, sal) {
-  int = int * 1
-  sal = sal * 1
+  int *= 1;
+  sal *= 1;
   return int + sal;
 };
 
@@ -53,9 +53,7 @@ const calcCombatActions = (ms, isf) => {
   return table1D_CombatActions[ms][index] * 1;
 };
 
-const calcKV = (wil, highestSkill) => {
-  return Math.floor(0.5 * wil) * highestSkill;
-};
+const calcKV = (wil, highestSkill) => Math.floor(0.5 * wil) * highestSkill;
 
 const calcDB = (ms, asf) => {
   if (ms === 0) {
@@ -86,37 +84,37 @@ const calculateStateObject = function (characterStats, weight) {
     ASF: asfResult,
     knockoutValue: knockout,
     damageBonus: damBonus,
-    combatActions: [gunResults, handResults]
+    combatActions: [gunResults, handResults],
   };
 };
 
-function actionsPerImpulse(actions){
-  let impulseArray = [0,0,0,0]
+function actionsPerImpulse(actions) {
+  const impulseArray = [0, 0, 0, 0];
 
-  while(actions>0){
-    if (actions%4 === 0){
-      impulseArray[1]++
-      actions--
+  while (actions > 0) {
+    if (actions % 4 === 0) {
+      impulseArray[1]++;
+      actions--;
     }
-  
-    if (actions%4 === 3){
-      impulseArray[3]++
-      actions--
+
+    if (actions % 4 === 3) {
+      impulseArray[3]++;
+      actions--;
     }
-    
-    if (actions%4 === 2){
-      impulseArray[2]++
-      actions--
+
+    if (actions % 4 === 2) {
+      impulseArray[2]++;
+      actions--;
     }
-  
-    if(actions%4 === 1){
-      impulseArray[0]++
-      actions--
+
+    if (actions % 4 === 1) {
+      impulseArray[0]++;
+      actions--;
     }
   }
 
-  return impulseArray
-};
+  return impulseArray;
+}
 
 module.exports = {
   calcBaseSpeed,
@@ -128,5 +126,5 @@ module.exports = {
   calcKV,
   calcDB,
   calculateStateObject,
-  actionsPerImpulse
+  actionsPerImpulse,
 };

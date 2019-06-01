@@ -20,7 +20,7 @@ const defaultStats = {
   handLevel: 0,
 };
 
-class CreateChar extends Component {
+class CharacterGeneration extends Component {
   componentDidMount() {
     this.props.updateAttributes(defaultStats, 0);
     this.props.updateWeight(5, defaultStats);
@@ -46,4 +46,4 @@ const mapStateToProps = () => ({
 });
 
 
-export default connect(mapStateToProps, { updateWeight, updateAttributes })(CreateChar);
+export default connect(mapStateToProps, { updateWeight, updateAttributes })(CharacterGeneration);

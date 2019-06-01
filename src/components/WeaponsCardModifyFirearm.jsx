@@ -37,6 +37,7 @@ class WeaponsCardModifyWeapon extends Component {
         <div style={{ marginLeft: '5rem' }} className="modifyWeaponPanel">
           <div>Modify Weapon</div>
           <button
+            type="button"
             className="removeAllMods"
             onClick={this.props.removeAllGunMods.bind(this, gunObj)}
           >
@@ -47,51 +48,52 @@ class WeaponsCardModifyWeapon extends Component {
             <div style={{ display: 'flex' }}>
               <div style={{ paddingRight: '5px', paddingTop: '5px' }}>Magazines</div>
               <div>
-                      <ButtonSlim
-                          name="+"
-                          id="addCustomMagazine"
-                          onClick={this.props.toggleCreateCustomMag.bind(this)}
-                        />
-                    </div>
+                <ButtonSlim
+                  name="+"
+                  id="addCustomMagazine"
+                  onClick={this.props.toggleCreateCustomMag.bind(this)}
+                />
+              </div>
             </div>
             {gunObj.mag.map((magObj, index) => (
               <div key={index}>
-                      {`${magObj.cap} round ${magObj.type}`}
-                      {`${magObj.weight} lbs`}
-                      {index > 0
-                          ? <button id={`${gunObj.name}MagAtIndex${index}`} onClick={this.setPrimaryMag.bind(this, index)} style={{ opacity: '0.6' }}>primary</button>
-                          : <button id={`${gunObj.name}MagAtIndex${index}`}>primary</button>
+                {`${magObj.cap} round ${magObj.type}`}
+                {`${magObj.weight} lbs`}
+                {index > 0
+                  ? <button type="button" id={`${gunObj.name}MagAtIndex${index}`} onClick={this.setPrimaryMag.bind(this, index)} style={{ opacity: '0.6' }}>primary</button>
+                  : <button type="button" id={`${gunObj.name}MagAtIndex${index}`}>primary</button>
                                 }
-                    </div>
+              </div>
             ))}
           </div>
           <div style={{ display: 'flex' }}>
             <div style={{ paddingTop: '5px' }}>Weight</div>
             <div style={{ marginLeft: '5px', paddingTop: '4px', display: 'inline-block', height: '5px' }}>
               <ButtonSlim
-                      name="set"
-                      id="modifyWeaponWeight"
-                      onClick={this.props.toggleModifyFirearmWeight.bind(this)}
-                    />
+                name="set"
+                id="modifyWeaponWeight"
+                onClick={this.props.toggleModifyFirearmWeight.bind(this)}
+              />
             </div>
 
           </div>
           {gunObj.modNotes
             ? gunObj.modNotes.map((noteObj, index) => (
               <div key={index}>
-                      <span>{noteObj.note}</span>
-                      <span>
-                          {noteObj.weightMod}
-                          {' '}
+                <span>{noteObj.note}</span>
+                <span>
+                  {noteObj.weightMod}
+                  {' '}
 lbs
-                        </span>
-                      <button
-                          className="removeModification"
-                          onClick={this.handleRemoveMod.bind(this, noteObj)}
-                        >
+                </span>
+                <button
+                  type="submit"
+                  className="removeModification"
+                  onClick={this.handleRemoveMod.bind(this, noteObj)}
+                >
                                 remove
-                        </button>
-                    </div>
+                </button>
+              </div>
             ))
             : null}
         </div>

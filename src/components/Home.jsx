@@ -9,7 +9,7 @@ function HomePage(props) {
       <h1>
             Welcome To Phoenix Command Tools
       </h1>
-      <button id="activateCreateChar" className="buttonStandard" onClick={() => props.selectCurrentView('createChar')}>
+      <button type="button" id="activateCreateChar" className="buttonStandard" onClick={() => props.selectCurrentView('createChar')}>
         Create Character
       </button>
     </div>
