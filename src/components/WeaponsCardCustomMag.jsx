@@ -12,6 +12,10 @@ class WeaponsCardCustomMag extends Component {
       type: '',
       warning: false,
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleType = this.handleType.bind(this);
+    this.handleWeight = this.handleWeight.bind(this);
+    this.handleCapacity = this.handleCapacity.bind(this);
   }
 
   handleCapacity(event) {
@@ -52,7 +56,6 @@ class WeaponsCardCustomMag extends Component {
     handleAddCustomMag(newCustomMag);
   }
 
-
   render() {
     const { capacity, weight, type, warning } = this.state;
 
@@ -67,7 +70,7 @@ class WeaponsCardCustomMag extends Component {
             autoComplete="off"
             id="customMagCapacityInput"
             value={capacity}
-            onChange={this.handleCapacity.bind(this)}
+            onChange={this.handleCapacity}
           />
         </div>
         <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}>
@@ -78,7 +81,7 @@ class WeaponsCardCustomMag extends Component {
             autoComplete="off"
             id="customMagWeightInput"
             value={weight}
-            onChange={this.handleWeight.bind(this)}
+            onChange={this.handleWeight}
           />
         </div>
         <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}>
@@ -89,13 +92,13 @@ class WeaponsCardCustomMag extends Component {
             autoComplete="off"
             id="customMagTypeInput"
             value={type}
-            onChange={this.handleType.bind(this)}
+            onChange={this.handleType}
           />
         </div>
         <ButtonStandard
           name="Submit"
           id="submitCustomMag"
-          onClick={this.handleSubmit.bind(this)}
+          onClick={this.handleSubmit}
         />
         {warning
           ? <div style={{ color: 'red', fontWeight: 'bold' }}>Please Enter Valid Data</div>

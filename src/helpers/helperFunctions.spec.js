@@ -12,10 +12,10 @@ const {
 } = require('./helperFunctions');
 
 const {
-  table1A_BaseSpeed,
-  table1B_MaxSpeed,
-  table1D_CombatActions,
-  table1D_DamageBonus,
+  table1aBaseSpeed,
+  table1bMaxSpeed,
+  table1dCombatActions,
+  table1dDamageBonus,
 } = require('./tables');
 
 describe('calculate SAL', () => {
@@ -32,19 +32,19 @@ describe('calculate SAL', () => {
 
 describe('calculate Base Speed', () => {
   it('should find the correct index from weight', () => {
-    expect(findKey(5, table1A_BaseSpeed.lbs)).toEqual(0);
-    expect(findKey(10, table1A_BaseSpeed.lbs)).toEqual(0);
-    expect(findKey(13, table1A_BaseSpeed.lbs)).toEqual(1);
-    expect(findKey(15, table1A_BaseSpeed.lbs)).toEqual(1);
-    expect(findKey(20, table1A_BaseSpeed.lbs)).toEqual(2);
-    expect(findKey(23, table1A_BaseSpeed.lbs)).toEqual(3);
-    expect(findKey(25, table1A_BaseSpeed.lbs)).toEqual(3);
-    expect(findKey(99, table1A_BaseSpeed.lbs)).toEqual(14);
-    expect(findKey(100, table1A_BaseSpeed.lbs)).toEqual(14);
-    expect(findKey(125, table1A_BaseSpeed.lbs)).toEqual(15);
-    expect(findKey(150, table1A_BaseSpeed.lbs)).toEqual(16);
-    expect(findKey(199, table1A_BaseSpeed.lbs)).toEqual(17);
-    expect(findKey(200, table1A_BaseSpeed.lbs)).toEqual(17);
+    expect(findKey(5, table1aBaseSpeed.lbs)).toEqual(0);
+    expect(findKey(10, table1aBaseSpeed.lbs)).toEqual(0);
+    expect(findKey(13, table1aBaseSpeed.lbs)).toEqual(1);
+    expect(findKey(15, table1aBaseSpeed.lbs)).toEqual(1);
+    expect(findKey(20, table1aBaseSpeed.lbs)).toEqual(2);
+    expect(findKey(23, table1aBaseSpeed.lbs)).toEqual(3);
+    expect(findKey(25, table1aBaseSpeed.lbs)).toEqual(3);
+    expect(findKey(99, table1aBaseSpeed.lbs)).toEqual(14);
+    expect(findKey(100, table1aBaseSpeed.lbs)).toEqual(14);
+    expect(findKey(125, table1aBaseSpeed.lbs)).toEqual(15);
+    expect(findKey(150, table1aBaseSpeed.lbs)).toEqual(16);
+    expect(findKey(199, table1aBaseSpeed.lbs)).toEqual(17);
+    expect(findKey(200, table1aBaseSpeed.lbs)).toEqual(17);
   });
   it('should find base speed using STR and Weight', () => {
     expect(calcBaseSpeed(21, 200)).toEqual(2);
@@ -62,14 +62,14 @@ describe('calculate Base Speed', () => {
 
 describe('calculate Max Speed', () => {
   it('should find the correct index from Base Speed', () => {
-    expect(findKey(1, table1B_MaxSpeed.baseSpeed)).toEqual(0);
-    expect(findKey(1.5, table1B_MaxSpeed.baseSpeed)).toEqual(1);
-    expect(findKey(2, table1B_MaxSpeed.baseSpeed)).toEqual(2);
-    expect(findKey(2.5, table1B_MaxSpeed.baseSpeed)).toEqual(3);
-    expect(findKey(3, table1B_MaxSpeed.baseSpeed)).toEqual(4);
-    expect(findKey(3.5, table1B_MaxSpeed.baseSpeed)).toEqual(5);
-    expect(findKey(4, table1B_MaxSpeed.baseSpeed)).toEqual(6);
-    expect(findKey(4.5, table1B_MaxSpeed.baseSpeed)).toEqual(7);
+    expect(findKey(1, table1bMaxSpeed.baseSpeed)).toEqual(0);
+    expect(findKey(1.5, table1bMaxSpeed.baseSpeed)).toEqual(1);
+    expect(findKey(2, table1bMaxSpeed.baseSpeed)).toEqual(2);
+    expect(findKey(2.5, table1bMaxSpeed.baseSpeed)).toEqual(3);
+    expect(findKey(3, table1bMaxSpeed.baseSpeed)).toEqual(4);
+    expect(findKey(3.5, table1bMaxSpeed.baseSpeed)).toEqual(5);
+    expect(findKey(4, table1bMaxSpeed.baseSpeed)).toEqual(6);
+    expect(findKey(4.5, table1bMaxSpeed.baseSpeed)).toEqual(7);
   });
   it('should find max speed using AGI and base speed', () => {
     expect(calcMaxSpeed(21, 1)).toEqual(2);
@@ -99,15 +99,15 @@ describe('calculate ISF', () => {
 
 describe('calculate combat actions', () => {
   it('should find the correct index bsed on ISF', () => {
-    expect(findKey(3, table1D_CombatActions.isf)).toEqual(0);
-    expect(findKey(7, table1D_CombatActions.isf)).toEqual(0);
-    expect(findKey(8, table1D_CombatActions.isf)).toEqual(1);
-    expect(findKey(9, table1D_CombatActions.isf)).toEqual(1);
-    expect(findKey(10, table1D_CombatActions.isf)).toEqual(2);
-    expect(findKey(17, table1D_CombatActions.isf)).toEqual(5);
-    expect(findKey(18, table1D_CombatActions.isf)).toEqual(6);
-    expect(findKey(19, table1D_CombatActions.isf)).toEqual(6);
-    expect(findKey(20, table1D_CombatActions.isf)).toEqual(7);
+    expect(findKey(3, table1dCombatActions.isf)).toEqual(0);
+    expect(findKey(7, table1dCombatActions.isf)).toEqual(0);
+    expect(findKey(8, table1dCombatActions.isf)).toEqual(1);
+    expect(findKey(9, table1dCombatActions.isf)).toEqual(1);
+    expect(findKey(10, table1dCombatActions.isf)).toEqual(2);
+    expect(findKey(17, table1dCombatActions.isf)).toEqual(5);
+    expect(findKey(18, table1dCombatActions.isf)).toEqual(6);
+    expect(findKey(19, table1dCombatActions.isf)).toEqual(6);
+    expect(findKey(20, table1dCombatActions.isf)).toEqual(7);
   });
   it('should find the total Combat Actions based on max speed and ISF', () => {
     expect(calcCombatActions(1, 3)).toEqual(1);
@@ -150,10 +150,10 @@ describe('calculate Knockout Value', () => {
 
 describe('calculate Damage Bonus', () => {
   it('should find the correct key based on asf', () => {
-    expect(findKey(3, table1D_DamageBonus.asf)).toEqual(0);
-    expect(findKey(7, table1D_DamageBonus.asf)).toEqual(0);
-    expect(findKey(9, table1D_DamageBonus.asf)).toEqual(1);
-    expect(findKey(10, table1D_DamageBonus.asf)).toEqual(2);
+    expect(findKey(3, table1dDamageBonus.asf)).toEqual(0);
+    expect(findKey(7, table1dDamageBonus.asf)).toEqual(0);
+    expect(findKey(9, table1dDamageBonus.asf)).toEqual(1);
+    expect(findKey(10, table1dDamageBonus.asf)).toEqual(2);
   });
   it('should return the correct value based on max speed and ASF', () => {
     expect(calcDB(4, 13)).toEqual(1);

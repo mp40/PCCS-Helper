@@ -14,6 +14,8 @@ class WeaponsCardSelectModal extends Component {
       showGunStats: false,
       gunStatsToView: undefined,
     };
+    this.handleAddFirearm = this.handleAddFirearm.bind(this);
+    this.handleShowGunStats = this.handleShowGunStats.bind(this);
   }
 
     handleAddFirearm = (gunObj) => {
@@ -52,15 +54,15 @@ class WeaponsCardSelectModal extends Component {
             ? (
               <WeaponsCardWeaponStats
                 gunObj={gunObj}
-                handleShowGunStats={this.handleShowGunStats.bind(this)}
+                handleShowGunStats={this.handleShowGunStats}
               />
             )
             : (
               <WeaponsModalSelection
                 firearmsArray={firearmsArray}
-                closeShowFirearms={closeShowFirearms.bind(this)}
-                handleAddFirearm={this.handleAddFirearm.bind(this)}
-                handleShowGunStats={this.handleShowGunStats.bind(this)}
+                closeShowFirearms={closeShowFirearms}
+                handleAddFirearm={this.handleAddFirearm}
+                handleShowGunStats={this.handleShowGunStats}
               />
             )
             }

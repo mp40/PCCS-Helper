@@ -14,7 +14,7 @@ const WeaponsModalSelection = ({ firearmsArray, closeShowFirearms, handleShowGun
         <ButtonStandard
           id="closeFirearmModal"
           name="Close List"
-          onClick={closeShowFirearms.bind(this)}
+          onClick={closeShowFirearms}
         />
       </div>
 

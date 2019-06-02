@@ -17,6 +17,7 @@ class CustomEquipmentModal extends Component {
       errorMsgInvalidEntry: false,
       errorMsgExistsInArray: false,
     };
+    this.submitEquipment = this.submitEquipment.bind(this);
   }
 
   handleChange(keyToChange, event) {
@@ -79,7 +80,7 @@ class CustomEquipmentModal extends Component {
               <ButtonStandard
                 style={{ marginTop: '.5rem' }}
                 name="Cancel"
-                onClick={toggleCustomEquipment.bind(this)}
+                onClick={toggleCustomEquipment}
               />
             </div>
 
@@ -110,7 +111,7 @@ class CustomEquipmentModal extends Component {
             <ButtonStandard
               id="submitCustomEquipButton"
               name="Submit"
-              onClick={this.submitEquipment.bind(this)}
+              onClick={this.submitEquipment}
             />
 
             {errorMsgInvalidEntry

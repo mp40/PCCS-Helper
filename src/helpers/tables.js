@@ -1,4 +1,4 @@
-const table1C_SAL = [
+const table1cSAL = [
   0,
   5,
   7,
@@ -22,7 +22,7 @@ const table1C_SAL = [
   26,
 ];
 
-const table1A_BaseSpeed = {
+const table1aBaseSpeed = {
   lbs: [
     10,
     15,
@@ -104,7 +104,7 @@ const table1A_BaseSpeed = {
   1: [1.5, 1.5, 1],
 };
 
-const table1B_MaxSpeed = {
+const table1bMaxSpeed = {
   baseSpeed: [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5],
   21: [2, 4, 5, 7, 9, 10, 12, 13],
   20: [2, 4, 5, 7, 8, 10, 11, 13],
@@ -129,7 +129,7 @@ const table1B_MaxSpeed = {
   1: [1, 1, 1, 2, 2, 2, 3, 3],
 };
 
-const table1D_CombatActions = {
+const table1dCombatActions = {
   isf: [7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39],
   1: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2],
   2: [1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4],
@@ -146,7 +146,7 @@ const table1D_CombatActions = {
   13: [6, 7, 9, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
 };
 
-const table1D_DamageBonus = {
+const table1dDamageBonus = {
   asf: [7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39],
   1: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5],
   2: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1],
@@ -162,9 +162,9 @@ const table1D_DamageBonus = {
 };
 
 module.exports = {
-  table1C_SAL,
-  table1A_BaseSpeed,
-  table1B_MaxSpeed,
-  table1D_CombatActions,
-  table1D_DamageBonus,
+  table1cSAL,
+  table1aBaseSpeed,
+  table1bMaxSpeed,
+  table1dCombatActions,
+  table1dDamageBonus,
 };

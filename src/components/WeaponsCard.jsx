@@ -27,6 +27,18 @@ class WeaponsCard extends Component {
       createCustomMag: false,
       modifyFirearmWeight: false,
     };
+    this.toggleShowFirearms = this.toggleShowFirearms.bind(this);
+    this.handleRemoveAllGuns = this.handleRemoveAllGuns.bind(this);
+    this.handleRemoveGun = this.handleRemoveGun.bind(this);
+    this.handleIncrementGunQty = this.handleIncrementGunQty.bind(this);
+    this.handleIncrementMagQty = this.handleIncrementMagQty.bind(this);
+    this.toggleModifyWeapon = this.toggleModifyWeapon.bind(this);
+    this.handleModifyFirearm = this.handleModifyFirearm.bind(this);
+    this.toggleCreateCustomMag = this.toggleCreateCustomMag.bind(this);
+    this.handleAddCustomMag = this.handleAddCustomMag.bind(this);
+    this.toggleModifyFirearmWeight = this.toggleModifyFirearmWeight.bind(this);
+    this.handleModifyFirearmWeight = this.handleModifyFirearmWeight.bind(this);
+    this.removeAllGunMods = this.removeAllGunMods.bind(this);
   }
 
 
@@ -167,18 +179,18 @@ class WeaponsCard extends Component {
         <WeaponsCardBody
           selectedGuns={selectedGuns}
           weaponsWeight={weaponsWeight}
-          toggleShowFirearms={this.toggleShowFirearms.bind(this)}
-          handleRemoveAllGuns={this.handleRemoveAllGuns.bind(this)}
-          handleRemoveGun={this.handleRemoveGun.bind(this)}
-          handleIncrementGunQty={this.handleIncrementGunQty.bind(this)}
-          handleIncrementMagQty={this.handleIncrementMagQty.bind(this)}
-          toggleModifyWeapon={this.toggleModifyWeapon.bind(this)}
+          toggleShowFirearms={this.toggleShowFirearms}
+          handleRemoveAllGuns={this.handleRemoveAllGuns}
+          handleRemoveGun={this.handleRemoveGun}
+          handleIncrementGunQty={this.handleIncrementGunQty}
+          handleIncrementMagQty={this.handleIncrementMagQty}
+          toggleModifyWeapon={this.toggleModifyWeapon}
         />
 
         {showFirearms
           ? (
             <WeaponsCardSelectModal
-              closeShowFirearms={this.toggleShowFirearms.bind(this)}
+              closeShowFirearms={this.toggleShowFirearms}
             />
           )
           : null}
@@ -191,12 +203,12 @@ class WeaponsCard extends Component {
                 modifyFirearm={modifyFirearm}
                 createCustomMag={createCustomMag}
                 modifyFirearmWeight={modifyFirearmWeight}
-                handleModifyFirearm={this.handleModifyFirearm.bind(this)}
-                toggleCreateCustomMag={this.toggleCreateCustomMag.bind(this)}
-                handleAddCustomMag={this.handleAddCustomMag.bind(this)}
-                toggleModifyFirearmWeight={this.toggleModifyFirearmWeight.bind(this)}
-                handleModifyFirearmWeight={this.handleModifyFirearmWeight.bind(this)}
-                removeAllGunMods={this.removeAllGunMods.bind(this)}
+                handleModifyFirearm={this.handleModifyFirearm}
+                toggleCreateCustomMag={this.toggleCreateCustomMag}
+                handleAddCustomMag={this.handleAddCustomMag}
+                toggleModifyFirearmWeight={this.toggleModifyFirearmWeight}
+                handleModifyFirearmWeight={this.handleModifyFirearmWeight}
+                removeAllGunMods={this.removeAllGunMods}
               />
             </div>
           )

@@ -3,24 +3,27 @@ import { rifles, pistols, smgs, mgs, shotguns, sniperRifles } from './firearms';
 const allGuns = [...rifles(), ...pistols(), ...smgs(), ...mgs(), ...sniperRifles(), ...shotguns()];
 
 const checkArrayLength = (key, subKey = false) => {
-  for (const gun of allGuns) {
+  let result = 'matches tof length';
+
+  allGuns.forEach((gun) => {
     const tofArray = gun.tof;
     const len = tofArray.length;
 
     if (!gun[key]) {
-      return `${gun.name} ${key} not used, no match`;
+      result = `${gun.name} ${key} not used, no match`;
+      return;
     }
 
     if (!subKey && gun[key].length !== len) {
-      return `${gun.name} ${key} length ${gun[key].length}`;
+      result = `${gun.name} ${key} length ${gun[key].length}`;
+      return;
     }
 
     if (subKey && gun[key][subKey].length !== len) {
-      return `${gun.name} ${key} ${subKey} length ${gun[key].length}`;
+      result = `${gun.name} ${key} ${subKey} length ${gun[key].length}`;
     }
-  }
-
-  return 'matches tof length';
+  });
+  return result;
 };
 
 describe('Check weapon data input', () => {
