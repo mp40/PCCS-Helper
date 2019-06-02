@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import WeaponDataRow from './WeaponDataRow';
 import ButtonDeleteX from './buttons/ButtonDeleteX';
 
@@ -18,7 +19,17 @@ class WeaponsCardWeaponStats extends Component {
     }
 
     render() {
-      const gunObj = this.props.gunObj;
+      const { gunObj,
+        handleShowGunStats,
+        modifyFirearm,
+        createCustomMag,
+        modifyFirearmWeight,
+        handleModifyFirearm,
+        toggleCreateCustomMag,
+        handleAddCustomMag,
+        toggleModifyFirearmWeight,
+        handleModifyFirearmWeight,
+        removeAllGunMods } = this.props;
       const gunTableArray = buildArrayForGunTable(gunObj);
       const rangeBrackets = this.getRangeBrackets(gunObj);
       const borderBottom = '1px solid rgb(85, 83, 83)';
@@ -28,7 +39,7 @@ class WeaponsCardWeaponStats extends Component {
           <div style={{ marginTop: '2px', marginLeft: '2px' }}>
             <ButtonDeleteX
               id="closeGunStatView"
-              onClick={this.props.handleShowGunStats}
+              onClick={handleShowGunStats}
             />
           </div>
 
@@ -42,7 +53,7 @@ class WeaponsCardWeaponStats extends Component {
                   <th style={{ width: '5rem', borderBottom }}>Data</th>
                   <th style={{ borderBottom }}>Aim Time</th>
                   <th style={{ width: '4.8rem', borderBottom }} />
-                  {rangeBrackets.map((range, index) => <th key={index} style={{ textAlign: 'center', borderBottom }}>{range}</th>)}
+                  {rangeBrackets.map(range => <th key={range} style={{ textAlign: 'center', borderBottom }}>{range}</th>)}
                 </tr>
               </thead>
 
@@ -60,18 +71,18 @@ class WeaponsCardWeaponStats extends Component {
 
             </table>
 
-            {this.props.modifyFirearm
+            {modifyFirearm
               ? (
                 <WeaponsCardModifyWeapon
-                  gunObj={this.props.gunObj}
-                  createCustomMag={this.props.createCustomMag}
-                  modifyFirearmWeight={this.props.modifyFirearmWeight}
-                  handleModifyFirearm={this.props.handleModifyFirearm.bind(this)}
-                  toggleCreateCustomMag={this.props.toggleCreateCustomMag.bind(this)}
-                  handleAddCustomMag={this.props.handleAddCustomMag.bind(this)}
-                  toggleModifyFirearmWeight={this.props.toggleModifyFirearmWeight.bind(this)}
-                  handleModifyFirearmWeight={this.props.handleModifyFirearmWeight.bind(this)}
-                  removeAllGunMods={this.props.removeAllGunMods.bind(this)}
+                  gunObj={gunObj}
+                  createCustomMag={createCustomMag}
+                  modifyFirearmWeight={modifyFirearmWeight}
+                  handleModifyFirearm={handleModifyFirearm.bind(this)}
+                  toggleCreateCustomMag={toggleCreateCustomMag.bind(this)}
+                  handleAddCustomMag={handleAddCustomMag.bind(this)}
+                  toggleModifyFirearmWeight={toggleModifyFirearmWeight.bind(this)}
+                  handleModifyFirearmWeight={handleModifyFirearmWeight.bind(this)}
+                  removeAllGunMods={removeAllGunMods.bind(this)}
                 />
               )
               : null}
@@ -80,5 +91,36 @@ class WeaponsCardWeaponStats extends Component {
       );
     }
 }
+
+WeaponsCardWeaponStats.propTypes = {
+  removeAllGunMods: PropTypes.func,
+  toggleModifyFirearmWeight: PropTypes.func,
+  handleModifyFirearmWeight: PropTypes.func,
+  handleAddCustomMag: PropTypes.func,
+  toggleCreateCustomMag: PropTypes.func,
+  createCustomMag: PropTypes.bool,
+  modifyFirearmWeight: PropTypes.bool,
+  handleModifyFirearm: PropTypes.func,
+  modifyFirearm: PropTypes.bool,
+  handleShowGunStats: PropTypes.func,
+  gunObj: PropTypes.shape({
+    name: PropTypes.string,
+    list: PropTypes.string,
+    type: PropTypes.array,
+    length: PropTypes.number,
+    weight: PropTypes.number,
+    rt: PropTypes.number,
+    rof: PropTypes.string,
+    mag: PropTypes.array,
+    kd: PropTypes.number,
+    sab: PropTypes.number,
+    aim: PropTypes.object,
+    projectiles: PropTypes.array,
+    ma: PropTypes.array,
+    ba: PropTypes.array,
+    tof: PropTypes.array,
+    offical: PropTypes.bool,
+  }),
+};
 
 export default WeaponsCardWeaponStats;

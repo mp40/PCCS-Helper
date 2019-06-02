@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ButtonStandard from './buttons/ButtonStandard';
-// import './WeaponsCard.css'
 
 class WeaponsCardModifyWeight extends Component {
   constructor(props) {
@@ -10,7 +10,6 @@ class WeaponsCardModifyWeight extends Component {
       modWeightNumber: '',
       warning: false,
     };
-    this.handleModifyFirearmWeight = this.props.handleModifyFirearmWeight;
   }
 
   handleWeightNote(event) {
@@ -22,22 +21,27 @@ class WeaponsCardModifyWeight extends Component {
   }
 
   handleSubmit() {
-    if (!Number(this.state.modWeightNumber)) {
+    const { modWeightNumber, modWeightNote } = this.state;
+    const { handleModifyFirearmWeight } = this.props;
+
+    if (!Number(modWeightNumber)) {
       this.setState({ warning: true });
       return;
     }
-    if (this.state.modWeightNote.length < 1) {
+    if (modWeightNote.length < 1) {
       this.setState({ warning: true });
       return;
     }
     const modNote = {
-      note: this.state.modWeightNote,
-      weightMod: Number(this.state.modWeightNumber),
+      note: modWeightNote,
+      weightMod: Number(modWeightNumber),
     };
-    this.handleModifyFirearmWeight(modNote);
+    handleModifyFirearmWeight(modNote);
   }
 
   render() {
+    const { capacity, weight, warning } = this.state;
+
     return (
       <div className="modifyWeightForm">
         <div>Modify Weapon Weight</div>
@@ -48,7 +52,7 @@ class WeaponsCardModifyWeight extends Component {
             type="text"
             autoComplete="off"
             id="modifyWeightNoteInput"
-            value={this.state.capacity}
+            value={capacity}
             onChange={this.handleWeightNote.bind(this)}
           />
         </div>
@@ -59,7 +63,7 @@ class WeaponsCardModifyWeight extends Component {
             type="text"
             autoComplete="off"
             id="modifyWeightValueInput"
-            value={this.state.weight}
+            value={weight}
             onChange={this.handleWeightNumber.bind(this)}
           />
         </div>
@@ -68,12 +72,17 @@ class WeaponsCardModifyWeight extends Component {
           id="submitModifiedWeight"
           onClick={this.handleSubmit.bind(this)}
         />
-        {this.state.warning
+        {warning
           ? <div style={{ color: 'red', fontWeight: 'bold' }}>Please Enter Valid Data</div>
           : null}
       </div>
     );
   }
 }
+
+
+WeaponsCardModifyWeight.propTypes = {
+  handleModifyFirearmWeight: PropTypes.func,
+};
 
 export default WeaponsCardModifyWeight;

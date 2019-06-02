@@ -88,26 +88,26 @@ const calculateStateObject = (characterStats, weight) => {
 
 function actionsPerImpulse(actions) {
   const impulseArray = [0, 0, 0, 0];
-
-  while (actions > 0) {
-    if (actions % 4 === 0) {
-      impulseArray[1]++;
-      actions--;
+  let actionsCopy = actions;
+  while (actionsCopy > 0) {
+    if (actionsCopy % 4 === 0) {
+      impulseArray[1] += 1;
+      actionsCopy -= 1;
     }
 
-    if (actions % 4 === 3) {
-      impulseArray[3]++;
-      actions--;
+    if (actionsCopy % 4 === 3) {
+      impulseArray[3] += 1;
+      actionsCopy -= 1;
     }
 
-    if (actions % 4 === 2) {
-      impulseArray[2]++;
-      actions--;
+    if (actionsCopy % 4 === 2) {
+      impulseArray[2] += 1;
+      actionsCopy -= 1;
     }
 
-    if (actions % 4 === 1) {
-      impulseArray[0]++;
-      actions--;
+    if (actionsCopy % 4 === 1) {
+      impulseArray[0] += 1;
+      actionsCopy -= 1;
     }
   }
 

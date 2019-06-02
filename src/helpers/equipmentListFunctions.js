@@ -1,12 +1,6 @@
 const equipment = require('./equipmentList');
 
-const findGear = (findName) => {
-  for (const obj in equipment) {
-    if (obj === findName) {
-      return equipment[obj];
-    }
-  }
-};
+const findGear = (findName => equipment[findName]);
 
 const filterEquipment = (findType) => {
   if (findType.length === 0) {

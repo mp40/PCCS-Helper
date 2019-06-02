@@ -285,7 +285,7 @@ export const shotguns = () => [
     length: 42,
     weight: 8.8,
     rt: 30,
-    rof: 2,
+    rof: '2',
     mag: [{ type: 'Rnd', weight: 0.13, cap: 7, qty: 0 }],
     kd: 25,
     sab: 12,

@@ -315,13 +315,6 @@ const bodyArmorStats = [
   },
 ];
 
-
-// module.exports = {
-//     uniformWeights,
-//     helmetStats,
-//     bodyArmorStats
-//     }
-
 module.exports = {
   uniformWeights,
   helmetStats,
