@@ -2,7 +2,7 @@ import { rifles, pistols, smgs, mgs, shotguns, sniperRifles } from './firearms';
 
 const allGuns = [...rifles(), ...pistols(), ...smgs(), ...mgs(), ...sniperRifles(), ...shotguns()];
 
-const checkArrayLength = function (key, subKey = false) {
+const checkArrayLength = (key, subKey = false) => {
   for (const gun of allGuns) {
     const tofArray = gun.tof;
     const len = tofArray.length;

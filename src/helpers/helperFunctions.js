@@ -6,9 +6,7 @@ const {
   table1D_DamageBonus,
 } = require('./tables');
 
-const findSAL = function (level) {
-  return table1C_SAL[level] * 1;
-};
+const findSAL = level => table1C_SAL[level] * 1;
 
 const findKey = (enc, arr) => {
   let result;
@@ -39,7 +37,7 @@ const calcMaxSpeed = (agi, baseSpd) => {
   return table1B_MaxSpeed[agi][index] * 1;
 };
 
-const calcISF = function (int, sal) {
+const calcISF = (int, sal) => {
   int *= 1;
   sal *= 1;
   return int + sal;
@@ -63,7 +61,7 @@ const calcDB = (ms, asf) => {
   return table1D_DamageBonus[ms][index] * 1;
 };
 
-const calculateStateObject = function (characterStats, weight) {
+const calculateStateObject = (characterStats, weight) => {
   const bs = calcBaseSpeed(characterStats.str, weight);
   const ms = calcMaxSpeed(characterStats.agi, bs);
   const salResult = findSAL(characterStats.gunLevel);

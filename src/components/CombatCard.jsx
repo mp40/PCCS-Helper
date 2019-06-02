@@ -25,7 +25,7 @@ class CombatCard extends Component {
     }
 
     const attributeObj = characterStats;
-    attributeObj[attribute] = value;
+    attributeObj[attribute] = parsedValue;
 
     this.props.updateAttributes(attributeObj, totalWeight);
     this.setState({ toggleEditValue: false });

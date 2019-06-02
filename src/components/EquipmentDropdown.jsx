@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
 import { modifyEquipment } from '../actions';
 import ButtonStandard from './buttons/ButtonStandard';
 import './EquipmentDropdown.css';
 
-import { createArrayOfEquipment, filterEquipment, createFilterSet } from '../helpers/equipmentListFunctions.js';
+import { createArrayOfEquipment, filterEquipment, createFilterSet } from '../helpers/equipmentListFunctions';
 import { addEquipment } from '../helpers/actionHelpers';
 
 const equipment = require('../helpers/equipmentList');
@@ -12,16 +13,18 @@ const equipment = require('../helpers/equipmentList');
 
 class EquipmentDropdown extends Component {
   handleAddEquipment(equipObj) {
-    const arrayContainsObj = this.props.gear.equipment.filter(obj => obj.name === equipObj.name);
+    const { gear, totalWeight, characterStats } = this.props;
+    const arrayContainsObj = gear.equipment.filter(obj => obj.name === equipObj.name);
     if (arrayContainsObj.length) {
       return;
     }
-    const newData = addEquipment(this.props.totalWeight, this.props.gear.equipment, equipObj);
-    this.props.modifyEquipment(newData.totalWeight, newData.equipArray, this.props.characterStats);
+    const newData = addEquipment(totalWeight, gear.equipment, equipObj);
+    this.props.modifyEquipment(newData.totalWeight, newData.equipArray, characterStats);
   }
 
   render() {
-    const filteredEquipment = filterEquipment(this.props.filteredTags);
+    const { filteredTags, showFilters, handleTags } = this.props;
+    const filteredEquipment = filterEquipment(filteredTags);
     const equipmentArray = createArrayOfEquipment(filteredEquipment);
     const equipmentTags = createFilterSet(equipment);
 
@@ -38,23 +41,23 @@ class EquipmentDropdown extends Component {
             />
             <ButtonStandard
               id="filterEquipmentList"
-              name={this.props.showFilters
+              name={showFilters
                 ? 'Apply Filter'
                 : 'Filter List'}
               onClick={this.props.toggleFilters.bind(this)}
             />
           </div>
-          {this.props.showFilters
+          {showFilters
             ? (
               <div className="tagContainer">
-                {equipmentTags.map((tag, index) => (
+                {equipmentTags.map(tag => (
                   <div
                     className="equipTags"
                     style={{ fontWeight: this.props.filteredTags.includes(tag)
                       ? 'bold'
                       : null }}
-                    onClick={this.props.handleTags.bind(this, tag)}
-                    key={index}
+                    onClick={handleTags.bind(this, tag)}
+                    key={tag}
                   >
                     {tag}
 
@@ -64,10 +67,10 @@ class EquipmentDropdown extends Component {
             )
             : (
               <div className="equipmentListBody">
-                {equipmentArray.map((equipObj, index) => (
+                {equipmentArray.map(equipObj => (
                   <div
                     className="equipmentEntry"
-                    key={index}
+                    key={equipObj.name}
                     onClick={this.handleAddEquipment.bind(this, equipObj)}
                   >
                     <div>
@@ -85,6 +88,18 @@ class EquipmentDropdown extends Component {
     );
   }
 }
+
+EquipmentDropdown.propTypes = {
+  gear: PropTypes.shape({
+    uniform: PropTypes.string,
+    equipment: PropTypes.arrayOf(PropTypes.object),
+    firearms: PropTypes.arrayOf(PropTypes.object),
+  }),
+  characterStats: PropTypes.objectOf(PropTypes.number),
+  totalWeight: PropTypes.number,
+  filteredTags: PropTypes.arrayOf(PropTypes.string),
+  showFilters: PropTypes.bool,
+};
 
 const mapStateToProps = state => ({
   currentView: state.currentView,

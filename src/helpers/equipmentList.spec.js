@@ -1,4 +1,4 @@
-import { findGear, createArrayOfEquipment, filterEquipment, createFilterSet } from './equipmentListFunctions.js';
+import { findGear, createArrayOfEquipment, filterEquipment, createFilterSet } from './equipmentListFunctions';
 
 describe('finding things in the equipment list', () => {
   it('should return items based on name', () => {

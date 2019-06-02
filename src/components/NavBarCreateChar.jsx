@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './NavBar.css';
 
-function NavBarCreateChar(props) {
-  const characterWeight = Math.round((props.totalWeight) * 1000) / 1000;
+function NavBarCreateChar({ totalWeight }) {
+  const characterWeight = Math.round((totalWeight) * 1000) / 1000;
   return (
     <div className="navCreateCharacterContainer">
       <div>Create Character</div>
@@ -10,5 +11,9 @@ function NavBarCreateChar(props) {
     </div>
   );
 }
+
+NavBarCreateChar.propTypes = {
+  totalWeight: PropTypes.number,
+};
 
 export default NavBarCreateChar;

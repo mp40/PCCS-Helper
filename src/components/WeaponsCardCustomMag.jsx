@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ButtonStandard from './buttons/ButtonStandard';
 import './WeaponsCard.css';
 
@@ -11,7 +12,6 @@ class WeaponsCardCustomMag extends Component {
       type: '',
       warning: false,
     };
-    this.handleAddCustomMag = this.props.handleAddCustomMag;
   }
 
   handleCapacity(event) {
@@ -27,31 +27,35 @@ class WeaponsCardCustomMag extends Component {
   }
 
   handleSubmit() {
-    if (!Number(this.state.weight)) {
+    const { handleAddCustomMag } = this.props;
+    const { weight, capacity, type } = this.state;
+    if (!Number(weight)) {
       this.setState({ warning: true });
       return;
     }
-    if (!Number(this.state.capacity) || this.state.capacity % 1 !== 0) {
+    if (!Number(capacity) || capacity % 1 !== 0) {
       this.setState({ warning: true });
       return;
     }
-    if (this.state.type.length < 2) {
+    if (type.length < 2) {
       this.setState({ warning: true });
       return;
     }
 
     const newCustomMag = {
-      type: this.state.type,
-      weight: Number(this.state.weight),
-      cap: Number(this.state.capacity),
+      type,
+      weight: Number(weight),
+      cap: Number(capacity),
       qty: 0,
       custom: true,
     };
-    this.handleAddCustomMag(newCustomMag);
+    handleAddCustomMag(newCustomMag);
   }
 
 
   render() {
+    const { capacity, weight, type, warning } = this.state;
+
     return (
       <div className="customMagazineForm">
         <div>Custom Magazine Details</div>
@@ -62,7 +66,7 @@ class WeaponsCardCustomMag extends Component {
             type="text"
             autoComplete="off"
             id="customMagCapacityInput"
-            value={this.state.capacity}
+            value={capacity}
             onChange={this.handleCapacity.bind(this)}
           />
         </div>
@@ -73,7 +77,7 @@ class WeaponsCardCustomMag extends Component {
             type="text"
             autoComplete="off"
             id="customMagWeightInput"
-            value={this.state.weight}
+            value={weight}
             onChange={this.handleWeight.bind(this)}
           />
         </div>
@@ -84,7 +88,7 @@ class WeaponsCardCustomMag extends Component {
             type="text"
             autoComplete="off"
             id="customMagTypeInput"
-            value={this.state.type}
+            value={type}
             onChange={this.handleType.bind(this)}
           />
         </div>
@@ -93,12 +97,16 @@ class WeaponsCardCustomMag extends Component {
           id="submitCustomMag"
           onClick={this.handleSubmit.bind(this)}
         />
-        {this.state.warning
+        {warning
           ? <div style={{ color: 'red', fontWeight: 'bold' }}>Please Enter Valid Data</div>
           : null}
       </div>
     );
   }
 }
+
+WeaponsCardCustomMag.propTypes = {
+  handleAddCustomMag: PropTypes.func,
+};
 
 export default WeaponsCardCustomMag;

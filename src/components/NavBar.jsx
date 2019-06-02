@@ -1,24 +1,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import NavBarCreateChar from './NavBarCreateChar';
 import './NavBar.css';
 
-function NavBar(props) {
+function NavBar({ currentView, totalWeight }) {
   return (
     <div className="menuBar">
       <div className="menuTitle">
         PCCS
       </div>
-      {props.currentView === 'createChar'
+      {currentView === 'createChar'
         ? (
           <NavBarCreateChar
-            totalWeight={props.totalWeight}
+            totalWeight={totalWeight}
           />
         )
         : null}
     </div>
   );
 }
+
+NavBar.propTypes = {
+  totalWeight: PropTypes.number,
+  currentView: PropTypes.string,
+};
 
 const mapStateToProps = state => ({
   currentView: state.currentView,
