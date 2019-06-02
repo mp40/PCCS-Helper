@@ -42,31 +42,6 @@ export const incrementEquipmentQty = (oldWeight, oldArray, equipObj, modifier) =
   };
 };
 
-export const incrementMagQty = (oldWeight, oldArray, gunObj, magObj, modifier) => {
-  const newGunObj = gunObj.mag.map((obj) => {
-    const newObj = obj;
-    if (obj.cap === magObj.cap) {
-      newObj.qty += modifier;
-    }
-    return newObj;
-  });
-
-  let newWeight = oldWeight;
-  newWeight += (magObj.weight * modifier);
-  const newArray = oldArray.map((obj) => {
-    let newObj = obj;
-    if (obj.name === newGunObj.name) {
-      newObj = newGunObj;
-    }
-    return newObj;
-  });
-
-  return {
-    totalWeight: Math.round(newWeight * 1000) / 1000,
-    equipArray: newArray,
-  };
-};
-
 export const calculateAmmoWeight = (gunObj) => {
   const ammoWeight = gunObj.mag.reduce((accumulator, magObj) => accumulator + (magObj.weight * magObj.qty), 0);
   return Math.round(ammoWeight * 1000) / 1000;
