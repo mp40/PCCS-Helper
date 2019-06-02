@@ -1,23 +1,20 @@
-import React, { Component, Fragment } from "react";
-import ButtonUpArrow from './ButtonUpArrow'
-import ButtonDownArrow from './ButtonDownArrow'
- 
-class ButtonIncrementArrows extends Component {
+import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
+import ButtonUpArrow from './ButtonUpArrow';
+import ButtonDownArrow from './ButtonDownArrow';
 
-  render() {
-        return (
-            <Fragment>
-                <ButtonUpArrow
-                id={this.props.idUp}
-                onClick={this.props.onClickUp}
-                />
-                <ButtonDownArrow
-                id={this.props.idDown}
-                    onClick={this.props.onClickDown}
-                />
-            </Fragment>
-        )
-    }
-}
+const ButtonIncrementArrows = ({ onClickUp, onClickDown, idDown, idUp }) => (
+  <Fragment>
+    <ButtonUpArrow id={idUp} onClick={onClickUp} />
+    <ButtonDownArrow id={idDown} onClick={onClickDown} />
+  </Fragment>
+);
 
-export default ButtonIncrementArrows
+ButtonIncrementArrows.propTypes = {
+  onClickUp: PropTypes.func,
+  onClickDown: PropTypes.func,
+  idUp: PropTypes.string,
+  idDown: PropTypes.string,
+};
+
+export default ButtonIncrementArrows;

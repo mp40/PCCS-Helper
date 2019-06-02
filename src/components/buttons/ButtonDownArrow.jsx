@@ -1,18 +1,19 @@
-import React, { Component } from "react";
-import './buttons.css'
- 
-class ButtonDownArrow extends Component {
+import React from 'react';
+import PropTypes from 'prop-types';
+import './buttons.css';
 
-  render() {
-        return (
-            <button 
-                className="button"
-                onClick={this.props.onClick}
-                >
-                {String.fromCharCode(8595)}
-            </button>
-        )
-    }
-}
+const ButtonDownArrow = ({ onClick }) => (
+  <button
+    type="button"
+    className="button"
+    onClick={onClick}
+  >
+    {String.fromCharCode(8595)}
+  </button>
+);
 
-export default ButtonDownArrow
+ButtonDownArrow.propTypes = {
+  onClick: PropTypes.func,
+};
+
+export default ButtonDownArrow;

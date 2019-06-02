@@ -1,35 +1,40 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import {updateAttributes} from '../actions'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { updateAttributes } from '../actions';
 
 class CombatCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
       toggleEditValue: false,
-    }
+    };
   }
 
-  settingAttribute(key){
-    this.setState({toggleEditValue: key})
-  };
+  settingAttribute(key) {
+    this.setState({ toggleEditValue: key });
+  }
 
 
-  handleUpdateAttributes(attribute, value){
-    value = parseInt(value)
-    if(value < 0 || typeof value !== 'number' || isNaN(value)) {
-      this.setState({toggleEditValue: false})
-      return
+  handleUpdateAttributes(attribute, value) {
+    const parsedValue = parseInt(value, 10);
+    const { characterStats, totalWeight } = this.props;
+    if (parsedValue < 0 || typeof parsedValue !== 'number' || Number.isNaN(parsedValue)) {
+      this.setState({ toggleEditValue: false });
+      return;
     }
 
-    const attributeObj = this.props.characterStats
-    attributeObj[attribute] = value
+    const attributeObj = characterStats;
+    attributeObj[attribute] = parsedValue;
 
-    this.props.updateAttributes(attributeObj, this.props.totalWeight)
-    this.setState({toggleEditValue: false})
+    this.props.updateAttributes(attributeObj, totalWeight);
+    this.setState({ toggleEditValue: false });
   }
 
   render() {
+    const { characterStats } = this.props;
+    const { toggleEditValue } = this.state;
+
     return (
       <div>
         <div id="combatLevelInputContainer" className="tableContainerCombat">
@@ -41,29 +46,39 @@ class CombatCard extends Component {
               </tr>
               <tr className="attributeRow">
                 <td className="attName">Gun</td>
-              <td className="attValue" id="updateGun" onClick={this.settingAttribute.bind(this,'toggleGun')}>
-                {this.state.toggleEditValue === 'toggleGun' ?
-                <input type="text" className="attInput" onKeyUp={event => {
-                  if (event.keyCode === 13) {
-                      this.handleUpdateAttributes('gunLevel',event.target.value)
-                  }
-                }}
-                /> :
-                this.props.characterStats.gunLevel}
-              </td>
+                <td className="attValue" id="updateGun" onClick={this.settingAttribute.bind(this, 'toggleGun')}>
+                  {toggleEditValue === 'toggleGun'
+                    ? (
+                      <input
+                        type="text"
+                        className="attInput"
+                        onKeyUp={(event) => {
+                          if (event.keyCode === 13) {
+                            this.handleUpdateAttributes('gunLevel', event.target.value);
+                          }
+                        }}
+                      />
+                    )
+                    : characterStats.gunLevel}
+                </td>
               </tr>
               <tr className="attributeRow">
                 <td className="attName">Hand</td>
-                <td className="attValue" id="updateHand" onClick={this.settingAttribute.bind(this,'toggleHand')}>
-                {this.state.toggleEditValue === 'toggleHand' ?
-                <input type="text" className="attInput" onKeyUp={event => {
-                  if (event.keyCode === 13) {
-                      this.handleUpdateAttributes('handLevel',event.target.value)
-                  }
-                }}
-                /> :
-                this.props.characterStats.handLevel}
-              </td>
+                <td className="attValue" id="updateHand" onClick={this.settingAttribute.bind(this, 'toggleHand')}>
+                  {toggleEditValue === 'toggleHand'
+                    ? (
+                      <input
+                        type="text"
+                        className="attInput"
+                        onKeyUp={(event) => {
+                          if (event.keyCode === 13) {
+                            this.handleUpdateAttributes('handLevel', event.target.value);
+                          }
+                        }}
+                      />
+                    )
+                    : characterStats.handLevel}
+                </td>
               </tr>
             </tbody>
           </table>
@@ -73,12 +88,15 @@ class CombatCard extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return ({ 
-    currentView: state.currentView,
-    totalWeight: state.totalWeight,
-    characterStats: state.characterStats,
-   });
-}
+CombatCard.propTypes = {
+  characterStats: PropTypes.objectOf(PropTypes.number),
+  totalWeight: PropTypes.number,
+};
 
-export default connect(mapStateToProps,{updateAttributes})(CombatCard)
+const mapStateToProps = state => ({
+  currentView: state.currentView,
+  totalWeight: state.totalWeight,
+  characterStats: state.characterStats,
+});
+
+export default connect(mapStateToProps, { updateAttributes })(CombatCard);

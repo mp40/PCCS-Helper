@@ -1,19 +1,20 @@
-import React, { Component } from "react";
-import './buttons.css'
+import React from 'react';
+import PropTypes from 'prop-types';
+import './buttons.css';
 
-class ButtonInfo extends Component {
-
-  render() {
-        return (
-            <button
-                className="button"
-                style={{lineHeight:'70%', padding:"0.25em 0.4em"}}
-                onClick={this.props.onClick}
-            >
+const ButtonInfo = ({ onClick }) => (
+  <button
+    type="button"
+    className="button"
+    style={{ lineHeight: '70%', padding: '0.25em 0.4em' }}
+    onClick={onClick}
+  >
                 ?
-            </button>
-        )
-    }
-}
+  </button>
+);
 
-export default ButtonInfo
+ButtonInfo.propTypes = {
+  onClick: PropTypes.func,
+};
+
+export default ButtonInfo;
