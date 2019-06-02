@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import EquipmentDropdown from './EquipmentDropdown';
 import CustomEquipmentModal from './CustomEquipmentModal';
 import ButtonStandard from './buttons/ButtonStandard';
@@ -21,11 +22,13 @@ class EquipmentCard extends Component {
   }
 
   toggleShowEquipment() {
-    this.setState({ showEquipment: !this.state.showEquipment });
+    const { showEquipment } = this.state;
+    this.setState({ showEquipment: !showEquipment });
   }
 
   toggleCustomEquipment() {
-    this.setState({ showCustomInput: !this.state.showCustomInput });
+    const { showCustomInput } = this.state;
+    this.setState({ showCustomInput: !showCustomInput });
   }
 
   closeShowEquipment() {
@@ -36,11 +39,13 @@ class EquipmentCard extends Component {
   }
 
   toggleFilters() {
-    this.setState({ showFilters: !this.state.showFilters });
+    const { showFilters } = this.state;
+    this.setState({ showFilters: !showFilters });
   }
 
   handleTags(tag) {
-    if (this.state.filteredTags.includes(tag)) {
+    const { filteredTags } = this.state;
+    if (filteredTags.includes(tag)) {
       this.unfilterTag(tag);
     } else {
       this.filterTag(tag);
@@ -48,35 +53,42 @@ class EquipmentCard extends Component {
   }
 
   filterTag(tag) {
-    const tags = this.state.filteredTags;
+    const { filteredTags } = this.state;
+    const tags = filteredTags;
     tags.push(tag);
     this.setState({ filteredTags: tags });
   }
 
   unfilterTag(tag) {
-    let tags = this.state.filteredTags;
+    const { filteredTags } = this.state;
+    let tags = filteredTags;
     tags = tags.filter(element => element !== tag);
     this.setState({ filteredTags: tags });
   }
 
   handleRemoveEquipment(equipObj) {
-    const newData = removeEquipment(this.props.totalWeight, this.props.gear.equipment, equipObj);
-    this.props.modifyEquipment(newData.totalWeight, newData.equipArray, this.props.characterStats);
+    const { totalWeight, gear, characterStats } = this.props;
+    const newData = removeEquipment(totalWeight, gear.equipment, equipObj);
+    this.props.modifyEquipment(newData.totalWeight, newData.equipArray, characterStats);
   }
 
   handleRemoveAllEquipment() {
-    const newWeight = removeAllEquipment(this.props.totalWeight, this.props.gear.equipment);
-    this.props.modifyEquipment(newWeight, [], this.props.characterStats);
+    const { totalWeight, gear, characterStats } = this.props;
+    const newWeight = removeAllEquipment(totalWeight, gear.equipment);
+    this.props.modifyEquipment(newWeight, [], characterStats);
   }
 
   handleIncrementEquipmentQty(equipObj, modifier) {
-    const newData = incrementEquipmentQty(this.props.totalWeight, this.props.gear.equipment, equipObj, modifier);
-    this.props.modifyEquipment(newData.totalWeight, newData.equipArray, this.props.characterStats);
+    const { totalWeight, gear, characterStats } = this.props;
+    const newData = incrementEquipmentQty(totalWeight, gear.equipment, equipObj, modifier);
+    this.props.modifyEquipment(newData.totalWeight, newData.equipArray, characterStats);
   }
 
 
   render() {
-    const charEquip = this.props.gear.equipment;
+    const { showEquipment, showCustomInput, showFilters, filteredTags } = this.state;
+    const { gear } = this.props;
+    const charEquip = gear.equipment;
     const totalEquipWeight = charEquip.reduce((accumulator, obj) => accumulator + (obj.weight * obj.qty), 0);
 
     return (
@@ -113,8 +125,8 @@ class EquipmentCard extends Component {
                 />
               </td>
             </tr>
-            {charEquip.map((equipObj, index) => (
-              <tr key={index} className="addedEqipRow">
+            {charEquip.map(equipObj => (
+              <tr key={equipObj.name} className="addedEqipRow">
                 <td>
                   <ButtonDeleteX
                     id="removeEquip"
@@ -145,18 +157,18 @@ class EquipmentCard extends Component {
             ))}
           </tbody>
         </table>
-        {this.state.showEquipment
+        {showEquipment
           ? (
             <EquipmentDropdown
               closeShowEquipment={this.closeShowEquipment.bind(this)}
               toggleFilters={this.toggleFilters.bind(this)}
               handleTags={this.handleTags.bind(this)}
-              showFilters={this.state.showFilters}
-              filteredTags={this.state.filteredTags}
+              showFilters={showFilters}
+              filteredTags={filteredTags}
             />
           )
           : null}
-        {this.state.showCustomInput
+        {showCustomInput
           ? (
             <CustomEquipmentModal
               toggleCustomEquipment={this.toggleCustomEquipment.bind(this)}
@@ -168,6 +180,16 @@ class EquipmentCard extends Component {
     );
   }
 }
+
+EquipmentCard.propTypes = {
+  gear: PropTypes.shape({
+    uniform: PropTypes.string,
+    equipment: PropTypes.arrayOf(PropTypes.object),
+    firearms: PropTypes.arrayOf(PropTypes.object),
+  }),
+  characterStats: PropTypes.objectOf(PropTypes.number),
+  totalWeight: PropTypes.number,
+};
 
 const mapStateToProps = state => ({
   totalWeight: state.totalWeight,

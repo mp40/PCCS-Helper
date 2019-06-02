@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { updateAttributes } from '../actions';
 
-// const { updateAttributes } = this.props;
-
 class AttributeCard extends Component {
   constructor(props) {
     super(props);
@@ -162,17 +160,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, { updateAttributes })(AttributeCard);
-
-// ActionsCard.propTypes = {
-//   combatStats: PropTypes.shape({
-//     ASF: PropTypes.number,
-//     CE: PropTypes.number,
-//     ISF: PropTypes.number,
-//     SAL: PropTypes.number,
-//     baseSpeed: PropTypes.number,
-//     combatActions: PropTypes.arrayOf(PropTypes.number),
-//     damageBonus: PropTypes.number,
-//     knockoutValue: PropTypes.number,
-//     maxSpeed: PropTypes.number,
-//   }),
-// };

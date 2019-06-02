@@ -1,9 +1,10 @@
 import { uniformWeights } from './uniformAndArmourTypes';
 
 export const addEquipment = (oldWeight, oldArray, equipObj) => {
-  equipObj.qty = 1;
+  const newEquipObj = equipObj;
+  newEquipObj.qty = 1;
   const newWeight = (oldWeight + equipObj.weight);
-  const newArray = [...oldArray, equipObj];
+  const newArray = [...oldArray, newEquipObj];
   return {
     totalWeight: Math.round(newWeight * 1000) / 1000,
     equipArray: newArray,
@@ -26,12 +27,14 @@ export const removeAllEquipment = (oldWeight, oldArray) => {
 
 export const incrementEquipmentQty = (oldWeight, oldArray, equipObj, modifier) => {
   const newArray = oldArray.map((obj) => {
+    const newObj = obj;
     if (obj.name === equipObj.name) {
-      obj.qty += modifier;
+      newObj.qty += modifier;
     }
-    return obj;
+    return newObj;
   });
-  const newWeight = oldWeight += (equipObj.weight * modifier);
+  let newWeight = oldWeight;
+  newWeight += (equipObj.weight * modifier);
 
   return {
     totalWeight: Math.round(newWeight * 1000) / 1000,
@@ -41,18 +44,21 @@ export const incrementEquipmentQty = (oldWeight, oldArray, equipObj, modifier) =
 
 export const incrementMagQty = (oldWeight, oldArray, gunObj, magObj, modifier) => {
   const newGunObj = gunObj.mag.map((obj) => {
+    const newObj = obj;
     if (obj.cap === magObj.cap) {
-      obj.qty += modifier;
+      newObj.qty += modifier;
     }
-    return obj;
+    return newObj;
   });
 
-  const newWeight = oldWeight += (magObj.weight * modifier);
+  let newWeight = oldWeight;
+  newWeight += (magObj.weight * modifier);
   const newArray = oldArray.map((obj) => {
+    let newObj = obj;
     if (obj.name === newGunObj.name) {
-      obj = newGunObj;
+      newObj = newGunObj;
     }
-    return obj;
+    return newObj;
   });
 
   return {
@@ -84,13 +90,14 @@ export const calculateObjectWeightDifference = (obj, modifier) => {
 };
 
 export const modifyObjectQtyInArray = (array, obj, modifier = 0) => array.map((element) => {
+  const newElement = element;
   if (element.name && element.name === obj.name) {
-    element.qty += modifier;
+    newElement.qty += modifier;
   }
   if (element.cap && element.cap === obj.cap) {
-    element.qty += modifier;
+    newElement.qty += modifier;
   }
-  return element;
+  return newElement;
 });
 
 export const removeObjectFromArray = (array, obj) => array.filter(element => element.name && element.name !== obj.name);

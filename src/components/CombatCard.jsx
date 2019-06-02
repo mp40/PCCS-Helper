@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { updateAttributes } from '../actions';
 
 class CombatCard extends Component {
@@ -16,20 +17,24 @@ class CombatCard extends Component {
 
 
   handleUpdateAttributes(attribute, value) {
-    value = parseInt(value);
-    if (value < 0 || typeof value !== 'number' || isNaN(value)) {
+    const parsedValue = parseInt(value, 10);
+    const { characterStats, totalWeight } = this.props;
+    if (parsedValue < 0 || typeof parsedValue !== 'number' || Number.isNaN(parsedValue)) {
       this.setState({ toggleEditValue: false });
       return;
     }
 
-    const attributeObj = this.props.characterStats;
+    const attributeObj = characterStats;
     attributeObj[attribute] = value;
 
-    this.props.updateAttributes(attributeObj, this.props.totalWeight);
+    this.props.updateAttributes(attributeObj, totalWeight);
     this.setState({ toggleEditValue: false });
   }
 
   render() {
+    const { characterStats } = this.props;
+    const { toggleEditValue } = this.state;
+
     return (
       <div>
         <div id="combatLevelInputContainer" className="tableContainerCombat">
@@ -42,7 +47,7 @@ class CombatCard extends Component {
               <tr className="attributeRow">
                 <td className="attName">Gun</td>
                 <td className="attValue" id="updateGun" onClick={this.settingAttribute.bind(this, 'toggleGun')}>
-                  {this.state.toggleEditValue === 'toggleGun'
+                  {toggleEditValue === 'toggleGun'
                     ? (
                       <input
                         type="text"
@@ -54,13 +59,13 @@ class CombatCard extends Component {
                         }}
                       />
                     )
-                    : this.props.characterStats.gunLevel}
+                    : characterStats.gunLevel}
                 </td>
               </tr>
               <tr className="attributeRow">
                 <td className="attName">Hand</td>
                 <td className="attValue" id="updateHand" onClick={this.settingAttribute.bind(this, 'toggleHand')}>
-                  {this.state.toggleEditValue === 'toggleHand'
+                  {toggleEditValue === 'toggleHand'
                     ? (
                       <input
                         type="text"
@@ -72,7 +77,7 @@ class CombatCard extends Component {
                         }}
                       />
                     )
-                    : this.props.characterStats.handLevel}
+                    : characterStats.handLevel}
                 </td>
               </tr>
             </tbody>
@@ -82,6 +87,11 @@ class CombatCard extends Component {
     );
   }
 }
+
+CombatCard.propTypes = {
+  characterStats: PropTypes.objectOf(PropTypes.number),
+  totalWeight: PropTypes.number,
+};
 
 const mapStateToProps = state => ({
   currentView: state.currentView,

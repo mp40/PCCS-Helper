@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { modifyEquipment } from '../actions';
 import { addEquipment } from '../helpers/actionHelpers';
 
@@ -28,8 +29,10 @@ class CustomEquipmentModal extends Component {
   }
 
   submitEquipment() {
-    const name = this.state.equipmentName;
-    const weight = this.state.equipmentWeight * 1;
+    const { gear, totalWeight, characterStats } = this.props;
+    const { equipmentName, equipmentWeight } = this.state;
+    const name = equipmentName;
+    const weight = equipmentWeight * 1;
 
     const isValidInput = (
       name.length > 0
@@ -43,7 +46,7 @@ class CustomEquipmentModal extends Component {
       return;
     }
 
-    const arrayContainsObj = this.props.gear.equipment.filter(obj => obj.name === name);
+    const arrayContainsObj = gear.equipment.filter(obj => obj.name === name);
 
     if (arrayContainsObj.length) {
       this.setState({ errorMsgExistsInArray: true });
@@ -55,12 +58,15 @@ class CustomEquipmentModal extends Component {
       tags: ['Custom'],
     };
 
-    const newData = addEquipment(this.props.totalWeight, this.props.gear.equipment, equipObj);
-    this.props.modifyEquipment(newData.totalWeight, newData.equipArray, this.props.characterStats);
+    const newData = addEquipment(totalWeight, gear.equipment, equipObj);
+    this.props.modifyEquipment(newData.totalWeight, newData.equipArray, characterStats);
     this.props.toggleCustomEquipment();
   }
 
   render() {
+    const { toggleCustomEquipment } = this.props;
+    const { equipmentName, equipmentWeight, errorMsgInvalidEntry, errorMsgExistsInArray } = this.state;
+
     return (
       <div className="customEquipmentModalContainer">
         <div className="customEquipmentListCard">
@@ -73,7 +79,7 @@ class CustomEquipmentModal extends Component {
               <ButtonStandard
                 style={{ marginTop: '.5rem' }}
                 name="Cancel"
-                onClick={this.props.toggleCustomEquipment.bind(this)}
+                onClick={toggleCustomEquipment.bind(this)}
               />
             </div>
 
@@ -84,7 +90,7 @@ class CustomEquipmentModal extends Component {
                 autoComplete="off"
                 id="equipNameInput"
                 className="equipInput"
-                value={this.state.equipmentName}
+                value={equipmentName}
                 onChange={this.handleChange.bind(this, 'name')}
               />
             </div>
@@ -96,7 +102,7 @@ class CustomEquipmentModal extends Component {
                 autoComplete="off"
                 id="equipWeightInput"
                 className="equipInput"
-                value={this.state.equipmentWeight}
+                value={equipmentWeight}
                 onChange={this.handleChange.bind(this, 'weight')}
               />
             </div>
@@ -107,12 +113,12 @@ class CustomEquipmentModal extends Component {
               onClick={this.submitEquipment.bind(this)}
             />
 
-            {this.state.errorMsgInvalidEntry
+            {errorMsgInvalidEntry
               ? <div style={{ color: 'red' }}>Please Enter Valid Equipment Name and Weight</div>
               : null
                     }
 
-            {this.state.errorMsgExistsInArray
+            {errorMsgExistsInArray
               ? <div style={{ color: 'red' }}>Already In List, Please Enter Valid Equipment Name</div>
               : null
                     }
@@ -123,6 +129,18 @@ class CustomEquipmentModal extends Component {
     );
   }
 }
+
+CustomEquipmentModal.propTypes = {
+  gear: PropTypes.shape({
+    uniform: PropTypes.string,
+    equipment: PropTypes.arrayOf(PropTypes.object),
+    firearms: PropTypes.arrayOf(PropTypes.object),
+  }),
+  characterStats: PropTypes.objectOf(PropTypes.number),
+  totalWeight: PropTypes.number,
+  toggleCustomEquipment: PropTypes.func,
+
+};
 
 const mapStateToProps = state => ({
   totalWeight: state.totalWeight,
