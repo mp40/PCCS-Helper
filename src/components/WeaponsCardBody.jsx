@@ -35,12 +35,12 @@ const WeaponsCardBody = ({
           <ButtonStandard
             id="addFirearm"
             name="Add Firearm"
-            onClick={toggleShowFirearms.bind(this)}
+            onClick={toggleShowFirearms}
           />
           <ButtonStandard
             id="clearAllFirearms"
             name="Clear All"
-            onClick={handleRemoveAllGuns.bind(this)}
+            onClick={handleRemoveAllGuns}
           />
         </td>
       </tr>

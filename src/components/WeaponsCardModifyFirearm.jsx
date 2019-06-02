@@ -63,7 +63,7 @@ class WeaponsCardModifyWeapon extends Component {
                 <ButtonSlim
                   name="+"
                   id="addCustomMagazine"
-                  onClick={toggleCreateCustomMag.bind(this)}
+                  onClick={toggleCreateCustomMag}
                 />
               </div>
             </div>
@@ -84,7 +84,7 @@ class WeaponsCardModifyWeapon extends Component {
               <ButtonSlim
                 name="set"
                 id="modifyWeaponWeight"
-                onClick={toggleModifyFirearmWeight.bind(this)}
+                onClick={toggleModifyFirearmWeight}
               />
             </div>
 
@@ -113,7 +113,7 @@ class WeaponsCardModifyWeapon extends Component {
       return (
         <div style={{ marginLeft: '5rem' }}>
           <WeaponsCardCustomMag
-            handleAddCustomMag={handleAddCustomMag.bind(this)}
+            handleAddCustomMag={handleAddCustomMag}
           />
         </div>
       );

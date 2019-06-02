@@ -23,7 +23,7 @@ class EquipmentDropdown extends Component {
   }
 
   render() {
-    const { filteredTags, showFilters, handleTags } = this.props;
+    const { filteredTags, showFilters, handleTags, closeShowEquipment, toggleFilters } = this.props;
     const filteredEquipment = filterEquipment(filteredTags);
     const equipmentArray = createArrayOfEquipment(filteredEquipment);
     const equipmentTags = createFilterSet(equipment);
@@ -37,14 +37,14 @@ class EquipmentDropdown extends Component {
             <ButtonStandard
               id="closeEquipmentModal"
               name="Close List"
-              onClick={this.props.closeShowEquipment.bind(this)}
+              onClick={closeShowEquipment}
             />
             <ButtonStandard
               id="filterEquipmentList"
               name={showFilters
                 ? 'Apply Filter'
                 : 'Filter List'}
-              onClick={this.props.toggleFilters.bind(this)}
+              onClick={toggleFilters}
             />
           </div>
           {showFilters
@@ -90,6 +90,9 @@ class EquipmentDropdown extends Component {
 }
 
 EquipmentDropdown.propTypes = {
+  toggleFilters: PropTypes.func,
+  closeShowEquipment: PropTypes.func,
+  handleTags: PropTypes.func,
   gear: PropTypes.shape({
     uniform: PropTypes.string,
     equipment: PropTypes.arrayOf(PropTypes.object),

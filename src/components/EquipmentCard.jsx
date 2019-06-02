@@ -19,6 +19,12 @@ class EquipmentCard extends Component {
       showFilters: false,
       filteredTags: [],
     };
+    this.toggleShowEquipment = this.toggleShowEquipment.bind(this);
+    this.toggleCustomEquipment = this.toggleCustomEquipment.bind(this);
+    this.handleRemoveAllEquipment = this.handleRemoveAllEquipment.bind(this);
+    this.closeShowEquipment = this.closeShowEquipment.bind(this);
+    this.toggleFilters = this.toggleFilters.bind(this);
+    this.handleTags = this.handleTags.bind(this);
   }
 
   toggleShowEquipment() {
@@ -111,17 +117,17 @@ class EquipmentCard extends Component {
                 <ButtonStandard
                   id="addEquipment"
                   name="Add Equipment"
-                  onClick={this.toggleShowEquipment.bind(this)}
+                  onClick={this.toggleShowEquipment}
                 />
                 <ButtonStandard
                   id="toggleCustomEquipment"
                   name="Add Custom"
-                  onClick={this.toggleCustomEquipment.bind(this)}
+                  onClick={this.toggleCustomEquipment}
                 />
                 <ButtonStandard
                   id="clearAllEquipment"
                   name="Clear All"
-                  onClick={this.handleRemoveAllEquipment.bind(this)}
+                  onClick={this.handleRemoveAllEquipment}
                 />
               </td>
             </tr>
@@ -160,9 +166,9 @@ class EquipmentCard extends Component {
         {showEquipment
           ? (
             <EquipmentDropdown
-              closeShowEquipment={this.closeShowEquipment.bind(this)}
-              toggleFilters={this.toggleFilters.bind(this)}
-              handleTags={this.handleTags.bind(this)}
+              closeShowEquipment={this.closeShowEquipment}
+              toggleFilters={this.toggleFilters}
+              handleTags={this.handleTags}
               showFilters={showFilters}
               filteredTags={filteredTags}
             />
@@ -171,7 +177,7 @@ class EquipmentCard extends Component {
         {showCustomInput
           ? (
             <CustomEquipmentModal
-              toggleCustomEquipment={this.toggleCustomEquipment.bind(this)}
+              toggleCustomEquipment={this.toggleCustomEquipment}
             />
           )
           : null

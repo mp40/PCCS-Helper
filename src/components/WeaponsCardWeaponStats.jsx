@@ -77,12 +77,12 @@ class WeaponsCardWeaponStats extends Component {
                   gunObj={gunObj}
                   createCustomMag={createCustomMag}
                   modifyFirearmWeight={modifyFirearmWeight}
-                  handleModifyFirearm={handleModifyFirearm.bind(this)}
-                  toggleCreateCustomMag={toggleCreateCustomMag.bind(this)}
-                  handleAddCustomMag={handleAddCustomMag.bind(this)}
-                  toggleModifyFirearmWeight={toggleModifyFirearmWeight.bind(this)}
-                  handleModifyFirearmWeight={handleModifyFirearmWeight.bind(this)}
-                  removeAllGunMods={removeAllGunMods.bind(this)}
+                  handleModifyFirearm={handleModifyFirearm}
+                  toggleCreateCustomMag={toggleCreateCustomMag}
+                  handleAddCustomMag={handleAddCustomMag}
+                  toggleModifyFirearmWeight={toggleModifyFirearmWeight}
+                  handleModifyFirearmWeight={handleModifyFirearmWeight}
+                  removeAllGunMods={removeAllGunMods}
                 />
               )
               : null}

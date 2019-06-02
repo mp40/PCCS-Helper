@@ -1,12 +1,12 @@
 const {
-  table1C_SAL,
-  table1A_BaseSpeed,
-  table1B_MaxSpeed,
-  table1D_CombatActions,
-  table1D_DamageBonus,
+  table1cSAL,
+  table1aBaseSpeed,
+  table1bMaxSpeed,
+  table1dCombatActions,
+  table1dDamageBonus,
 } = require('./tables');
 
-const findSAL = level => table1C_SAL[level] * 1;
+const findSAL = level => table1cSAL[level] * 1;
 
 const findKey = (enc, arr) => {
   let result;
@@ -22,19 +22,19 @@ const findKey = (enc, arr) => {
 };
 
 const calcBaseSpeed = (str, enc) => {
-  const index = findKey(enc, table1A_BaseSpeed.lbs);
-  if (table1A_BaseSpeed[str][index] === undefined) {
+  const index = findKey(enc, table1aBaseSpeed.lbs);
+  if (table1aBaseSpeed[str][index] === undefined) {
     return 0;
   }
-  return table1A_BaseSpeed[str][index] * 1;
+  return table1aBaseSpeed[str][index] * 1;
 };
 
 const calcMaxSpeed = (agi, baseSpd) => {
-  const index = findKey(baseSpd, table1B_MaxSpeed.baseSpeed);
+  const index = findKey(baseSpd, table1bMaxSpeed.baseSpeed);
   if (baseSpd === 0) {
     return 0;
   }
-  return table1B_MaxSpeed[agi][index] * 1;
+  return table1bMaxSpeed[agi][index] * 1;
 };
 
 const calcISF = (int, sal) => {
@@ -47,8 +47,8 @@ const calcCombatActions = (ms, isf) => {
   if (ms === 0) {
     return 0;
   }
-  const index = findKey(isf, table1D_CombatActions.isf);
-  return table1D_CombatActions[ms][index] * 1;
+  const index = findKey(isf, table1dCombatActions.isf);
+  return table1dCombatActions[ms][index] * 1;
 };
 
 const calcKV = (wil, highestSkill) => Math.floor(0.5 * wil) * highestSkill;
@@ -57,8 +57,8 @@ const calcDB = (ms, asf) => {
   if (ms === 0) {
     return 0;
   }
-  const index = findKey(asf, table1D_DamageBonus.asf);
-  return table1D_DamageBonus[ms][index] * 1;
+  const index = findKey(asf, table1dDamageBonus.asf);
+  return table1dDamageBonus[ms][index] * 1;
 };
 
 const calculateStateObject = (characterStats, weight) => {

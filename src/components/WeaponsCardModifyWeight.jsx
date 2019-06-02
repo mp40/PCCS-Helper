@@ -10,6 +10,7 @@ class WeaponsCardModifyWeight extends Component {
       modWeightNumber: '',
       warning: false,
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleWeightNote(event) {
@@ -70,7 +71,7 @@ class WeaponsCardModifyWeight extends Component {
         <ButtonStandard
           name="Submit"
           id="submitModifiedWeight"
-          onClick={this.handleSubmit.bind(this)}
+          onClick={this.handleSubmit}
         />
         {warning
           ? <div style={{ color: 'red', fontWeight: 'bold' }}>Please Enter Valid Data</div>
