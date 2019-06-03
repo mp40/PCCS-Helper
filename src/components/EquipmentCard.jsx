@@ -158,24 +158,23 @@ class EquipmentCard extends Component {
           </tbody>
         </table>
         {showEquipment
-          ? (
-            <EquipmentDropdown
-              closeShowEquipment={this.closeShowEquipment}
-              toggleFilters={this.toggleFilters}
-              handleTags={this.handleTags}
-              showFilters={showFilters}
-              filteredTags={filteredTags}
-            />
+          && (
+          <EquipmentDropdown
+            closeShowEquipment={this.closeShowEquipment}
+            toggleFilters={this.toggleFilters}
+            handleTags={this.handleTags}
+            showFilters={showFilters}
+            filteredTags={filteredTags}
+          />
           )
-          : null}
+        }
         {showCustomInput
-          ? (
+          && (
             <CustomEquipmentModal
               toggleCustomEquipment={this.toggleCustomEquipment}
             />
           )
-          : null
-            }
+        }
       </div>
     );
   }

@@ -17,7 +17,6 @@ class CustomEquipmentModal extends Component {
       errorMsgInvalidEntry: false,
       errorMsgExistsInArray: false,
     };
-    // this.submitEquipment = this.submitEquipment.bind(this);
   }
 
   handleChange = (keyToChange, event) => {
@@ -115,14 +114,12 @@ class CustomEquipmentModal extends Component {
             />
 
             {errorMsgInvalidEntry
-              ? <div style={{ color: 'red' }}>Please Enter Valid Equipment Name and Weight</div>
-              : null
-                    }
+              && <div style={{ color: 'red' }}>Please Enter Valid Equipment Name and Weight</div>
+            }
 
             {errorMsgExistsInArray
-              ? <div style={{ color: 'red' }}>Already In List, Please Enter Valid Equipment Name</div>
-              : null
-                    }
+              && <div style={{ color: 'red' }}>Already In List, Please Enter Valid Equipment Name</div>
+            }
 
           </div>
         </div>

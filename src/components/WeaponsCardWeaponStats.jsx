@@ -72,7 +72,7 @@ class WeaponsCardWeaponStats extends Component {
             </table>
 
             {modifyFirearm
-              ? (
+                && (
                 <WeaponsCardModifyWeapon
                   gunObj={gunObj}
                   createCustomMag={createCustomMag}
@@ -84,8 +84,8 @@ class WeaponsCardWeaponStats extends Component {
                   handleModifyFirearmWeight={handleModifyFirearmWeight}
                   removeAllGunMods={removeAllGunMods}
                 />
-              )
-              : null}
+                )
+            }
           </div>
         </div>
       );

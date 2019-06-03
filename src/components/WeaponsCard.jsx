@@ -176,15 +176,15 @@ class WeaponsCard extends Component {
         />
 
         {showFirearms
-          ? (
+          && (
             <WeaponsCardSelectModal
               closeShowFirearms={this.toggleShowFirearms}
             />
           )
-          : null}
+        }
 
         {modifyFirearm
-          ? (
+          && (
             <div className="equipmentModalContainer">
               <WeaponsCardWeaponStats
                 gunObj={gunToModify}
@@ -200,7 +200,7 @@ class WeaponsCard extends Component {
               />
             </div>
           )
-          : null}
+        }
 
       </div>
 

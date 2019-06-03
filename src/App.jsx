@@ -11,11 +11,11 @@ const App = ({ currentView }) => (
     <header className="App-header">
       <NavBar />
       {currentView === 'home'
-        ? <HomePage />
-        : null}
+        && <HomePage />
+      }
       {currentView === 'createChar'
-        ? <CreateChar />
-        : null}
+        && <CreateChar />
+      }
     </header>
   </div>
 );

@@ -73,8 +73,8 @@ class WeaponsCardModifyWeight extends Component {
           onClick={this.handleSubmit}
         />
         {warning
-          ? <div style={{ color: 'red', fontWeight: 'bold' }}>Please Enter Valid Data</div>
-          : null}
+          && <div style={{ color: 'red', fontWeight: 'bold' }}>Please Enter Valid Data</div>
+        }
       </div>
     );
   }

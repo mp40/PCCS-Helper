@@ -11,12 +11,12 @@ function NavBar({ currentView, totalWeight }) {
         PCCS
       </div>
       {currentView === 'createChar'
-        ? (
+        && (
           <NavBarCreateChar
             totalWeight={totalWeight}
           />
         )
-        : null}
+      }
     </div>
   );
 }

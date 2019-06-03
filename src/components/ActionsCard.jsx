@@ -45,19 +45,13 @@ const ActionsCard = ({ combatStats }) => {
           <tbody>
             <tr>
               <td style={{ width: '33.33%' }}>
-                BS
-                {' '}
-                {combatStats.baseSpeed}
+                {`BS ${combatStats.baseSpeed}`}
               </td>
               <td style={{ width: '33.33%' }}>
-                MS
-                {' '}
-                {combatStats.maxSpeed}
+                {`MS ${combatStats.maxSpeed}`}
               </td>
               <td style={{ width: '33.33%' }}>
-                DB
-                {' '}
-                {combatStats.damageBonus}
+                {`DB ${combatStats.damageBonus}`}
               </td>
             </tr>
           </tbody>

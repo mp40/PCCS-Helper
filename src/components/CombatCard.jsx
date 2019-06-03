@@ -11,12 +11,11 @@ class CombatCard extends Component {
     };
   }
 
-  settingAttribute(key) {
+  settingAttribute = (key) => {
     this.setState({ toggleEditValue: key });
   }
 
-
-  handleUpdateAttributes(attribute, value) {
+  handleUpdateAttributes = (attribute, value) => {
     const parsedValue = parseInt(value, 10);
     const { characterStats, totalWeight } = this.props;
     if (parsedValue < 0 || typeof parsedValue !== 'number' || Number.isNaN(parsedValue)) {
