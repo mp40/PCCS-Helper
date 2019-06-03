@@ -37,11 +37,7 @@ const calcMaxSpeed = (agi, baseSpd) => {
   return table1bMaxSpeed[agi][index] * 1;
 };
 
-const calcISF = (int, sal) => {
-  int *= 1;
-  sal *= 1;
-  return int + sal;
-};
+const calcISF = (int, sal) => int + sal;
 
 const calcCombatActions = (ms, isf) => {
   if (ms === 0) {
@@ -87,31 +83,24 @@ const calculateStateObject = (characterStats, weight) => {
 };
 
 function actionsPerImpulse(actions) {
-  const impulseArray = [0, 0, 0, 0];
-  let actionsCopy = actions;
-  while (actionsCopy > 0) {
-    if (actionsCopy % 4 === 0) {
-      impulseArray[1] += 1;
-      actionsCopy -= 1;
-    }
+  let impulse1 = Math.floor(actions / 4);
+  const impulse2 = Math.floor(actions / 4);
+  let impulse3 = Math.floor(actions / 4);
+  let impulse4 = Math.floor(actions / 4);
 
-    if (actionsCopy % 4 === 3) {
-      impulseArray[3] += 1;
-      actionsCopy -= 1;
-    }
-
-    if (actionsCopy % 4 === 2) {
-      impulseArray[2] += 1;
-      actionsCopy -= 1;
-    }
-
-    if (actionsCopy % 4 === 1) {
-      impulseArray[0] += 1;
-      actionsCopy -= 1;
-    }
+  if (actions % 4 > 0) {
+    impulse1 += 1;
   }
 
-  return impulseArray;
+  if (actions % 4 > 1) {
+    impulse3 += 1;
+  }
+
+  if (actions % 4 > 2) {
+    impulse4 += 1;
+  }
+
+  return [impulse1, impulse2, impulse3, impulse4];
 }
 
 module.exports = {
