@@ -1,6 +1,4 @@
-import { mountAppWithStore } from '../helpers/testHelpers';
-import { storeWithCreateCharacterView } from '../helpers/testHelpers';
-import { testM1911A1WithMods } from '../helpers/testHelpers';
+import { mountAppWithStore, storeWithCreateCharacterView, testM1911A1WithMods } from '../helpers/testHelpers';
 
 describe('The Weapons Card', () => {
   const gunList = wrapper => wrapper.find('.equipmentListBody');
@@ -74,8 +72,6 @@ describe('The Weapons Card', () => {
   });
   describe('firearms edge cases', () => {
     let wrapper;
-    const gunList = () => wrapper.find('.equipmentListBody');
-    const selectedWeapons = () => wrapper.find('#characterWeaponList');
     beforeEach(() => {
       wrapper = mountAppWithStore(storeWithCreateCharacterView());
       wrapper.find('#addFirearm').simulate('click');
@@ -127,8 +123,6 @@ describe('The Weapons Card', () => {
   });
   describe('modifying weapons', () => {
     let wrapper;
-    const gunList = () => wrapper.find('.equipmentListBody');
-    const selectedWeapons = () => wrapper.find('#characterWeaponList');
     const modifyPanel = () => wrapper.find('.modifyWeaponPanel');
     beforeEach(() => {
       wrapper = mountAppWithStore(storeWithCreateCharacterView());
@@ -162,27 +156,22 @@ describe('The Weapons Card', () => {
       expect(modifyPanel().find('.modifyMagazines').childAt(3).text()).toContain('Mag');
     });
     describe('custom magazine gaurd clases', () => {
-      let wrapper;
-      const gunList = () => wrapper.find('.equipmentListBody');
-      const selectedWeapons = () => wrapper.find('#characterWeaponList');
-      const modifyPanel = () => wrapper.find('.modifyWeaponPanel');
-
-      const enterMagCapacity = (wrapper) => {
+      const enterMagCapacity = () => {
         wrapper.find('#customMagCapacityInput').simulate('change', {
           target: { value: '18' },
         });
       };
-      const enterMagType = (wrapper) => {
+      const enterMagType = () => {
         wrapper.find('#customMagTypeInput').simulate('change', {
           target: { value: 'Mag' },
         });
       };
-      const enterMagWeight = (wrapper) => {
+      const enterMagWeight = () => {
         wrapper.find('#customMagWeightInput').simulate('change', {
           target: { value: '.65' },
         });
       };
-      const enterMagWeightAndType = (wrapper) => {
+      const enterMagWeightAndType = () => {
         enterMagWeight(wrapper);
         enterMagType(wrapper);
       };
@@ -266,11 +255,6 @@ describe('The Weapons Card', () => {
       expect(wrapper.text()).not.toContain('added torch');
     });
     describe('modify weapon weight gaurd clauses', () => {
-      let wrapper;
-      const gunList = () => wrapper.find('.equipmentListBody');
-      const selectedWeapons = () => wrapper.find('#characterWeaponList');
-      const modifyPanel = () => wrapper.find('.modifyWeaponPanel');
-
       beforeEach(() => {
         wrapper = mountAppWithStore(storeWithCreateCharacterView());
         wrapper.find('#addFirearm').simulate('click');
@@ -297,9 +281,7 @@ describe('The Weapons Card', () => {
       });
     });
     it('should be possible to remove all mods', () => {
-      const wrapper = mountAppWithStore(storeWithCreateCharacterView(testM1911A1WithMods()));
-      const modifyPanel = () => wrapper.find('.modifyWeaponPanel');
-      const selectedWeapons = () => wrapper.find('#characterWeaponList');
+      wrapper = mountAppWithStore(storeWithCreateCharacterView(testM1911A1WithMods()));
       selectedWeapons(wrapper).find('#modifyM1911A1').simulate('click');
       modifyPanel().find('.removeAllMods').simulate('click');
       expect(modifyPanel().text()).not.toContain('TestMag');

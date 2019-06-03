@@ -20,17 +20,6 @@ const testRifle = () => ({
   mag: [{ weight: 1, qty: 1 }, { weight: 1.5, qty: 2 }],
 });
 
-const oldPistol = () => ({
-  name: 'pistol',
-  qty: 1,
-});
-
-const newPistol = () => ({
-  name: 'pistol',
-  qty: 2,
-});
-
-
 const belt = {
   name: 'belt',
   weight: 0.7,

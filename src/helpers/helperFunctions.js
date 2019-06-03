@@ -37,11 +37,7 @@ const calcMaxSpeed = (agi, baseSpd) => {
   return table1bMaxSpeed[agi][index] * 1;
 };
 
-const calcISF = (int, sal) => {
-  int *= 1;
-  sal *= 1;
-  return int + sal;
-};
+const calcISF = (int, sal) => int + sal;
 
 const calcCombatActions = (ms, isf) => {
   if (ms === 0) {
