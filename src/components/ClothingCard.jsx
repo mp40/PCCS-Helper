@@ -77,6 +77,7 @@ class ClothingCard extends Component {
           </div>
         );
       }
+      return null;
     }
 }
 

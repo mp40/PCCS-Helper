@@ -10,18 +10,17 @@ class WeaponsCardModifyWeight extends Component {
       modWeightNumber: '',
       warning: false,
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleWeightNote(event) {
+  handleWeightNote = (event) => {
     this.setState({ modWeightNote: event.target.value });
   }
 
-  handleWeightNumber(event) {
+  handleWeightNumber = (event) => {
     this.setState({ modWeightNumber: event.target.value });
   }
 
-  handleSubmit() {
+  handleSubmit = () => {
     const { modWeightNumber, modWeightNote } = this.state;
     const { handleModifyFirearmWeight } = this.props;
 
@@ -74,8 +73,8 @@ class WeaponsCardModifyWeight extends Component {
           onClick={this.handleSubmit}
         />
         {warning
-          ? <div style={{ color: 'red', fontWeight: 'bold' }}>Please Enter Valid Data</div>
-          : null}
+          && <div style={{ color: 'red', fontWeight: 'bold' }}>Please Enter Valid Data</div>
+        }
       </div>
     );
   }

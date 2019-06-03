@@ -11,11 +11,11 @@ class AttributeCard extends Component {
     };
   }
 
-  settingAttribute(key) {
+  settingAttribute = (key) => {
     this.setState({ toggleEditValue: key });
   }
 
-  handleUpdateAttributes(attribute, value) {
+  handleUpdateAttributes = (attribute, value) => {
     const { characterStats, totalWeight } = this.props;
     const parsedValue = parseInt(value, 10);
 

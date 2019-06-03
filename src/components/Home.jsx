@@ -4,23 +4,21 @@ import PropTypes from 'prop-types';
 import { selectCurrentView } from '../actions';
 import './Home.css';
 
-function HomePage(props) {
-  return (
-    <div style={{ textAlign: 'center' }}>
-      <h1>
+const HomePage = props => (
+  <div style={{ textAlign: 'center' }}>
+    <h1>
             Welcome To Phoenix Command Tools
-      </h1>
-      <button
-        type="button"
-        id="activateCreateChar"
-        className="buttonStandard"
-        onClick={() => props.selectCurrentView('createChar')}
-      >
+    </h1>
+    <button
+      type="button"
+      id="activateCreateChar"
+      className="buttonStandard"
+      onClick={() => props.selectCurrentView('createChar')}
+    >
         Create Character
-      </button>
-    </div>
-  );
-}
+    </button>
+  </div>
+);
 
 HomePage.propTypes = {
   selectCurrentView: PropTypes.func,

@@ -19,37 +19,31 @@ class EquipmentCard extends Component {
       showFilters: false,
       filteredTags: [],
     };
-    this.toggleShowEquipment = this.toggleShowEquipment.bind(this);
-    this.toggleCustomEquipment = this.toggleCustomEquipment.bind(this);
-    this.handleRemoveAllEquipment = this.handleRemoveAllEquipment.bind(this);
-    this.closeShowEquipment = this.closeShowEquipment.bind(this);
-    this.toggleFilters = this.toggleFilters.bind(this);
-    this.handleTags = this.handleTags.bind(this);
   }
 
-  toggleShowEquipment() {
+  toggleShowEquipment = () => {
     const { showEquipment } = this.state;
     this.setState({ showEquipment: !showEquipment });
   }
 
-  toggleCustomEquipment() {
+  toggleCustomEquipment = () => {
     const { showCustomInput } = this.state;
     this.setState({ showCustomInput: !showCustomInput });
   }
 
-  closeShowEquipment() {
+  closeShowEquipment = () => {
     this.setState({
       showEquipment: false,
       showFilters: false,
     });
   }
 
-  toggleFilters() {
+  toggleFilters = () => {
     const { showFilters } = this.state;
     this.setState({ showFilters: !showFilters });
   }
 
-  handleTags(tag) {
+  handleTags = (tag) => {
     const { filteredTags } = this.state;
     if (filteredTags.includes(tag)) {
       this.unfilterTag(tag);
@@ -58,33 +52,33 @@ class EquipmentCard extends Component {
     }
   }
 
-  filterTag(tag) {
+  filterTag = (tag) => {
     const { filteredTags } = this.state;
     const tags = filteredTags;
     tags.push(tag);
     this.setState({ filteredTags: tags });
   }
 
-  unfilterTag(tag) {
+  unfilterTag = (tag) => {
     const { filteredTags } = this.state;
     let tags = filteredTags;
     tags = tags.filter(element => element !== tag);
     this.setState({ filteredTags: tags });
   }
 
-  handleRemoveEquipment(equipObj) {
+  handleRemoveEquipment = (equipObj) => {
     const { totalWeight, gear, characterStats } = this.props;
     const newData = removeEquipment(totalWeight, gear.equipment, equipObj);
     this.props.modifyEquipment(newData.totalWeight, newData.equipArray, characterStats);
   }
 
-  handleRemoveAllEquipment() {
+  handleRemoveAllEquipment = () => {
     const { totalWeight, gear, characterStats } = this.props;
     const newWeight = removeAllEquipment(totalWeight, gear.equipment);
     this.props.modifyEquipment(newWeight, [], characterStats);
   }
 
-  handleIncrementEquipmentQty(equipObj, modifier) {
+  handleIncrementEquipmentQty = (equipObj, modifier) => {
     const { totalWeight, gear, characterStats } = this.props;
     const newData = incrementEquipmentQty(totalWeight, gear.equipment, equipObj, modifier);
     this.props.modifyEquipment(newData.totalWeight, newData.equipArray, characterStats);
@@ -164,24 +158,23 @@ class EquipmentCard extends Component {
           </tbody>
         </table>
         {showEquipment
-          ? (
-            <EquipmentDropdown
-              closeShowEquipment={this.closeShowEquipment}
-              toggleFilters={this.toggleFilters}
-              handleTags={this.handleTags}
-              showFilters={showFilters}
-              filteredTags={filteredTags}
-            />
+          && (
+          <EquipmentDropdown
+            closeShowEquipment={this.closeShowEquipment}
+            toggleFilters={this.toggleFilters}
+            handleTags={this.handleTags}
+            showFilters={showFilters}
+            filteredTags={filteredTags}
+          />
           )
-          : null}
+        }
         {showCustomInput
-          ? (
+          && (
             <CustomEquipmentModal
               toggleCustomEquipment={this.toggleCustomEquipment}
             />
           )
-          : null
-            }
+        }
       </div>
     );
   }

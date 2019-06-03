@@ -7,7 +7,7 @@ import ButtonSlim from './buttons/ButtonSlim';
 import './WeaponsCard.css';
 
 class WeaponsCardModifyWeapon extends Component {
-  setPrimaryMag(index) {
+  setPrimaryMag = (index) => {
     const { gunObj } = this.props;
 
     const newGunObj = gunObj;
@@ -19,11 +19,11 @@ class WeaponsCardModifyWeapon extends Component {
     this.props.handleModifyFirearm(newGunObj);
   }
 
-  setFirearmWeight(note, weightMod) {
+  setFirearmWeight = (note, weightMod) => {
     this.props.handleModifyFirearmWeight(note, weightMod);
   }
 
-  handleRemoveMod(noteObj) {
+  handleRemoveMod = (noteObj) => {
     const { gunObj } = this.props;
     const newGunObj = gunObj;
     newGunObj.weight += noteObj.weightMod * -1;
@@ -90,7 +90,7 @@ class WeaponsCardModifyWeapon extends Component {
 
           </div>
           {gunObj.modNotes
-            ? gunObj.modNotes.map(noteObj => (
+            && gunObj.modNotes.map(noteObj => (
               <div key={`${noteObj.note}${noteObj.weightMod}`}>
                 <span>{noteObj.note}</span>
                 <span>
@@ -105,7 +105,7 @@ class WeaponsCardModifyWeapon extends Component {
                 </button>
               </div>
             ))
-            : null}
+          }
         </div>
       );
     }
@@ -127,6 +127,7 @@ class WeaponsCardModifyWeapon extends Component {
         </div>
       );
     }
+    return null;
   }
 }
 
