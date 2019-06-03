@@ -17,10 +17,10 @@ class CustomEquipmentModal extends Component {
       errorMsgInvalidEntry: false,
       errorMsgExistsInArray: false,
     };
-    this.submitEquipment = this.submitEquipment.bind(this);
+    // this.submitEquipment = this.submitEquipment.bind(this);
   }
 
-  handleChange(keyToChange, event) {
+  handleChange = (keyToChange, event) => {
     if (keyToChange === 'name') {
       this.setState({ equipmentName: event.target.value });
     }
@@ -29,7 +29,7 @@ class CustomEquipmentModal extends Component {
     }
   }
 
-  submitEquipment() {
+  submitEquipment = () => {
     const { gear, totalWeight, characterStats } = this.props;
     const { equipmentName, equipmentWeight } = this.state;
     const name = equipmentName;

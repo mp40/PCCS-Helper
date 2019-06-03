@@ -9,7 +9,7 @@ const filterEquipment = (findType) => {
   const results = {};
 
   for (const obj in equipment) {
-    for (let i = 0; i < findType.length; i++) {
+    for (let i = 0; i < findType.length; i += 1) {
       if (equipment[obj].tags.includes(findType[i])) {
         results[obj] = equipment[obj];
       }

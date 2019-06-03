@@ -10,18 +10,17 @@ class WeaponsCardModifyWeight extends Component {
       modWeightNumber: '',
       warning: false,
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleWeightNote(event) {
+  handleWeightNote = (event) => {
     this.setState({ modWeightNote: event.target.value });
   }
 
-  handleWeightNumber(event) {
+  handleWeightNumber = (event) => {
     this.setState({ modWeightNumber: event.target.value });
   }
 
-  handleSubmit() {
+  handleSubmit = () => {
     const { modWeightNumber, modWeightNote } = this.state;
     const { handleModifyFirearmWeight } = this.props;
 
