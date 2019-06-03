@@ -4,11 +4,11 @@ describe('Character Generation', () => {
   const wrapper = mountAppWithStore();
   wrapper.find('#activateCreateChar').simulate('click');
 
-  function inputAttribute(attributeId, newValue) {
+  const inputAttribute = (attributeId, newValue) => {
     wrapper.find(attributeId).simulate('click');
     wrapper.find(`${attributeId} input`).simulate('keyUp', { target: { value: newValue },
       keyCode: 13 });
-  }
+  };
 
   it('should render Character Generation page', () => {
     expect(wrapper.text()).toContain('Attribute');
@@ -124,12 +124,12 @@ describe('Character Generation', () => {
   describe('the equipment list', () => {
     const wrapper = mountAppWithStore();
     wrapper.find('#activateCreateChar').simulate('click');
-    function addEquipment(wrapper) {
+    const addEquipment = (wrapper) => {
       wrapper.find('#activateCreateChar').simulate('click');
       wrapper.find('#addEquipment').simulate('click');
       const requiredEquipment = wrapper.find('.equipmentListBody').at(0).childAt(0).childAt(0);
       requiredEquipment.simulate('click');
-    }
+    };
     it('should render', () => {
       expect(wrapper.text()).toContain('Equipment');
     });
@@ -223,10 +223,10 @@ describe('Character Generation', () => {
       expect(wrapper.text()).toContain(5);
     });
     describe('adding custom equipment', () => {
-      function goToCustomEquipment(wrapper) {
+      const goToCustomEquipment = (wrapper) => {
         wrapper.find('#activateCreateChar').simulate('click');
         wrapper.find('#toggleCustomEquipment').simulate('click');
-      }
+      };
       it('should be posible to add custom equipment to the list', () => {
         const wrapper = mountAppWithStore();
         goToCustomEquipment(wrapper);

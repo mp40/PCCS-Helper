@@ -82,7 +82,7 @@ const calculateStateObject = (characterStats, weight) => {
   };
 };
 
-function actionsPerImpulse(actions) {
+const actionsPerImpulse = (actions) => {
   let impulse1 = Math.floor(actions / 4);
   const impulse2 = Math.floor(actions / 4);
   let impulse3 = Math.floor(actions / 4);
@@ -101,7 +101,7 @@ function actionsPerImpulse(actions) {
   }
 
   return [impulse1, impulse2, impulse3, impulse4];
-}
+};
 
 module.exports = {
   calcBaseSpeed,

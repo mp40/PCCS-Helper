@@ -4,22 +4,20 @@ import PropTypes from 'prop-types';
 import NavBarCreateChar from './NavBarCreateChar';
 import './NavBar.css';
 
-function NavBar({ currentView, totalWeight }) {
-  return (
-    <div className="menuBar">
-      <div className="menuTitle">
+const NavBar = ({ currentView, totalWeight }) => (
+  <div className="menuBar">
+    <div className="menuTitle">
         PCCS
-      </div>
-      {currentView === 'createChar'
+    </div>
+    {currentView === 'createChar'
         && (
           <NavBarCreateChar
             totalWeight={totalWeight}
           />
         )
       }
-    </div>
-  );
-}
+  </div>
+);
 
 NavBar.propTypes = {
   totalWeight: PropTypes.number,

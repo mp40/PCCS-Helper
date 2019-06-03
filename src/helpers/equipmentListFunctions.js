@@ -19,7 +19,7 @@ const filterEquipment = (findType) => {
   return results;
 };
 
-function createArrayOfEquipment(equipmentList) {
+const createArrayOfEquipment = (equipmentList) => {
   const equipmentArray = [];
   for (const obj in equipmentList) {
     const newObj = {
@@ -29,16 +29,16 @@ function createArrayOfEquipment(equipmentList) {
     equipmentArray.push(newObj);
   }
   return equipmentArray;
-}
+};
 
-function createFilterSet(equipmentList) {
+const createFilterSet = (equipmentList) => {
   const tagArray = [];
 
   for (const obj in equipmentList) {
     tagArray.push(equipmentList[obj].tags);
   }
   return Array.from(new Set(tagArray.flat()));
-}
+};
 
 export {
   findGear,
