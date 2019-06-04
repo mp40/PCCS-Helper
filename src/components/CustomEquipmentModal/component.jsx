@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { modifyEquipment } from '../actions';
-import { addEquipment } from '../helpers/actionHelpers';
+import { addEquipment } from '../../helpers/actionHelpers';
 
-import ButtonStandard from '../helpers/buttons/ButtonStandard';
+import ButtonStandard from '../../helpers/buttons/ButtonStandard';
 
 import './CustomEquipmentModal.css';
 
@@ -29,7 +27,7 @@ class CustomEquipmentModal extends Component {
   }
 
   submitEquipment = () => {
-    const { gear, totalWeight, characterStats } = this.props;
+    const { gear, totalWeight, characterStats, modifyEquipment, toggleCustomEquipment } = this.props;
     const { equipmentName, equipmentWeight } = this.state;
     const name = equipmentName;
     const weight = equipmentWeight * 1;
@@ -59,8 +57,8 @@ class CustomEquipmentModal extends Component {
     };
 
     const newData = addEquipment(totalWeight, gear.equipment, equipObj);
-    this.props.modifyEquipment(newData.totalWeight, newData.equipArray, characterStats);
-    this.props.toggleCustomEquipment();
+    modifyEquipment(newData.totalWeight, newData.equipArray, characterStats);
+    toggleCustomEquipment();
   }
 
   render() {
@@ -129,6 +127,7 @@ class CustomEquipmentModal extends Component {
 }
 
 CustomEquipmentModal.propTypes = {
+  modifyEquipment: PropTypes.func,
   gear: PropTypes.shape({
     uniform: PropTypes.string,
     equipment: PropTypes.arrayOf(PropTypes.object),
@@ -140,10 +139,4 @@ CustomEquipmentModal.propTypes = {
 
 };
 
-const mapStateToProps = state => ({
-  totalWeight: state.totalWeight,
-  characterStats: state.characterStats,
-  gear: state.gear,
-});
-
-export default connect(mapStateToProps, { modifyEquipment })(CustomEquipmentModal);
+export default CustomEquipmentModal;
