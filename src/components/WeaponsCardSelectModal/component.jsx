@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import WeaponsCardWeaponStats from './WeaponsCardWeaponStats';
-import WeaponsModalSelection from './WeaponsModalSelection';
-import { modifyFirearmList } from '../actions';
+import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
+import WeaponsModalSelection from '../WeaponsModalSelection';
 
-import { rifles, pistols, smgs, mgs, sniperRifles, shotguns } from '../helpers/firearms';
+import { rifles, pistols, smgs, mgs, sniperRifles, shotguns } from '../../data/firearms';
 
 class WeaponsCardSelectModal extends Component {
   constructor(props) {
@@ -17,7 +15,7 @@ class WeaponsCardSelectModal extends Component {
   }
 
     handleAddFirearm = (gunObj) => {
-      const { gear, totalWeight, characterStats } = this.props;
+      const { gear, totalWeight, characterStats, modifyFirearmList } = this.props;
 
       const gunAlreadyInList = gear.firearms.filter(obj => obj.name === gunObj.name).length;
 
@@ -32,7 +30,7 @@ class WeaponsCardSelectModal extends Component {
 
       const newFirearmsArray = [...gear.firearms, ...[newGunObj]];
 
-      this.props.modifyFirearmList(newWeight, newFirearmsArray, attributeObj);
+      modifyFirearmList(newWeight, newFirearmsArray, attributeObj);
     }
 
     handleShowGunStats = (gunObj) => {
@@ -70,6 +68,7 @@ class WeaponsCardSelectModal extends Component {
 }
 
 WeaponsCardSelectModal.propTypes = {
+  modifyFirearmList: PropTypes.func,
   closeShowFirearms: PropTypes.func,
   totalWeight: PropTypes.number,
   gear: PropTypes.shape({
@@ -80,10 +79,4 @@ WeaponsCardSelectModal.propTypes = {
   characterStats: PropTypes.objectOf(PropTypes.number),
 };
 
-const mapStateToProps = state => ({
-  totalWeight: state.totalWeight,
-  characterStats: state.characterStats,
-  gear: state.gear,
-});
-
-export default connect(mapStateToProps, { modifyFirearmList })(WeaponsCardSelectModal);
+export default WeaponsCardSelectModal;

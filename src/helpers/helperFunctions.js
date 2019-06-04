@@ -4,7 +4,7 @@ const {
   table1bMaxSpeed,
   table1dCombatActions,
   table1dDamageBonus,
-} = require('./tables');
+} = require('../data/tables');
 
 const findSAL = level => table1cSAL[level] * 1;
 

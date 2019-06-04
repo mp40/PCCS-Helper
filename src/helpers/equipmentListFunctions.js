@@ -1,4 +1,4 @@
-const equipment = require('./equipmentList');
+const equipment = require('../data/equipmentList');
 
 const findGear = (findName => equipment[findName]);
 

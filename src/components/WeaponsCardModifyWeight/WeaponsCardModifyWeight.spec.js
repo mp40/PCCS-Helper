@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import WeaponsCardModifyWeight from './WeaponsCardModifyWeight';
+import WeaponsCardModifyWeight from './index';
 
 describe('the <WeaponsCardCustomMag/> component', () => {
   const wrapper = shallow(<WeaponsCardModifyWeight />);
