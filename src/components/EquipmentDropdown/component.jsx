@@ -1,25 +1,22 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { modifyEquipment } from '../actions';
-import ButtonStandard from '../helpers/buttons/ButtonStandard';
+import ButtonStandard from '../../helpers/buttons/ButtonStandard';
+import { createArrayOfEquipment, filterEquipment, createFilterSet } from '../../helpers/equipmentListFunctions';
+import { addEquipment } from '../../helpers/actionHelpers';
 import './EquipmentDropdown.css';
 
-import { createArrayOfEquipment, filterEquipment, createFilterSet } from '../helpers/equipmentListFunctions';
-import { addEquipment } from '../helpers/actionHelpers';
-
-const equipment = require('../helpers/equipmentList');
+const equipment = require('../../helpers/equipmentList');
 
 
 class EquipmentDropdown extends Component {
   handleAddEquipment(equipObj) {
-    const { gear, totalWeight, characterStats } = this.props;
+    const { gear, totalWeight, characterStats, modifyEquipment } = this.props;
     const arrayContainsObj = gear.equipment.filter(obj => obj.name === equipObj.name);
     if (arrayContainsObj.length) {
       return;
     }
     const newData = addEquipment(totalWeight, gear.equipment, equipObj);
-    this.props.modifyEquipment(newData.totalWeight, newData.equipArray, characterStats);
+    modifyEquipment(newData.totalWeight, newData.equipArray, characterStats);
   }
 
   render() {
@@ -90,6 +87,7 @@ class EquipmentDropdown extends Component {
 }
 
 EquipmentDropdown.propTypes = {
+  modifyEquipment: PropTypes.func,
   toggleFilters: PropTypes.func,
   closeShowEquipment: PropTypes.func,
   handleTags: PropTypes.func,
@@ -104,13 +102,4 @@ EquipmentDropdown.propTypes = {
   showFilters: PropTypes.bool,
 };
 
-const mapStateToProps = state => ({
-  currentView: state.currentView,
-  totalWeight: state.totalWeight,
-  characterStats: state.characterStats,
-  gear: {
-    equipment: state.gear.equipment,
-  },
-});
-
-export default connect(mapStateToProps, { modifyEquipment })(EquipmentDropdown);
+export default EquipmentDropdown;
