@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import WeaponsCardWeaponStats from './WeaponsCardWeaponStats';
-import { testM1911A1, testM203, testFAMAS, testRemington } from '../helpers/testHelpers';
+import WeaponsCardWeaponStats from './index';
+import { testM1911A1, testM203, testFAMAS, testRemington } from '../../helpers/testHelpers';
 
 describe('<WeaponsCardWeaponStats/> component', () => {
   const wrapper = mount(<WeaponsCardWeaponStats gunObj={testM1911A1()} />);

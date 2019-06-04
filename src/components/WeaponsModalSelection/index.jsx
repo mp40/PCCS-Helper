@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ButtonStandard from '../helpers/buttons/ButtonStandard';
-import ButtonInfo from '../helpers/buttons/ButtonInfo';
+import ButtonStandard from '../../helpers/buttons/ButtonStandard';
+import ButtonInfo from '../../helpers/buttons/ButtonInfo';
 
 const WeaponsModalSelection = ({ firearmsArray, closeShowFirearms, handleShowGunStats, handleAddFirearm }) => {
   const newFirearmsArray = firearmsArray;

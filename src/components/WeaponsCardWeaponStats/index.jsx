@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import WeaponDataRow from './WeaponDataRow';
-import ButtonDeleteX from '../helpers/buttons/ButtonDeleteX';
-import WeaponsCardModifyWeapon from './WeaponsCardModifyWeapon';
-import { buildArrayForGunTable } from '../helpers/componentHelpers';
-import './WeaponsCard/WeaponsCard.css';
+import WeaponDataRow from '../WeaponDataRow';
+import ButtonDeleteX from '../../helpers/buttons/ButtonDeleteX';
+import WeaponsCardModifyWeapon from '../WeaponsCardModifyWeapon';
+import { buildArrayForGunTable } from '../../helpers/componentHelpers';
+import '../WeaponsCard/WeaponsCard.css';
 
 class WeaponsCardWeaponStats extends Component {
     getRangeBrackets = (gunObj) => {
