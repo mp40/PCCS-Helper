@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { combatStatsShape } from '../../helpers/proptypeShapes';
 
 const { actionsPerImpulse } = require('../../helpers/helperFunctions');
 
@@ -64,17 +64,7 @@ const ActionsCard = ({ combatStats }) => {
 };
 
 ActionsCard.propTypes = {
-  combatStats: PropTypes.shape({
-    ASF: PropTypes.number,
-    CE: PropTypes.number,
-    ISF: PropTypes.number,
-    SAL: PropTypes.number,
-    baseSpeed: PropTypes.number,
-    combatActions: PropTypes.arrayOf(PropTypes.number),
-    damageBonus: PropTypes.number,
-    knockoutValue: PropTypes.number,
-    maxSpeed: PropTypes.number,
-  }),
+  combatStats: combatStatsShape.isRequired,
 };
 
 const mapStateToProps = state => ({

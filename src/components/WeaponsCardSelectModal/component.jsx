@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { gearShape } from '../../helpers/proptypeShapes';
 import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
 import WeaponsModalSelection from '../WeaponsModalSelection';
 
@@ -71,11 +72,7 @@ WeaponsCardSelectModal.propTypes = {
   modifyFirearmList: PropTypes.func,
   closeShowFirearms: PropTypes.func,
   totalWeight: PropTypes.number,
-  gear: PropTypes.shape({
-    uniform: PropTypes.string,
-    equipment: PropTypes.arrayOf(PropTypes.object),
-    firearms: PropTypes.arrayOf(PropTypes.object),
-  }),
+  gear: gearShape,
   characterStats: PropTypes.objectOf(PropTypes.number),
 };
 

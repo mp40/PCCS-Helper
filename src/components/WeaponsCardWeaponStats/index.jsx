@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { gunObjShape } from '../../helpers/proptypeShapes';
 import WeaponDataRow from '../WeaponDataRow';
 import ButtonDeleteX from '../../helpers/buttons/ButtonDeleteX';
 import WeaponsCardModifyWeapon from '../WeaponsCardModifyWeapon';
@@ -101,24 +102,7 @@ WeaponsCardWeaponStats.propTypes = {
   handleModifyFirearm: PropTypes.func,
   modifyFirearm: PropTypes.bool,
   handleShowGunStats: PropTypes.func,
-  gunObj: PropTypes.shape({
-    name: PropTypes.string,
-    list: PropTypes.string,
-    type: PropTypes.array,
-    length: PropTypes.number,
-    weight: PropTypes.number,
-    rt: PropTypes.number,
-    rof: PropTypes.string,
-    mag: PropTypes.array,
-    kd: PropTypes.number,
-    sab: PropTypes.number,
-    aim: PropTypes.object,
-    projectiles: PropTypes.array,
-    ma: PropTypes.array,
-    ba: PropTypes.array,
-    tof: PropTypes.array,
-    offical: PropTypes.bool,
-  }),
+  gunObj: gunObjShape,
 };
 
 export default WeaponsCardWeaponStats;

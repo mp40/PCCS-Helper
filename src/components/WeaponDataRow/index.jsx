@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { tableLineShape } from '../../helpers/proptypeShapes';
 
 const WeaponsDataRow = ({ tableLine, index }) => {
   const borderLeftAndRight = { borderLeft: '1px solid rgb(85, 83, 83)', borderRight: '1px solid rgb(85, 83, 83)' };
@@ -30,12 +31,7 @@ const WeaponsDataRow = ({ tableLine, index }) => {
 };
 
 WeaponsDataRow.propTypes = {
-  tableLine: PropTypes.shape({
-    dataType: PropTypes.object,
-    aim: PropTypes.array,
-    tag: PropTypes.array,
-    array: PropTypes.array,
-  }),
+  tableLine: tableLineShape,
   index: PropTypes.number,
 };
 
