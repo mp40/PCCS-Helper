@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
+import { gearShape } from '../../helpers/proptypeShapes';
 import ButtonStandard from '../../helpers/buttons/ButtonStandard';
 import { createArrayOfEquipment, filterEquipment, createFilterSet } from '../../helpers/equipmentListFunctions';
 import { addEquipment } from '../../helpers/actionHelpers';
@@ -91,11 +92,7 @@ EquipmentDropdown.propTypes = {
   toggleFilters: PropTypes.func,
   closeShowEquipment: PropTypes.func,
   handleTags: PropTypes.func,
-  gear: PropTypes.shape({
-    uniform: PropTypes.string,
-    equipment: PropTypes.arrayOf(PropTypes.object),
-    firearms: PropTypes.arrayOf(PropTypes.object),
-  }),
+  gear: gearShape,
   characterStats: PropTypes.objectOf(PropTypes.number),
   totalWeight: PropTypes.number,
   filteredTags: PropTypes.arrayOf(PropTypes.string),

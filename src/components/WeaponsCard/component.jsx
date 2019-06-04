@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { gearShape } from '../../helpers/proptypeShapes';
 import WeaponsCardBody from '../WeaponsCardBody';
 import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
 import WeaponsCardSelectModal from '../WeaponsCardSelectModal';
@@ -208,11 +209,7 @@ class WeaponsCard extends Component {
 
 WeaponsCard.propTypes = {
   modifyFirearmList: PropTypes.func,
-  gear: PropTypes.shape({
-    uniform: PropTypes.string,
-    equipment: PropTypes.arrayOf(PropTypes.object),
-    firearms: PropTypes.arrayOf(PropTypes.object),
-  }),
+  gear: gearShape,
   characterStats: PropTypes.objectOf(PropTypes.number),
 };
 

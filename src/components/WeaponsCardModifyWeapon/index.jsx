@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { gunObjShape } from '../../helpers/proptypeShapes';
 import WeaponsCardCustomMag from '../WeaponsCardCustomMag';
 import WeaponsCardModifyWeight from '../WeaponsCardModifyWeight';
 import ButtonSlim from '../../helpers/buttons/ButtonSlim';
@@ -141,24 +142,7 @@ WeaponsCardModifyWeapon.propTypes = {
   toggleModifyFirearmWeight: PropTypes.func,
   handleAddCustomMag: PropTypes.func,
   handleModifyFirearmWeight: PropTypes.func,
-  gunObj: PropTypes.shape({
-    name: PropTypes.string,
-    list: PropTypes.string,
-    type: PropTypes.array,
-    length: PropTypes.number,
-    weight: PropTypes.number,
-    rt: PropTypes.number,
-    rof: PropTypes.string,
-    mag: PropTypes.array,
-    kd: PropTypes.number,
-    sab: PropTypes.number,
-    aim: PropTypes.object,
-    projectiles: PropTypes.array,
-    ma: PropTypes.array,
-    ba: PropTypes.array,
-    tof: PropTypes.array,
-    offical: PropTypes.bool,
-  }),
+  gunObj: gunObjShape,
 };
 
 export default WeaponsCardModifyWeapon;

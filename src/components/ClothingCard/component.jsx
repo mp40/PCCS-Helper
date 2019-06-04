@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { gearShape } from '../../helpers/proptypeShapes';
 import { calculateTotalWeight, findUniformWeight } from '../../helpers/actionHelpers';
 
 import './ClothingCard.css';
@@ -81,11 +82,7 @@ class ClothingCard extends Component {
 
 ClothingCard.propTypes = {
   changeUniform: PropTypes.func,
-  gear: PropTypes.shape({
-    uniform: PropTypes.string,
-    equipment: PropTypes.arrayOf(PropTypes.object),
-    firearms: PropTypes.arrayOf(PropTypes.object),
-  }),
+  gear: gearShape,
   characterStats: PropTypes.objectOf(PropTypes.number),
 };
 

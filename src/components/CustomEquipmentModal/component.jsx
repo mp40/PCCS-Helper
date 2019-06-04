@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { gearShape } from '../../helpers/proptypeShapes';
 import { addEquipment } from '../../helpers/actionHelpers';
 
 import ButtonStandard from '../../helpers/buttons/ButtonStandard';
@@ -128,11 +129,7 @@ class CustomEquipmentModal extends Component {
 
 CustomEquipmentModal.propTypes = {
   modifyEquipment: PropTypes.func,
-  gear: PropTypes.shape({
-    uniform: PropTypes.string,
-    equipment: PropTypes.arrayOf(PropTypes.object),
-    firearms: PropTypes.arrayOf(PropTypes.object),
-  }),
+  gear: gearShape,
   characterStats: PropTypes.objectOf(PropTypes.number),
   totalWeight: PropTypes.number,
   toggleCustomEquipment: PropTypes.func,
