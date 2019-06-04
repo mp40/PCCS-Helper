@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import WeaponsCardCustomMag from './WeaponsCardCustomMag';
 import WeaponsCardModifyWeight from './WeaponsCardModifyWeight';
-import ButtonSlim from './buttons/ButtonSlim';
+import ButtonSlim from '../helpers/buttons/ButtonSlim';
 
 import './WeaponsCard.css';
 

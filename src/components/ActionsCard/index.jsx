@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-const { actionsPerImpulse } = require('../helpers/helperFunctions');
+const { actionsPerImpulse } = require('../../helpers/helperFunctions');
 
 const ActionsCard = ({ combatStats }) => {
   const gunActions = actionsPerImpulse(combatStats.combatActions[0]);

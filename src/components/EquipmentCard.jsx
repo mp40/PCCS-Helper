@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import EquipmentDropdown from './EquipmentDropdown';
 import CustomEquipmentModal from './CustomEquipmentModal';
-import ButtonStandard from './buttons/ButtonStandard';
-import ButtonDeleteX from './buttons/ButtonDeleteX';
-import ButtonIncrementArrows from './buttons/ButtonIncrementArrows';
+import ButtonStandard from '../helpers/buttons/ButtonStandard';
+import ButtonDeleteX from '../helpers/buttons/ButtonDeleteX';
+import ButtonIncrementArrows from '../helpers/buttons/ButtonIncrementArrows';
 
 import { modifyEquipment, updateAttributes } from '../actions';
 import { removeEquipment, removeAllEquipment, incrementEquipmentQty } from '../helpers/actionHelpers';

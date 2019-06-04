@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import ButtonDeleteX from './buttons/ButtonDeleteX';
-import ButtonIncrementArrows from './buttons/ButtonIncrementArrows';
-import ButtonStandard from './buttons/ButtonStandard';
+import ButtonDeleteX from '../helpers/buttons/ButtonDeleteX';
+import ButtonIncrementArrows from '../helpers/buttons/ButtonIncrementArrows';
+import ButtonStandard from '../helpers/buttons/ButtonStandard';
 
-import './CharacterGeneration.css';
+import './CharacterGeneration/CharacterGeneration.css';
 import './WeaponsCard.css';
 
 const WeaponsCardBody = ({

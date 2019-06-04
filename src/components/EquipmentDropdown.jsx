@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { modifyEquipment } from '../actions';
-import ButtonStandard from './buttons/ButtonStandard';
+import ButtonStandard from '../helpers/buttons/ButtonStandard';
 import './EquipmentDropdown.css';
 
 import { createArrayOfEquipment, filterEquipment, createFilterSet } from '../helpers/equipmentListFunctions';

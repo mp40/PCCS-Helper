@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import NavBar from './components/NavBar';
 import HomePage from './components/Home';
-import CreateChar from './components/CharacterGeneration';
+import CharacterGeneration from './components/CharacterGeneration';
 import './App.css';
 
 const App = ({ currentView }) => (
@@ -14,7 +14,7 @@ const App = ({ currentView }) => (
         && <HomePage />
       }
       {currentView === 'createChar'
-        && <CreateChar />
+        && <CharacterGeneration />
       }
     </header>
   </div>

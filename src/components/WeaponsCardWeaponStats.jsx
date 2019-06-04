@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import WeaponDataRow from './WeaponDataRow';
-import ButtonDeleteX from './buttons/ButtonDeleteX';
+import ButtonDeleteX from '../helpers/buttons/ButtonDeleteX';
 
 import { buildArrayForGunTable } from '../helpers/componentHelpers';
 

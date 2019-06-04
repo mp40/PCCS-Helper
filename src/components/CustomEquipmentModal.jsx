@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { modifyEquipment } from '../actions';
 import { addEquipment } from '../helpers/actionHelpers';
 
-import ButtonStandard from './buttons/ButtonStandard';
+import ButtonStandard from '../helpers/buttons/ButtonStandard';
 
 import './CustomEquipmentModal.css';
 
