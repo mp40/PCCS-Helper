@@ -1,4 +1,4 @@
-import { mountAppWithStore, storeWithCreateCharacterView, testM1911A1WithMods } from '../helpers/testHelpers';
+import { mountAppWithStore, storeWithCreateCharacterView, testM1911A1WithMods } from '../../helpers/testHelpers';
 
 describe('The Weapons Card', () => {
   const gunList = wrapper => wrapper.find('.equipmentListBody');

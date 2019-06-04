@@ -4,7 +4,7 @@ import WeaponsCardCustomMag from './WeaponsCardCustomMag';
 import WeaponsCardModifyWeight from './WeaponsCardModifyWeight';
 import ButtonSlim from '../helpers/buttons/ButtonSlim';
 
-import './WeaponsCard.css';
+import './WeaponsCard/WeaponsCard.css';
 
 class WeaponsCardModifyWeapon extends Component {
   setPrimaryMag = (index) => {

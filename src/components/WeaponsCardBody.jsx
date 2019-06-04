@@ -5,7 +5,7 @@ import ButtonIncrementArrows from '../helpers/buttons/ButtonIncrementArrows';
 import ButtonStandard from '../helpers/buttons/ButtonStandard';
 
 import './CharacterGeneration/CharacterGeneration.css';
-import './WeaponsCard.css';
+import './WeaponsCard/WeaponsCard.css';
 
 const WeaponsCardBody = ({
   weaponsWeight,
