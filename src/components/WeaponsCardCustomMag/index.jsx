@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ButtonStandard from '../helpers/buttons/ButtonStandard';
-import './WeaponsCard/WeaponsCard.css';
+import ButtonStandard from '../../helpers/buttons/ButtonStandard';
+import '../WeaponsCard/WeaponsCard.css';
 
 class WeaponsCardCustomMag extends Component {
   constructor(props) {
