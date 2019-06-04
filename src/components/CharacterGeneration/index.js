@@ -4,7 +4,4 @@ import CharacterGeneration from './component';
 
 import './CharacterGeneration.css';
 
-
-const mapStateToProps = () => ({});
-
-export default connect(mapStateToProps, { updateWeight, updateAttributes })(CharacterGeneration);
+export default connect(null, { updateWeight, updateAttributes })(CharacterGeneration);

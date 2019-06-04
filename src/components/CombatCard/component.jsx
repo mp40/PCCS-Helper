@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { updateAttributes } from '../actions';
 
 class CombatCard extends Component {
   constructor(props) {
@@ -17,7 +15,7 @@ class CombatCard extends Component {
 
   handleUpdateAttributes = (attribute, value) => {
     const parsedValue = parseInt(value, 10);
-    const { characterStats, totalWeight } = this.props;
+    const { characterStats, totalWeight, updateAttributes } = this.props;
     if (parsedValue < 0 || typeof parsedValue !== 'number' || Number.isNaN(parsedValue)) {
       this.setState({ toggleEditValue: false });
       return;
@@ -26,7 +24,7 @@ class CombatCard extends Component {
     const attributeObj = characterStats;
     attributeObj[attribute] = parsedValue;
 
-    this.props.updateAttributes(attributeObj, totalWeight);
+    updateAttributes(attributeObj, totalWeight);
     this.setState({ toggleEditValue: false });
   }
 
@@ -88,14 +86,9 @@ class CombatCard extends Component {
 }
 
 CombatCard.propTypes = {
+  updateAttributes: PropTypes.func,
   characterStats: PropTypes.objectOf(PropTypes.number),
   totalWeight: PropTypes.number,
 };
 
-const mapStateToProps = state => ({
-  currentView: state.currentView,
-  totalWeight: state.totalWeight,
-  characterStats: state.characterStats,
-});
-
-export default connect(mapStateToProps, { updateAttributes })(CombatCard);
+export default CombatCard;

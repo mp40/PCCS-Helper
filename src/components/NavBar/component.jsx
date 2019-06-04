@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import NavBarCreateChar from './NavBarCreateChar';
 import './NavBar.css';
@@ -24,9 +23,4 @@ NavBar.propTypes = {
   currentView: PropTypes.string,
 };
 
-const mapStateToProps = state => ({
-  currentView: state.currentView,
-  totalWeight: state.totalWeight,
-});
-
-export default connect(mapStateToProps)(NavBar);
+export default NavBar;

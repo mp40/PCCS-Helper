@@ -1,5 +1,5 @@
 
-import { mountAppWithStore } from '../helpers/testHelpers';
+import { mountAppWithStore } from '../../helpers/testHelpers';
 
 describe('the Clothing and Body Armour Card', () => {
   it('should render', () => {

@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import WeaponsCardBody from './WeaponsCardBody';
-import WeaponsCardWeaponStats from './WeaponsCardWeaponStats';
-import WeaponsCardSelectModal from './WeaponsCardSelectModal';
-import { modifyFirearmList } from '../actions';
+import WeaponsCardBody from '../WeaponsCardBody';
+import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
+import WeaponsCardSelectModal from '../WeaponsCardSelectModal';
 
-import { rifles, smgs, mgs, pistols, sniperRifles, shotguns } from '../helpers/firearms';
+import { rifles, smgs, mgs, pistols, sniperRifles, shotguns } from '../../helpers/firearms';
 
 import {
   calculateFirearmsArrayWeight,
   modifyObjectQtyInArray,
   removeObjectFromArray,
   calculateTotalWeight,
-} from '../helpers/actionHelpers';
+} from '../../helpers/actionHelpers';
 
 import './WeaponsCard.css';
 
@@ -47,7 +45,7 @@ class WeaponsCard extends Component {
   }
 
   handleIncrementGunQty = (modGunObj, modifier) => {
-    const { gear, characterStats } = this.props;
+    const { gear, characterStats, modifyFirearmList } = this.props;
     const { firearmToModify } = this.state;
 
     if (modGunObj.qty === 1 && modifier === -1) {
@@ -62,40 +60,40 @@ class WeaponsCard extends Component {
       return newGunObj;
     });
 
-    this.props.modifyFirearmList(this.calculateNewWeight(newGunArray), newGunArray, characterStats);
+    modifyFirearmList(this.calculateNewWeight(newGunArray), newGunArray, characterStats);
   }
 
   handleRemoveGun = (gunObj) => {
-    const { gear, characterStats } = this.props;
+    const { gear, characterStats, modifyFirearmList } = this.props;
     const newGunArray = removeObjectFromArray(gear.firearms, gunObj);
-    this.props.modifyFirearmList(this.calculateNewWeight(newGunArray), newGunArray, characterStats);
+    modifyFirearmList(this.calculateNewWeight(newGunArray), newGunArray, characterStats);
   }
 
   handleIncrementMagQty = (gunObj, magObj, modifier) => {
-    const { gear, characterStats } = this.props;
+    const { gear, characterStats, modifyFirearmList } = this.props;
     if (magObj.qty === 0 && modifier === -1) {
       return;
     }
     const newGunObj = gunObj;
     newGunObj.mag = modifyObjectQtyInArray(newGunObj.mag, magObj, modifier);
     const newGunArray = modifyObjectQtyInArray(gear.firearms, newGunObj);
-    this.props.modifyFirearmList(this.calculateNewWeight(newGunArray), newGunArray, characterStats);
+    modifyFirearmList(this.calculateNewWeight(newGunArray), newGunArray, characterStats);
   }
 
   handleRemoveAllGuns = () => {
-    const { characterStats } = this.props;
-    this.props.modifyFirearmList(this.calculateNewWeight([]), [], characterStats);
+    const { characterStats, modifyFirearmList } = this.props;
+    modifyFirearmList(this.calculateNewWeight([]), [], characterStats);
   }
 
   handleModifyFirearm = (newGun) => {
-    const { gear, characterStats } = this.props;
+    const { gear, characterStats, modifyFirearmList } = this.props;
     const newGunArray = gear.firearms.map(gunObj => (gunObj.name === newGun.name ? newGun : gunObj));
 
-    this.props.modifyFirearmList(this.calculateNewWeight(newGunArray), newGunArray, characterStats);
+    modifyFirearmList(this.calculateNewWeight(newGunArray), newGunArray, characterStats);
   }
 
   handleAddCustomMag = (newCustomMag) => {
-    const { gear, characterStats } = this.props;
+    const { gear, characterStats, modifyFirearmList } = this.props;
     const { firearmToModify } = this.state;
     const newGunArray = gear.firearms.map((gunObj) => {
       if (gunObj.name === firearmToModify) {
@@ -104,7 +102,7 @@ class WeaponsCard extends Component {
       return gunObj;
     });
 
-    this.props.modifyFirearmList(this.calculateNewWeight(newGunArray), newGunArray, characterStats);
+    modifyFirearmList(this.calculateNewWeight(newGunArray), newGunArray, characterStats);
     this.toggleCreateCustomMag();
   }
 
@@ -119,7 +117,7 @@ class WeaponsCard extends Component {
   }
 
   handleModifyFirearmWeight = (noteObj) => {
-    const { gear, characterStats } = this.props;
+    const { gear, characterStats, modifyFirearmList } = this.props;
     const { firearmToModify } = this.state;
     const newGunArray = gear.firearms.map((gunObj) => {
       const newGunObj = gunObj;
@@ -134,12 +132,12 @@ class WeaponsCard extends Component {
 
       return newGunObj;
     });
-    this.props.modifyFirearmList(this.calculateNewWeight(newGunArray), newGunArray, characterStats);
+    modifyFirearmList(this.calculateNewWeight(newGunArray), newGunArray, characterStats);
     this.toggleModifyFirearmWeight();
   }
 
   removeAllGunMods = (gunObj) => {
-    const { gear, characterStats } = this.props;
+    const { gear, characterStats, modifyFirearmList } = this.props;
     const { firearmToModify } = this.state;
 
     const gunQty = gunObj.qty;
@@ -151,7 +149,7 @@ class WeaponsCard extends Component {
 
     const newGunArray = gear.firearms.map(obj => (obj.name === firearmToModify ? freshGun : obj));
 
-    this.props.modifyFirearmList(this.calculateNewWeight(newGunArray), newGunArray, characterStats);
+    modifyFirearmList(this.calculateNewWeight(newGunArray), newGunArray, characterStats);
   }
 
   render() {
@@ -209,6 +207,7 @@ class WeaponsCard extends Component {
 }
 
 WeaponsCard.propTypes = {
+  modifyFirearmList: PropTypes.func,
   gear: PropTypes.shape({
     uniform: PropTypes.string,
     equipment: PropTypes.arrayOf(PropTypes.object),
@@ -217,11 +216,4 @@ WeaponsCard.propTypes = {
   characterStats: PropTypes.objectOf(PropTypes.number),
 };
 
-const mapStateToProps = state => ({
-  totalWeight: state.totalWeight,
-  characterStats: state.characterStats,
-  gear: state.gear,
-});
-
-
-export default connect(mapStateToProps, { modifyFirearmList })(WeaponsCard);
+export default WeaponsCard;

@@ -4,7 +4,7 @@ import WeaponsCardCustomMag from './WeaponsCardCustomMag';
 import WeaponsCardModifyWeight from './WeaponsCardModifyWeight';
 import ButtonSlim from '../helpers/buttons/ButtonSlim';
 
-import './WeaponsCard.css';
+import './WeaponsCard/WeaponsCard.css';
 
 class WeaponsCardModifyWeapon extends Component {
   setPrimaryMag = (index) => {
@@ -53,7 +53,7 @@ class WeaponsCardModifyWeapon extends Component {
             className="removeAllMods"
             onClick={removeAllGunMods.bind(this, gunObj)}
           >
-                            Remove All Mods
+            Remove All Mods
           </button>
 
           <div className="modifyMagazines">

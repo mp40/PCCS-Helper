@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import EquipmentDropdown from './EquipmentDropdown';
-import CustomEquipmentModal from './CustomEquipmentModal';
-import ButtonStandard from '../helpers/buttons/ButtonStandard';
-import ButtonDeleteX from '../helpers/buttons/ButtonDeleteX';
-import ButtonIncrementArrows from '../helpers/buttons/ButtonIncrementArrows';
+import EquipmentDropdown from '../EquipmentDropdown';
+import CustomEquipmentModal from '../CustomEquipmentModal';
+import ButtonStandard from '../../helpers/buttons/ButtonStandard';
+import ButtonDeleteX from '../../helpers/buttons/ButtonDeleteX';
+import ButtonIncrementArrows from '../../helpers/buttons/ButtonIncrementArrows';
 
-import { modifyEquipment, updateAttributes } from '../actions';
-import { removeEquipment, removeAllEquipment, incrementEquipmentQty } from '../helpers/actionHelpers';
+import { removeEquipment, removeAllEquipment, incrementEquipmentQty } from '../../helpers/actionHelpers';
 
 class EquipmentCard extends Component {
   constructor(props) {
@@ -67,21 +65,21 @@ class EquipmentCard extends Component {
   }
 
   handleRemoveEquipment = (equipObj) => {
-    const { totalWeight, gear, characterStats } = this.props;
+    const { totalWeight, gear, characterStats, modifyEquipment } = this.props;
     const newData = removeEquipment(totalWeight, gear.equipment, equipObj);
-    this.props.modifyEquipment(newData.totalWeight, newData.equipArray, characterStats);
+    modifyEquipment(newData.totalWeight, newData.equipArray, characterStats);
   }
 
   handleRemoveAllEquipment = () => {
-    const { totalWeight, gear, characterStats } = this.props;
+    const { totalWeight, gear, characterStats, modifyEquipment } = this.props;
     const newWeight = removeAllEquipment(totalWeight, gear.equipment);
-    this.props.modifyEquipment(newWeight, [], characterStats);
+    modifyEquipment(newWeight, [], characterStats);
   }
 
   handleIncrementEquipmentQty = (equipObj, modifier) => {
-    const { totalWeight, gear, characterStats } = this.props;
+    const { totalWeight, gear, characterStats, modifyEquipment } = this.props;
     const newData = incrementEquipmentQty(totalWeight, gear.equipment, equipObj, modifier);
-    this.props.modifyEquipment(newData.totalWeight, newData.equipArray, characterStats);
+    modifyEquipment(newData.totalWeight, newData.equipArray, characterStats);
   }
 
 
@@ -181,6 +179,7 @@ class EquipmentCard extends Component {
 }
 
 EquipmentCard.propTypes = {
+  modifyEquipment: PropTypes.func,
   gear: PropTypes.shape({
     uniform: PropTypes.string,
     equipment: PropTypes.arrayOf(PropTypes.object),
@@ -190,11 +189,4 @@ EquipmentCard.propTypes = {
   totalWeight: PropTypes.number,
 };
 
-const mapStateToProps = state => ({
-  totalWeight: state.totalWeight,
-  characterStats: state.characterStats,
-  gear: state.gear,
-});
-
-
-export default connect(mapStateToProps, { modifyEquipment, updateAttributes })(EquipmentCard);
+export default EquipmentCard;
