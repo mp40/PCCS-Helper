@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import WeaponsCardCustomMag from './WeaponsCardCustomMag';
-import WeaponsCardModifyWeight from './WeaponsCardModifyWeight';
-import ButtonSlim from '../helpers/buttons/ButtonSlim';
+import WeaponsCardCustomMag from '../WeaponsCardCustomMag';
+import WeaponsCardModifyWeight from '../WeaponsCardModifyWeight';
+import ButtonSlim from '../../helpers/buttons/ButtonSlim';
 
-import './WeaponsCard/WeaponsCard.css';
+import '../WeaponsCard/WeaponsCard.css';
 
 class WeaponsCardModifyWeapon extends Component {
   setPrimaryMag = (index) => {
-    const { gunObj } = this.props;
+    const { gunObj, handleModifyFirearm } = this.props;
 
     const newGunObj = gunObj;
     newGunObj.weight -= newGunObj.mag[0].weight;
@@ -16,20 +16,21 @@ class WeaponsCardModifyWeapon extends Component {
     const newPrimary = gunObj.mag.splice(index, 1);
     newGunObj.mag.unshift(newPrimary[0]);
 
-    this.props.handleModifyFirearm(newGunObj);
+    handleModifyFirearm(newGunObj);
   }
 
   setFirearmWeight = (note, weightMod) => {
-    this.props.handleModifyFirearmWeight(note, weightMod);
+    const { handleModifyFirearmWeight } = this.props;
+    handleModifyFirearmWeight(note, weightMod);
   }
 
   handleRemoveMod = (noteObj) => {
-    const { gunObj } = this.props;
+    const { gunObj, handleModifyFirearm } = this.props;
     const newGunObj = gunObj;
     newGunObj.weight += noteObj.weightMod * -1;
     newGunObj.weight = Math.round(newGunObj.weight * 1000) / 1000;
     newGunObj.modNotes = newGunObj.modNotes.filter(note => note.note !== noteObj.note);
-    this.props.handleModifyFirearm(newGunObj);
+    handleModifyFirearm(newGunObj);
   }
 
   render() {
@@ -132,6 +133,7 @@ class WeaponsCardModifyWeapon extends Component {
 }
 
 WeaponsCardModifyWeapon.propTypes = {
+  handleModifyFirearm: PropTypes.func,
   createCustomMag: PropTypes.bool,
   modifyFirearmWeight: PropTypes.bool,
   removeAllGunMods: PropTypes.func,
