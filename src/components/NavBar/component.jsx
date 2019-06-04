@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import NavBarCreateChar from '../NavBarCreateChar';
+import NavBarCreateChar from './NavBarCreateChar';
 import './NavBar.css';
 
 const NavBar = ({ currentView, totalWeight }) => (
