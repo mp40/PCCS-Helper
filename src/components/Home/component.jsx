@@ -1,7 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { selectCurrentView } from '../actions';
 import './Home.css';
 
 const HomePage = props => (
@@ -24,10 +22,4 @@ HomePage.propTypes = {
   selectCurrentView: PropTypes.func,
 };
 
-const mapStateToProps = state => ({
-  currentView: state.currentView,
-  totalWeight: state.totalWeight,
-  gear: state.gear,
-});
-
-export default connect(mapStateToProps, { selectCurrentView })(HomePage);
+export default HomePage;

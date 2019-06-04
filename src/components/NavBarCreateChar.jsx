@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './NavBar.css';
+import './NavBar/NavBar.css';
 
 const NavBarCreateChar = ({ totalWeight }) => {
   const characterWeight = Math.round((totalWeight) * 1000) / 1000;

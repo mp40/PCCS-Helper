@@ -1,5 +1,5 @@
 
-import { mountAppWithStore } from '../helpers/testHelpers';
+import { mountAppWithStore } from '../../helpers/testHelpers';
 
 describe('The Nav Bar', () => {
   describe('when in Create Character', () => {
