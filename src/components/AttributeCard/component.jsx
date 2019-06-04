@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { updateAttributes } from '../actions';
 
 class AttributeCard extends Component {
   constructor(props) {
@@ -16,7 +14,7 @@ class AttributeCard extends Component {
   }
 
   handleUpdateAttributes = (attribute, value) => {
-    const { characterStats, totalWeight } = this.props;
+    const { characterStats, totalWeight, updateAttributes } = this.props;
     const parsedValue = parseInt(value, 10);
 
     if (parsedValue < 3 || parsedValue > 18) {
@@ -30,7 +28,7 @@ class AttributeCard extends Component {
     const attributeObj = characterStats;
     attributeObj[attribute] = parsedValue;
 
-    this.props.updateAttributes(attributeObj, totalWeight);
+    updateAttributes(attributeObj, totalWeight);
     this.setState({ toggleEditValue: false });
   }
 
@@ -151,12 +149,4 @@ AttributeCard.propTypes = {
   updateAttributes: PropTypes.func,
 };
 
-const mapStateToProps = state => ({
-  totalWeight: state.totalWeight,
-  characterStats: state.characterStats,
-  gear: {
-    equipment: state.gear.equipment,
-  },
-});
-
-export default connect(mapStateToProps, { updateAttributes })(AttributeCard);
+export default AttributeCard;

@@ -1,4 +1,4 @@
-import { mountAppWithStore, storeWithEquipment } from '../helpers/testHelpers';
+import { mountAppWithStore, storeWithEquipment } from '../../helpers/testHelpers';
 
 describe('Character Generation', () => {
   const wrapper = mountAppWithStore();
