@@ -5,7 +5,7 @@ import { createArrayOfEquipment, filterEquipment, createFilterSet } from '../../
 import { addEquipment } from '../../helpers/actionHelpers';
 import './EquipmentDropdown.css';
 
-const equipment = require('../../helpers/equipmentList');
+const equipment = require('../../data/equipmentList');
 
 
 class EquipmentDropdown extends Component {

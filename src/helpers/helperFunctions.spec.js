@@ -16,7 +16,7 @@ const {
   table1bMaxSpeed,
   table1dCombatActions,
   table1dDamageBonus,
-} = require('./tables');
+} = require('../data/tables');
 
 describe('calculate SAL', () => {
   it('should return the correct SAL based on skill level', () => {

@@ -1,4 +1,4 @@
-import { uniformWeights } from './uniformAndArmourTypes';
+import { uniformWeights } from '../data/uniformAndArmourTypes';
 
 export const addEquipment = (oldWeight, oldArray, equipObj) => {
   const newEquipObj = equipObj;

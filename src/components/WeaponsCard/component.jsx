@@ -4,7 +4,7 @@ import WeaponsCardBody from '../WeaponsCardBody';
 import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
 import WeaponsCardSelectModal from '../WeaponsCardSelectModal';
 
-import { rifles, smgs, mgs, pistols, sniperRifles, shotguns } from '../../helpers/firearms';
+import { rifles, smgs, mgs, pistols, sniperRifles, shotguns } from '../../data/firearms';
 
 import {
   calculateFirearmsArrayWeight,

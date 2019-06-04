@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
 import WeaponsModalSelection from '../WeaponsModalSelection';
 
-import { rifles, pistols, smgs, mgs, sniperRifles, shotguns } from '../../helpers/firearms';
+import { rifles, pistols, smgs, mgs, sniperRifles, shotguns } from '../../data/firearms';
 
 class WeaponsCardSelectModal extends Component {
   constructor(props) {
