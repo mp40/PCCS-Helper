@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { changeUniform } from '../actions';
-import { calculateTotalWeight, findUniformWeight } from '../helpers/actionHelpers';
+import { calculateTotalWeight, findUniformWeight } from '../../helpers/actionHelpers';
 
 import './ClothingCard.css';
 
@@ -19,12 +17,12 @@ class ClothingCard extends Component {
     }
 
     handleChangeUniform = (event) => {
-      const { gear, characterStats } = this.props;
+      const { gear, characterStats, changeUniform } = this.props;
       const newUniform = event.target.value;
       const newWeight = calculateTotalWeight(newUniform, gear.equipment, gear.firearms);
       const attributeObj = characterStats;
 
-      this.props.changeUniform(newUniform, newWeight, attributeObj);
+      changeUniform(newUniform, newWeight, attributeObj);
       this.setState({ showUniformSelect: false });
     }
 
@@ -82,6 +80,7 @@ class ClothingCard extends Component {
 }
 
 ClothingCard.propTypes = {
+  changeUniform: PropTypes.func,
   gear: PropTypes.shape({
     uniform: PropTypes.string,
     equipment: PropTypes.arrayOf(PropTypes.object),
@@ -90,10 +89,4 @@ ClothingCard.propTypes = {
   characterStats: PropTypes.objectOf(PropTypes.number),
 };
 
-const mapStateToProps = state => ({
-  totalWeight: state.totalWeight,
-  characterStats: state.characterStats,
-  gear: state.gear,
-});
-
-export default connect(mapStateToProps, { changeUniform })(ClothingCard);
+export default ClothingCard;
