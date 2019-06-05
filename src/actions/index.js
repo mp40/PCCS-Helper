@@ -46,3 +46,13 @@ export const modifyFirearmList = (newWeight, firearmsArray, attributeObj) => (di
   dispatch({ type: 'MODIFY_FIREARMS', payload: firearmsArray });
   dispatch(updateWeight(newWeight, attributeObj));
 };
+
+export const modifyGunCombatLevel = newGunCombatLevel => ({
+  type: 'GUN_COMBAT_LEVEL_UPDATED',
+  payload: newGunCombatLevel,
+});
+
+export const modifyMeleeCombatLevel = newMeleeCombatLevel => ({
+  type: 'MELEE_COMBAT_LEVEL_UPDATED',
+  payload: newMeleeCombatLevel,
+});
