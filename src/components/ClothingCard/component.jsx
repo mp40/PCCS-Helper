@@ -22,7 +22,6 @@ class ClothingCard extends Component {
       const newUniform = event.target.value;
       const newWeight = calculateTotalWeight(newUniform, gear.equipment, gear.firearms);
       const attributeObj = characterStats;
-
       changeUniform(newUniform, newWeight, attributeObj);
       this.setState({ showUniformSelect: false });
     }

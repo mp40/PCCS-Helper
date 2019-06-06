@@ -1,15 +1,3 @@
-// import {
-//   selectCurrentView,
-//   updateCombatStats,
-//   updateWeight,
-//   updateAttributes,
-//   modifyEquipment,
-//   changeUniform,
-//   modifyFirearmList,
-//   modifyGunCombatLevel,
-//   modifyMeleeCombatLevel,
-// } from '../actions';
-
 import { initialStore } from '../helpers/initialStore';
 
 const initialState = initialStore;
