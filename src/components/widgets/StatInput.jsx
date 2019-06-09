@@ -52,9 +52,9 @@ class StatInput extends Component {
 
 
 StatInput.propTypes = {
-  action: PropTypes.func.isRequired,
+  action: PropTypes.func,
   statLevel: PropTypes.number,
-  statName: PropTypes.string.isRequired,
+  statName: PropTypes.string,
   idRef: PropTypes.string,
 };
 

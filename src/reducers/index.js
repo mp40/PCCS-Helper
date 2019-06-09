@@ -34,11 +34,52 @@ function reduceActions(state = initialState, action) {
     const newCombatStats = calculateStateObject(newState.characterStats, newState.totalWeight);
     return { ...state, characterStats: { ...state.characterStats, handLevel: action.payload }, combatStats: newCombatStats };
   }
+  if (action.type === 'STRENGTH_VALUE_UPDATED') {
+    if (action.payload < 3 || action.payload > 19) {
+      return { ...state };
+    }
+    const newState = { ...state };
+    newState.characterStats.str = action.payload;
+    const newCombatStats = calculateStateObject(newState.characterStats, newState.totalWeight);
+    return { ...state, characterStats: { ...state.characterStats, str: action.payload }, combatStats: newCombatStats };
+  }
+  if (action.type === 'INTELLIGENCE_VALUE_UPDATED') {
+    if (action.payload < 3 || action.payload > 19) {
+      return { ...state };
+    }
+    const newState = { ...state };
+    newState.characterStats.int = action.payload;
+    const newCombatStats = calculateStateObject(newState.characterStats, newState.totalWeight);
+    return { ...state, characterStats: { ...state.characterStats, int: action.payload }, combatStats: newCombatStats };
+  }
+  if (action.type === 'HEALTH_VALUE_UPDATED') {
+    if (action.payload < 3 || action.payload > 19) {
+      return { ...state };
+    }
+    const newState = { ...state };
+    newState.characterStats.hlt = action.payload;
+    const newCombatStats = calculateStateObject(newState.characterStats, newState.totalWeight);
+    return { ...state, characterStats: { ...state.characterStats, hlt: action.payload }, combatStats: newCombatStats };
+  }
+  if (action.type === 'WILLPOWER_VALUE_UPDATED') {
+    if (action.payload < 3 || action.payload > 19) {
+      return { ...state };
+    }
+    const newState = { ...state };
+    newState.characterStats.wil = action.payload;
+    const newCombatStats = calculateStateObject(newState.characterStats, newState.totalWeight);
+    return { ...state, characterStats: { ...state.characterStats, wil: action.payload }, combatStats: newCombatStats };
+  }
+  if (action.type === 'AGILITY_VALUE_UPDATED') {
+    if (action.payload < 3 || action.payload > 19) {
+      return { ...state };
+    }
+    const newState = { ...state };
+    newState.characterStats.agi = action.payload;
+    const newCombatStats = calculateStateObject(newState.characterStats, newState.totalWeight);
+    return { ...state, characterStats: { ...state.characterStats, agi: action.payload }, combatStats: newCombatStats };
+  }
   switch (action.type) {
-    // case 'GUN_COMBAT_LEVEL_UPDATED':
-    //   return { ...state, characterStats: { ...state.characterStats, gunLevel: action.payload } };
-    // case 'MELEE_COMBAT_LEVEL_UPDATED':
-    //   return 666;
     case 'VIEW_SELECTED':
       return { ...state, currentView: action.payload };
     case 'TOTAL_WEIGHT':
