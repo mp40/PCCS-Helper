@@ -69,10 +69,12 @@ function reduceActions(state = initialState, action) {
     if (action.payload < 3 || action.payload > 19) {
       return { ...state };
     }
-    const newState = { ...state };
-    newState.characterStats.wil = action.payload;
-    const newCombatStats = calculateStateObject(newState.characterStats, newState.totalWeight);
-    return { ...state, characterStats: { ...state.characterStats, wil: action.payload }, combatStats: newCombatStats };
+    const highestCombatSkill = state.characterStats.gunLevel > state.characterStats.handLevel
+      ? state.characterStats.gunLevel : state.characterStats.handLevel;
+    return { ...state,
+      characterStats:
+      { ...state.characterStats, wil: action.payload },
+      combatStats: { ...state.combatStats, knockoutValue: calcKV(action.payload, highestCombatSkill) } };
   }
   if (action.type === 'AGILITY_VALUE_UPDATED') {
     if (action.payload < 3 || action.payload > 19) {
