@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
-import { updateAttributes } from '../../actions';
+import { modifyGunCombatLevel, modifyMeleeCombatLevel } from '../../actions';
 import CombatCard from './component';
 
+// call action here
+
 const mapStateToProps = state => ({
-  currentView: state.currentView,
-  totalWeight: state.totalWeight,
   characterStats: state.characterStats,
 });
 
-export default connect(mapStateToProps, { updateAttributes })(CombatCard);
+export default connect(mapStateToProps, { modifyGunCombatLevel, modifyMeleeCombatLevel })(CombatCard);

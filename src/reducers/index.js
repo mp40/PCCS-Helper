@@ -1,9 +1,44 @@
 import { initialStore } from '../helpers/initialStore';
 
+const {
+  calcBaseSpeed,
+  findKey,
+  findSAL,
+  calcMaxSpeed,
+  calcISF,
+  calcCombatActions,
+  calcKV,
+  calcDB,
+  calculateStateObject,
+  actionsPerImpulse,
+} = require('../helpers/helperFunctions');
+
 const initialState = initialStore;
 
 function reduceActions(state = initialState, action) {
+  if (action.type === 'GUN_COMBAT_LEVEL_UPDATED') {
+    if (action.payload < 0) {
+      return { ...state };
+    }
+    const newState = { ...state };
+    newState.characterStats.gunLevel = action.payload;
+    const newCombatStats = calculateStateObject(newState.characterStats, newState.totalWeight);
+    return { ...state, characterStats: { ...state.characterStats, gunLevel: action.payload }, combatStats: newCombatStats };
+  }
+  if (action.type === 'MELEE_COMBAT_LEVEL_UPDATED') {
+    if (action.payload < 0) {
+      return { ...state };
+    }
+    const newState = { ...state };
+    newState.characterStats.handLevel = action.payload;
+    const newCombatStats = calculateStateObject(newState.characterStats, newState.totalWeight);
+    return { ...state, characterStats: { ...state.characterStats, handLevel: action.payload }, combatStats: newCombatStats };
+  }
   switch (action.type) {
+    // case 'GUN_COMBAT_LEVEL_UPDATED':
+    //   return { ...state, characterStats: { ...state.characterStats, gunLevel: action.payload } };
+    // case 'MELEE_COMBAT_LEVEL_UPDATED':
+    //   return 666;
     case 'VIEW_SELECTED':
       return { ...state, currentView: action.payload };
     case 'TOTAL_WEIGHT':

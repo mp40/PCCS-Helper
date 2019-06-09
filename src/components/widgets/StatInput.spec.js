@@ -5,12 +5,14 @@ import StatInput from './StatInput';
 const statLevel = () => 0;
 const statName = () => 'Gun';
 const id = () => 'updateGun';
+const action = () => 666;
 
 describe('StatInput Component', () => {
   const wrapper = shallow(<StatInput
     statLevel={statLevel()}
     statName={statName()}
-    id={id()}
+    idRef={id()}
+    action={action}
   />);
   it('should have the correct id', () => {
     expect(wrapper.find('#updateGun').exists()).toBe(true);
@@ -33,5 +35,8 @@ describe('StatInput Component', () => {
       key: 'Enter' });
     expect(spyOnMethod).toHaveBeenCalled();
     spyOnMethod.mockRestore();
+  });
+  it('should close the text input when Enter is pressed', () => {
+    expect(wrapper.find('.attInput').exists()).toBe(false);
   });
 });

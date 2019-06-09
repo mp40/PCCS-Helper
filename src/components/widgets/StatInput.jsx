@@ -13,28 +13,26 @@ class StatInput extends Component {
     this.setState({ toggleInput: !this.setState.toggleInput });
   }
 
-  handleUpdateValue = () => {
-    /*
-    // create action/reducer for update str, ect and pass it here as prop
-    const { updateStat } = this.props;
-    updateStat();
-    this.setState({ toggleInput: !this.setState.toggleInput });
-    */
+  handleUpdateValue = (value) => {
+    const { action } = this.props;
+    const parsedValue = parseInt(value, 10);
+    action(parsedValue);
+    this.setState({ toggleInput: false });
   }
 
   render() {
-    const { statLevel, statName, id } = this.props;
+    const { statLevel, statName, idRef } = this.props;
     const { toggleInput } = this.state;
 
     return (
       <>
         <tr className="attributeRow">
           <td className="attName">{statName}</td>
-          <td className="attValue" id={id} onClick={this.handleToggleInput}>
+          <td className="attValue" id={idRef} onClick={this.handleToggleInput}>
             {toggleInput
               ? (
                 <input
-                  type="number"
+                  type="text"
                   className="attInput"
                   onKeyUp={(event) => {
                     if (event.key === 'Enter') {
@@ -54,9 +52,10 @@ class StatInput extends Component {
 
 
 StatInput.propTypes = {
-  statLevel: PropTypes.number.isRequired,
+  action: PropTypes.func.isRequired,
+  statLevel: PropTypes.number,
   statName: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  idRef: PropTypes.string,
 };
 
 export default StatInput;

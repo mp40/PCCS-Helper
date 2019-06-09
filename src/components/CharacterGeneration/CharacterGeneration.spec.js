@@ -66,34 +66,6 @@ describe('Character Generation', () => {
       });
     });
   });
-  describe('Combat Levels', () => {
-    const combatLevels = wrapper.find('#combatLevelInputContainer');
-    it('should render Gun Comabat', () => {
-      expect(wrapper.text()).toContain('Gun');
-    });
-    it('should render Hand to Hand Combat', () => {
-      expect(wrapper.text()).toContain('Hand');
-    });
-    it('should update gun combat level', () => {
-      inputAttribute('#updateGun', '4');
-      expect(combatLevels.text()).toContain('4');
-    });
-    it('should update hand to hand combat level', () => {
-      inputAttribute('#updateHand', '2');
-      expect(combatLevels.text()).toContain('2');
-    });
-    it('updates actions when attributes change', () => {
-      const actionsTable = wrapper.find('#gunActionTable');
-      const firstImpulse = actionsTable.childAt(1);
-      const secondImpulse = actionsTable.childAt(2);
-      const thirdImpulse = actionsTable.childAt(3);
-      const fourthImpulse = actionsTable.childAt(4);
-      expect(firstImpulse.text()).toContain('3');
-      expect(secondImpulse.text()).toContain('2');
-      expect(thirdImpulse.text()).toContain('3');
-      expect(fourthImpulse.text()).toContain('2');
-    });
-  });
   describe('Comabt Data', () => {
     const wrapper = mountAppWithStore();
     wrapper.find('#activateCreateChar').simulate('click');
