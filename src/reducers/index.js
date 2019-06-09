@@ -38,10 +38,17 @@ function reduceActions(state = initialState, action) {
     if (action.payload < 3 || action.payload > 19) {
       return { ...state };
     }
-    const newState = { ...state };
-    newState.characterStats.str = action.payload;
-    const newCombatStats = calculateStateObject(newState.characterStats, newState.totalWeight);
-    return { ...state, characterStats: { ...state.characterStats, str: action.payload }, combatStats: newCombatStats };
+    const newBaseSpeed = calcBaseSpeed(action.payload, state.totalWeight);
+    const newMaxSpeed = calcMaxSpeed(state.characterStats.agi, newBaseSpeed);
+    const newGunCombatActions = calcCombatActions(newMaxSpeed, state.combatStats.ISF);
+    const newMeleeCombatActions = calcCombatActions(newMaxSpeed, state.combatStats.ASF);
+    return { ...state,
+      characterStats:
+      { ...state.characterStats, str: action.payload },
+      combatStats: { ...state.combatStats,
+        baseSpeed: newBaseSpeed,
+        maxSpeed: newMaxSpeed,
+        combatActions: [newGunCombatActions, newMeleeCombatActions] } };
   }
   if (action.type === 'INTELLIGENCE_VALUE_UPDATED') {
     if (action.payload < 3 || action.payload > 19) {
