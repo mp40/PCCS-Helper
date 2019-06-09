@@ -46,7 +46,7 @@ function reduceActions(state = initialState, action) {
       characterStats:
       { ...state.characterStats, str: action.payload },
       combatStats: { ...state.combatStats,
-        baseSpeed: newBaseSpeed,
+        baseSpeed: calcBaseSpeed(action.payload, state.totalWeight),
         maxSpeed: newMaxSpeed,
         combatActions: [newGunCombatActions, newMeleeCombatActions] } };
   }
@@ -63,10 +63,7 @@ function reduceActions(state = initialState, action) {
     if (action.payload < 3 || action.payload > 19) {
       return { ...state };
     }
-    const newState = { ...state };
-    newState.characterStats.hlt = action.payload;
-    const newCombatStats = calculateStateObject(newState.characterStats, newState.totalWeight);
-    return { ...state, characterStats: { ...state.characterStats, hlt: action.payload }, combatStats: newCombatStats };
+    return { ...state, characterStats: { ...state.characterStats, hlt: action.payload } };
   }
   if (action.type === 'WILLPOWER_VALUE_UPDATED') {
     if (action.payload < 3 || action.payload > 19) {
