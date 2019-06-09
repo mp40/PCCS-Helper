@@ -5,7 +5,7 @@ const {
   findKey,
   findSAL,
   calcMaxSpeed,
-  calcISF,
+  calcSkillFactor,
   calcCombatActions,
   calcKV,
   calcDB,
@@ -54,10 +54,16 @@ function reduceActions(state = initialState, action) {
     if (action.payload < 3 || action.payload > 19) {
       return { ...state };
     }
+    const newGunCombatActions = calcCombatActions(
+      state.combatStats.maxSpeed, calcSkillFactor(action.payload, state.combatStats.SAL),
+    );
     return { ...state,
       characterStats:
     { ...state.characterStats, int: action.payload },
-      combatStats: { ...state.combatStats, ISF: calcISF(action.payload, state.combatStats.SAL) } };
+      combatStats: { ...state.combatStats,
+        ISF: calcSkillFactor(action.payload, state.combatStats.SAL),
+        combatActions:
+        [newGunCombatActions, ...state.combatStats.combatActions.slice(0, 1)] } };
   }
   if (action.type === 'HEALTH_VALUE_UPDATED') {
     if (action.payload < 3 || action.payload > 19) {
@@ -80,11 +86,20 @@ function reduceActions(state = initialState, action) {
     if (action.payload < 3 || action.payload > 19) {
       return { ...state };
     }
-    const newState = { ...state };
-    newState.characterStats.agi = action.payload;
-    const newCombatStats = calculateStateObject(newState.characterStats, newState.totalWeight);
-    return { ...state, characterStats: { ...state.characterStats, agi: action.payload }, combatStats: newCombatStats };
+    const newMaxSpeed = calcMaxSpeed(action.payload, state.combatStats.baseSpeed);
+    const newAgilitySkillFactor = calcSkillFactor(action.payload, state.combatStats.CE);
+    const newGunCombatActions = calcCombatActions(newMaxSpeed, state.combatStats.ISF);
+    const newMeleeCombatActions = calcCombatActions(newMaxSpeed, newAgilitySkillFactor);
+
+    return { ...state,
+      characterStats:
+    { ...state.characterStats, agi: action.payload },
+      combatStats: { ...state.combatStats,
+        maxSpeed: newMaxSpeed,
+        ASF: newAgilitySkillFactor,
+        combatActions: [newGunCombatActions, newMeleeCombatActions] } };
   }
+
   switch (action.type) {
     case 'VIEW_SELECTED':
       return { ...state, currentView: action.payload };
