@@ -156,8 +156,12 @@ class WeaponsCard extends Component {
   render() {
     const { gear } = this.props;
     const { firearmToModify, showFirearms, modifyFirearm, createCustomMag, modifyFirearmWeight } = this.state;
-    const selectedGuns = gear.firearms;
+    let selectedGuns = gear.firearms;
+    if (selectedGuns === undefined) {
+      selectedGuns = [];
+    }
     const weaponsWeight = calculateFirearmsArrayWeight(selectedGuns);
+
     const gunToModify = selectedGuns.filter(gunObj => gunObj.name === firearmToModify)[0];
 
     return (
