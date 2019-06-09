@@ -6,6 +6,7 @@
     "node": "11.6.0"
   },
   "dependencies": {
+    "node-static": "^0.7.11",
     "prop-types": "^15.7.2",
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
@@ -18,7 +19,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server": "static build/ -a 0.0.0.0 -p $PORT"
   },
   "eslintConfig": {
     "extends": "react-app"
