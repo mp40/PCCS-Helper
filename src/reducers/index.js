@@ -54,10 +54,10 @@ function reduceActions(state = initialState, action) {
     if (action.payload < 3 || action.payload > 19) {
       return { ...state };
     }
-    const newState = { ...state };
-    newState.characterStats.int = action.payload;
-    const newCombatStats = calculateStateObject(newState.characterStats, newState.totalWeight);
-    return { ...state, characterStats: { ...state.characterStats, int: action.payload }, combatStats: newCombatStats };
+    return { ...state,
+      characterStats:
+    { ...state.characterStats, int: action.payload },
+      combatStats: { ...state.combatStats, ISF: calcISF(action.payload, state.combatStats.SAL) } };
   }
   if (action.type === 'HEALTH_VALUE_UPDATED') {
     if (action.payload < 3 || action.payload > 19) {
