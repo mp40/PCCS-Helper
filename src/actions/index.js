@@ -56,3 +56,28 @@ export const modifyMeleeCombatLevel = newMeleeCombatLevel => ({
   type: 'MELEE_COMBAT_LEVEL_UPDATED',
   payload: newMeleeCombatLevel,
 });
+
+export const modifyStrengthValue = newStrengthValue => ({
+  type: 'STRENGTH_VALUE_UPDATED',
+  payload: newStrengthValue,
+});
+
+export const modifyIntelligenceValue = newIntelligenceValue => ({
+  type: 'INTELLIGENCE_VALUE_UPDATED',
+  payload: newIntelligenceValue,
+});
+
+export const modifyHealthValue = newHealthValue => ({
+  type: 'HEALTH_VALUE_UPDATED',
+  payload: newHealthValue,
+});
+
+export const modifyWillpowerValue = newWillpowerValue => ({
+  type: 'WILLPOWER_VALUE_UPDATED',
+  payload: newWillpowerValue,
+});
+
+export const modifyAgilityValue = newAgilityValue => ({
+  type: 'AGILITY_VALUE_UPDATED',
+  payload: newAgilityValue,
+});

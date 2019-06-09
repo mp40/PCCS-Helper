@@ -7,7 +7,7 @@ describe('Character Generation', () => {
   const inputAttribute = (attributeId, newValue) => {
     wrapper.find(attributeId).simulate('click');
     wrapper.find(`${attributeId} input`).simulate('keyUp', { target: { value: newValue },
-      keyCode: 13 });
+      key: 'Enter' });
   };
 
   it('should render Character Generation page', () => {
