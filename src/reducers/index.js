@@ -5,7 +5,7 @@ const {
   findKey,
   findSAL,
   calcMaxSpeed,
-  calcISF,
+  calcSkillFactor,
   calcCombatActions,
   calcKV,
   calcDB,
@@ -20,65 +20,104 @@ function reduceActions(state = initialState, action) {
     if (action.payload < 0) {
       return { ...state };
     }
-    const newState = { ...state };
-    newState.characterStats.gunLevel = action.payload;
-    const newCombatStats = calculateStateObject(newState.characterStats, newState.totalWeight);
-    return { ...state, characterStats: { ...state.characterStats, gunLevel: action.payload }, combatStats: newCombatStats };
+    const newSkillAccuracyLevel = findSAL(action.payload);
+    const newIntelligenceSkillFactor = calcSkillFactor(state.characterStats.int, newSkillAccuracyLevel);
+    const newGunCombatActions = calcCombatActions(state.combatStats.maxSpeed, newIntelligenceSkillFactor);
+    return { ...state,
+      characterStats:
+    { ...state.characterStats, gunLevel: action.payload },
+      combatStats: { ...state.combatStats,
+        SAL: newSkillAccuracyLevel,
+        ISF: newIntelligenceSkillFactor,
+        combatActions: [newGunCombatActions, ...state.combatStats.combatActions.slice(0, 1)] } };
   }
   if (action.type === 'MELEE_COMBAT_LEVEL_UPDATED') {
     if (action.payload < 0) {
       return { ...state };
     }
-    const newState = { ...state };
-    newState.characterStats.handLevel = action.payload;
-    const newCombatStats = calculateStateObject(newState.characterStats, newState.totalWeight);
-    return { ...state, characterStats: { ...state.characterStats, handLevel: action.payload }, combatStats: newCombatStats };
+    const newCombatEfficency = findSAL(action.payload);
+    const newAgilitySkillFactor = calcSkillFactor(state.characterStats.agi, newCombatEfficency);
+    const newDamageBonus = calcDB(state.combatStats.maxSpeed, newAgilitySkillFactor);
+    const newMeleeCombatActions = calcCombatActions(state.combatStats.maxSpeed, newAgilitySkillFactor);
+    return { ...state,
+      characterStats:
+    { ...state.characterStats, handLevel: action.payload },
+      combatStats: { ...state.combatStats,
+        CE: newCombatEfficency,
+        ASF: newAgilitySkillFactor,
+        damageBonus: newDamageBonus,
+        combatActions: [...state.combatStats.combatActions.slice(0, 1), newMeleeCombatActions] } };
   }
   if (action.type === 'STRENGTH_VALUE_UPDATED') {
     if (action.payload < 3 || action.payload > 19) {
       return { ...state };
     }
-    const newState = { ...state };
-    newState.characterStats.str = action.payload;
-    const newCombatStats = calculateStateObject(newState.characterStats, newState.totalWeight);
-    return { ...state, characterStats: { ...state.characterStats, str: action.payload }, combatStats: newCombatStats };
+    const newBaseSpeed = calcBaseSpeed(action.payload, state.totalWeight);
+    const newMaxSpeed = calcMaxSpeed(state.characterStats.agi, newBaseSpeed);
+    const newDamageBonus = calcDB(newMaxSpeed, state.combatStats.ASF);
+    const newGunCombatActions = calcCombatActions(newMaxSpeed, state.combatStats.ISF);
+    const newMeleeCombatActions = calcCombatActions(newMaxSpeed, state.combatStats.ASF);
+    return { ...state,
+      characterStats:
+      { ...state.characterStats, str: action.payload },
+      combatStats: { ...state.combatStats,
+        baseSpeed: calcBaseSpeed(action.payload, state.totalWeight),
+        maxSpeed: newMaxSpeed,
+        damageBonus: newDamageBonus,
+        combatActions: [newGunCombatActions, newMeleeCombatActions] } };
   }
   if (action.type === 'INTELLIGENCE_VALUE_UPDATED') {
     if (action.payload < 3 || action.payload > 19) {
       return { ...state };
     }
-    const newState = { ...state };
-    newState.characterStats.int = action.payload;
-    const newCombatStats = calculateStateObject(newState.characterStats, newState.totalWeight);
-    return { ...state, characterStats: { ...state.characterStats, int: action.payload }, combatStats: newCombatStats };
+    const newGunCombatActions = calcCombatActions(
+      state.combatStats.maxSpeed, calcSkillFactor(action.payload, state.combatStats.SAL),
+    );
+    return { ...state,
+      characterStats:
+    { ...state.characterStats, int: action.payload },
+      combatStats: { ...state.combatStats,
+        ISF: calcSkillFactor(action.payload, state.combatStats.SAL),
+        combatActions:
+        [newGunCombatActions, ...state.combatStats.combatActions.slice(0, 1)] } };
   }
   if (action.type === 'HEALTH_VALUE_UPDATED') {
     if (action.payload < 3 || action.payload > 19) {
       return { ...state };
     }
-    const newState = { ...state };
-    newState.characterStats.hlt = action.payload;
-    const newCombatStats = calculateStateObject(newState.characterStats, newState.totalWeight);
-    return { ...state, characterStats: { ...state.characterStats, hlt: action.payload }, combatStats: newCombatStats };
+    return { ...state, characterStats: { ...state.characterStats, hlt: action.payload } };
   }
   if (action.type === 'WILLPOWER_VALUE_UPDATED') {
     if (action.payload < 3 || action.payload > 19) {
       return { ...state };
     }
-    const newState = { ...state };
-    newState.characterStats.wil = action.payload;
-    const newCombatStats = calculateStateObject(newState.characterStats, newState.totalWeight);
-    return { ...state, characterStats: { ...state.characterStats, wil: action.payload }, combatStats: newCombatStats };
+    const highestCombatSkill = state.characterStats.gunLevel > state.characterStats.handLevel
+      ? state.characterStats.gunLevel : state.characterStats.handLevel;
+    return { ...state,
+      characterStats:
+      { ...state.characterStats, wil: action.payload },
+      combatStats: { ...state.combatStats, knockoutValue: calcKV(action.payload, highestCombatSkill) } };
   }
   if (action.type === 'AGILITY_VALUE_UPDATED') {
     if (action.payload < 3 || action.payload > 19) {
       return { ...state };
     }
-    const newState = { ...state };
-    newState.characterStats.agi = action.payload;
-    const newCombatStats = calculateStateObject(newState.characterStats, newState.totalWeight);
-    return { ...state, characterStats: { ...state.characterStats, agi: action.payload }, combatStats: newCombatStats };
+    const newMaxSpeed = calcMaxSpeed(action.payload, state.combatStats.baseSpeed);
+    const newAgilitySkillFactor = calcSkillFactor(action.payload, state.combatStats.CE);
+    const newDamageBonus = calcDB(newMaxSpeed, newAgilitySkillFactor);
+    const newGunCombatActions = calcCombatActions(newMaxSpeed, state.combatStats.ISF);
+    const newMeleeCombatActions = calcCombatActions(newMaxSpeed, newAgilitySkillFactor);
+
+    return { ...state,
+      characterStats:
+    { ...state.characterStats, agi: action.payload },
+      combatStats: { ...state.combatStats,
+        maxSpeed: newMaxSpeed,
+        ASF: newAgilitySkillFactor,
+        damageBonus: newDamageBonus,
+        combatActions: [newGunCombatActions, newMeleeCombatActions] } };
   }
+
   switch (action.type) {
     case 'VIEW_SELECTED':
       return { ...state, currentView: action.payload };

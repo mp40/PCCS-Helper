@@ -3,7 +3,7 @@ const {
   findKey,
   findSAL,
   calcMaxSpeed,
-  calcISF,
+  calcSkillFactor,
   calcCombatActions,
   calcKV,
   calcDB,
@@ -92,8 +92,8 @@ describe('calculate Max Speed', () => {
 
 describe('calculate ISF', () => {
   it('should return INT plus SAL', () => {
-    expect(calcISF(10, 10)).toEqual(20);
-    expect(calcISF(10, 9)).toEqual(19);
+    expect(calcSkillFactor(10, 10)).toEqual(20);
+    expect(calcSkillFactor(10, 9)).toEqual(19);
   });
 });
 
@@ -128,7 +128,7 @@ describe('calculate additional Hand to Hand data', () => {
     expect(findSAL(5)).toEqual(11);
   });
   it('should calculate Agility Skill Factor (ASF) from AGI and CE', () => {
-    expect(calcISF(12, 7)).toEqual(19);
+    expect(calcSkillFactor(12, 7)).toEqual(19);
   });
   it('should calculate Hand to Hand Combat Actions', () => {
     expect(calcCombatActions(2, 17)).toEqual(2);

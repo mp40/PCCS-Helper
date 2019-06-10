@@ -37,7 +37,7 @@ const calcMaxSpeed = (agi, baseSpd) => {
   return table1bMaxSpeed[agi][index] * 1;
 };
 
-const calcISF = (int, sal) => int + sal;
+const calcSkillFactor = (attribute, skill) => attribute + skill;
 
 const calcCombatActions = (ms, isf) => {
   if (ms === 0) {
@@ -61,10 +61,10 @@ const calculateStateObject = (characterStats, weight) => {
   const bs = calcBaseSpeed(characterStats.str, weight);
   const ms = calcMaxSpeed(characterStats.agi, bs);
   const salResult = findSAL(characterStats.gunLevel);
-  const isfResult = calcISF(characterStats.int, salResult);
+  const isfResult = calcSkillFactor(characterStats.int, salResult);
   const gunResults = calcCombatActions(ms, isfResult);
   const ceResult = findSAL(characterStats.handLevel);
-  const asfResult = calcISF(characterStats.agi, ceResult);
+  const asfResult = calcSkillFactor(characterStats.agi, ceResult);
   const handResults = calcCombatActions(ms, asfResult);
   const knockout = calcKV(characterStats.wil, characterStats.gunLevel > characterStats.handLevel ? characterStats.gunLevel : characterStats.handLevel);
   const damBonus = calcDB(ms, asfResult);
@@ -108,7 +108,7 @@ module.exports = {
   findKey,
   findSAL,
   calcMaxSpeed,
-  calcISF,
+  calcSkillFactor,
   calcCombatActions,
   calcKV,
   calcDB,
