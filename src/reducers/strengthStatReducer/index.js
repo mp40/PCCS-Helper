@@ -1,10 +1,7 @@
 const {
   calcBaseSpeed,
-  findSAL,
   calcMaxSpeed,
-  calcSkillFactor,
   calcCombatActions,
-  calcKV,
   calcDB,
 } = require('../../helpers/helperFunctions');
 

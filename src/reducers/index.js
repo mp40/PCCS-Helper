@@ -2,6 +2,7 @@ import { initialStore } from '../helpers/initialStore';
 import { modifyGunCombatLevelReducer } from './gunCombatLevelReducer';
 import { modifyMeleeCombatLevelReducer } from './meleeCombatLevelReducer';
 import { modifyStrengthValueReducer } from './strengthStatReducer';
+import { modifyIntelligenceValueReducer } from './intelligenceStatReducer';
 
 const {
   calcBaseSpeed,
@@ -38,16 +39,6 @@ function reduceActions(state = initialState, action) {
     if (action.payload < 3 || action.payload > 19) {
       return { ...state };
     }
-    const newGunCombatActions = calcCombatActions(
-      state.combatStats.maxSpeed, calcSkillFactor(action.payload, state.combatStats.SAL),
-    );
-    return { ...state,
-      characterStats:
-    { ...state.characterStats, int: action.payload },
-      combatStats: { ...state.combatStats,
-        ISF: calcSkillFactor(action.payload, state.combatStats.SAL),
-        combatActions:
-        [newGunCombatActions, ...state.combatStats.combatActions.slice(0, 1)] } };
   }
   if (action.type === 'HEALTH_VALUE_UPDATED') {
     if (action.payload < 3 || action.payload > 19) {
