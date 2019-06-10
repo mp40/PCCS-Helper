@@ -6,6 +6,8 @@ const {
   table1dDamageBonus,
 } = require('../data/tables');
 
+const findHighestCombatLevel = (gunLevel, handLevel) => (gunLevel > handLevel ? gunLevel : handLevel);
+
 const findSAL = level => table1cSAL[level] * 1;
 
 const findKey = (enc, arr) => {
@@ -105,6 +107,7 @@ const actionsPerImpulse = (actions) => {
 };
 
 module.exports = {
+  findHighestCombatLevel,
   calcBaseSpeed,
   findKey,
   findSAL,
