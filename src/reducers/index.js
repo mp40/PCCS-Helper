@@ -20,10 +20,16 @@ function reduceActions(state = initialState, action) {
     if (action.payload < 0) {
       return { ...state };
     }
-    const newState = { ...state };
-    newState.characterStats.gunLevel = action.payload;
-    const newCombatStats = calculateStateObject(newState.characterStats, newState.totalWeight);
-    return { ...state, characterStats: { ...state.characterStats, gunLevel: action.payload }, combatStats: newCombatStats };
+    const newSkillAccuracyLevel = findSAL(action.payload);
+    const newIntelligenceSkillFactor = calcSkillFactor(state.characterStats.int, newSkillAccuracyLevel);
+    const newGunCombatActions = calcCombatActions(state.combatStats.maxSpeed, newIntelligenceSkillFactor);
+    return { ...state,
+      characterStats:
+    { ...state.characterStats, gunLevel: action.payload },
+      combatStats: { ...state.combatStats,
+        SAL: newSkillAccuracyLevel,
+        ISF: newIntelligenceSkillFactor,
+        combatActions: [newGunCombatActions, ...state.combatStats.combatActions.slice(0, 1)] } };
   }
   if (action.type === 'MELEE_COMBAT_LEVEL_UPDATED') {
     if (action.payload < 0) {
@@ -40,6 +46,7 @@ function reduceActions(state = initialState, action) {
     }
     const newBaseSpeed = calcBaseSpeed(action.payload, state.totalWeight);
     const newMaxSpeed = calcMaxSpeed(state.characterStats.agi, newBaseSpeed);
+    const newDamageBonus = calcDB(newMaxSpeed, state.combatStats.ASF);
     const newGunCombatActions = calcCombatActions(newMaxSpeed, state.combatStats.ISF);
     const newMeleeCombatActions = calcCombatActions(newMaxSpeed, state.combatStats.ASF);
     return { ...state,
@@ -48,6 +55,7 @@ function reduceActions(state = initialState, action) {
       combatStats: { ...state.combatStats,
         baseSpeed: calcBaseSpeed(action.payload, state.totalWeight),
         maxSpeed: newMaxSpeed,
+        damageBonus: newDamageBonus,
         combatActions: [newGunCombatActions, newMeleeCombatActions] } };
   }
   if (action.type === 'INTELLIGENCE_VALUE_UPDATED') {
@@ -88,6 +96,7 @@ function reduceActions(state = initialState, action) {
     }
     const newMaxSpeed = calcMaxSpeed(action.payload, state.combatStats.baseSpeed);
     const newAgilitySkillFactor = calcSkillFactor(action.payload, state.combatStats.CE);
+    const newDamageBonus = calcDB(newMaxSpeed, newAgilitySkillFactor);
     const newGunCombatActions = calcCombatActions(newMaxSpeed, state.combatStats.ISF);
     const newMeleeCombatActions = calcCombatActions(newMaxSpeed, newAgilitySkillFactor);
 
@@ -97,6 +106,7 @@ function reduceActions(state = initialState, action) {
       combatStats: { ...state.combatStats,
         maxSpeed: newMaxSpeed,
         ASF: newAgilitySkillFactor,
+        damageBonus: newDamageBonus,
         combatActions: [newGunCombatActions, newMeleeCombatActions] } };
   }
 

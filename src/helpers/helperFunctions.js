@@ -37,7 +37,7 @@ const calcMaxSpeed = (agi, baseSpd) => {
   return table1bMaxSpeed[agi][index] * 1;
 };
 
-const calcSkillFactor = (int, sal) => int + sal;
+const calcSkillFactor = (attribute, skill) => attribute + skill;
 
 const calcCombatActions = (ms, isf) => {
   if (ms === 0) {
