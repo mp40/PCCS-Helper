@@ -57,6 +57,7 @@ const calcDB = (ms, asf) => {
   return table1dDamageBonus[ms][index] * 1;
 };
 
+// TODO delete this when reducer migration complete
 const calculateStateObject = (characterStats, weight) => {
   const bs = calcBaseSpeed(characterStats.str, weight);
   const ms = calcMaxSpeed(characterStats.agi, bs);
