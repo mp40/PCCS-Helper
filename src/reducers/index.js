@@ -1,6 +1,7 @@
 import { initialStore } from '../helpers/initialStore';
 import { modifyGunCombatLevelReducer } from './gunCombatLevelReducer';
 import { modifyMeleeCombatLevelReducer } from './meleeCombatLevelReducer';
+import { modifyStrengthValueReducer } from './strengthStatReducer';
 
 const {
   calcBaseSpeed,
@@ -31,19 +32,7 @@ function reduceActions(state = initialState, action) {
     if (action.payload < 3 || action.payload > 19) {
       return { ...state };
     }
-    const newBaseSpeed = calcBaseSpeed(action.payload, state.totalWeight);
-    const newMaxSpeed = calcMaxSpeed(state.characterStats.agi, newBaseSpeed);
-    const newDamageBonus = calcDB(newMaxSpeed, state.combatStats.ASF);
-    const newGunCombatActions = calcCombatActions(newMaxSpeed, state.combatStats.ISF);
-    const newMeleeCombatActions = calcCombatActions(newMaxSpeed, state.combatStats.ASF);
-    return { ...state,
-      characterStats:
-      { ...state.characterStats, str: action.payload },
-      combatStats: { ...state.combatStats,
-        baseSpeed: calcBaseSpeed(action.payload, state.totalWeight),
-        maxSpeed: newMaxSpeed,
-        damageBonus: newDamageBonus,
-        combatActions: [newGunCombatActions, newMeleeCombatActions] } };
+    return modifyStrengthValueReducer(state, action);
   }
   if (action.type === 'INTELLIGENCE_VALUE_UPDATED') {
     if (action.payload < 3 || action.payload > 19) {
