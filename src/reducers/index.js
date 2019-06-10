@@ -1,16 +1,15 @@
 import { initialStore } from '../helpers/initialStore';
+import { modifyGunCombatLevelReducer } from './gunCombatLevelReducer';
+import { modifyMeleeCombatLevelReducer } from './meleeCombatLevelReducer';
 
 const {
   calcBaseSpeed,
-  findKey,
   findSAL,
   calcMaxSpeed,
   calcSkillFactor,
   calcCombatActions,
   calcKV,
   calcDB,
-  calculateStateObject,
-  actionsPerImpulse,
 } = require('../helpers/helperFunctions');
 
 const initialState = initialStore;
@@ -20,33 +19,13 @@ function reduceActions(state = initialState, action) {
     if (action.payload < 0) {
       return { ...state };
     }
-    const newSkillAccuracyLevel = findSAL(action.payload);
-    const newIntelligenceSkillFactor = calcSkillFactor(state.characterStats.int, newSkillAccuracyLevel);
-    const newGunCombatActions = calcCombatActions(state.combatStats.maxSpeed, newIntelligenceSkillFactor);
-    return { ...state,
-      characterStats:
-    { ...state.characterStats, gunLevel: action.payload },
-      combatStats: { ...state.combatStats,
-        SAL: newSkillAccuracyLevel,
-        ISF: newIntelligenceSkillFactor,
-        combatActions: [newGunCombatActions, ...state.combatStats.combatActions.slice(0, 1)] } };
+    return modifyGunCombatLevelReducer(state, action);
   }
   if (action.type === 'MELEE_COMBAT_LEVEL_UPDATED') {
     if (action.payload < 0) {
       return { ...state };
     }
-    const newCombatEfficency = findSAL(action.payload);
-    const newAgilitySkillFactor = calcSkillFactor(state.characterStats.agi, newCombatEfficency);
-    const newDamageBonus = calcDB(state.combatStats.maxSpeed, newAgilitySkillFactor);
-    const newMeleeCombatActions = calcCombatActions(state.combatStats.maxSpeed, newAgilitySkillFactor);
-    return { ...state,
-      characterStats:
-    { ...state.characterStats, handLevel: action.payload },
-      combatStats: { ...state.combatStats,
-        CE: newCombatEfficency,
-        ASF: newAgilitySkillFactor,
-        damageBonus: newDamageBonus,
-        combatActions: [...state.combatStats.combatActions.slice(0, 1), newMeleeCombatActions] } };
+    return modifyMeleeCombatLevelReducer(state, action);
   }
   if (action.type === 'STRENGTH_VALUE_UPDATED') {
     if (action.payload < 3 || action.payload > 19) {
