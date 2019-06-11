@@ -3,6 +3,8 @@ import { modifyGunCombatLevelReducer } from './gunCombatLevelReducer';
 import { modifyMeleeCombatLevelReducer } from './meleeCombatLevelReducer';
 import { modifyStrengthValueReducer } from './strengthStatReducer';
 import { modifyIntelligenceValueReducer } from './intelligenceStatReducer';
+import { modifyHealthValueReducer } from './healthStatReducer';
+import { modifyWillpowerValueReducer } from './willpowerStatReducer';
 
 const {
   calcBaseSpeed,
@@ -39,23 +41,19 @@ function reduceActions(state = initialState, action) {
     if (action.payload < 3 || action.payload > 19) {
       return { ...state };
     }
+    return modifyIntelligenceValueReducer(state, action);
   }
   if (action.type === 'HEALTH_VALUE_UPDATED') {
     if (action.payload < 3 || action.payload > 19) {
       return { ...state };
     }
-    return { ...state, characterStats: { ...state.characterStats, hlt: action.payload } };
+    return modifyHealthValueReducer(state, action);
   }
   if (action.type === 'WILLPOWER_VALUE_UPDATED') {
     if (action.payload < 3 || action.payload > 19) {
       return { ...state };
     }
-    const highestCombatSkill = state.characterStats.gunLevel > state.characterStats.handLevel
-      ? state.characterStats.gunLevel : state.characterStats.handLevel;
-    return { ...state,
-      characterStats:
-      { ...state.characterStats, wil: action.payload },
-      combatStats: { ...state.combatStats, knockoutValue: calcKV(action.payload, highestCombatSkill) } };
+    return modifyWillpowerValueReducer(state, action);
   }
   if (action.type === 'AGILITY_VALUE_UPDATED') {
     if (action.payload < 3 || action.payload > 19) {

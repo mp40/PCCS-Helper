@@ -52,7 +52,7 @@ describe('Chasracter Attribute Stat Input', () => {
       const fourthImpulse = actionsTable.childAt(4);
       expect(firstImpulse.text()).toContain('2');
       expect(secondImpulse.text()).toContain('1');
-      expect(thirdImpulse.text()).toContain('1');
+      expect(thirdImpulse.text()).toContain('2');
       expect(fourthImpulse.text()).toContain('1');
     });
     describe('edge cases', () => {
