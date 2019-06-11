@@ -5,16 +5,7 @@ import { modifyStrengthValueReducer } from './strengthStatReducer';
 import { modifyIntelligenceValueReducer } from './intelligenceStatReducer';
 import { modifyHealthValueReducer } from './healthStatReducer';
 import { modifyWillpowerValueReducer } from './willpowerStatReducer';
-
-const {
-  calcBaseSpeed,
-  findSAL,
-  calcMaxSpeed,
-  calcSkillFactor,
-  calcCombatActions,
-  calcKV,
-  calcDB,
-} = require('../helpers/helperFunctions');
+import { modifyAgilityValueReducer } from './agilityStatReducer';
 
 const initialState = initialStore;
 
@@ -59,20 +50,7 @@ function reduceActions(state = initialState, action) {
     if (action.payload < 3 || action.payload > 19) {
       return { ...state };
     }
-    const newMaxSpeed = calcMaxSpeed(action.payload, state.combatStats.baseSpeed);
-    const newAgilitySkillFactor = calcSkillFactor(action.payload, state.combatStats.CE);
-    const newDamageBonus = calcDB(newMaxSpeed, newAgilitySkillFactor);
-    const newGunCombatActions = calcCombatActions(newMaxSpeed, state.combatStats.ISF);
-    const newMeleeCombatActions = calcCombatActions(newMaxSpeed, newAgilitySkillFactor);
-
-    return { ...state,
-      characterStats:
-    { ...state.characterStats, agi: action.payload },
-      combatStats: { ...state.combatStats,
-        maxSpeed: newMaxSpeed,
-        ASF: newAgilitySkillFactor,
-        damageBonus: newDamageBonus,
-        combatActions: [newGunCombatActions, newMeleeCombatActions] } };
+    return modifyAgilityValueReducer(state, action);
   }
 
   switch (action.type) {

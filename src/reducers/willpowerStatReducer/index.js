@@ -1,12 +1,6 @@
 const {
   findHighestCombatLevel,
-  calcBaseSpeed,
-  findSAL,
-  calcMaxSpeed,
-  calcSkillFactor,
-  calcCombatActions,
   calcKV,
-  calcDB,
 } = require('../../helpers/helperFunctions');
 
 export const modifyWillpowerValueReducer = (state, action) => {
