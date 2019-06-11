@@ -146,6 +146,10 @@ describe('calculate Knockout Value', () => {
     expect(calcKV(11, 4)).toEqual(20);
     expect(calcKV(7, 2)).toEqual(6);
   });
+  it('should times by 1 if highest level is zero', () => {
+    expect(calcKV(3, 0)).toEqual(1);
+    expect(calcKV(18, 0)).toEqual(9);
+  });
 });
 
 describe('calculate Damage Bonus', () => {

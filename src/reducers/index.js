@@ -1,16 +1,11 @@
 import { initialStore } from '../helpers/initialStore';
 import { modifyGunCombatLevelReducer } from './gunCombatLevelReducer';
 import { modifyMeleeCombatLevelReducer } from './meleeCombatLevelReducer';
-
-const {
-  calcBaseSpeed,
-  findSAL,
-  calcMaxSpeed,
-  calcSkillFactor,
-  calcCombatActions,
-  calcKV,
-  calcDB,
-} = require('../helpers/helperFunctions');
+import { modifyStrengthValueReducer } from './strengthStatReducer';
+import { modifyIntelligenceValueReducer } from './intelligenceStatReducer';
+import { modifyHealthValueReducer } from './healthStatReducer';
+import { modifyWillpowerValueReducer } from './willpowerStatReducer';
+import { modifyAgilityValueReducer } from './agilityStatReducer';
 
 const initialState = initialStore;
 
@@ -31,70 +26,31 @@ function reduceActions(state = initialState, action) {
     if (action.payload < 3 || action.payload > 19) {
       return { ...state };
     }
-    const newBaseSpeed = calcBaseSpeed(action.payload, state.totalWeight);
-    const newMaxSpeed = calcMaxSpeed(state.characterStats.agi, newBaseSpeed);
-    const newDamageBonus = calcDB(newMaxSpeed, state.combatStats.ASF);
-    const newGunCombatActions = calcCombatActions(newMaxSpeed, state.combatStats.ISF);
-    const newMeleeCombatActions = calcCombatActions(newMaxSpeed, state.combatStats.ASF);
-    return { ...state,
-      characterStats:
-      { ...state.characterStats, str: action.payload },
-      combatStats: { ...state.combatStats,
-        baseSpeed: calcBaseSpeed(action.payload, state.totalWeight),
-        maxSpeed: newMaxSpeed,
-        damageBonus: newDamageBonus,
-        combatActions: [newGunCombatActions, newMeleeCombatActions] } };
+    return modifyStrengthValueReducer(state, action);
   }
   if (action.type === 'INTELLIGENCE_VALUE_UPDATED') {
     if (action.payload < 3 || action.payload > 19) {
       return { ...state };
     }
-    const newGunCombatActions = calcCombatActions(
-      state.combatStats.maxSpeed, calcSkillFactor(action.payload, state.combatStats.SAL),
-    );
-    return { ...state,
-      characterStats:
-    { ...state.characterStats, int: action.payload },
-      combatStats: { ...state.combatStats,
-        ISF: calcSkillFactor(action.payload, state.combatStats.SAL),
-        combatActions:
-        [newGunCombatActions, ...state.combatStats.combatActions.slice(0, 1)] } };
+    return modifyIntelligenceValueReducer(state, action);
   }
   if (action.type === 'HEALTH_VALUE_UPDATED') {
     if (action.payload < 3 || action.payload > 19) {
       return { ...state };
     }
-    return { ...state, characterStats: { ...state.characterStats, hlt: action.payload } };
+    return modifyHealthValueReducer(state, action);
   }
   if (action.type === 'WILLPOWER_VALUE_UPDATED') {
     if (action.payload < 3 || action.payload > 19) {
       return { ...state };
     }
-    const highestCombatSkill = state.characterStats.gunLevel > state.characterStats.handLevel
-      ? state.characterStats.gunLevel : state.characterStats.handLevel;
-    return { ...state,
-      characterStats:
-      { ...state.characterStats, wil: action.payload },
-      combatStats: { ...state.combatStats, knockoutValue: calcKV(action.payload, highestCombatSkill) } };
+    return modifyWillpowerValueReducer(state, action);
   }
   if (action.type === 'AGILITY_VALUE_UPDATED') {
     if (action.payload < 3 || action.payload > 19) {
       return { ...state };
     }
-    const newMaxSpeed = calcMaxSpeed(action.payload, state.combatStats.baseSpeed);
-    const newAgilitySkillFactor = calcSkillFactor(action.payload, state.combatStats.CE);
-    const newDamageBonus = calcDB(newMaxSpeed, newAgilitySkillFactor);
-    const newGunCombatActions = calcCombatActions(newMaxSpeed, state.combatStats.ISF);
-    const newMeleeCombatActions = calcCombatActions(newMaxSpeed, newAgilitySkillFactor);
-
-    return { ...state,
-      characterStats:
-    { ...state.characterStats, agi: action.payload },
-      combatStats: { ...state.combatStats,
-        maxSpeed: newMaxSpeed,
-        ASF: newAgilitySkillFactor,
-        damageBonus: newDamageBonus,
-        combatActions: [newGunCombatActions, newMeleeCombatActions] } };
+    return modifyAgilityValueReducer(state, action);
   }
 
   switch (action.type) {

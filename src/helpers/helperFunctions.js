@@ -49,7 +49,7 @@ const calcCombatActions = (ms, isf) => {
   return table1dCombatActions[ms][index] * 1;
 };
 
-const calcKV = (wil, highestSkill) => Math.floor(0.5 * wil) * highestSkill;
+const calcKV = (wil, highestSkill) => Math.floor(0.5 * wil) * (highestSkill || 1);
 
 const calcDB = (ms, asf) => {
   if (ms === 0) {
