@@ -2,7 +2,7 @@
 
 # Phoenix Command Combat System Assistant [![Build Status](https://travis-ci.org/mp40/PCCS-Helper.png?branch=master)](https://travis-ci.org/mp40/PCCS-Helper)
 
-### Built with TDD/BDD.
+### Built with TDD & BDD.
 
 This was started during my time as a student at Code Chrysalis
 
