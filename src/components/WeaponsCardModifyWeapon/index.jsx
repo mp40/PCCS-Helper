@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { gunObjShape } from '../../helpers/proptypeShapes';
 import WeaponsCardCustomMag from '../WeaponsCardCustomMag';
 import WeaponsCardModifyWeight from '../WeaponsCardModifyWeight';
-import ButtonSlim from '../../helpers/buttons/ButtonSlim';
+import ButtonSlim from '../widgets/buttons/ButtonSlim';
 
 import '../WeaponsCard/WeaponsCard.css';
 

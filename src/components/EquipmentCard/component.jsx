@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { gearShape } from '../../helpers/proptypeShapes';
 import EquipmentDropdown from '../EquipmentDropdown';
 import CustomEquipmentModal from '../CustomEquipmentModal';
-import ButtonStandard from '../../helpers/buttons/ButtonStandard';
-import ButtonDeleteX from '../../helpers/buttons/ButtonDeleteX';
-import ButtonIncrementArrows from '../../helpers/buttons/ButtonIncrementArrows';
+import ButtonStandard from '../widgets/buttons/ButtonStandard';
+import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
+import ButtonIncrementArrows from '../widgets/buttons/ButtonIncrementArrows';
 
 import { removeEquipment, removeAllEquipment, incrementEquipmentQty } from '../../helpers/actionHelpers';
 

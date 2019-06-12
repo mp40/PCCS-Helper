@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { gunObjShape } from '../../helpers/proptypeShapes';
 import WeaponDataRow from '../WeaponDataRow';
-import ButtonDeleteX from '../../helpers/buttons/ButtonDeleteX';
+import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 import WeaponsCardModifyWeapon from '../WeaponsCardModifyWeapon';
 import { buildArrayForGunTable } from '../../helpers/componentHelpers';
 import '../WeaponsCard/WeaponsCard.css';
