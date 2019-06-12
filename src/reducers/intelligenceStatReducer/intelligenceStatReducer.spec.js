@@ -1,47 +1,16 @@
 import { modifyIntelligenceValueReducer } from './index';
-import { mockState } from '../mockState';
+import { MockState } from '../mockState';
+import { IntelligenceThree, IntelligenceEighteen } from './testResources';
 
 describe('intelligenceStatReducer function', () => {
   it('should return correct values when intelligence changes to 3', () => {
     const action = { payload: 3 };
-    const newState = modifyIntelligenceValueReducer(mockState(), action);
-    expect(newState.characterStats.str).toEqual(10);
-    expect(newState.characterStats.int).toEqual(3);
-    expect(newState.characterStats.hlt).toEqual(10);
-    expect(newState.characterStats.wil).toEqual(10);
-    expect(newState.characterStats.agi).toEqual(10);
-    expect(newState.characterStats.gunLevel).toEqual(0);
-    expect(newState.characterStats.handLevel).toEqual(0);
-    expect(newState.combatStats.baseSpeed).toEqual(3);
-    expect(newState.combatStats.maxSpeed).toEqual(6);
-    expect(newState.combatStats.SAL).toEqual(0);
-    expect(newState.combatStats.CE).toEqual(0);
-    expect(newState.combatStats.ISF).toEqual(3);
-    expect(newState.combatStats.ASF).toEqual(10);
-    expect(newState.combatStats.knockoutValue).toEqual(5);
-    expect(newState.combatStats.damageBonus).toEqual(1);
-    expect(newState.combatStats.combatActions[0]).toEqual(3);
-    expect(newState.combatStats.combatActions[1]).toEqual(4);
+    const newState = modifyIntelligenceValueReducer(new MockState(), action);
+    expect(newState).toMatchObject(new IntelligenceThree());
   });
   it('should return correct values when intelligence changes to 18', () => {
     const action = { payload: 18 };
-    const newState = modifyIntelligenceValueReducer(mockState(), action);
-    expect(newState.characterStats.str).toEqual(10);
-    expect(newState.characterStats.int).toEqual(18);
-    expect(newState.characterStats.hlt).toEqual(10);
-    expect(newState.characterStats.wil).toEqual(10);
-    expect(newState.characterStats.agi).toEqual(10);
-    expect(newState.characterStats.gunLevel).toEqual(0);
-    expect(newState.characterStats.handLevel).toEqual(0);
-    expect(newState.combatStats.baseSpeed).toEqual(3);
-    expect(newState.combatStats.maxSpeed).toEqual(6);
-    expect(newState.combatStats.SAL).toEqual(0);
-    expect(newState.combatStats.CE).toEqual(0);
-    expect(newState.combatStats.ISF).toEqual(18);
-    expect(newState.combatStats.ASF).toEqual(10);
-    expect(newState.combatStats.knockoutValue).toEqual(5);
-    expect(newState.combatStats.damageBonus).toEqual(1);
-    expect(newState.combatStats.combatActions[0]).toEqual(6);
-    expect(newState.combatStats.combatActions[1]).toEqual(4);
+    const newState = modifyIntelligenceValueReducer(new MockState(), action);
+    expect(newState).toMatchObject(new IntelligenceEighteen());
   });
 });

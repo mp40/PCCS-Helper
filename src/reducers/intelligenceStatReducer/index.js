@@ -1,11 +1,6 @@
 const {
-  calcBaseSpeed,
-  findSAL,
-  calcMaxSpeed,
   calcSkillFactor,
   calcCombatActions,
-  calcKV,
-  calcDB,
 } = require('../../helpers/helperFunctions');
 
 export const modifyIntelligenceValueReducer = (state, action) => {
