@@ -1,5 +1,6 @@
 import { modifyWillpowerValueReducer } from './index';
-import { MockState, WillpowerThree, WillpowerEighteen } from '../mockState';
+import { MockState } from '../mockState';
+import { WillpowerThree, WillpowerEighteen } from './testResources';
 
 describe('willpowerStatReducer function', () => {
   it('should return correct values when willpower changes to 3', () => {
