@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { gearShape } from '../../helpers/proptypeShapes';
 import { addEquipment } from '../../helpers/actionHelpers';
 
-import ButtonStandard from '../../helpers/buttons/ButtonStandard';
+import ButtonStandard from '../widgets/buttons/ButtonStandard';
 
 import './CustomEquipmentModal.css';
 

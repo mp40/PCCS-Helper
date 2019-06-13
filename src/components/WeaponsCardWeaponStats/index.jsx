@@ -2,15 +2,18 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { gunObjShape } from '../../helpers/proptypeShapes';
 import WeaponDataRow from '../WeaponDataRow';
-import ButtonDeleteX from '../../helpers/buttons/ButtonDeleteX';
+import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 import WeaponsCardModifyWeapon from '../WeaponsCardModifyWeapon';
 import { buildArrayForGunTable } from '../../helpers/componentHelpers';
 import '../WeaponsCard/WeaponsCard.css';
 
+export const standardRangeBrackets = [10, 20, 40, 70, 100, 200, 300, 400];
+export const shotgunRangeBrackets = [1, 2, 4, 6, 8, 10, 15, 20, 30, 40, 80];
+
 class WeaponsCardWeaponStats extends Component {
     getRangeBrackets = (gunObj) => {
-      const standard = [10, 20, 40, 70, 100, 200, 300, 400];
-      const shotgun = [1, 2, 4, 6, 8, 10, 15, 20, 30, 40, 80];
+      const standard = standardRangeBrackets;
+      const shotgun = shotgunRangeBrackets;
       if (!gunObj.projectiles[1]) {
         return standard;
       }
