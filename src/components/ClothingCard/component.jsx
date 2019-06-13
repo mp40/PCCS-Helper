@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { gearShape } from '../../helpers/proptypeShapes';
-import { calculateTotalWeight, findUniformWeight } from '../../helpers/actionHelpers';
+import { findUniformWeight } from '../../helpers/actionHelpers';
 
 import './ClothingCard.css';
 
@@ -18,11 +18,9 @@ class ClothingCard extends Component {
     }
 
     handleChangeUniform = (event) => {
-      const { gear, characterStats, changeUniform } = this.props;
+      const { changeUniform } = this.props;
       const newUniform = event.target.value;
-      const newWeight = calculateTotalWeight(newUniform, gear.equipment, gear.firearms);
-      const attributeObj = characterStats;
-      changeUniform(newUniform, newWeight, attributeObj);
+      changeUniform(newUniform);
       this.setState({ showUniformSelect: false });
     }
 
@@ -82,7 +80,6 @@ class ClothingCard extends Component {
 ClothingCard.propTypes = {
   changeUniform: PropTypes.func,
   gear: gearShape,
-  characterStats: PropTypes.objectOf(PropTypes.number),
 };
 
 export default ClothingCard;

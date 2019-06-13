@@ -6,6 +6,7 @@ import { modifyIntelligenceValueReducer } from './intelligenceStatReducer';
 import { modifyHealthValueReducer } from './healthStatReducer';
 import { modifyWillpowerValueReducer } from './willpowerStatReducer';
 import { modifyAgilityValueReducer } from './agilityStatReducer';
+import { changeUniformReducer } from './uniformReducer';
 
 const initialState = initialStore;
 
@@ -52,6 +53,9 @@ function reduceActions(state = initialState, action) {
     }
     return modifyAgilityValueReducer(state, action);
   }
+  if (action.type === 'UNIFORM_CHANGED') {
+    return changeUniformReducer(state, action);
+  }
 
   switch (action.type) {
     case 'VIEW_SELECTED':
@@ -64,8 +68,6 @@ function reduceActions(state = initialState, action) {
       return { ...state, combatStats: action.payload };
     case 'MODIFY_EQUIPMENT':
       return { ...state, gear: { ...state.gear, equipment: action.payload } };
-    case 'CHANGE_UNIFORM':
-      return { ...state, gear: { ...state.gear, uniform: action.payload } };
     case 'MODIFY_FIREARMS':
       return { ...state, gear: { ...state.gear, firearms: action.payload } };
     default: return state;

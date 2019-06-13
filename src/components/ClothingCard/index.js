@@ -6,8 +6,6 @@ import './ClothingCard.css';
 
 
 const mapStateToProps = state => ({
-  totalWeight: state.totalWeight,
-  characterStats: state.characterStats,
   gear: state.gear,
 });
 
