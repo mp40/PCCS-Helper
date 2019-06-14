@@ -34,13 +34,13 @@ export const modifyEquipment = (newWeight, equipArray, attributeObj) => (dispatc
   dispatch(updateWeight(newWeight, attributeObj));
 };
 
-export const changeUniform = (newUniform, newWeight, attributeObj) => (dispatch) => {
-  dispatch({
-    type: 'CHANGE_UNIFORM',
-    payload: newUniform,
-  });
-  dispatch(updateWeight(newWeight, attributeObj));
-};
+// export const changeUniform = (newUniform, newWeight, attributeObj) => (dispatch) => {
+//   dispatch({
+//     type: 'CHANGE_UNIFORM',
+//     payload: newUniform,
+//   });
+//   dispatch(updateWeight(newWeight, attributeObj));
+// };
 
 export const modifyFirearmList = (newWeight, firearmsArray, attributeObj) => (dispatch) => {
   dispatch({ type: 'MODIFY_FIREARMS', payload: firearmsArray });
@@ -80,4 +80,9 @@ export const modifyWillpowerValue = newWillpowerValue => ({
 export const modifyAgilityValue = newAgilityValue => ({
   type: 'AGILITY_VALUE_UPDATED',
   payload: newAgilityValue,
+});
+
+export const changeUniform = newUniform => ({
+  type: 'UNIFORM_CHANGED',
+  payload: newUniform,
 });
