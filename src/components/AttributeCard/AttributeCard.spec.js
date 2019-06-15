@@ -1,8 +1,7 @@
-import { mountAppWithStore } from '../../helpers/testHelpers';
+import { mountAppWithStore, storeWithCreateCharacterView } from '../../helpers/testHelpers';
 
-describe('Chasracter Attribute Stat Input', () => {
-  const wrapper = mountAppWithStore();
-  wrapper.find('#activateCreateChar').simulate('click');
+describe('Character Attribute Stat Input', () => {
+  const wrapper = mountAppWithStore(storeWithCreateCharacterView());
 
   const inputAttribute = (attributeId, newValue) => {
     wrapper.find(attributeId).simulate('click');
@@ -44,16 +43,13 @@ describe('Chasracter Attribute Stat Input', () => {
       inputAttribute('#updateAgi', '18');
       expect(wrapper.text()).toContain('18');
     });
-    it('updates actions when attributes change', () => {
-      const actionsTable = wrapper.find('#gunActionTable');
-      const firstImpulse = actionsTable.childAt(1);
-      const secondImpulse = actionsTable.childAt(2);
-      const thirdImpulse = actionsTable.childAt(3);
-      const fourthImpulse = actionsTable.childAt(4);
-      expect(firstImpulse.text()).toContain('2');
-      expect(secondImpulse.text()).toContain('1');
-      expect(thirdImpulse.text()).toContain('2');
-      expect(fourthImpulse.text()).toContain('1');
+    it('updates actions and other combat stats when attributes change', () => {
+      const gunActionsTable = wrapper.find('#gunActionTable');
+      const handActionsTable = wrapper.find('#handActionTable');
+      const additionalData = wrapper.find('.additionalCombatData');
+      expect(gunActionsTable.text()).toEqual('Gun2121');
+      expect(handActionsTable.text()).toEqual('Hand3222');
+      expect(additionalData.text()).toEqual('BS 3MS 8DB 3');
     });
     describe('edge cases', () => {
       it('should not be possible to enter values under 3', () => {

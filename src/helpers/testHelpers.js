@@ -54,6 +54,7 @@ export const storeWithCreateCharacterView = (gun = null) => {
       combatActions: [0, 0],
     },
     gear: {
+      uniform: 'Normal',
       equipment: [],
       firearms: [],
     },

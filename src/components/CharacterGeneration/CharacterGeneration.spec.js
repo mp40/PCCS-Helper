@@ -1,33 +1,6 @@
 import { mountAppWithStore, storeWithEquipment } from '../../helpers/testHelpers';
 
 describe('Character Generation', () => {
-  describe('Comabt Data', () => {
-    const wrapper = mountAppWithStore();
-    wrapper.find('#activateCreateChar').simulate('click');
-
-    describe('Combat Actions', () => {
-      it('should render gun combat actions', () => {
-        const rows = wrapper.find('.combatActions tbody tr');
-        expect(rows.at(0).text()).toEqual('Gun1111');
-      });
-      it('should render gun combat actions', () => {
-        const rows = wrapper.find('.combatActions tbody tr');
-        expect(rows.at(1).text()).toEqual('Hand1111');
-      });
-    });
-    describe('movement and damage bonus', () => {
-      const data = wrapper.find('.additionalCombatData');
-      it('should render base speed', () => {
-        expect(data.text()).toContain('3');
-      });
-      it('should render max speed', () => {
-        expect(data.text()).toContain('6');
-      });
-      it('should render damage bonus', () => {
-        expect(data.text()).toContain('1');
-      });
-    });
-  });
   describe('the equipment list', () => {
     const wrapper = mountAppWithStore();
     wrapper.find('#activateCreateChar').simulate('click');

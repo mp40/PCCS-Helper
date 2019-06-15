@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import StatInput from '../widgets/StatInput';
 import { isValidAttributeStat } from '../../helpers/gaurds';
 
-const attributeArray = ['str', 'int', 'hlt', 'wil', 'agi'];
 const statNameArray = ['Strength', 'Intelligence', 'Health', 'Willpower', 'Agility'];
 
 const AttributeCard = (props) => {
@@ -19,7 +18,7 @@ const AttributeCard = (props) => {
               <th className="attHeading">Attribute</th>
               <th className="attValHeading">Value</th>
             </tr>
-            {attributeArray.map((stat, index) => (
+            {Object.keys(characterStats).slice(0, 5).map((stat, index) => (
               <StatInput
                 statLevel={characterStats[stat]}
                 statName={statNameArray[index]}
