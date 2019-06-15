@@ -1,8 +1,7 @@
-import { mountAppWithStore } from '../../helpers/testHelpers';
+import { mountAppWithStore, storeWithCreateCharacterView } from '../../helpers/testHelpers';
 
-describe('Combat Levels', () => {
-  const wrapper = mountAppWithStore();
-  wrapper.find('#activateCreateChar').simulate('click');
+describe('the CombatCard comonent', () => {
+  const wrapper = mountAppWithStore(storeWithCreateCharacterView());
 
   const inputAttribute = (attributeId, newValue) => {
     wrapper.find(attributeId).simulate('click');
@@ -10,29 +9,23 @@ describe('Combat Levels', () => {
       key: 'Enter' });
   };
   const combatLevels = wrapper.find('#combatLevelInputContainer');
-  it('should render Gun Comabat', () => {
-    expect(wrapper.text()).toContain('Gun');
-  });
-  it('should render Hand to Hand Combat', () => {
-    expect(wrapper.text()).toContain('Hand');
-  });
-  it('should update gun combat level', () => {
-    inputAttribute('#updateGun', '4');
-    expect(combatLevels.text()).toContain('4');
-  });
-  it('should update hand to hand combat level', () => {
-    inputAttribute('#updateHand', '2');
-    expect(combatLevels.text()).toContain('2');
-  });
-  it('updates actions when attributes change', () => {
-    const actionsTable = wrapper.find('#gunActionTable');
-    const firstImpulse = actionsTable.childAt(1);
-    const secondImpulse = actionsTable.childAt(2);
-    const thirdImpulse = actionsTable.childAt(3);
-    const fourthImpulse = actionsTable.childAt(4);
-    expect(firstImpulse.text()).toContain('2');
-    expect(secondImpulse.text()).toContain('1');
-    expect(thirdImpulse.text()).toContain('2');
-    expect(fourthImpulse.text()).toContain('2');
+
+  describe('changing combat level values', () => {
+    it('should update gun combat level', () => {
+      inputAttribute('#updateGun', '4');
+      expect(combatLevels.text()).toContain('4');
+    });
+    it('should update hand to hand combat level', () => {
+      inputAttribute('#updateHand', '2');
+      expect(combatLevels.text()).toContain('2');
+    });
+    it('updates actions and other combat data when levels change', () => {
+      const gunActionsTable = wrapper.find('#gunActionTable');
+      const handActionsTable = wrapper.find('#handActionTable');
+      const additionalData = wrapper.find('.additionalCombatData');
+      expect(gunActionsTable.text()).toEqual('Gun2122');
+      expect(handActionsTable.text()).toEqual('Hand2121');
+      expect(additionalData.text()).toEqual('BS 3MS 6DB 1.5');
+    });
   });
 });

@@ -58,9 +58,4 @@ class CharacterGeneration extends Component {
   }
 }
 
-// AttributeCard.propTypes = {
-//   updateWeight: PropTypes.func,
-//   updateAttributes: PropTypes.func,
-// };
-
 export default CharacterGeneration;
