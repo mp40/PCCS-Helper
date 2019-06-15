@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import StatInput from '../widgets/StatInput';
+import { isValidCombatLevel } from '../../helpers/gaurds';
 
 const CombatCard = (props) => {
   const { characterStats, modifyGunCombatLevel, modifyMeleeCombatLevel } = props;
@@ -17,12 +18,14 @@ const CombatCard = (props) => {
               statLevel={characterStats.gunLevel}
               statName="Gun"
               idRef="updateGun"
+              isValid={isValidCombatLevel}
               action={modifyGunCombatLevel}
             />
             <StatInput
               statLevel={characterStats.handLevel}
               statName="Hand"
               idRef="updateHand"
+              isValid={isValidCombatLevel}
               action={modifyMeleeCombatLevel}
             />
           </tbody>
@@ -35,9 +38,7 @@ const CombatCard = (props) => {
 CombatCard.propTypes = {
   modifyGunCombatLevel: PropTypes.func,
   modifyMeleeCombatLevel: PropTypes.func,
-  // updateAttributes: PropTypes.func,
   characterStats: PropTypes.objectOf(PropTypes.number),
-  // totalWeight: PropTypes.number,
 };
 
 export default CombatCard;

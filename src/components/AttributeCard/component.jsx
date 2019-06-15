@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import StatInput from '../widgets/StatInput';
+import { isValidAttributeStat } from '../../helpers/gaurds';
 
 const AttributeCard = (props) => {
   const { characterStats,
@@ -23,30 +24,35 @@ const AttributeCard = (props) => {
               statLevel={characterStats.str}
               statName="Strength"
               idRef="updateStr"
+              isValid={isValidAttributeStat}
               action={modifyStrengthValue}
             />
             <StatInput
               statLevel={characterStats.int}
               statName="Intelligence"
               idRef="updateInt"
+              isValid={isValidAttributeStat}
               action={modifyIntelligenceValue}
             />
             <StatInput
               statLevel={characterStats.hlt}
               statName="Health"
               idRef="updateHlt"
+              isValid={isValidAttributeStat}
               action={modifyHealthValue}
             />
             <StatInput
               statLevel={characterStats.wil}
               statName="Willpower"
               idRef="updateWil"
+              isValid={isValidAttributeStat}
               action={modifyWillpowerValue}
             />
             <StatInput
               statLevel={characterStats.agi}
               statName="Agility"
               idRef="updateAgi"
+              isValid={isValidAttributeStat}
               action={modifyAgilityValue}
             />
           </tbody>
