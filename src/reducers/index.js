@@ -1,5 +1,4 @@
 import { initialStore } from '../helpers/initialStore';
-import { isValidCombatLevel, isValidAttributeStat } from './gaurds';
 import { modifyGunCombatLevelReducer } from './gunCombatLevelReducer';
 import { modifyMeleeCombatLevelReducer } from './meleeCombatLevelReducer';
 import { modifyStrengthValueReducer } from './strengthStatReducer';
@@ -13,25 +12,25 @@ const initialState = initialStore;
 
 function reduceActions(state = initialState, action) {
   if (action.type === 'GUN_COMBAT_LEVEL_UPDATED') {
-    return isValidCombatLevel(action.payload) ? modifyGunCombatLevelReducer(state, action) : { ...state };
+    return modifyGunCombatLevelReducer(state, action);
   }
   if (action.type === 'MELEE_COMBAT_LEVEL_UPDATED') {
-    return isValidCombatLevel(action.payload) ? modifyMeleeCombatLevelReducer(state, action) : { ...state };
+    return modifyMeleeCombatLevelReducer(state, action);
   }
   if (action.type === 'STRENGTH_VALUE_UPDATED') {
-    return isValidAttributeStat(action.payload) ? modifyStrengthValueReducer(state, action) : { ...state };
+    return modifyStrengthValueReducer(state, action);
   }
   if (action.type === 'INTELLIGENCE_VALUE_UPDATED') {
-    return isValidAttributeStat(action.payload) ? modifyIntelligenceValueReducer(state, action) : { ...state };
+    return modifyIntelligenceValueReducer(state, action);
   }
   if (action.type === 'HEALTH_VALUE_UPDATED') {
-    return isValidAttributeStat(action.payload) ? modifyHealthValueReducer(state, action) : { ...state };
+    return modifyHealthValueReducer(state, action);
   }
   if (action.type === 'WILLPOWER_VALUE_UPDATED') {
-    return isValidAttributeStat(action.payload) ? modifyWillpowerValueReducer(state, action) : { ...state };
+    return modifyWillpowerValueReducer(state, action);
   }
   if (action.type === 'AGILITY_VALUE_UPDATED') {
-    return isValidAttributeStat(action.payload) ? modifyAgilityValueReducer(state, action) : { ...state };
+    return modifyAgilityValueReducer(state, action);
   }
   if (action.type === 'UNIFORM_CHANGED') {
     return changeUniformReducer(state, action);

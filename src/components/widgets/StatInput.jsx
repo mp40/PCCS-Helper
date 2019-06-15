@@ -14,9 +14,11 @@ class StatInput extends Component {
   }
 
   handleUpdateValue = (value) => {
-    const { action } = this.props;
+    const { action, isValid } = this.props;
     const parsedValue = parseInt(value, 10);
-    action(parsedValue);
+    if (isValid(parsedValue)) {
+      action(parsedValue);
+    }
     this.setState({ toggleInput: false });
   }
 
@@ -52,6 +54,7 @@ class StatInput extends Component {
 
 
 StatInput.propTypes = {
+  isValid: PropTypes.func,
   action: PropTypes.func,
   statLevel: PropTypes.number,
   statName: PropTypes.string,
