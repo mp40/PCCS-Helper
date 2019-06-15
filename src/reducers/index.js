@@ -11,34 +11,25 @@ import { changeUniformReducer } from './uniformReducer';
 const initialState = initialStore;
 
 function reduceActions(state = initialState, action) {
-  if (action.type === 'GUN_COMBAT_LEVEL_UPDATED') {
-    return modifyGunCombatLevelReducer(state, action);
-  }
-  if (action.type === 'MELEE_COMBAT_LEVEL_UPDATED') {
-    return modifyMeleeCombatLevelReducer(state, action);
-  }
-  if (action.type === 'STRENGTH_VALUE_UPDATED') {
-    return modifyStrengthValueReducer(state, action);
-  }
-  if (action.type === 'INTELLIGENCE_VALUE_UPDATED') {
-    return modifyIntelligenceValueReducer(state, action);
-  }
-  if (action.type === 'HEALTH_VALUE_UPDATED') {
-    return modifyHealthValueReducer(state, action);
-  }
-  if (action.type === 'WILLPOWER_VALUE_UPDATED') {
-    return modifyWillpowerValueReducer(state, action);
-  }
-  if (action.type === 'AGILITY_VALUE_UPDATED') {
-    return modifyAgilityValueReducer(state, action);
-  }
-  if (action.type === 'UNIFORM_CHANGED') {
-    return changeUniformReducer(state, action);
-  }
-
   switch (action.type) {
     case 'VIEW_SELECTED':
       return { ...state, currentView: action.payload };
+    case 'GUN_COMBAT_LEVEL_UPDATED':
+      return modifyGunCombatLevelReducer(state, action);
+    case 'MELEE_COMBAT_LEVEL_UPDATED':
+      return modifyMeleeCombatLevelReducer(state, action);
+    case 'STRENGTH_VALUE_UPDATED':
+      return modifyStrengthValueReducer(state, action);
+    case 'INTELLIGENCE_VALUE_UPDATED':
+      return modifyIntelligenceValueReducer(state, action);
+    case 'HEALTH_VALUE_UPDATED':
+      return modifyHealthValueReducer(state, action);
+    case 'WILLPOWER_VALUE_UPDATED':
+      return modifyWillpowerValueReducer(state, action);
+    case 'AGILITY_VALUE_UPDATED':
+      return modifyAgilityValueReducer(state, action);
+    case 'UNIFORM_CHANGED':
+      return changeUniformReducer(state, action);
     case 'TOTAL_WEIGHT':
       return { ...state, totalWeight: action.payload };
     case 'UPDATE_ATTRIBUTES':
