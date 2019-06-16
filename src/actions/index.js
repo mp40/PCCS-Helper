@@ -78,3 +78,8 @@ export const changeUniform = newUniform => ({
   type: 'UNIFORM_CHANGED',
   payload: newUniform,
 });
+
+export const addEquipment = equipment => ({
+  type: 'EQUIPMENT_ADDED',
+  payload: equipment,
+});
