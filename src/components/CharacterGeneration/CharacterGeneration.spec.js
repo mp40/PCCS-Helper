@@ -10,70 +10,70 @@ describe('Character Generation', () => {
       const requiredEquipment = wrapper.find('.equipmentListBody').at(0).childAt(0).childAt(0);
       requiredEquipment.simulate('click');
     };
-    it('should render', () => {
-      expect(wrapper.text()).toContain('Equipment');
-    });
-    it('should show total equipment weight', () => {
-      const wrapper = mountAppWithStore();
-      addEquipment(wrapper);
-      const listWrapper = wrapper.find('.equipmentListBody');
-      expect(listWrapper.text()).toContain(2.2);
-    });
-    it('should render equipment list', () => {
-      wrapper.find('#addEquipment').simulate('click');
-      expect(wrapper.text()).toContain('Baseball Bat');
-    });
-    it('should have a button to close the equipment modal', () => {
-      const wrapper = mountAppWithStore();
-      wrapper.find('#activateCreateChar').simulate('click');
-      wrapper.find('#addEquipment').simulate('click');
-      wrapper.find('#closeEquipmentModal').simulate('click');
-      expect(wrapper.text()).not.toContain('Baseball Bat');
-    });
-    it('should be possible increment qty up and down', () => {
-      const wrapper = mountAppWithStore();
-      addEquipment(wrapper);
-      wrapper.find('#qtyUp').simulate('click');
-      expect(wrapper.find('#characterEquipmentList').childAt(1).childAt(2).text()).toContain(2);
-      wrapper.find('#qtyDown').simulate('click');
-      expect(wrapper.find('#characterEquipmentList').childAt(1).childAt(2).text()).toContain(1);
-    });
-    it('should calculate weight * qty', () => {
-      const wrapper = mountAppWithStore();
-      addEquipment(wrapper);
-      expect(wrapper.find('#characterEquipmentList').childAt(1).childAt(3).text()).toContain(2.2);
-      wrapper.find('#qtyUp').simulate('click');
-      expect(wrapper.find('#characterEquipmentList').childAt(1).childAt(3).text()).toContain(4.4);
-    });
-    it('should be possible to remove equipment fromn list', () => {
-      const wrapper = mountAppWithStore();
-      addEquipment(wrapper);
-      wrapper.find('#filterEquipmentList').simulate('click');
-      wrapper.find('#removeEquip').simulate('click');
-      expect(wrapper.text()).not.toContain('Baseball Bat');
-    });
-    it('should remove weight of deleted quipment', () => {
-      const wrapper = mountAppWithStore();
-      addEquipment(wrapper);
-      wrapper.find('#filterEquipmentList').simulate('click');
-      wrapper.find('#qtyUp').simulate('click');
-      wrapper.find('#removeEquip').simulate('click');
-      expect(wrapper.find('.menuBar').text()).toContain(5);
-    });
-    it('should clear all equipment from list', () => {
-      const wrapper = mountAppWithStore();
-      addEquipment(wrapper);
-      wrapper.find('.equipmentListBody').at(0).childAt(1).childAt(0)
-        .simulate('click');
-      wrapper.find('.equipmentListBody').at(0).childAt(2).childAt(0)
-        .simulate('click');
-      wrapper.find('#closeEquipmentModal').simulate('click');
-      wrapper.find('#clearAllEquipment').simulate('click');
-      expect(wrapper.text()).not.toContain('Bayonet');
-      expect(wrapper.text()).not.toContain('Basic Pouch');
-      expect(wrapper.text()).not.toContain('Baseball Bat');
-      expect(wrapper.text()).toContain(5);
-    });
+    // it('should render', () => {
+    //   expect(wrapper.text()).toContain('Equipment');
+    // });
+    // it('should show total equipment weight', () => {
+    //   const wrapper = mountAppWithStore();
+    //   addEquipment(wrapper);
+    //   const listWrapper = wrapper.find('.equipmentListBody');
+    //   expect(listWrapper.text()).toContain(2.2);
+    // });
+    // it('should render equipment list', () => {
+    //   wrapper.find('#addEquipment').simulate('click');
+    //   expect(wrapper.text()).toContain('Baseball Bat');
+    // });
+    // it('should have a button to close the equipment modal', () => {
+    //   const wrapper = mountAppWithStore();
+    //   wrapper.find('#activateCreateChar').simulate('click');
+    //   wrapper.find('#addEquipment').simulate('click');
+    //   wrapper.find('#closeEquipmentModal').simulate('click');
+    //   expect(wrapper.text()).not.toContain('Baseball Bat');
+    // });
+    // it('should be possible increment qty up and down', () => {
+    //   const wrapper = mountAppWithStore();
+    //   addEquipment(wrapper);
+    //   wrapper.find('#qtyUp').simulate('click');
+    //   expect(wrapper.find('#characterEquipmentList').childAt(1).childAt(2).text()).toContain(2);
+    //   wrapper.find('#qtyDown').simulate('click');
+    //   expect(wrapper.find('#characterEquipmentList').childAt(1).childAt(2).text()).toContain(1);
+    // });
+    // it('should calculate weight * qty', () => {
+    //   const wrapper = mountAppWithStore();
+    //   addEquipment(wrapper);
+    //   expect(wrapper.find('#characterEquipmentList').childAt(1).childAt(3).text()).toContain(2.2);
+    //   wrapper.find('#qtyUp').simulate('click');
+    //   expect(wrapper.find('#characterEquipmentList').childAt(1).childAt(3).text()).toContain(4.4);
+    // });
+    // it('should be possible to remove equipment fromn list', () => {
+    //   const wrapper = mountAppWithStore();
+    //   addEquipment(wrapper);
+    //   wrapper.find('#filterEquipmentList').simulate('click');
+    //   wrapper.find('#removeEquip').simulate('click');
+    //   expect(wrapper.text()).not.toContain('Baseball Bat');
+    // });
+    // it('should remove weight of deleted quipment', () => {
+    //   const wrapper = mountAppWithStore();
+    //   addEquipment(wrapper);
+    //   wrapper.find('#filterEquipmentList').simulate('click');
+    //   wrapper.find('#qtyUp').simulate('click');
+    //   wrapper.find('#removeEquip').simulate('click');
+    //   expect(wrapper.find('.menuBar').text()).toContain(5);
+    // });
+    // it('should clear all equipment from list', () => {
+    //   const wrapper = mountAppWithStore();
+    //   addEquipment(wrapper);
+    //   wrapper.find('.equipmentListBody').at(0).childAt(1).childAt(0)
+    //     .simulate('click');
+    //   wrapper.find('.equipmentListBody').at(0).childAt(2).childAt(0)
+    //     .simulate('click');
+    //   wrapper.find('#closeEquipmentModal').simulate('click');
+    //   wrapper.find('#clearAllEquipment').simulate('click');
+    //   expect(wrapper.text()).not.toContain('Bayonet');
+    //   expect(wrapper.text()).not.toContain('Basic Pouch');
+    //   expect(wrapper.text()).not.toContain('Baseball Bat');
+    //   expect(wrapper.text()).toContain(5);
+    // });
     describe('adding custom equipment', () => {
       const goToCustomEquipment = (wrapper) => {
         wrapper.find('#activateCreateChar').simulate('click');

@@ -7,7 +7,7 @@ import ButtonStandard from '../widgets/buttons/ButtonStandard';
 import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 import ButtonIncrementArrows from '../widgets/buttons/ButtonIncrementArrows';
 
-import { removeEquipment, removeAllEquipment, incrementEquipmentQty, findEquipmentWeight } from '../../helpers/actionHelpers';
+import { removeAllEquipment, incrementEquipmentQty, findEquipmentWeight } from '../../helpers/actionHelpers';
 
 class EquipmentCard extends Component {
   constructor(props) {
@@ -65,10 +65,9 @@ class EquipmentCard extends Component {
     this.setState({ filteredTags: tags });
   }
 
-  handleRemoveEquipment = (equipObj) => {
-    const { totalWeight, gear, characterStats, modifyEquipment } = this.props;
-    const newData = removeEquipment(totalWeight, gear.equipment, equipObj);
-    modifyEquipment(newData.totalWeight, newData.equipArray, characterStats);
+  handleRemoveEquipment = (equipmentToRemove) => {
+    const { removeEquipment } = this.props;
+    removeEquipment(equipmentToRemove);
   }
 
   handleRemoveAllEquipment = () => {
@@ -180,6 +179,7 @@ class EquipmentCard extends Component {
 }
 
 EquipmentCard.propTypes = {
+  removeEquipment: PropTypes.func,
   modifyEquipment: PropTypes.func,
   gear: gearShape,
   characterStats: PropTypes.objectOf(PropTypes.number),

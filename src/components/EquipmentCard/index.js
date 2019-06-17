@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import EquipmentCard from './component';
-import { modifyEquipment, updateAttributes } from '../../actions';
+import { modifyEquipment, updateAttributes, removeEquipment } from '../../actions';
 
 const mapStateToProps = state => ({
   totalWeight: state.totalWeight,
@@ -9,4 +9,4 @@ const mapStateToProps = state => ({
 });
 
 
-export default connect(mapStateToProps, { modifyEquipment, updateAttributes })(EquipmentCard);
+export default connect(mapStateToProps, { modifyEquipment, updateAttributes, removeEquipment })(EquipmentCard);
