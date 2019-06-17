@@ -1,357 +1,530 @@
-const equipment = {
-  'Baseball Bat': {
+export const equipment = () => [
+  {
+    name: 'Baseball Bat',
     weight: 2.2,
+    qty: 1,
     tags: ['Melee'],
   },
-  'Basic Pouch': {
+  {
+    name: 'Basic Pouch',
     weight: 0.4,
+    qty: 1,
     tags: ['Load Bearing', 'ALICE'],
   },
-  Bayonet: {
+  {
+    name: 'Bayonet',
     weight: 1,
+    qty: 1,
     tags: ['Melee'],
   },
-  'Bayonet, M1 w/M7 scabard': {
+  {
+    name: 'Bayonet, M1 w/M7 scabard',
     weight: 1.56,
+    qty: 1,
     tags: ['Melee', 'WW2'],
   },
-  Belt: {
+  {
+    name: 'Belt',
     weight: 0.7,
+    qty: 1,
     tags: ['Load Bearing', 'ALICE'],
   },
-  'Belt, pistol M1923': {
+  {
+    name: 'Belt, pistol M1923',
     weight: 0.56,
+    qty: 1,
     tags: ['Load Bearing', 'WW2'],
   },
-  Bergen: {
+  {
+    name: 'Bergen',
     weight: 3,
+    qty: 1,
     tags: ['Load Bearing', 'Pack'],
   },
-  'Billy Club': {
+  {
+    name: 'Billy Club',
     weight: 0.5,
+    qty: 1,
     tags: ['Melee'],
   },
-  'Binoculars w/case': {
+  {
+    name: 'Binoculars w/case',
     weight: 3.5,
+    qty: 1,
     tags: ['Combat', 'Support', 'Misc'],
   },
-  'Boil In The Bag': {
+  {
+    name: 'Boil In The Bag',
     weight: 0.8,
+    qty: 1,
     tags: ['Rations'],
   },
-  'Bum Pack': {
+  {
+    name: 'Bum Pack',
     weight: 0.7,
+    qty: 1,
     tags: ['Load Bearing', 'ALICE'],
   },
-  Canteen: {
+  {
+    name: 'Canteen',
     weight: 2.5,
+    qty: 1,
     tags: ['Load Bearing', 'ALICE', 'Rations'],
   },
-  'Canteen, M1910 ': {
+  {
+    name: 'Canteen, M1910',
     weight: 3.69,
+    qty: 1,
     tags: ['Load Bearing', 'WW2', 'Rations'],
   },
-  'Cartridge Belt, M1923': {
+  {
+    name: 'Cartridge Belt, M1923',
     weight: 1.44,
+    qty: 1,
     tags: ['Load Bearing', 'WW2'],
   },
-  'Cartridge Belt, M1937': {
+  {
+    name: 'Cartridge Belt, M1937',
     weight: 1.88,
+    qty: 1,
     tags: ['Load Bearing', 'WW2'],
   },
-  'D-Ration (1 day)': {
+  {
+    name: 'D-Ration (1 day)',
     weight: 0.25,
+    qty: 1,
     tags: ['Rations', 'WW2'],
   },
-  'Entrenching Tool': {
+  {
+    name: 'Entrenching Tool',
     weight: 1.5,
+    qty: 1,
     tags: ['Melee', 'Tools'],
   },
-  'Entrenching tool, M1943 w/carrier': {
+  {
+    name: 'Entrenching tool, M1943 w/carrier',
     weight: 2.94,
+    qty: 1,
     tags: ['Melee', 'Tools', 'WW2'],
   },
-  'Field Dressing': {
+  {
+    name: 'Field Dressing',
     weight: 0.1,
+    qty: 1,
     tags: ['Combat', 'Medical'],
   },
-  'Field Radio': {
+  {
+    name: 'Field Radio',
     weight: 12,
+    qty: 1,
     tags: ['Comms'],
   },
-  'Flash Bang': {
+  {
+    name: 'Flash Bang',
     weight: 0.6,
+    qty: 1,
     tags: ['Combat'],
   },
-  'H Harness': {
+  {
+    name: 'H Harness',
     weight: 0.7,
+    qty: 1,
     tags: ['Load Bearing', 'ALICE'],
   },
-  'Harness, M1936': {
+  {
+    name: 'Harness, M1936',
     weight: 0.95,
+    qty: 1,
     tags: ['Load Bearing', 'WW2'],
   },
-  Hatchet: {
+  {
+    name: 'Hatchet',
     weight: 2.5,
+    qty: 1,
     tags: ['Melee', 'Tools'],
   },
-  'Headset Coms': {
+  {
+    name: 'Headset Coms',
     weight: 1,
+    qty: 1,
     tags: ['Comms'],
   },
-  Holster: {
+  {
+    name: 'Holster',
     weight: 0.4,
+    qty: 1,
     tags: ['Load Bearing', 'Generic'],
   },
-  'Holster, M1916': {
+  {
+    name: 'Holster, M1916',
     weight: 0.59,
+    qty: 1,
     tags: ['Load Bearing', 'WW2'],
   },
-  'Katana ': {
+  {
+    name: 'Katana ',
     weight: 3,
+    qty: 1,
     tags: ['Melee'],
   },
-  'Knife, Bowie': {
+  {
+    name: 'Knife, Bowie',
     weight: 1.1,
+    qty: 1,
     tags: ['Melee'],
   },
-  'Knife, Combat': {
+  {
+    name: 'Knife, Combat',
     weight: 0.6,
+    qty: 1,
     tags: ['Melee'],
   },
-  'Knife, Switch Blade': {
+  {
+    name: 'Knife, Switch Blade',
     weight: 0.3,
+    qty: 1,
     tags: ['Melee'],
   },
-  'K-Ration (1 day)': {
+  {
+    name: 'K-Ration (1 day)',
     weight: 2.31,
+    qty: 1,
     tags: ['Rations', 'WW2'],
   },
-  'M14 Toe Popper': {
+  {
+    name: 'M14 Toe Popper',
     weight: 0.22,
+    qty: 1,
     tags: ['Combat'],
   },
-  'M15 WP Grenade': {
+  {
+    name: 'M15 WP Grenade',
     weight: 1.9,
+    qty: 1,
     tags: ['Combat'],
   },
-  'M18A1 Claymore': {
+  {
+    name: 'M18A1 Claymore',
     weight: 3.5,
+    qty: 1,
     tags: ['Combat'],
   },
-  Machete: {
+  {
+    name: 'Machete',
     weight: 2.4,
+    qty: 1,
     tags: ['Melee', 'Tools'],
   },
-  'Magazine Pouch, M1 carbine': {
+  {
+    name: 'Magazine Pouch, M1 carbine',
     weight: 0.16,
+    qty: 1,
     tags: ['Load Bearing', 'WW2'],
   },
-  'Magazine pouch, M1923 (.45)': {
+  {
+    name: 'Magazine pouch, M1923 (.45)',
     weight: 0.13,
+    qty: 1,
     tags: ['Load Bearing', 'WW2'],
   },
-  'Magazine Pouch, SMG (US WW2)': {
+  {
+    name: 'Magazine Pouch, SMG (US WW2)',
     weight: 0.53,
+    qty: 1,
     tags: ['Load Bearing', 'WW2'],
   },
-  'Misc 1.0lbs': {
+  {
+    name: 'Misc 1.0lbs',
     weight: 1,
+    qty: 1,
     tags: ['Misc'],
   },
-  'Misc 0.1lbs': {
+  {
+    name: 'Misc 0.1lbs',
     weight: 0.1,
+    qty: 1,
     tags: ['Misc'],
   },
-  'Misc 0.25lbs': {
+  {
+    name: 'Misc 0.25lbs',
     weight: 0.25,
+    qty: 1,
     tags: ['Misc'],
   },
-  MRE: {
+  {
+    name: 'MRE',
     weight: 1.5,
+    qty: 1,
     tags: ['Rations'],
   },
-  'Pack, M1936': {
+  {
+    name: 'Pack, M1936',
     weight: 1.81,
+    qty: 1,
     tags: ['Load Bearing', 'WW2', 'Pack'],
   },
-  'Pipe, 24': {
+  {
+    name: 'Pipe, 24',
     weight: 2.2,
+    qty: 1,
     tags: ['Melee'],
   },
-  'Rat Pack (1 day)': {
+  {
+    name: 'Rat Pack (1 day)',
     weight: 3.5,
+    qty: 1,
     tags: ['Rations'],
   },
-  Rock: {
+  {
+    name: 'Rock',
     weight: 1.5,
+    qty: 1,
     tags: ['Melee'],
   },
-  Saber: {
+  {
+    name: 'Saber',
     weight: 2.6,
+    qty: 1,
     tags: ['Melee'],
   },
-  'Scimitar ': {
+  {
+    name: 'Scimitar',
     weight: 3.7,
+    qty: 1,
     tags: ['Melee'],
   },
-  'Smoke Grenade': {
+  {
+    name: 'Smoke Grenade',
     weight: 1.5,
+    qty: 1,
     tags: ['Combat'],
   },
-  'SNIPERS Harness': {
+  {
+    name: 'SNIPERS Harness',
     weight: 1.76,
+    qty: 1,
     tags: ['Load Bearing', 'Modern Russian LBE'],
   },
-  'SOBR Assault Vest': {
+  {
+    name: 'SOBR Assault Vest',
     weight: 2.86,
+    qty: 1,
     tags: ['Load Bearing', 'Modern Russian LBE'],
   },
-  Stick: {
+  {
+    name: 'Stick',
     weight: 2,
+    qty: 1,
     tags: ['Melee'],
   },
-  'Tarzan M21 Assault Vest': {
+  {
+    name: 'Tarzan M21 Assault Vest',
     weight: 2.2,
+    qty: 1,
     tags: ['Load Bearing', 'Modern Russian LBE'],
   },
-  'Tarzan M22 Assault Vest': {
+  {
+    name: 'Tarzan M22 Assault Vest',
     weight: 1.5,
+    qty: 1,
     tags: ['Load Bearing', 'Modern Russian LBE'],
   },
-  'Tarzan M24 Assault Vest': {
+  {
+    name: 'Tarzan M24 Assault Vest',
     weight: 1.5,
+    qty: 1,
     tags: ['Load Bearing', 'Modern Russian LBE'],
   },
-  'Tarzan M32 Assault Vest': {
+  {
+    name: 'Tarzan M32 Assault Vest',
     weight: 1.5,
+    qty: 1,
     tags: ['Load Bearing', 'Modern Russian LBE'],
   },
-  'Tripod, M1919A4': {
+  {
+    name: 'Tripod, M1919A4',
     weight: 14,
+    qty: 1,
     tags: ['Support'],
   },
-  'Two by Four': {
+  {
+    name: 'Two by Four',
     weight: 3,
+    qty: 1,
     tags: ['Melee'],
   },
-  'Type 56 AK Chest Rig': {
+  {
+    name: 'Type 56 AK Chest Rig',
     weight: 0.89,
+    qty: 1,
     tags: ['Load Bearing', 'Chest Rig', 'Vietnam'],
   },
-  'Type 56 SKS Chest Rig': {
+  {
+    name: 'Type 56 SKS Chest Rig',
     weight: 0.88,
+    qty: 1,
     tags: ['Load Bearing', 'Chest Rig', 'Vietnam'],
   },
-  'Type 65 Canteen': {
+  {
+    name: 'Type 65 Canteen',
     weight: 2.6,
+    qty: 1,
     tags: ['Load Bearing', 'Rations', 'Vietnam'],
   },
-  'Webbing, ALICE': {
+  {
+    name: 'Webbing, ALICE',
     weight: 6.5,
+    qty: 1,
     tags: ['Load Bearing', 'Webbing Set'],
   },
-  'Webbing, M1956': {
+  {
+    name: 'Webbing, M1956',
     weight: 7.4,
+    qty: 1,
     tags: ['Load Bearing', 'Webbing Set'],
   },
-  'Webbing, M1967': {
+  {
+    name: 'Webbing, M1967',
     weight: 7.2,
+    qty: 1,
     tags: ['Load Bearing', 'Webbing Set'],
   },
-  'MCI Ration': {
+  {
+    name: 'MCI Ration',
     weight: 2.6,
+    qty: 1,
     tags: ['Rations', 'Vietnam'],
   },
-  'MCI Ration (reduced packaging ect)': {
+  {
+    name: 'MCI Ration (reduced packaging ect)',
     weight: 2,
+    qty: 1,
     tags: ['Rations', 'Vietnam'],
   },
-  'LRP Ration': {
+  {
+    name: 'LRP Ration',
     weight: 0.69,
+    qty: 1,
     tags: ['Rations', 'Vietnam'],
   },
-  'PRC-25 Radio': {
+  {
+    name: 'PRC-25 Radio',
     weight: 23.5,
+    qty: 1,
     tags: ['Comms', 'Vietnam'],
   },
-  'PRC-25 Battery': {
+  {
+    name: 'PRC-25 Battery',
     weight: 2.86,
+    qty: 1,
     tags: ['Comms', 'Vietnam'],
   },
-  'Water, 1 quart': {
+  {
+    name: 'Water, 1 quart',
     weight: 2,
+    qty: 1,
     tags: ['Rations'],
   },
-  'Bladder (Mil-Spec), 5 quart with cover': {
+  {
+    name: 'Bladder (Mil-Spec), 5 quart with cover',
     weight: 1.5,
+    qty: 1,
     tags: ['Load Bearing'],
   },
-  'Jerry Can, Plastic (20L)': {
+  {
+    name: 'Jerry Can, Plastic (20L)',
     weight: 5,
+    qty: 1,
     tags: ['Misc'],
   },
-  'Jerry Can, Plastic (10L)': {
+  {
+    name: 'Jerry Can, Plastic (10L)',
     weight: 3.4,
+    qty: 1,
     tags: ['Misc'],
   },
-  'Bandolier, 7 pocket': {
+  {
+    name: 'Bandolier, 7 pocket',
     weight: 0.18,
+    qty: 1,
     tags: ['Load Bearing', 'Vietnam', 'Generic'],
   },
-  'Canteen, 2 quart colapsable': {
+  {
+    name: 'Canteen, 2 quart colapsable',
     weight: 0.35,
+    qty: 1,
     tags: ['Load Bearing'],
   },
-  'Canteen, 2 quart with cover and sling': {
+  {
+    name: 'Canteen, 2 quart with cover and sling',
     weight: 1.05,
+    qty: 1,
     tags: ['Load Bearing'],
   },
-  'Webbing, WWII': {
+  {
+    name: 'Webbing, WWII',
     weight: 7.8,
+    qty: 1,
     tags: ['Load Bearing', 'Webbing Set'],
   },
-  'Wood Axe': {
+  {
+    name: 'Wood Axe',
     weight: 3.5,
+    qty: 1,
     tags: ['Melee', 'Tools'],
   },
-  'Survival Kit': {
+  {
+    name: 'Survival Kit',
     weight: 0.88,
+    qty: 1,
     tags: ['Misc'],
   },
-  IFAK: {
+  {
+    name: 'IFAK',
     weight: 2.4,
+    qty: 1,
     tags: ['Medical'],
   },
-  'M3 Medic Bag': {
+  {
+    name: 'M3 Medic Bag',
     weight: 3.9,
+    qty: 1,
     tags: ['Medical'],
   },
-  'M17 Medic Bag': {
+  {
+    name: 'M17 Medic Bag',
     weight: 12.25,
+    qty: 1,
     tags: ['Medical'],
   },
-  'Tactical Trauma Kit': {
+  {
+    name: 'Tactical Trauma Kit',
     weight: 1.15,
+    qty: 1,
     tags: ['Medical'],
   },
-  'Rapid Response Bag': {
+  {
+    name: 'Rapid Response Bag',
     weight: 2.5,
+    qty: 1,
     tags: ['Medical'],
   },
-  'M39 Medic Bag': {
+  {
+    name: 'M39 Medic Bag',
     weight: 10,
+    qty: 1,
     tags: ['Medical'],
   },
-  'Surgical Set': {
+  {
+    name: 'Surgical Set',
     weight: 0.7,
+    qty: 1,
     tags: ['Medical'],
   },
-  'Combat Stretcher, Folding': {
+  {
+    name: 'Combat Stretcher, Folding',
     weight: 15,
+    qty: 1,
     tags: ['Medical'],
   },
-};
-
-
-module.exports = equipment;
+];

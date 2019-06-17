@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { modifyEquipment } from '../../actions';
+import { modifyEquipment, addEquipment } from '../../actions';
 import EquipmentDropdown from './component';
 import './EquipmentDropdown.css';
 
@@ -13,4 +13,4 @@ const mapStateToProps = state => ({
   },
 });
 
-export default connect(mapStateToProps, { modifyEquipment })(EquipmentDropdown);
+export default connect(mapStateToProps, { modifyEquipment, addEquipment })(EquipmentDropdown);

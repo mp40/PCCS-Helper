@@ -3,28 +3,27 @@ import { PropTypes } from 'prop-types';
 import { gearShape } from '../../helpers/proptypeShapes';
 import ButtonStandard from '../widgets/buttons/ButtonStandard';
 import { createArrayOfEquipment, filterEquipment, createFilterSet } from '../../helpers/equipmentListFunctions';
-import { addEquipment } from '../../helpers/actionHelpers';
+// import { addEquipment } from '../../helpers/actionHelpers';
+import { isNotValidEquipmentToAdd } from '../../helpers/gaurds';
+import { equipment } from '../../data/equipmentList';
 import './EquipmentDropdown.css';
 
-const equipment = require('../../data/equipmentList');
+// const equipment = require('../../data/equipmentList');
 
 
 class EquipmentDropdown extends Component {
-  handleAddEquipment(equipObj) {
-    const { gear, totalWeight, characterStats, modifyEquipment } = this.props;
-    const arrayContainsObj = gear.equipment.filter(obj => obj.name === equipObj.name);
-    if (arrayContainsObj.length) {
+  handleAddEquipment(equipmentToAdd) {
+    const { addEquipment, gear } = this.props;
+    if (isNotValidEquipmentToAdd(gear.equipment, equipmentToAdd)) {
       return;
     }
-    const newData = addEquipment(totalWeight, gear.equipment, equipObj);
-    modifyEquipment(newData.totalWeight, newData.equipArray, characterStats);
+    addEquipment(equipmentToAdd);
   }
 
   render() {
     const { filteredTags, showFilters, handleTags, closeShowEquipment, toggleFilters } = this.props;
     const filteredEquipment = filterEquipment(filteredTags);
-    const equipmentArray = createArrayOfEquipment(filteredEquipment);
-    const equipmentTags = createFilterSet(equipment);
+    const equipmentTags = createFilterSet(equipment());
 
     return (
       <div className="equipmentModalContainer">
@@ -65,7 +64,7 @@ class EquipmentDropdown extends Component {
             )
             : (
               <div className="equipmentListBody">
-                {equipmentArray.map(equipObj => (
+                {filteredEquipment.map(equipObj => (
                   <div
                     className="equipmentEntry"
                     key={equipObj.name}
@@ -88,6 +87,7 @@ class EquipmentDropdown extends Component {
 }
 
 EquipmentDropdown.propTypes = {
+  addEquipment: PropTypes.func,
   modifyEquipment: PropTypes.func,
   toggleFilters: PropTypes.func,
   closeShowEquipment: PropTypes.func,
