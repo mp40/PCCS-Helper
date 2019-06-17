@@ -7,6 +7,7 @@ import { modifyHealthValueReducer } from './healthStatReducer';
 import { modifyWillpowerValueReducer } from './willpowerStatReducer';
 import { modifyAgilityValueReducer } from './agilityStatReducer';
 import { changeUniformReducer } from './uniformReducer';
+import { addEquipmentReducer } from './addEquipmentReducer';
 
 const initialState = initialStore;
 
@@ -30,6 +31,8 @@ function reduceActions(state = initialState, action) {
       return modifyAgilityValueReducer(state, action);
     case 'UNIFORM_CHANGED':
       return changeUniformReducer(state, action);
+    case 'EQUIPMENT_ADDED':
+      return addEquipmentReducer(state, action);
     case 'TOTAL_WEIGHT':
       return { ...state, totalWeight: action.payload };
     case 'UPDATE_ATTRIBUTES':
