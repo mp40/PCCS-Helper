@@ -83,3 +83,8 @@ export const addEquipment = equipment => ({
   type: 'EQUIPMENT_ADDED',
   payload: equipment,
 });
+
+export const removeEquipment = equipment => ({
+  type: 'EQUIPMENT_REMOVED',
+  payload: equipment,
+});

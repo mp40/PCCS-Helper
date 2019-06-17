@@ -7,7 +7,7 @@ import ButtonStandard from '../widgets/buttons/ButtonStandard';
 import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 import ButtonIncrementArrows from '../widgets/buttons/ButtonIncrementArrows';
 
-import { removeEquipment, removeAllEquipment, incrementEquipmentQty } from '../../helpers/actionHelpers';
+import { removeEquipment, removeAllEquipment, incrementEquipmentQty, findEquipmentWeight } from '../../helpers/actionHelpers';
 
 class EquipmentCard extends Component {
   constructor(props) {
@@ -88,7 +88,7 @@ class EquipmentCard extends Component {
     const { showEquipment, showCustomInput, showFilters, filteredTags } = this.state;
     const { gear } = this.props;
     const charEquip = gear.equipment;
-    const totalEquipWeight = charEquip.reduce((accumulator, obj) => accumulator + (obj.weight * obj.qty), 0);
+    const totalEquipWeight = findEquipmentWeight(gear.equipment);
 
     return (
       <div style={{ width: '40%' }} className="equipmentSelect">
