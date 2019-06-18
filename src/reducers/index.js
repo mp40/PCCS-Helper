@@ -9,6 +9,7 @@ import { modifyAgilityValueReducer } from './agilityStatReducer';
 import { changeUniformReducer } from './uniformReducer';
 import { addEquipmentReducer } from './addEquipmentReducer';
 import { removeEquipmentReducer } from './removeEquipmentReducer';
+import { removeAllEquipmentReducer } from './removeAllEquipmentReducer';
 
 const initialState = initialStore;
 
@@ -36,6 +37,8 @@ function reduceActions(state = initialState, action) {
       return addEquipmentReducer(state, action);
     case 'EQUIPMENT_REMOVED':
       return removeEquipmentReducer(state, action);
+    case 'ALL_EQUIPMENT_REMOVED':
+      return removeAllEquipmentReducer(state, action);
     case 'TOTAL_WEIGHT':
       return { ...state, totalWeight: action.payload };
     case 'UPDATE_ATTRIBUTES':

@@ -88,3 +88,8 @@ export const removeEquipment = equipment => ({
   type: 'EQUIPMENT_REMOVED',
   payload: equipment,
 });
+
+export const removeAllEquipment = emptyArray => ({
+  type: 'ALL_EQUIPMENT_REMOVED',
+  payload: emptyArray,
+});
