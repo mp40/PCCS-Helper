@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { gearShape } from '../../helpers/proptypeShapes';
-import { addEquipment } from '../../helpers/actionHelpers';
 
 import ButtonStandard from '../widgets/buttons/ButtonStandard';
 
@@ -28,7 +27,7 @@ class CustomEquipmentModal extends Component {
   }
 
   submitEquipment = () => {
-    const { gear, totalWeight, characterStats, modifyEquipment, toggleCustomEquipment } = this.props;
+    const { gear, toggleCustomEquipment, addEquipment } = this.props;
     const { equipmentName, equipmentWeight } = this.state;
     const name = equipmentName;
     const weight = equipmentWeight * 1;
@@ -54,11 +53,11 @@ class CustomEquipmentModal extends Component {
     const equipObj = {
       name,
       weight,
+      qty: 1,
       tags: ['Custom'],
     };
 
-    const newData = addEquipment(totalWeight, gear.equipment, equipObj);
-    modifyEquipment(newData.totalWeight, newData.equipArray, characterStats);
+    addEquipment(equipObj);
     toggleCustomEquipment();
   }
 
@@ -128,10 +127,8 @@ class CustomEquipmentModal extends Component {
 }
 
 CustomEquipmentModal.propTypes = {
-  modifyEquipment: PropTypes.func,
+  addEquipment: PropTypes.func,
   gear: gearShape,
-  characterStats: PropTypes.objectOf(PropTypes.number),
-  totalWeight: PropTypes.number,
   toggleCustomEquipment: PropTypes.func,
 
 };
