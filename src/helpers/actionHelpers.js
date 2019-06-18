@@ -1,5 +1,6 @@
 import { uniformWeights } from '../data/uniformAndArmourTypes';
 
+// TODO you can probably deleted this after redoing custom equipment
 export const addEquipment = (oldWeight, oldArray, equipObj) => {
   const newEquipObj = equipObj;
   newEquipObj.qty = 1;
@@ -20,6 +21,7 @@ export const removeEquipment = (oldWeight, oldArray, equipObj) => {
   };
 };
 
+// TODO work out if you need to delete this
 export const removeAllEquipment = (oldWeight, oldArray) => {
   const equipmentWeight = oldArray.reduce((sum, obj) => sum + (obj.weight * obj.qty), 0);
   return Math.round((oldWeight - equipmentWeight) * 1000) / 1000;
