@@ -1,29 +1,31 @@
 import { uniformWeights } from '../data/uniformAndArmourTypes';
 
-export const addEquipment = (oldWeight, oldArray, equipObj) => {
-  const newEquipObj = equipObj;
-  newEquipObj.qty = 1;
-  const newWeight = (oldWeight + equipObj.weight);
-  const newArray = [...oldArray, newEquipObj];
-  return {
-    totalWeight: Math.round(newWeight * 1000) / 1000,
-    equipArray: newArray,
-  };
-};
+// TODO you can probably deleted this after redoing custom equipment
+// export const addEquipment = (oldWeight, oldArray, equipObj) => {
+//   const newEquipObj = equipObj;
+//   newEquipObj.qty = 1;
+//   const newWeight = (oldWeight + equipObj.weight);
+//   const newArray = [...oldArray, newEquipObj];
+//   return {
+//     totalWeight: Math.round(newWeight * 1000) / 1000,
+//     equipArray: newArray,
+//   };
+// };
 
-export const removeEquipment = (oldWeight, oldArray, equipObj) => {
-  const newWeight = oldWeight - (equipObj.weight * equipObj.qty);
-  const newArray = oldArray.filter(obj => obj.name !== equipObj.name);
-  return {
-    totalWeight: Math.round(newWeight * 1000) / 1000,
-    equipArray: newArray,
-  };
-};
+// export const removeEquipment = (oldWeight, oldArray, equipObj) => {
+//   const newWeight = oldWeight - (equipObj.weight * equipObj.qty);
+//   const newArray = oldArray.filter(obj => obj.name !== equipObj.name);
+//   return {
+//     totalWeight: Math.round(newWeight * 1000) / 1000,
+//     equipArray: newArray,
+//   };
+// };
 
-export const removeAllEquipment = (oldWeight, oldArray) => {
-  const equipmentWeight = oldArray.reduce((sum, obj) => sum + (obj.weight * obj.qty), 0);
-  return Math.round((oldWeight - equipmentWeight) * 1000) / 1000;
-};
+// TODO work out if you need to delete this
+// export const removeAllEquipment = (oldWeight, oldArray) => {
+//   const equipmentWeight = oldArray.reduce((sum, obj) => sum + (obj.weight * obj.qty), 0);
+//   return Math.round((oldWeight - equipmentWeight) * 1000) / 1000;
+// };
 
 export const incrementEquipmentQty = (oldWeight, oldArray, equipObj, modifier) => {
   const newArray = oldArray.map((obj) => {

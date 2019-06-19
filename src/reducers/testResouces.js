@@ -1,4 +1,4 @@
-import { MockState } from '../mockState';
+import { MockState } from './mockState';
 
 export class Equipment {
   constructor() {

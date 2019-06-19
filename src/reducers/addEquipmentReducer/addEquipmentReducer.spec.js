@@ -1,7 +1,6 @@
 import { addEquipmentReducer } from './index';
 import { MockState } from '../mockState';
-import { AddedEquipment, AddedEquipmentAgain, Equipment, OtherEquipment } from './testResources';
-
+import { AddedEquipment, AddedEquipmentAgain, Equipment, OtherEquipment } from '../testResouces';
 
 describe('addEquipmentReducer function', () => {
   it('should return correct values when equipment added to empty list', () => {

@@ -1,4 +1,3 @@
-
 export const addEquipmentReducer = (state, action) => {
   const newWeight = state.totalWeight + action.payload.weight;
 
