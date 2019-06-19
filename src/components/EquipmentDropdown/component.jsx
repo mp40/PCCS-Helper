@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { gearShape } from '../../helpers/proptypeShapes';
 import ButtonStandard from '../widgets/buttons/ButtonStandard';
-import { createArrayOfEquipment, filterEquipment, createFilterSet } from '../../helpers/equipmentListFunctions';
+import { filterEquipment, createFilterSet } from '../../helpers/equipmentListFunctions';
 // import { addEquipment } from '../../helpers/actionHelpers';
 import { isNotValidEquipmentToAdd } from '../../helpers/gaurds';
 import { equipment } from '../../data/equipmentList';
