@@ -3,8 +3,16 @@ import PropTypes from 'prop-types';
 import { gearShape } from '../../helpers/proptypeShapes';
 
 import ButtonStandard from '../widgets/buttons/ButtonStandard';
+import { isNotValidEquipmentToAdd, isValidCustomEquipmentInput } from '../../helpers/gaurds';
 
 import './CustomEquipmentModal.css';
+
+export const createValidEqipmentObject = (name, weight) => ({
+  name,
+  weight,
+  qty: 1,
+  tags: ['Custom'],
+});
 
 class CustomEquipmentModal extends Component {
   constructor(props) {
@@ -30,34 +38,19 @@ class CustomEquipmentModal extends Component {
     const { gear, toggleCustomEquipment, addEquipment } = this.props;
     const { equipmentName, equipmentWeight } = this.state;
     const name = equipmentName;
-    const weight = equipmentWeight * 1;
+    const weight = parseInt(equipmentWeight, 10);
 
-    const isValidInput = (
-      name.length > 0
-            && weight > 0
-            && typeof name === 'string'
-            && typeof weight === 'number'
-    );
-
-    if (isValidInput === false) {
+    if (!isValidCustomEquipmentInput(name, weight)) {
       this.setState({ errorMsgInvalidEntry: true });
       return;
     }
 
-    const arrayContainsObj = gear.equipment.filter(obj => obj.name === name);
-
-    if (arrayContainsObj.length) {
+    if (isNotValidEquipmentToAdd(gear.equipment, { name })) {
       this.setState({ errorMsgExistsInArray: true });
       return;
     }
-    const equipObj = {
-      name,
-      weight,
-      qty: 1,
-      tags: ['Custom'],
-    };
 
-    addEquipment(equipObj);
+    addEquipment(createValidEqipmentObject(name, weight));
     toggleCustomEquipment();
   }
 

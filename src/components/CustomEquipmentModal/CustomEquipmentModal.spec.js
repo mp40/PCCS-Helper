@@ -1,4 +1,5 @@
 import { mountAppWithStore, storeWithCreateCharacterView } from '../../helpers/testHelpers';
+import { createValidEqipmentObject } from './component';
 
 describe('adding custom equipment', () => {
   let wrapper;
@@ -41,5 +42,18 @@ describe('adding custom equipment', () => {
     wrapper.find('#toggleCustomEquipment').simulate('click');
     submitCustomEquipment('newCustomEquipment', '666');
     expect(wrapper.text()).toContain('Already In List, Please Enter Valid Equipment Name');
+  });
+  describe('creating valid equipment object', () => {
+    it('should return an object with the correct shape', () => {
+      const validName = 'Rock';
+      const validWeight = 666;
+      const validObject = {
+        name: validName,
+        weight: validWeight,
+        qty: 1,
+        tags: ['Custom'],
+      };
+      expect(createValidEqipmentObject(validName, validWeight)).toMatchObject(validObject);
+    });
   });
 });
