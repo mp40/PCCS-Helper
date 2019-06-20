@@ -16,6 +16,7 @@ describe('<WeaponsCardWeaponStats/> component', () => {
   const lineTen = wrapper => wrapper.find('#GunTableLine9');
   const lineEleven = wrapper => wrapper.find('#GunTableLine10');
   describe('rendering standard data', () => {
+    // eslint-disable-next-line react/jsx-filename-extension
     const wrapper = mount(<WeaponsCardWeaponStats gunObj={testM1911A1()} />);
     it('should render the table header correctly', () => {
       const expectedHeader = `DataAim Time${standardRangeBrackets.join('')}`;

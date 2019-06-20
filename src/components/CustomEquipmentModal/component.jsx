@@ -73,7 +73,7 @@ class CustomEquipmentModal extends Component {
                 onClick={toggleCustomEquipment}
               />
             </div>
-
+            {/* TODO the below text inputs can be made into a component */}
             <div className="subContainer">
               <div>Equipment Name</div>
               <input
