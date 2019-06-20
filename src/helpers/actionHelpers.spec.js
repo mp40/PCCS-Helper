@@ -84,6 +84,9 @@ describe('calculating total weight of all equipment', () => {
     const firearms = [];
     expect(calculateFirearmsArrayWeight(firearms)).toEqual(0);
   });
+  it('should return null if array is undefined', () => {
+    expect(calculateFirearmsArrayWeight(undefined)).toEqual(null);
+  });
   it('should calculate correct weight if equipment array is empty', () => {
     const uniform = 'Normal';
     const equipment = [];

@@ -51,29 +51,26 @@ class ClothingCard extends Component {
         );
       }
 
-      if (showUniformSelect) {
-        return (
-          <div className="uniformTableContainer">
-            <table>
-              <thead>
-                <tr className="uniformTableHeader">
-                  <th className="uniformHeading">Uniform</th>
-                  <th className="uniformValHeading">lbs</th>
-                </tr>
-              </thead>
-            </table>
-            <div>
-              <select id="uniformDropdownSelector" onChange={this.handleChangeUniform}>
-                <option>Select Uniform</option>
-                <option>Normal</option>
-                <option>Tropical</option>
-                <option>Winter</option>
-              </select>
-            </div>
+      return (
+        <div className="uniformTableContainer">
+          <table>
+            <thead>
+              <tr className="uniformTableHeader">
+                <th className="uniformHeading">Uniform</th>
+                <th className="uniformValHeading">lbs</th>
+              </tr>
+            </thead>
+          </table>
+          <div>
+            <select id="uniformDropdownSelector" onChange={this.handleChangeUniform}>
+              <option>Select Uniform</option>
+              <option>Normal</option>
+              <option>Tropical</option>
+              <option>Winter</option>
+            </select>
           </div>
-        );
-      }
-      return null;
+        </div>
+      );
     }
 }
 

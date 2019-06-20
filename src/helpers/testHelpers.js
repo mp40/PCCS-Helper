@@ -6,6 +6,7 @@ import thunk from 'redux-thunk';
 import reducers from '../reducers';
 import App from '../App';
 import { initialStore } from './initialStore';
+import { MockState } from '../reducers/mockState';
 
 export const mountAppWithStore = (mockStore = initialStore) => {
   const store = createStore(reducers, mockStore, applyMiddleware(thunk));
@@ -17,54 +18,25 @@ export const mountAppWithStore = (mockStore = initialStore) => {
   );
 };
 
-export const storeWithEquipment = () => ({
-  currentView: 'home',
-  totalWeight: 0,
-  characterStats: {},
-  combatStats: {
-    baseSpeed: 0,
-    maxSpeed: 0,
-    SAL: 0,
-    CE: 0,
-    ISF: 0,
-    ASF: 0,
-    knockoutValue: 0,
-    damageBonus: 0,
-    combatActions: [0, 0],
-  },
-  gear: {
-    equipment: [{ name: 'newEquipment', weight: 1337, qty: 1, tags: ['test'] }],
-  },
-});
-
-export const storeWithCreateCharacterView = (gun = null) => {
-  const character = {
-    currentView: 'createChar',
-    totalWeight: 0,
-    characterStats: {},
-    combatStats: {
-      baseSpeed: 0,
-      maxSpeed: 0,
-      SAL: 0,
-      CE: 0,
-      ISF: 0,
-      ASF: 0,
-      knockoutValue: 0,
-      damageBonus: 0,
-      combatActions: [0, 0],
-    },
-    gear: {
-      uniform: 'Normal',
-      equipment: [],
-      firearms: [],
-    },
-  };
-
-  if (gun) {
-    character.gear.firearms = [gun];
+class StoreWithEquipment extends MockState {
+  constructor() {
+    super();
+    this.gear.equipment = [{ name: 'newEquipment', weight: 1337, qty: 1, tags: ['test'] }];
   }
-  return character;
-};
+}
+
+export const storeWithEquipment = () => new StoreWithEquipment();
+
+
+class StoreWithCharacterView extends MockState {
+  constructor(gun) {
+    super(gun);
+    this.currentView = 'createChar';
+    this.gear.firearms = gun === undefined ? [] : [gun];
+  }
+}
+
+export const storeWithCreateCharacterView = gun => new StoreWithCharacterView(gun);
 
 export const testM1911A1 = () => ({
   name: 'M1911A1',
