@@ -98,7 +98,7 @@ describe('<WeaponsCardWeaponStats/> component', () => {
         expect(lineSix(wrapper).text()).toEqual('6-4SALM-14-9-4-11257101217');
       });
       it('should render the Base Pellet Hit Chance data', () => {
-        expect(lineSeven(wrapper).text()).toEqual('Cap77-312BPHCsolid*11*10*9*7*5*2*162358');
+        expect(lineSeven(wrapper).text()).toEqual('Cap77-312BPHC*11*10*9*7*5*2*162358');
       });
       it('should render the Pellet Radius data', () => {
         expect(lineEight(wrapper).text()).toEqual('AW0.138-2PR.0.0.00.10.10.10.10.20.30.40.7');
