@@ -51,8 +51,6 @@ function reduceActions(state = initialState, action) {
       return { ...state, characterStats: action.payload };
     case 'UPDATE_ALL_COMBAT_STATS':
       return { ...state, combatStats: action.payload };
-    case 'MODIFY_EQUIPMENT':
-      return { ...state, gear: { ...state.gear, equipment: action.payload } };
     case 'MODIFY_FIREARMS':
       return { ...state, gear: { ...state.gear, firearms: action.payload } };
     default: return state;

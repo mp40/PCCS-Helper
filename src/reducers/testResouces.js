@@ -48,3 +48,11 @@ export class IncreasedEquipment extends MockState {
     this.gear.equipment = [new EquipmentQtyTwo()];
   }
 }
+
+export class IncreasedFirstEquipmentItem extends AddedEquipmentAgain {
+  constructor() {
+    super();
+    this.totalWeight = 10.53;
+    this.gear.equipment = [new EquipmentQtyTwo(), new OtherEquipment()];
+  }
+}
