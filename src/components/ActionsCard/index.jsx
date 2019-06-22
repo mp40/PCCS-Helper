@@ -4,6 +4,18 @@ import { combatStatsShape } from '../../helpers/proptypeShapes';
 
 const { actionsPerImpulse } = require('../../helpers/helperFunctions');
 
+const actionsRow = (idRef, heading, actionArray) => (
+  <>
+    <tr id={idRef} className="actionsTable">
+      <td className="actionType">{heading}</td>
+      <td className="actions">{actionArray[0]}</td>
+      <td className="actions">{actionArray[1]}</td>
+      <td className="actions">{actionArray[2]}</td>
+      <td className="actions">{actionArray[3]}</td>
+    </tr>
+  </>
+);
+
 const ActionsCard = ({ combatStats }) => {
   const gunActions = actionsPerImpulse(combatStats.combatActions[0]);
   const handActions = actionsPerImpulse(combatStats.combatActions[1]);
@@ -22,21 +34,8 @@ const ActionsCard = ({ combatStats }) => {
             </tr>
           </thead>
           <tbody>
-
-            <tr id="gunActionTable" className="actionsTable">
-              <td className="actionType">Gun</td>
-              <td className="actions">{gunActions[0]}</td>
-              <td className="actions">{gunActions[1]}</td>
-              <td className="actions">{gunActions[2]}</td>
-              <td className="actions">{gunActions[3]}</td>
-            </tr>
-            <tr id="handActionTable" className="actionsTable">
-              <td className="actionType">Hand</td>
-              <td className="actions">{handActions[0]}</td>
-              <td className="actions">{handActions[1]}</td>
-              <td className="actions">{handActions[2]}</td>
-              <td className="actions">{handActions[3]}</td>
-            </tr>
+            {actionsRow('gunActionTable', 'Gun', gunActions)}
+            {actionsRow('handActionTable', 'Hand', handActions)}
           </tbody>
 
         </table>
