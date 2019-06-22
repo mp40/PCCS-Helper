@@ -1,5 +1,6 @@
 export class MockState {
   constructor() {
+    this.currentView = 'home';
     this.totalWeight = 5;
     this.characterStats = {
       str: 10,

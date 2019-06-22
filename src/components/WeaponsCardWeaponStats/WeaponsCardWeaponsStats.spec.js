@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import WeaponsCardWeaponStats, { standardRangeBrackets, shotgunRangeBrackets } from './index';
-import { testM1911A1, testM203, testFAMAS, testRemington } from '../../helpers/testHelpers';
+import { testM1911A1, testM16WithoutJhpAp, testM203, testFAMAS, testRemington } from '../../helpers/testHelpers';
 
 describe('<WeaponsCardWeaponStats/> component', () => {
   const lineOne = wrapper => wrapper.find('#GunTableLine0');
@@ -16,6 +16,7 @@ describe('<WeaponsCardWeaponStats/> component', () => {
   const lineTen = wrapper => wrapper.find('#GunTableLine9');
   const lineEleven = wrapper => wrapper.find('#GunTableLine10');
   describe('rendering standard data', () => {
+    // eslint-disable-next-line react/jsx-filename-extension
     const wrapper = mount(<WeaponsCardWeaponStats gunObj={testM1911A1()} />);
     it('should render the table header correctly', () => {
       const expectedHeader = `DataAim Time${standardRangeBrackets.join('')}`;
@@ -77,14 +78,14 @@ describe('<WeaponsCardWeaponStats/> component', () => {
   });
   describe('edge cases', () => {
     describe('no data for JHP/AP', () => {
-      const wrapper = mount(<WeaponsCardWeaponStats gunObj={testM203()} />);
+      const wrapper = mount(<WeaponsCardWeaponStats gunObj={testM16WithoutJhpAp()} />);
       it('should not render JHP data ', () => {
-        expect(lineFour(wrapper).text()).toEqual('RT84-8');
+        expect(lineFour(wrapper).text()).toEqual('RT84-7');
         expect(lineFive(wrapper).text()).toEqual('ROF*75-6');
       });
       it('should not render AP tags', () => {
-        expect(lineSeven(wrapper).text()).toEqual('Cap307-4');
-        expect(lineEight(wrapper).text()).toEqual('AW18-3');
+        expect(lineSeven(wrapper).text()).toEqual('Cap207-4');
+        expect(lineEight(wrapper).text()).toEqual('AW0.78-3');
       });
     });
     describe('shotguns', () => {
@@ -97,7 +98,7 @@ describe('<WeaponsCardWeaponStats/> component', () => {
         expect(lineSix(wrapper).text()).toEqual('6-4SALM-14-9-4-11257101217');
       });
       it('should render the Base Pellet Hit Chance data', () => {
-        expect(lineSeven(wrapper).text()).toEqual('Cap77-312BPHCsolid*11*10*9*7*5*2*162358');
+        expect(lineSeven(wrapper).text()).toEqual('Cap77-312BPHC*11*10*9*7*5*2*162358');
       });
       it('should render the Pellet Radius data', () => {
         expect(lineEight(wrapper).text()).toEqual('AW0.138-2PR.0.0.00.10.10.10.10.20.30.40.7');

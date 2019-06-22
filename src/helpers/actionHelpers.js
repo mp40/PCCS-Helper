@@ -57,7 +57,7 @@ export const calculateGunAndAmmoWeight = (gunObj) => {
 
 export const calculateFirearmsArrayWeight = (gunArray) => {
   if (gunArray === undefined) {
-    return;
+    return null;
   }
   const totalWeight = gunArray.reduce((accumulator, gunObj) => accumulator + calculateGunAndAmmoWeight(gunObj), 0);
   return Math.round(totalWeight * 1000) / 1000;
