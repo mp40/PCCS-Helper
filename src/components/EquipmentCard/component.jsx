@@ -6,8 +6,8 @@ import CustomEquipmentModal from '../CustomEquipmentModal';
 import ButtonStandard from '../widgets/buttons/ButtonStandard';
 import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 import ButtonIncrementArrows from '../widgets/buttons/ButtonIncrementArrows';
-
 import { incrementEquipmentQty, findEquipmentWeight } from '../../helpers/actionHelpers';
+import { toggleTagsInList } from '../../helpers/equipmentListFunctions';
 
 class EquipmentCard extends Component {
   constructor(props) {
@@ -44,25 +44,7 @@ class EquipmentCard extends Component {
 
   handleTags = (tag) => {
     const { filteredTags } = this.state;
-    if (filteredTags.includes(tag)) {
-      this.unfilterTag(tag);
-    } else {
-      this.filterTag(tag);
-    }
-  }
-
-  filterTag = (tag) => {
-    const { filteredTags } = this.state;
-    const tags = filteredTags;
-    tags.push(tag);
-    this.setState({ filteredTags: tags });
-  }
-
-  unfilterTag = (tag) => {
-    const { filteredTags } = this.state;
-    let tags = filteredTags;
-    tags = tags.filter(element => element !== tag);
-    this.setState({ filteredTags: tags });
+    this.setState({ filteredTags: toggleTagsInList(filteredTags, tag) });
   }
 
   handleRemoveEquipment = (equipmentToRemove) => {

@@ -1,9 +1,6 @@
 import { equipment } from '../data/equipmentList';
 
-const findGear = (findName => equipment[findName]);
-
-
-const filterEquipment = (findType) => {
+export const filterEquipment = (findType) => {
   const equipmentList = equipment();
   if (findType.length === 0) {
     return equipmentList;
@@ -14,13 +11,14 @@ const filterEquipment = (findType) => {
   return equipmentList.filter(equipmentObject => equipmentObject.tags.some(findTag));
 };
 
-const createFilterSet = (equipmentList) => {
+export const createFilterSet = (equipmentList) => {
   const tagArray = equipmentList.reduce((accumulator, obj) => [...accumulator, ...obj.tags], []);
   return Array.from(new Set(tagArray));
 };
 
-export {
-  findGear,
-  filterEquipment,
-  createFilterSet,
-};
+export const toggleTagsInList = ((list, tag) => {
+  if (list.includes(tag)) {
+    return list.filter(element => element !== tag);
+  }
+  return [...list, tag];
+});
