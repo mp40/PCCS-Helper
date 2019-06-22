@@ -3,14 +3,14 @@ import { PropTypes } from 'prop-types';
 import { gearShape } from '../../helpers/proptypeShapes';
 import ButtonStandard from '../widgets/buttons/ButtonStandard';
 import { filterEquipment, createFilterSet } from '../../helpers/equipmentListFunctions';
-import { isNotValidEquipmentToAdd } from '../../helpers/gaurds';
+import { isNotValidObjectToAdd } from '../../helpers/gaurds';
 import { equipment } from '../../data/equipmentList';
 import './EquipmentDropdown.css';
 
 class EquipmentDropdown extends Component {
   handleAddEquipment(equipmentToAdd) {
     const { addEquipment, gear } = this.props;
-    if (isNotValidEquipmentToAdd(gear.equipment, equipmentToAdd)) {
+    if (isNotValidObjectToAdd(gear.equipment, equipmentToAdd)) {
       return;
     }
     addEquipment(equipmentToAdd);

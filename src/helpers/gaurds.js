@@ -2,7 +2,7 @@ export const isValidCombatLevel = payload => payload >= 0;
 
 export const isValidAttributeStat = payload => payload >= 3 && payload <= 19;
 
-export const isNotValidEquipmentToAdd = (list, equipment) => list.filter(obj => obj.name === equipment.name).length;
+export const isNotValidObjectToAdd = (list, object) => list.filter(obj => obj.name === object.name).length;
 
 export const isValidCustomEquipmentInput = (name, weight) => {
   if (!name || name.length < 1 || typeof name !== 'string') {
