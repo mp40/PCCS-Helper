@@ -10,6 +10,8 @@ import { changeUniformReducer } from './uniformReducer';
 import { addEquipmentReducer } from './addEquipmentReducer';
 import { removeEquipmentReducer } from './removeEquipmentReducer';
 import { removeAllEquipmentReducer } from './removeAllEquipmentReducer';
+import { increaseEquipmentReducer } from './increaseEquipmentReducer';
+import { decreaseEquipmentReducer } from './decreaseEquipmentReducer';
 
 const initialState = initialStore;
 
@@ -39,14 +41,16 @@ function reduceActions(state = initialState, action) {
       return removeEquipmentReducer(state, action);
     case 'ALL_EQUIPMENT_REMOVED':
       return removeAllEquipmentReducer(state, action);
+    case 'EQUIPMENT_QTY_INCREASED':
+      return increaseEquipmentReducer(state, action);
+    case 'EQUIPMENT_QTY_DECREASED':
+      return decreaseEquipmentReducer(state, action);
     case 'TOTAL_WEIGHT':
       return { ...state, totalWeight: action.payload };
     case 'UPDATE_ATTRIBUTES':
       return { ...state, characterStats: action.payload };
     case 'UPDATE_ALL_COMBAT_STATS':
       return { ...state, combatStats: action.payload };
-    case 'MODIFY_EQUIPMENT':
-      return { ...state, gear: { ...state.gear, equipment: action.payload } };
     case 'MODIFY_FIREARMS':
       return { ...state, gear: { ...state.gear, firearms: action.payload } };
     default: return state;

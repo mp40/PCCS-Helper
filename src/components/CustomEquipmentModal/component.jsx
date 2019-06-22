@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { gearShape } from '../../helpers/proptypeShapes';
 
 import ButtonStandard from '../widgets/buttons/ButtonStandard';
+import TextInput from '../widgets/TextInput';
 import { isNotValidEquipmentToAdd, isValidCustomEquipmentInput } from '../../helpers/gaurds';
 
 import './CustomEquipmentModal.css';
@@ -73,30 +74,20 @@ class CustomEquipmentModal extends Component {
                 onClick={toggleCustomEquipment}
               />
             </div>
-            {/* TODO the below text inputs can be made into a component */}
-            <div className="subContainer">
-              <div>Equipment Name</div>
-              <input
-                type="text"
-                autoComplete="off"
-                id="equipNameInput"
-                className="equipInput"
-                value={equipmentName}
-                onChange={this.handleChange.bind(this, 'name')}
-              />
-            </div>
 
-            <div className="subContainer">
-              <div>Equipment Weight (lbs)</div>
-              <input
-                type="text"
-                autoComplete="off"
-                id="equipWeightInput"
-                className="equipInput"
-                value={equipmentWeight}
-                onChange={this.handleChange.bind(this, 'weight')}
-              />
-            </div>
+            <TextInput
+              heading="Equipment Name"
+              idRef="equipNameInput"
+              equipmentValue={equipmentName}
+              onChange={this.handleChange.bind(this, 'name')}
+            />
+
+            <TextInput
+              heading="Equipment Weight (lbs)"
+              idRef="equipWeightInput"
+              equipmentValue={equipmentWeight}
+              onChange={this.handleChange.bind(this, 'weight')}
+            />
 
             <ButtonStandard
               id="submitCustomEquipButton"

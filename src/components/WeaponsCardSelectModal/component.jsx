@@ -27,7 +27,6 @@ class WeaponsCardSelectModal extends Component {
       const newGunObj = gunObj;
       const newWeight = totalWeight + newGunObj.weight;
       const attributeObj = characterStats;
-      newGunObj.qty = 1;
 
       const newFirearmsArray = [...gear.firearms, ...[newGunObj]];
 

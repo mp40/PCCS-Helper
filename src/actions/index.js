@@ -29,11 +29,6 @@ export const updateAttributes = (attributeObj, weight) => (dispatch) => {
   dispatch(updateCombatStats(attributeObj, weight));
 };
 
-export const modifyEquipment = (newWeight, equipArray, attributeObj) => (dispatch) => {
-  dispatch({ type: 'MODIFY_EQUIPMENT', payload: equipArray });
-  dispatch(updateWeight(newWeight, attributeObj));
-};
-
 export const modifyFirearmList = (newWeight, firearmsArray, attributeObj) => (dispatch) => {
   dispatch({ type: 'MODIFY_FIREARMS', payload: firearmsArray });
   dispatch(updateWeight(newWeight, attributeObj));
@@ -92,4 +87,14 @@ export const removeEquipment = equipment => ({
 export const removeAllEquipment = emptyArray => ({
   type: 'ALL_EQUIPMENT_REMOVED',
   payload: emptyArray,
+});
+
+export const increaseEquipmentQty = equipment => ({
+  type: 'EQUIPMENT_QTY_INCREASED',
+  payload: equipment,
+});
+
+export const decreaseEquipmentQty = equipment => ({
+  type: 'EQUIPMENT_QTY_DECREASED',
+  payload: equipment,
 });

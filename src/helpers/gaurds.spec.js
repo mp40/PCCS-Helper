@@ -1,4 +1,8 @@
-import { isValidCombatLevel, isValidAttributeStat, isNotValidEquipmentToAdd, isValidCustomEquipmentInput } from './gaurds';
+import { isValidCombatLevel,
+  isValidAttributeStat,
+  isNotValidEquipmentToAdd,
+  isValidCustomEquipmentInput,
+  isValidToDecreaseQantity } from './gaurds';
 
 describe('stat level gaurd clauses', () => {
   it('should not allow combat levels to be below 0', () => {
@@ -40,5 +44,16 @@ describe('adding equipment gaurd clauses', () => {
       expect(isValidCustomEquipmentInput('valid equipment name', undefined)).toBe(false);
       expect(isValidCustomEquipmentInput('valid equipment name', NaN)).toBe(false);
     });
+  });
+});
+
+describe('decrease equipment quantity gaurd', () => {
+  it('should return true if equipment quantity is above one', () => {
+    const equipment = { qty: 2 };
+    expect(isValidToDecreaseQantity(equipment)).toBe(true);
+  });
+  it('should return false if equipment quantity is one or less', () => {
+    const equipment = { qty: 1 };
+    expect(isValidToDecreaseQantity(equipment)).toBe(false);
   });
 });

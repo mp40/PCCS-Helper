@@ -3,13 +3,9 @@ import { PropTypes } from 'prop-types';
 import { gearShape } from '../../helpers/proptypeShapes';
 import ButtonStandard from '../widgets/buttons/ButtonStandard';
 import { filterEquipment, createFilterSet } from '../../helpers/equipmentListFunctions';
-// import { addEquipment } from '../../helpers/actionHelpers';
 import { isNotValidEquipmentToAdd } from '../../helpers/gaurds';
 import { equipment } from '../../data/equipmentList';
 import './EquipmentDropdown.css';
-
-// const equipment = require('../../data/equipmentList');
-
 
 class EquipmentDropdown extends Component {
   handleAddEquipment(equipmentToAdd) {
@@ -88,13 +84,10 @@ class EquipmentDropdown extends Component {
 
 EquipmentDropdown.propTypes = {
   addEquipment: PropTypes.func,
-  modifyEquipment: PropTypes.func,
   toggleFilters: PropTypes.func,
   closeShowEquipment: PropTypes.func,
   handleTags: PropTypes.func,
   gear: gearShape,
-  characterStats: PropTypes.objectOf(PropTypes.number),
-  totalWeight: PropTypes.number,
   filteredTags: PropTypes.arrayOf(PropTypes.string),
   showFilters: PropTypes.bool,
 };
