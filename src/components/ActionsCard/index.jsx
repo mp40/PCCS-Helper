@@ -37,7 +37,6 @@ const ActionsCard = ({ combatStats }) => {
             {actionsRow('gunActionTable', 'Gun', gunActions)}
             {actionsRow('handActionTable', 'Hand', handActions)}
           </tbody>
-
         </table>
 
         <table className="additionalCombatData">
