@@ -13,3 +13,5 @@ export const isValidCustomEquipmentInput = (name, weight) => {
   }
   return true;
 };
+
+export const isValidToDecreaseQantity = equipment => (equipment.qty > 1);

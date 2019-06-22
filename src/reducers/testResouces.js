@@ -9,6 +9,14 @@ export class Equipment {
   }
 }
 
+export class EquipmentQtyTwo extends Equipment {
+  constructor() {
+    super();
+    this.weight = 1.53;
+    this.qty = 2;
+  }
+}
+
 export class OtherEquipment extends Equipment {
   constructor() {
     super();
@@ -30,5 +38,13 @@ export class AddedEquipmentAgain extends AddedEquipment {
     super();
     this.totalWeight = 9;
     this.gear.equipment = [new Equipment(), new OtherEquipment()];
+  }
+}
+
+export class IncreasedEquipment extends MockState {
+  constructor() {
+    super();
+    this.totalWeight = 8.06;
+    this.gear.equipment = [new EquipmentQtyTwo()];
   }
 }

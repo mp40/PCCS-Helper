@@ -6,8 +6,9 @@ import CustomEquipmentModal from '../CustomEquipmentModal';
 import ButtonStandard from '../widgets/buttons/ButtonStandard';
 import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 import ButtonIncrementArrows from '../widgets/buttons/ButtonIncrementArrows';
-import { incrementEquipmentQty, findEquipmentWeight } from '../../helpers/actionHelpers';
+import { findEquipmentWeight } from '../../helpers/actionHelpers';
 import { toggleTagsInList } from '../../helpers/equipmentListFunctions';
+import { isValidToDecreaseQantity } from '../../helpers/gaurds';
 
 class EquipmentCard extends Component {
   constructor(props) {
@@ -57,10 +58,14 @@ class EquipmentCard extends Component {
     removeAllEquipment([]);
   }
 
-  handleIncrementEquipmentQty = (equipObj, modifier) => {
-    const { totalWeight, gear, characterStats, modifyEquipment } = this.props;
-    const newData = incrementEquipmentQty(totalWeight, gear.equipment, equipObj, modifier);
-    modifyEquipment(newData.totalWeight, newData.equipArray, characterStats);
+  handleIncrementEquipmentQty = (equipObj, increment) => {
+    const { increaseEquipmentQty, decreaseEquipmentQty } = this.props;
+    if (increment === 'up') {
+      increaseEquipmentQty(equipObj);
+    }
+    if (increment === 'down' && isValidToDecreaseQantity(equipObj)) {
+      decreaseEquipmentQty(equipObj);
+    }
   }
 
 
@@ -122,14 +127,14 @@ class EquipmentCard extends Component {
                   {equipObj.qty}
                 </td>
                 <td>
-                  {Math.round((equipObj.qty * equipObj.weight) * 100) / 100}
+                  {Math.round((equipObj.qty * equipObj.weight) * 1000) / 1000}
                 </td>
                 <td className="arrowBox">
                   <ButtonIncrementArrows
                     idUp="qtyUp"
                     idDown="qtyDown"
-                    onClickUp={this.handleIncrementEquipmentQty.bind(this, equipObj, 1)}
-                    onClickDown={this.handleIncrementEquipmentQty.bind(this, equipObj, -1)}
+                    onClickUp={this.handleIncrementEquipmentQty.bind(this, equipObj, 'up')}
+                    onClickDown={this.handleIncrementEquipmentQty.bind(this, equipObj, 'down')}
                   />
                 </td>
               </tr>
@@ -160,12 +165,11 @@ class EquipmentCard extends Component {
 }
 
 EquipmentCard.propTypes = {
+  decreaseEquipmentQty: PropTypes.func,
+  increaseEquipmentQty: PropTypes.func,
   removeAllEquipment: PropTypes.func,
   removeEquipment: PropTypes.func,
-  modifyEquipment: PropTypes.func,
   gear: gearShape,
-  characterStats: PropTypes.objectOf(PropTypes.number),
-  totalWeight: PropTypes.number,
 };
 
 export default EquipmentCard;

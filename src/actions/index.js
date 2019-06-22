@@ -93,3 +93,13 @@ export const removeAllEquipment = emptyArray => ({
   type: 'ALL_EQUIPMENT_REMOVED',
   payload: emptyArray,
 });
+
+export const increaseEquipmentQty = equipment => ({
+  type: 'EQUIPMENT_QTY_INCREASED',
+  payload: equipment,
+});
+
+export const decreaseEquipmentQty = equipment => ({
+  type: 'EQUIPMENT_QTY_DECREASED',
+  payload: equipment,
+});
