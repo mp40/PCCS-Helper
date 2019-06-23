@@ -4,6 +4,7 @@ import { gearShape } from '../../helpers/proptypeShapes';
 import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
 import WeaponsModalSelection from '../WeaponsModalSelection';
 import { isNotValidObjectToAdd } from '../../helpers/gaurds';
+import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 
 import { rifles, pistols, smgs, mgs, sniperRifles, shotguns } from '../../data/firearms';
 
@@ -41,10 +42,17 @@ class WeaponsCardSelectModal extends Component {
         <div className="equipmentModalContainer">
           {showGunStats
             ? (
-              <WeaponsCardWeaponStats
-                gunObj={gunObj}
-                handleShowGunStats={this.handleShowGunStats}
-              />
+              <div className="WeaponStatTableContainer" style={{ fontSize: 'medium' }}>
+                <div style={{ marginTop: '2px', marginLeft: '2px' }}>
+                  <ButtonDeleteX
+                    id="closeGunStatView"
+                    onClick={this.handleShowGunStats}
+                  />
+                </div>
+                <WeaponsCardWeaponStats
+                  gunObj={gunObj}
+                />
+              </div>
             )
             : (
               <WeaponsModalSelection

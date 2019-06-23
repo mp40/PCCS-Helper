@@ -4,6 +4,8 @@ import { gearShape } from '../../helpers/proptypeShapes';
 import WeaponsCardBody from '../WeaponsCardBody';
 import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
 import WeaponsCardSelectModal from '../WeaponsCardSelectModal';
+import WeaponsCardModifyWeapon from '../WeaponsCardModifyWeapon';
+import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 
 import { rifles, smgs, mgs, pistols, sniperRifles, shotguns } from '../../data/firearms';
 
@@ -28,7 +30,6 @@ class WeaponsCard extends Component {
     };
   }
 
-
   calculateNewWeight = (newGunArray) => {
     const { gear } = this.props;
     return calculateTotalWeight(gear.uniform, gear.equipment, newGunArray);
@@ -43,6 +44,10 @@ class WeaponsCard extends Component {
     const { modifyFirearm } = this.state;
     this.setState({ firearmToModify: gunObj.name });
     this.setState({ modifyFirearm: !modifyFirearm });
+  }
+
+  closeModifyWeapon =() => {
+    this.setState({ modifyFirearm: false });
   }
 
   handleIncrementGunQty = (modGunObj, modifier) => {
@@ -189,18 +194,34 @@ class WeaponsCard extends Component {
         {modifyFirearm
           && (
             <div className="equipmentModalContainer">
-              <WeaponsCardWeaponStats
-                gunObj={gunToModify}
-                modifyFirearm={modifyFirearm}
-                createCustomMag={createCustomMag}
-                modifyFirearmWeight={modifyFirearmWeight}
-                handleModifyFirearm={this.handleModifyFirearm}
-                toggleCreateCustomMag={this.toggleCreateCustomMag}
-                handleAddCustomMag={this.handleAddCustomMag}
-                toggleModifyFirearmWeight={this.toggleModifyFirearmWeight}
-                handleModifyFirearmWeight={this.handleModifyFirearmWeight}
-                removeAllGunMods={this.removeAllGunMods}
-              />
+              <div className="WeaponStatTableContainer" style={{ fontSize: 'medium' }}>
+                <div style={{ marginTop: '2px', marginLeft: '2px' }}>
+                  <ButtonDeleteX
+                    id="closeGunStatView"
+                    onClick={this.closeModifyWeapon}
+                  />
+                </div>
+                <div style={{ display: 'flex' }}>
+                  <div style={{ width: '40rem' }}>
+                    <WeaponsCardWeaponStats
+                      gunObj={gunToModify}
+                    />
+                  </div>
+                  <WeaponsCardModifyWeapon
+                    gunObj={gunToModify}
+                    createCustomMag={createCustomMag}
+                    modifyFirearmWeight={modifyFirearmWeight}
+                    handleModifyFirearm={this.handleModifyFirearm}
+                    toggleCreateCustomMag={this.toggleCreateCustomMag}
+                    handleAddCustomMag={this.handleAddCustomMag}
+                    toggleModifyFirearmWeight={this.toggleModifyFirearmWeight}
+                    handleModifyFirearmWeight={this.handleModifyFirearmWeight}
+                    removeAllGunMods={this.removeAllGunMods}
+                  />
+                </div>
+              </div>
+
+
             </div>
           )
         }
