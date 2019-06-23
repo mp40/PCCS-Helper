@@ -104,6 +104,16 @@ export const addFirearm = firearm => ({
   payload: firearm,
 });
 
+export const removeFirearm = firearm => ({
+  type: 'FIREARM_REMOVED',
+  payload: firearm,
+});
+
+export const removeAllFirearms = emptyArray => ({
+  type: 'ALL_FIREARMS_REMOVED',
+  payload: emptyArray,
+});
+
 export const increaseFirearmQty = firearm => ({
   type: 'FIREARM_QTY_INCREASED',
   payload: firearm,

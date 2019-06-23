@@ -61,9 +61,8 @@ class WeaponsCard extends Component {
   }
 
   handleRemoveGun = (gunObj) => {
-    const { gear, characterStats, modifyFirearmList } = this.props;
-    const newGunArray = removeObjectFromArray(gear.firearms, gunObj);
-    modifyFirearmList(this.calculateNewWeight(newGunArray), newGunArray, characterStats);
+    const { removeFirearm } = this.props;
+    removeFirearm(gunObj);
   }
 
   handleIncrementMagQty = (gunObj, magObj, modifier) => {
@@ -78,8 +77,8 @@ class WeaponsCard extends Component {
   }
 
   handleRemoveAllGuns = () => {
-    const { characterStats, modifyFirearmList } = this.props;
-    modifyFirearmList(this.calculateNewWeight([]), [], characterStats);
+    const { removeAllFirearms } = this.props;
+    removeAllFirearms([]);
   }
 
   handleModifyFirearm = (newGun) => {
@@ -224,6 +223,8 @@ class WeaponsCard extends Component {
 }
 
 WeaponsCard.propTypes = {
+  removeFirearm: PropTypes.func,
+  removeAllFirearms: PropTypes.func,
   increaseFirearmQty: PropTypes.func,
   decreaseFirearmQty: PropTypes.func,
   modifyFirearmList: PropTypes.func,

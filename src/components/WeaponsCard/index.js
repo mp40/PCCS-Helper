@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import WeaponsCard from './component';
-import { modifyFirearmList, increaseFirearmQty, decreaseFirearmQty } from '../../actions';
+import { modifyFirearmList, increaseFirearmQty, decreaseFirearmQty, removeFirearm, removeAllFirearms } from '../../actions';
 import './WeaponsCard.css';
 
 const mapStateToProps = state => ({
@@ -9,4 +9,9 @@ const mapStateToProps = state => ({
   gear: state.gear,
 });
 
-export default connect(mapStateToProps, { modifyFirearmList, increaseFirearmQty, decreaseFirearmQty })(WeaponsCard);
+export default connect(mapStateToProps,
+  { modifyFirearmList,
+    increaseFirearmQty,
+    decreaseFirearmQty,
+    removeFirearm,
+    removeAllFirearms })(WeaponsCard);
