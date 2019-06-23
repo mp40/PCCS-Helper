@@ -77,8 +77,8 @@ const WeaponsCardBody = ({
                 className="ButtonIncrementArrows"
                 idUp="qtyUpGun"
                 idDown="qtyDownGun"
-                onClickUp={handleIncrementGunQty.bind(this, gunObj, 1)}
-                onClickDown={handleIncrementGunQty.bind(this, gunObj, -1)}
+                onClickUp={handleIncrementGunQty.bind(this, gunObj, 'up')}
+                onClickDown={handleIncrementGunQty.bind(this, gunObj, 'down')}
               />
             </td>
           </tr>

@@ -6,7 +6,7 @@ import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
 import WeaponsCardSelectModal from '../WeaponsCardSelectModal';
 import WeaponsCardModifyWeapon from '../WeaponsCardModifyWeapon';
 import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
-
+import { isValidToDecreaseQantity } from '../../helpers/gaurds';
 import { rifles, smgs, mgs, pistols, sniperRifles, shotguns } from '../../data/firearms';
 
 import {
@@ -50,23 +50,14 @@ class WeaponsCard extends Component {
     this.setState({ modifyFirearm: false });
   }
 
-  handleIncrementGunQty = (modGunObj, modifier) => {
-    const { gear, characterStats, modifyFirearmList } = this.props;
-    const { firearmToModify } = this.state;
-
-    if (modGunObj.qty === 1 && modifier === -1) {
-      return;
+  handleIncrementGunQty = (firearm, increment) => {
+    const { increaseFirearmQty, decreaseFirearmQty } = this.props;
+    if (increment === 'up') {
+      increaseFirearmQty(firearm);
     }
-
-    const newGunArray = gear.firearms.map((gunObj) => {
-      const newGunObj = gunObj;
-      if (newGunObj.name === firearmToModify) {
-        newGunObj.qty += modifier;
-      }
-      return newGunObj;
-    });
-
-    modifyFirearmList(this.calculateNewWeight(newGunArray), newGunArray, characterStats);
+    if (increment === 'down' && isValidToDecreaseQantity(firearm)) {
+      decreaseFirearmQty(firearm);
+    }
   }
 
   handleRemoveGun = (gunObj) => {
@@ -233,6 +224,8 @@ class WeaponsCard extends Component {
 }
 
 WeaponsCard.propTypes = {
+  increaseFirearmQty: PropTypes.func,
+  decreaseFirearmQty: PropTypes.func,
   modifyFirearmList: PropTypes.func,
   gear: gearShape,
   characterStats: PropTypes.objectOf(PropTypes.number),
