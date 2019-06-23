@@ -103,3 +103,33 @@ export const addFirearm = firearm => ({
   type: 'FIREARM_ADDED',
   payload: firearm,
 });
+
+export const removeFirearm = firearm => ({
+  type: 'FIREARM_REMOVED',
+  payload: firearm,
+});
+
+export const removeAllFirearms = emptyArray => ({
+  type: 'ALL_FIREARMS_REMOVED',
+  payload: emptyArray,
+});
+
+export const increaseFirearmQty = firearm => ({
+  type: 'FIREARM_QTY_INCREASED',
+  payload: firearm,
+});
+
+export const decreaseFirearmQty = firearm => ({
+  type: 'FIREARM_QTY_DECREASED',
+  payload: firearm,
+});
+
+export const increaseMagazineQty = firearmAndMagazine => ({
+  type: 'MAGAZINE_QTY_INCREASED',
+  payload: firearmAndMagazine,
+});
+
+export const decreaseMagazineQty = firearmAndMagazine => ({
+  type: 'MAGAZINE_QTY_DECREASED',
+  payload: firearmAndMagazine,
+});

@@ -13,6 +13,12 @@ import { removeAllEquipmentReducer } from './removeAllEquipmentReducer';
 import { increaseEquipmentReducer } from './increaseEquipmentReducer';
 import { decreaseEquipmentReducer } from './decreaseEquipmentReducer';
 import { addFirearmReducer } from './addFirearmReducer';
+import { removeFirearmReducer } from './removeFirearmReducer';
+import { removeAllFirearmsReducer } from './removeAllFirearmsReducer';
+import { increaseFirearmReducer } from './increaseFirearmReducer';
+import { decreaseFirearmReducer } from './decreaseFirearmReducer';
+import { increaseMagazineReducer } from './increaseMagazineReducer';
+import { decreaseMagazineReducer } from './decreaseMagazineReducer';
 
 const initialState = initialStore;
 
@@ -48,6 +54,18 @@ function reduceActions(state = initialState, action) {
       return decreaseEquipmentReducer(state, action);
     case 'FIREARM_ADDED':
       return addFirearmReducer(state, action);
+    case 'FIREARM_REMOVED':
+      return removeFirearmReducer(state, action);
+    case 'ALL_FIREARMS_REMOVED':
+      return removeAllFirearmsReducer(state, action);
+    case 'FIREARM_QTY_INCREASED':
+      return increaseFirearmReducer(state, action);
+    case 'FIREARM_QTY_DECREASED':
+      return decreaseFirearmReducer(state, action);
+    case 'MAGAZINE_QTY_INCREASED':
+      return increaseMagazineReducer(state, action);
+    case 'MAGAZINE_QTY_DECREASED':
+      return decreaseMagazineReducer(state, action);
     case 'TOTAL_WEIGHT':
       return { ...state, totalWeight: action.payload };
     case 'UPDATE_ATTRIBUTES':

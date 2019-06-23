@@ -2,7 +2,8 @@ import { isValidCombatLevel,
   isValidAttributeStat,
   isNotValidObjectToAdd,
   isValidCustomEquipmentInput,
-  isValidToDecreaseQantity } from './gaurds';
+  isValidToDecreaseQantity,
+  isValidToDecreaseMagazine } from './gaurds';
 
 describe('stat level gaurd clauses', () => {
   it('should not allow combat levels to be below 0', () => {
@@ -47,7 +48,7 @@ describe('adding equipment gaurd clauses', () => {
   });
 });
 
-describe('decrease equipment quantity gaurd', () => {
+describe('decrease gear quantity gaurd', () => {
   it('should return true if equipment quantity is above one', () => {
     const equipment = { qty: 2 };
     expect(isValidToDecreaseQantity(equipment)).toBe(true);
@@ -55,5 +56,13 @@ describe('decrease equipment quantity gaurd', () => {
   it('should return false if equipment quantity is one or less', () => {
     const equipment = { qty: 1 };
     expect(isValidToDecreaseQantity(equipment)).toBe(false);
+  });
+  it('should return true if magazine qty is above 0', () => {
+    const mag = { qty: 1 };
+    expect(isValidToDecreaseMagazine(mag)).toBe(true);
+  });
+  it('should return true if magazine qty is above 0', () => {
+    const mag = { qty: 0 };
+    expect(isValidToDecreaseMagazine(mag)).toBe(false);
   });
 });
