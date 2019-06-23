@@ -93,8 +93,8 @@ const WeaponsCardBody = ({
                   <ButtonIncrementArrows
                     idUp={`qtyUpMagType${dex + 1}`}
                     idDown={`qtyDownMagType${dex + 1}`}
-                    onClickUp={handleIncrementMagQty.bind(this, gunObj, magObj, 1)}
-                    onClickDown={handleIncrementMagQty.bind(this, gunObj, magObj, -1)}
+                    onClickUp={handleIncrementMagQty.bind(this, gunObj, magObj, 'up')}
+                    onClickDown={handleIncrementMagQty.bind(this, gunObj, magObj, 'down')}
                   />
                 </span>
               </td>

@@ -6,12 +6,11 @@ import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
 import WeaponsCardSelectModal from '../WeaponsCardSelectModal';
 import WeaponsCardModifyWeapon from '../WeaponsCardModifyWeapon';
 import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
-import { isValidToDecreaseQantity } from '../../helpers/gaurds';
+import { isValidToDecreaseQantity, isValidToDecreaseMagazine } from '../../helpers/gaurds';
 import { rifles, smgs, mgs, pistols, sniperRifles, shotguns } from '../../data/firearms';
 
 import {
   calculateFirearmsArrayWeight,
-  modifyObjectQtyInArray,
   calculateTotalWeight,
 } from '../../helpers/actionHelpers';
 
@@ -64,15 +63,14 @@ class WeaponsCard extends Component {
     removeFirearm(gunObj);
   }
 
-  handleIncrementMagQty = (gunObj, magObj, modifier) => {
-    const { gear, characterStats, modifyFirearmList } = this.props;
-    if (magObj.qty === 0 && modifier === -1) {
-      return;
+  handleIncrementMagQty = (firearm, magazine, increment) => {
+    const { increaseMagazineQty, decreaseMagazineQty } = this.props;
+    if (increment === 'up') {
+      increaseMagazineQty({ firearm, magazine });
     }
-    const newGunObj = gunObj;
-    newGunObj.mag = modifyObjectQtyInArray(newGunObj.mag, magObj, modifier);
-    const newGunArray = modifyObjectQtyInArray(gear.firearms, newGunObj);
-    modifyFirearmList(this.calculateNewWeight(newGunArray), newGunArray, characterStats);
+    if (increment === 'down' && isValidToDecreaseMagazine(magazine)) {
+      decreaseMagazineQty({ firearm, magazine });
+    }
   }
 
   handleRemoveAllGuns = () => {
@@ -222,6 +220,8 @@ class WeaponsCard extends Component {
 }
 
 WeaponsCard.propTypes = {
+  increaseMagazineQty: PropTypes.func,
+  decreaseMagazineQty: PropTypes.func,
   removeFirearm: PropTypes.func,
   removeAllFirearms: PropTypes.func,
   increaseFirearmQty: PropTypes.func,
