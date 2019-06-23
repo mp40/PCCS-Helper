@@ -17,6 +17,8 @@ import { removeFirearmReducer } from './removeFirearmReducer';
 import { removeAllFirearmsReducer } from './removeAllFirearmsReducer';
 import { increaseFirearmReducer } from './increaseFirearmReducer';
 import { decreaseFirearmReducer } from './decreaseFirearmReducer';
+import { increaseMagazineReducer } from './increaseMagazineReducer';
+import { decreaseMagazineReducer } from './decreaseMagazineReducer';
 
 const initialState = initialStore;
 
@@ -60,6 +62,10 @@ function reduceActions(state = initialState, action) {
       return increaseFirearmReducer(state, action);
     case 'FIREARM_QTY_DECREASED':
       return decreaseFirearmReducer(state, action);
+    case 'MAGAZINE_QTY_INCREASED':
+      return increaseMagazineReducer(state, action);
+    case 'MAGAZINE_QTY_DECREASED':
+      return decreaseMagazineReducer(state, action);
     case 'TOTAL_WEIGHT':
       return { ...state, totalWeight: action.payload };
     case 'UPDATE_ATTRIBUTES':

@@ -12,7 +12,6 @@ import { rifles, smgs, mgs, pistols, sniperRifles, shotguns } from '../../data/f
 import {
   calculateFirearmsArrayWeight,
   modifyObjectQtyInArray,
-  removeObjectFromArray,
   calculateTotalWeight,
 } from '../../helpers/actionHelpers';
 
