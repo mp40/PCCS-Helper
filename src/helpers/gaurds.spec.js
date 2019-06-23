@@ -1,6 +1,6 @@
 import { isValidCombatLevel,
   isValidAttributeStat,
-  isNotValidEquipmentToAdd,
+  isNotValidObjectToAdd,
   isValidCustomEquipmentInput,
   isValidToDecreaseQantity } from './gaurds';
 
@@ -20,14 +20,14 @@ describe('stat level gaurd clauses', () => {
 });
 
 describe('adding equipment gaurd clauses', () => {
-  it('should not allow the identical equipment to be added to the array', () => {
+  it('should not allow the identically named object to be added to the array', () => {
     const equipmentArray = [{ name: 'test' }];
     const emptyArray = [];
     const identicalEquipment = { name: 'test' };
     const newEquipment = { name: 'safe to add' };
-    expect(isNotValidEquipmentToAdd(equipmentArray, identicalEquipment)).toBeTruthy();
-    expect(isNotValidEquipmentToAdd(equipmentArray, newEquipment)).not.toBeTruthy();
-    expect(isNotValidEquipmentToAdd(emptyArray, newEquipment)).not.toBeTruthy();
+    expect(isNotValidObjectToAdd(equipmentArray, identicalEquipment)).toBeTruthy();
+    expect(isNotValidObjectToAdd(equipmentArray, newEquipment)).not.toBeTruthy();
+    expect(isNotValidObjectToAdd(emptyArray, newEquipment)).not.toBeTruthy();
   });
   describe('valid custom equipment input', () => {
     it('should return true for valid custom equipment object', () => {

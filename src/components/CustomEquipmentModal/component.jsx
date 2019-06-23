@@ -4,7 +4,7 @@ import { gearShape } from '../../helpers/proptypeShapes';
 
 import ButtonStandard from '../widgets/buttons/ButtonStandard';
 import TextInput from '../widgets/TextInput';
-import { isNotValidEquipmentToAdd, isValidCustomEquipmentInput } from '../../helpers/gaurds';
+import { isNotValidObjectToAdd, isValidCustomEquipmentInput } from '../../helpers/gaurds';
 
 import './CustomEquipmentModal.css';
 
@@ -46,7 +46,7 @@ class CustomEquipmentModal extends Component {
       return;
     }
 
-    if (isNotValidEquipmentToAdd(gear.equipment, { name })) {
+    if (isNotValidObjectToAdd(gear.equipment, { name })) {
       this.setState({ errorMsgExistsInArray: true });
       return;
     }

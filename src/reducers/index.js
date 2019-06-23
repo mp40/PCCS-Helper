@@ -12,6 +12,7 @@ import { removeEquipmentReducer } from './removeEquipmentReducer';
 import { removeAllEquipmentReducer } from './removeAllEquipmentReducer';
 import { increaseEquipmentReducer } from './increaseEquipmentReducer';
 import { decreaseEquipmentReducer } from './decreaseEquipmentReducer';
+import { addFirearmReducer } from './addFirearmReducer';
 
 const initialState = initialStore;
 
@@ -45,6 +46,8 @@ function reduceActions(state = initialState, action) {
       return increaseEquipmentReducer(state, action);
     case 'EQUIPMENT_QTY_DECREASED':
       return decreaseEquipmentReducer(state, action);
+    case 'FIREARM_ADDED':
+      return addFirearmReducer(state, action);
     case 'TOTAL_WEIGHT':
       return { ...state, totalWeight: action.payload };
     case 'UPDATE_ATTRIBUTES':

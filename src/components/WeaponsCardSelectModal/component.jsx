@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { gearShape } from '../../helpers/proptypeShapes';
 import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
 import WeaponsModalSelection from '../WeaponsModalSelection';
+import { isNotValidObjectToAdd } from '../../helpers/gaurds';
 
 import { rifles, pistols, smgs, mgs, sniperRifles, shotguns } from '../../data/firearms';
 
@@ -16,21 +17,13 @@ class WeaponsCardSelectModal extends Component {
   }
 
     handleAddFirearm = (gunObj) => {
-      const { gear, totalWeight, characterStats, modifyFirearmList } = this.props;
+      const { addFirearm, gear } = this.props;
 
-      const gunAlreadyInList = gear.firearms.filter(obj => obj.name === gunObj.name).length;
-
-      if (gunAlreadyInList) {
+      if (isNotValidObjectToAdd(gear.firearms, gunObj)) {
         return;
       }
 
-      const newGunObj = gunObj;
-      const newWeight = totalWeight + newGunObj.weight;
-      const attributeObj = characterStats;
-
-      const newFirearmsArray = [...gear.firearms, ...[newGunObj]];
-
-      modifyFirearmList(newWeight, newFirearmsArray, attributeObj);
+      addFirearm(gunObj);
     }
 
     handleShowGunStats = (gunObj) => {
@@ -68,11 +61,9 @@ class WeaponsCardSelectModal extends Component {
 }
 
 WeaponsCardSelectModal.propTypes = {
-  modifyFirearmList: PropTypes.func,
+  addFirearm: PropTypes.func,
   closeShowFirearms: PropTypes.func,
-  totalWeight: PropTypes.number,
   gear: gearShape,
-  characterStats: PropTypes.objectOf(PropTypes.number),
 };
 
 export default WeaponsCardSelectModal;

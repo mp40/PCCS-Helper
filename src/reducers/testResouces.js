@@ -1,4 +1,5 @@
 import { MockState } from './mockState';
+import { testM1911A1, testM16 } from '../helpers/testHelpers';
 
 export class Equipment {
   constructor() {
@@ -54,5 +55,21 @@ export class IncreasedFirstEquipmentItem extends AddedEquipmentAgain {
     super();
     this.totalWeight = 10.53;
     this.gear.equipment = [new EquipmentQtyTwo(), new OtherEquipment()];
+  }
+}
+
+export class AddedM1911A1 extends MockState {
+  constructor() {
+    super();
+    this.totalWeight = 8;
+    this.gear.firearms = [testM1911A1()];
+  }
+}
+
+export class AddedM1911A1AndM16 extends MockState {
+  constructor() {
+    super();
+    this.totalWeight = 16.7;
+    this.gear.firearms = [testM1911A1(), testM16()];
   }
 }
