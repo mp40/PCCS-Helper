@@ -56,6 +56,9 @@ describe('test firearms', () => {
   it('should find nad return the M1911A1', () => {
     expect(testM1911A1()).toMatchObject({ name: 'M1911A1', weight: 3 });
   });
+  it('should have a parameter to increase M1911A1 qty', () => {
+    expect(testM1911A1(2)).toMatchObject({ name: 'M1911A1', qty: 2 });
+  });
   it('should find, modify and return the M1911A1', () => {
     expect(testM1911A1WithMods()).toMatchObject({ name: 'M1911A1', modNotes: [{ note: 'test', weightMod: 1 }] });
   });

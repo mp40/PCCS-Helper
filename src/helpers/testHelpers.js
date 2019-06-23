@@ -38,7 +38,11 @@ export const storeWithCreateCharacterView = gun => new StoreWithCharacterView(gu
 
 export const findFirearmByName = (list, gunName) => list.find(object => object.name === gunName);
 
-export const testM1911A1 = () => findFirearmByName(pistols(), 'M1911A1');
+export const testM1911A1 = (qty = 1) => {
+  const m1911A1 = findFirearmByName(pistols(), 'M1911A1');
+  m1911A1.qty = qty;
+  return m1911A1;
+};
 
 export const testM1911A1WithMods = (() => {
   const moddedM1911A1 = testM1911A1();

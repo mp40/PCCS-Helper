@@ -73,3 +73,19 @@ export class AddedM1911A1AndM16 extends MockState {
     this.gear.firearms = [testM1911A1(), testM16()];
   }
 }
+
+export class AddedTwoM1911A1 extends MockState {
+  constructor() {
+    super();
+    this.totalWeight = 11;
+    this.gear.firearms = [testM1911A1(2)];
+  }
+}
+
+export class AddedTwoM1911A1AndOneM16 extends MockState {
+  constructor() {
+    super();
+    this.totalWeight = 19.7;
+    this.gear.firearms = [testM1911A1(2), testM16()];
+  }
+}

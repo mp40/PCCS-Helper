@@ -103,3 +103,13 @@ export const addFirearm = firearm => ({
   type: 'FIREARM_ADDED',
   payload: firearm,
 });
+
+export const increaseFirearmQty = firearm => ({
+  type: 'FIREARM_QTY_INCREASED',
+  payload: firearm,
+});
+
+export const decreaseFirearmQty = firearm => ({
+  type: 'FIREARM_QTY_DECREASED',
+  payload: firearm,
+});
