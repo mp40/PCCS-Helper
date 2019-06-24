@@ -6,7 +6,7 @@ import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
 import WeaponsCardSelectModal from '../WeaponsCardSelectModal';
 import WeaponsCardModifyWeapon from '../WeaponsCardModifyWeapon';
 import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
-import { isValidToDecreaseQantity, isValidToDecreaseMagazine } from '../../helpers/gaurds';
+import { handleIncrement } from '../../helpers/gaurds';
 import { rifles, smgs, mgs, pistols, sniperRifles, shotguns } from '../../data/firearms';
 
 import {
@@ -50,12 +50,7 @@ class WeaponsCard extends Component {
 
   handleIncrementGunQty = (firearm, increment) => {
     const { increaseFirearmQty, decreaseFirearmQty } = this.props;
-    if (increment === 'up') {
-      increaseFirearmQty(firearm);
-    }
-    if (increment === 'down' && isValidToDecreaseQantity(firearm)) {
-      decreaseFirearmQty(firearm);
-    }
+    handleIncrement(firearm, increment, increaseFirearmQty, decreaseFirearmQty);
   }
 
   handleRemoveGun = (gunObj) => {
@@ -65,12 +60,7 @@ class WeaponsCard extends Component {
 
   handleIncrementMagQty = (firearm, magazine, increment) => {
     const { increaseMagazineQty, decreaseMagazineQty } = this.props;
-    if (increment === 'up') {
-      increaseMagazineQty({ firearm, magazine });
-    }
-    if (increment === 'down' && isValidToDecreaseMagazine(magazine)) {
-      decreaseMagazineQty({ firearm, magazine });
-    }
+    handleIncrement({ firearm, magazine }, increment, increaseMagazineQty, decreaseMagazineQty);
   }
 
   handleRemoveAllGuns = () => {

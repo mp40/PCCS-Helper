@@ -17,3 +17,19 @@ export const isValidCustomEquipmentInput = (name, weight) => {
 export const isValidToDecreaseQantity = equipment => (equipment.qty > 1);
 
 export const isValidToDecreaseMagazine = magazine => (magazine.qty > 0);
+
+export const isValid = (object) => {
+  if (object.magazine) {
+    return isValidToDecreaseMagazine(object.magazine);
+  }
+  return isValidToDecreaseQantity(object);
+};
+
+export const handleIncrement = (object, increment, actionUp, actionDown) => {
+  if (increment === 'up') {
+    actionUp(object);
+  }
+  if (increment === 'down' && isValid(object)) {
+    actionDown(object);
+  }
+};
