@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { gearShape } from '../../helpers/proptypeShapes';
@@ -8,78 +10,92 @@ import { equipment } from '../../data/equipmentList';
 import './EquipmentDropdown.css';
 
 class EquipmentDropdown extends Component {
-  handleAddEquipment(equipmentToAdd) {
-    const { addEquipment, gear } = this.props;
-    if (isNotValidObjectToAdd(gear.equipment, equipmentToAdd)) {
-      return;
-    }
-    addEquipment(equipmentToAdd);
-  }
+mapEquipmentFilterTags = () => {
+  const { filteredTags, handleTags } = this.props;
+  return createFilterSet(equipment()).map(tag => (
+    <div
+      className="equipTags"
+      style={{ fontWeight: filteredTags.includes(tag)
+        ? 'bold'
+        : null }}
+      onClick={handleTags.bind(this, tag)}
+      key={tag}
+    >
+      {tag}
+    </div>
+  ));
+}
 
-  render() {
-    const { filteredTags, showFilters, handleTags, closeShowEquipment, toggleFilters } = this.props;
-    const filteredEquipment = filterEquipment(filteredTags);
-    const equipmentTags = createFilterSet(equipment());
-
-    return (
-      <div className="equipmentModalContainer">
-
-        <div className="equipmentListCard">
-          <div className="equipmentListHeader">
-                    Select Equipment
-            <ButtonStandard
-              id="closeEquipmentModal"
-              name="Close List"
-              onClick={closeShowEquipment}
-            />
-            <ButtonStandard
-              id="filterEquipmentList"
-              name={showFilters
-                ? 'Apply Filter'
-                : 'Filter List'}
-              onClick={toggleFilters}
-            />
-          </div>
-          {showFilters
-            ? (
-              <div className="tagContainer">
-                {equipmentTags.map(tag => (
-                  <div
-                    className="equipTags"
-                    style={{ fontWeight: this.props.filteredTags.includes(tag)
-                      ? 'bold'
-                      : null }}
-                    onClick={handleTags.bind(this, tag)}
-                    key={tag}
-                  >
-                    {tag}
-
-                  </div>
-                ))}
-              </div>
-            )
-            : (
-              <div className="equipmentListBody">
-                {filteredEquipment.map(equipObj => (
-                  <div
-                    className="equipmentEntry"
-                    key={equipObj.name}
-                    onClick={this.handleAddEquipment.bind(this, equipObj)}
-                  >
-                    <div>
-                      {equipObj.name}
-                    </div>
-                    <div>
-                      {`${equipObj.weight} lbs`}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-        </div>
+mapFilteredEquipment = () => {
+  const { filteredTags } = this.props;
+  return filterEquipment(filteredTags).map(equipObj => (
+    <div
+      className="equipmentEntry"
+      key={equipObj.name}
+      onClick={this.handleAddEquipment.bind(this, equipObj)}
+    >
+      <div>
+        {equipObj.name}
       </div>
-    );
+      <div>
+        {`${equipObj.weight} lbs`}
+      </div>
+    </div>
+  ));
+}
+
+handleAddEquipment = (equipmentToAdd) => {
+  const { addEquipment, gear } = this.props;
+  if (isNotValidObjectToAdd(gear.equipment, equipmentToAdd)) {
+    return;
   }
+  addEquipment(equipmentToAdd);
+}
+
+renderFilterList = () => (
+  <div className="tagContainer">
+    {this.mapEquipmentFilterTags()}
+  </div>
+)
+
+renderEquipment = () => (
+  <div className="equipmentListBody">
+    {this.mapFilteredEquipment()}
+  </div>
+)
+
+renderContent = () => {
+  const { showFilters } = this.props;
+  return showFilters ? this.renderFilterList() : this.renderEquipment();
+}
+
+render() {
+  const { showFilters, closeShowEquipment, toggleFilters } = this.props;
+
+  return (
+    <div className="equipmentModalContainer">
+
+      <div className="equipmentListCard">
+        <div className="equipmentListHeader">
+                    Select Equipment
+          <ButtonStandard
+            id="closeEquipmentModal"
+            name="Close List"
+            onClick={closeShowEquipment}
+          />
+          <ButtonStandard
+            id="filterEquipmentList"
+            name={showFilters
+              ? 'Apply Filter'
+              : 'Filter List'}
+            onClick={toggleFilters}
+          />
+        </div>
+        {this.renderContent()}
+      </div>
+    </div>
+  );
+}
 }
 
 EquipmentDropdown.propTypes = {
