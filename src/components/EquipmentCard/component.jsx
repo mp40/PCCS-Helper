@@ -8,7 +8,7 @@ import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 import ButtonIncrementArrows from '../widgets/buttons/ButtonIncrementArrows';
 import { findEquipmentWeight } from '../../helpers/actionHelpers';
 import { toggleTagsInList } from '../../helpers/equipmentListFunctions';
-import { isValidToDecreaseQantity } from '../../helpers/gaurds';
+import { handleIncrement } from '../../helpers/gaurds';
 
 class EquipmentCard extends Component {
   constructor(props) {
@@ -31,16 +31,16 @@ class EquipmentCard extends Component {
     this.setState({ showCustomInput: !showCustomInput });
   }
 
+  toggleFilters = () => {
+    const { showFilters } = this.state;
+    this.setState({ showFilters: !showFilters });
+  }
+
   closeShowEquipment = () => {
     this.setState({
       showEquipment: false,
       showFilters: false,
     });
-  }
-
-  toggleFilters = () => {
-    const { showFilters } = this.state;
-    this.setState({ showFilters: !showFilters });
   }
 
   handleTags = (tag) => {
@@ -58,21 +58,72 @@ class EquipmentCard extends Component {
     removeAllEquipment([]);
   }
 
-  handleIncrementEquipmentQty = (equipObj, increment) => {
+  handleIncrementEquipmentQty = (equipmentObject, increment) => {
     const { increaseEquipmentQty, decreaseEquipmentQty } = this.props;
-    if (increment === 'up') {
-      increaseEquipmentQty(equipObj);
-    }
-    if (increment === 'down' && isValidToDecreaseQantity(equipObj)) {
-      decreaseEquipmentQty(equipObj);
-    }
+    handleIncrement(equipmentObject, increment, increaseEquipmentQty, decreaseEquipmentQty);
   }
 
+  mapEquipment = () => {
+    const { gear } = this.props;
+    return gear.equipment.map(equipmentObject => (
+      <tr key={equipmentObject.name} className="addedEqipRow">
+        <td>
+          <ButtonDeleteX
+            id="removeEquip"
+            onClick={this.handleRemoveEquipment.bind(this, equipmentObject)}
+          />
+          <span style={{ marginLeft: '1rem' }}>
+            {equipmentObject.name}
+          </span>
+        </td>
+        <td>
+          {equipmentObject.weight}
+        </td>
+        <td>
+          {equipmentObject.qty}
+        </td>
+        <td>
+          {Math.round((equipmentObject.qty * equipmentObject.weight) * 1000) / 1000}
+        </td>
+        <td className="arrowBox">
+          <ButtonIncrementArrows
+            idUp="qtyUp"
+            idDown="qtyDown"
+            onClickUp={this.handleIncrementEquipmentQty.bind(this, equipmentObject, 'up')}
+            onClickDown={this.handleIncrementEquipmentQty.bind(this, equipmentObject, 'down')}
+          />
+        </td>
+      </tr>
+    ));
+  }
+
+  renderEquipmentDropdown = () => {
+    const { showEquipment, showFilters, filteredTags } = this.state;
+    // if (showEquipment) {
+    return showEquipment
+    && (
+    <EquipmentDropdown
+      closeShowEquipment={this.closeShowEquipment}
+      toggleFilters={this.toggleFilters}
+      handleTags={this.handleTags}
+      showFilters={showFilters}
+      filteredTags={filteredTags}
+    />
+    );
+  }
+
+  renderCustomEquipmentModal = () => {
+    const { showCustomInput } = this.state;
+    return showCustomInput
+      && (
+        <CustomEquipmentModal
+          toggleCustomEquipment={this.toggleCustomEquipment}
+        />
+      );
+  }
 
   render() {
-    const { showEquipment, showCustomInput, showFilters, filteredTags } = this.state;
     const { gear } = this.props;
-    const charEquip = gear.equipment;
     const totalEquipWeight = findEquipmentWeight(gear.equipment);
 
     return (
@@ -109,56 +160,11 @@ class EquipmentCard extends Component {
                 />
               </td>
             </tr>
-            {charEquip.map(equipObj => (
-              <tr key={equipObj.name} className="addedEqipRow">
-                <td>
-                  <ButtonDeleteX
-                    id="removeEquip"
-                    onClick={this.handleRemoveEquipment.bind(this, equipObj)}
-                  />
-                  <span style={{ marginLeft: '1rem' }}>
-                    {equipObj.name}
-                  </span>
-                </td>
-                <td>
-                  {equipObj.weight}
-                </td>
-                <td>
-                  {equipObj.qty}
-                </td>
-                <td>
-                  {Math.round((equipObj.qty * equipObj.weight) * 1000) / 1000}
-                </td>
-                <td className="arrowBox">
-                  <ButtonIncrementArrows
-                    idUp="qtyUp"
-                    idDown="qtyDown"
-                    onClickUp={this.handleIncrementEquipmentQty.bind(this, equipObj, 'up')}
-                    onClickDown={this.handleIncrementEquipmentQty.bind(this, equipObj, 'down')}
-                  />
-                </td>
-              </tr>
-            ))}
+            {this.mapEquipment()}
           </tbody>
         </table>
-        {showEquipment
-          && (
-          <EquipmentDropdown
-            closeShowEquipment={this.closeShowEquipment}
-            toggleFilters={this.toggleFilters}
-            handleTags={this.handleTags}
-            showFilters={showFilters}
-            filteredTags={filteredTags}
-          />
-          )
-        }
-        {showCustomInput
-          && (
-            <CustomEquipmentModal
-              toggleCustomEquipment={this.toggleCustomEquipment}
-            />
-          )
-        }
+        {this.renderEquipmentDropdown()}
+        {this.renderCustomEquipmentModal()}
       </div>
     );
   }
