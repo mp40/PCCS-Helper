@@ -20,12 +20,10 @@ const {
 
 describe('calculate SAL', () => {
   it('should return the correct SAL based on skill level', () => {
-    expect(findSAL(0)).toEqual(0);
-    expect(findSAL(1)).toEqual(5);
-    expect(findSAL(2)).toEqual(7);
-    expect(findSAL(3)).toEqual(9);
-    expect(findSAL(4)).toEqual(10);
-    expect(findSAL(5)).toEqual(11);
+    const correctSAL = [0, 5, 7, 9, 10, 11];
+    for (let i = 0; i < correctSAL.length; i += 1) {
+      expect(findSAL(i)).toEqual(correctSAL[i]);
+    }
     expect(findSAL(20)).toEqual(26);
   });
 });
@@ -232,29 +230,19 @@ describe('converting actions per phase to actions per impulse', () => {
     const result = actionsPerImpulse();
     expect(Array.isArray(result)).toEqual(true);
   });
-  it('should return correct result for 1 action', () => {
-    const correctResult = [1, 0, 0, 0];
-    expect(actionsPerImpulse(1)).toEqual(correctResult);
-  });
-  it('should return correct result for 2 actions', () => {
-    const correctResult = [1, 0, 1, 0];
-    expect(actionsPerImpulse(2)).toEqual(correctResult);
-  });
-  it('should return correct result for 3 action', () => {
-    const correctResult = [1, 0, 1, 1];
-    expect(actionsPerImpulse(3)).toEqual(correctResult);
-  });
-  it('should return correct result for 4 actions', () => {
-    const correctResult = [1, 1, 1, 1];
-    expect(actionsPerImpulse(4)).toEqual(correctResult);
-  });
-  it('should return correct result for 0 actions', () => {
-    const correctResult = [0, 0, 0, 0];
-    expect(actionsPerImpulse(0)).toEqual(correctResult);
-  });
-  it('should return correct result for 5 actions', () => {
-    const correctResult = [2, 1, 1, 1];
-    expect(actionsPerImpulse(5)).toEqual(correctResult);
+  it('should return the correct result for actions 0 to 5', () => {
+    const correctResult = [
+      [0, 0, 0, 0],
+      [1, 0, 0, 0],
+      [1, 0, 1, 0],
+      [1, 0, 1, 1],
+      [1, 1, 1, 1],
+      [2, 1, 1, 1],
+      [2, 1, 2, 1],
+    ];
+    for (let i = 0; i < correctResult.length; i += 1) {
+      expect(actionsPerImpulse(i)).toStrictEqual(correctResult[i]);
+    }
   });
   it('should return the correct result for 21 actions', () => {
     const correctResult = [6, 5, 5, 5];

@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import WeaponsCardWeaponStats, { standardRangeBrackets, shotgunRangeBrackets } from './index';
-import { testM1911A1, testM16WithoutJhpAp, testM203, testFAMAS, testRemington } from '../../helpers/testHelpers';
+import { testM1911A1, testM16WithoutJhpAp, testFAMAS, testRemington } from '../../helpers/testHelpers';
 
 describe('<WeaponsCardWeaponStats/> component', () => {
   const lineOne = wrapper => wrapper.find('#GunTableLine0');
@@ -18,53 +18,38 @@ describe('<WeaponsCardWeaponStats/> component', () => {
   describe('rendering standard data', () => {
     // eslint-disable-next-line react/jsx-filename-extension
     const wrapper = mount(<WeaponsCardWeaponStats gunObj={testM1911A1()} />);
-    it('should render the table header correctly', () => {
-      const expectedHeader = `DataAim Time${standardRangeBrackets.join('')}`;
-      expect(wrapper.find('.WeaponStatHeader').text()).toEqual(expectedHeader);
-    });
-    it('should render the first line correctly', () => {
-      const expectedLineOne = 'L91-18FMJPEN1.61.51.21.00.80.30.20.1';
-      expect(lineOne(wrapper).text()).toEqual(expectedLineOne);
-    });
-    it('should render the second line correctly', () => {
-      const expectedLineTwo = 'W32-11DC33211111';
-      expect(lineTwo(wrapper).text()).toEqual(expectedLineTwo);
-    });
-    it('should render the third line correctly', () => {
-      const expectedLineThree = '3-10';
-      expect(lineThree(wrapper).text()).toEqual(expectedLineThree);
-    });
-    it('should render the fourth line correctly', () => {
-      const expectedLineFour = 'RT44-9JHPPEN1.51.41.20.90.70.30.10.1';
-      expect(lineFour(wrapper).text()).toEqual(expectedLineFour);
-    });
-    it('should render the fifth line correctly', () => {
-      const expectedLineFive = 'ROF*5-8DC44321111';
-      expect(lineFive(wrapper).text()).toEqual(expectedLineFive);
-    });
-    it('should render the sixth line correctly', () => {
-      const expectedLineSix = '6-7';
-      expect(lineSix(wrapper).text()).toEqual(expectedLineSix);
-    });
-    it('should render the seventh line correctly', () => {
-      const expectedLineSeven = 'Cap7APPEN2.22.11.81.41.10.50.20.1';
-      expect(lineSeven(wrapper).text()).toEqual(expectedLineSeven);
-    });
-    it('should render the eighth line correctly', () => {
-      const expectedLineEight = 'AW0.7DC33211111';
-      expect(lineEight(wrapper).text()).toEqual(expectedLineEight);
-    });
-    it('should render the ninth line correctly', () => {
-      const expectedLineNine = 'Mag';
-      expect(lineNine(wrapper).text()).toEqual(expectedLineNine);
-    });
-    it('should render the tenth line correctly', () => {
-      const expectedLineTen = 'KD5BA453627201550-4';
-      expect(lineTen(wrapper).text()).toEqual(expectedLineTen);
-    });
-    it('should render the eleventh line correctly', () => {
-      const expectedLineEleven = 'SAB5TOF12358193145';
-      expect(lineEleven(wrapper).text()).toEqual(expectedLineEleven);
+    const lineToTest = [
+      wrapper.find('.WeaponStatHeader').text(),
+      lineOne(wrapper).text(),
+      lineTwo(wrapper).text(),
+      lineThree(wrapper).text(),
+      lineFour(wrapper).text(),
+      lineFive(wrapper).text(),
+      lineSix(wrapper).text(),
+      lineSeven(wrapper).text(),
+      lineEight(wrapper).text(),
+      lineNine(wrapper).text(),
+      lineTen(wrapper).text(),
+      lineEleven(wrapper).text(),
+    ];
+    const expectedResult = [
+      `DataAim Time${standardRangeBrackets.join('')}`,
+      'L91-18FMJPEN1.61.51.21.00.80.30.20.1',
+      'W32-11DC33211111',
+      '3-10',
+      'RT44-9JHPPEN1.51.41.20.90.70.30.10.1',
+      'ROF*5-8DC44321111',
+      '6-7',
+      'Cap7APPEN2.22.11.81.41.10.50.20.1',
+      'AW0.7DC33211111',
+      'Mag',
+      'KD5BA453627201550-4',
+      'SAB5TOF12358193145',
+    ];
+    it('should render each line of the table to render correctly', () => {
+      for (let i = 0; i < lineToTest.length; i += 1) {
+        expect(lineToTest[i]).toEqual(expectedResult[i]);
+      }
     });
   });
   describe('automatic weapons', () => {
