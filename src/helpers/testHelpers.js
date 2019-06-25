@@ -19,6 +19,8 @@ export const mountAppWithStore = (mockStore = initialStore) => {
   );
 };
 
+export const createWrapperTextInput = wrapper => ((name, value) => wrapper.find(name).simulate('change', { target: { value } }));
+
 class StoreWithEquipment extends MockState {
   constructor() {
     super();

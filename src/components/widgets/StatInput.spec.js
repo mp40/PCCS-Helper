@@ -19,6 +19,9 @@ describe('StatInput Component', () => {
   />);
   describe('the behavior of StatInput', () => {
     const wrapper = newWrapper();
+    const enterValue13 = finalKey => wrapper.find('.attInput').simulate('keyUp', { target: { value: 13 },
+      key: finalKey });
+    const setSpy = () => jest.spyOn(wrapper.instance(), 'handleUpdateValue');
     it('should have the correct id', () => {
       expect(wrapper.find('#updateGun').exists()).toBe(true);
     });
@@ -32,12 +35,15 @@ describe('StatInput Component', () => {
       wrapper.find('.attValue').simulate('click');
       expect(wrapper.find('.attInput').exists()).toBe(true);
     });
+    it('should not call handleUpdateValue if Enter key not pressed', () => {
+      const spyOnMethod = setSpy();
+      enterValue13('Space');
+      expect(spyOnMethod).not.toHaveBeenCalled();
+      spyOnMethod.mockRestore();
+    });
     it('should call handleUpdateValue when Enter key pressed', () => {
-      const newValue = 13;
-      const instance = wrapper.instance();
-      const spyOnMethod = jest.spyOn(instance, 'handleUpdateValue');
-      wrapper.find('.attInput').simulate('keyUp', { target: { value: newValue },
-        key: 'Enter' });
+      const spyOnMethod = setSpy();
+      enterValue13('Enter');
       expect(spyOnMethod).toHaveBeenCalled();
       spyOnMethod.mockRestore();
     });

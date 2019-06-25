@@ -1,23 +1,21 @@
-import { mountAppWithStore, storeWithCreateCharacterView } from '../../helpers/testHelpers';
+import { mountAppWithStore, storeWithCreateCharacterView, createWrapperTextInput } from '../../helpers/testHelpers';
 import { createValidEqipmentObject } from './component';
 
 describe('adding custom equipment', () => {
   let wrapper;
+  let inputValue;
   const submitCustomEquipment = (name, weight) => {
     if (name) {
-      wrapper.find('#equipNameInput').simulate('change', {
-        target: { value: name },
-      });
+      inputValue('#equipNameInput', name);
     }
     if (weight) {
-      wrapper.find('#equipWeightInput').simulate('change', {
-        target: { value: weight },
-      });
+      inputValue('#equipWeightInput', weight);
     }
     wrapper.find('#submitCustomEquipButton').simulate('click');
   };
   beforeEach(() => {
     wrapper = mountAppWithStore(storeWithCreateCharacterView());
+    inputValue = createWrapperTextInput(wrapper);
     wrapper.find('#toggleCustomEquipment').simulate('click');
   });
   it('should be posible to add custom equipment to the list', () => {
