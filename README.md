@@ -1,8 +1,10 @@
 ![PCCS Logo](/public/pccsBnW.png)
 
-# Phoenix Command Combat System Assistant [![Build Status](https://travis-ci.org/mp40/PCCS-Helper.png?branch=master)](https://travis-ci.org/mp40/PCCS-Helper)
+# Phoenix Command Combat System Assistant 
 
-### Built with TDD/BDD.
+### Built with TDD/BDD and CI.
+[![Build Status](https://travis-ci.org/mp40/PCCS-Helper.png?branch=master)](https://travis-ci.org/mp40/PCCS-Helper)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/test_coverage)](https://codeclimate.com/github/codeclimate/codeclimate/test_coverage)
 
 This was started during my time as a student at Code Chrysalis
 
