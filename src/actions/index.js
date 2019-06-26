@@ -138,3 +138,8 @@ export const modifyFirearm = firearmNameAndModification => ({
   type: 'FIREARM_MODIFIED',
   payload: firearmNameAndModification,
 });
+
+export const removeFirearmModification = firearmNameAndModification => ({
+  type: 'FIREARM_MODIFICATION_REMOVED',
+  payload: firearmNameAndModification,
+});
