@@ -100,25 +100,11 @@ class WeaponsCard extends Component {
   }
 
   handleModifyFirearmWeight = (modNote) => {
-    const { gear, characterStats, modifyFirearmList, modifyFirearm } = this.props;
+    const { modifyFirearm } = this.props;
     const { firearmToModify } = this.state;
 
-    const newGunArray = gear.firearms.map((gunObj) => {
-      const newGunObj = gunObj;
-      if (newGunObj.name === firearmToModify) {
-        newGunObj.weight = Math.round((newGunObj.weight + modNote.weightMod) * 1000) / 1000;
-        if (newGunObj.modNotes) {
-          newGunObj.modNotes.push(modNote);
-        } else {
-          newGunObj.modNotes = [modNote];
-        }
-      }
-
-      return newGunObj;
-    });
-    modifyFirearmList(this.calculateNewWeight(newGunArray), newGunArray, characterStats);
     this.toggleModifyFirearmWeight();
-    // modifyFirearm({ firearm: firearmToModify, modNote });
+    modifyFirearm({ firearm: firearmToModify, modNote });
   }
 
   removeAllGunMods = (gunObj) => {
@@ -212,6 +198,7 @@ class WeaponsCard extends Component {
 }
 
 WeaponsCard.propTypes = {
+  modifyFirearm: PropTypes.func,
   increaseMagazineQty: PropTypes.func,
   decreaseMagazineQty: PropTypes.func,
   removeFirearm: PropTypes.func,

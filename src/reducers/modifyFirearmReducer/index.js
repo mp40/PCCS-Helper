@@ -6,13 +6,11 @@ export const modifyFirearmReducer = (state, action) => {
     if (element.name === action.payload.firearm) {
       const modifiedFirearm = element;
       modifiedFirearm.weight += action.payload.modNote.weightMod;
-      // modifiedFirearm.modNote = [...modifiedFirearm.modNote, action.payload.modNote];
-      modifiedFirearm.modNote = insertNewModification(modifiedFirearm.modNote, action.payload.modNote);
+      modifiedFirearm.modNotes = insertNewModification(modifiedFirearm.modNotes, action.payload.modNote);
       return modifiedFirearm;
     }
     return element;
   });
-
   return { ...state,
     totalWeight: Math.round(newWeight * 1000) / 1000,
     gear: { ...state.gear,

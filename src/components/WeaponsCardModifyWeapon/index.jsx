@@ -26,6 +26,7 @@ class WeaponsCardModifyWeapon extends Component {
   }
 
   handleRemoveMod = (noteObj) => {
+    // TODO remove mod reducer here
     const { gunObj, handleModifyFirearm } = this.props;
     const newGunObj = gunObj;
     newGunObj.weight += noteObj.weightMod * -1;

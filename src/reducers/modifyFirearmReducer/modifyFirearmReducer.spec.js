@@ -5,7 +5,7 @@ import { AddedM1911A1, AddedM1911A1AndM16 } from '../testResouces';
 const moddedM1911A1 = (weightChange) => {
   const newM1911A1 = testM1911A1();
   newM1911A1.weight = testM1911A1().weight + weightChange;
-  newM1911A1.modNote = [{ note: 'test', weightMod: weightChange }];
+  newM1911A1.modNotes = [{ note: 'test', weightMod: weightChange }];
   return newM1911A1;
 };
 
@@ -16,7 +16,7 @@ const moddedM1911A1LessWeight = (() => moddedM1911A1(-0.5));
 class CharacterWithModifiedM1911A1 extends AddedM1911A1 {
   constructor(newM1911A1) {
     super(newM1911A1);
-    this.totalWeight += newM1911A1.modNote[0].weightMod;
+    this.totalWeight += newM1911A1.modNotes[0].weightMod;
     this.gear.firearms = [newM1911A1];
   }
 }
@@ -39,7 +39,7 @@ describe('addFirearmReducer function', () => {
     const modNote = { note: 'test', weightMod: -0.5 };
     const action = { payload: { firearm: 'M1911A1', modNote } };
     const newState = modifyFirearmReducer(new AddedM1911A1(), action);
-    expect(newState).toMatchObject(new CharacterWithModifiedM1911A1(moddedM1911A1LessWeight()));
+    expect(newState.gear).toMatchObject(new CharacterWithModifiedM1911A1(moddedM1911A1LessWeight()).gear);
   });
   it('should modify the correct weapon', () => {
     const modNote = { note: 'test', weightMod: 1 };
