@@ -16,6 +16,8 @@ import {
 
 import './WeaponsCard.css';
 
+export const getSelectedWeapons = firearms => (firearms === undefined ? [] : firearms);
+
 class WeaponsCard extends Component {
   constructor(props) {
     super(props);
@@ -126,10 +128,8 @@ class WeaponsCard extends Component {
   render() {
     const { gear } = this.props;
     const { firearmToModify, showFirearms, modifyFirearm, createCustomMag, modifyFirearmWeight } = this.state;
-    let selectedGuns = gear.firearms;
-    if (selectedGuns === undefined) {
-      selectedGuns = [];
-    }
+    const selectedGuns = getSelectedWeapons(gear.firearms);
+
     const weaponsWeight = calculateFirearmsArrayWeight(selectedGuns);
 
     const gunToModify = selectedGuns.filter(gunObj => gunObj.name === firearmToModify)[0];

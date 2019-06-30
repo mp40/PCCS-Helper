@@ -1,4 +1,5 @@
 import { mountAppWithStore, storeWithCreateCharacterView } from '../../helpers/testHelpers';
+import { getSelectedWeapons } from './component';
 
 describe('The Weapons Card', () => {
   const gunList = wrapper => wrapper.find('.equipmentListBody');
@@ -121,5 +122,15 @@ describe('The Weapons Card', () => {
       wrapper.find('#closeGunStatView').simulate('click');
       expect(wrapper.text()).not.toContain('ROF');
     });
+  });
+});
+
+describe('getSelectedWeapons function', () => {
+  it('should return the firearms list', () => {
+    const firearms = [{ name: 'M16' }, { name: 'M1911A1' }];
+    expect(getSelectedWeapons(firearms)).toStrictEqual(firearms);
+  });
+  it('should return an empty array if firearms is undefined', () => {
+    expect(getSelectedWeapons(undefined)).toStrictEqual([]);
   });
 });

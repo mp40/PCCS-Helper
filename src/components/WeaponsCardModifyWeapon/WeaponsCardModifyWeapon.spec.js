@@ -32,4 +32,8 @@ describe('modifying weapons', () => {
     expect(modifyPanel().find('.modifyMagazines').childAt(3).text()).toContain('0.65');
     expect(modifyPanel().find('.modifyMagazines').childAt(3).text()).toContain('Mag');
   });
+  it('should be possible to close the modify weapon modal', () => {
+    wrapper.find('#closeGunStatView').simulate('click');
+    expect(wrapper.text()).not.toContain('Modify Weapon');
+  });
 });
