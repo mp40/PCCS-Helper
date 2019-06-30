@@ -5,7 +5,7 @@ import { AddedM1911A1, AddedM1911A1AndM16 } from '../testResouces';
 const moddedM1911A1 = (weightChange) => {
   const newM1911A1 = testM1911A1();
   newM1911A1.weight = testM1911A1().weight + weightChange;
-  newM1911A1.modNote = { note: 'test', weightMod: weightChange };
+  newM1911A1.modNotes = [{ note: 'test', weightMod: weightChange }];
   return newM1911A1;
 };
 
@@ -16,7 +16,7 @@ const moddedM1911A1LessWeight = (() => moddedM1911A1(-0.5));
 class CharacterWithModifiedM1911A1 extends AddedM1911A1 {
   constructor(newM1911A1) {
     super(newM1911A1);
-    this.totalWeight += newM1911A1.modNote.weightMod;
+    this.totalWeight += newM1911A1.modNotes[0].weightMod;
     this.gear.firearms = [newM1911A1];
   }
 }
@@ -37,7 +37,7 @@ describe('removeFirearmModificationReducer function', () => {
       new CharacterWithModifiedM1911A1(moddedM1911A1ExtraWeight()),
       action);
     expect(newState).toMatchObject(new AddedM1911A1());
-    expect(newState.gear.firearms[0]).not.toHaveProperty('modNote');
+    expect(newState.gear.firearms[0].modNotes.length).toBe(0);
   });
   it('should remove modifcations that reduce weight correctly', () => {
     const modNote = { note: 'test', weightMod: -0.5 };
@@ -47,7 +47,7 @@ describe('removeFirearmModificationReducer function', () => {
       new CharacterWithModifiedM1911A1(moddedM1911A1LessWeight()),
       action);
     expect(newState).toMatchObject(new AddedM1911A1());
-    expect(newState.gear.firearms[0]).not.toHaveProperty('modNote');
+    expect(newState.gear.firearms[0].modNotes.length).toBe(0);
   });
   it('should remove the modification from the correct weapon', () => {
     const modNote = { note: 'test', weightMod: 1 };
@@ -56,6 +56,6 @@ describe('removeFirearmModificationReducer function', () => {
       characterWithM16AndModdedM1911A1(),
       action);
     expect(newState).toMatchObject(new AddedM1911A1AndM16());
-    expect(newState.gear.firearms[0]).not.toHaveProperty('modNote');
+    expect(newState.gear.firearms[0].modNotes.length).toBe(0);
   });
 });
