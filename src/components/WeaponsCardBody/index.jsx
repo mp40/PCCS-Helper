@@ -7,6 +7,8 @@ import ButtonStandard from '../widgets/buttons/ButtonStandard';
 import '../CharacterGeneration/CharacterGeneration.css';
 import '../WeaponsCard/WeaponsCard.css';
 
+export const renderCorrectAmmoTitle = magObj => (magObj.type === 'Rnd' ? 'Single Rounds' : `${magObj.cap} round ${magObj.type}`);
+
 const WeaponsCardBody = ({
   weaponsWeight,
   toggleShowFirearms,
@@ -85,10 +87,7 @@ const WeaponsCardBody = ({
           {gunObj.mag.map((magObj, dex) => (
             <tr key={`${magObj.cap}${magObj.weight}`} className="spareMags">
               <td>
-                {magObj.type === 'Rnd'
-                  ? <span className="magQtySpan" style={{ marginLeft: '2rem' }}>{`${magObj.qty} x Single Rounds`}</span>
-                  : <span className="magQtySpan" style={{ marginLeft: '2rem' }}>{`${magObj.qty} x ${magObj.cap} round ${magObj.type}`}</span>
-                                        }
+                <span className="magQtySpan" style={{ marginLeft: '2rem' }}>{`${magObj.qty} x ${renderCorrectAmmoTitle(magObj)}`}</span>
                 <span style={{ marginLeft: '2px', marginRight: '2px' }}>
                   <ButtonIncrementArrows
                     idUp={`qtyUpMagType${dex + 1}`}

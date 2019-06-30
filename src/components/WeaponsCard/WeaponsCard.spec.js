@@ -1,6 +1,5 @@
-import { mountAppWithStore, storeWithCreateCharacterView, testM1911A1WithMods } from '../../helpers/testHelpers';
-
-// TODO work out why NavBar has NaN return in commented out tests
+import { mountAppWithStore, storeWithCreateCharacterView } from '../../helpers/testHelpers';
+import { getSelectedWeapons } from './component';
 
 describe('The Weapons Card', () => {
   const gunList = wrapper => wrapper.find('.equipmentListBody');
@@ -46,21 +45,21 @@ describe('The Weapons Card', () => {
       gunList(wrapper).find('#M1911A1').simulate('click');
       wrapper.find('#qtyUpMagType1').simulate('click');
       expect(header(wrapper).text()).toContain('3.7');
-      // expect(navBarWeight(wrapper).text()).toContain('8.7');
+      expect(navBarWeight(wrapper).text()).toContain('8.7');
     });
     it('should be possible to decrease spare ammo', () => {
       wrapper.find('#qtyDownMagType1').simulate('click');
       expect(header(wrapper).text()).toContain('3');
       expect(header(wrapper).text()).not.toContain('3.7');
-      // expect(navBarWeight(wrapper).text()).toContain('8');
-      // expect(navBarWeight(wrapper).text()).not.toContain('8.7');
+      expect(navBarWeight(wrapper).text()).toContain('8');
+      expect(navBarWeight(wrapper).text()).not.toContain('8.7');
     });
     it('should remove spare ammo weight from total when weapon removed', () => {
       wrapper.find('#qtyUpMagType1').simulate('click');
       wrapper.find('#removeGun').simulate('click');
       expect(header(wrapper).text()).toContain('0');
-      // expect(navBarWeight(wrapper).text()).toContain('5');
-      // expect(navBarWeight(wrapper).text()).not.toContain('5.7');
+      expect(navBarWeight(wrapper).text()).toContain('5');
+      expect(navBarWeight(wrapper).text()).not.toContain('5.7');
     });
     it('should remove all guns and ammo when remove all clicked', () => {
       gunList(wrapper).find('#M1911A1').simulate('click');
@@ -70,7 +69,7 @@ describe('The Weapons Card', () => {
 
       expect(selectedWeapons(wrapper).text()).not.toContain('M1911A1');
       expect(selectedWeapons(wrapper).text()).not.toContain('M60');
-      // expect(navBarWeight(wrapper).text()).toContain('5');
+      expect(navBarWeight(wrapper).text()).toContain('5');
     });
   });
   describe('firearms edge cases', () => {
@@ -123,5 +122,15 @@ describe('The Weapons Card', () => {
       wrapper.find('#closeGunStatView').simulate('click');
       expect(wrapper.text()).not.toContain('ROF');
     });
+  });
+});
+
+describe('getSelectedWeapons function', () => {
+  it('should return the firearms list', () => {
+    const firearms = [{ name: 'M16' }, { name: 'M1911A1' }];
+    expect(getSelectedWeapons(firearms)).toStrictEqual(firearms);
+  });
+  it('should return an empty array if firearms is undefined', () => {
+    expect(getSelectedWeapons(undefined)).toStrictEqual([]);
   });
 });

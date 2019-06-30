@@ -28,13 +28,9 @@ export const calculateObjectWeightDifference = (obj, modifier) => {
 export const modifyObjectQtyInArray = (array, obj, modifier = 0) => array.map((element) => {
   const newElement = element;
   if (newElement.name && newElement.name === obj.name) {
-    // newElement.qty += modifier;
     return obj;
   }
-  // console.log('modder >>', modifier);
-  // console.log(element, obj);
   if (element.cap && element.cap === obj.cap) {
-    // console.log('X||->', newElement.qty, modifier);
     newElement.qty += modifier;
   }
   return newElement;

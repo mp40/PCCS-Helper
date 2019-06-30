@@ -20,18 +20,9 @@ class WeaponsCardModifyWeapon extends Component {
     handleModifyFirearm(newGunObj);
   }
 
-  setFirearmWeight = (note, weightMod) => {
-    const { handleModifyFirearmWeight } = this.props;
-    handleModifyFirearmWeight(note, weightMod);
-  }
-
-  handleRemoveMod = (noteObj) => {
-    const { gunObj, handleModifyFirearm } = this.props;
-    const newGunObj = gunObj;
-    newGunObj.weight += noteObj.weightMod * -1;
-    newGunObj.weight = Math.round(newGunObj.weight * 1000) / 1000;
-    newGunObj.modNotes = newGunObj.modNotes.filter(note => note.note !== noteObj.note);
-    handleModifyFirearm(newGunObj);
+  handleRemoveMod = (modNote) => {
+    const { gunObj, removeFirearmModification } = this.props;
+    removeFirearmModification({ firearm: gunObj.name, modNote });
   }
 
   render() {
@@ -120,20 +111,18 @@ class WeaponsCardModifyWeapon extends Component {
         </div>
       );
     }
-    if (modifyFirearmWeight) {
-      return (
-        <div style={{ marginLeft: '5rem' }}>
-          <WeaponsCardModifyWeight
-            handleModifyFirearmWeight={handleModifyFirearmWeight}
-          />
-        </div>
-      );
-    }
-    return null;
+    return (
+      <div style={{ marginLeft: '5rem' }}>
+        <WeaponsCardModifyWeight
+          handleModifyFirearmWeight={handleModifyFirearmWeight}
+        />
+      </div>
+    );
   }
 }
 
 WeaponsCardModifyWeapon.propTypes = {
+  removeFirearmModification: PropTypes.func,
   handleModifyFirearm: PropTypes.func,
   createCustomMag: PropTypes.bool,
   modifyFirearmWeight: PropTypes.bool,

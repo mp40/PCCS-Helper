@@ -133,3 +133,13 @@ export const decreaseMagazineQty = firearmAndMagazine => ({
   type: 'MAGAZINE_QTY_DECREASED',
   payload: firearmAndMagazine,
 });
+
+export const modifyFirearm = firearmNameAndModification => ({
+  type: 'FIREARM_MODIFIED',
+  payload: firearmNameAndModification,
+});
+
+export const removeFirearmModification = firearmNameAndModification => ({
+  type: 'FIREARM_MODIFICATION_REMOVED',
+  payload: firearmNameAndModification,
+});

@@ -16,6 +16,8 @@ import {
 
 import './WeaponsCard.css';
 
+export const getSelectedWeapons = firearms => (firearms === undefined ? [] : firearms);
+
 class WeaponsCard extends Component {
   constructor(props) {
     super(props);
@@ -99,24 +101,12 @@ class WeaponsCard extends Component {
     this.setState({ modifyFirearmWeight: !modifyFirearmWeight });
   }
 
-  handleModifyFirearmWeight = (noteObj) => {
-    const { gear, characterStats, modifyFirearmList } = this.props;
+  handleModifyFirearmWeight = (modNote) => {
+    const { modifyFirearm } = this.props;
     const { firearmToModify } = this.state;
-    const newGunArray = gear.firearms.map((gunObj) => {
-      const newGunObj = gunObj;
-      if (newGunObj.name === firearmToModify) {
-        newGunObj.weight = Math.round((newGunObj.weight + noteObj.weightMod) * 1000) / 1000;
-        if (newGunObj.modNotes) {
-          newGunObj.modNotes.push(noteObj);
-        } else {
-          newGunObj.modNotes = [noteObj];
-        }
-      }
 
-      return newGunObj;
-    });
-    modifyFirearmList(this.calculateNewWeight(newGunArray), newGunArray, characterStats);
     this.toggleModifyFirearmWeight();
+    modifyFirearm({ firearm: firearmToModify, modNote });
   }
 
   removeAllGunMods = (gunObj) => {
@@ -138,10 +128,8 @@ class WeaponsCard extends Component {
   render() {
     const { gear } = this.props;
     const { firearmToModify, showFirearms, modifyFirearm, createCustomMag, modifyFirearmWeight } = this.state;
-    let selectedGuns = gear.firearms;
-    if (selectedGuns === undefined) {
-      selectedGuns = [];
-    }
+    const selectedGuns = getSelectedWeapons(gear.firearms);
+
     const weaponsWeight = calculateFirearmsArrayWeight(selectedGuns);
 
     const gunToModify = selectedGuns.filter(gunObj => gunObj.name === firearmToModify)[0];
@@ -210,6 +198,7 @@ class WeaponsCard extends Component {
 }
 
 WeaponsCard.propTypes = {
+  modifyFirearm: PropTypes.func,
   increaseMagazineQty: PropTypes.func,
   decreaseMagazineQty: PropTypes.func,
   removeFirearm: PropTypes.func,
