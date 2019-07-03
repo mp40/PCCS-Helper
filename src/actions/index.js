@@ -143,3 +143,8 @@ export const removeFirearmModification = firearmNameAndModification => ({
   type: 'FIREARM_MODIFICATION_REMOVED',
   payload: firearmNameAndModification,
 });
+
+export const addCustomMagazine = customMagazine => ({
+  type: 'CUSTOM_MAGAZINE_ADDED',
+  payload: customMagazine,
+});
