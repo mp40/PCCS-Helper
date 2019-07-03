@@ -9,6 +9,7 @@ import {
   increaseMagazineQty,
   decreaseMagazineQty,
   modifyFirearm,
+  addCustomMagazine,
 } from '../../actions';
 import './WeaponsCard.css';
 
@@ -26,4 +27,5 @@ export default connect(mapStateToProps,
     removeAllFirearms,
     increaseMagazineQty,
     decreaseMagazineQty,
-    modifyFirearm })(WeaponsCard);
+    modifyFirearm,
+    addCustomMagazine })(WeaponsCard);

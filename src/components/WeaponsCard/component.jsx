@@ -78,16 +78,10 @@ class WeaponsCard extends Component {
   }
 
   handleAddCustomMag = (newCustomMag) => {
-    const { gear, characterStats, modifyFirearmList } = this.props;
+    const { addCustomMagazine } = this.props;
     const { firearmToModify } = this.state;
-    const newGunArray = gear.firearms.map((gunObj) => {
-      if (gunObj.name === firearmToModify) {
-        gunObj.mag.push(newCustomMag);
-      }
-      return gunObj;
-    });
 
-    modifyFirearmList(this.calculateNewWeight(newGunArray), newGunArray, characterStats);
+    addCustomMagazine({ firearm: firearmToModify, magazine: newCustomMag });
     this.toggleCreateCustomMag();
   }
 
@@ -198,6 +192,7 @@ class WeaponsCard extends Component {
 }
 
 WeaponsCard.propTypes = {
+  addCustomMagazine: PropTypes.func,
   modifyFirearm: PropTypes.func,
   increaseMagazineQty: PropTypes.func,
   decreaseMagazineQty: PropTypes.func,

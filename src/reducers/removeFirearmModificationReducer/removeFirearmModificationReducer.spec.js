@@ -67,8 +67,8 @@ describe('removeFirearmModificationReducer function', () => {
     doubleModdedGun.modNotes.push({note:'other', weightMod: 0})
 
     const newState = removeFirearmModificationReducer(
-      new CharacterWithModifiedM1911A1(doubleModdedGun),
-      action);
+      new CharacterWithModifiedM1911A1(doubleModdedGun),action)
+      ;
     expect(newState.gear.firearms[0].modNotes.length).toBe(1);
   })
 });
