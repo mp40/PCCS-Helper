@@ -1,14 +1,29 @@
 import { calculateTotalWeight } from '../../helpers/actionHelpers';
-import { findFirearmByName } from '../../helpers/testHelpers';
-import { pistols, rifles, sniperRifles, mgs, smgs, shotguns } from '../../data/firearms';
 
-const firearmsList = [...pistols(), ...rifles(), ...smgs(), ...mgs(), ...sniperRifles(), ...shotguns()];
+const removeKeyFromFirearm = firearm => Object.keys(firearm).reduce((object, key) => {
+  const objectToReturn = object;
+  if (key !== 'modNotes') {
+    objectToReturn[key] = firearm[key];
+  }
+  return objectToReturn;
+}, {});
+
+const removeCustomMagazines = magazineArray => magazineArray.filter(element => element.custom === undefined);
+
+export const removeModificationWeight = (gunWeight, modifications) => {
+  if (modifications === undefined || modifications === null) {
+    return gunWeight;
+  }
+  return modifications.reduce((accumulator, mod) => accumulator - mod.weightMod, gunWeight);
+};
 
 export const removeAllFirearmModificationsReducer = (state, action) => {
   const newFirearmsArray = state.gear.firearms.map((element) => {
     let gun = element;
     if (gun.name === action.payload) {
-      gun = findFirearmByName(firearmsList, action.payload);
+      gun.weight = removeModificationWeight(gun.weight, gun.modNotes);
+      gun = removeKeyFromFirearm(gun);
+      gun.mag = removeCustomMagazines(gun.mag);
     }
 
     return gun;

@@ -1,11 +1,4 @@
 /* eslint-disable array-callback-return */
-// const removeKeyFromFirearm = firearm => Object.keys(firearm).reduce((object, key) => {
-//   const objectToReturn = object;
-//   if (key !== 'modNote') {
-//     objectToReturn[key] = firearm[key];
-//   }
-//   return objectToReturn;
-// }, {});
 
 export const removeFirearmModificationReducer = (state, action) => {
   const newWeight = state.totalWeight - action.payload.modNote.weightMod;

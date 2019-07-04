@@ -104,19 +104,21 @@ class WeaponsCard extends Component {
   }
 
   removeAllGunMods = (gunObj) => {
-    const { gear, characterStats, modifyFirearmList } = this.props;
+    const { gear, characterStats, modifyFirearmList, removeAllModificationsFromFirearm } = this.props;
     const { firearmToModify } = this.state;
 
-    const gunQty = gunObj.qty;
-    const firearmsList = [...rifles(), ...smgs(), ...mgs(), ...pistols(), ...sniperRifles(), ...shotguns()];
+    removeAllModificationsFromFirearm(firearmToModify);
 
-    const freshGun = firearmsList.filter(obj => obj.name === firearmToModify)[0];
+    // const gunQty = gunObj.qty;
+    // const firearmsList = [...rifles(), ...smgs(), ...mgs(), ...pistols(), ...sniperRifles(), ...shotguns()];
 
-    freshGun.qty = gunQty;
+    // const freshGun = firearmsList.filter(obj => obj.name === firearmToModify)[0];
 
-    const newGunArray = gear.firearms.map(obj => (obj.name === firearmToModify ? freshGun : obj));
+    // freshGun.qty = gunQty;
 
-    modifyFirearmList(this.calculateNewWeight(newGunArray), newGunArray, characterStats);
+    // const newGunArray = gear.firearms.map(obj => (obj.name === firearmToModify ? freshGun : obj));
+
+    // modifyFirearmList(this.calculateNewWeight(newGunArray), newGunArray, characterStats);
   }
 
   render() {
@@ -192,6 +194,7 @@ class WeaponsCard extends Component {
 }
 
 WeaponsCard.propTypes = {
+  emoveAllModificationsFromFirearm: PropTypes.func,
   addCustomMagazine: PropTypes.func,
   modifyFirearm: PropTypes.func,
   increaseMagazineQty: PropTypes.func,
