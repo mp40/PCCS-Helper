@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { renderModificationTextInput } from '../widgets/renderWidgets';
 import ButtonStandard from '../widgets/buttons/ButtonStandard';
 
 class WeaponsCardModifyWeight extends Component {
@@ -22,7 +23,7 @@ class WeaponsCardModifyWeight extends Component {
 
   handleSubmit = () => {
     const { modWeightNumber, modWeightNote } = this.state;
-    const { handleModifyFirearmWeight } = this.props;
+    const { handleModification } = this.props;
 
     if (!Number(modWeightNumber)) {
       this.setState({ warning: true });
@@ -36,7 +37,7 @@ class WeaponsCardModifyWeight extends Component {
       note: modWeightNote,
       weightMod: Number(modWeightNumber),
     };
-    handleModifyFirearmWeight(modNote);
+    handleModification(modNote);
   }
 
   render() {
@@ -45,28 +46,8 @@ class WeaponsCardModifyWeight extends Component {
     return (
       <div className="modifyWeightForm">
         <div>Modify Weapon Weight</div>
-        <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}>
-          <div style={{ width: '50%' }}>Note</div>
-          <input
-            style={{ width: '30%' }}
-            type="text"
-            autoComplete="off"
-            id="modifyWeightNoteInput"
-            value={capacity}
-            onChange={this.handleWeightNote.bind(this)}
-          />
-        </div>
-        <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}>
-          <div>Weight</div>
-          <input
-            style={{ width: '30%' }}
-            type="text"
-            autoComplete="off"
-            id="modifyWeightValueInput"
-            value={weight}
-            onChange={this.handleWeightNumber.bind(this)}
-          />
-        </div>
+        {renderModificationTextInput('Note', 'modifyWeightNoteInput', capacity, this.handleWeightNote.bind(this))}
+        {renderModificationTextInput('Weight', 'modifyWeightValueInput', weight, this.handleWeightNumber.bind(this))}
         <ButtonStandard
           name="Submit"
           id="submitModifiedWeight"
@@ -82,7 +63,7 @@ class WeaponsCardModifyWeight extends Component {
 
 
 WeaponsCardModifyWeight.propTypes = {
-  handleModifyFirearmWeight: PropTypes.func,
+  handleModification: PropTypes.func,
 };
 
 export default WeaponsCardModifyWeight;
