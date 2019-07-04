@@ -5,7 +5,7 @@ export const selectCurrentView = view => ({
   payload: view,
 });
 
-export const updateCombatStats = (attributeObj, weight = 0) => {
+export const updateCombatStats = (attributeObj, weight) => {
   const newCombatData = calculateStateObject(attributeObj, weight);
   return {
     type: 'UPDATE_ALL_COMBAT_STATS',
