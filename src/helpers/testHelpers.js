@@ -32,6 +32,7 @@ export const storeWithEquipment = () => new StoreWithEquipment();
 class StoreWithCharacterView extends MockState {
   constructor(gun) {
     super(gun);
+    this.totalWeight += gun === undefined ? 0 : gun.weight;
     this.currentView = 'createChar';
     this.gear.firearms = gun === undefined ? [] : [gun];
   }
@@ -48,6 +49,7 @@ export const testM1911A1 = (qty = 1) => {
 
 export const testM1911A1WithMods = (() => {
   const moddedM1911A1 = testM1911A1();
+  moddedM1911A1.weight += 1;
   moddedM1911A1.modNotes = [{ note: 'test', weightMod: 1 }];
   return moddedM1911A1;
 });

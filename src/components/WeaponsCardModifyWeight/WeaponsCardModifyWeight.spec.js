@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { mountAppWithStore, storeWithCreateCharacterView, testM1911A1WithMods, createWrapperTextInput } from '../../helpers/testHelpers';
 import WeaponsCardModifyWeight from './index';
 
-describe('the <WeaponsCardCustomMag/> component', () => {
+describe('the <WeaponsCardModifyWeight/> component', () => {
   // eslint-disable-next-line react/jsx-filename-extension
   const wrapper = shallow(<WeaponsCardModifyWeight />);
   const inputValue = createWrapperTextInput(wrapper);

@@ -21,6 +21,9 @@ import { increaseMagazineReducer } from './increaseMagazineReducer';
 import { decreaseMagazineReducer } from './decreaseMagazineReducer';
 import { modifyFirearmReducer } from './modifyFirearmReducer';
 import { removeFirearmModificationReducer } from './removeFirearmModificationReducer';
+import { addCustomMagazineReducer } from './addCustomMagazineReducer';
+import { removeAllFirearmModificationsReducer } from './removeAllFirearmModificationsReducer';
+import { setPrimaryMagazineReducer } from './setPrimaryMagazineReducer';
 
 const initialState = initialStore;
 
@@ -72,14 +75,18 @@ function reduceActions(state = initialState, action) {
       return modifyFirearmReducer(state, action);
     case 'FIREARM_MODIFICATION_REMOVED':
       return removeFirearmModificationReducer(state, action);
+    case 'CUSTOM_MAGAZINE_ADDED':
+      return addCustomMagazineReducer(state, action);
+    case 'ALL_FIREARM_MODIFICATIONS_REMOVED':
+      return removeAllFirearmModificationsReducer(state, action);
+    case 'PRIMARY_MAGAZINE_SET':
+      return setPrimaryMagazineReducer(state, action);
     case 'TOTAL_WEIGHT':
       return { ...state, totalWeight: action.payload };
     case 'UPDATE_ATTRIBUTES':
       return { ...state, characterStats: action.payload };
     case 'UPDATE_ALL_COMBAT_STATS':
       return { ...state, combatStats: action.payload };
-    case 'MODIFY_FIREARMS':
-      return { ...state, gear: { ...state.gear, firearms: action.payload } };
     default: return state;
   }
 }

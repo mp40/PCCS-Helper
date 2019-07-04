@@ -5,7 +5,7 @@ export const selectCurrentView = view => ({
   payload: view,
 });
 
-export const updateCombatStats = (attributeObj, weight = 0) => {
+export const updateCombatStats = (attributeObj, weight) => {
   const newCombatData = calculateStateObject(attributeObj, weight);
   return {
     type: 'UPDATE_ALL_COMBAT_STATS',
@@ -27,11 +27,6 @@ export const updateAttributes = (attributeObj, weight) => (dispatch) => {
     payload: attributeObj,
   });
   dispatch(updateCombatStats(attributeObj, weight));
-};
-
-export const modifyFirearmList = (newWeight, firearmsArray, attributeObj) => (dispatch) => {
-  dispatch({ type: 'MODIFY_FIREARMS', payload: firearmsArray });
-  dispatch(updateWeight(newWeight, attributeObj));
 };
 
 export const modifyGunCombatLevel = newGunCombatLevel => ({
@@ -142,4 +137,19 @@ export const modifyFirearm = firearmNameAndModification => ({
 export const removeFirearmModification = firearmNameAndModification => ({
   type: 'FIREARM_MODIFICATION_REMOVED',
   payload: firearmNameAndModification,
+});
+
+export const addCustomMagazine = customMagazine => ({
+  type: 'CUSTOM_MAGAZINE_ADDED',
+  payload: customMagazine,
+});
+
+export const removeAllModificationsFromFirearm = firearm => ({
+  type: 'ALL_FIREARM_MODIFICATIONS_REMOVED',
+  payload: firearm,
+});
+
+export const setPrimaryMagazine = firearmAndPrimary => ({
+  type: 'PRIMARY_MAGAZINE_SET',
+  payload: firearmAndPrimary,
 });

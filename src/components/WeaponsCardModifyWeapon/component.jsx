@@ -9,15 +9,9 @@ import '../WeaponsCard/WeaponsCard.css';
 
 class WeaponsCardModifyWeapon extends Component {
   setPrimaryMag = (index) => {
-    const { gunObj, handleModifyFirearm } = this.props;
+    const { gunObj, setPrimaryMagazine } = this.props;
 
-    const newGunObj = gunObj;
-    newGunObj.weight -= newGunObj.mag[0].weight;
-    newGunObj.weight += newGunObj.mag[index].weight;
-    const newPrimary = gunObj.mag.splice(index, 1);
-    newGunObj.mag.unshift(newPrimary[0]);
-
-    handleModifyFirearm(newGunObj);
+    setPrimaryMagazine({ firearm: gunObj.name, magazine: index });
   }
 
   handleRemoveMod = (modNote) => {
@@ -44,7 +38,7 @@ class WeaponsCardModifyWeapon extends Component {
           <button
             type="button"
             className="removeAllMods"
-            onClick={removeAllGunMods.bind(this, gunObj)}
+            onClick={removeAllGunMods.bind(this)}
           >
             Remove All Mods
           </button>
@@ -122,6 +116,7 @@ class WeaponsCardModifyWeapon extends Component {
 }
 
 WeaponsCardModifyWeapon.propTypes = {
+  setPrimaryMagazine: PropTypes.func,
   removeFirearmModification: PropTypes.func,
   handleModifyFirearm: PropTypes.func,
   createCustomMag: PropTypes.bool,
