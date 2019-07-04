@@ -26,6 +26,10 @@ class WeaponsCard extends Component {
     };
   }
 
+  handleWeaponsCardViews = (viewToToggle) => {
+    this.setState({ [viewToToggle]: false });
+  }
+
   toggleShowFirearms = () => {
     const { showFirearms } = this.state;
     this.setState({ showFirearms: !showFirearms });
@@ -61,14 +65,6 @@ class WeaponsCard extends Component {
     removeAllFirearms([]);
   }
 
-  handleAddCustomMag = (newCustomMag) => {
-    const { addCustomMagazine } = this.props;
-    const { firearmToModify } = this.state;
-
-    addCustomMagazine({ firearm: firearmToModify, magazine: newCustomMag });
-    this.toggleCreateCustomMag();
-  }
-
   toggleCreateCustomMag = () => {
     const { createCustomMag } = this.state;
     this.setState({ createCustomMag: !createCustomMag });
@@ -77,14 +73,6 @@ class WeaponsCard extends Component {
   toggleModifyFirearmWeight = () => {
     const { modifyFirearmWeight } = this.state;
     this.setState({ modifyFirearmWeight: !modifyFirearmWeight });
-  }
-
-  handleModifyFirearmWeight = (modNote) => {
-    const { modifyFirearm } = this.props;
-    const { firearmToModify } = this.state;
-
-    this.toggleModifyFirearmWeight();
-    modifyFirearm({ firearm: firearmToModify, modNote });
   }
 
   removeAllGunMods = () => {
@@ -147,7 +135,8 @@ class WeaponsCard extends Component {
                     modifyFirearmWeight={modifyFirearmWeight}
                     handleModifyFirearm={this.handleModifyFirearm}
                     toggleCreateCustomMag={this.toggleCreateCustomMag}
-                    handleAddCustomMag={this.handleAddCustomMag}
+                    toggleOnWeaponsCardViews={this.toggleOnWeaponsCardViews}
+                    handleWeaponsCardViews={this.handleWeaponsCardViews}
                     toggleModifyFirearmWeight={this.toggleModifyFirearmWeight}
                     handleModifyFirearmWeight={this.handleModifyFirearmWeight}
                     removeAllGunMods={this.removeAllGunMods}
@@ -168,8 +157,6 @@ class WeaponsCard extends Component {
 
 WeaponsCard.propTypes = {
   removeAllModificationsFromFirearm: PropTypes.func,
-  addCustomMagazine: PropTypes.func,
-  modifyFirearm: PropTypes.func,
   increaseMagazineQty: PropTypes.func,
   decreaseMagazineQty: PropTypes.func,
   removeFirearm: PropTypes.func,

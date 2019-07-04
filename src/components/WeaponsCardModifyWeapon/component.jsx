@@ -27,6 +27,18 @@ class WeaponsCardModifyWeapon extends Component {
     removeFirearmModification({ firearm: gunObj.name, modNote });
   }
 
+  handleAddCustomMag = (newCustomMagazine) => {
+    const { addCustomMagazine, gunObj, handleWeaponsCardViews } = this.props;
+    addCustomMagazine({ firearm: gunObj.name, magazine: newCustomMagazine });
+    handleWeaponsCardViews('createCustomMag');
+  }
+
+  handleModifyFirearmWeight = (modNote) => {
+    const { modifyFirearm, handleWeaponsCardViews, gunObj } = this.props;
+    modifyFirearm({ firearm: gunObj.name, modNote });
+    handleWeaponsCardViews('modifyFirearmWeight');
+  }
+
   render() {
     const {
       gunObj,
@@ -106,16 +118,18 @@ class WeaponsCardModifyWeapon extends Component {
     }
     if (createCustomMag) {
       return (
-        renderModificationOption(handleAddCustomMag, WeaponsCardCustomMag)
+        renderModificationOption(this.handleAddCustomMag, WeaponsCardCustomMag)
       );
     }
     return (
-      renderModificationOption(handleModifyFirearmWeight, WeaponsCardModifyWeight)
+      renderModificationOption(this.handleModifyFirearmWeight, WeaponsCardModifyWeight)
     );
   }
 }
 
 WeaponsCardModifyWeapon.propTypes = {
+  modifyFirearm: PropTypes.func,
+  addCustomMagazine: PropTypes.func,
   setPrimaryMagazine: PropTypes.func,
   removeFirearmModification: PropTypes.func,
   createCustomMag: PropTypes.bool,
