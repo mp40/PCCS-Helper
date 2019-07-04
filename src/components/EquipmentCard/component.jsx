@@ -99,7 +99,6 @@ class EquipmentCard extends Component {
 
   renderEquipmentDropdown = () => {
     const { showEquipment, showFilters, filteredTags } = this.state;
-    // if (showEquipment) {
     return showEquipment
     && (
     <EquipmentDropdown

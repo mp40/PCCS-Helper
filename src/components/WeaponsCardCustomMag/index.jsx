@@ -1,21 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { renderModificationTextInput } from '../widgets/renderWidgets';
 import ButtonStandard from '../widgets/buttons/ButtonStandard';
 import '../WeaponsCard/WeaponsCard.css';
-
-const renderTextInput = (heading, idRef, value, onChange) => (
-  <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}>
-    <div>{heading}</div>
-    <input
-      style={{ width: '30%' }}
-      type="text"
-      autoComplete="off"
-      id={idRef}
-      value={value}
-      onChange={onChange}
-    />
-  </div>
-);
 
 class WeaponsCardCustomMag extends Component {
   constructor(props) {
@@ -41,7 +28,7 @@ class WeaponsCardCustomMag extends Component {
   }
 
   handleSubmit = () => {
-    const { handleAddCustomMag } = this.props;
+    const { handleModification } = this.props;
     const { weight, capacity, type } = this.state;
     if (!Number(weight)) {
       this.setState({ warning: true });
@@ -63,7 +50,7 @@ class WeaponsCardCustomMag extends Component {
       qty: 0,
       custom: true,
     };
-    handleAddCustomMag(newCustomMag);
+    handleModification(newCustomMag);
   }
 
   render() {
@@ -72,9 +59,9 @@ class WeaponsCardCustomMag extends Component {
     return (
       <div className="customMagazineForm">
         <div>Custom Magazine Details</div>
-        {renderTextInput('Capacity', 'customMagCapacityInput', capacity, this.handleCapacity)}
-        {renderTextInput('Weight', 'customMagWeightInput', weight, this.handleWeight)}
-        {renderTextInput('Type', 'customMagTypeInput', type, this.handleType)}
+        {renderModificationTextInput('Capacity', 'customMagCapacityInput', capacity, this.handleCapacity)}
+        {renderModificationTextInput('Weight', 'customMagWeightInput', weight, this.handleWeight)}
+        {renderModificationTextInput('Type', 'customMagTypeInput', type, this.handleType)}
         <ButtonStandard
           name="Submit"
           id="submitCustomMag"
@@ -89,7 +76,7 @@ class WeaponsCardCustomMag extends Component {
 }
 
 WeaponsCardCustomMag.propTypes = {
-  handleAddCustomMag: PropTypes.func,
+  handleModification: PropTypes.func,
 };
 
 export default WeaponsCardCustomMag;

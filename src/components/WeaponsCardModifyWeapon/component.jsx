@@ -7,6 +7,14 @@ import ButtonSlim from '../widgets/buttons/ButtonSlim';
 
 import '../WeaponsCard/WeaponsCard.css';
 
+const renderModificationOption = (handleModification, ComponentName) => (
+  <div style={{ marginLeft: '5rem' }}>
+    <ComponentName
+      handleModification={handleModification}
+    />
+  </div>
+);
+
 class WeaponsCardModifyWeapon extends Component {
   setPrimaryMag = (index) => {
     const { gunObj, setPrimaryMagazine } = this.props;
@@ -98,19 +106,11 @@ class WeaponsCardModifyWeapon extends Component {
     }
     if (createCustomMag) {
       return (
-        <div style={{ marginLeft: '5rem' }}>
-          <WeaponsCardCustomMag
-            handleAddCustomMag={handleAddCustomMag}
-          />
-        </div>
+        renderModificationOption(handleAddCustomMag, WeaponsCardCustomMag)
       );
     }
     return (
-      <div style={{ marginLeft: '5rem' }}>
-        <WeaponsCardModifyWeight
-          handleModifyFirearmWeight={handleModifyFirearmWeight}
-        />
-      </div>
+      renderModificationOption(handleModifyFirearmWeight, WeaponsCardModifyWeight)
     );
   }
 }
@@ -118,7 +118,6 @@ class WeaponsCardModifyWeapon extends Component {
 WeaponsCardModifyWeapon.propTypes = {
   setPrimaryMagazine: PropTypes.func,
   removeFirearmModification: PropTypes.func,
-  handleModifyFirearm: PropTypes.func,
   createCustomMag: PropTypes.bool,
   modifyFirearmWeight: PropTypes.bool,
   removeAllGunMods: PropTypes.func,
