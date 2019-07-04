@@ -44,7 +44,7 @@ class WeaponsCardModifyWeapon extends Component {
           <button
             type="button"
             className="removeAllMods"
-            onClick={removeAllGunMods.bind(this, gunObj)}
+            onClick={removeAllGunMods.bind(this)}
           >
             Remove All Mods
           </button>
