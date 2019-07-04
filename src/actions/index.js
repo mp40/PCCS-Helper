@@ -29,11 +29,6 @@ export const updateAttributes = (attributeObj, weight) => (dispatch) => {
   dispatch(updateCombatStats(attributeObj, weight));
 };
 
-export const modifyFirearmList = (newWeight, firearmsArray, attributeObj) => (dispatch) => {
-  dispatch({ type: 'MODIFY_FIREARMS', payload: firearmsArray });
-  dispatch(updateWeight(newWeight, attributeObj));
-};
-
 export const modifyGunCombatLevel = newGunCombatLevel => ({
   type: 'GUN_COMBAT_LEVEL_UPDATED',
   payload: newGunCombatLevel,

@@ -7,12 +7,8 @@ import WeaponsCardSelectModal from '../WeaponsCardSelectModal';
 import WeaponsCardModifyWeapon from '../WeaponsCardModifyWeapon';
 import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 import { handleIncrement } from '../../helpers/gaurds';
-import { rifles, smgs, mgs, pistols, sniperRifles, shotguns } from '../../data/firearms';
 
-import {
-  calculateFirearmsArrayWeight,
-  calculateTotalWeight,
-} from '../../helpers/actionHelpers';
+import { calculateFirearmsArrayWeight } from '../../helpers/actionHelpers';
 
 import './WeaponsCard.css';
 
@@ -28,11 +24,6 @@ class WeaponsCard extends Component {
       createCustomMag: false,
       modifyFirearmWeight: false,
     };
-  }
-
-  calculateNewWeight = (newGunArray) => {
-    const { gear } = this.props;
-    return calculateTotalWeight(gear.uniform, gear.equipment, newGunArray);
   }
 
   toggleShowFirearms = () => {
@@ -68,13 +59,6 @@ class WeaponsCard extends Component {
   handleRemoveAllGuns = () => {
     const { removeAllFirearms } = this.props;
     removeAllFirearms([]);
-  }
-
-  handleModifyFirearm = (newGun) => {
-    const { gear, characterStats, modifyFirearmList } = this.props;
-    const newGunArray = gear.firearms.map(gunObj => (gunObj.name === newGun.name ? newGun : gunObj));
-
-    modifyFirearmList(this.calculateNewWeight(newGunArray), newGunArray, characterStats);
   }
 
   handleAddCustomMag = (newCustomMag) => {
@@ -192,9 +176,7 @@ WeaponsCard.propTypes = {
   removeAllFirearms: PropTypes.func,
   increaseFirearmQty: PropTypes.func,
   decreaseFirearmQty: PropTypes.func,
-  modifyFirearmList: PropTypes.func,
   gear: gearShape,
-  characterStats: PropTypes.objectOf(PropTypes.number),
 };
 
 export default WeaponsCard;
