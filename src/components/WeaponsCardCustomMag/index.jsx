@@ -3,6 +3,20 @@ import PropTypes from 'prop-types';
 import ButtonStandard from '../widgets/buttons/ButtonStandard';
 import '../WeaponsCard/WeaponsCard.css';
 
+const renderTextInput = (heading, idRef, value, onChange) => (
+  <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}>
+    <div>{heading}</div>
+    <input
+      style={{ width: '30%' }}
+      type="text"
+      autoComplete="off"
+      id={idRef}
+      value={value}
+      onChange={onChange}
+    />
+  </div>
+);
+
 class WeaponsCardCustomMag extends Component {
   constructor(props) {
     super(props);
@@ -58,39 +72,9 @@ class WeaponsCardCustomMag extends Component {
     return (
       <div className="customMagazineForm">
         <div>Custom Magazine Details</div>
-        <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}>
-          <div style={{ width: '50%' }}>Capacity</div>
-          <input
-            style={{ width: '30%' }}
-            type="text"
-            autoComplete="off"
-            id="customMagCapacityInput"
-            value={capacity}
-            onChange={this.handleCapacity}
-          />
-        </div>
-        <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}>
-          <div>Weight</div>
-          <input
-            style={{ width: '30%' }}
-            type="text"
-            autoComplete="off"
-            id="customMagWeightInput"
-            value={weight}
-            onChange={this.handleWeight}
-          />
-        </div>
-        <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}>
-          <div>Type</div>
-          <input
-            style={{ width: '30%' }}
-            type="text"
-            autoComplete="off"
-            id="customMagTypeInput"
-            value={type}
-            onChange={this.handleType}
-          />
-        </div>
+        {renderTextInput('Capacity', 'customMagCapacityInput', capacity, this.handleCapacity)}
+        {renderTextInput('Weight', 'customMagWeightInput', weight, this.handleWeight)}
+        {renderTextInput('Type', 'customMagTypeInput', type, this.handleType)}
         <ButtonStandard
           name="Submit"
           id="submitCustomMag"
