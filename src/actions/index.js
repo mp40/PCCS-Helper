@@ -153,3 +153,8 @@ export const removeAllModificationsFromFirearm = firearm => ({
   type: 'ALL_FIREARM_MODIFICATIONS_REMOVED',
   payload: firearm,
 });
+
+export const setPrimaryMagazine = firearmAndPrimary => ({
+  type: 'PRIMARY_MAGAZINE_SET',
+  payload: firearmAndPrimary,
+});
