@@ -143,14 +143,10 @@ class WeaponsCard extends Component {
                   />
                 </div>
               </div>
-
-
             </div>
           )
         }
-
       </div>
-
     );
   }
 }

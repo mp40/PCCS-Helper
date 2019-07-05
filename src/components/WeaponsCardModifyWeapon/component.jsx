@@ -47,8 +47,6 @@ class WeaponsCardModifyWeapon extends Component {
       removeAllGunMods,
       toggleCreateCustomMag,
       toggleModifyFirearmWeight,
-      handleAddCustomMag,
-      handleModifyFirearmWeight,
     } = this.props;
 
     if (!createCustomMag && !modifyFirearmWeight) {
@@ -137,8 +135,7 @@ WeaponsCardModifyWeapon.propTypes = {
   removeAllGunMods: PropTypes.func,
   toggleCreateCustomMag: PropTypes.func,
   toggleModifyFirearmWeight: PropTypes.func,
-  handleAddCustomMag: PropTypes.func,
-  handleModifyFirearmWeight: PropTypes.func,
+  handleWeaponsCardViews: PropTypes.func,
   gunObj: gunObjShape,
 };
 
