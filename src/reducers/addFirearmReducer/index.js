@@ -1,8 +1,10 @@
+import { correctFloatingPoint } from '../reducerHelpers';
+
 export const addFirearmReducer = (state, action) => {
-  const newWeight = state.totalWeight + action.payload.weight;
+  const newTotalWeight = state.totalWeight + action.payload.weight;
 
   return { ...state,
-    totalWeight: Math.round(newWeight * 1000) / 1000,
+    totalWeight: correctFloatingPoint(newTotalWeight),
     gear: { ...state.gear,
       firearms: [...state.gear.firearms, action.payload] } };
 };

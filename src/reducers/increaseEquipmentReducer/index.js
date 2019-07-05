@@ -1,3 +1,5 @@
+import { correctFloatingPoint } from '../reducerHelpers';
+
 export const increaseEquipmentReducer = (state, action) => {
   const equipmentArray = state.gear.equipment.map((element) => {
     const equipmentObject = element;
@@ -7,10 +9,10 @@ export const increaseEquipmentReducer = (state, action) => {
     return equipmentObject;
   });
 
-  const newWeight = state.totalWeight + action.payload.weight;
+  const newTotalWeight = state.totalWeight + action.payload.weight;
 
   return { ...state,
-    totalWeight: Math.round(newWeight * 1000) / 1000,
+    totalWeight: correctFloatingPoint(newTotalWeight),
     gear: { ...state.gear,
       equipment: [...equipmentArray] } };
 };

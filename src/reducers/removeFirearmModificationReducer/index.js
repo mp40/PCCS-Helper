@@ -1,7 +1,8 @@
 /* eslint-disable array-callback-return */
+import { correctFloatingPoint } from '../reducerHelpers';
 
 export const removeFirearmModificationReducer = (state, action) => {
-  const newWeight = state.totalWeight - action.payload.modNote.weightMod;
+  const newTotalWeight = state.totalWeight - action.payload.modNote.weightMod;
   const updatedFirearmsArray = state.gear.firearms.map((element) => {
     const firearm = element;
     if (firearm.name === action.payload.firearm) {
@@ -19,7 +20,7 @@ export const removeFirearmModificationReducer = (state, action) => {
 
 
   return { ...state,
-    totalWeight: Math.round(newWeight * 1000) / 1000,
+    totalWeight: correctFloatingPoint(newTotalWeight),
     gear: { ...state.gear,
       firearms: updatedFirearmsArray } };
 };

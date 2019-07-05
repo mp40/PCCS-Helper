@@ -40,3 +40,18 @@ CombatCard.propTypes = {
 };
 
 export default CombatCard;
+
+/*
+TODO - impliment this kind of thing above...
+
+{Object.keys(characterStats).slice(0, 5).map((stat, index) => (
+              <StatInput
+                statLevel={characterStats[stat]}
+                statName={statNameArray[index]}
+                idRef={`update${stat.charAt(0).toUpperCase() + stat.slice(1)}`}
+                isValid={isValidAttributeStat}
+                action={actionsArray[index]}
+                key={stat}
+              />
+            ))
+*/
