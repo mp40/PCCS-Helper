@@ -13,3 +13,10 @@ export const renderModificationTextInput = (heading, idRef, value, onChange) => 
     />
   </div>
 );
+
+export const renderAtrributeAndCombatTableHeadings = () => (
+  <tr>
+    <th className="attHeading">Attribute</th>
+    <th className="attValHeading">Value</th>
+  </tr>
+);

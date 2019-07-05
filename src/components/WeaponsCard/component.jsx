@@ -45,10 +45,6 @@ class WeaponsCard extends Component {
     this.setState({ modifyFirearm: !modifyFirearm });
   }
 
-  closeModifyWeapon =() => {
-    this.setState({ modifyFirearm: false });
-  }
-
   handleIncrementGunQty = (firearm, increment) => {
     const { increaseFirearmQty, decreaseFirearmQty } = this.props;
     handleIncrement(firearm, increment, increaseFirearmQty, decreaseFirearmQty);
@@ -114,7 +110,7 @@ class WeaponsCard extends Component {
                 <div style={{ marginTop: '2px', marginLeft: '2px' }}>
                   <ButtonDeleteX
                     id="closeGunStatView"
-                    onClick={this.closeModifyWeapon}
+                    onClick={this.handleWeaponsCardViews.bind(this, 'modifyFirearm')}
                   />
                 </div>
                 <div style={{ display: 'flex' }}>
@@ -127,10 +123,8 @@ class WeaponsCard extends Component {
                     gunObj={gunToModify}
                     createCustomMag={createCustomMag}
                     modifyFirearmWeight={modifyFirearmWeight}
-                    handleModifyFirearm={this.handleModifyFirearm}
                     toggleOnWeaponsCardViews={this.toggleOnWeaponsCardViews}
                     handleWeaponsCardViews={this.handleWeaponsCardViews}
-                    handleModifyFirearmWeight={this.handleModifyFirearmWeight}
                     removeAllGunMods={this.removeAllGunMods}
                   />
                 </div>

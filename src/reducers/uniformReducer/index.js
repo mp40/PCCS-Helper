@@ -1,4 +1,5 @@
 import { calculateTotalWeight } from '../../helpers/actionHelpers';
+import { correctFloatingPoint } from '../reducerHelpers';
 
 const {
   calcBaseSpeed,
@@ -16,7 +17,7 @@ export const changeUniformReducer = (state, action) => {
   const newMeleeCombatActions = calcCombatActions(newMaxSpeed, state.combatStats.ASF);
 
   return { ...state,
-    totalWeight: newTotalWeight,
+    totalWeight: correctFloatingPoint(newTotalWeight),
     combatStats: { ...state.combatStats,
       baseSpeed: newBaseSpeed,
       maxSpeed: newMaxSpeed,

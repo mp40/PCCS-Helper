@@ -5,6 +5,13 @@ import { findUniformWeight } from '../../helpers/actionHelpers';
 
 import './ClothingCard.css';
 
+const renderTableHeading = () => (
+  <tr className="uniformTableHeader">
+    <th className="uniformHeading">Uniform</th>
+    <th className="uniformValHeading">lbs</th>
+  </tr>
+);
+
 class ClothingCard extends Component {
   constructor(props) {
     super(props);
@@ -34,11 +41,7 @@ class ClothingCard extends Component {
         return (
           <table className="uniformTableContainer">
             <thead>
-              <tr className="uniformTableHeader">
-                <th className="uniformHeading">Uniform</th>
-                <th className="uniformValHeading">lbs</th>
-              </tr>
-
+              {renderTableHeading()}
               <tr
                 className="uniformStats"
                 onClick={this.toggleSelectUniform}
@@ -55,10 +58,7 @@ class ClothingCard extends Component {
         <div className="uniformTableContainer">
           <table>
             <thead>
-              <tr className="uniformTableHeader">
-                <th className="uniformHeading">Uniform</th>
-                <th className="uniformValHeading">lbs</th>
-              </tr>
+              {renderTableHeading()}
             </thead>
           </table>
           <div>

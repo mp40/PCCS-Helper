@@ -1,3 +1,5 @@
+import { correctFloatingPoint } from '../reducerHelpers';
+
 const getPrimaryMagazine = (magazineArray, indexOfPrimary) => magazineArray.splice(indexOfPrimary, 1)[0];
 
 export const setPrimaryMagazineReducer = (state, action) => {
@@ -16,7 +18,7 @@ export const setPrimaryMagazineReducer = (state, action) => {
   });
 
   return { ...state,
-    totalWeight: Math.round(newTotalWeight * 1000) / 1000,
+    totalWeight: correctFloatingPoint(newTotalWeight),
     gear: { ...state.gear,
       firearms: updatedFirearmsArray } };
 };
