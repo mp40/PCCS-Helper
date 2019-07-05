@@ -30,6 +30,10 @@ class WeaponsCard extends Component {
     this.setState({ [viewToToggle]: false });
   }
 
+  toggleOnWeaponsCardViews = (viewToToggle) => {
+    this.setState({ [viewToToggle]: true });
+  }
+
   toggleShowFirearms = () => {
     const { showFirearms } = this.state;
     this.setState({ showFirearms: !showFirearms });
@@ -63,16 +67,6 @@ class WeaponsCard extends Component {
   handleRemoveAllGuns = () => {
     const { removeAllFirearms } = this.props;
     removeAllFirearms([]);
-  }
-
-  toggleCreateCustomMag = () => {
-    const { createCustomMag } = this.state;
-    this.setState({ createCustomMag: !createCustomMag });
-  }
-
-  toggleModifyFirearmWeight = () => {
-    const { modifyFirearmWeight } = this.state;
-    this.setState({ modifyFirearmWeight: !modifyFirearmWeight });
   }
 
   removeAllGunMods = () => {
@@ -134,10 +128,8 @@ class WeaponsCard extends Component {
                     createCustomMag={createCustomMag}
                     modifyFirearmWeight={modifyFirearmWeight}
                     handleModifyFirearm={this.handleModifyFirearm}
-                    toggleCreateCustomMag={this.toggleCreateCustomMag}
                     toggleOnWeaponsCardViews={this.toggleOnWeaponsCardViews}
                     handleWeaponsCardViews={this.handleWeaponsCardViews}
-                    toggleModifyFirearmWeight={this.toggleModifyFirearmWeight}
                     handleModifyFirearmWeight={this.handleModifyFirearmWeight}
                     removeAllGunMods={this.removeAllGunMods}
                   />

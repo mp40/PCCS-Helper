@@ -45,8 +45,7 @@ class WeaponsCardModifyWeapon extends Component {
       createCustomMag,
       modifyFirearmWeight,
       removeAllGunMods,
-      toggleCreateCustomMag,
-      toggleModifyFirearmWeight,
+      toggleOnWeaponsCardViews,
     } = this.props;
 
     if (!createCustomMag && !modifyFirearmWeight) {
@@ -68,7 +67,7 @@ class WeaponsCardModifyWeapon extends Component {
                 <ButtonSlim
                   name="+"
                   id="addCustomMagazine"
-                  onClick={toggleCreateCustomMag}
+                  onClick={toggleOnWeaponsCardViews.bind(this, 'createCustomMag')}
                 />
               </div>
             </div>
@@ -89,7 +88,7 @@ class WeaponsCardModifyWeapon extends Component {
               <ButtonSlim
                 name="set"
                 id="modifyWeaponWeight"
-                onClick={toggleModifyFirearmWeight}
+                onClick={toggleOnWeaponsCardViews.bind(this, 'modifyFirearmWeight')}
               />
             </div>
 
@@ -133,8 +132,7 @@ WeaponsCardModifyWeapon.propTypes = {
   createCustomMag: PropTypes.bool,
   modifyFirearmWeight: PropTypes.bool,
   removeAllGunMods: PropTypes.func,
-  toggleCreateCustomMag: PropTypes.func,
-  toggleModifyFirearmWeight: PropTypes.func,
+  toggleOnWeaponsCardViews: PropTypes.func,
   handleWeaponsCardViews: PropTypes.func,
   gunObj: gunObjShape,
 };
