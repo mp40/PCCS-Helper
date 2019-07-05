@@ -1,5 +1,5 @@
 import { removeAllFirearmModificationsReducer, removeModificationWeight } from './index';
-import { AddedM1911A1AndM16, AddedTwoM1911A1 } from '../testResouces';
+import { AddedM1911A1AndM16, AddedTwoM1911A1, AddedM1911A1 } from '../testResouces';
 import { testM1911A1, testM16 } from '../../helpers/testHelpers';
 
 class CharacterWithM1911A1AndModdedM16 extends AddedM1911A1AndM16 {
@@ -17,6 +17,7 @@ class CharacterWithTwoModdedM1911A1 extends AddedTwoM1911A1 {
     super();
     this.totalWeight += 0.5 + 1.4;
     this.gear.firearms[0].mag = [{ type: 'test', weight: 0.5, cap: 10, qty: 1, custom: true }, { type: 'Mag', weight: 0.7, cap: 7, qty: 2 }];
+    this.gear.firearms[0].weight = 2.8;
   }
 }
 
@@ -37,6 +38,18 @@ describe('removeAllFirearmModificationsReducer', () => {
     characterWithTwoGunsAndSpareMags.gear.firearms[0].mag[0].qty = 2;
     const newState = removeAllFirearmModificationsReducer(new CharacterWithTwoModdedM1911A1(), action);
     expect(newState).toMatchObject(characterWithTwoGunsAndSpareMags);
+  });
+  it('should remove weight of custom magazine if it was set as primary', () => {
+    const m1911A1 = testM1911A1();
+    m1911A1.mag.unshift({ type: 'test', weight: 1, cap: 10, qty: 1, custom: true });
+    m1911A1.weight += 0.3;
+    const characterWithExtendedMags = new AddedM1911A1();
+    characterWithExtendedMags.totalWeight += 1.3;
+    characterWithExtendedMags.gear.firearms = [m1911A1];
+    const action = { payload: 'M1911A1' };
+    const newState = removeAllFirearmModificationsReducer(characterWithExtendedMags, action);
+    expect(newState.totalWeight).toBe(5 + testM1911A1().weight);
+    expect(newState.gear.firearms[0].weight).toBe(3);
   });
 });
 

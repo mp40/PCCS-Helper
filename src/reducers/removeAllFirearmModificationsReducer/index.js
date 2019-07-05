@@ -22,8 +22,10 @@ export const removeAllFirearmModificationsReducer = (state, action) => {
     let gun = element;
     if (gun.name === action.payload) {
       gun.weight = removeModificationWeight(gun.weight, gun.modNotes);
+      gun.weight -= gun.mag[0].weight;
       gun = removeKeyFromFirearm(gun);
       gun.mag = removeCustomMagazines(gun.mag);
+      gun.weight = Math.round((gun.weight + gun.mag[0].weight) * 1000) / 1000;
     }
 
     return gun;

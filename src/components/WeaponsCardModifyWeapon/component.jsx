@@ -27,16 +27,25 @@ class WeaponsCardModifyWeapon extends Component {
     removeFirearmModification({ firearm: gunObj.name, modNote });
   }
 
+  handleAddCustomMag = (newCustomMagazine) => {
+    const { addCustomMagazine, gunObj, handleWeaponsCardViews } = this.props;
+    addCustomMagazine({ firearm: gunObj.name, magazine: newCustomMagazine });
+    handleWeaponsCardViews('createCustomMag');
+  }
+
+  handleModifyFirearmWeight = (modNote) => {
+    const { modifyFirearm, handleWeaponsCardViews, gunObj } = this.props;
+    modifyFirearm({ firearm: gunObj.name, modNote });
+    handleWeaponsCardViews('modifyFirearmWeight');
+  }
+
   render() {
     const {
       gunObj,
       createCustomMag,
       modifyFirearmWeight,
       removeAllGunMods,
-      toggleCreateCustomMag,
-      toggleModifyFirearmWeight,
-      handleAddCustomMag,
-      handleModifyFirearmWeight,
+      toggleOnWeaponsCardViews,
     } = this.props;
 
     if (!createCustomMag && !modifyFirearmWeight) {
@@ -58,7 +67,7 @@ class WeaponsCardModifyWeapon extends Component {
                 <ButtonSlim
                   name="+"
                   id="addCustomMagazine"
-                  onClick={toggleCreateCustomMag}
+                  onClick={toggleOnWeaponsCardViews.bind(this, 'createCustomMag')}
                 />
               </div>
             </div>
@@ -79,7 +88,7 @@ class WeaponsCardModifyWeapon extends Component {
               <ButtonSlim
                 name="set"
                 id="modifyWeaponWeight"
-                onClick={toggleModifyFirearmWeight}
+                onClick={toggleOnWeaponsCardViews.bind(this, 'modifyFirearmWeight')}
               />
             </div>
 
@@ -106,25 +115,25 @@ class WeaponsCardModifyWeapon extends Component {
     }
     if (createCustomMag) {
       return (
-        renderModificationOption(handleAddCustomMag, WeaponsCardCustomMag)
+        renderModificationOption(this.handleAddCustomMag, WeaponsCardCustomMag)
       );
     }
     return (
-      renderModificationOption(handleModifyFirearmWeight, WeaponsCardModifyWeight)
+      renderModificationOption(this.handleModifyFirearmWeight, WeaponsCardModifyWeight)
     );
   }
 }
 
 WeaponsCardModifyWeapon.propTypes = {
+  modifyFirearm: PropTypes.func,
+  addCustomMagazine: PropTypes.func,
   setPrimaryMagazine: PropTypes.func,
   removeFirearmModification: PropTypes.func,
   createCustomMag: PropTypes.bool,
   modifyFirearmWeight: PropTypes.bool,
   removeAllGunMods: PropTypes.func,
-  toggleCreateCustomMag: PropTypes.func,
-  toggleModifyFirearmWeight: PropTypes.func,
-  handleAddCustomMag: PropTypes.func,
-  handleModifyFirearmWeight: PropTypes.func,
+  toggleOnWeaponsCardViews: PropTypes.func,
+  handleWeaponsCardViews: PropTypes.func,
   gunObj: gunObjShape,
 };
 
