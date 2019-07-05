@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import StatInput from '../widgets/StatInput';
+import { renderAtrributeAndCombatTableHeadings } from '../widgets/renderWidgets';
 import { isValidAttributeStat } from '../../helpers/gaurds';
 
 const statNameArray = ['Strength', 'Intelligence', 'Health', 'Willpower', 'Agility'];
@@ -14,10 +15,7 @@ const AttributeCard = (props) => {
       <div className="tableContainer">
         <table className="attributeContainer">
           <tbody>
-            <tr>
-              <th className="attHeading">Attribute</th>
-              <th className="attValHeading">Value</th>
-            </tr>
+            {renderAtrributeAndCombatTableHeadings()}
             {Object.keys(characterStats).slice(0, 5).map((stat, index) => (
               <StatInput
                 statLevel={characterStats[stat]}
