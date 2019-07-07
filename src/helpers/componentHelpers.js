@@ -114,45 +114,53 @@ const createLineEight = (gunObj, has3RB) => {
   );
 };
 
-const returnLineOneToThree = (gunObj, has3RB) => [
-  new GunTableLine(
-    dataType('Length', 'L', gunObj.length),
-    [gunObj.aim.ac[0], gunObj.aim.mod[0]],
-    [gunObj.projectiles[0].type, 'PEN'],
-    gunObj.projectiles[0].pen),
-  new GunTableLine(
-    dataType('Weight', 'W', gunObj.weight),
-    [gunObj.aim.ac[1], gunObj.aim.mod[1]],
-    ['', 'DC'],
-    gunObj.projectiles[0].dc),
-  new GunTableLine(
-    dataType(),
-    [gunObj.aim.ac[2], gunObj.aim.mod[2]],
-    has3RB ? [gunObj.projectiles[1].type, 'PEN'] : ['', ''],
-    has3RB ? gunObj.projectiles[1].pen : emptyLine(gunObj.tof.length),
-  ),
-];
 
-const returnLineNineTenEleven = gunObj => [
-  new GunTableLine(
-    dataType('', '', gunObj.mag[0].type),
-    [gunObj.aim.ac[8], gunObj.aim.mod[8]],
-    gunObj.ma ? ['', 'MA'] : ['', ''],
-    gunObj.ma ? gunObj.ma : emptyLine(gunObj.tof.length),
-  ),
-  new GunTableLine(
-    dataType('KnockDown', 'KD', gunObj.kd),
-    [gunObj.aim.ac[9], gunObj.aim.mod[9]],
-    ['', 'BA'],
-    gunObj.ba,
-  ),
-  new GunTableLine(
-    dataType('SAB', 'SAB', gunObj.sab),
-    [gunObj.aim.ac[10], gunObj.aim.mod[10]],
-    ['', 'TOF'],
-    gunObj.tof,
-  ),
-];
+const returnLineOneToThree = (gunObj, has3RB) => {
+  const lastTag = () => (has3RB ? [gunObj.projectiles[1].type, 'PEN'] : ['', '']);
+  const lastArray = () => (has3RB ? gunObj.projectiles[1].pen : emptyLine(gunObj.tof.length));
+
+  const data = [
+    ['Length', 'L', gunObj.length],
+    ['Weight', 'W', gunObj.weight],
+    [undefined],
+  ];
+  const tagAndArray = [
+    [[gunObj.projectiles[0].type, 'PEN'], gunObj.projectiles[0].pen],
+    [['', 'DC'], gunObj.projectiles[0].dc],
+    [['', 'TOF'], gunObj.tof],
+    [lastTag(), lastArray()],
+  ];
+  return data.map((element, index) => {
+    const aimIndex = index + 0;
+    return new GunTableLine(
+      dataType(...element),
+      [gunObj.aim.ac[aimIndex], gunObj.aim.mod[aimIndex]],
+      ...tagAndArray[index],
+    );
+  });
+};
+
+const returnLineNineTenEleven = (gunObj) => {
+  const hasMa = (ma, arrayMa, array) => (ma ? arrayMa : array);
+  const data = [
+    ['', '', gunObj.mag[0].type],
+    ['KnockDown', 'KD', gunObj.kd],
+    ['SAB', 'SAB', gunObj.sab],
+  ];
+  const tagAndArray = [
+    [hasMa(gunObj.ma, ['', 'MA'], ['', '']), hasMa(gunObj.ma, gunObj.ma, emptyLine(gunObj.tof.length))],
+    [['', 'BA'], gunObj.ba],
+    [['', 'TOF'], gunObj.tof],
+  ];
+  return data.map((element, index) => {
+    const aimIndex = index + 8;
+    return new GunTableLine(
+      dataType(...element),
+      [gunObj.aim.ac[aimIndex], gunObj.aim.mod[aimIndex]],
+      ...tagAndArray[index],
+    );
+  });
+};
 
 const returnLinesFourToEight = (gunObj, has3RB) => [
   createLineFour(gunObj, has3RB),
