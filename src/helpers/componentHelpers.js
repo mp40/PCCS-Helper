@@ -162,43 +162,34 @@ const returnLinesFourToEight = (gunObj, has3RB) => [
   createLineEight(gunObj, has3RB),
 ];
 
-const returnShotgunLinesFourToEight = gunObj => [
-  new GunTableLine(
-    dataType('Reload', 'RT', gunObj.rt),
-    [gunObj.aim.ac[3], gunObj.aim.mod[3]],
-    [gunObj.projectiles[1].type[0], 'PEN'],
-    gunObj.projectiles[1].pen,
-  ),
-  new GunTableLine(
-    dataType('ROF', 'ROF', gunObj.rof),
-    [gunObj.aim.ac[4], gunObj.aim.mod[4]],
-    [gunObj.projectiles[1].type[1], 'DC'],
-    gunObj.projectiles[1].dc,
-  ),
-  new GunTableLine(
-    dataType(),
-    [gunObj.aim.ac[5], gunObj.aim.mod[5]],
-    ['', 'SALM'],
-    gunObj.projectiles[1].salm,
-  ),
-  new GunTableLine(
-    dataType('Capacity', 'Cap', gunObj.mag[0].cap),
-    [gunObj.aim.ac[6], gunObj.aim.mod[6]],
-    [gunObj.projectiles[1].type[2], 'BPHC'],
-    gunObj.projectiles[1].bphc,
-  ),
-  new GunTableLine(
-    dataType('AW', 'AW', gunObj.mag[0].weight),
-    [gunObj.aim.ac[7], gunObj.aim.mod[7]],
-    ['', 'PR'],
-    gunObj.projectiles[1].pr,
-  ),
-];
+const returnShotgunLinesFourToEight = (gunObj) => {
+  const data = [
+    ['Reload', 'RT', gunObj.rt],
+    ['ROF', 'ROF', gunObj.rof],
+    [undefined],
+    ['Capacity', 'Cap', gunObj.mag[0].cap],
+    ['AW', 'AW', gunObj.mag[0].weight],
+  ];
+  const tagAndArray = [
+    [[gunObj.projectiles[1].type[0], 'PEN'], gunObj.projectiles[1].pen],
+    [[gunObj.projectiles[1].type[1], 'DC'], gunObj.projectiles[1].dc],
+    [['', 'SALM'], gunObj.projectiles[1].salm],
+    [[gunObj.projectiles[1].type[2], 'BPHC'], gunObj.projectiles[1].bphc],
+    [['', 'PR'], gunObj.projectiles[1].pr],
+  ];
+  return data.map((element, index) => {
+    const aimIndex = index + 3;
+    return new GunTableLine(
+      dataType(...element),
+      [gunObj.aim.ac[aimIndex], gunObj.aim.mod[aimIndex]],
+      ...tagAndArray[index],
+    );
+  });
+};
 
 export const buildArrayForGunTable = (gunObj) => {
   const has3RB = Boolean(gunObj.trb);
   const isShotgun = checkIfShotgun(gunObj.list);
-
 
   const arrayForGunTable = returnLineOneToThree(gunObj, has3RB);
 
