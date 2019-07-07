@@ -13,6 +13,12 @@ const dataType = (name = '', short = '', data = '') => ({
   data,
 });
 
+const returnGunTableLine = (data, gunObj, aimIndex, tagAndArray) => data.map((element, index) => new GunTableLine(
+  dataType(...element),
+  [gunObj.aim.ac[aimIndex + index], gunObj.aim.mod[aimIndex + index]],
+  ...tagAndArray[index],
+));
+
 const emptyLine = lineLength => new Array(lineLength).fill('');
 
 const checkIfShotgun = list => list === 'shotguns';
@@ -114,7 +120,6 @@ const createLineEight = (gunObj, has3RB) => {
   );
 };
 
-
 const returnLineOneToThree = (gunObj, has3RB) => {
   const lastTag = () => (has3RB ? [gunObj.projectiles[1].type, 'PEN'] : ['', '']);
   const lastArray = () => (has3RB ? gunObj.projectiles[1].pen : emptyLine(gunObj.tof.length));
@@ -130,14 +135,7 @@ const returnLineOneToThree = (gunObj, has3RB) => {
     [['', 'TOF'], gunObj.tof],
     [lastTag(), lastArray()],
   ];
-  return data.map((element, index) => {
-    const aimIndex = index + 0;
-    return new GunTableLine(
-      dataType(...element),
-      [gunObj.aim.ac[aimIndex], gunObj.aim.mod[aimIndex]],
-      ...tagAndArray[index],
-    );
-  });
+  return returnGunTableLine(data, gunObj, 0, tagAndArray);
 };
 
 const returnLineNineTenEleven = (gunObj) => {
@@ -152,14 +150,7 @@ const returnLineNineTenEleven = (gunObj) => {
     [['', 'BA'], gunObj.ba],
     [['', 'TOF'], gunObj.tof],
   ];
-  return data.map((element, index) => {
-    const aimIndex = index + 8;
-    return new GunTableLine(
-      dataType(...element),
-      [gunObj.aim.ac[aimIndex], gunObj.aim.mod[aimIndex]],
-      ...tagAndArray[index],
-    );
-  });
+  return returnGunTableLine(data, gunObj, 8, tagAndArray);
 };
 
 const returnLinesFourToEight = (gunObj, has3RB) => [
@@ -185,14 +176,7 @@ const returnShotgunLinesFourToEight = (gunObj) => {
     [[gunObj.projectiles[1].type[2], 'BPHC'], gunObj.projectiles[1].bphc],
     [['', 'PR'], gunObj.projectiles[1].pr],
   ];
-  return data.map((element, index) => {
-    const aimIndex = index + 3;
-    return new GunTableLine(
-      dataType(...element),
-      [gunObj.aim.ac[aimIndex], gunObj.aim.mod[aimIndex]],
-      ...tagAndArray[index],
-    );
-  });
+  return returnGunTableLine(data, gunObj, 3, tagAndArray);
 };
 
 export const buildArrayForGunTable = (gunObj) => {
