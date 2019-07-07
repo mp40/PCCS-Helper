@@ -13,6 +13,12 @@ const dataType = (name = '', short = '', data = '') => ({
   data,
 });
 
+const returnGunTableLine = (data, gunObj, aimIndex, tagAndArray) => data.map((element, index) => new GunTableLine(
+  dataType(...element),
+  [gunObj.aim.ac[aimIndex + index], gunObj.aim.mod[aimIndex + index]],
+  ...tagAndArray[index],
+));
+
 const emptyLine = lineLength => new Array(lineLength).fill('');
 
 const checkIfShotgun = list => list === 'shotguns';
@@ -114,45 +120,38 @@ const createLineEight = (gunObj, has3RB) => {
   );
 };
 
-const returnLineOneToThree = (gunObj, has3RB) => [
-  new GunTableLine(
-    dataType('Length', 'L', gunObj.length),
-    [gunObj.aim.ac[0], gunObj.aim.mod[0]],
-    [gunObj.projectiles[0].type, 'PEN'],
-    gunObj.projectiles[0].pen),
-  new GunTableLine(
-    dataType('Weight', 'W', gunObj.weight),
-    [gunObj.aim.ac[1], gunObj.aim.mod[1]],
-    ['', 'DC'],
-    gunObj.projectiles[0].dc),
-  new GunTableLine(
-    dataType(),
-    [gunObj.aim.ac[2], gunObj.aim.mod[2]],
-    has3RB ? [gunObj.projectiles[1].type, 'PEN'] : ['', ''],
-    has3RB ? gunObj.projectiles[1].pen : emptyLine(gunObj.tof.length),
-  ),
-];
+const returnLineOneToThree = (gunObj, has3RB) => {
+  const lastTag = () => (has3RB ? [gunObj.projectiles[1].type, 'PEN'] : ['', '']);
+  const lastArray = () => (has3RB ? gunObj.projectiles[1].pen : emptyLine(gunObj.tof.length));
 
-const returnLineNineTenEleven = gunObj => [
-  new GunTableLine(
-    dataType('', '', gunObj.mag[0].type),
-    [gunObj.aim.ac[8], gunObj.aim.mod[8]],
-    gunObj.ma ? ['', 'MA'] : ['', ''],
-    gunObj.ma ? gunObj.ma : emptyLine(gunObj.tof.length),
-  ),
-  new GunTableLine(
-    dataType('KnockDown', 'KD', gunObj.kd),
-    [gunObj.aim.ac[9], gunObj.aim.mod[9]],
-    ['', 'BA'],
-    gunObj.ba,
-  ),
-  new GunTableLine(
-    dataType('SAB', 'SAB', gunObj.sab),
-    [gunObj.aim.ac[10], gunObj.aim.mod[10]],
-    ['', 'TOF'],
-    gunObj.tof,
-  ),
-];
+  const data = [
+    ['Length', 'L', gunObj.length],
+    ['Weight', 'W', gunObj.weight],
+    [undefined],
+  ];
+  const tagAndArray = [
+    [[gunObj.projectiles[0].type, 'PEN'], gunObj.projectiles[0].pen],
+    [['', 'DC'], gunObj.projectiles[0].dc],
+    [['', 'TOF'], gunObj.tof],
+    [lastTag(), lastArray()],
+  ];
+  return returnGunTableLine(data, gunObj, 0, tagAndArray);
+};
+
+const returnLineNineTenEleven = (gunObj) => {
+  const hasMa = (ma, arrayMa, array) => (ma ? arrayMa : array);
+  const data = [
+    ['', '', gunObj.mag[0].type],
+    ['KnockDown', 'KD', gunObj.kd],
+    ['SAB', 'SAB', gunObj.sab],
+  ];
+  const tagAndArray = [
+    [hasMa(gunObj.ma, ['', 'MA'], ['', '']), hasMa(gunObj.ma, gunObj.ma, emptyLine(gunObj.tof.length))],
+    [['', 'BA'], gunObj.ba],
+    [['', 'TOF'], gunObj.tof],
+  ];
+  return returnGunTableLine(data, gunObj, 8, tagAndArray);
+};
 
 const returnLinesFourToEight = (gunObj, has3RB) => [
   createLineFour(gunObj, has3RB),
@@ -162,43 +161,27 @@ const returnLinesFourToEight = (gunObj, has3RB) => [
   createLineEight(gunObj, has3RB),
 ];
 
-const returnShotgunLinesFourToEight = gunObj => [
-  new GunTableLine(
-    dataType('Reload', 'RT', gunObj.rt),
-    [gunObj.aim.ac[3], gunObj.aim.mod[3]],
-    [gunObj.projectiles[1].type[0], 'PEN'],
-    gunObj.projectiles[1].pen,
-  ),
-  new GunTableLine(
-    dataType('ROF', 'ROF', gunObj.rof),
-    [gunObj.aim.ac[4], gunObj.aim.mod[4]],
-    [gunObj.projectiles[1].type[1], 'DC'],
-    gunObj.projectiles[1].dc,
-  ),
-  new GunTableLine(
-    dataType(),
-    [gunObj.aim.ac[5], gunObj.aim.mod[5]],
-    ['', 'SALM'],
-    gunObj.projectiles[1].salm,
-  ),
-  new GunTableLine(
-    dataType('Capacity', 'Cap', gunObj.mag[0].cap),
-    [gunObj.aim.ac[6], gunObj.aim.mod[6]],
-    [gunObj.projectiles[1].type[2], 'BPHC'],
-    gunObj.projectiles[1].bphc,
-  ),
-  new GunTableLine(
-    dataType('AW', 'AW', gunObj.mag[0].weight),
-    [gunObj.aim.ac[7], gunObj.aim.mod[7]],
-    ['', 'PR'],
-    gunObj.projectiles[1].pr,
-  ),
-];
+const returnShotgunLinesFourToEight = (gunObj) => {
+  const data = [
+    ['Reload', 'RT', gunObj.rt],
+    ['ROF', 'ROF', gunObj.rof],
+    [undefined],
+    ['Capacity', 'Cap', gunObj.mag[0].cap],
+    ['AW', 'AW', gunObj.mag[0].weight],
+  ];
+  const tagAndArray = [
+    [[gunObj.projectiles[1].type[0], 'PEN'], gunObj.projectiles[1].pen],
+    [[gunObj.projectiles[1].type[1], 'DC'], gunObj.projectiles[1].dc],
+    [['', 'SALM'], gunObj.projectiles[1].salm],
+    [[gunObj.projectiles[1].type[2], 'BPHC'], gunObj.projectiles[1].bphc],
+    [['', 'PR'], gunObj.projectiles[1].pr],
+  ];
+  return returnGunTableLine(data, gunObj, 3, tagAndArray);
+};
 
 export const buildArrayForGunTable = (gunObj) => {
   const has3RB = Boolean(gunObj.trb);
   const isShotgun = checkIfShotgun(gunObj.list);
-
 
   const arrayForGunTable = returnLineOneToThree(gunObj, has3RB);
 
