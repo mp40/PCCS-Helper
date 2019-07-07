@@ -17,34 +17,6 @@ const emptyLine = lineLength => new Array(lineLength).fill('');
 
 const checkIfShotgun = list => list === 'shotguns';
 
-const createLineOne = (gunObj => new GunTableLine(
-  dataType('Length', 'L', gunObj.length),
-  [gunObj.aim.ac[0], gunObj.aim.mod[0]],
-  [gunObj.projectiles[0].type, 'PEN'],
-  gunObj.projectiles[0].pen)
-);
-
-const createLineTwo = (gunObj => new GunTableLine(
-  dataType('Weight', 'W', gunObj.weight),
-  [gunObj.aim.ac[1], gunObj.aim.mod[1]],
-  ['', 'DC'],
-  gunObj.projectiles[0].dc)
-);
-
-const createLineThree = ((gunObj, has3RB) => new GunTableLine(
-  dataType(),
-  [gunObj.aim.ac[2], gunObj.aim.mod[2]],
-  has3RB ? [gunObj.projectiles[1].type, 'PEN'] : ['', ''],
-  has3RB ? gunObj.projectiles[1].pen : emptyLine(gunObj.tof.length),
-));
-
-const getLineFour = (gunObj, tag, array) => new GunTableLine(
-  dataType('Reload', 'RT', gunObj.rt),
-  [gunObj.aim.ac[3], gunObj.aim.mod[3]],
-  tag,
-  array,
-);
-
 const createLineFour = (gunObj, has3RB) => {
   let tag = ['', ''];
   let array = emptyLine(gunObj.tof.length);
@@ -59,22 +31,13 @@ const createLineFour = (gunObj, has3RB) => {
     array = gunObj.projectiles[1].dc;
   }
 
-  return getLineFour(gunObj, tag, array);
+  return new GunTableLine(
+    dataType('Reload', 'RT', gunObj.rt),
+    [gunObj.aim.ac[3], gunObj.aim.mod[3]],
+    tag,
+    array,
+  );
 };
-
-const createShotgunLineFour = (gunObj) => {
-  const tag = [gunObj.projectiles[1].type[0], 'PEN'];
-  const array = gunObj.projectiles[1].pen;
-
-  return getLineFour(gunObj, tag, array);
-};
-
-const getlineFive = (gunObj, tag, array) => new GunTableLine(
-  dataType('ROF', 'ROF', gunObj.rof),
-  [gunObj.aim.ac[4], gunObj.aim.mod[4]],
-  tag,
-  array,
-);
 
 const createLineFive = (gunObj, has3RB) => {
   let tag = ['', ''];
@@ -89,22 +52,13 @@ const createLineFive = (gunObj, has3RB) => {
     array = gunObj.projectiles[2].pen;
   }
 
-  return getlineFive(gunObj, tag, array);
+  return new GunTableLine(
+    dataType('ROF', 'ROF', gunObj.rof),
+    [gunObj.aim.ac[4], gunObj.aim.mod[4]],
+    tag,
+    array,
+  );
 };
-
-const createShotgunLineFive = (gunObj) => {
-  const tag = [gunObj.projectiles[1].type[1], 'DC'];
-  const array = gunObj.projectiles[1].dc;
-
-  return getlineFive(gunObj, tag, array);
-};
-
-const getLineSix = (gunObj, tag, array) => new GunTableLine(
-  dataType(),
-  [gunObj.aim.ac[5], gunObj.aim.mod[5]],
-  tag,
-  array,
-);
 
 const createLineSix = (gunObj, has3RB) => {
   let tag = ['', ''];
@@ -115,22 +69,13 @@ const createLineSix = (gunObj, has3RB) => {
     array = gunObj.projectiles[2].dc;
   }
 
-  return getLineSix(gunObj, tag, array);
+  return new GunTableLine(
+    dataType(),
+    [gunObj.aim.ac[5], gunObj.aim.mod[5]],
+    tag,
+    array,
+  );
 };
-
-const createShotgunLineSix = (gunObj) => {
-  const tag = ['', 'SALM'];
-  const array = gunObj.projectiles[1].salm;
-
-  return getLineSix(gunObj, tag, array);
-};
-
-const getLineSeven = (gunObj, tag, array) => new GunTableLine(
-  dataType('Capacity', 'Cap', gunObj.mag[0].cap),
-  [gunObj.aim.ac[6], gunObj.aim.mod[6]],
-  tag,
-  array,
-);
 
 const createLineSeven = (gunObj, has3RB) => {
   let tag = ['', ''];
@@ -140,23 +85,13 @@ const createLineSeven = (gunObj, has3RB) => {
     tag = [gunObj.projectiles[2].type, 'PEN'];
     array = gunObj.projectiles[2].pen;
   }
-
-  return getLineSeven(gunObj, tag, array);
+  return new GunTableLine(
+    dataType('Capacity', 'Cap', gunObj.mag[0].cap),
+    [gunObj.aim.ac[6], gunObj.aim.mod[6]],
+    tag,
+    array,
+  );
 };
-
-const createShotgunLineSeven = (gunObj) => {
-  const tag = [gunObj.projectiles[1].type[2], 'BPHC'];
-  const array = gunObj.projectiles[1].bphc;
-
-  return getLineSeven(gunObj, tag, array);
-};
-
-const getLineEight = (gunObj, tag, array) => new GunTableLine(
-  dataType('AW', 'AW', gunObj.mag[0].weight),
-  [gunObj.aim.ac[7], gunObj.aim.mod[7]],
-  tag,
-  array,
-);
 
 const createLineEight = (gunObj, has3RB) => {
   let tag = ['', ''];
@@ -171,50 +106,53 @@ const createLineEight = (gunObj, has3RB) => {
     array = gunObj.trb;
   }
 
-  return getLineEight(gunObj, tag, array);
+  return new GunTableLine(
+    dataType('AW', 'AW', gunObj.mag[0].weight),
+    [gunObj.aim.ac[7], gunObj.aim.mod[7]],
+    tag,
+    array,
+  );
 };
 
-const createShotgunLineEight = (gunObj) => {
-  const tag = ['', 'PR'];
-  const array = gunObj.projectiles[1].pr;
+const returnLineOneToThree = (gunObj, has3RB) => [
+  new GunTableLine(
+    dataType('Length', 'L', gunObj.length),
+    [gunObj.aim.ac[0], gunObj.aim.mod[0]],
+    [gunObj.projectiles[0].type, 'PEN'],
+    gunObj.projectiles[0].pen),
+  new GunTableLine(
+    dataType('Weight', 'W', gunObj.weight),
+    [gunObj.aim.ac[1], gunObj.aim.mod[1]],
+    ['', 'DC'],
+    gunObj.projectiles[0].dc),
+  new GunTableLine(
+    dataType(),
+    [gunObj.aim.ac[2], gunObj.aim.mod[2]],
+    has3RB ? [gunObj.projectiles[1].type, 'PEN'] : ['', ''],
+    has3RB ? gunObj.projectiles[1].pen : emptyLine(gunObj.tof.length),
+  ),
+];
 
-  return getLineEight(gunObj, tag, array);
-};
-
-const createLineNine = gunObj => (new GunTableLine(
-  dataType('', '', gunObj.mag[0].type),
-  [gunObj.aim.ac[8], gunObj.aim.mod[8]],
-  gunObj.ma ? ['', 'MA'] : ['', ''],
-  gunObj.ma ? gunObj.ma : emptyLine(gunObj.tof.length),
-)
-
-);
-
-const createLineTen = gunObj => (
+const returnLineNineTenEleven = gunObj => [
+  new GunTableLine(
+    dataType('', '', gunObj.mag[0].type),
+    [gunObj.aim.ac[8], gunObj.aim.mod[8]],
+    gunObj.ma ? ['', 'MA'] : ['', ''],
+    gunObj.ma ? gunObj.ma : emptyLine(gunObj.tof.length),
+  ),
   new GunTableLine(
     dataType('KnockDown', 'KD', gunObj.kd),
     [gunObj.aim.ac[9], gunObj.aim.mod[9]],
     ['', 'BA'],
     gunObj.ba,
-  )
-);
-
-const createLineEleven = gunObj => (
+  ),
   new GunTableLine(
     dataType('SAB', 'SAB', gunObj.sab),
     [gunObj.aim.ac[10], gunObj.aim.mod[10]],
     ['', 'TOF'],
     gunObj.tof,
-  )
-);
-
-const returnLineOneToThree = (gunObj, has3RB) => [
-  createLineOne(gunObj),
-  createLineTwo(gunObj),
-  createLineThree(gunObj, has3RB),
+  ),
 ];
-
-const returnLineNineTenEleven = gunObj => [createLineNine(gunObj), createLineTen(gunObj), createLineEleven(gunObj)];
 
 const returnLinesFourToEight = (gunObj, has3RB) => [
   createLineFour(gunObj, has3RB),
@@ -225,11 +163,36 @@ const returnLinesFourToEight = (gunObj, has3RB) => [
 ];
 
 const returnShotgunLinesFourToEight = gunObj => [
-  createShotgunLineFour(gunObj),
-  createShotgunLineFive(gunObj),
-  createShotgunLineSix(gunObj),
-  createShotgunLineSeven(gunObj),
-  createShotgunLineEight(gunObj),
+  new GunTableLine(
+    dataType('Reload', 'RT', gunObj.rt),
+    [gunObj.aim.ac[3], gunObj.aim.mod[3]],
+    [gunObj.projectiles[1].type[0], 'PEN'],
+    gunObj.projectiles[1].pen,
+  ),
+  new GunTableLine(
+    dataType('ROF', 'ROF', gunObj.rof),
+    [gunObj.aim.ac[4], gunObj.aim.mod[4]],
+    [gunObj.projectiles[1].type[1], 'DC'],
+    gunObj.projectiles[1].dc,
+  ),
+  new GunTableLine(
+    dataType(),
+    [gunObj.aim.ac[5], gunObj.aim.mod[5]],
+    ['', 'SALM'],
+    gunObj.projectiles[1].salm,
+  ),
+  new GunTableLine(
+    dataType('Capacity', 'Cap', gunObj.mag[0].cap),
+    [gunObj.aim.ac[6], gunObj.aim.mod[6]],
+    [gunObj.projectiles[1].type[2], 'BPHC'],
+    gunObj.projectiles[1].bphc,
+  ),
+  new GunTableLine(
+    dataType('AW', 'AW', gunObj.mag[0].weight),
+    [gunObj.aim.ac[7], gunObj.aim.mod[7]],
+    ['', 'PR'],
+    gunObj.projectiles[1].pr,
+  ),
 ];
 
 export const buildArrayForGunTable = (gunObj) => {
