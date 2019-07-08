@@ -4,3 +4,11 @@ export const returnUpdatedWeightAndFirearms = (state, newTotalWeight, updatedFir
   totalWeight: correctFloatingPoint(newTotalWeight),
   gear: { ...state.gear,
     firearms: updatedFirearmsArray } });
+
+export const updateQuantityOfFirearm = (firearmArray, firearmName, incrementer) => firearmArray.map((element) => {
+  const firearmObject = element;
+  if (firearmObject.name === firearmName) {
+    firearmObject.qty += incrementer;
+  }
+  return firearmObject;
+});

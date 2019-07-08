@@ -1,14 +1,7 @@
-import { returnUpdatedWeightAndFirearms } from '../reducerHelpers';
+import { returnUpdatedWeightAndFirearms, updateQuantityOfFirearm } from '../reducerHelpers';
 
 export const increaseFirearmReducer = (state, action) => {
-  const newFirearmArray = state.gear.firearms.map((element) => {
-    const firearmObject = element;
-    if (firearmObject.name === action.payload.name) {
-      firearmObject.qty += 1;
-    }
-    return firearmObject;
-  });
-
+  const newFirearmArray = updateQuantityOfFirearm(state.gear.firearms, action.payload.name, 1);
   const newTotalWeight = state.totalWeight + action.payload.weight;
 
   return returnUpdatedWeightAndFirearms(state, newTotalWeight, newFirearmArray);
