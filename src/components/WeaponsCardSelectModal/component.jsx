@@ -32,6 +32,24 @@ class WeaponsCardSelectModal extends Component {
       this.setState({ showGunStats: !showGunStats, gunStatsToView: gunObj });
     }
 
+    renderCloseButton = () => (
+      <div style={{ marginTop: '2px', marginLeft: '2px' }}>
+        <ButtonDeleteX
+          id="closeGunStatView"
+          onClick={this.handleShowGunStats}
+        />
+      </div>
+    )
+
+    renderWeaponStats = gunObj => (
+      <div className="WeaponStatTableContainer" style={{ fontSize: 'medium' }}>
+        {this.renderCloseButton()}
+        <WeaponsCardWeaponStats
+          gunObj={gunObj}
+        />
+      </div>
+    )
+
     render() {
       const { gunStatsToView, showGunStats } = this.state;
       const { closeShowFirearms } = this.props;
@@ -42,17 +60,7 @@ class WeaponsCardSelectModal extends Component {
         <div className="equipmentModalContainer">
           {showGunStats
             ? (
-              <div className="WeaponStatTableContainer" style={{ fontSize: 'medium' }}>
-                <div style={{ marginTop: '2px', marginLeft: '2px' }}>
-                  <ButtonDeleteX
-                    id="closeGunStatView"
-                    onClick={this.handleShowGunStats}
-                  />
-                </div>
-                <WeaponsCardWeaponStats
-                  gunObj={gunObj}
-                />
-              </div>
+              this.renderWeaponStats(gunObj)
             )
             : (
               <WeaponsModalSelection

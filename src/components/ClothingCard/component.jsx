@@ -31,6 +31,39 @@ class ClothingCard extends Component {
       this.setState({ showUniformSelect: false });
     }
 
+    renderUniformCard = (currentUniform, currentUniformWeight) => (
+      <table className="uniformTableContainer">
+        <thead>
+          {renderTableHeading()}
+          <tr
+            className="uniformStats"
+            onClick={this.toggleSelectUniform}
+          >
+            <td id="currentUniform">{currentUniform}</td>
+            <td id="uniformWeight" style={{ textAlign: 'center' }}>{currentUniformWeight}</td>
+          </tr>
+        </thead>
+      </table>
+    )
+
+    renderUniformSelection = () => (
+      <div className="uniformTableContainer">
+        <table>
+          <thead>
+            {renderTableHeading()}
+          </thead>
+        </table>
+        <div>
+          <select id="uniformDropdownSelector" onChange={this.handleChangeUniform}>
+            <option>Select Uniform</option>
+            <option>Normal</option>
+            <option>Tropical</option>
+            <option>Winter</option>
+          </select>
+        </div>
+      </div>
+    )
+
     render() {
       const { gear } = this.props;
       const { showUniformSelect } = this.state;
@@ -39,37 +72,11 @@ class ClothingCard extends Component {
 
       if (!showUniformSelect) {
         return (
-          <table className="uniformTableContainer">
-            <thead>
-              {renderTableHeading()}
-              <tr
-                className="uniformStats"
-                onClick={this.toggleSelectUniform}
-              >
-                <td id="currentUniform">{currentUniform}</td>
-                <td id="uniformWeight" style={{ textAlign: 'center' }}>{currentUniformWeight}</td>
-              </tr>
-            </thead>
-          </table>
+          this.renderUniformCard(currentUniform, currentUniformWeight)
         );
       }
-
       return (
-        <div className="uniformTableContainer">
-          <table>
-            <thead>
-              {renderTableHeading()}
-            </thead>
-          </table>
-          <div>
-            <select id="uniformDropdownSelector" onChange={this.handleChangeUniform}>
-              <option>Select Uniform</option>
-              <option>Normal</option>
-              <option>Tropical</option>
-              <option>Winter</option>
-            </select>
-          </div>
-        </div>
+        this.renderUniformSelection()
       );
     }
 }
