@@ -21,14 +21,12 @@ class EquipmentCard extends Component {
     };
   }
 
-  toggleShowEquipment = () => {
-    const { showEquipment } = this.state;
-    this.setState({ showEquipment: !showEquipment });
+  toggleOffEquipmentCardViews = (viewToToggle) => {
+    this.setState({ [viewToToggle]: false });
   }
 
-  toggleCustomEquipment = () => {
-    const { showCustomInput } = this.state;
-    this.setState({ showCustomInput: !showCustomInput });
+  toggleOnEquipmentCardViews = (viewToToggle) => {
+    this.setState({ [viewToToggle]: true });
   }
 
   toggleFilters = () => {
@@ -116,7 +114,7 @@ class EquipmentCard extends Component {
     return showCustomInput
       && (
         <CustomEquipmentModal
-          toggleCustomEquipment={this.toggleCustomEquipment}
+          toggleOffEquipmentCardViews={this.toggleOffEquipmentCardViews}
         />
       );
   }
@@ -145,12 +143,12 @@ class EquipmentCard extends Component {
                 <ButtonStandard
                   id="addEquipment"
                   name="Add Equipment"
-                  onClick={this.toggleShowEquipment}
+                  onClick={this.toggleOnEquipmentCardViews.bind(this, 'showEquipment')}
                 />
                 <ButtonStandard
                   id="toggleCustomEquipment"
                   name="Add Custom"
-                  onClick={this.toggleCustomEquipment}
+                  onClick={this.toggleOnEquipmentCardViews.bind(this, 'showCustomInput')}
                 />
                 <ButtonStandard
                   id="clearAllEquipment"
