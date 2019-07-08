@@ -1,8 +1,3 @@
-import { returnUpdatedWeightAndEquipment, updateQuantityOfEquipment } from '../reducerHelpers';
+import { returnUpdatedWeightAndArray } from '../reducerHelpers';
 
-export const increaseEquipmentReducer = (state, action) => {
-  const updatedEquipmentArray = updateQuantityOfEquipment(state.gear.equipment, action.payload.name, 1);
-  const newTotalWeight = state.totalWeight + action.payload.weight;
-
-  return returnUpdatedWeightAndEquipment(state, newTotalWeight, updatedEquipmentArray);
-};
+export const increaseEquipmentReducer = (state, action) => returnUpdatedWeightAndArray(state, action.payload, 1, 'equipment');

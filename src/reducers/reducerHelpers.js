@@ -8,7 +8,7 @@ const returnUpdatedWeightAndGearArray = arrayToUpdate => (state, newTotalWeight,
 export const returnUpdatedWeightAndEquipment = returnUpdatedWeightAndGearArray('equipment');
 export const returnUpdatedWeightAndFirearms = returnUpdatedWeightAndGearArray('firearms');
 
-const updateQuantityOfGear = (array, targetName, incrementer) => array.map((element) => {
+const incrementQuantity = incrementer => (array, targetName) => array.map((element) => {
   const object = element;
   if (object.name === targetName) {
     object.qty += incrementer;
@@ -16,5 +16,8 @@ const updateQuantityOfGear = (array, targetName, incrementer) => array.map((elem
   return object;
 });
 
-export const updateQuantityOfFirearm = updateQuantityOfGear;
-export const updateQuantityOfEquipment = updateQuantityOfGear;
+export const returnUpdatedWeightAndArray = (state, payload, incrementer, arrayName) => {
+  const newArray = incrementQuantity(incrementer)(state.gear[arrayName], payload.name);
+  const newTotalWeight = state.totalWeight + (payload.weight * incrementer);
+  return returnUpdatedWeightAndGearArray(arrayName)(state, newTotalWeight, newArray);
+};
