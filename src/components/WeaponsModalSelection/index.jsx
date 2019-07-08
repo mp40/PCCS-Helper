@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ButtonStandard from '../widgets/buttons/ButtonStandard';
 import ButtonInfo from '../widgets/buttons/ButtonInfo';
 
-const WeaponsModalSelection = ({ firearmsArray, closeShowFirearms, handleShowGunStats, handleAddFirearm }) => {
+const WeaponsModalSelection = ({ firearmsArray, toggleOffWeaponCardViews, handleShowGunStats, handleAddFirearm }) => {
   const newFirearmsArray = firearmsArray;
 
   return (
@@ -14,7 +14,7 @@ const WeaponsModalSelection = ({ firearmsArray, closeShowFirearms, handleShowGun
         <ButtonStandard
           id="closeFirearmModal"
           name="Close List"
-          onClick={closeShowFirearms}
+          onClick={toggleOffWeaponCardViews.bind(this, 'showFirearms')}
         />
       </div>
 
@@ -49,7 +49,7 @@ WeaponsModalSelection.propTypes = {
   firearmsArray: PropTypes.arrayOf(
     PropTypes.object,
   ),
-  closeShowFirearms: PropTypes.func,
+  toggleOffWeaponCardViews: PropTypes.func,
   handleShowGunStats: PropTypes.func,
   handleAddFirearm: PropTypes.func,
 };

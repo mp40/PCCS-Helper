@@ -26,17 +26,12 @@ class WeaponsCard extends Component {
     };
   }
 
-  handleWeaponsCardViews = (viewToToggle) => {
+  toggleOffWeaponCardViews = (viewToToggle) => {
     this.setState({ [viewToToggle]: false });
   }
 
   toggleOnWeaponsCardViews = (viewToToggle) => {
     this.setState({ [viewToToggle]: true });
-  }
-
-  toggleShowFirearms = () => {
-    const { showFirearms } = this.state;
-    this.setState({ showFirearms: !showFirearms });
   }
 
   toggleModifyWeapon = (gunObj) => {
@@ -80,14 +75,20 @@ class WeaponsCard extends Component {
     const weaponsWeight = calculateFirearmsArrayWeight(selectedGuns);
 
     const gunToModify = selectedGuns.filter(gunObj => gunObj.name === firearmToModify)[0];
+    // toggleOffWeaponCardViews = (viewToToggle) => {
+    //   this.setState({ [viewToToggle]: false });
+    // }
 
+    // toggleOnWeaponsCardViews = (viewToToggle) => {
+    //   this.setState({ [viewToToggle]: true });
+    // }
     return (
       <div style={{ width: '33%' }} className="WeaponSelect">
 
         <WeaponsCardBody
           selectedGuns={selectedGuns}
           weaponsWeight={weaponsWeight}
-          toggleShowFirearms={this.toggleShowFirearms}
+          toggleOnWeaponsCardViews={this.toggleOnWeaponsCardViews}
           handleRemoveAllGuns={this.handleRemoveAllGuns}
           handleRemoveGun={this.handleRemoveGun}
           handleIncrementGunQty={this.handleIncrementGunQty}
@@ -98,7 +99,7 @@ class WeaponsCard extends Component {
         {showFirearms
           && (
             <WeaponsCardSelectModal
-              closeShowFirearms={this.toggleShowFirearms}
+              toggleOffWeaponCardViews={this.toggleOffWeaponCardViews}
             />
           )
         }
@@ -110,7 +111,7 @@ class WeaponsCard extends Component {
                 <div style={{ marginTop: '2px', marginLeft: '2px' }}>
                   <ButtonDeleteX
                     id="closeGunStatView"
-                    onClick={this.handleWeaponsCardViews.bind(this, 'modifyFirearm')}
+                    onClick={this.toggleOffWeaponCardViews.bind(this, 'modifyFirearm')}
                   />
                 </div>
                 <div style={{ display: 'flex' }}>
@@ -124,7 +125,7 @@ class WeaponsCard extends Component {
                     createCustomMag={createCustomMag}
                     modifyFirearmWeight={modifyFirearmWeight}
                     toggleOnWeaponsCardViews={this.toggleOnWeaponsCardViews}
-                    handleWeaponsCardViews={this.handleWeaponsCardViews}
+                    toggleOffWeaponCardViews={this.toggleOffWeaponCardViews}
                     removeAllGunMods={this.removeAllGunMods}
                   />
                 </div>

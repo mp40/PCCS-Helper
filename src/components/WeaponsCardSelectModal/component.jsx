@@ -52,7 +52,7 @@ class WeaponsCardSelectModal extends Component {
 
     render() {
       const { gunStatsToView, showGunStats } = this.state;
-      const { closeShowFirearms } = this.props;
+      const { toggleOffWeaponCardViews } = this.props;
       const firearmsArray = [...rifles(), ...pistols(), ...smgs(), ...mgs(), ...sniperRifles(), ...shotguns()];
       const gunObj = gunStatsToView;
 
@@ -65,7 +65,7 @@ class WeaponsCardSelectModal extends Component {
             : (
               <WeaponsModalSelection
                 firearmsArray={firearmsArray}
-                closeShowFirearms={closeShowFirearms}
+                toggleOffWeaponCardViews={toggleOffWeaponCardViews}
                 handleAddFirearm={this.handleAddFirearm}
                 handleShowGunStats={this.handleShowGunStats}
               />
@@ -78,7 +78,7 @@ class WeaponsCardSelectModal extends Component {
 
 WeaponsCardSelectModal.propTypes = {
   addFirearm: PropTypes.func,
-  closeShowFirearms: PropTypes.func,
+  toggleOffWeaponCardViews: PropTypes.func,
   gear: gearShape,
 };
 
