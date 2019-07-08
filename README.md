@@ -5,6 +5,7 @@
 ### Built with TDD/BDD and CI.
 [![Build Status](https://travis-ci.org/mp40/PCCS-Helper.png?branch=master)](https://travis-ci.org/mp40/PCCS-Helper)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/e80706684ebcb24309e8/test_coverage)](https://codeclimate.com/github/mp40/PCCS-Helper/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/e80706684ebcb24309e8/maintainability)](https://codeclimate.com/github/mp40/PCCS-Helper/maintainability)
 
 This was started during my time as a student at Code Chrysalis
 
