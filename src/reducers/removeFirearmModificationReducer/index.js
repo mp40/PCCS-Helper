@@ -1,9 +1,9 @@
 /* eslint-disable array-callback-return */
-import { correctFloatingPoint } from '../reducerHelpers';
+import { returnUpdatedWeightAndFirearms } from '../reducerHelpers';
 
 export const removeFirearmModificationReducer = (state, action) => {
   const newTotalWeight = state.totalWeight - action.payload.modNote.weightMod;
-  const updatedFirearmsArray = state.gear.firearms.map((element) => {
+  const newFirearmArray = state.gear.firearms.map((element) => {
     const firearm = element;
     if (firearm.name === action.payload.firearm) {
       const newNotes = firearm.modNotes.filter((currentNote) => {
@@ -18,9 +18,5 @@ export const removeFirearmModificationReducer = (state, action) => {
     return firearm;
   });
 
-
-  return { ...state,
-    totalWeight: correctFloatingPoint(newTotalWeight),
-    gear: { ...state.gear,
-      firearms: updatedFirearmsArray } };
+  return returnUpdatedWeightAndFirearms(state, newTotalWeight, newFirearmArray);
 };
