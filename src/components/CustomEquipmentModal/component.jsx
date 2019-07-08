@@ -55,6 +55,28 @@ class CustomEquipmentModal extends Component {
     toggleCustomEquipment();
   }
 
+renderHeading = toggleCustomEquipment => (
+  <div className="subContainer">
+    <div className="customEquipmentListHeader">
+      Add Equipment To List
+    </div>
+    <ButtonStandard
+      style={{ marginTop: '.5rem' }}
+      name="Cancel"
+      onClick={toggleCustomEquipment}
+    />
+  </div>
+)
+
+  renderTextInput = (heading, idRef, equipmentValue, onChange) => (
+    <TextInput
+      heading={heading}
+      idRef={idRef}
+      equipmentValue={equipmentValue}
+      onChange={onChange}
+    />
+  )
+
   render() {
     const { toggleCustomEquipment } = this.props;
     const { equipmentName, equipmentWeight, errorMsgInvalidEntry, errorMsgExistsInArray } = this.state;
@@ -63,31 +85,9 @@ class CustomEquipmentModal extends Component {
       <div className="customEquipmentModalContainer">
         <div className="customEquipmentListCard">
           <div className="customContainer">
-
-            <div className="subContainer">
-              <div className="customEquipmentListHeader">
-                            Add Equipment To List
-              </div>
-              <ButtonStandard
-                style={{ marginTop: '.5rem' }}
-                name="Cancel"
-                onClick={toggleCustomEquipment}
-              />
-            </div>
-
-            <TextInput
-              heading="Equipment Name"
-              idRef="equipNameInput"
-              equipmentValue={equipmentName}
-              onChange={this.handleChange.bind(this, 'name')}
-            />
-
-            <TextInput
-              heading="Equipment Weight (lbs)"
-              idRef="equipWeightInput"
-              equipmentValue={equipmentWeight}
-              onChange={this.handleChange.bind(this, 'weight')}
-            />
+            {this.renderHeading(toggleCustomEquipment)}
+            {this.renderTextInput('Equipment Name', 'equipNameInput', equipmentName, this.handleChange.bind(this, 'name'))}
+            {this.renderTextInput('Equipment Weight (lbs)', 'equipWeightInput', equipmentWeight, this.handleChange.bind(this, 'weight'))}
 
             <ButtonStandard
               id="submitCustomEquipButton"
