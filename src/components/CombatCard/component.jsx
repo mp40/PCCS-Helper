@@ -4,6 +4,15 @@ import StatInput from '../widgets/StatInput';
 import { renderAtrributeAndCombatTableHeadings } from '../widgets/renderWidgets';
 import { isValidCombatLevel } from '../../helpers/gaurds';
 
+const renderStatInput = (level, statName, action) => (
+  <StatInput
+    statLevel={level}
+    statName={statName}
+    idRef={`update${statName}`}
+    isValid={isValidCombatLevel}
+    action={action}
+  />
+);
 
 const CombatCard = (props) => {
   const { characterStats, modifyGunCombatLevel, modifyMeleeCombatLevel } = props;
@@ -13,20 +22,8 @@ const CombatCard = (props) => {
         <table className="attributeContainer">
           <tbody>
             {renderAtrributeAndCombatTableHeadings()}
-            <StatInput
-              statLevel={characterStats.gunLevel}
-              statName="Gun"
-              idRef="updateGun"
-              isValid={isValidCombatLevel}
-              action={modifyGunCombatLevel}
-            />
-            <StatInput
-              statLevel={characterStats.handLevel}
-              statName="Hand"
-              idRef="updateHand"
-              isValid={isValidCombatLevel}
-              action={modifyMeleeCombatLevel}
-            />
+            {renderStatInput(characterStats.gunLevel, 'Gun', modifyGunCombatLevel)}
+            {renderStatInput(characterStats.handLevel, 'Hand', modifyMeleeCombatLevel)}
           </tbody>
         </table>
       </div>
