@@ -67,59 +67,61 @@ class WeaponsCard extends Component {
     removeAllModificationsFromFirearm(firearmToModify);
   }
 
-  render() {
-    const { gear } = this.props;
-    const { firearmToModify, showFirearms, modifyFirearm, createCustomMag, modifyFirearmWeight } = this.state;
-    const selectedGuns = getSelectedWeapons(gear.firearms);
+  renderWeaponSelect = () => (
+    <WeaponsCardSelectModal
+      toggleOffWeaponCardViews={this.toggleOffWeaponCardViews}
+    />
+  )
 
-    const weaponsWeight = calculateFirearmsArrayWeight(selectedGuns);
+  renderCloseFirearmStatButton = () => (
+    <div style={{ marginTop: '2px', marginLeft: '2px' }}>
+      <ButtonDeleteX
+        id="closeGunStatView"
+        onClick={this.toggleOffWeaponCardViews.bind(this, 'modifyFirearm')}
+      />
+    </div>
+  )
 
-    const gunToModify = selectedGuns.filter(gunObj => gunObj.name === firearmToModify)[0];
-    // toggleOffWeaponCardViews = (viewToToggle) => {
-    //   this.setState({ [viewToToggle]: false });
-    // }
+renderFirearmStats = gunToModify => (
+  <div style={{ width: '40rem' }}>
+    <WeaponsCardWeaponStats
+      gunObj={gunToModify}
+    />
+  </div>
+)
 
-    // toggleOnWeaponsCardViews = (viewToToggle) => {
-    //   this.setState({ [viewToToggle]: true });
-    // }
-    return (
-      <div style={{ width: '33%' }} className="WeaponSelect">
+render() {
+  const { gear } = this.props;
+  const { firearmToModify, showFirearms, modifyFirearm, createCustomMag, modifyFirearmWeight } = this.state;
+  const selectedGuns = getSelectedWeapons(gear.firearms);
 
-        <WeaponsCardBody
-          selectedGuns={selectedGuns}
-          weaponsWeight={weaponsWeight}
-          toggleOnWeaponsCardViews={this.toggleOnWeaponsCardViews}
-          handleRemoveAllGuns={this.handleRemoveAllGuns}
-          handleRemoveGun={this.handleRemoveGun}
-          handleIncrementGunQty={this.handleIncrementGunQty}
-          handleIncrementMagQty={this.handleIncrementMagQty}
-          toggleModifyWeapon={this.toggleModifyWeapon}
-        />
+  const weaponsWeight = calculateFirearmsArrayWeight(selectedGuns);
 
-        {showFirearms
-          && (
-            <WeaponsCardSelectModal
-              toggleOffWeaponCardViews={this.toggleOffWeaponCardViews}
-            />
-          )
-        }
+  const gunToModify = selectedGuns.filter(gunObj => gunObj.name === firearmToModify)[0];
 
-        {modifyFirearm
+  return (
+    <div style={{ width: '33%' }} className="WeaponSelect">
+
+      <WeaponsCardBody
+        selectedGuns={selectedGuns}
+        weaponsWeight={weaponsWeight}
+        toggleOnWeaponsCardViews={this.toggleOnWeaponsCardViews}
+        handleRemoveAllGuns={this.handleRemoveAllGuns}
+        handleRemoveGun={this.handleRemoveGun}
+        handleIncrementGunQty={this.handleIncrementGunQty}
+        handleIncrementMagQty={this.handleIncrementMagQty}
+        toggleModifyWeapon={this.toggleModifyWeapon}
+      />
+
+      {showFirearms && this.renderWeaponSelect()}
+
+      {modifyFirearm
           && (
             <div className="equipmentModalContainer">
               <div className="WeaponStatTableContainer" style={{ fontSize: 'medium' }}>
-                <div style={{ marginTop: '2px', marginLeft: '2px' }}>
-                  <ButtonDeleteX
-                    id="closeGunStatView"
-                    onClick={this.toggleOffWeaponCardViews.bind(this, 'modifyFirearm')}
-                  />
-                </div>
+                {this.renderCloseFirearmStatButton()}
                 <div style={{ display: 'flex' }}>
-                  <div style={{ width: '40rem' }}>
-                    <WeaponsCardWeaponStats
-                      gunObj={gunToModify}
-                    />
-                  </div>
+                  {this.renderFirearmStats(gunToModify)}
                   <WeaponsCardModifyWeapon
                     gunObj={gunToModify}
                     createCustomMag={createCustomMag}
@@ -133,9 +135,9 @@ class WeaponsCard extends Component {
             </div>
           )
         }
-      </div>
-    );
-  }
+    </div>
+  );
+}
 }
 
 WeaponsCard.propTypes = {
