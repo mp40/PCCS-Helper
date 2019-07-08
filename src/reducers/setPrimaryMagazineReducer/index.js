@@ -1,10 +1,10 @@
-import { correctFloatingPoint } from '../reducerHelpers';
+import { returnUpdatedWeightAndFirearms } from '../reducerHelpers';
 
 const getPrimaryMagazine = (magazineArray, indexOfPrimary) => magazineArray.splice(indexOfPrimary, 1)[0];
 
 export const setPrimaryMagazineReducer = (state, action) => {
   let newTotalWeight = state.totalWeight;
-  const updatedFirearmsArray = state.gear.firearms.map((element) => {
+  const newFirearmArray = state.gear.firearms.map((element) => {
     const gun = element;
     if (gun.name === action.payload.firearm) {
       gun.weight -= gun.mag[0].weight;
@@ -17,8 +17,5 @@ export const setPrimaryMagazineReducer = (state, action) => {
     return gun;
   });
 
-  return { ...state,
-    totalWeight: correctFloatingPoint(newTotalWeight),
-    gear: { ...state.gear,
-      firearms: updatedFirearmsArray } };
+  return returnUpdatedWeightAndFirearms(state, newTotalWeight, newFirearmArray);
 };

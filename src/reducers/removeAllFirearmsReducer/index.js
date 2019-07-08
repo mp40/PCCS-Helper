@@ -1,7 +1,8 @@
 import { calculateTotalWeight } from '../../helpers/actionHelpers';
-import { correctFloatingPoint } from '../reducerHelpers';
+import { correctFloatingPoint, returnUpdatedWeightAndFirearms } from '../reducerHelpers';
 
-export const removeAllFirearmsReducer = (state, action) => ({ ...state,
-  totalWeight: correctFloatingPoint(calculateTotalWeight(state.gear.uniform, state.gear.equipment, action.payload)),
-  gear: { ...state.gear,
-    firearms: [...action.payload] } });
+export const removeAllFirearmsReducer = (state, action) => returnUpdatedWeightAndFirearms(
+  state,
+  correctFloatingPoint(calculateTotalWeight(state.gear.uniform, state.gear.equipment, action.payload)),
+  action.payload,
+);

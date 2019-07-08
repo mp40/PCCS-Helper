@@ -1,18 +1,8 @@
-import { correctFloatingPoint } from '../reducerHelpers';
+import { returnUpdatedWeightAndFirearms, updateQuantityOfFirearm } from '../reducerHelpers';
 
 export const decreaseFirearmReducer = (state, action) => {
-  const firearmArray = state.gear.firearms.map((element) => {
-    const firearmObject = element;
-    if (firearmObject.name === action.payload.name) {
-      firearmObject.qty -= 1;
-    }
-    return firearmObject;
-  });
-
+  const newFirearmArray = updateQuantityOfFirearm(state.gear.firearms, action.payload.name, -1);
   const newTotalWeight = state.totalWeight - action.payload.weight;
 
-  return { ...state,
-    totalWeight: correctFloatingPoint(newTotalWeight),
-    gear: { ...state.gear,
-      firearms: [...firearmArray] } };
+  return returnUpdatedWeightAndFirearms(state, newTotalWeight, newFirearmArray);
 };
