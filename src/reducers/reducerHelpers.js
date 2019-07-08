@@ -1,14 +1,20 @@
 export const correctFloatingPoint = number => Math.round(number * 1000) / 1000;
 
-export const returnUpdatedWeightAndFirearms = (state, newTotalWeight, updatedFirearmsArray) => ({ ...state,
+const returnUpdatedWeightAndGearArray = arrayToUpdate => (state, newTotalWeight, updatedArray) => ({ ...state,
   totalWeight: correctFloatingPoint(newTotalWeight),
   gear: { ...state.gear,
-    firearms: updatedFirearmsArray } });
+    [arrayToUpdate]: updatedArray } });
 
-export const updateQuantityOfFirearm = (firearmArray, firearmName, incrementer) => firearmArray.map((element) => {
-  const firearmObject = element;
-  if (firearmObject.name === firearmName) {
-    firearmObject.qty += incrementer;
+export const returnUpdatedWeightAndEquipment = returnUpdatedWeightAndGearArray('equipment');
+export const returnUpdatedWeightAndFirearms = returnUpdatedWeightAndGearArray('firearms');
+
+const updateQuantityOfGear = (array, targetName, incrementer) => array.map((element) => {
+  const object = element;
+  if (object.name === targetName) {
+    object.qty += incrementer;
   }
-  return firearmObject;
+  return object;
 });
+
+export const updateQuantityOfFirearm = updateQuantityOfGear;
+export const updateQuantityOfEquipment = updateQuantityOfGear;
