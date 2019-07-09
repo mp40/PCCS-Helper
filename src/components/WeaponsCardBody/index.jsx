@@ -11,7 +11,7 @@ export const renderCorrectAmmoTitle = magObj => (magObj.type === 'Rnd' ? 'Single
 
 const WeaponsCardBody = ({
   weaponsWeight,
-  toggleShowFirearms,
+  toggleOnWeaponsCardViews,
   handleRemoveGun,
   handleRemoveAllGuns,
   handleIncrementGunQty,
@@ -37,7 +37,7 @@ const WeaponsCardBody = ({
           <ButtonStandard
             id="addFirearm"
             name="Add Firearm"
-            onClick={toggleShowFirearms}
+            onClick={toggleOnWeaponsCardViews.bind(this, 'showFirearms')}
           />
           <ButtonStandard
             id="clearAllFirearms"
@@ -107,7 +107,7 @@ const WeaponsCardBody = ({
 
 WeaponsCardBody.propTypes = {
   weaponsWeight: PropTypes.number,
-  toggleShowFirearms: PropTypes.func,
+  toggleOnWeaponsCardViews: PropTypes.func,
   handleRemoveAllGuns: PropTypes.func,
   handleIncrementGunQty: PropTypes.func,
   handleIncrementMagQty: PropTypes.func,

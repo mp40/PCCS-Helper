@@ -36,7 +36,7 @@ class CustomEquipmentModal extends Component {
   }
 
   submitEquipment = () => {
-    const { gear, toggleCustomEquipment, addEquipment } = this.props;
+    const { gear, toggleOffEquipmentCardViews, addEquipment } = this.props;
     const { equipmentName, equipmentWeight } = this.state;
     const name = equipmentName;
     const weight = parseInt(equipmentWeight, 10);
@@ -52,10 +52,10 @@ class CustomEquipmentModal extends Component {
     }
 
     addEquipment(createValidEqipmentObject(name, weight));
-    toggleCustomEquipment();
+    toggleOffEquipmentCardViews('showCustomInput');
   }
 
-renderHeading = toggleCustomEquipment => (
+renderHeading = toggleOffEquipmentCardViews => (
   <div className="subContainer">
     <div className="customEquipmentListHeader">
       Add Equipment To List
@@ -63,7 +63,7 @@ renderHeading = toggleCustomEquipment => (
     <ButtonStandard
       style={{ marginTop: '.5rem' }}
       name="Cancel"
-      onClick={toggleCustomEquipment}
+      onClick={toggleOffEquipmentCardViews.bind(this, 'showCustomInput')}
     />
   </div>
 )
@@ -78,14 +78,14 @@ renderHeading = toggleCustomEquipment => (
   )
 
   render() {
-    const { toggleCustomEquipment } = this.props;
+    const { toggleOffEquipmentCardViews } = this.props;
     const { equipmentName, equipmentWeight, errorMsgInvalidEntry, errorMsgExistsInArray } = this.state;
 
     return (
       <div className="customEquipmentModalContainer">
         <div className="customEquipmentListCard">
           <div className="customContainer">
-            {this.renderHeading(toggleCustomEquipment)}
+            {this.renderHeading(toggleOffEquipmentCardViews)}
             {this.renderTextInput('Equipment Name', 'equipNameInput', equipmentName, this.handleChange.bind(this, 'name'))}
             {this.renderTextInput('Equipment Weight (lbs)', 'equipWeightInput', equipmentWeight, this.handleChange.bind(this, 'weight'))}
 
@@ -113,7 +113,7 @@ renderHeading = toggleCustomEquipment => (
 CustomEquipmentModal.propTypes = {
   addEquipment: PropTypes.func,
   gear: gearShape,
-  toggleCustomEquipment: PropTypes.func,
+  toggleOffEquipmentCardViews: PropTypes.func,
 
 };
 
