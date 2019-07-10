@@ -66,6 +66,19 @@ export const renderMagazinesHeading = toggleOnWeaponsCardViews => (
   </div>
 );
 
+const renderRemoveMagazineButton = (removed = false) => {
+  const buttonName = removed === true ? 'replace' : 'remove';
+  return (
+    <button
+      type="button"
+      className="removeMagazineFromInventory"
+      // onClick={}
+    >
+      {buttonName}
+    </button>
+  );
+};
+
 export const renderMagazines = (gunObj, setPrimaryMag) => gunObj.mag.map((magObj, index) => (
   <div key={`${magObj.cap}${magObj.weight}`}>
     {`${magObj.cap} round ${magObj.type}`}
@@ -74,6 +87,7 @@ export const renderMagazines = (gunObj, setPrimaryMag) => gunObj.mag.map((magObj
       ? <button type="button" id={`${gunObj.name}MagAtIndex${index}`} onClick={setPrimaryMag.bind(this, index)} style={{ opacity: '0.6' }}>primary</button>
       : <button type="button" id={`${gunObj.name}MagAtIndex${index}`}>primary</button>
       }
+    {renderRemoveMagazineButton(magObj.removed)}
   </div>
 ));
 
