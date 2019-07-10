@@ -1,7 +1,7 @@
 import { returnUpdatedWeightAndFirearms } from '../reducerHelpers';
 import { calculateTotalWeight } from '../../helpers/actionHelpers';
 
-export const removeMagazinesReducer = (state, action) => {
+export const removeMagazineReducer = (state, action) => {
   const newFirearmArray = state.gear.firearms.map((element) => {
     const gun = element;
     if (gun.name === action.payload.firearm) {
@@ -10,6 +10,7 @@ export const removeMagazinesReducer = (state, action) => {
         if (mag.cap === action.payload.magazine.cap && mag.weight === action.payload.magazine.weight) {
           gun.weight -= mag.qty * mag.weight;
           mag.qty = 0;
+          mag.removed = true;
         }
         return mag;
       });
