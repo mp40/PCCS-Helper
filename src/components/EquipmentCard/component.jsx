@@ -119,47 +119,59 @@ class EquipmentCard extends Component {
       );
   }
 
+  renderTableHead = totalEquipWeight => (
+    <thead>
+      <tr className="equipmentHeader">
+        <th>Equipment</th>
+        <th style={{ width: '9%' }}>Weight</th>
+        <th style={{ width: '9%' }}>Qty</th>
+        <th style={{ width: '9%' }}>lbs</th>
+        <th style={{ width: '9%' }}>
+          {Math.round(totalEquipWeight * 1000) / 1000}
+        </th>
+      </tr>
+    </thead>
+  )
+
+  renderTableBody = () => (
+    <tbody id="characterEquipmentList">
+      <tr className="addEquipment">
+        <td>
+          <ButtonStandard
+            id="addEquipment"
+            name="Add Equipment"
+            onClick={this.toggleOnEquipmentCardViews.bind(this, 'showEquipment')}
+          />
+          <ButtonStandard
+            id="toggleCustomEquipment"
+            name="Add Custom"
+            onClick={this.toggleOnEquipmentCardViews.bind(this, 'showCustomInput')}
+          />
+          <ButtonStandard
+            id="clearAllEquipment"
+            name="Clear All"
+            onClick={this.handleRemoveAllEquipment}
+          />
+        </td>
+      </tr>
+      {this.mapEquipment()}
+    </tbody>
+  )
+
+  renderEquipmentCardTable = totalEquipWeight => (
+    <table style={{ width: '100%' }} className="equipmentTable">
+      {this.renderTableHead(totalEquipWeight)}
+      {this.renderTableBody()}
+    </table>
+  )
+
   render() {
     const { gear } = this.props;
     const totalEquipWeight = findEquipmentWeight(gear.equipment);
 
     return (
       <div style={{ width: '40%' }} className="equipmentSelect">
-        <table style={{ width: '100%' }} className="equipmentTable">
-          <thead>
-            <tr className="equipmentHeader">
-              <th>Equipment</th>
-              <th style={{ width: '9%' }}>Weight</th>
-              <th style={{ width: '9%' }}>Qty</th>
-              <th style={{ width: '9%' }}>lbs</th>
-              <th style={{ width: '9%' }}>
-                {Math.round(totalEquipWeight * 1000) / 1000}
-              </th>
-            </tr>
-          </thead>
-          <tbody id="characterEquipmentList">
-            <tr className="addEquipment">
-              <td>
-                <ButtonStandard
-                  id="addEquipment"
-                  name="Add Equipment"
-                  onClick={this.toggleOnEquipmentCardViews.bind(this, 'showEquipment')}
-                />
-                <ButtonStandard
-                  id="toggleCustomEquipment"
-                  name="Add Custom"
-                  onClick={this.toggleOnEquipmentCardViews.bind(this, 'showCustomInput')}
-                />
-                <ButtonStandard
-                  id="clearAllEquipment"
-                  name="Clear All"
-                  onClick={this.handleRemoveAllEquipment}
-                />
-              </td>
-            </tr>
-            {this.mapEquipment()}
-          </tbody>
-        </table>
+        {this.renderEquipmentCardTable(totalEquipWeight)}
         {this.renderEquipmentDropdown()}
         {this.renderCustomEquipmentModal()}
       </div>
