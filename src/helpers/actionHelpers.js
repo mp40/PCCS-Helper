@@ -25,14 +25,16 @@ export const calculateObjectWeightDifference = (obj, modifier) => {
   return Math.round((newWeight - oldWeight) * 1000) / 1000;
 };
 
+const updateIfMatchesByName = (element, object) => (element.name && element.name === object.name ? object : element);
+const updateIfMatchesByCapacity = (
+  element,
+  capacity,
+  modifier,
+) => (element.cap && element.cap === capacity ? modifier : 0);
 export const modifyObjectQtyInArray = (array, obj, modifier = 0) => array.map((element) => {
-  const newElement = element;
-  if (newElement.name && newElement.name === obj.name) {
-    return obj;
-  }
-  if (element.cap && element.cap === obj.cap) {
-    newElement.qty += modifier;
-  }
+  let newElement = element;
+  newElement = updateIfMatchesByName(newElement, obj);
+  newElement.qty += updateIfMatchesByCapacity(newElement, obj.cap, modifier);
   return newElement;
 });
 
@@ -42,4 +44,8 @@ export const findUniformWeight = uniform => uniformWeights[uniform];
 
 export const findEquipmentWeight = equipment => equipment.reduce((sum, obj) => sum + obj.weight * obj.qty, 0);
 
-export const calculateTotalWeight = (uniform, equipment, firearms) => findUniformWeight(uniform) + findEquipmentWeight(equipment) + calculateFirearmsArrayWeight(firearms);
+export const calculateTotalWeight = (
+  uniform,
+  equipment,
+  firearms,
+) => findUniformWeight(uniform) + findEquipmentWeight(equipment) + calculateFirearmsArrayWeight(firearms);
