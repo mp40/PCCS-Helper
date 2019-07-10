@@ -5,7 +5,7 @@ import { AddedM1911A1, AddedM1911A1AndM16 } from '../testResouces';
 const moddedM1911A1 = (weightChange) => {
   const newM1911A1 = testM1911A1();
   newM1911A1.weight = testM1911A1().weight + weightChange;
-  newM1911A1.modNote = { note: 'test', weightMod: weightChange };
+  newM1911A1.modNote = [{ note: 'test', weightMod: weightChange }];
   return newM1911A1;
 };
 
@@ -16,7 +16,7 @@ const moddedM1911A1LessWeight = (() => moddedM1911A1(-0.5));
 class CharacterWithModifiedM1911A1 extends AddedM1911A1 {
   constructor(newM1911A1) {
     super(newM1911A1);
-    this.totalWeight += newM1911A1.modNote.weightMod;
+    this.totalWeight += newM1911A1.modNote[0].weightMod;
     this.gear.firearms = [newM1911A1];
   }
 }
@@ -46,5 +46,8 @@ describe('addFirearmReducer function', () => {
     const action = { payload: { firearm: 'M1911A1', modNote } };
     const newState = modifyFirearmReducer(new AddedM1911A1AndM16(), action);
     expect(newState).toMatchObject(characterWithM16AndModdedM1911A1());
+  });
+  it('should be able to modify bthe weapon more than once', () => {
+    // above implimentation is for one mod only, original implimentation was multiple
   });
 });
