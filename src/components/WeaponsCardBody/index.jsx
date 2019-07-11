@@ -102,6 +102,7 @@ const WeaponsCardBody = ({
                 </tr>
               );
             }
+            return null;
           })}
         </Fragment>
       ))}

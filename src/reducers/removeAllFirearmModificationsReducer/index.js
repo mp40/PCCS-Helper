@@ -9,7 +9,7 @@ const removeKeyFromFirearm = firearm => Object.keys(firearm).reduce((object, key
   return objectToReturn;
 }, {});
 
-const removeCustomMagazines = magazineArray => magazineArray.filter(element => element.custom === undefined);
+export const removeCustomMagazines = magazineArray => magazineArray.filter(element => element.custom === undefined);
 
 export const removeModificationWeight = (gunWeight, modifications) => {
   if (modifications === undefined || modifications === null) {
