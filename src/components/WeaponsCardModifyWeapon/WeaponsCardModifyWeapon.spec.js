@@ -51,6 +51,11 @@ describe('modifying weapons', () => {
     const remove20RoundMagazineButton = wrapper.find('.modifyMagazines').childAt(1).childAt(1);
     expect(remove20RoundMagazineButton.exists()).toBe(false);
   });
-  // TODO - test it removes weight? tested in reducer but..
-  // TODO - replace the magazine
+  it('should be possible to replace the magazine', () => {
+    const handle30RoundMagazineButton = wrapper.find('.modifyMagazines').childAt(2).childAt(1);
+    handle30RoundMagazineButton.simulate('click');
+    expect(modifyPanel().text()).toContain('replace');
+    handle30RoundMagazineButton.simulate('click');
+    expect(modifyPanel().text()).not.toContain('replace');
+  });
 });
