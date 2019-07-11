@@ -37,6 +37,11 @@ class WeaponsCardModifyWeapon extends Component {
     toggleOffWeaponCardViews('modifyFirearmWeight');
   }
 
+  handleRemoveMagazine = (payload) => {
+    const { removeMagazine } = this.props;
+    removeMagazine(payload);
+  }
+
   render() {
     const {
       gunObj,
@@ -50,7 +55,7 @@ class WeaponsCardModifyWeapon extends Component {
       return (
         <div style={{ marginLeft: '5rem' }} className="modifyWeaponPanel">
           {renderModifyWeaponHeader(removeAllGunMods)}
-          {renderModifyMagazines(toggleOnWeaponsCardViews, gunObj, this.setPrimaryMag)}
+          {renderModifyMagazines(toggleOnWeaponsCardViews, gunObj, this.setPrimaryMag, this.handleRemoveMagazine)}
           {rendeWeaponModifications(toggleOnWeaponsCardViews)}
           {gunObj.modNotes && renderModificationNotes(gunObj.modNotes, this.handleRemoveMod)}
         </div>
@@ -68,6 +73,7 @@ class WeaponsCardModifyWeapon extends Component {
 }
 
 WeaponsCardModifyWeapon.propTypes = {
+  removeMagazine: PropTypes.func,
   modifyFirearm: PropTypes.func,
   addCustomMagazine: PropTypes.func,
   setPrimaryMagazine: PropTypes.func,

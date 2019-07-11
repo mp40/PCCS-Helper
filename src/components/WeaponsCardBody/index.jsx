@@ -84,21 +84,25 @@ const WeaponsCardBody = ({
               />
             </td>
           </tr>
-          {gunObj.mag.map((magObj, dex) => (
-            <tr key={`${magObj.cap}${magObj.weight}`} className="spareMags">
-              <td>
-                <span className="magQtySpan" style={{ marginLeft: '2rem' }}>{`${magObj.qty} x ${renderCorrectAmmoTitle(magObj)}`}</span>
-                <span style={{ marginLeft: '2px', marginRight: '2px' }}>
-                  <ButtonIncrementArrows
-                    idUp={`qtyUpMagType${dex + 1}`}
-                    idDown={`qtyDownMagType${dex + 1}`}
-                    onClickUp={handleIncrementMagQty.bind(this, gunObj, magObj, 'up')}
-                    onClickDown={handleIncrementMagQty.bind(this, gunObj, magObj, 'down')}
-                  />
-                </span>
-              </td>
-            </tr>
-          ))}
+          {gunObj.mag.map((magObj, dex) => {
+            if (magObj.removed === undefined || magObj.removed === false) {
+              return (
+                <tr key={`${magObj.cap}${magObj.weight}`} className="spareMags">
+                  <td>
+                    <span className="magQtySpan" style={{ marginLeft: '2rem' }}>{`${magObj.qty} x ${renderCorrectAmmoTitle(magObj)}`}</span>
+                    <span style={{ marginLeft: '2px', marginRight: '2px' }}>
+                      <ButtonIncrementArrows
+                        idUp={`qtyUpMagType${dex + 1}`}
+                        idDown={`qtyDownMagType${dex + 1}`}
+                        onClickUp={handleIncrementMagQty.bind(this, gunObj, magObj, 'up')}
+                        onClickDown={handleIncrementMagQty.bind(this, gunObj, magObj, 'down')}
+                      />
+                    </span>
+                  </td>
+                </tr>
+              );
+            }
+          })}
         </Fragment>
       ))}
     </tbody>

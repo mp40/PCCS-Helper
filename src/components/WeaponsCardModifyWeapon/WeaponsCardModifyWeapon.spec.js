@@ -36,4 +36,21 @@ describe('modifying weapons', () => {
     wrapper.find('#closeGunStatView').simulate('click');
     expect(wrapper.text()).not.toContain('Modify Weapon');
   });
+  it('should be possible to remove/hide a particular magazine', () => {
+    const remove30RoundMagazineButton = wrapper.find('.modifyMagazines').childAt(2).childAt(1);
+    remove30RoundMagazineButton.simulate('click');
+    expect(wrapper.find('#characterWeaponList').text()).not.toContain('30 round Mag');
+  });
+  it('should change name of button to "replace" after removing magazine', () => {
+    expect(modifyPanel().text()).not.toContain('replace');
+    const remove30RoundMagazineButton = wrapper.find('.modifyMagazines').childAt(2).childAt(1);
+    remove30RoundMagazineButton.simulate('click');
+    expect(modifyPanel().text()).toContain('replace');
+  });
+  it('should not render a remove button for the primary magazine', () => {
+    const remove20RoundMagazineButton = wrapper.find('.modifyMagazines').childAt(1).childAt(1);
+    expect(remove20RoundMagazineButton.exists()).toBe(false);
+  });
+  // TODO - test it removes weight? tested in reducer but..
+  // TODO - replace the magazine
 });

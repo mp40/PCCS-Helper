@@ -1,4 +1,5 @@
 import React from 'react';
+// import PropTypes from 'prop-types';
 import ButtonSlim from '../widgets/buttons/ButtonSlim';
 
 export const renderModifyWeaponHeader = removeAllGunMods => (
@@ -66,20 +67,20 @@ export const renderMagazinesHeading = toggleOnWeaponsCardViews => (
   </div>
 );
 
-const renderRemoveMagazineButton = (removed = false) => {
+export const renderRemoveMagazineButton = (removeMagazine, firearm, magazine, removed = false) => {
   const buttonName = removed === true ? 'replace' : 'remove';
   return (
     <button
       type="button"
       className="removeMagazineFromInventory"
-      // onClick={}
+      onClick={removeMagazine.bind(this, { firearm, magazine })}
     >
       {buttonName}
     </button>
   );
 };
 
-export const renderMagazines = (gunObj, setPrimaryMag) => gunObj.mag.map((magObj, index) => (
+export const renderMagazines = (gunObj, setPrimaryMag, removeMagazine) => gunObj.mag.map((magObj, index) => (
   <div key={`${magObj.cap}${magObj.weight}`}>
     {`${magObj.cap} round ${magObj.type}`}
     {`${magObj.weight} lbs`}
@@ -87,13 +88,13 @@ export const renderMagazines = (gunObj, setPrimaryMag) => gunObj.mag.map((magObj
       ? <button type="button" id={`${gunObj.name}MagAtIndex${index}`} onClick={setPrimaryMag.bind(this, index)} style={{ opacity: '0.6' }}>primary</button>
       : <button type="button" id={`${gunObj.name}MagAtIndex${index}`}>primary</button>
       }
-    {renderRemoveMagazineButton(magObj.removed)}
+    {index > 0 && renderRemoveMagazineButton(removeMagazine, gunObj.name, magObj, magObj.removed)}
   </div>
 ));
 
-export const renderModifyMagazines = (toggleOnWeaponsCardViews, gunObj, setPrimaryMag) => (
+export const renderModifyMagazines = (toggleOnWeaponsCardViews, gunObj, setPrimaryMag, removeMagazine) => (
   <div className="modifyMagazines">
     {renderMagazinesHeading(toggleOnWeaponsCardViews)}
-    {renderMagazines(gunObj, setPrimaryMag)}
+    {renderMagazines(gunObj, setPrimaryMag, removeMagazine)}
   </div>
 );
