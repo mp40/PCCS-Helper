@@ -1,4 +1,4 @@
-import { removeMagazineReducer } from './index';
+import { removeMagazineReducer, filterOutCustom } from './index';
 import { AddedM1911A1AndM16 } from '../testResouces';
 import { testM16, testM1911A1 } from '../../helpers/testHelpers';
 
@@ -28,11 +28,6 @@ describe('removeMagazineReducer', () => {
   it('should delete custom magazines from the firearm', () => {
     const action = { payload: { firearm: 'M16', magazine: { type: 'Mag', weight: 1, cap: 30, qty: 2, custom: true } } };
     const newState = removeMagazineReducer(characterWithM1911AndM16WithCustomMags(), action);
-    const x = characterWithM1911AndM16WithCustomMags().gear.firearms[1].mag[1];
-    console.log('char>>', x);
-    // console.log('---->>>', newState.gear.firearms[1].mag);
     expect(newState.gear.firearms[1].mag.length).toBe(1);
-    // console.log('---->>>', newState.gear.firearms[1].mag);
-    // expect(newState.totalWeight).toBe(5 + testM1911A1().weight + testM16().weight);
   });
 });
