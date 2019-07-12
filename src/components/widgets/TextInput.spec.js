@@ -26,12 +26,5 @@ describe('TextInput Component', () => {
     it('should render the correct stat value', () => {
       expect(wrapper.find('.equipInput').text()).toBe(String(equipmentValue()));
     });
-    // TODO work out how to get this working
-    // it('should call onChange when input feild changes', () => {
-    //   const newValue = 'test';
-    //   wrapper.find('.equipInput').simulate('keyUp', { target: { value: newValue },
-    //     key: 'Enter' });
-    //   expect(onChange).toHaveBeenCalled();
-    // });
   });
 });

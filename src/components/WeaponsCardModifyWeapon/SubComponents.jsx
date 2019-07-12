@@ -66,20 +66,34 @@ export const renderMagazinesHeading = toggleOnWeaponsCardViews => (
   </div>
 );
 
-export const renderMagazines = (gunObj, setPrimaryMag) => gunObj.mag.map((magObj, index) => (
+export const renderRemoveMagazineButton = (handleMagazineExistence, firearm, magazine, removed = false) => {
+  const buttonName = removed === true ? 'replace' : 'remove';
+  return (
+    <button
+      type="button"
+      className="handleMagazineInInventory"
+      onClick={handleMagazineExistence.bind(this, buttonName, { firearm, magazine })}
+    >
+      {buttonName}
+    </button>
+  );
+};
+
+export const renderMagazines = (gunObj, setPrimaryMag, handleMagazineExistence) => gunObj.mag.map((magObj, index) => (
   <div key={`${magObj.cap}${magObj.weight}`}>
     {`${magObj.cap} round ${magObj.type}`}
     {`${magObj.weight} lbs`}
     {index > 0
-      ? <button type="button" id={`${gunObj.name}MagAtIndex${index}`} onClick={setPrimaryMag.bind(this, index)} style={{ opacity: '0.6' }}>primary</button>
+      ? <button type="button" id={`${gunObj.name}MagAtIndex${index}`} onClick={setPrimaryMag.bind(this, index, magObj.removed)} style={{ opacity: '0.6' }}>primary</button>
       : <button type="button" id={`${gunObj.name}MagAtIndex${index}`}>primary</button>
       }
+    {index > 0 && renderRemoveMagazineButton(handleMagazineExistence, gunObj.name, magObj, magObj.removed)}
   </div>
 ));
 
-export const renderModifyMagazines = (toggleOnWeaponsCardViews, gunObj, setPrimaryMag) => (
+export const renderModifyMagazines = (toggleOnWeaponsCardViews, gunObj, setPrimaryMag, handleMagazineExistence) => (
   <div className="modifyMagazines">
     {renderMagazinesHeading(toggleOnWeaponsCardViews)}
-    {renderMagazines(gunObj, setPrimaryMag)}
+    {renderMagazines(gunObj, setPrimaryMag, handleMagazineExistence)}
   </div>
 );

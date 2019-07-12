@@ -58,17 +58,15 @@ describe('removeFirearmModificationReducer function', () => {
     expect(newState).toMatchObject(new AddedM1911A1AndM16());
     expect(newState.gear.firearms[0].modNotes.length).toBe(0);
   });
-  it('should remove the correct modification if more than one modifcation',()=>{
-    //todo
+  it('should remove the correct modification if more than one modifcation', () => {
     const modNote = { note: 'test', weightMod: 1 };
     const action = { payload: { firearm: 'M1911A1', modNote } };
 
-    const doubleModdedGun = moddedM1911A1ExtraWeight()
-    doubleModdedGun.modNotes.push({note:'other', weightMod: 0})
+    const doubleModdedGun = moddedM1911A1ExtraWeight();
+    doubleModdedGun.modNotes.push({ note: 'other', weightMod: 0 });
 
     const newState = removeFirearmModificationReducer(
-      new CharacterWithModifiedM1911A1(doubleModdedGun),action)
-      ;
+      new CharacterWithModifiedM1911A1(doubleModdedGun), action);
     expect(newState.gear.firearms[0].modNotes.length).toBe(1);
-  })
+  });
 });

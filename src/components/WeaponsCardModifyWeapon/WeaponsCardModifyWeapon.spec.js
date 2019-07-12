@@ -36,4 +36,35 @@ describe('modifying weapons', () => {
     wrapper.find('#closeGunStatView').simulate('click');
     expect(wrapper.text()).not.toContain('Modify Weapon');
   });
+  it('should be possible to remove/hide a particular magazine', () => {
+    const remove30RoundMagazineButton = wrapper.find('.modifyMagazines').childAt(2).childAt(1);
+    remove30RoundMagazineButton.simulate('click');
+    expect(wrapper.find('#characterWeaponList').text()).not.toContain('30 round Mag');
+  });
+  it('should change name of button to "replace" after removing magazine', () => {
+    expect(modifyPanel().text()).not.toContain('replace');
+    const remove30RoundMagazineButton = wrapper.find('.modifyMagazines').childAt(2).childAt(1);
+    remove30RoundMagazineButton.simulate('click');
+    expect(modifyPanel().text()).toContain('replace');
+  });
+  it('should not render a remove button for the primary magazine', () => {
+    const remove20RoundMagazineButton = wrapper.find('.modifyMagazines').childAt(1).childAt(1);
+    expect(remove20RoundMagazineButton.exists()).toBe(false);
+  });
+  it('should be possible to replace the magazine', () => {
+    const handle30RoundMagazineButton = wrapper.find('.modifyMagazines').childAt(2).childAt(1);
+    handle30RoundMagazineButton.simulate('click');
+    expect(modifyPanel().text()).toContain('replace');
+    handle30RoundMagazineButton.simulate('click');
+    expect(modifyPanel().text()).not.toContain('replace');
+  });
+  it('should not be possible to set a removed magazine as primary', () => {
+    const remove30RoundMagazineButton = wrapper.find('.modifyMagazines').childAt(2).childAt(1);
+    const set30RoundMagazineAsPrimaryButton = wrapper.find('.modifyMagazines').childAt(2).childAt(0);
+    remove30RoundMagazineButton.simulate('click');
+    expect(wrapper.find('#WeaponStatWeight').text()).toBe('W8.7');
+    set30RoundMagazineAsPrimaryButton.simulate('click');
+    expect(wrapper.find('#WeaponStatWeight').text()).toBe('W8.7');
+    expect(wrapper.find('#WeaponStatAW').text()).toBe('AW0.7');
+  });
 });

@@ -14,9 +14,11 @@ import WeaponsCardModifyWeight from '../WeaponsCardModifyWeight';
 import '../WeaponsCard/WeaponsCard.css';
 
 class WeaponsCardModifyWeapon extends Component {
-  setPrimaryMag = (index) => {
+  setPrimaryMag = (index, removed) => {
     const { gunObj, setPrimaryMagazine } = this.props;
-
+    if (removed) {
+      return;
+    }
     setPrimaryMagazine({ firearm: gunObj.name, magazine: index });
   }
 
@@ -37,6 +39,11 @@ class WeaponsCardModifyWeapon extends Component {
     toggleOffWeaponCardViews('modifyFirearmWeight');
   }
 
+  handleMagazineExistence = (typeOfAction, payload) => {
+    const { removeMagazine, replaceMagazine } = this.props;
+    return typeOfAction === 'remove' ? removeMagazine(payload) : replaceMagazine(payload);
+  }
+
   render() {
     const {
       gunObj,
@@ -50,7 +57,7 @@ class WeaponsCardModifyWeapon extends Component {
       return (
         <div style={{ marginLeft: '5rem' }} className="modifyWeaponPanel">
           {renderModifyWeaponHeader(removeAllGunMods)}
-          {renderModifyMagazines(toggleOnWeaponsCardViews, gunObj, this.setPrimaryMag)}
+          {renderModifyMagazines(toggleOnWeaponsCardViews, gunObj, this.setPrimaryMag, this.handleMagazineExistence)}
           {rendeWeaponModifications(toggleOnWeaponsCardViews)}
           {gunObj.modNotes && renderModificationNotes(gunObj.modNotes, this.handleRemoveMod)}
         </div>
@@ -68,6 +75,8 @@ class WeaponsCardModifyWeapon extends Component {
 }
 
 WeaponsCardModifyWeapon.propTypes = {
+  replaceMagazine: PropTypes.func,
+  removeMagazine: PropTypes.func,
   modifyFirearm: PropTypes.func,
   addCustomMagazine: PropTypes.func,
   setPrimaryMagazine: PropTypes.func,

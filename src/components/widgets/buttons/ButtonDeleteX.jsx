@@ -1,15 +1,9 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { standardButtonTemplate } from './SubComponents';
 import './buttons.css';
 
 const ButtonDeleteX = ({ onClick }) => (
-  <button
-    type="button"
-    className="button"
-    onClick={onClick}
-  >
-                X
-  </button>
+  standardButtonTemplate(onClick, 'X')
 );
 
 ButtonDeleteX.propTypes = {
