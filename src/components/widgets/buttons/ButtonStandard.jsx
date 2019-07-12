@@ -1,15 +1,9 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { standardButtonTemplate } from './SubComponents';
 import './buttons.css';
 
 const ButtonStandard = ({ onClick, name }) => (
-  <button
-    type="button"
-    className="button"
-    onClick={onClick}
-  >
-    {name}
-  </button>
+  standardButtonTemplate(onClick, name)
 );
 
 ButtonStandard.propTypes = {

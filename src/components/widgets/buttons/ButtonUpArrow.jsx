@@ -1,15 +1,9 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { standardButtonTemplate } from './SubComponents';
 import './buttons.css';
 
 const ButtonUpArrow = ({ onClick }) => (
-  <button
-    type="button"
-    className="button"
-    onClick={onClick}
-  >
-    {String.fromCharCode(8593)}
-  </button>
+  standardButtonTemplate(onClick, String.fromCharCode(8593))
 );
 
 ButtonUpArrow.propTypes = {
