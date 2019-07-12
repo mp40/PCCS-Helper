@@ -58,4 +58,13 @@ describe('modifying weapons', () => {
     handle30RoundMagazineButton.simulate('click');
     expect(modifyPanel().text()).not.toContain('replace');
   });
+  it('should not be possible to set a removed magazine as primary', () => {
+    const remove30RoundMagazineButton = wrapper.find('.modifyMagazines').childAt(2).childAt(1);
+    const set30RoundMagazineAsPrimaryButton = wrapper.find('.modifyMagazines').childAt(2).childAt(0);
+    remove30RoundMagazineButton.simulate('click');
+    expect(wrapper.find('#WeaponStatWeight').text()).toBe('W8.7');
+    set30RoundMagazineAsPrimaryButton.simulate('click');
+    expect(wrapper.find('#WeaponStatWeight').text()).toBe('W8.7');
+    expect(wrapper.find('#WeaponStatAW').text()).toBe('AW0.7');
+  });
 });

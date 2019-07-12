@@ -14,9 +14,11 @@ import WeaponsCardModifyWeight from '../WeaponsCardModifyWeight';
 import '../WeaponsCard/WeaponsCard.css';
 
 class WeaponsCardModifyWeapon extends Component {
-  setPrimaryMag = (index) => {
+  setPrimaryMag = (index, removed) => {
     const { gunObj, setPrimaryMagazine } = this.props;
-
+    if (removed) {
+      return;
+    }
     setPrimaryMagazine({ firearm: gunObj.name, magazine: index });
   }
 

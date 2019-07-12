@@ -85,7 +85,7 @@ export const renderMagazines = (gunObj, setPrimaryMag, handleMagazineExistence) 
     {`${magObj.cap} round ${magObj.type}`}
     {`${magObj.weight} lbs`}
     {index > 0
-      ? <button type="button" id={`${gunObj.name}MagAtIndex${index}`} onClick={setPrimaryMag.bind(this, index)} style={{ opacity: '0.6' }}>primary</button>
+      ? <button type="button" id={`${gunObj.name}MagAtIndex${index}`} onClick={setPrimaryMag.bind(this, index, magObj.removed)} style={{ opacity: '0.6' }}>primary</button>
       : <button type="button" id={`${gunObj.name}MagAtIndex${index}`}>primary</button>
       }
     {index > 0 && renderRemoveMagazineButton(handleMagazineExistence, gunObj.name, magObj, magObj.removed)}
