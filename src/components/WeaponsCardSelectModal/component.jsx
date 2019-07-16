@@ -14,8 +14,13 @@ class WeaponsCardSelectModal extends Component {
     this.state = {
       showGunStats: false,
       gunStatsToView: undefined,
+      filterGunType: false,
     };
   }
+
+    getGunList = () => {
+
+    }
 
     handleAddFirearm = (gunObj) => {
       const { addFirearm, gear } = this.props;
