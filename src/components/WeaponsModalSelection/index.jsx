@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 import ButtonStandard from '../widgets/buttons/ButtonStandard';
 import ButtonInfo from '../widgets/buttons/ButtonInfo';
 
+// TODO sort out display filter,
+// React doesn't like the depth so maybe start introdcung for connected components
+
 const WeaponsModalSelection = ({ firearmsArray, toggleOffWeaponCardViews, handleShowGunStats, handleAddFirearm }) => {
   const newFirearmsArray = firearmsArray;
 

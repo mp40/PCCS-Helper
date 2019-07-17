@@ -19,8 +19,8 @@ describe('Fireearms selction', () => {
     it('should render an unfiltered list by defult', () => {
       expect(wrapper.find('.equipmentListBody').children().length).toBe(fullFirearmsList().length);
     });
-    it('should be possible to filter the firearms list by weapon type', () => {
-      wrapper.find('.filterRifles').simulate('click');
+    it('should be possible to open firearm filter options', () => {
+      wrapper.find('#showFirearmFilters').simulate('click');
     });
   });
 });
