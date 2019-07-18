@@ -21,6 +21,7 @@ describe('Fireearms selction', () => {
     });
     it('should be possible to open firearm filter options', () => {
       wrapper.find('#showFirearmFilters').simulate('click');
+      expect(wrapper.find('.filterByFirearmTypeForm').exists()).toBe(true);
     });
   });
 });

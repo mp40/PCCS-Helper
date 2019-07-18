@@ -14,7 +14,7 @@ class WeaponsCardSelectModal extends Component {
     this.state = {
       showGunStats: false,
       gunStatsToView: undefined,
-      filterGunType: false,
+      // filterGunType: false,
     };
   }
 

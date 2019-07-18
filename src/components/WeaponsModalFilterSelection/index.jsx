@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 
 import '../WeaponsCard/WeaponsCard.css';
 
+const radioButtonContainer = {
+  display: 'flex',
+  fontSize: 'small',
+};
+
 class WeaponsModalFilterSelection extends Component {
   constructor(props) {
     super(props);
@@ -16,14 +21,17 @@ class WeaponsModalFilterSelection extends Component {
 
   renderRadioButton(value, checked, className) {
     return (
-      <input
-        type="radio"
-        name="filter"
-        value={value}
-        checked={checked}
-        className={className}
-        onChange={this.handleUpdateFilter.bind(this)}
-      />
+      <div style={radioButtonContainer}>
+        <div>{value}</div>
+        <input
+          type="radio"
+          name="filter"
+          value={value}
+          checked={checked}
+          className={className}
+          onChange={this.handleUpdateFilter.bind(this)}
+        />
+      </div>
     );
   }
 
@@ -31,7 +39,8 @@ class WeaponsModalFilterSelection extends Component {
     const { filterByType } = this.state;
     return (
       <div>
-        <form>
+        <div style={{ fontSize: 'medium' }}>Filter By Type</div>
+        <form className="filterByFirearmTypeForm">
           {this.renderRadioButton('All', filterByType === 'All', 'selectAllFilter')}
           {this.renderRadioButton('Rifles', filterByType === 'Rifles', 'selectRifleFilter')}
           {this.renderRadioButton('Pistols', filterByType === 'Pistols', 'selectPistolFilter')}
