@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import WeaponsModalFilterSelection from '../WeaponsModalFilterSelection';
 import ButtonStandard from '../widgets/buttons/ButtonStandard';
 import ButtonInfo from '../widgets/buttons/ButtonInfo';
+
+
+import './WeaponsModalSelection.css';
 
 const filterCard = {
   // paddingLeft: '1rem',
@@ -20,12 +23,24 @@ const filterCard = {
   overflow: 'auto',
   // transition: 'height 2s',
   // transitioTimingFunction: 'linear',
+  // visability: 'hidden',
+  // opacity: '0',
+  backgroundColor: 'pink',
 };
 
 const WeaponsModalSelection = ({ firearmsArray, toggleOffWeaponCardViews, handleShowGunStats, handleAddFirearm }) => {
   const [viewFilters, toggleViewFilters] = useState(false);
 
   const newFirearmsArray = firearmsArray;
+
+  useEffect(() => {
+    const wrapper = document.getElementsByClassName('filterCardWrapper');
+    console.log(wrapper);
+    if (wrapper[0]) {
+      wrapper[0].classList.add('trans');
+      console.log(wrapper);
+    }
+  });
 
   const handleToggleViewFilters = () => {
     toggleViewFilters(!viewFilters);
@@ -77,7 +92,7 @@ const WeaponsModalSelection = ({ firearmsArray, toggleOffWeaponCardViews, handle
 
       {viewFilters
    && (
-   <div style={filterCard}>
+   <div className="filterCardWrapper">
      <WeaponsModalFilterSelection />
    </div>
    )}
