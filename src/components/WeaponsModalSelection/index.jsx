@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import WeaponsModalFilterSelection from '../WeaponsModalFilterSelection';
 import ButtonStandard from '../widgets/buttons/ButtonStandard';
@@ -7,49 +7,22 @@ import ButtonInfo from '../widgets/buttons/ButtonInfo';
 
 import './WeaponsModalSelection.css';
 
-const filterCard = {
-  // paddingLeft: '1rem',
-  marginTop: '2rem',
-  background: 'whitesmoke',
-  borderRadius: '3px',
-  boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
-  transition: '0.3s',
-  height: '10rem',
-  width: '60rem',
-  position: 'relative',
-  top: 'calc(-20%)',
-  // top: 'calc(50% - 30rem)',
-  left: 'calc(50% - 30rem)',
-  overflow: 'auto',
-  // transition: 'height 2s',
-  // transitioTimingFunction: 'linear',
-  // visability: 'hidden',
-  // opacity: '0',
-  backgroundColor: 'pink',
-};
-
 const WeaponsModalSelection = ({ firearmsArray, toggleOffWeaponCardViews, handleShowGunStats, handleAddFirearm }) => {
-  const [viewFilters, toggleViewFilters] = useState(false);
-
   const newFirearmsArray = firearmsArray;
 
-  useEffect(() => {
-    const wrapper = document.getElementsByClassName('filterCardWrapper');
-    console.log(wrapper);
-    if (wrapper[0]) {
-      wrapper[0].classList.add('trans');
-      console.log(wrapper);
-    }
-  });
-
   const handleToggleViewFilters = () => {
-    toggleViewFilters(!viewFilters);
+    const transitioned = document.getElementsByClassName('trans')[0];
+    const filterWrapper = document.getElementsByClassName('filterCardWrapper')[0];
+    if (transitioned) {
+      transitioned.classList.remove('trans');
+    } else {
+      filterWrapper.classList.add('trans');
+    }
   };
 
   return (
-  // <div>
     <>
-      <div className="equipmentListCard">
+      <div className="equipmentListCard" style={{ zIndex: 10 }}>
         <div className="equipmentListHeader">
         Select firearms
           <ButtonStandard
@@ -90,22 +63,10 @@ const WeaponsModalSelection = ({ firearmsArray, toggleOffWeaponCardViews, handle
 
       </div>
 
-      {viewFilters
-   && (
-   <div className="filterCardWrapper">
-     <WeaponsModalFilterSelection />
-   </div>
-   )}
+      <div className="filterCardWrapper">
+        <WeaponsModalFilterSelection />
+      </div>
     </>
-  // {/* {viewFilters
-  // && (
-  // <div style={filterCard}>
-  //   <WeaponsModalFilterSelection />
-  // </div>
-  // )} */}
-
-  // </div>
-
   );
 };
 
