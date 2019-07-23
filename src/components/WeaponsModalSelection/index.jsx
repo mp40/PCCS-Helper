@@ -1,28 +1,57 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import WeaponsModalFilterSelection from '../WeaponsModalFilterSelection';
+import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
 import ButtonStandard from '../widgets/buttons/ButtonStandard';
 import ButtonInfo from '../widgets/buttons/ButtonInfo';
-
+import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 
 import './WeaponsModalSelection.css';
 
-const WeaponsModalSelection = ({ firearmsArray, toggleOffWeaponCardViews, handleShowGunStats, handleAddFirearm }) => {
+export const promiseTransitionClose = () => new Promise(((resolve) => {
+  setTimeout(() => {
+    resolve();
+  }, 1001);
+}));
+
+const WeaponsModalSelection = ({ firearmsArray, toggleOffWeaponCardViews, handleAddFirearm }) => {
+  const [firearmToInspect, setFirearmToInspect] = useState(null);
   const newFirearmsArray = firearmsArray;
 
   const handleToggleViewFilters = () => {
-    const transitioned = document.getElementsByClassName('trans')[0];
+    const transitioned = document.getElementsByClassName('filterCardWrapper trans')[0];
+    console.log(transitioned);
     const filterWrapper = document.getElementsByClassName('filterCardWrapper')[0];
     if (transitioned) {
       transitioned.classList.remove('trans');
-    } else {
+    } else if (filterWrapper) {
       filterWrapper.classList.add('trans');
     }
   };
 
+  useEffect(() => {
+    const statCard = document.getElementsByClassName('WeaponStatTableContainer')[0];
+    const transitioned = document.getElementsByClassName('WeaponStatTableContainer trans')[0];
+    if (statCard && !transitioned) {
+      statCard.classList.add('trans');
+    }
+  });
+
+  const handleCloseStatCard = () => {
+    const statWrapper = document.getElementsByClassName('WeaponStatTableContainer trans')[0];
+    if (statWrapper) {
+      document.getElementsByClassName('WeaponStatTableContainer trans')[0].classList.remove('trans');
+    }
+    promiseTransitionClose().then(() => setFirearmToInspect(null));
+  };
+
+  const addFirearmToList = (gunObj) => {
+    handleAddFirearm(gunObj);
+  };
+
   return (
     <>
-      <div className="equipmentListCard" style={{ zIndex: 10 }}>
+      <div className="FirearmSelectionListCard" style={{ zIndex: 10 }}>
         <div className="equipmentListHeader">
         Select firearms
           <ButtonStandard
@@ -42,13 +71,15 @@ const WeaponsModalSelection = ({ firearmsArray, toggleOffWeaponCardViews, handle
             <div key={gunObj.name} style={{ display: 'flex', width: '30%', paddingLeft: '.2rem', paddingRight: '.2rem' }}>
               <ButtonInfo
                 id={`view${gunObj.name}`}
-                onClick={handleShowGunStats.bind(this, gunObj)}
+                // onClick={handleShowGunStats.bind(this, gunObj)}
+                // onClick={handleToggleShowGunStats(gunObj)}
+                onClick={() => setFirearmToInspect(gunObj)}
               />
               <div
                 className="equipmentEntry"
                 style={{ width: '100%' }}
                 id={gunObj.name}
-                onClick={handleAddFirearm.bind(this, gunObj)}
+                onClick={() => addFirearmToList(gunObj)} // <--- this!!!!!
               >
                 <div>
                   {gunObj.name}
@@ -66,6 +97,24 @@ const WeaponsModalSelection = ({ firearmsArray, toggleOffWeaponCardViews, handle
       <div className="filterCardWrapper">
         <WeaponsModalFilterSelection />
       </div>
+
+      {firearmToInspect && (
+      <div className="WeaponStatTableContainer" style={{ fontSize: 'medium' }}>
+        <div style={{ marginTop: '2px', marginLeft: '2px' }}>
+          <ButtonDeleteX
+            id="closeGunStatView"
+            // onClick={this.handleShowGunStats}
+            // onClick={() => setFirearmToInspect(null)}
+            onClick={() => handleCloseStatCard()}
+          />
+        </div>
+        <WeaponsCardWeaponStats
+          gunObj={firearmToInspect}
+        />
+      </div>
+      )}
+
+)
     </>
   );
 };
@@ -80,3 +129,12 @@ WeaponsModalSelection.propTypes = {
 };
 
 export default WeaponsModalSelection;
+
+// const loadRifle = function () {
+//   return new Promise(function (resolve, reject) {
+//       const rifle = createRifle()
+//       setTimeout(function(){
+//           resolve("loaded")
+//       },500*rifle.reloadTime)
+//   })
+// }

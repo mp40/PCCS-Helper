@@ -4,7 +4,7 @@ import { rifles, pistols, smgs, mgs, sniperRifles, shotguns } from '../../data/f
 
 const fullFirearmsList = () => [...rifles(), ...pistols(), ...smgs(), ...mgs(), ...sniperRifles(), ...shotguns()];
 
-describe('Fireearms selction', () => {
+describe('Firearms selection', () => {
   const gunList = wrapper => wrapper.find('.equipmentListBody');
   const selectedWeapons = wrapper => wrapper.find('#characterWeaponList');
   const header = wrapper => wrapper.find('#weaponsHeader');
