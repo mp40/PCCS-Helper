@@ -5,11 +5,11 @@ import { rifles, pistols, smgs, mgs, sniperRifles, shotguns } from '../../data/f
 const fullFirearmsList = () => [...rifles(), ...pistols(), ...smgs(), ...mgs(), ...sniperRifles(), ...shotguns()];
 
 describe('Firearms selection', () => {
-  const gunList = wrapper => wrapper.find('.equipmentListBody');
-  const selectedWeapons = wrapper => wrapper.find('#characterWeaponList');
-  const header = wrapper => wrapper.find('#weaponsHeader');
-  const navBarWeight = wrapper => wrapper.find('.navEquipWeight');
-
+  // const gunList = wrapper => wrapper.find('.equipmentListBody');
+  // const selectedWeapons = wrapper => wrapper.find('#characterWeaponList');
+  // const header = wrapper => wrapper.find('#weaponsHeader');
+  // const navBarWeight = wrapper => wrapper.find('.navEquipWeight');
+  // TODO
   describe('filtering firearms list', () => {
     let wrapper;
     beforeEach(() => {

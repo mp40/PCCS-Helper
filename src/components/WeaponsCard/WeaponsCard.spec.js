@@ -1,14 +1,5 @@
-import { act } from 'react-dom/test-utils';
 import { mountAppWithStore, storeWithCreateCharacterView } from '../../helpers/testHelpers';
 import { getSelectedWeapons } from './component';
-import { promiseTransitionClose } from '../WeaponsModalSelection';
-
-
-function tick() {
-  return new Promise((resolve) => {
-    setTimeout(resolve, 2000);
-  });
-}
 
 describe('The Weapons Card', () => {
   const gunList = wrapper => wrapper.find('.equipmentListBody');
@@ -127,16 +118,14 @@ describe('The Weapons Card', () => {
       wrapper.find('#viewM1911A1').simulate('click');
       expect(wrapper.text()).toContain('ROF');
     });
-    it('should be possible to close firearms stats', () => {
+    it('should be possible to close firearms stats', (done) => {
       // this is probably not an ideal way to tests async hook related behaviour
-      act(() => {
-        wrapper.find('#closeGunStatView').simulate('click');
-      });
-      act(() => {
-        setTimeout(() => {
-          expect(wrapper.text()).not.toContain('ROF');
-        }, 0);
-      });
+      wrapper.find('#closeGunStatView').simulate('click');
+      setTimeout(() => {
+        wrapper.update();
+        expect(wrapper.find('#closeGunStatView').exists()).toEqual(false);
+        done();
+      }, 1000);
     });
   });
 });
