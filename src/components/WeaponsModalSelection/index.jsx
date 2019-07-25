@@ -6,7 +6,18 @@ import ButtonStandard from '../widgets/buttons/ButtonStandard';
 import ButtonInfo from '../widgets/buttons/ButtonInfo';
 import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 
+import { rifles, pistols, smgs, mgs, sniperRifles, shotguns } from '../../data/firearms';
+
 import './WeaponsModalSelection.css';
+
+const getAllFirearmsArray = () => [
+  ...rifles(),
+  ...pistols(),
+  ...smgs(),
+  ...mgs(),
+  ...sniperRifles(),
+  ...shotguns(),
+];
 
 const promiseTransitionClose = () => new Promise(((resolve) => {
   setTimeout(() => {
@@ -20,11 +31,29 @@ const promiseTransitionOpen = () => new Promise(((resolve) => {
   }, 0);
 }));
 
-const WeaponsModalSelection = ({ firearmsArray, toggleOffWeaponCardViews, handleAddFirearm }) => {
+const WeaponsModalSelection = ({ toggleOffWeaponCardViews, handleAddFirearm }) => {
   const [firearmToInspect, setFirearmToInspect] = useState(null);
   const [statBoxClassName, toggleStatCard] = useState('WeaponStatTableContainer');
   const [filterClassName, toggleFilterCard] = useState('filterCardWrapper');
-  const newFirearmsArray = firearmsArray;
+  const [gunArrayFilteredByType, setFilteredGunArray] = useState(getAllFirearmsArray());
+
+  const handleSetFilterByType = (type) => {
+    switch (type) {
+      case 'Rifles':
+        return setFilteredGunArray(rifles());
+      case 'Pistols':
+        return setFilteredGunArray(pistols());
+      case 'SMGs':
+        return setFilteredGunArray(smgs());
+      case 'MGs':
+        return setFilteredGunArray(mgs());
+      case 'Shotguns':
+        return setFilteredGunArray(shotguns());
+      case 'Sniper Rifles':
+        return setFilteredGunArray(sniperRifles());
+      default: setFilteredGunArray(getAllFirearmsArray());
+    }
+  };
 
   const handleToggleViewFilters = () => {
     if (filterClassName === 'filterCardWrapper') {
@@ -67,7 +96,7 @@ const WeaponsModalSelection = ({ firearmsArray, toggleOffWeaponCardViews, handle
         </div>
 
         <div className="equipmentListBody">
-          {newFirearmsArray.map(gunObj => (
+          {gunArrayFilteredByType.map(gunObj => (
             <div key={gunObj.name} style={{ display: 'flex', width: '30%', paddingLeft: '.2rem', paddingRight: '.2rem' }}>
               <ButtonInfo
                 id={`view${gunObj.name}`}
@@ -93,7 +122,9 @@ const WeaponsModalSelection = ({ firearmsArray, toggleOffWeaponCardViews, handle
       </div>
 
       <div className={filterClassName}>
-        <WeaponsModalFilterSelection />
+        <WeaponsModalFilterSelection
+          handleSetFilterByType={handleSetFilterByType}
+        />
       </div>
 
       {firearmToInspect && (
@@ -116,9 +147,6 @@ const WeaponsModalSelection = ({ firearmsArray, toggleOffWeaponCardViews, handle
 };
 
 WeaponsModalSelection.propTypes = {
-  firearmsArray: PropTypes.arrayOf(
-    PropTypes.object,
-  ),
   toggleOffWeaponCardViews: PropTypes.func,
   handleAddFirearm: PropTypes.func,
 };

@@ -1,5 +1,4 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import ButtonSlim from '../widgets/buttons/ButtonSlim';
 
 export const renderModifyWeaponHeader = removeAllGunMods => (
