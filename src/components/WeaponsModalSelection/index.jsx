@@ -6,7 +6,7 @@ import ButtonStandard from '../widgets/buttons/ButtonStandard';
 import ButtonInfo from '../widgets/buttons/ButtonInfo';
 import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 
-import { rifles, pistols, smgs, mgs, sniperRifles, shotguns } from '../../data/firearms';
+import { rifles, pistols, smgs, mgs, sniperRifles, shotguns, filterableCalibers } from '../../data/firearms';
 
 import './WeaponsModalSelection.css';
 
@@ -31,27 +31,51 @@ const promiseTransitionOpen = () => new Promise(((resolve) => {
   }, 0);
 }));
 
+export const filterCalibersFromType = (typeArray, caliber) => {
+  if (caliber === 'All') {
+    return typeArray;
+  }
+  if (caliber === 'Other') {
+    return typeArray.filter(firearm => !filterableCalibers().includes(firearm.calibre));
+  }
+  return typeArray.filter(firearm => firearm.calibre === caliber);
+};
+
 const WeaponsModalSelection = ({ toggleOffWeaponCardViews, handleAddFirearm }) => {
   const [firearmToInspect, setFirearmToInspect] = useState(null);
   const [statBoxClassName, toggleStatCard] = useState('WeaponStatTableContainer');
   const [filterClassName, toggleFilterCard] = useState('filterCardWrapper');
   const [gunArrayFilteredByType, setFilteredGunArray] = useState(getAllFirearmsArray());
 
-  const handleSetFilterByType = (type) => {
+  const handleSetFilterByType = (type, calibre) => {
     switch (type) {
       case 'Rifles':
-        return setFilteredGunArray(rifles());
+        return setFilteredGunArray(
+          filterCalibersFromType(rifles(), calibre),
+        );
       case 'Pistols':
-        return setFilteredGunArray(pistols());
+        return setFilteredGunArray(
+          filterCalibersFromType(pistols(), calibre),
+        );
       case 'SMGs':
-        return setFilteredGunArray(smgs());
+        return setFilteredGunArray(
+          filterCalibersFromType(smgs(), calibre),
+        );
       case 'MGs':
-        return setFilteredGunArray(mgs());
+        return setFilteredGunArray(
+          filterCalibersFromType(mgs(), calibre),
+        );
       case 'Shotguns':
-        return setFilteredGunArray(shotguns());
+        return setFilteredGunArray(
+          filterCalibersFromType(shotguns(), calibre),
+        );
       case 'Sniper Rifles':
-        return setFilteredGunArray(sniperRifles());
-      default: setFilteredGunArray(getAllFirearmsArray());
+        return setFilteredGunArray(
+          filterCalibersFromType(sniperRifles(), calibre),
+        );
+      default: setFilteredGunArray(
+        filterCalibersFromType(getAllFirearmsArray(), calibre),
+      );
     }
   };
 
