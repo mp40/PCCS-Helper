@@ -2,6 +2,7 @@ export const rifles = () => [
   {
     name: 'AK47',
     list: 'rifles',
+    calibre: '7.62 x 39mm',
     type: ['Battle/Assault Rifle', 'Soviet', 'Cold War', '7.62x39'],
     qty: 1,
     length: 34,
@@ -30,6 +31,7 @@ export const rifles = () => [
   {
     name: 'AKM 47',
     list: 'rifles',
+    calibre: '7.62 x 39mm',
     type: ['Battle/Assault Rifle', 'Soviet', 'Cold War', '7.62x39'],
     qty: 1,
     length: 35,
@@ -58,6 +60,7 @@ export const rifles = () => [
   {
     name: 'AK 74',
     list: 'rifles',
+    calibre: '5.45 x 39.5mm',
     type: ['Battle/Assault Rifle', 'Soviet', 'Cold War', '5.45x39'],
     qty: 1,
     length: 37,
@@ -86,6 +89,7 @@ export const rifles = () => [
   {
     name: 'FAMAS',
     list: 'rifles',
+    calibre: '5.56mm NATO',
     type: ['Battle/Assault Rifle', 'France', 'Cold War', '5.56 NATO', 'West Is Best'],
     qty: 1,
     length: 30,
@@ -126,6 +130,7 @@ export const rifles = () => [
   {
     name: 'M16',
     list: 'rifles',
+    calibre: '5.56mm NATO',
     type: ['Battle/Assault Rifle', 'USA', 'Cold War', '5.56 NATO', 'West Is Best'],
     qty: 1,
     length: 39,
@@ -164,6 +169,7 @@ export const rifles = () => [
   {
     name: 'M16A1',
     list: 'rifles',
+    calibre: '5.56mm NATO',
     type: ['Battle/Assault Rifle', 'USA', 'Cold War', '5.56 NATO', 'West Is Best'],
     qty: 1,
     length: 39,
@@ -195,6 +201,7 @@ export const smgs = () => [
   {
     name: 'MAT 49',
     list: 'smgs',
+    calibre: '9mm Parabellum',
     type: ['France', 'Cold War', '9mm Parabellum', 'SMG'],
     qty: 1,
     length: '18/28',
@@ -226,6 +233,7 @@ export const pistols = () => [
   {
     name: 'M1911A1',
     list: 'pistols',
+    calibre: '45 ACP',
     type: ['Automatic Pistol', 'USA', 'Cold War', 'WW2', '.45 ACP', 'West Is Best'],
     qty: 1,
     length: 9,
@@ -266,6 +274,7 @@ export const sniperRifles = () => [
   {
     name: 'Dragunov SVD',
     list: 'sniperRifles',
+    calibre: '7.62mm x 54mm',
     type: ['Sniper Rifle', 'Soviet', 'Cold War', '7.62x54'],
     qty: 1,
     length: 48,
@@ -308,6 +317,7 @@ export const mgs = () => [
   {
     name: 'M60',
     list: 'mgs',
+    calibre: '7.62mm NATO',
     type: ['GPMG', 'USA', 'Cold War', '7.62 NATO', 'West Is Best'],
     qty: 1,
     length: 44,
@@ -340,6 +350,7 @@ export const shotguns = () => [
   {
     name: 'Remington M870',
     list: 'shotguns',
+    calibre: '12 Gauge',
     type: ['Shotgun', 'USA', 'Cold War', '12 gauge', 'West Is Best'],
     qty: 1,
     length: 42,
