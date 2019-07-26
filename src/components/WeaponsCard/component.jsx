@@ -117,7 +117,7 @@ class WeaponsCard extends Component {
         {modifyFirearm
           && (
             <div className="equipmentModalContainer">
-              <div className="WeaponStatTableContainer" style={{ fontSize: 'medium' }}>
+              <div className="ModifyWeaponStatTableContainer" style={{ fontSize: 'medium' }}>
                 {this.renderCloseFirearmStatButton()}
                 <div style={{ display: 'flex' }}>
                   {this.renderFirearmStats(gunToModify)}

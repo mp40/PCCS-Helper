@@ -29,6 +29,20 @@
   .filterCardWrapper.trans {
       top: calc(-28%);
   }
+
+  .ModifyWeaponStatTableContainer {
+    margin-top: 2rem;
+    background: whitesmoke;
+    border-radius: 3px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    height: 20rem;
+    width: 60rem;
+    position: relative;
+    top: calc(50% - 15rem);
+    left: calc(50% - 30rem);
+    overflow: auto;
+  }
   
   .WeaponStatTableContainer  {
     margin-top: 2rem;

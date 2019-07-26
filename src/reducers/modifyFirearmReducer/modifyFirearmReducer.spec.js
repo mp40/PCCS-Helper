@@ -47,7 +47,4 @@ describe('addFirearmReducer function', () => {
     const newState = modifyFirearmReducer(new AddedM1911A1AndM16(), action);
     expect(newState).toMatchObject(characterWithM16AndModdedM1911A1());
   });
-  it('should be able to modify bthe weapon more than once', () => {
-    // above implimentation is for one mod only, original implimentation was multiple
-  });
 });
