@@ -55,7 +55,7 @@ class WeaponsCardModifyWeapon extends Component {
 
     if (!createCustomMag && !modifyFirearmWeight) {
       return (
-        <div style={{ marginLeft: '5rem' }} className="modifyWeaponPanel">
+        <div style={{ marginLeft: '3.5rem' }} className="modifyWeaponPanel">
           {renderModifyWeaponHeader(removeAllGunMods)}
           {renderModifyMagazines(toggleOnWeaponsCardViews, gunObj, this.setPrimaryMag, this.handleMagazineExistence)}
           {rendeWeaponModifications(toggleOnWeaponsCardViews)}

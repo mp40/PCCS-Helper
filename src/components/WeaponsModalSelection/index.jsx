@@ -82,8 +82,11 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, handleAddFirearm }) =
   const handleToggleViewFilters = () => {
     if (filterClassName === 'filterCardWrapper') {
       toggleFilterCard('filterCardWrapper trans');
+      setTimeout(() => {
+        toggleFilterCard('filterCardWrapper trans final');
+      }, 1001);
     }
-    if (filterClassName === 'filterCardWrapper trans') {
+    if (filterClassName === 'filterCardWrapper trans final' || filterClassName === 'filterCardWrapper trans') {
       toggleFilterCard('filterCardWrapper');
     }
   };

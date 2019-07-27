@@ -1,4 +1,5 @@
 import { mountAppWithStore, storeWithCreateCharacterView, createWrapperTextInput } from '../../helpers/testHelpers';
+import { renderAmmoCapacity } from './SubComponents';
 
 describe('modifying weapons', () => {
   let wrapper;
@@ -37,34 +38,43 @@ describe('modifying weapons', () => {
     expect(wrapper.text()).not.toContain('Modify Weapon');
   });
   it('should be possible to remove/hide a particular magazine', () => {
-    const remove30RoundMagazineButton = wrapper.find('.modifyMagazines').childAt(2).childAt(1);
+    const remove30RoundMagazineButton = wrapper.find('.modifyMagazines').find('button').last();
     remove30RoundMagazineButton.simulate('click');
     expect(wrapper.find('#characterWeaponList').text()).not.toContain('30 round Mag');
   });
   it('should change name of button to "replace" after removing magazine', () => {
     expect(modifyPanel().text()).not.toContain('replace');
-    const remove30RoundMagazineButton = wrapper.find('.modifyMagazines').childAt(2).childAt(1);
+    const remove30RoundMagazineButton = wrapper.find('.modifyMagazines').find('button').last();
     remove30RoundMagazineButton.simulate('click');
     expect(modifyPanel().text()).toContain('replace');
   });
   it('should not render a remove button for the primary magazine', () => {
-    const remove20RoundMagazineButton = wrapper.find('.modifyMagazines').childAt(1).childAt(1);
-    expect(remove20RoundMagazineButton.exists()).toBe(false);
+    expect(wrapper.find('.modifyMagazines').find('.modifyMagazinesButtons').first().children().length).toBe(0);
   });
   it('should be possible to replace the magazine', () => {
-    const handle30RoundMagazineButton = wrapper.find('.modifyMagazines').childAt(2).childAt(1);
+    const handle30RoundMagazineButton = wrapper.find('.modifyMagazines').find('button').last();
     handle30RoundMagazineButton.simulate('click');
     expect(modifyPanel().text()).toContain('replace');
     handle30RoundMagazineButton.simulate('click');
     expect(modifyPanel().text()).not.toContain('replace');
   });
   it('should not be possible to set a removed magazine as primary', () => {
-    const remove30RoundMagazineButton = wrapper.find('.modifyMagazines').childAt(2).childAt(1);
-    const set30RoundMagazineAsPrimaryButton = wrapper.find('.modifyMagazines').childAt(2).childAt(0);
+    const remove30RoundMagazineButton = wrapper.find('.modifyMagazines').find('.modifyMagazinesButtons').find('button').last();
+    const set30RoundMagazineAsPrimaryButton = wrapper.find('.modifyMagazines').find('.modifyMagazinesButtons').find('button').first();
     remove30RoundMagazineButton.simulate('click');
     expect(wrapper.find('#WeaponStatWeight').text()).toBe('W8.7');
     set30RoundMagazineAsPrimaryButton.simulate('click');
     expect(wrapper.find('#WeaponStatWeight').text()).toBe('W8.7');
     expect(wrapper.find('#WeaponStatAW').text()).toBe('AW0.7');
+  });
+  describe('helper functions', () => {
+    it('should return string describing rounds in magazine', () => {
+      const magDouble = { cap: 30, type: 'Mag' };
+      expect(renderAmmoCapacity(magDouble)).toBe('30 round Mag - ');
+    });
+    it('should return string describing amount of loose rounds', () => {
+      const magDouble = { cap: 5, type: 'Rnd' };
+      expect(renderAmmoCapacity(magDouble)).toBe('5 loose rounds - ');
+    });
   });
 });

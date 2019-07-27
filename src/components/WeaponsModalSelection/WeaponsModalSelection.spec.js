@@ -10,7 +10,6 @@ const waitOneTick = () => new Promise(((resolve) => {
   }, 0);
 }));
 
-
 describe('promise to wait for transition close', () => {
   // eslint-disable-next-line react/jsx-filename-extension
   const wrapper = mount(<WeaponsModalSelection firearmsArray={mgs()} />);
@@ -30,6 +29,7 @@ describe('promise to wait for transition close', () => {
       expect(wrapper.find('.filterCardWrapper').hasClass('trans')).toEqual(false);
     });
   });
+
   describe('weapon stat card transitions', () => {
     it('should not be rendered by default', () => {
       expect(wrapper.find('.WeaponStatTableContainer').exists()).toEqual(false);

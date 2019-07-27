@@ -5,15 +5,19 @@ import '../WeaponsCard/WeaponsCard.css';
 const filterByTypeStyles = {
   fontSize: 'medium',
   marginLeft: '1rem',
+  marginBottom: '0.33rem',
+  textAlign: 'center',
 };
 
 const radioButtonContainer = {
   display: 'flex',
+  justifyContent: 'space-between',
   fontSize: 'small',
 };
 
 const filterWrapperStyles = {
   display: 'flex',
+  marginTop: '0.5rem',
 };
 
 const WeaponsModalFilterSelection = ({ handleSetFilterByType }) => {
@@ -44,31 +48,39 @@ const WeaponsModalFilterSelection = ({ handleSetFilterByType }) => {
     </div>
   );
 
+  const renderFilterByTypeForm = () => (
+    <form className="filterByFirearmTypeForm" style={filterByTypeStyles}>
+      {renderRadioButton('All', filterByType === 'All', 'selectAllFilter', handleUpdateTypeFilter)}
+      {renderRadioButton('Rifles', filterByType === 'Rifles', 'selectRifleFilter', handleUpdateTypeFilter)}
+      {renderRadioButton('Pistols', filterByType === 'Pistols', 'selectPistolFilter', handleUpdateTypeFilter)}
+      {renderRadioButton('SMGs', filterByType === 'SMGs', 'selectSMGFilter', handleUpdateTypeFilter)}
+      {renderRadioButton('MGs', filterByType === 'MGs', 'selectMGFilter', handleUpdateTypeFilter)}
+      {renderRadioButton('Shotguns', filterByType === 'Shotguns', 'selectShotgunFilter', handleUpdateTypeFilter)}
+      {renderRadioButton('Sniper Rifles', filterByType === 'Sniper Rifles', 'selectSniperRifleFilter', handleUpdateTypeFilter)}
+    </form>
+  );
+
+  const renderFilterByCalibreForm = () => (
+    <form className="filterByFirearmTypeForm" style={filterByTypeStyles}>
+      {renderRadioButton('All', filterByCaliber === 'All', 'selectAllCalibersFilter', handleUpdateCaliberFilter)}
+      {renderRadioButton('7.62mm NATO', filterByCaliber === '7.62mm NATO', 'select762NATOFilter', handleUpdateCaliberFilter)}
+      {renderRadioButton('5.56mm NATO', filterByCaliber === '5.56mm NATO', 'select556NATOFilter', handleUpdateCaliberFilter)}
+      {renderRadioButton('7.62 x 39mm', filterByCaliber === '7.62 x 39mm', 'select762x39Filter', handleUpdateCaliberFilter)}
+      {renderRadioButton('5.45 x 39.5mm', filterByCaliber === '5.45 x 39.5mm', 'select545x39Filter', handleUpdateCaliberFilter)}
+      {renderRadioButton('9mm Parabellum', filterByCaliber === '9mm Parabellum', 'selectParabellumFilter', handleUpdateCaliberFilter)}
+      {renderRadioButton('Other', filterByCaliber === 'Other', 'selectOtherCaliberFilter', handleUpdateCaliberFilter)}
+    </form>
+  );
+
   return (
     <div style={filterWrapperStyles}>
       <div>
         <div style={filterByTypeStyles}>Filter By Type</div>
-        <form className="filterByFirearmTypeForm" style={filterByTypeStyles}>
-          {renderRadioButton('All', filterByType === 'All', 'selectAllFilter', handleUpdateTypeFilter)}
-          {renderRadioButton('Rifles', filterByType === 'Rifles', 'selectRifleFilter', handleUpdateTypeFilter)}
-          {renderRadioButton('Pistols', filterByType === 'Pistols', 'selectPistolFilter', handleUpdateTypeFilter)}
-          {renderRadioButton('SMGs', filterByType === 'SMGs', 'selectSMGFilter', handleUpdateTypeFilter)}
-          {renderRadioButton('MGs', filterByType === 'MGs', 'selectMGFilter', handleUpdateTypeFilter)}
-          {renderRadioButton('Shotguns', filterByType === 'Shotguns', 'selectShotgunFilter', handleUpdateTypeFilter)}
-          {renderRadioButton('Sniper Rifles', filterByType === 'Sniper Rifles', 'selectSniperRifleFilter', handleUpdateTypeFilter)}
-        </form>
+        {renderFilterByTypeForm()}
       </div>
-      <div>
-        <div style={filterByTypeStyles}>Filter By Type</div>
-        <form className="filterByFirearmTypeForm" style={filterByTypeStyles}>
-          {renderRadioButton('All', filterByCaliber === 'All', 'selectAllCalibersFilter', handleUpdateCaliberFilter)}
-          {renderRadioButton('7.62mm NATO', filterByCaliber === '7.62mm NATO', 'select762NATOFilter', handleUpdateCaliberFilter)}
-          {renderRadioButton('5.56mm NATO', filterByCaliber === '5.56mm NATO', 'select556NATOFilter', handleUpdateCaliberFilter)}
-          {renderRadioButton('7.62 x 39mm', filterByCaliber === '7.62 x 39mm', 'select762x39Filter', handleUpdateCaliberFilter)}
-          {renderRadioButton('5.45 x 39.5mm', filterByCaliber === '5.45 x 39.5mm', 'select545x39Filter', handleUpdateCaliberFilter)}
-          {renderRadioButton('9mm Parabellum', filterByCaliber === '9mm Parabellum', 'selectParabellumFilter', handleUpdateCaliberFilter)}
-          {renderRadioButton('Other', filterByCaliber === 'Other', 'selectOtherCaliberFilter', handleUpdateCaliberFilter)}
-        </form>
+      <div style={{ marginLeft: '1rem' }}>
+        <div style={filterByTypeStyles}>Filter By Calibre</div>
+        {renderFilterByCalibreForm()}
       </div>
     </div>
   );
