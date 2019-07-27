@@ -1,0 +1,68 @@
+.FirearmSelectionListCard {
+  margin-top: 2rem;
+  background: whitesmoke;
+  border-radius: 3px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  height: 20rem;
+  width: 60rem;
+  position: relative;
+  top: calc(50% - 15rem);
+  left: calc(50% - 30rem);
+  overflow: auto;
+}  
+  
+  .filterCardWrapper {
+    margin-top: 2rem;
+    background: whitesmoke;
+    border-radius: 3px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    height: 11rem;
+    width: 30rem;
+    position: relative;
+    top: calc(-10%);
+    left: calc(50% - 10rem);
+    overflow: auto;
+    transition: 1s;
+  }
+
+  .filterCardWrapper.trans {
+      top: calc(-28.3%);
+  }
+
+  .filterCardWrapper.trans.final {
+    z-index: 20;
+}
+
+  .ModifyWeaponStatTableContainer {
+    margin-top: 2rem;
+    background: whitesmoke;
+    border-radius: 3px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    height: 20rem;
+    width: 60rem;
+    position: relative;
+    top: calc(50% - 15rem);
+    left: calc(50% - 30rem);
+    overflow: auto;
+  }
+  
+  .WeaponStatTableContainer  {
+    margin-top: 2rem;
+    background: whitesmoke;
+    border-radius: 3px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 1s;
+    height: 19rem;
+    width: 44rem;
+    position: relative;
+    top: calc(-32%);
+    left: calc(50% - 29.5rem);
+    overflow: auto;
+}
+
+.WeaponStatTableContainer.trans  {
+  top: calc(0.6%);
+  height: 20rem;
+}

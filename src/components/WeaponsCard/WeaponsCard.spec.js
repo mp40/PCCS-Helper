@@ -118,9 +118,14 @@ describe('The Weapons Card', () => {
       wrapper.find('#viewM1911A1').simulate('click');
       expect(wrapper.text()).toContain('ROF');
     });
-    it('should be possible to close firearms stats', () => {
+    it('should be possible to close firearms stats', (done) => {
+      // this is probably not an ideal way to tests async hook related behaviour
       wrapper.find('#closeGunStatView').simulate('click');
-      expect(wrapper.text()).not.toContain('ROF');
+      setTimeout(() => {
+        wrapper.update();
+        expect(wrapper.find('#closeGunStatView').exists()).toEqual(false);
+        done();
+      }, 1000);
     });
   });
 });

@@ -1,16 +1,21 @@
 import React from 'react';
 import ButtonSlim from '../widgets/buttons/ButtonSlim';
 
+export const renderAmmoCapacity = (magObj) => {
+  if (magObj.type === 'Rnd') {
+    return `${magObj.cap} loose rounds - `;
+  }
+  return `${magObj.cap} round ${magObj.type} - `;
+};
+
 export const renderModifyWeaponHeader = removeAllGunMods => (
   <>
-    <div>Modify Weapon</div>
-    <button
-      type="button"
+    <div style={{ fontWeight: 'bold' }}>Modify Weapon</div>
+    <ButtonSlim
+      name="remove all mods"
       className="removeAllMods"
       onClick={removeAllGunMods.bind(this)}
-    >
-              Remove All Mods
-    </button>
+    />
   </>
 );
 
@@ -29,23 +34,22 @@ export const renderModificationNotes = (notes, handleRemoveMod) => (
       <span>
         {`${noteObj.weightMod} lbs`}
       </span>
-      <button
-        type="submit"
+      <ButtonSlim
+        name="remove"
         className="removeModification"
         onClick={handleRemoveMod.bind(this, noteObj)}
-      >
-          remove
-      </button>
+
+      />
     </div>
   ))
 );
 
 export const rendeWeaponModifications = toggleOnWeaponsCardViews => (
-  <div style={{ display: 'flex' }}>
-    <div style={{ paddingTop: '5px' }}>Weight</div>
-    <div style={{ marginLeft: '5px', paddingTop: '4px', display: 'inline-block', height: '5px' }}>
+  <div>
+    <div style={{ paddingTop: '5px', fontWeight: 'bold' }}>Modifications</div>
+    <div style={{ paddingBottom: '5px' }}>
       <ButtonSlim
-        name="set"
+        name="add"
         id="modifyWeaponWeight"
         onClick={toggleOnWeaponsCardViews.bind(this, 'modifyFirearmWeight')}
       />
@@ -54,11 +58,11 @@ export const rendeWeaponModifications = toggleOnWeaponsCardViews => (
 );
 
 export const renderMagazinesHeading = toggleOnWeaponsCardViews => (
-  <div style={{ display: 'flex' }}>
-    <div style={{ paddingRight: '5px', paddingTop: '5px' }}>Magazines</div>
-    <div>
+  <div style={{ marginTop: '5px' }}>
+    <div style={{ paddingRight: '5px', paddingTop: '5px', fontWeight: 'bold' }}>Magazines</div>
+    <div style={{ marginBottom: '5px' }}>
       <ButtonSlim
-        name="+"
+        name="add"
         id="addCustomMagazine"
         onClick={toggleOnWeaponsCardViews.bind(this, 'createCustomMag')}
       />
@@ -69,25 +73,33 @@ export const renderMagazinesHeading = toggleOnWeaponsCardViews => (
 export const renderRemoveMagazineButton = (handleMagazineExistence, firearm, magazine, removed = false) => {
   const buttonName = removed === true ? 'replace' : 'remove';
   return (
-    <button
-      type="button"
+    <ButtonSlim
+      name={buttonName}
       className="handleMagazineInInventory"
       onClick={handleMagazineExistence.bind(this, buttonName, { firearm, magazine })}
-    >
-      {buttonName}
-    </button>
+    />
   );
 };
 
 export const renderMagazines = (gunObj, setPrimaryMag, handleMagazineExistence) => gunObj.mag.map((magObj, index) => (
-  <div key={`${magObj.cap}${magObj.weight}`}>
-    {`${magObj.cap} round ${magObj.type}`}
-    {`${magObj.weight} lbs`}
-    {index > 0
-      ? <button type="button" id={`${gunObj.name}MagAtIndex${index}`} onClick={setPrimaryMag.bind(this, index, magObj.removed)} style={{ opacity: '0.6' }}>primary</button>
-      : <button type="button" id={`${gunObj.name}MagAtIndex${index}`}>primary</button>
-      }
-    {index > 0 && renderRemoveMagazineButton(handleMagazineExistence, gunObj.name, magObj, magObj.removed)}
+  <div key={`${magObj.cap}${magObj.weight}`} style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+    <div>
+      {renderAmmoCapacity(magObj)}
+      {`${magObj.weight} lbs`}
+    </div>
+    <div className="modifyMagazinesButtons" style={{ marginLeft: '1px' }}>
+      {index > 0
+      && (
+        <ButtonSlim
+          name="primary"
+          className="handleMagazineInInventory"
+          onClick={setPrimaryMag.bind(this, index, magObj.removed)}
+          id={`${gunObj.name}MagAtIndex${index}`}
+        />
+      )}
+      {index > 0 && renderRemoveMagazineButton(handleMagazineExistence, gunObj.name, magObj, magObj.removed)}
+    </div>
+
   </div>
 ));
 
