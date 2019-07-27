@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import BetaTemp from '../BetaTemp'; // todo delete this once at MVP
 import './Home.css';
 
 const HomePage = props => (
@@ -15,6 +16,7 @@ const HomePage = props => (
     >
         Create Character
     </button>
+    <BetaTemp />
   </div>
 );
 
