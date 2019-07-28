@@ -218,6 +218,7 @@ describe('<WeaponsCardWeaponStats/> component', () => {
   describe('edge cases', () => {
     describe('no data for JHP/AP', () => {
       const wrapper = mount(<WeaponsCardWeaponStats gunObj={testM16WithoutJhpAp()} />);
+      const lineThree = wrapper.find('#GunTableLine2');
       const lineFour = wrapper.find('#GunTableLine3');
       const lineFive = wrapper.find('#GunTableLine4');
       const lineSeven = wrapper.find('#GunTableLine6');
@@ -235,6 +236,9 @@ describe('<WeaponsCardWeaponStats/> component', () => {
         expect(lineEight.childAt(2).text()).not.toContain('DC');
         expect(lineSeven.childAt(3).text().length).toBe(0);
         expect(lineEight.childAt(3).text().length).toBe(0);
+      });
+      it('should not render a third line', () => {
+        expect(lineThree.text()).toEqual('3-9');
       });
     });
   });
