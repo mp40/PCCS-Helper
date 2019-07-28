@@ -9,27 +9,24 @@
 
 This was started during my time as a student at Code Chrysalis
 
-A React application to assist running calculations required for the Phoenix Command Combat System wargaming/roleplaying rules.
+A React-Redux application to assist running calculations required for the Phoenix Command Combat System wargaming/roleplaying rules.
 
-Currently, it has the following inputs:
+### This is a work in progress
+A beta version for QA testing and user feedback is [deployed here](https://pccs.herokuapp.com/)
 
-- Characteristics, incremented via text input
-- Skill Levels, incremented via text input
-- Equipment, select from list, filterable by type, add user defined equipment
-- Encumbrance, increments indirectly via equipment input 
+Currently the application has the following features:
 
-The application returns the following:
-
-- Base Speed
-- Maximum Speed
-- Skill Accuracy Level
-- Combat Effectiveness
-- Intelligence Skill Factor
-- Agility Skill Factor
-- Gun Combat Actions
-- Melee Combat Actions
-- Knockout Value
-- Damage Bonus
+- Accepts input values for attributes
+- Accepts input values for combat levels
+- Calculates combat actions on attribute value, skill level and weight change
+- Calculates damage bonus, base and max speed on attribute value, skill level and weight change
+- Also calculates Intelligence Skill Factor, Agility Skill Factor, Knockout Value which are not yet displayed/directly used
+- Has filterable equipment list to select equipment from
+- Equipment selection has option of entering equipment not on list
+- Firearms selection, filtereable by firearm type and calibre
+- Supports multiple magazine types for firearms, with ability to specify primary magazine and hide non-primary magazines
+- Ability to add custom magazines to firearm
+- Ability modify firearm weight, changing primary magazine automatically updates firearm weight
 
 ## Install procedure
 
@@ -49,19 +46,16 @@ yarn start
 yarn test
 ```
 
-### This is a work in progress
-
 #### WIP
-- Firearm selection
+- Body Armour selection
 
 #### Next
 
 - Refactor code
 - Improve UI/UX
-- Body Armour selection
+- Grenade selection
 
 #### To Come
 
-- Grenade selection
 - Hand to hand data
 - Backend
