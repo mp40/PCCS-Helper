@@ -132,7 +132,6 @@ const returnLineOneToThree = (gunObj, has3RB) => {
   const tagAndArray = [
     [[gunObj.projectiles[0].type, 'PEN'], gunObj.projectiles[0].pen],
     [['', 'DC'], gunObj.projectiles[0].dc],
-    [['', 'TOF'], gunObj.tof],
     [lastTag(), lastArray()],
   ];
   return returnGunTableLine(data, gunObj, 0, tagAndArray);
