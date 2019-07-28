@@ -21,6 +21,17 @@ class CharacterWithM16AndM1911A1WithCustomMag extends CharacterWithM1911A1WithCu
   constructor() {
     super();
     this.totalWeight += testM16().weight;
+    this.combatStats = {
+      ASF: 10,
+      CE: 0,
+      ISF: 10,
+      SAL: 0,
+      baseSpeed: 2,
+      combatActions: [3, 3],
+      damageBonus: 1,
+      knockoutValue: 5,
+      maxSpeed: 4,
+    };
     this.gear.firearms = [...this.gear.firearms, testM16()];
   }
 }
