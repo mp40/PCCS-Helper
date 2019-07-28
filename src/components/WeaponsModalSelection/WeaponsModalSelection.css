@@ -20,14 +20,14 @@
     height: 11rem;
     width: 30rem;
     position: relative;
-    top: calc(-10%);
+    top: calc(50% - 36rem);
     left: calc(50% - 10rem);
     overflow: auto;
     transition: 1s;
   }
 
   .filterCardWrapper.trans {
-      top: calc(-28.3%);
+      top: calc(50% - 47.5rem);
   }
 
   .filterCardWrapper.trans.final {
@@ -57,12 +57,12 @@
     height: 19rem;
     width: 44rem;
     position: relative;
-    top: calc(-32%);
+    top: calc(50% - 49.5rem);
     left: calc(50% - 29.5rem);
     overflow: auto;
 }
 
 .WeaponStatTableContainer.trans  {
-  top: calc(0.6%);
+  top: calc(50% - 30rem);
   height: 20rem;
 }
