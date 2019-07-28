@@ -55,6 +55,7 @@ class WeaponsCardCustomMag extends Component {
 
   render() {
     const { capacity, weight, type, warning } = this.state;
+    const { toggleOffWeaponCardViews } = this.props;
 
     return (
       <div className="customMagazineForm">
@@ -67,6 +68,11 @@ class WeaponsCardCustomMag extends Component {
           id="submitCustomMag"
           onClick={this.handleSubmit}
         />
+        <ButtonStandard
+          name="Back"
+          id="backCustomMag"
+          onClick={() => toggleOffWeaponCardViews('createCustomMag')}
+        />
         {warning
           && <div style={{ color: 'red', fontWeight: 'bold' }}>Please Enter Valid Data</div>
         }
@@ -77,6 +83,7 @@ class WeaponsCardCustomMag extends Component {
 
 WeaponsCardCustomMag.propTypes = {
   handleModification: PropTypes.func,
+  toggleOffWeaponCardViews: PropTypes.func,
 };
 
 export default WeaponsCardCustomMag;

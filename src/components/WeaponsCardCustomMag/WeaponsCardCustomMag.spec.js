@@ -4,8 +4,9 @@ import { mountAppWithStore, storeWithCreateCharacterView, createWrapperTextInput
 import WeaponsCardCustomMag from './index';
 
 describe('the <WeaponsCardCustomMag/> component', () => {
+  const mockToggle = jest.fn();
   // eslint-disable-next-line react/jsx-filename-extension
-  const wrapper = shallow(<WeaponsCardCustomMag />);
+  const wrapper = shallow(<WeaponsCardCustomMag toggleOffWeaponCardViews={mockToggle} />);
   const inputValue = createWrapperTextInput(wrapper);
   it('should take an input for ammo capacity', () => {
     inputValue('#customMagCapacityInput', '18');
@@ -18,6 +19,10 @@ describe('the <WeaponsCardCustomMag/> component', () => {
   it('should take an input for magazine type', () => {
     inputValue('#customMagTypeInput', 'Drum');
     expect(wrapper.state('type')).toEqual('Drum');
+  });
+  it('should have a back button', () => {
+    wrapper.find('#backCustomMag').simulate('click');
+    expect(mockToggle).toHaveBeenCalledWith('createCustomMag');
   });
 });
 
