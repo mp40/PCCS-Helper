@@ -24,6 +24,17 @@ class CharacterWithModifiedM1911A1 extends AddedM1911A1 {
 const characterWithM16AndModdedM1911A1 = () => {
   const character = new CharacterWithModifiedM1911A1(moddedM1911A1(1));
   character.totalWeight += testM16().weight;
+  character.combatStats = {
+    ASF: 10,
+    CE: 0,
+    ISF: 10,
+    SAL: 0,
+    baseSpeed: 2,
+    combatActions: [3, 3],
+    damageBonus: 1,
+    knockoutValue: 5,
+    maxSpeed: 4,
+  };
   character.gear.firearms = [moddedM1911A1(1), testM16()];
   return character;
 };

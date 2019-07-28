@@ -54,6 +54,17 @@ export class IncreasedFirstEquipmentItem extends AddedEquipmentAgain {
   constructor() {
     super();
     this.totalWeight = 10.53;
+    this.combatStats = {
+      ASF: 10,
+      CE: 0,
+      ISF: 10,
+      SAL: 0,
+      baseSpeed: 2.5,
+      combatActions: [3, 3],
+      damageBonus: 1,
+      knockoutValue: 5,
+      maxSpeed: 5,
+    };
     this.gear.equipment = [new EquipmentQtyTwo(), new OtherEquipment()];
   }
 }
@@ -70,6 +81,17 @@ export class AddedM1911A1AndM16 extends MockState {
   constructor() {
     super();
     this.totalWeight = 16.7;
+    this.combatStats = {
+      ASF: 10,
+      CE: 0,
+      ISF: 10,
+      SAL: 0,
+      baseSpeed: 2,
+      combatActions: [3, 3],
+      damageBonus: 1,
+      knockoutValue: 5,
+      maxSpeed: 4,
+    };
     this.gear.firearms = [testM1911A1(), testM16()];
   }
 }
@@ -78,6 +100,17 @@ export class AddedTwoM1911A1 extends MockState {
   constructor() {
     super();
     this.totalWeight = 11;
+    this.combatStats = {
+      ASF: 10,
+      CE: 0,
+      ISF: 10,
+      SAL: 0,
+      baseSpeed: 2.5,
+      combatActions: [3, 3],
+      damageBonus: 1,
+      knockoutValue: 5,
+      maxSpeed: 5,
+    };
     this.gear.firearms = [testM1911A1(2)];
   }
 }
@@ -86,6 +119,17 @@ export class AddedTwoM1911A1AndOneM16 extends MockState {
   constructor() {
     super();
     this.totalWeight = 19.7;
+    this.combatStats = {
+      ASF: 10,
+      CE: 0,
+      ISF: 10,
+      SAL: 0,
+      baseSpeed: 2,
+      combatActions: [3, 3],
+      damageBonus: 1,
+      knockoutValue: 5,
+      maxSpeed: 4,
+    };
     this.gear.firearms = [testM1911A1(2), testM16()];
   }
 }
@@ -95,6 +139,17 @@ export class AddedM16 extends MockState {
     super();
     this.currentView = 'createChar';
     this.totalWeight = 13.7;
+    this.combatStats = {
+      ASF: 10,
+      CE: 0,
+      ISF: 10,
+      SAL: 0,
+      baseSpeed: 2.5,
+      combatActions: [3, 3],
+      damageBonus: 1,
+      knockoutValue: 5,
+      maxSpeed: 5,
+    };
     this.gear.firearms = [testM16()];
   }
 }
