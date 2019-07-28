@@ -51,6 +51,7 @@ class WeaponsCardModifyWeapon extends Component {
       modifyFirearmWeight,
       removeAllGunMods,
       toggleOnWeaponsCardViews,
+      toggleOffWeaponCardViews,
     } = this.props;
 
     if (!createCustomMag && !modifyFirearmWeight) {
@@ -65,11 +66,11 @@ class WeaponsCardModifyWeapon extends Component {
     }
     if (createCustomMag) {
       return (
-        renderModificationOption(this.handleAddCustomMag, WeaponsCardCustomMag)
+        renderModificationOption(this.handleAddCustomMag, WeaponsCardCustomMag, toggleOffWeaponCardViews)
       );
     }
     return (
-      renderModificationOption(this.handleModifyFirearmWeight, WeaponsCardModifyWeight)
+      renderModificationOption(this.handleModifyFirearmWeight, WeaponsCardModifyWeight, toggleOffWeaponCardViews)
     );
   }
 }

@@ -42,6 +42,7 @@ class WeaponsCardModifyWeight extends Component {
 
   render() {
     const { capacity, weight, warning } = this.state;
+    const { toggleOffWeaponCardViews } = this.props;
 
     return (
       <div className="modifyWeightForm">
@@ -53,6 +54,11 @@ class WeaponsCardModifyWeight extends Component {
           id="submitModifiedWeight"
           onClick={this.handleSubmit}
         />
+        <ButtonStandard
+          name="Back"
+          id="backModifiedWeight"
+          onClick={() => toggleOffWeaponCardViews('modifyFirearmWeight')}
+        />
         {warning
           && <div style={{ color: 'red', fontWeight: 'bold' }}>Please Enter Valid Data</div>
         }
@@ -61,9 +67,9 @@ class WeaponsCardModifyWeight extends Component {
   }
 }
 
-
 WeaponsCardModifyWeight.propTypes = {
   handleModification: PropTypes.func,
+  toggleOffWeaponCardViews: PropTypes.func,
 };
 
 export default WeaponsCardModifyWeight;

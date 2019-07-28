@@ -19,10 +19,11 @@ export const renderModifyWeaponHeader = removeAllGunMods => (
   </>
 );
 
-export const renderModificationOption = (handleModification, ComponentName) => (
+export const renderModificationOption = (handleModification, ComponentName, toggleOffWeaponCardViews) => (
   <div style={{ marginLeft: '5rem' }}>
     <ComponentName
       handleModification={handleModification}
+      toggleOffWeaponCardViews={toggleOffWeaponCardViews}
     />
   </div>
 );

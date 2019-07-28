@@ -4,8 +4,9 @@ import { mountAppWithStore, storeWithCreateCharacterView, testM1911A1WithMods, c
 import WeaponsCardModifyWeight from './index';
 
 describe('the <WeaponsCardModifyWeight/> component', () => {
+  const mockToggle = jest.fn();
   // eslint-disable-next-line react/jsx-filename-extension
-  const wrapper = shallow(<WeaponsCardModifyWeight />);
+  const wrapper = shallow(<WeaponsCardModifyWeight toggleOffWeaponCardViews={mockToggle} />);
   const inputValue = createWrapperTextInput(wrapper);
   it('should take an input for a note on modification', () => {
     inputValue('#modifyWeightNoteInput', 'removed stock');
@@ -14,6 +15,10 @@ describe('the <WeaponsCardModifyWeight/> component', () => {
   it('should take an input for weight', () => {
     inputValue('#modifyWeightValueInput', '1.2');
     expect(wrapper.state('modWeightNumber')).toEqual('1.2');
+  });
+  it('should have a back button', () => {
+    wrapper.find('#backModifiedWeight').simulate('click');
+    expect(mockToggle).toHaveBeenCalledWith('modifyFirearmWeight');
   });
 });
 

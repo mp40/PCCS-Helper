@@ -67,6 +67,12 @@ class WeaponsCard extends Component {
     removeAllModificationsFromFirearm(firearmToModify);
   }
 
+  handleCloseFirearmStats = () => {
+    this.setState({ modifyFirearmWeight: false });
+    this.setState({ createCustomMag: false });
+    this.toggleOffWeaponCardViews('modifyFirearm');
+  }
+
   renderWeaponSelect = () => (
     <WeaponsCardSelectModal
       toggleOffWeaponCardViews={this.toggleOffWeaponCardViews}
@@ -77,7 +83,7 @@ class WeaponsCard extends Component {
     <div style={{ marginTop: '2px', marginLeft: '2px' }}>
       <ButtonDeleteX
         id="closeGunStatView"
-        onClick={this.toggleOffWeaponCardViews.bind(this, 'modifyFirearm')}
+        onClick={this.handleCloseFirearmStats}
       />
     </div>
   )
