@@ -4,11 +4,24 @@ import StatInput from '../widgets/StatInput';
 import { renderAtrributeAndCombatTableHeadings } from '../widgets/renderWidgets';
 import { isValidAttributeStat } from '../../helpers/gaurds';
 
-const statNameArray = ['Strength', 'Intelligence', 'Health', 'Willpower', 'Agility'];
+const statNameArray = ['Strength', 'Intelligence', 'Willpower', 'Health', 'Agility'];
 
 const AttributeCard = (props) => {
-  const { characterStats } = props;
-  const actionsArray = Object.values(props).slice(-5);
+  const {
+    characterStats,
+    modifyStrengthValue,
+    modifyIntelligenceValue,
+    modifyWillpowerValue,
+    modifyHealthValue,
+    modifyAgilityValue,
+  } = props;
+  const actionsArray = [
+    modifyStrengthValue,
+    modifyIntelligenceValue,
+    modifyWillpowerValue,
+    modifyHealthValue,
+    modifyAgilityValue,
+  ];
 
   return (
     <div>
@@ -36,6 +49,11 @@ const AttributeCard = (props) => {
 
 AttributeCard.propTypes = {
   characterStats: PropTypes.objectOf(PropTypes.number),
+  modifyStrengthValue: PropTypes.func,
+  modifyIntelligenceValue: PropTypes.func,
+  modifyHealthValue: PropTypes.func,
+  modifyWillpowerValue: PropTypes.func,
+  modifyAgilityValue: PropTypes.func,
 };
 
 export default AttributeCard;

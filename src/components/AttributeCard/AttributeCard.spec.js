@@ -23,25 +23,41 @@ describe('Character Attribute Stat Input', () => {
     expect(wrapper.text()).toContain('10');
   });
   describe('changing attribute values', () => {
+    const attributeTable = wrapper.find('.attributeContainer').first().childAt(0);
     it('should update strength', () => {
       inputAttribute('#updateStr', '11');
       expect(wrapper.text()).toContain('11');
+      const healthLine = attributeTable.childAt(1);
+      expect(healthLine.find('.attName').text()).toBe('Strength');
+      expect(healthLine.find('.attValue').text()).toBe('11');
     });
     it('should update intelligence', () => {
       inputAttribute('#updateInt', '12');
       expect(wrapper.text()).toContain('12');
-    });
-    it('should update health', () => {
-      inputAttribute('#updateHlt', '14');
-      expect(wrapper.text()).toContain('14');
+      const healthLine = attributeTable.childAt(2);
+      expect(healthLine.find('.attName').text()).toBe('Intelligence');
+      expect(healthLine.find('.attValue').text()).toBe('12');
     });
     it('should update willpower', () => {
       inputAttribute('#updateWil', '17');
       expect(wrapper.text()).toContain('17');
+      const willLine = attributeTable.childAt(3);
+      expect(willLine.find('.attName').text()).toBe('Willpower');
+      expect(willLine.find('.attValue').text()).toBe('17');
+    });
+    it('should update health', () => {
+      inputAttribute('#updateHlt', '14');
+      expect(wrapper.text()).toContain('14');
+      const healthLine = attributeTable.childAt(4);
+      expect(healthLine.find('.attName').text()).toBe('Health');
+      expect(healthLine.find('.attValue').text()).toBe('14');
     });
     it('should update agility', () => {
       inputAttribute('#updateAgi', '18');
       expect(wrapper.text()).toContain('18');
+      const healthLine = attributeTable.childAt(5);
+      expect(healthLine.find('.attName').text()).toBe('Agility');
+      expect(healthLine.find('.attValue').text()).toBe('18');
     });
     it('updates actions and other combat stats when attributes change', () => {
       const gunActionsTable = wrapper.find('#gunActionTable');
