@@ -1,0 +1,9 @@
+.bodyArmourTable {
+    margin-left: 1rem;
+    border-collapse: 'collapse';
+    border: 1px solid rgb(85, 83, 83);
+    color: rgb(85, 83, 83);
+    font-size: smaller;
+    text-align: center;
+    
+}

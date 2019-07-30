@@ -4,47 +4,7 @@ const uniformWeights = {
   Winter: 7,
 };
 
-const helmetStats = [
-  {
-    name: '6B27',
-    pf: 3,
-    bpf: 4,
-    ac: 'i',
-    weight: 2.8,
-    tags: ['Russian', 'Modern'],
-  },
-  {
-    name: '6B7-1M',
-    pf: 3,
-    bpf: 4,
-    ac: 'i',
-    weight: 2.5,
-    tags: ['Russian', 'Modern'],
-  },
-  {
-    name: 'ACH',
-    pf: 7,
-    bpf: 4,
-    ac: 'i',
-    weight: 3,
-    tags: ['USA', 'Modern'],
-  },
-  {
-    name: 'Helmet-68M',
-    pf: 3,
-    bpf: 4,
-    ac: 'i',
-    weight: 3.7,
-    tags: ['Russian', 'Cold War'],
-  },
-  {
-    name: 'LWH',
-    pf: 8,
-    bpf: 4,
-    ac: 'i',
-    weight: 3,
-    tags: ['USA', 'Modern'],
-  },
+const helmetStats = () => [
   {
     name: 'M1',
     pf: 4,
@@ -52,30 +12,6 @@ const helmetStats = [
     ac: 'i',
     weight: 2.5,
     tags: ['USA', 'WW2', 'Cold War'],
-  },
-  {
-    name: 'M15 Adrian',
-    pf: 3,
-    bpf: 3,
-    ac: 'i',
-    weight: 1.7,
-    tags: ['French', 'WW2', 'WW1'],
-  },
-  {
-    name: 'M35',
-    pf: 4,
-    bpf: 4,
-    ac: 'i',
-    weight: 2.5,
-    tags: ['Germany', 'WW2'],
-  },
-  {
-    name: 'M43',
-    pf: 5,
-    bpf: 4,
-    ac: 'i',
-    weight: 2.3,
-    tags: ['Germany', 'WW2'],
   },
   {
     name: 'Mk 1',
@@ -102,6 +38,22 @@ const helmetStats = [
     tags: ['British', 'Cold War'],
   },
   {
+    name: 'PASGT',
+    pf: 6,
+    bpf: 4,
+    ac: 'i',
+    weight: 3.3,
+    tags: ['USA', 'Cold War', 'Modern'],
+  },
+  {
+    name: 'ACH',
+    pf: 7,
+    bpf: 4,
+    ac: 'i',
+    weight: 3,
+    tags: ['USA', 'Modern'],
+  },
+  {
     name: 'MICH',
     pf: 7,
     bpf: 4,
@@ -110,12 +62,20 @@ const helmetStats = [
     tags: ['USA', 'Modern'],
   },
   {
-    name: 'PASGT',
-    pf: 6,
+    name: 'LWH',
+    pf: 8,
     bpf: 4,
     ac: 'i',
-    weight: 3.3,
-    tags: ['USA', 'Cold War', 'Modern'],
+    weight: 3,
+    tags: ['USA', 'Modern'],
+  },
+  {
+    name: 'M15 Adrian',
+    pf: 3,
+    bpf: 3,
+    ac: 'i',
+    weight: 1.7,
+    tags: ['French', 'WW2', 'WW1'],
   },
   {
     name: 'SPECTRA',
@@ -133,9 +93,49 @@ const helmetStats = [
     weight: 2.8,
     tags: ['Russian', 'WW2'],
   },
+  {
+    name: 'Helmet-68M',
+    pf: 3,
+    bpf: 4,
+    ac: 'i',
+    weight: 3.7,
+    tags: ['Russian', 'Cold War'],
+  },
+  {
+    name: '6B27',
+    pf: 3,
+    bpf: 4,
+    ac: 'i',
+    weight: 2.8,
+    tags: ['Russian', 'Modern'],
+  },
+  {
+    name: '6B7-1M',
+    pf: 3,
+    bpf: 4,
+    ac: 'i',
+    weight: 2.5,
+    tags: ['Russian', 'Modern'],
+  },
+  {
+    name: 'M35',
+    pf: 4,
+    bpf: 4,
+    ac: 'i',
+    weight: 2.5,
+    tags: ['Germany', 'WW2'],
+  },
+  {
+    name: 'M43',
+    pf: 5,
+    bpf: 4,
+    ac: 'i',
+    weight: 2.3,
+    tags: ['Germany', 'WW2'],
+  },
 ];
 
-const bodyArmorStats = [
+const bodyArmorStats = () => [
   {
     name: '6B11',
     pf: 8,
