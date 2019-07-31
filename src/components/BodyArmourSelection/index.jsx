@@ -9,9 +9,12 @@ const tableBodyStyles = {
 
 const renderHeading = armourType => (armourType === 'Helmet' ? 'Select Helmet' : 'Select Vest');
 
-const renderBody = armourList => armourList.map(armour => (
+const renderBody = (armourList, handleDispatch, type) => armourList.map(armour => (
   <React.Fragment key={armour.name}>
-    <tr className={`${armour.name}Row`}>
+    <tr
+      className={`${armour.name}Row bodyArmourRow`}
+      onClick={() => handleDispatch(type, armour)}
+    >
       <td style={{ textAlign: 'left' }}>{armour.name}</td>
       <td>{armour.pf}</td>
       <td>{armour.bpf}</td>
@@ -40,7 +43,7 @@ const BodyArmourSelection = ({ armourType, armourList, handleDispatch }) => (
           </tr>
         </thead>
         <tbody style={tableBodyStyles}>
-          {renderBody(armourList)}
+          {renderBody(armourList, handleDispatch, armourType)}
         </tbody>
       </table>
     </div>

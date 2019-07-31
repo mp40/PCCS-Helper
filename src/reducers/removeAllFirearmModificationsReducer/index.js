@@ -1,4 +1,3 @@
-import { calculateTotalWeight } from '../../helpers/actionHelpers';
 import { correctFloatingPoint, returnUpdatedWeightAndFirearms } from '../reducerHelpers';
 
 const removeKeyFromFirearm = firearm => Object.keys(firearm).reduce((object, key) => {
@@ -31,7 +30,5 @@ export const removeAllFirearmModificationsReducer = (state, action) => {
     return gun;
   });
 
-  const newTotalWeight = calculateTotalWeight(state.gear.uniform, state.gear.equipment, newFirearmArray);
-
-  return returnUpdatedWeightAndFirearms(state, newTotalWeight, newFirearmArray);
+  return returnUpdatedWeightAndFirearms(state, newFirearmArray);
 };

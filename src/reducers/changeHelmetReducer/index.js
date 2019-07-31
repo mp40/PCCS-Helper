@@ -8,10 +8,9 @@ const {
   calcDB,
 } = require('../../helpers/helperFunctions');
 
-export const changeUniformReducer = (state, action) => {
-  const updatedGear = { ...state.gear, uniform: action.payload };
+export const changeHelmetReducer = (state, action) => {
+  const updatedGear = { ...state.gear, helmet: action.payload };
   const newTotalWeight = calculateTotalWeight(updatedGear);
-
 
   const newBaseSpeed = calcBaseSpeed(state.characterStats.str, newTotalWeight);
   const newMaxSpeed = calcMaxSpeed(state.characterStats.agi, newBaseSpeed);

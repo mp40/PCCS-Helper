@@ -1,3 +1,5 @@
+import { calculateTotalWeight } from '../helpers/actionHelpers';
+
 const {
   calcBaseSpeed,
   calcMaxSpeed,
@@ -7,12 +9,17 @@ const {
 
 export const correctFloatingPoint = number => Math.round(number * 1000) / 1000;
 
-const returnUpdatedWeightAndGearArray = arrayToUpdate => (state, newTotalWeight, updatedArray) => {
+const returnUpdatedWeightAndGearArray = arrayToUpdate => (state, updatedArray) => {
+  const newGear = { ...state.gear, [arrayToUpdate]: updatedArray };
+  const newTotalWeight = calculateTotalWeight(newGear);
+
   const newBaseSpeed = calcBaseSpeed(state.characterStats.str, newTotalWeight);
   const newMaxSpeed = calcMaxSpeed(state.characterStats.agi, newBaseSpeed);
   const newDamageBonus = calcDB(newMaxSpeed, state.combatStats.ASF);
   const newGunCombatActions = calcCombatActions(newMaxSpeed, state.combatStats.ISF);
   const newMeleeCombatActions = calcCombatActions(newMaxSpeed, state.combatStats.ASF);
+
+
   return ({ ...state,
     totalWeight: correctFloatingPoint(newTotalWeight),
     combatStats: { ...state.combatStats,
@@ -36,6 +43,5 @@ const incrementQuantity = incrementer => (array, targetName) => array.map((eleme
 
 export const returnUpdatedWeightAndArray = (state, payload, incrementer, arrayName) => {
   const newArray = incrementQuantity(incrementer)(state.gear[arrayName], payload.name);
-  const newTotalWeight = state.totalWeight + (payload.weight * incrementer);
-  return returnUpdatedWeightAndGearArray(arrayName)(state, newTotalWeight, newArray);
+  return returnUpdatedWeightAndGearArray(arrayName)(state, newArray);
 };

@@ -5,11 +5,29 @@ import { helmetStats, bodyArmorStats } from '../../data/uniformAndArmourTypes';
 
 export const selectArmourList = armourType => (armourType === 'Helmet' ? helmetStats() : bodyArmorStats());
 
-const BodyArmourCard = () => {
+const BodyArmourCard = ({ helmet, changeHelmet }) => {
   const [showBodyArmour, toggleBodyArmourSelect] = useState(false);
+  // const { helmet, changeHelmet } = props;
 
-  const handleDispatch = () => {
-  // todo something here
+  const getHelmetName = () => {
+    if (!helmet) {
+      return 'No Helmet';
+    }
+    return helmet.name;
+  };
+
+  const getHelmetWeight = () => {
+    if (!helmet) {
+      return '0';
+    }
+    return helmet.weight;
+  };
+
+  const handleDispatch = (type, payload) => {
+    if (type === 'Helmet') {
+      changeHelmet(payload);
+    }
+    toggleBodyArmourSelect(false);
   };
 
   return (
@@ -23,8 +41,8 @@ const BodyArmourCard = () => {
         </thead>
         <tbody>
           <tr className="helmetBodyArmour" onClick={() => toggleBodyArmourSelect('Helmet')}>
-            <td>No Helmet</td>
-            <td>0</td>
+            <td>{getHelmetName()}</td>
+            <td>{getHelmetWeight()}</td>
           </tr>
           <tr className="vestBodyArmour" onClick={() => toggleBodyArmourSelect('Vest')}>
             <td>No Vest</td>
@@ -43,6 +61,12 @@ const BodyArmourCard = () => {
       }
     </>
   );
+};
+
+BodyArmourCard.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  helmet: PropTypes.object,
+  changeHelmet: PropTypes.func,
 };
 
 export default BodyArmourCard;
