@@ -5,9 +5,8 @@ import { helmetStats, bodyArmorStats } from '../../data/uniformAndArmourTypes';
 
 export const selectArmourList = armourType => (armourType === 'Helmet' ? helmetStats() : bodyArmorStats());
 
-const BodyArmourCard = ({ helmet, changeHelmet }) => {
+const BodyArmourCard = ({ helmet, vest, changeHelmet, changeVest }) => {
   const [showBodyArmour, toggleBodyArmourSelect] = useState(false);
-  // const { helmet, changeHelmet } = props;
 
   const getHelmetName = () => {
     if (!helmet) {
@@ -23,9 +22,26 @@ const BodyArmourCard = ({ helmet, changeHelmet }) => {
     return helmet.weight;
   };
 
+  const getVestName = () => {
+    if (!vest) {
+      return 'No Vest';
+    }
+    return vest.name;
+  };
+
+  const getVestWeight = () => {
+    if (!vest) {
+      return '0';
+    }
+    return vest.weight;
+  };
+
   const handleDispatch = (type, payload) => {
     if (type === 'Helmet') {
       changeHelmet(payload);
+    }
+    if (type === 'Vest') {
+      changeVest(payload);
     }
     toggleBodyArmourSelect(false);
   };
@@ -45,8 +61,8 @@ const BodyArmourCard = ({ helmet, changeHelmet }) => {
             <td>{getHelmetWeight()}</td>
           </tr>
           <tr className="vestBodyArmour" onClick={() => toggleBodyArmourSelect('Vest')}>
-            <td>No Vest</td>
-            <td>0</td>
+            <td>{getVestName()}</td>
+            <td>{getVestWeight()}</td>
           </tr>
         </tbody>
       </table>
@@ -66,7 +82,10 @@ const BodyArmourCard = ({ helmet, changeHelmet }) => {
 BodyArmourCard.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   helmet: PropTypes.object,
+  // eslint-disable-next-line react/forbid-prop-types
+  vest: PropTypes.object,
   changeHelmet: PropTypes.func,
+  changeVest: PropTypes.func,
 };
 
 export default BodyArmourCard;
