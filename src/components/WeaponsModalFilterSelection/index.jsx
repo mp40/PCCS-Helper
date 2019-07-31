@@ -20,6 +20,26 @@ const filterWrapperStyles = {
   marginTop: '0.5rem',
 };
 
+const buildTypeClassName = (value) => {
+  if (value === 'Sniper Rifles') {
+    return 'selectSniperRiflesFilter';
+  }
+  return `select${value}Filter`;
+};
+
+const buildCalibreClassName = (value) => {
+  if (value === 'All') {
+    return 'selectAllCalibersFilter';
+  }
+  if (value === 'Other') {
+    return 'selectOtherCaliberFilter';
+  }
+  return `select${value}Filter`.replace(/[^\w]/g, '');
+};
+
+const typeButtonValues = ['All', 'Rifles', 'Pistols', 'SMGs', 'MGs', 'Shotguns', 'Sniper Rifles'];
+const calibreButtonValues = ['All', '7.62mm NATO', '5.56mm NATO', '7.62 x 39mm', '5.45 x 39.5mm', '9mm Parabellum', 'Other'];
+
 const WeaponsModalFilterSelection = ({ handleSetFilterByType }) => {
   const [filterByType, setTypeFilter] = useState('All');
   const [filterByCaliber, setCaliberFilter] = useState('All');
@@ -35,7 +55,7 @@ const WeaponsModalFilterSelection = ({ handleSetFilterByType }) => {
   };
 
   const renderRadioButton = (value, checked, className, handleUpdateFilter) => (
-    <div style={radioButtonContainer}>
+    <div style={radioButtonContainer} key={value}>
       <div>{value}</div>
       <input
         type="radio"
@@ -50,25 +70,24 @@ const WeaponsModalFilterSelection = ({ handleSetFilterByType }) => {
 
   const renderFilterByTypeForm = () => (
     <form className="filterByFirearmTypeForm" style={filterByTypeStyles}>
-      {renderRadioButton('All', filterByType === 'All', 'selectAllFilter', handleUpdateTypeFilter)}
-      {renderRadioButton('Rifles', filterByType === 'Rifles', 'selectRifleFilter', handleUpdateTypeFilter)}
-      {renderRadioButton('Pistols', filterByType === 'Pistols', 'selectPistolFilter', handleUpdateTypeFilter)}
-      {renderRadioButton('SMGs', filterByType === 'SMGs', 'selectSMGFilter', handleUpdateTypeFilter)}
-      {renderRadioButton('MGs', filterByType === 'MGs', 'selectMGFilter', handleUpdateTypeFilter)}
-      {renderRadioButton('Shotguns', filterByType === 'Shotguns', 'selectShotgunFilter', handleUpdateTypeFilter)}
-      {renderRadioButton('Sniper Rifles', filterByType === 'Sniper Rifles', 'selectSniperRifleFilter', handleUpdateTypeFilter)}
+      {typeButtonValues.map(
+        value => renderRadioButton(value, filterByType === value, buildTypeClassName(value), handleUpdateTypeFilter),
+      )}
     </form>
   );
 
   const renderFilterByCalibreForm = () => (
     <form className="filterByFirearmTypeForm" style={filterByTypeStyles}>
-      {renderRadioButton('All', filterByCaliber === 'All', 'selectAllCalibersFilter', handleUpdateCaliberFilter)}
+      {calibreButtonValues.map(
+        value => renderRadioButton(value, filterByCaliber === value, buildCalibreClassName(value), handleUpdateCaliberFilter),
+      )}
+      {/* {renderRadioButton('All', filterByCaliber === 'All', 'selectAllCalibersFilter', handleUpdateCaliberFilter)}
       {renderRadioButton('7.62mm NATO', filterByCaliber === '7.62mm NATO', 'select762NATOFilter', handleUpdateCaliberFilter)}
       {renderRadioButton('5.56mm NATO', filterByCaliber === '5.56mm NATO', 'select556NATOFilter', handleUpdateCaliberFilter)}
       {renderRadioButton('7.62 x 39mm', filterByCaliber === '7.62 x 39mm', 'select762x39Filter', handleUpdateCaliberFilter)}
       {renderRadioButton('5.45 x 39.5mm', filterByCaliber === '5.45 x 39.5mm', 'select545x39Filter', handleUpdateCaliberFilter)}
       {renderRadioButton('9mm Parabellum', filterByCaliber === '9mm Parabellum', 'selectParabellumFilter', handleUpdateCaliberFilter)}
-      {renderRadioButton('Other', filterByCaliber === 'Other', 'selectOtherCaliberFilter', handleUpdateCaliberFilter)}
+      {renderRadioButton('Other', filterByCaliber === 'Other', 'selectOtherCaliberFilter', handleUpdateCaliberFilter)} */}
     </form>
   );
 
