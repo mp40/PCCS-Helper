@@ -40,7 +40,7 @@ describe('the BodyArmourCard', () => {
     it('should be possible to open helmet selection', () => {
       wrapper.find('.helmetBodyArmour').simulate('click');
       expect(wrapper.find('.selectBodyArmourModal').exists()).toBe(true);
-      expect(wrapper.find('.bodyArmourListHeading').text()).toBe('Select Helmet');
+      expect(wrapper.find('.bodyArmourListHeading').text()).toContain('Select Helmet');
     });
     it('should be render helmet stats', () => {
       const m1Stats = wrapper.find('.M1Row');
@@ -58,12 +58,17 @@ describe('the BodyArmourCard', () => {
     it('should close the modal on selection', () => {
       expect(wrapper.find('.selectBodyArmourModal').exists()).toBe(false);
     });
+    it('should be possible to remove helmet', () => {
+      wrapper.find('.helmetBodyArmour').simulate('click');
+      wrapper.find('.removeBodyArmour').simulate('click');
+      expect(mockHelmetDispatch).toHaveBeenCalledWith(null);
+    });
   });
   describe('vests', () => {
     it('should be possible to open vest selection', () => {
       wrapper.find('.vestBodyArmour').simulate('click');
       expect(wrapper.find('.selectBodyArmourModal').exists()).toBe(true);
-      expect(wrapper.find('.bodyArmourListHeading').text()).toBe('Select Vest');
+      expect(wrapper.find('.bodyArmourListHeading').text()).toContain('Select Vest');
     });
     it('should be render vest stats', () => {
       const m69Stats = wrapper.find('.M69Row');
@@ -79,6 +84,16 @@ describe('the BodyArmourCard', () => {
       expect(mockVestDispatch).toHaveBeenCalledWith(vestM69);
     });
     it('should close the modal on selection', () => {
+      expect(wrapper.find('.selectBodyArmourModal').exists()).toBe(false);
+    });
+    it('should be possible to remove vest', () => {
+      wrapper.find('.vestBodyArmour').simulate('click');
+      wrapper.find('.removeBodyArmour').simulate('click');
+      expect(mockVestDispatch).toHaveBeenCalledWith(null);
+    });
+    it('should be exit without making a slection', () => {
+      wrapper.find('.vestBodyArmour').simulate('click');
+      wrapper.find('.exitBodyArmourSlection').simulate('click');
       expect(wrapper.find('.selectBodyArmourModal').exists()).toBe(false);
     });
   });
@@ -110,7 +125,15 @@ describe('the BodyArmourCard', () => {
       expect(gunActionsTable.text()).toEqual('Gun1011');
       expect(handActionsTable.text()).toEqual('Hand1011');
       expect(additionalData.text()).toEqual('BS 2MS 4DB 1');
-      // when do remove helm 5 = vest = same CA, BS=2.5, MS=5
+    });
+    it('should be able to remove armour', () => {
+      wrap.find('.helmetBodyArmour').simulate('click');
+      wrap.find('.removeBodyArmour').simulate('click');
+      expect(wrap.find('.helmetBodyArmour').childAt(0).text()).toBe('No Helmet');
+      expect(wrap.find('.helmetBodyArmour').childAt(1).text()).toBe('0');
+      expect(gunActionsTable.text()).toEqual('Gun1011');
+      expect(handActionsTable.text()).toEqual('Hand1011');
+      expect(additionalData.text()).toEqual('BS 2.5MS 5DB 1');
     });
   });
 });

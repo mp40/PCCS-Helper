@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import ButtonStandard from '../widgets/buttons/ButtonStandard';
 import './BodyArmourSelection.css';
 
 const tableBodyStyles = {
   border: '1px solid black',
 };
-
+// .removehelmetBodyArmour
 const renderHeading = armourType => (armourType === 'Helmet' ? 'Select Helmet' : 'Select Vest');
 
 const renderBody = (armourList, handleDispatch, type) => armourList.map(armour => (
@@ -30,6 +30,16 @@ const BodyArmourSelection = ({ armourType, armourList, handleDispatch }) => (
     <div className="equipmentListCard">
       <div className="equipmentListHeader bodyArmourListHeading">
         {renderHeading(armourType)}
+        <ButtonStandard
+          name="Back"
+          onClick={() => handleDispatch(null)}
+          className="exitBodyArmourSlection"
+        />
+        <ButtonStandard
+          name="Remove"
+          onClick={() => handleDispatch(armourType, null)}
+          className="removeBodyArmour"
+        />
       </div>
       <table className="bodyArmourTable">
         <thead>
@@ -57,29 +67,3 @@ BodyArmourSelection.propTypes = {
 };
 
 export default BodyArmourSelection;
-
-// return (
-//     <div className="equipmentModalContainer">
-
-//       <div className="equipmentListCard">
-//         <div className="equipmentListHeader">
-//                     Select Equipment
-//           <ButtonStandard
-//             id="closeEquipmentModal"
-//             name="Close List"
-//             onClick={closeShowEquipment}
-//           />
-//           <ButtonStandard
-//             id="filterEquipmentList"
-//             name={showFilters
-//               ? 'Apply Filter'
-//               : 'Filter List'}
-//             onClick={toggleFilters}
-//           />
-//         </div>
-//         {this.renderContent()}
-//       </div>
-//     </div>
-//   );
-// }
-// }
