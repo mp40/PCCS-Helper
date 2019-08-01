@@ -47,13 +47,12 @@ yarn test
 ```
 
 #### WIP
-- Body Armour selection
+- Grenade selection
 
 #### Next
 
 - Refactor code
 - Improve UI/UX
-- Grenade selection
 
 #### To Come
 
