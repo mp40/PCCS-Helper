@@ -27,6 +27,7 @@ Currently the application has the following features:
 - Supports multiple magazine types for firearms, with ability to specify primary magazine and hide non-primary magazines
 - Ability to add custom magazines to firearm
 - Ability modify firearm weight, changing primary magazine automatically updates firearm weight
+- Body armour selection
 
 ## Install procedure
 
