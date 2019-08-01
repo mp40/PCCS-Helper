@@ -6,7 +6,6 @@ import './BodyArmourSelection.css';
 const tableBodyStyles = {
   border: '1px solid black',
 };
-// .removehelmetBodyArmour
 const renderHeading = armourType => (armourType === 'Helmet' ? 'Select Helmet' : 'Select Vest');
 
 const renderBody = (armourList, handleDispatch, type) => armourList.map(armour => (
@@ -27,28 +26,30 @@ const renderBody = (armourList, handleDispatch, type) => armourList.map(armour =
 
 const BodyArmourSelection = ({ armourType, armourList, handleDispatch }) => (
   <div className="equipmentModalContainer selectBodyArmourModal">
-    <div className="equipmentListCard">
+    <div className="bodyArmourListCard">
       <div className="equipmentListHeader bodyArmourListHeading">
         {renderHeading(armourType)}
-        <ButtonStandard
-          name="Back"
-          onClick={() => handleDispatch(null)}
-          className="exitBodyArmourSlection"
-        />
-        <ButtonStandard
-          name="Remove"
-          onClick={() => handleDispatch(armourType, null)}
-          className="removeBodyArmour"
-        />
+        <div style={{ marginLeft: '5px' }}>
+          <ButtonStandard
+            name="Back"
+            onClick={() => handleDispatch(null)}
+            className="exitBodyArmourSlection"
+          />
+          <ButtonStandard
+            name="Remove"
+            onClick={() => handleDispatch(armourType, null)}
+            className="removeBodyArmour"
+          />
+        </div>
       </div>
       <table className="bodyArmourTable">
         <thead>
           <tr>
             <th style={{ textAlign: 'left' }}>Name</th>
-            <th>PF</th>
+            <th className="armourCol">PF</th>
             <th>BPF</th>
             <th>AC</th>
-            <th>Weight</th>
+            <th>lbs</th>
             <th style={{ textAlign: 'left' }}>Notes</th>
           </tr>
         </thead>

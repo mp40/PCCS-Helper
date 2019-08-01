@@ -1,8 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import BodyArmourCard, { selectArmourList } from './component';
+import BodyArmourCard from './component';
 import { mountAppWithStore, storeWithCreateCharacterView } from '../../helpers/testHelpers';
-import { helmetStats, bodyArmorStats } from '../../data/uniformAndArmourTypes';
 
 const helmetM1 = {
   name: 'M1',
@@ -131,8 +130,6 @@ describe('the BodyArmourCard', () => {
       wrap.find('.removeBodyArmour').simulate('click');
       expect(wrap.find('.helmetBodyArmour').childAt(0).text()).toBe('No Helmet');
       expect(wrap.find('.helmetBodyArmour').childAt(1).text()).toBe('0');
-      expect(gunActionsTable.text()).toEqual('Gun1011');
-      expect(handActionsTable.text()).toEqual('Hand1011');
       expect(additionalData.text()).toEqual('BS 2.5MS 5DB 1');
     });
   });
