@@ -68,28 +68,28 @@ const WeaponsModalFilterSelection = ({ handleSetFilterByType }) => {
     </div>
   );
 
-  const renderFilterByTypeForm = () => (
-    <form className="filterByFirearmTypeForm" style={filterByTypeStyles}>
-      {typeButtonValues.map(
-        value => renderRadioButton(value, filterByType === value, buildTypeClassName(value), handleUpdateTypeFilter),
-      )}
-    </form>
-  );
+  const renderFilterForm = (filterBy) => {
+    const valueArray = filterBy === 'type' ? typeButtonValues : calibreButtonValues;
+    const filterValue = filterBy === 'type' ? filterByType : filterByCaliber;
+    const handleUpdateFilter = filterBy === 'type' ? handleUpdateTypeFilter : handleUpdateCaliberFilter;
+    const buildClassName = filterBy === 'type' ? buildTypeClassName : buildCalibreClassName;
 
-  const renderFilterByCalibreForm = () => (
-    <form className="filterByFirearmTypeForm" style={filterByTypeStyles}>
-      {calibreButtonValues.map(
-        value => renderRadioButton(value, filterByCaliber === value, buildCalibreClassName(value), handleUpdateCaliberFilter),
-      )}
-      {/* {renderRadioButton('All', filterByCaliber === 'All', 'selectAllCalibersFilter', handleUpdateCaliberFilter)}
-      {renderRadioButton('7.62mm NATO', filterByCaliber === '7.62mm NATO', 'select762NATOFilter', handleUpdateCaliberFilter)}
-      {renderRadioButton('5.56mm NATO', filterByCaliber === '5.56mm NATO', 'select556NATOFilter', handleUpdateCaliberFilter)}
-      {renderRadioButton('7.62 x 39mm', filterByCaliber === '7.62 x 39mm', 'select762x39Filter', handleUpdateCaliberFilter)}
-      {renderRadioButton('5.45 x 39.5mm', filterByCaliber === '5.45 x 39.5mm', 'select545x39Filter', handleUpdateCaliberFilter)}
-      {renderRadioButton('9mm Parabellum', filterByCaliber === '9mm Parabellum', 'selectParabellumFilter', handleUpdateCaliberFilter)}
-      {renderRadioButton('Other', filterByCaliber === 'Other', 'selectOtherCaliberFilter', handleUpdateCaliberFilter)} */}
-    </form>
-  );
+    return (
+      <form className="filterByFirearmTypeForm" style={filterByTypeStyles}>
+        {valueArray.map(
+          value => renderRadioButton(
+            value,
+            filterValue === value,
+            buildClassName(value),
+            handleUpdateFilter,
+          ),
+        )}
+      </form>
+    );
+  };
+
+  const renderFilterByTypeForm = () => renderFilterForm('type');
+  const renderFilterByCalibreForm = () => renderFilterForm('calibre');
 
   return (
     <div style={filterWrapperStyles}>
