@@ -163,3 +163,13 @@ export const replaceMagazine = firearmAndMagazine => ({
   type: 'MAGAZINE_REPLACED',
   payload: firearmAndMagazine,
 });
+
+export const changeHelmet = helmetBodyArmour => ({
+  type: 'HELMET_CHANGED',
+  payload: helmetBodyArmour,
+});
+
+export const changeVest = vestBodyArmour => ({
+  type: 'VEST_CHANGED',
+  payload: vestBodyArmour,
+});

@@ -6,6 +6,7 @@ import ActionsCard from '../ActionsCard';
 import EquipmentCard from '../EquipmentCard';
 import ClothingCard from '../ClothingCard';
 import WeaponsCard from '../WeaponsCard';
+import BodyArmourCard from '../BodyArmourCard';
 
 import './CharacterGeneration.css';
 
@@ -50,6 +51,7 @@ class CharacterGeneration extends Component {
           <CombatCard />
           <ActionsCard />
           <ClothingCard />
+          <BodyArmourCard />
         </div>
         <EquipmentCard />
         <WeaponsCard />

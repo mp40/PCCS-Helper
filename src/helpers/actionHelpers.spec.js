@@ -74,7 +74,7 @@ describe('calculating total weight of all equipment', () => {
     const uniform = 'Normal';
     const equipment = [belt, pouch];
     const firearms = [testRifle(), testPistol()];
-    expect(calculateTotalWeight(uniform, equipment, firearms)).toEqual(5 + 1.5 + 17);
+    expect(calculateTotalWeight({ uniform, equipment, firearms })).toEqual(5 + 1.5 + 17);
   });
   it('should return a number if the equipment array is empty', () => {
     const equipment = [];
@@ -91,12 +91,26 @@ describe('calculating total weight of all equipment', () => {
     const uniform = 'Normal';
     const equipment = [];
     const firearms = [testRifle(), testPistol()];
-    expect(calculateTotalWeight(uniform, equipment, firearms)).toEqual(5 + 17);
+    expect(calculateTotalWeight({ uniform, equipment, firearms })).toEqual(5 + 17);
   });
   it('should calculate correct weight if firearm array is empty', () => {
     const uniform = 'Normal';
     const equipment = [belt, pouch];
     const firearms = [];
-    expect(calculateTotalWeight(uniform, equipment, firearms)).toEqual(5 + 1.5);
+    expect(calculateTotalWeight({ uniform, equipment, firearms })).toEqual(5 + 1.5);
+  });
+  it('should calculate correct weight if helmet is present', () => {
+    const uniform = 'Normal';
+    const equipment = [belt, pouch];
+    const firearms = [testRifle(), testPistol()];
+    const helmet = { name: 'testHelmet', weight: 2.5 };
+    expect(calculateTotalWeight({ uniform, equipment, firearms, helmet })).toEqual(5 + 1.5 + 17 + 2.5);
+  });
+  it('should calculate correct weight if vest is present', () => {
+    const uniform = 'Normal';
+    const equipment = [belt, pouch];
+    const firearms = [testRifle(), testPistol()];
+    const vest = { name: 'testVest', weight: 5 };
+    expect(calculateTotalWeight({ uniform, equipment, firearms, vest })).toEqual(5 + 1.5 + 17 + 5);
   });
 });

@@ -9,7 +9,6 @@ const filterNotes = (notes, payloadNote) => notes.filter((currentNote) => {
 });
 
 export const removeFirearmModificationReducer = (state, action) => {
-  const newTotalWeight = state.totalWeight - action.payload.modNote.weightMod;
   const newFirearmArray = state.gear.firearms.map((element) => {
     const firearm = element;
     if (firearm.name === action.payload.firearm) {
@@ -20,5 +19,5 @@ export const removeFirearmModificationReducer = (state, action) => {
     return firearm;
   });
 
-  return returnUpdatedWeightAndFirearms(state, newTotalWeight, newFirearmArray);
+  return returnUpdatedWeightAndFirearms(state, newFirearmArray);
 };

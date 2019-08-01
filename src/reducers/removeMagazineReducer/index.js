@@ -1,5 +1,4 @@
 import { returnUpdatedWeightAndFirearms } from '../reducerHelpers';
-import { calculateTotalWeight } from '../../helpers/actionHelpers';
 
 const magToRemove = (
   payloadMagazine, element,
@@ -28,7 +27,6 @@ export const removeMagazineReducer = (state, action) => {
     }
     return gun;
   });
-  const newTotalWeight = calculateTotalWeight(state.gear.uniform, state.gear.equipment, newFirearmArray);
 
-  return returnUpdatedWeightAndFirearms(state, newTotalWeight, newFirearmArray);
+  return returnUpdatedWeightAndFirearms(state, newFirearmArray);
 };

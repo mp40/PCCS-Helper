@@ -7,7 +7,5 @@ export const increaseMagazineReducer = (state, action) => {
   newGunObj.mag = modifyObjectQtyInArray(newGunObj.mag, action.payload.magazine, 1);
   const newFirearmArray = modifyObjectQtyInArray(state.gear.firearms, newGunObj);
 
-  const newTotalWeight = state.totalWeight + action.payload.magazine.weight;
-
-  return returnUpdatedWeightAndFirearms(state, newTotalWeight, newFirearmArray);
+  return returnUpdatedWeightAndFirearms(state, newFirearmArray);
 };

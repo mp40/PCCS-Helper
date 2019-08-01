@@ -26,6 +26,8 @@ import { removeAllFirearmModificationsReducer } from './removeAllFirearmModifica
 import { setPrimaryMagazineReducer } from './setPrimaryMagazineReducer';
 import { removeMagazineReducer } from './removeMagazineReducer';
 import { replaceMagazineReducer } from './replaceMagazineReducer';
+import { changeHelmetReducer } from './changeHelmetReducer';
+import { changeVestReducer } from './changeVestReducer';
 
 const initialState = initialStore;
 
@@ -87,6 +89,10 @@ function reduceActions(state = initialState, action) {
       return removeMagazineReducer(state, action);
     case 'MAGAZINE_REPLACED':
       return replaceMagazineReducer(state, action);
+    case 'HELMET_CHANGED':
+      return changeHelmetReducer(state, action);
+    case 'VEST_CHANGED':
+      return changeVestReducer(state, action);
     case 'TOTAL_WEIGHT':
       return { ...state, totalWeight: action.payload };
     case 'UPDATE_ATTRIBUTES':

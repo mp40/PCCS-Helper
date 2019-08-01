@@ -8,7 +8,7 @@ describe('removeFirearmReducer function', () => {
   characterWithM16.currentView = 'crateChar';
   const characterwithTwoM1911A1andOneM16 = new AddedTwoM1911A1AndOneM16();
   characterwithTwoM1911A1andOneM16.currentView = 'createChar';
-  it('should return correct values when equipment removed from list', () => {
+  it('should return correct values when a gun removed from list', () => {
     const action = { payload: testM16() };
     const newState = removeFirearmReducer(characterWithM16, action);
     expect(newState.gear).toMatchObject(new MockState().gear);
