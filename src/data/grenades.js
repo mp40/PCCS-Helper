@@ -1,4 +1,4 @@
-const grenadeData = () => [
+export const grenadeData = () => [
   {
     name: 'L2 A2',
     l: 3.3,
