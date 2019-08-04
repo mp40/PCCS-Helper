@@ -1,4 +1,4 @@
-import { M1CarbineClass, getM2Carbine, M16Class, getM16A1, KalashnikovClass } from './firearmsClasses';
+import { M1CarbineClass, getM2Carbine, M16Class, M16LateClass, KalashnikovClass } from './firearmsClasses';
 
 export const filterableCalibers = () => [
   '7.62 x 39mm',
@@ -79,8 +79,8 @@ export const rifles = () => [
     offical: true,
     bipod: true,
   },
-  new M16Class('M16'),
-  getM16A1(),
+  new M16Class('M16', 39, 8.7),
+  new M16LateClass('M16A1', 39, 8),
   {
     name: 'M1 Garand',
     list: 'rifles',

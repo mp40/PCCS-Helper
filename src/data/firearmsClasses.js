@@ -40,13 +40,13 @@ export const getM2Carbine = () => {
 };
 
 export class M16Class {
-  constructor(name) {
+  constructor(name, length, weight) {
     this.name = name;
     this.list = 'rifles';
     this.calibre = '5.56mm NATO';
     this.qty = 1;
-    this.length = 39;
-    this.weight = 8.7;
+    this.length = length;
+    this.weight = weight;
     this.rt = 8;
     this.rof = '*7';
     this.mag = [{ type: 'Mag', weight: 0.7, cap: 20, qty: 0 }, { type: 'Mag', weight: 1, cap: 30, qty: 0 }];
@@ -81,12 +81,15 @@ export class M16Class {
   }
 }
 
-export const getM16A1 = () => {
-  const rifle = new M16Class('M16A1');
-  rifle.weight = 8;
-  rifle.mag = [{ type: 'Mag', weight: 1, cap: 30, qty: 0 }, { type: 'Mag', weight: 0.7, cap: 20, qty: 0 }];
-  return rifle;
-};
+export class M16LateClass extends M16Class {
+  constructor(name, length, weight) {
+    super();
+    this.name = name;
+    this.length = length;
+    this.weight = weight;
+    this.mag = [{ type: 'Mag', weight: 1, cap: 30, qty: 0 }, { type: 'Mag', weight: 0.7, cap: 20, qty: 0 }];
+  }
+}
 
 export class KalashnikovClass {
   constructor(name, length, weight) {
