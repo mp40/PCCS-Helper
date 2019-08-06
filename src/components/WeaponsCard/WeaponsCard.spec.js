@@ -128,6 +128,13 @@ describe('The Weapons Card', () => {
       }, 1000);
     });
   });
+  describe('grenades', () => {
+    const wrapper = mountAppWithStore(storeWithCreateCharacterView());
+    it('should be possible to open a list of selectable grenades', () => {
+      wrapper.find('#addGrenade').simulate('click');
+      expect(wrapper.text()).toContain('L2 A2');
+    });
+  });
 });
 
 describe('getSelectedWeapons function', () => {

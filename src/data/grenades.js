@@ -1,13 +1,14 @@
 export const grenadeData = () => [
   {
     name: 'L2 A2',
+    qty: 1,
     l: 3.3,
     w: 0.9,
     at: 3,
     fl: 2,
     r: 16,
     data: {
-      pen: [3.5, 2.4, 2.2, 1.8, 1.5, 1.0, 0.4],
+      pen: [3.5, 2.4, 2.2, 1.8, 1.5, '1.0', 0.4],
       dc: [10, 2, 2, 2, 2, 1, 1],
       bshc: ['*2h', '*3', 77, 19, 8, 2, -1],
       bc: ['15k', 747, 184, 55, 28, 12, 4],
@@ -15,6 +16,7 @@ export const grenadeData = () => [
   },
   {
     name: '#36M',
+    qty: 1,
     l: 3.5,
     w: 1.7,
     at: 3,
@@ -29,6 +31,7 @@ export const grenadeData = () => [
   },
   {
     name: '10lb TNT',
+    qty: 1,
     l: 6.5,
     w: 10,
     at: 'V',
@@ -43,6 +46,7 @@ export const grenadeData = () => [
   },
   {
     name: '2lb TNT',
+    qty: 1,
     l: 3.8,
     w: 2,
     at: 'V',
@@ -57,6 +61,7 @@ export const grenadeData = () => [
   },
   {
     name: 'M112 demolition block',
+    qty: 1,
     l: 11,
     w: 1.25,
     at: 'V',
@@ -71,13 +76,14 @@ export const grenadeData = () => [
   },
   {
     name: 'DF 37',
+    qty: 1,
     l: 3.9,
     w: 1.2,
     at: 3,
     fl: 2,
     r: 14,
     data: {
-      pen: [2.4, 1.9, 1.9, 1.7, 1.6, 1.4, 1.0],
+      pen: [2.4, 1.9, 1.9, 1.7, 1.6, 1.4, '1.0'],
       dc: [10, 3, 3, 3, 3, 3, 2],
       bshc: ['*30', 41, 10, 2, 0, -3, -8],
       bc: ['49h', 360, 101, 32, 16, 7, 2],
@@ -85,6 +91,7 @@ export const grenadeData = () => [
   },
   {
     name: 'Gr 24',
+    qty: 1,
     l: 14,
     w: 1.3,
     at: 4,
@@ -99,6 +106,7 @@ export const grenadeData = () => [
   },
   {
     name: 'M2',
+    qty: 1,
     l: 4.5,
     w: 1.3,
     at: 3,
@@ -113,13 +121,14 @@ export const grenadeData = () => [
   },
   {
     name: 'M26 A2',
+    qty: 1,
     l: 3.9,
     w: 1,
     at: 3,
     fl: 'I',
     r: 15,
     data: {
-      pen: [3.4, 2.4, 2.2, 1.8, 1.5, 1.0, 0.4],
+      pen: [3.4, 2.4, 2.2, 1.8, 1.5, '1.0', 0.4],
       dc: [10, 2, 2, 2, 2, 1, 1],
       bshc: ['*3h', '*4', '*1', 25, 11, 3, 0],
       bc: ['13k', 704, 176, 52, 27, 12, 4],
@@ -127,13 +136,14 @@ export const grenadeData = () => [
   },
   {
     name: 'M61',
+    qty: 1,
     l: 3.8,
     w: 1,
     at: 3,
     fl: 2,
     r: 15,
     data: {
-      pen: [3.4, 2.4, 2.2, 1.8, 1.5, 1.0, 0.4],
+      pen: [3.4, 2.4, 2.2, 1.8, 1.5, '1.0', 0.4],
       dc: [2, 2, 2, 2, 1, 1],
       bshc: ['*2h', '*3', 84, 20, 8, 2, -1],
       bc: ['13k', 704, 176, 52, 27, 12, 4],
@@ -141,6 +151,7 @@ export const grenadeData = () => [
   },
   {
     name: 'MDN 21',
+    qty: 1,
     l: 3.3,
     w: 0.5,
     at: 3,
@@ -154,28 +165,30 @@ export const grenadeData = () => [
     },
   },
   {
-    name: 'Ak A3',
+    name: 'Mk A3',
+    qty: 1,
     l: 5.3,
     w: 1,
     at: 3,
     fl: 2,
     r: 15,
     data: {
-      pen: [3.8, 2.4, 2.2, 1.8, 1.5, 1.0, 0.4],
-      dc: [10, 2, 2, 2, 2, 1, 1],
+      pen: [3.8],
+      dc: [10],
       bshc: [],
       bc: ['20k', 928, 218, 63, 32, 14, 4],
     },
   },
   {
     name: 'NR 423',
+    qty: 1,
     l: 3.2,
     w: 0.5,
     at: 3,
     fl: 2,
     r: 21,
     data: {
-      pen: [2.5, 1.8, 1.6, 1.2, 1.0, 0.6],
+      pen: [2.5, 1.8, 1.6, 1.2, '1.0', 0.6],
       dc: [10, 2, 2, 1, 1, 1],
       bshc: ['*3h', '*4', 94, 23, 10, 3],
       bc: ['52h', 376, 105, 33, 17, 7, 2],
@@ -183,6 +196,7 @@ export const grenadeData = () => [
   },
   {
     name: 'RDG 33',
+    qty: 1,
     l: 11,
     w: 1.6,
     at: 4,
@@ -197,6 +211,7 @@ export const grenadeData = () => [
   },
   {
     name: 'RGD 5',
+    qty: 1,
     l: 4.5,
     w: 0.7,
     at: 3,
@@ -211,6 +226,7 @@ export const grenadeData = () => [
   },
   {
     name: 'RKG 3M',
+    qty: 1,
     l: '14.3',
     w: 5,
     at: 3,
@@ -225,6 +241,7 @@ export const grenadeData = () => [
   },
   {
     name: 'RPG 40',
+    qty: 1,
     l: 6.5,
     w: 2.4,
     at: 4,

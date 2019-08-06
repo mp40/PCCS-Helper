@@ -5,6 +5,7 @@ import WeaponsCardBody from '../WeaponsCardBody';
 import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
 import WeaponsCardSelectModal from '../WeaponsCardSelectModal';
 import WeaponsCardModifyWeapon from '../WeaponsCardModifyWeapon';
+import GrenadeSelectModal from '../GrenadeSelectModal';
 import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 import { handleIncrement } from '../../helpers/gaurds';
 
@@ -23,6 +24,7 @@ class WeaponsCard extends Component {
       firearmToModify: null,
       createCustomMag: false,
       modifyFirearmWeight: false,
+      showGrenades: false,
     };
   }
 
@@ -79,6 +81,12 @@ class WeaponsCard extends Component {
     />
   )
 
+  renderGrenadeSelect = () => (
+    <GrenadeSelectModal
+      toggleOffWeaponCardViews={this.toggleOffWeaponCardViews}
+    />
+  )
+
   renderCloseFirearmStatButton = () => (
     <div style={{ marginTop: '2px', marginLeft: '2px' }}>
       <ButtonDeleteX
@@ -98,7 +106,7 @@ class WeaponsCard extends Component {
 
   render() {
     const { gear } = this.props;
-    const { firearmToModify, showFirearms, modifyFirearm, createCustomMag, modifyFirearmWeight } = this.state;
+    const { firearmToModify, showFirearms, modifyFirearm, createCustomMag, modifyFirearmWeight, showGrenades } = this.state;
     const selectedGuns = getSelectedWeapons(gear.firearms);
     const weaponsWeight = calculateFirearmsArrayWeight(selectedGuns);
 
@@ -140,6 +148,9 @@ class WeaponsCard extends Component {
             </div>
           )
         }
+
+        {showGrenades && this.renderGrenadeSelect()}
+
       </div>
     );
   }
