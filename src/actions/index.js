@@ -173,3 +173,8 @@ export const changeVest = vestBodyArmour => ({
   type: 'VEST_CHANGED',
   payload: vestBodyArmour,
 });
+
+export const addGrenade = grenade => ({
+  type: 'GRENADE_ADDED',
+  payload: grenade,
+});

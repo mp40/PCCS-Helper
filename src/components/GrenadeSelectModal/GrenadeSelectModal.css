@@ -71,3 +71,20 @@
     z-index: 2;
     display: inline-block
 }
+
+.grenadeListCard {
+    margin-top: 2rem;
+    /* margin: 2rem 1rem; */
+    background: whitesmoke;
+    border-radius: 3px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    height: 40rem;
+    position: relative;
+    top: calc(50% - 20rem);
+    left: calc(50% - 26rem);
+    overflow: auto;
+    z-index: 2;
+    display: inline-block;
+    width: 40ch;
+}
