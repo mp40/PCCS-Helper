@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import GrenadeData, { prepareDataForRender } from './index';
 
 const getGrenadeData = () => ({
@@ -18,23 +18,8 @@ const getGrenadeData = () => ({
   },
 });
 
-const getBlastGrenade = () => ({
-  name: 'Mk A3',
-  qty: 1,
-  l: 5.3,
-  w: 1,
-  at: 3,
-  fl: 2,
-  r: 15,
-  data: {
-    pen: [3.8],
-    dc: [10],
-    bshc: [],
-    bc: ['20k', 928, 218, 63, 32, 14, 4],
-  },
-});
-
 describe('grenade data table', () => {
+  // eslint-disable-next-line react/jsx-filename-extension
   const wrapper = shallow(<GrenadeData grenade={getGrenadeData()} />);
   describe('physical data', () => {
     it('should render length value', () => {

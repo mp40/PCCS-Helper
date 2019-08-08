@@ -1,3 +1,4 @@
+import { green } from 'ansi-colors';
 import { initialStore } from '../helpers/initialStore';
 import { modifyGunCombatLevelReducer } from './gunCombatLevelReducer';
 import { modifyMeleeCombatLevelReducer } from './meleeCombatLevelReducer';
@@ -28,6 +29,7 @@ import { removeMagazineReducer } from './removeMagazineReducer';
 import { replaceMagazineReducer } from './replaceMagazineReducer';
 import { changeHelmetReducer } from './changeHelmetReducer';
 import { changeVestReducer } from './changeVestReducer';
+import { addGrenadeReducer } from './addGrenadeReducer';
 
 const initialState = initialStore;
 
@@ -93,6 +95,8 @@ function reduceActions(state = initialState, action) {
       return changeHelmetReducer(state, action);
     case 'VEST_CHANGED':
       return changeVestReducer(state, action);
+    case 'GRENADE_ADDED':
+      return addGrenadeReducer(state, action);
     case 'TOTAL_WEIGHT':
       return { ...state, totalWeight: action.payload };
     case 'UPDATE_ATTRIBUTES':

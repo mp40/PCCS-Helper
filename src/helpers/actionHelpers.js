@@ -44,11 +44,13 @@ export const findUniformWeight = uniform => uniformWeights[uniform];
 
 export const findEquipmentWeight = equipment => equipment.reduce((sum, obj) => sum + obj.weight * obj.qty, 0);
 
+const calculateGrenadeArray = grenades => grenades.reduce((sum, obj) => sum + obj.w * obj.qty, 0);
+
 export const calculateTotalWeight = (gear) => {
   let totalWeight = findUniformWeight(gear.uniform)
   + findEquipmentWeight(gear.equipment)
-  + calculateFirearmsArrayWeight(gear.firearms);
-
+  + calculateFirearmsArrayWeight(gear.firearms)
+  + calculateGrenadeArray(gear.grenades);
   if (gear.helmet) {
     totalWeight += gear.helmet.weight;
   }
