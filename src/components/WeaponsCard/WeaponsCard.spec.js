@@ -134,6 +134,10 @@ describe('The Weapons Card', () => {
       wrapper.find('#addGrenade').simulate('click');
       expect(wrapper.text()).toContain('L2 A2');
     });
+    it('should be possible to select a grenade', () => {
+      wrapper.find('.selectM2').simulate('click');
+      expect(selectedWeapons(wrapper).text()).toContain('M21.311.3');
+    });
   });
 });
 

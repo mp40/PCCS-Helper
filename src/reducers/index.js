@@ -1,4 +1,3 @@
-import { green } from 'ansi-colors';
 import { initialStore } from '../helpers/initialStore';
 import { modifyGunCombatLevelReducer } from './gunCombatLevelReducer';
 import { modifyMeleeCombatLevelReducer } from './meleeCombatLevelReducer';

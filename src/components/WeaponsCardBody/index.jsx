@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
@@ -9,6 +11,7 @@ import '../WeaponsCard/WeaponsCard.css';
 
 export const renderCorrectAmmoTitle = magObj => (magObj.type === 'Rnd' ? 'Single Rounds' : `${magObj.cap} round ${magObj.type}`);
 
+// todo maybe connct this instead of passing so many props?
 const WeaponsCardBody = ({
   weaponsWeight,
   toggleOnWeaponsCardViews,
@@ -18,6 +21,8 @@ const WeaponsCardBody = ({
   handleIncrementMagQty,
   toggleModifyWeapon,
   selectedGuns,
+  selectedGrenades,
+
 }) => (
   <div>
     <div style={{ marginTop: '-1rem', marginBottom: '.5rem' }}>
@@ -50,25 +55,6 @@ const WeaponsCardBody = ({
         </tr>
       </thead>
       <tbody id="characterWeaponList">
-        {/* <tr>
-          <td>
-            <ButtonStandard
-            id="addFirearm"
-            name="Add Firearm"
-            onClick={toggleOnWeaponsCardViews.bind(this, 'showFirearms')}
-          />
-            <ButtonStandard
-            id="clearAllFirearms"
-            name="Clear Firearms"
-            onClick={handleRemoveAllGuns}
-          />
-            <ButtonStandard
-            id="addGrenade"
-            name="Add Grenade"
-            // onClick={toggleOnWeaponsCardViews.bind(this, 'showGrenades')}
-          />
-          </td>
-        </tr> */}
         {selectedGuns.map(gunObj => (
           <Fragment key={gunObj.name}>
             <tr className="SelectedGunsFragment">
@@ -129,6 +115,14 @@ const WeaponsCardBody = ({
             })}
           </Fragment>
         ))}
+        {selectedGrenades.map((grenade, index) => (
+          <tr>
+            <td>{grenade.name}</td>
+            <td>{grenade.w}</td>
+            <td>{grenade.qty}</td>
+            <td>{grenade.qty * grenade.w}</td>
+          </tr>
+        ))}
       </tbody>
     </table>
   </div>
@@ -143,6 +137,7 @@ WeaponsCardBody.propTypes = {
   handleRemoveGun: PropTypes.func,
   toggleModifyWeapon: PropTypes.func,
   selectedGuns: PropTypes.arrayOf(PropTypes.object),
+  selectedGrenades: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default WeaponsCardBody;
