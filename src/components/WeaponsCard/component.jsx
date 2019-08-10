@@ -9,8 +9,6 @@ import GrenadeSelectModal from '../GrenadeSelectModal';
 import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 import { handleIncrement } from '../../helpers/gaurds';
 
-import { calculateFirearmsArrayWeight } from '../../helpers/actionHelpers';
-
 import './WeaponsCard.css';
 
 export const getSelectedWeapons = weaponArray => (weaponArray === undefined ? [] : weaponArray);
@@ -87,6 +85,32 @@ class WeaponsCard extends Component {
     />
   )
 
+  renderModifyFirearm = () => {
+    const { gear } = this.props;
+    const { firearmToModify, createCustomMag, modifyFirearmWeight } = this.state;
+    const selectedGuns = getSelectedWeapons(gear.firearms);
+    const gunToModify = selectedGuns.filter(gunObj => gunObj.name === firearmToModify)[0];
+
+    return (
+      <div className="equipmentModalContainer">
+        <div className="ModifyWeaponStatTableContainer" style={{ fontSize: 'medium' }}>
+          {this.renderCloseFirearmStatButton()}
+          <div style={{ display: 'flex' }}>
+            {this.renderFirearmStats(gunToModify)}
+            <WeaponsCardModifyWeapon
+              gunObj={gunToModify}
+              createCustomMag={createCustomMag}
+              modifyFirearmWeight={modifyFirearmWeight}
+              toggleOnWeaponsCardViews={this.toggleOnWeaponsCardViews}
+              toggleOffWeaponCardViews={this.toggleOffWeaponCardViews}
+              removeAllGunMods={this.removeAllGunMods}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   renderCloseFirearmStatButton = () => (
     <div style={{ marginTop: '2px', marginLeft: '2px' }}>
       <ButtonDeleteX
@@ -106,12 +130,9 @@ class WeaponsCard extends Component {
 
   render() {
     const { gear } = this.props;
-    const { firearmToModify, showFirearms, modifyFirearm, createCustomMag, modifyFirearmWeight, showGrenades } = this.state;
+    const { showFirearms, modifyFirearm, showGrenades } = this.state;
     const selectedGuns = getSelectedWeapons(gear.firearms);
     const selectedGrenades = getSelectedWeapons(gear.grenades);
-    const weaponsWeight = calculateFirearmsArrayWeight(selectedGuns);
-
-    const gunToModify = selectedGuns.filter(gunObj => gunObj.name === firearmToModify)[0];
 
     return (
       <div style={{ width: '33%' }} className="WeaponSelect">
@@ -119,7 +140,6 @@ class WeaponsCard extends Component {
         <WeaponsCardBody
           selectedGuns={selectedGuns}
           selectedGrenades={selectedGrenades}
-          weaponsWeight={weaponsWeight}
           toggleOnWeaponsCardViews={this.toggleOnWeaponsCardViews}
           handleRemoveAllGuns={this.handleRemoveAllGuns}
           handleRemoveGun={this.handleRemoveGun}
@@ -127,32 +147,9 @@ class WeaponsCard extends Component {
           handleIncrementMagQty={this.handleIncrementMagQty}
           toggleModifyWeapon={this.toggleModifyWeapon}
         />
-
         {showFirearms && this.renderWeaponSelect()}
-
-        {modifyFirearm
-          && (
-            <div className="equipmentModalContainer">
-              <div className="ModifyWeaponStatTableContainer" style={{ fontSize: 'medium' }}>
-                {this.renderCloseFirearmStatButton()}
-                <div style={{ display: 'flex' }}>
-                  {this.renderFirearmStats(gunToModify)}
-                  <WeaponsCardModifyWeapon
-                    gunObj={gunToModify}
-                    createCustomMag={createCustomMag}
-                    modifyFirearmWeight={modifyFirearmWeight}
-                    toggleOnWeaponsCardViews={this.toggleOnWeaponsCardViews}
-                    toggleOffWeaponCardViews={this.toggleOffWeaponCardViews}
-                    removeAllGunMods={this.removeAllGunMods}
-                  />
-                </div>
-              </div>
-            </div>
-          )
-        }
-
+        {modifyFirearm && this.renderModifyFirearm()}
         {showGrenades && this.renderGrenadeSelect()}
-
       </div>
     );
   }
