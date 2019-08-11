@@ -29,6 +29,9 @@ describe('GrenadeSelectModal', () => {
       toggleOffWeaponCardViews={toggleOffWeaponCardViews}
     />,
   );
+  afterEach(() => {
+    toggleOffWeaponCardViews.mockClear();
+  });
   it('should render a list of grenades', () => {
     expect(wrapper.text()).toContain('#36M');
   });
@@ -41,6 +44,11 @@ describe('GrenadeSelectModal', () => {
     expect(addGrenade).toHaveBeenCalledWith(dataM61Grenade);
   });
   it('should close the modal when a grenade is selected', () => {
-    expect(toggleOffWeaponCardViews).toHaveBeenCalled();
+    wrapper.find('.selectM61').simulate('click');
+    expect(toggleOffWeaponCardViews).toHaveBeenCalledWith('showGrenades');
+  });
+  it('should have a back button', () => {
+    wrapper.find('.closeModal').simulate('click');
+    expect(toggleOffWeaponCardViews).toHaveBeenCalledWith('showGrenades');
   });
 });

@@ -7,7 +7,6 @@ import WeaponsCardSelectModal from '../WeaponsCardSelectModal';
 import WeaponsCardModifyWeapon from '../WeaponsCardModifyWeapon';
 import GrenadeSelectModal from '../GrenadeSelectModal';
 import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
-import { handleIncrement } from '../../helpers/gaurds';
 
 import './WeaponsCard.css';
 
@@ -38,26 +37,6 @@ class WeaponsCard extends Component {
     const { modifyFirearm } = this.state;
     this.setState({ firearmToModify: gunObj.name });
     this.setState({ modifyFirearm: !modifyFirearm });
-  }
-
-  handleIncrementGunQty = (firearm, increment) => {
-    const { increaseFirearmQty, decreaseFirearmQty } = this.props;
-    handleIncrement(firearm, increment, increaseFirearmQty, decreaseFirearmQty);
-  }
-
-  handleRemoveGun = (gunObj) => {
-    const { removeFirearm } = this.props;
-    removeFirearm(gunObj);
-  }
-
-  handleIncrementMagQty = (firearm, magazine, increment) => {
-    const { increaseMagazineQty, decreaseMagazineQty } = this.props;
-    handleIncrement({ firearm, magazine }, increment, increaseMagazineQty, decreaseMagazineQty);
-  }
-
-  handleRemoveAllGuns = () => {
-    const { removeAllFirearms } = this.props;
-    removeAllFirearms([]);
   }
 
   removeAllGunMods = () => {
@@ -141,10 +120,6 @@ class WeaponsCard extends Component {
           selectedGuns={selectedGuns}
           selectedGrenades={selectedGrenades}
           toggleOnWeaponsCardViews={this.toggleOnWeaponsCardViews}
-          handleRemoveAllGuns={this.handleRemoveAllGuns}
-          handleRemoveGun={this.handleRemoveGun}
-          handleIncrementGunQty={this.handleIncrementGunQty}
-          handleIncrementMagQty={this.handleIncrementMagQty}
           toggleModifyWeapon={this.toggleModifyWeapon}
         />
         {showFirearms && this.renderWeaponSelect()}
@@ -157,12 +132,6 @@ class WeaponsCard extends Component {
 
 WeaponsCard.propTypes = {
   removeAllModificationsFromFirearm: PropTypes.func,
-  increaseMagazineQty: PropTypes.func,
-  decreaseMagazineQty: PropTypes.func,
-  removeFirearm: PropTypes.func,
-  removeAllFirearms: PropTypes.func,
-  increaseFirearmQty: PropTypes.func,
-  decreaseFirearmQty: PropTypes.func,
   gear: gearShape,
 };
 

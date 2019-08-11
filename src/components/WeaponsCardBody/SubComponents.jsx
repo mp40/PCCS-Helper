@@ -7,7 +7,7 @@ import ButtonStandard from '../widgets/buttons/ButtonStandard';
 
 export const renderCorrectAmmoTitle = magObj => (magObj.type === 'Rnd' ? 'Single Rounds' : `${magObj.cap} round ${magObj.type}`);
 
-export const ButtonBar = (toggleOnWeaponsCardViews, handleRemoveAllGuns) => (
+export const ButtonBar = (toggleOnWeaponsCardViews, removeAllGuns) => (
   <div style={{ marginTop: '-1rem', marginBottom: '.5rem' }}>
     <ButtonStandard
       id="addFirearm"
@@ -17,7 +17,7 @@ export const ButtonBar = (toggleOnWeaponsCardViews, handleRemoveAllGuns) => (
     <ButtonStandard
       id="clearAllFirearms"
       name="Clear Firearms"
-      onClick={handleRemoveAllGuns}
+      onClick={() => removeAllGuns([])}
     />
     <ButtonStandard
       id="addGrenade"
@@ -41,12 +41,12 @@ export const TableHeader = totalWeight => (
   </thead>
 );
 
-export const RenderGunName = (gunObj, handleRemoveGun, toggleModifyWeapon) => (
+export const RenderGunName = (gunObj, removeFirearm, toggleModifyWeapon) => (
   <td>
     <span>
       <ButtonDeleteX
         id="removeGun"
-        onClick={() => handleRemoveGun(gunObj)}
+        onClick={() => removeFirearm(gunObj)}
       />
     </span>
     <span
@@ -60,7 +60,7 @@ export const RenderGunName = (gunObj, handleRemoveGun, toggleModifyWeapon) => (
   </td>
 );
 
-export const RenderGunInfo = (gunObj, handleIncrementGunQty) => (
+export const RenderGunInfo = (gunObj, increaseFirearmQty, decreaseFirearmQty) => (
   <>
     <td>
       {gunObj.weight}
@@ -76,14 +76,14 @@ export const RenderGunInfo = (gunObj, handleIncrementGunQty) => (
         className="ButtonIncrementArrows"
         idUp="qtyUpGun"
         idDown="qtyDownGun"
-        onClickUp={() => handleIncrementGunQty(gunObj, 'up')}
-        onClickDown={() => handleIncrementGunQty(gunObj, 'down')}
+        onClickUp={() => increaseFirearmQty(gunObj)}
+        onClickDown={() => (gunObj.qty === 1 ? null : decreaseFirearmQty(gunObj))}
       />
     </td>
   </>
 );
 
-export const RenderGunMags = (gunObj, handleIncrementMagQty) => (
+export const RenderGunMags = (gunObj, increaseMagazineQty, decreaseMagazineQty) => (
   <>
     {gunObj.mag.map((magObj, dex) => {
       if (magObj.removed === undefined || magObj.removed === false) {
@@ -95,8 +95,8 @@ export const RenderGunMags = (gunObj, handleIncrementMagQty) => (
                 <ButtonIncrementArrows
                   idUp={`qtyUpMagType${dex + 1}`}
                   idDown={`qtyDownMagType${dex + 1}`}
-                  onClickUp={() => handleIncrementMagQty(gunObj, magObj, 'up')}
-                  onClickDown={() => handleIncrementMagQty(gunObj, magObj, 'down')}
+                  onClickUp={() => increaseMagazineQty({ firearm: gunObj, magazine: magObj })}
+                  onClickDown={() => (magObj.qty === 0 ? null : decreaseMagazineQty({ firearm: gunObj, magazine: magObj }))}
                 />
               </span>
             </td>

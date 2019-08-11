@@ -138,6 +138,23 @@ describe('The Weapons Card', () => {
       wrapper.find('.selectM2').simulate('click');
       expect(selectedWeapons(wrapper).text()).toContain('M21.311.3');
     });
+    it('should be possible to increment grenade qty up', () => {
+      wrapper.find('.M2Row').find('#qtyUpGrenade').simulate('click');
+      expect(wrapper.find('.M2Row').text()).toContain('M21.32');
+    });
+    it('should be possible to increment grenade qty down', () => {
+      wrapper.find('.M2Row').find('#qtyDownGrenade').simulate('click');
+      expect(wrapper.find('.M2Row').text()).toContain('M21.31');
+    });
+    it('should be not possible for grenade qty to be less than one', () => {
+      wrapper.find('.M2Row').find('#qtyDownGrenade').simulate('click');
+      expect(wrapper.find('.M2Row').text()).toContain('M21.31');
+      expect(wrapper.find('.M2Row').text()).not.toContain('M21.30');
+    });
+    it('should be possible ro remove grenade', () => {
+      wrapper.find('.removeM2').simulate('click');
+      expect(selectedWeapons(wrapper).text()).not.toContain('M21.311.3');
+    });
   });
 });
 
