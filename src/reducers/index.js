@@ -28,6 +28,10 @@ import { removeMagazineReducer } from './removeMagazineReducer';
 import { replaceMagazineReducer } from './replaceMagazineReducer';
 import { changeHelmetReducer } from './changeHelmetReducer';
 import { changeVestReducer } from './changeVestReducer';
+import { addGrenadeReducer } from './addGrenadeReducer';
+import { removeGrenadeReducer } from './removeGrenadeReducer';
+import { increaseGrenadeReducer } from './increaseGrenadeReducer';
+import { decreaseGrenadeReducer } from './decreaseGrenadeReducer';
 
 const initialState = initialStore;
 
@@ -93,6 +97,14 @@ function reduceActions(state = initialState, action) {
       return changeHelmetReducer(state, action);
     case 'VEST_CHANGED':
       return changeVestReducer(state, action);
+    case 'GRENADE_ADDED':
+      return addGrenadeReducer(state, action);
+    case 'GRENADE_REMOVED':
+      return removeGrenadeReducer(state, action);
+    case 'GRENADE_QTY_INCREASED':
+      return increaseGrenadeReducer(state, action);
+    case 'GRENADE_QTY_DECREASED':
+      return decreaseGrenadeReducer(state, action);
     case 'TOTAL_WEIGHT':
       return { ...state, totalWeight: action.payload };
     case 'UPDATE_ATTRIBUTES':

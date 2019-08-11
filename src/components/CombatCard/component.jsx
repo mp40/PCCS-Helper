@@ -21,7 +21,7 @@ const CombatCard = (props) => {
       <div id="combatLevelInputContainer" className="tableContainerCombat">
         <table className="attributeContainer">
           <tbody>
-            {renderAtrributeAndCombatTableHeadings()}
+            {renderAtrributeAndCombatTableHeadings('Skill')}
             {renderStatInput(characterStats.gunLevel, 'Gun', modifyGunCombatLevel)}
             {renderStatInput(characterStats.handLevel, 'Hand', modifyMeleeCombatLevel)}
           </tbody>

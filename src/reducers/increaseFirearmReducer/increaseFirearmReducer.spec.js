@@ -7,7 +7,7 @@ import {
   AddedTwoM1911A1AndOneM16,
 } from '../testResouces';
 
-describe('addFirearmReducer function', () => {
+describe('increaseFirearmReducer function', () => {
   it('should increase quantity of the gun by one', () => {
     const action = { payload: testM1911A1() };
     const newState = increaseFirearmReducer(new AddedM1911A1(), action);

@@ -19,7 +19,6 @@ const returnUpdatedWeightAndGear = gearToUpdate => (state, updatedGear) => {
   const newGunCombatActions = calcCombatActions(newMaxSpeed, state.combatStats.ISF);
   const newMeleeCombatActions = calcCombatActions(newMaxSpeed, state.combatStats.ASF);
 
-
   return ({ ...state,
     totalWeight: correctFloatingPoint(newTotalWeight),
     combatStats: { ...state.combatStats,
@@ -32,6 +31,7 @@ const returnUpdatedWeightAndGear = gearToUpdate => (state, updatedGear) => {
 };
 export const returnUpdatedWeightAndEquipment = returnUpdatedWeightAndGear('equipment');
 export const returnUpdatedWeightAndFirearms = returnUpdatedWeightAndGear('firearms');
+export const returnUpdatedWeightAndGrenades = returnUpdatedWeightAndGear('grenades');
 
 export const returnUpdatedUniform = returnUpdatedWeightAndGear('uniform');
 export const returnUpdatedVest = returnUpdatedWeightAndGear('vest');

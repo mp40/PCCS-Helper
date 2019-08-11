@@ -68,7 +68,7 @@ class EquipmentCard extends Component {
         <td>
           <ButtonDeleteX
             id="removeEquip"
-            onClick={this.handleRemoveEquipment.bind(this, equipmentObject)}
+            onClick={() => this.handleRemoveEquipment(equipmentObject)}
           />
           <span style={{ marginLeft: '1rem' }}>
             {equipmentObject.name}
@@ -87,8 +87,8 @@ class EquipmentCard extends Component {
           <ButtonIncrementArrows
             idUp="qtyUp"
             idDown="qtyDown"
-            onClickUp={this.handleIncrementEquipmentQty.bind(this, equipmentObject, 'up')}
-            onClickDown={this.handleIncrementEquipmentQty.bind(this, equipmentObject, 'down')}
+            onClickUp={() => this.handleIncrementEquipmentQty(equipmentObject, 'up')}
+            onClickDown={() => this.handleIncrementEquipmentQty(equipmentObject, 'down')}
           />
         </td>
       </tr>
@@ -119,6 +119,26 @@ class EquipmentCard extends Component {
       );
   }
 
+  renderButtonRow = () => (
+    <div style={{ marginTop: '-1rem', marginBottom: '.5rem' }}>
+      <ButtonStandard
+        id="addEquipment"
+        name="Add Equipment"
+        onClick={() => this.toggleOnEquipmentCardViews('showEquipment')}
+      />
+      <ButtonStandard
+        id="toggleCustomEquipment"
+        name="Add Custom"
+        onClick={() => this.toggleOnEquipmentCardViews('showCustomInput')}
+      />
+      <ButtonStandard
+        id="clearAllEquipment"
+        name="Clear All"
+        onClick={() => this.handleRemoveAllEquipment()}
+      />
+    </div>
+  )
+
   renderTableHead = totalEquipWeight => (
     <thead>
       <tr className="equipmentHeader">
@@ -135,25 +155,7 @@ class EquipmentCard extends Component {
 
   renderTableBody = () => (
     <tbody id="characterEquipmentList">
-      <tr className="addEquipment">
-        <td>
-          <ButtonStandard
-            id="addEquipment"
-            name="Add Equipment"
-            onClick={this.toggleOnEquipmentCardViews.bind(this, 'showEquipment')}
-          />
-          <ButtonStandard
-            id="toggleCustomEquipment"
-            name="Add Custom"
-            onClick={this.toggleOnEquipmentCardViews.bind(this, 'showCustomInput')}
-          />
-          <ButtonStandard
-            id="clearAllEquipment"
-            name="Clear All"
-            onClick={this.handleRemoveAllEquipment}
-          />
-        </td>
-      </tr>
+      <tr className="addEquipment" />
       {this.mapEquipment()}
     </tbody>
   )
@@ -171,6 +173,7 @@ class EquipmentCard extends Component {
 
     return (
       <div style={{ width: '40%' }} className="equipmentSelect">
+        {this.renderButtonRow()}
         {this.renderEquipmentCardTable(totalEquipWeight)}
         {this.renderEquipmentDropdown()}
         {this.renderCustomEquipmentModal()}
