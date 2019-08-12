@@ -53,10 +53,13 @@ const renderBody = dataForRender => (
 );
 
 const GrenadeData = ({ grenade }) => (
-  <table style={{ border: '1px solid black' }}>
-    {renderHeading()}
-    {renderBody(prepareDataForRender(grenade))}
-  </table>
+  <div>
+    <div className="grenadeName">{grenade.name}</div>
+    <table style={{ border: '1px solid black' }}>
+      {renderHeading()}
+      {renderBody(prepareDataForRender(grenade))}
+    </table>
+  </div>
 );
 
 GrenadeData.propTypes = {

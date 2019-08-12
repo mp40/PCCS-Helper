@@ -257,20 +257,20 @@ export const grenadeData = () => [
   },
 ];
 
-// export const specialGrenades = () => [
-//   {
-//     name: 'M15 WP',
-//     qty: 1,
-//     w: 1.9,
-//   },
-//   {
-//     name: 'Flash Bang',
-//     qty: 1,
-//     w: 0.6,
-//   },
-//   {
-//     name: 'Smoke',
-//     qty: 1,
-//     w: 1.5,
-//   },
-// ];
+export const specialGrenades = () => [
+  {
+    name: 'M15 WP',
+    qty: 1,
+    w: 1.9,
+  },
+  {
+    name: 'Flash Bang',
+    qty: 1,
+    w: 0.6,
+  },
+  {
+    name: 'Smoke',
+    qty: 1,
+    w: 1.5,
+  },
+];

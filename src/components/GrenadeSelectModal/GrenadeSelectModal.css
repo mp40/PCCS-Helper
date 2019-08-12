@@ -13,3 +13,16 @@
     width: 40ch;
     font-size: smaller;
 }
+
+.grenadeRow:hover {
+    background: white;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s; 
+}
+
+.grenadeName {
+    position: absolute;
+    margin-top: 3px;
+    margin-left: 3px;
+    font-weight: bold;
+}

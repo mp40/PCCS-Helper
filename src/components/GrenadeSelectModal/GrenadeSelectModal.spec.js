@@ -21,16 +21,20 @@ const dataM61Grenade = {
   },
 };
 
+const doubleM2 = { name: 'M2' };
+
 describe('GrenadeSelectModal', () => {
   const wrapper = mount(
     // eslint-disable-next-line react/jsx-filename-extension
     <GrenadeSelectModal
       addGrenade={addGrenade}
       toggleOffWeaponCardViews={toggleOffWeaponCardViews}
+      grenades={[doubleM2]}
     />,
   );
   afterEach(() => {
     toggleOffWeaponCardViews.mockClear();
+    addGrenade.mockClear();
   });
   it('should render a list of grenades', () => {
     expect(wrapper.text()).toContain('#36M');
@@ -50,5 +54,10 @@ describe('GrenadeSelectModal', () => {
   it('should have a back button', () => {
     wrapper.find('.closeModal').simulate('click');
     expect(toggleOffWeaponCardViews).toHaveBeenCalledWith('showGrenades');
+  });
+  it('should not be possible to select the same grenade twice', () => {
+    wrapper.find('.selectM2').simulate('click');
+    expect(addGrenade).not.toHaveBeenCalled();
+    expect(toggleOffWeaponCardViews).not.toHaveBeenCalled();
   });
 });
