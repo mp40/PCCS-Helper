@@ -18,6 +18,27 @@ const getGrenadeData = () => ({
   },
 });
 
+const getWilliePeteData = () => ({
+  name: 'M15 WP',
+  qty: 1,
+  l: 6,
+  w: 1.9,
+  at: 4,
+  fl: 2,
+  r: 11,
+  smk: 4,
+  dur: 3,
+  data: {
+    bwphc: ['*3H', '*4', '*4', 24, 10, 5, 3, 2, 1],
+    pdBody: [48, 43, 40, 35, 32, 29, 27, 25, 22],
+    pdLimb: [9, 8, 7, 7, 6, 6, 6, 5, 5],
+    pd0: ['10K', 450, 20, 1],
+    pd4: ['76K', '34H', 150, 8],
+    pd7: ['57T', '25K', '11H', 56],
+  },
+});
+
+
 describe('grenade data table', () => {
   // eslint-disable-next-line react/jsx-filename-extension
   const wrapper = shallow(<GrenadeData grenade={getGrenadeData()} />);
@@ -60,6 +81,23 @@ describe('grenade data table', () => {
       expect(result[2]).toEqual(['AT', 3, 'BSHC', ['*2h', '*3', 77, 19, 8, 2, -1]]);
       expect(result[3]).toEqual(['FL', 2, 'BC', ['15k', 747, 184, 55, 28, 12, 4]]);
       expect(result[4]).toEqual(['R', 16, undefined, []]);
+    });
+  });
+  describe('non-standard grenades', () => {
+    // const wrap = shallow(<GrenadeData grenade={getWilliePeteData()} />);
+    it('should render M15 WP grenades', () => {
+      const result = prepareDataForRender(getWilliePeteData());
+      expect(result[0]).toEqual(['L', 6, 'BWPHC', ['*3H', '*4', '*4', 24, 10, 5, 3, 2, 1]]);
+      expect(result[1]).toEqual(['W', 1.9, 'PD Body', [48, 43, 40, 35, 32, 29, 27, 25, 22]]);
+      expect(result[2]).toEqual(['AT', 4, 'PD Limb', [9, 8, 7, 7, 6, 6, 6, 5, 5]]);
+      expect(result[3]).toEqual(['FL', 2, 'PDs TS 0', ['10K', 450, 20, 1]]);
+      expect(result[4]).toEqual(['R', 11, 'PDs TS 4', ['76K', '34H', 150, 8]]);
+      expect(result[5]).toEqual(['Smk', 4, 'PDs TS 7', ['57T', '25K', '11H', 56]]);
+      expect(result[6]).toEqual(['Dur', 3, undefined, []]);
+    });
+    it('should render correct range brackets for WP grenades', () => {
+      const wrap = shallow(<GrenadeData grenade={getWilliePeteData()} />);
+      expect(wrap.find('thead').text()).toBe('C01234568');
     });
   });
 });

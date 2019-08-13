@@ -261,16 +261,30 @@ export const specialGrenades = () => [
   {
     name: 'M15 WP',
     qty: 1,
+    l: 6,
     w: 1.9,
+    at: 4,
+    fl: 2,
+    r: 11,
+    smk: 4,
+    dur: 3,
+    data: {
+      bwphc: ['*3H', '*4', '*4', 24, 10, 5, 3, 2, 1],
+      pdBody: [48, 43, 40, 35, 32, 29, 27, 25, 22],
+      pdLimb: [9, 8, 7, 7, 6, 6, 6, 5, 5],
+      pd0: ['10K', 450, 20, 1],
+      pd4: ['76K', '34H', 150, 8],
+      pd7: ['57T', '25K', '11H', 56],
+    },
   },
-  {
-    name: 'Flash Bang',
-    qty: 1,
-    w: 0.6,
-  },
-  {
-    name: 'Smoke',
-    qty: 1,
-    w: 1.5,
-  },
+  // {
+  //   name: 'Flash Bang',
+  //   qty: 1,
+  //   w: 0.6,
+  // },
+  // {
+  //   name: 'Smoke',
+  //   qty: 1,
+  //   w: 1.5,
+  // },
 ];

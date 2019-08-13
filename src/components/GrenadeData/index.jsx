@@ -1,35 +1,48 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
-const renderHeading = () => (
-  <thead>
-    <tr>
-      <th style={{ width: '4ch' }} />
-      <th style={{ width: '4ch' }} />
-      <th style={{ width: '4ch' }} />
-      <th style={{ width: '4ch' }}>C</th>
-      <th style={{ width: '4ch' }}>0</th>
-      <th style={{ width: '4ch' }}>1</th>
-      <th style={{ width: '4ch' }}>2</th>
-      <th style={{ width: '4ch' }}>3</th>
-      <th style={{ width: '4ch' }}>5</th>
-      <th style={{ width: '4ch' }}>10</th>
-    </tr>
-  </thead>
-);
+const standardRangeBrackets = ['', '', '', 'C', '0', '1', '2', '3', '5', '10'];
+const williePeteRangeBrackets = ['', '', '', 'C', '0', '1', '2', '3', '4', '5', '6', '8'];
+
+const renderHeading = (grenade) => {
+  const rangeBrackets = grenade.name === 'M15 WP' ? williePeteRangeBrackets : standardRangeBrackets;
+  // array of widths for style??
+  return (
+    <thead>
+      <tr>
+        {rangeBrackets.map((value, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <th key={index} style={{ width: '4ch' }}>{value}</th>
+        ))}
+      </tr>
+    </thead>
+  );
+};
+
 
 const createNestedArray = (grenade) => {
-  const dataKeys = Object.keys(grenade).slice(2, 7);
+  if (grenade.name === 'M15 WP') {
+    return [['L'], ['W'], ['AT'], ['FL'], ['R'], ['Smk'], ['Dur']];
+  }
+  const dataKeys = Object.keys(grenade).slice(2, -1);
   return dataKeys.map(value => [value.toUpperCase()]);
+};
+
+
+const createDataHeadings = (grenade) => {
+  if (grenade.name === 'M15 WP') {
+    return ['BWPHC', 'PD Body', 'PD Limb', 'PDs TS 0', 'PDs TS 4', 'PDs TS 7'];
+  }
+  return Object.keys(grenade.data).map(value => value.toUpperCase());
 };
 
 export const prepareDataForRender = (grenade) => {
   const dataForRender = createNestedArray(grenade);
-  const dataValues = Object.values(grenade).slice(2, 7);
-  const explosiveDataHeadings = Object.keys(grenade.data).map(value => value.toUpperCase());
+  const dataValues = Object.values(grenade).slice(2, -1);
+  const explosiveDataHeadings = createDataHeadings(grenade);
   const explosiveDataStats = Object.values(grenade.data);
   return dataForRender.map((row, index) => {
-    const explosiveStats = index === 4 ? [] : explosiveDataStats[index];
+    const explosiveStats = explosiveDataStats[index] ? explosiveDataStats[index] : [];
     return [...row, dataValues[index], explosiveDataHeadings[index], explosiveStats];
   });
 };
@@ -56,7 +69,7 @@ const GrenadeData = ({ grenade }) => (
   <div>
     <div className="grenadeName">{grenade.name}</div>
     <table style={{ border: '1px solid black' }}>
-      {renderHeading()}
+      {renderHeading(grenade)}
       {renderBody(prepareDataForRender(grenade))}
     </table>
   </div>

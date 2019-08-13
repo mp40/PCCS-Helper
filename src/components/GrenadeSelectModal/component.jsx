@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { PropTypes } from 'prop-types';
 import GrenadeData from '../GrenadeData';
-import { grenadeData } from '../../data/grenades';
+import { grenadeData, specialGrenades } from '../../data/grenades';
 import ButtonInfo from '../widgets/buttons/ButtonInfo';
 import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 
@@ -36,7 +36,7 @@ const GrenadeSelectModal = ({ toggleOffWeaponCardViews, addGrenade, grenades }) 
 
   const renderGrenadeList = () => (
     <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', marginBottom: '0.5rem' }}>
-      {grenadeData().map(grenade => (
+      {[...grenadeData(), ...specialGrenades()].map(grenade => (
         <div key={grenade.name} style={{ display: 'flex', width: '16ch', lineHeight: '100%' }}>
           <div style={{ width: '2ch' }}>
             <ButtonInfo
