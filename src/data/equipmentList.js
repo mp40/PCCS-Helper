@@ -198,12 +198,6 @@ export const equipment = () => [
     tags: ['Combat'],
   },
   {
-    name: 'M15 WP Grenade',
-    weight: 1.9,
-    qty: 1,
-    tags: ['Combat'],
-  },
-  {
     name: 'M18A1 Claymore',
     weight: 3.5,
     qty: 1,
