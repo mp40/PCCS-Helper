@@ -80,7 +80,7 @@ describe('grenade data table', () => {
       expect(result[1]).toEqual(['W', 0.9, 'DC', [10, 2, 2, 2, 2, 1, 1]]);
       expect(result[2]).toEqual(['AT', 3, 'BSHC', ['*2h', '*3', 77, 19, 8, 2, -1]]);
       expect(result[3]).toEqual(['FL', 2, 'BC', ['15k', 747, 184, 55, 28, 12, 4]]);
-      expect(result[4]).toEqual(['R', 16, undefined, []]);
+      expect(result[4]).toEqual(['R', 16, undefined, ['', '', '', '', '', '', '']]);
     });
   });
   describe('non-standard grenades', () => {
@@ -93,7 +93,8 @@ describe('grenade data table', () => {
       expect(result[3]).toEqual(['FL', 2, 'PDs TS 0', ['10K', 450, 20, 1]]);
       expect(result[4]).toEqual(['R', 11, 'PDs TS 4', ['76K', '34H', 150, 8]]);
       expect(result[5]).toEqual(['Smk', 4, 'PDs TS 7', ['57T', '25K', '11H', 56]]);
-      expect(result[6]).toEqual(['Dur', 3, undefined, []]);
+      // expect(result[6][3].length).toEqual(['', '', '', '', '', '', '', '', '']);
+      expect(result[6]).toEqual(['Dur', 3, undefined, ['', '', '', '']]);
     });
     it('should render correct range brackets for WP grenades', () => {
       const wrap = shallow(<GrenadeData grenade={getWilliePeteData()} />);
