@@ -38,7 +38,7 @@ const getWilliePeteData = () => ({
   },
 });
 
-const smokeData = () => ({
+const getSmokeData = () => ({
   name: 'Smoke',
   qty: 1,
   l: 5.7,
@@ -48,6 +48,32 @@ const smokeData = () => ({
   r: 12,
   smk: 3,
   dur: 60,
+  data: null,
+});
+
+const getTearGasData = () => ({
+  name: 'Tear Gas',
+  qty: 1,
+  l: 5.7,
+  w: 1.2,
+  at: 4,
+  fl: 1,
+  r: 14,
+  sp: 3,
+  smk: 3,
+  dur: 12,
+  data: null,
+});
+
+const getFlashBang = () => ({
+  name: 'Flash Bang',
+  qty: 1,
+  l: 5,
+  w: 0.6,
+  at: 3,
+  fl: 1,
+  r: 20,
+  data: null,
 });
 
 
@@ -112,17 +138,45 @@ describe('grenade data table', () => {
       expect(wrapWP.find('thead').text()).toBe('C01234568');
     });
     it('should render smoke grenades', () => {
-      const result = prepareDataForRender(smokeData());
+      const result = prepareDataForRender(getSmokeData());
       expect(result[0]).toEqual(['L', 5.7, undefined, ['', '', '', '', '', '', '']]);
       expect(result[1]).toEqual(['W', 1.5, undefined, ['', '', '', '', '', '', '']]);
       expect(result[2]).toEqual(['AT', 4, undefined, ['', '', '', '', '', '', '']]);
       expect(result[3]).toEqual(['FL', 1, undefined, ['', '', '', '', '', '', '']]);
       expect(result[4]).toEqual(['R', 12, undefined, ['', '', '', '', '', '', '']]);
       expect(result[5]).toEqual(['Smk', 3, undefined, ['', '', '', '', '', '', '']]);
+      expect(result[6]).toEqual(['Dur', 60, undefined, ['', '', '', '', '', '', '']]);
     });
-    it('should render see rules message instead of range brackets', () => {
-      const wrapSmoke = shallow(<GrenadeData grenade={smokeData()} />);
+    it('should render see rules message instead of range brackets for smoke', () => {
+      const wrapSmoke = shallow(<GrenadeData grenade={getSmokeData()} />);
       expect(wrapSmoke.find('thead').text()).toContain('See Rules');
+    });
+    it('should render tear gas grenades', () => {
+      const result = prepareDataForRender(getTearGasData());
+      expect(result[0]).toEqual(['L', 5.7, undefined, ['', '', '', '', '', '', '']]);
+      expect(result[1]).toEqual(['W', 1.2, undefined, ['', '', '', '', '', '', '']]);
+      expect(result[2]).toEqual(['AT', 4, undefined, ['', '', '', '', '', '', '']]);
+      expect(result[3]).toEqual(['FL', 1, undefined, ['', '', '', '', '', '', '']]);
+      expect(result[4]).toEqual(['R', 14, undefined, ['', '', '', '', '', '', '']]);
+      expect(result[5]).toEqual(['SP', 3, undefined, ['', '', '', '', '', '', '']]);
+      expect(result[6]).toEqual(['Smk', 3, undefined, ['', '', '', '', '', '', '']]);
+      expect(result[7]).toEqual(['Dur', 12, undefined, ['', '', '', '', '', '', '']]);
+    });
+    it('should render see rules message instead of range brackets for tear gas', () => {
+      const wrapGas = shallow(<GrenadeData grenade={getTearGasData()} />);
+      expect(wrapGas.find('thead').text()).toContain('See Rules');
+    });
+    it('should render flash bang grenades', () => {
+      const result = prepareDataForRender(getFlashBang());
+      expect(result[0]).toEqual(['L', 5, undefined, ['', '', '', '', '', '', '']]);
+      expect(result[1]).toEqual(['W', 0.6, undefined, ['', '', '', '', '', '', '']]);
+      expect(result[2]).toEqual(['AT', 3, undefined, ['', '', '', '', '', '', '']]);
+      expect(result[3]).toEqual(['FL', 1, undefined, ['', '', '', '', '', '', '']]);
+      expect(result[4]).toEqual(['R', 20, undefined, ['', '', '', '', '', '', '']]);
+    });
+    it('should render correct hedings for flash bangs', () => {
+      const wrapFlash = shallow(<GrenadeData grenade={getFlashBang()} />);
+      expect(wrapFlash.find('thead').text()).toContain('See Rules');
     });
   });
 });

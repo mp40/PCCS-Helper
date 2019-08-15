@@ -1,19 +1,24 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { renderStandardGrenade, renderWilliePete } from './SubComponents';
+import { specialGrenades } from '../../data/grenades';
 
 import '../GrenadeSelectModal/GrenadeSelectModal.css';
 
 const standardRangeBrackets = ['', '', '', 'C', '0', '1', '2', '3', '5', '10'];
 const williePeteRangeBrackets = ['', '', '', 'C', '0', '1', '2', '3', '4', '5', '6', '8'];
-// const seeRules = ['See Rules - Special Weapons Suppliment 10208'];
+const seeRules = ['', '', '', 'See ', 'Rules', '-', 'Book', '10208', '', ''];
+
+const checkIfSpecialGrenade = grenadeName => specialGrenades().filter(
+  grenadeObj => grenadeObj.name === grenadeName,
+)[0];
 
 const getRangeBrackets = (grenadeName) => {
   if (grenadeName === 'M15 WP') {
     return williePeteRangeBrackets;
   }
-  if (grenadeName === 'Smoke') {
-    return ['', '', 'See ', 'Rules', '-', 'Book', '10208', '', '', ''];
+  if (checkIfSpecialGrenade(grenadeName)) {
+    return seeRules;
   }
   return standardRangeBrackets;
 };
@@ -49,7 +54,7 @@ const createDataHeadings = (grenade) => {
   if (grenade.name === 'M15 WP') {
     return ['BWPHC', 'PD Body', 'PD Limb', 'PDs TS 0', 'PDs TS 4', 'PDs TS 7'];
   }
-  if (grenade.name === 'Smoke') {
+  if (checkIfSpecialGrenade(grenade.name)) {
     return [];
   }
   return Object.keys(grenade.data).map(value => value.toUpperCase());

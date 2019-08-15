@@ -277,11 +277,6 @@ export const specialGrenades = () => [
       pd7: ['57T', '25K', '11H', 56, '', '', '', '', ''],
     },
   },
-  // {
-  //   name: 'Flash Bang',
-  //   qty: 1,
-  //   w: 0.6,
-  // },
   {
     name: 'Smoke',
     qty: 1,
@@ -292,6 +287,7 @@ export const specialGrenades = () => [
     r: 12,
     smk: 3,
     dur: 60,
+    data: null,
   },
   {
     name: 'Tear Gas',
@@ -304,5 +300,16 @@ export const specialGrenades = () => [
     sp: 3,
     smk: 3,
     dur: 12,
+    data: null,
+  },
+  {
+    name: 'Flash Bang',
+    qty: 1,
+    l: 5,
+    w: 0.6,
+    at: 3,
+    fl: 1,
+    r: 20,
+    data: null,
   },
 ];
