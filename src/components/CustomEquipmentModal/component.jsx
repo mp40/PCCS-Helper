@@ -63,7 +63,7 @@ renderHeading = toggleOffEquipmentCardViews => (
     <ButtonStandard
       style={{ marginTop: '.5rem' }}
       name="Cancel"
-      onClick={toggleOffEquipmentCardViews.bind(this, 'showCustomInput')}
+      onClick={() => toggleOffEquipmentCardViews('showCustomInput')}
     />
   </div>
 )
