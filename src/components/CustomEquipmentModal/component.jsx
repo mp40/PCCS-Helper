@@ -64,6 +64,7 @@ renderHeading = toggleOffEquipmentCardViews => (
       style={{ marginTop: '.5rem' }}
       name="Cancel"
       onClick={() => toggleOffEquipmentCardViews('showCustomInput')}
+      className="cancelCustomInput"
     />
   </div>
 )
