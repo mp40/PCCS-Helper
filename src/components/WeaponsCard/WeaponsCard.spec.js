@@ -2,12 +2,6 @@ import { act } from 'react-dom/test-utils';
 import { mountAppWithStore, storeWithCreateCharacterView } from '../../helpers/testHelpers';
 import { getSelectedWeapons } from './component';
 
-const waitOneTick = simulate => new Promise(((resolve) => {
-  setTimeout(() => {
-    resolve(simulate);
-  }, 0);
-}));
-
 const waitOneSec = simulate => new Promise(((resolve) => {
   setTimeout(() => {
     resolve(simulate);
