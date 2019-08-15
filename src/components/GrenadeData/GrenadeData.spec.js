@@ -38,6 +38,18 @@ const getWilliePeteData = () => ({
   },
 });
 
+const smokeData = () => ({
+  name: 'Smoke',
+  qty: 1,
+  l: 5.7,
+  w: 1.5,
+  at: 4,
+  fl: 1,
+  r: 12,
+  smk: 3,
+  dur: 60,
+});
+
 
 describe('grenade data table', () => {
   // eslint-disable-next-line react/jsx-filename-extension
@@ -93,12 +105,24 @@ describe('grenade data table', () => {
       expect(result[3]).toEqual(['FL', 2, 'PDs TS 0', ['10K', 450, 20, 1]]);
       expect(result[4]).toEqual(['R', 11, 'PDs TS 4', ['76K', '34H', 150, 8]]);
       expect(result[5]).toEqual(['Smk', 4, 'PDs TS 7', ['57T', '25K', '11H', 56]]);
-      // expect(result[6][3].length).toEqual(['', '', '', '', '', '', '', '', '']);
       expect(result[6]).toEqual(['Dur', 3, undefined, ['', '', '', '']]);
     });
     it('should render correct range brackets for WP grenades', () => {
-      const wrap = shallow(<GrenadeData grenade={getWilliePeteData()} />);
-      expect(wrap.find('thead').text()).toBe('C01234568');
+      const wrapWP = shallow(<GrenadeData grenade={getWilliePeteData()} />);
+      expect(wrapWP.find('thead').text()).toBe('C01234568');
+    });
+    it('should render smoke grenades', () => {
+      const result = prepareDataForRender(smokeData());
+      expect(result[0]).toEqual(['L', 5.7, undefined, ['', '', '', '', '', '', '']]);
+      expect(result[1]).toEqual(['W', 1.5, undefined, ['', '', '', '', '', '', '']]);
+      expect(result[2]).toEqual(['AT', 4, undefined, ['', '', '', '', '', '', '']]);
+      expect(result[3]).toEqual(['FL', 1, undefined, ['', '', '', '', '', '', '']]);
+      expect(result[4]).toEqual(['R', 12, undefined, ['', '', '', '', '', '', '']]);
+      expect(result[5]).toEqual(['Smk', 3, undefined, ['', '', '', '', '', '', '']]);
+    });
+    it('should render see rules message instead of range brackets', () => {
+      const wrapSmoke = shallow(<GrenadeData grenade={smokeData()} />);
+      expect(wrapSmoke.find('thead').text()).toContain('See Rules');
     });
   });
 });
