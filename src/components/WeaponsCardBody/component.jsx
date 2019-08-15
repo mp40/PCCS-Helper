@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 import ButtonIncrementArrows from '../widgets/buttons/ButtonIncrementArrows';
 import { ButtonBar, TableHeader, RenderGunMags, RenderGunName, RenderGunInfo } from './SubComponents';
+import { correctFloatingPoint } from '../../reducers/reducerHelpers';
 
 import { calculateFirearmsArrayWeight } from '../../helpers/actionHelpers';
 
@@ -53,7 +54,7 @@ const WeaponsCardBody = ({
         </td>
         <td>{grenade.w}</td>
         <td>{grenade.qty}</td>
-        <td>{grenade.qty * grenade.w}</td>
+        <td>{correctFloatingPoint(grenade.qty * grenade.w)}</td>
         <td>
           <ButtonIncrementArrows
             className="ButtonIncrementArrows"

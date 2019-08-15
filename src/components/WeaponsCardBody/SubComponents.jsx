@@ -4,6 +4,7 @@ import React from 'react';
 import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 import ButtonIncrementArrows from '../widgets/buttons/ButtonIncrementArrows';
 import ButtonStandard from '../widgets/buttons/ButtonStandard';
+import { correctFloatingPoint } from '../../reducers/reducerHelpers';
 
 export const renderCorrectAmmoTitle = magObj => (magObj.type === 'Rnd' ? 'Single Rounds' : `${magObj.cap} round ${magObj.type}`);
 
@@ -69,7 +70,7 @@ export const RenderGunInfo = (gunObj, increaseFirearmQty, decreaseFirearmQty) =>
       {gunObj.qty}
     </td>
     <td>
-      {gunObj.qty * gunObj.weight}
+      {correctFloatingPoint(gunObj.qty * gunObj.weight)}
     </td>
     <td>
       <ButtonIncrementArrows

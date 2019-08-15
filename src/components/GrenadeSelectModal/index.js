@@ -2,4 +2,14 @@ import { connect } from 'react-redux';
 import { addGrenade } from '../../actions';
 import GrenadeSelectModal from './component';
 
-export default connect(null, { addGrenade })(GrenadeSelectModal);
+// const mapStateToProps = state => ({
+//   gear: {
+//     grenades: state.gear.grenades,
+//   },
+// });
+
+const mapStateToProps = state => ({
+  grenades: state.gear.grenades,
+});
+
+export default connect(mapStateToProps, { addGrenade })(GrenadeSelectModal);

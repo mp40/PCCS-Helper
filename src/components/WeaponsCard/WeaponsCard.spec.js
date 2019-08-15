@@ -1,5 +1,12 @@
+import { act } from 'react-dom/test-utils';
 import { mountAppWithStore, storeWithCreateCharacterView } from '../../helpers/testHelpers';
 import { getSelectedWeapons } from './component';
+
+const waitOneSec = simulate => new Promise(((resolve) => {
+  setTimeout(() => {
+    resolve(simulate);
+  }, 1001);
+}));
 
 describe('The Weapons Card', () => {
   const gunList = wrapper => wrapper.find('.equipmentListBody');
@@ -118,14 +125,12 @@ describe('The Weapons Card', () => {
       wrapper.find('#viewM1911A1').simulate('click');
       expect(wrapper.text()).toContain('ROF');
     });
-    it('should be possible to close firearms stats', (done) => {
-      // this is probably not an ideal way to tests async hook related behaviour
-      wrapper.find('#closeGunStatView').simulate('click');
-      setTimeout(() => {
-        wrapper.update();
-        expect(wrapper.find('#closeGunStatView').exists()).toEqual(false);
-        done();
-      }, 1000);
+    it('should be possible to close firearms stats', async () => {
+      await act(async () => {
+        await waitOneSec(wrapper.find('#closeGunStatView').simulate('click'));
+      });
+      wrapper.update();
+      expect(wrapper.find('#closeGunStatView').exists()).toEqual(false);
     });
   });
   describe('grenades', () => {

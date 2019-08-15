@@ -120,12 +120,6 @@ export const equipment = () => [
     tags: ['Comms'],
   },
   {
-    name: 'Flash Bang',
-    weight: 0.6,
-    qty: 1,
-    tags: ['Combat'],
-  },
-  {
     name: 'H Harness',
     weight: 0.7,
     qty: 1,
@@ -194,12 +188,6 @@ export const equipment = () => [
   {
     name: 'M14 Toe Popper',
     weight: 0.22,
-    qty: 1,
-    tags: ['Combat'],
-  },
-  {
-    name: 'M15 WP Grenade',
-    weight: 1.9,
     qty: 1,
     tags: ['Combat'],
   },
@@ -292,12 +280,6 @@ export const equipment = () => [
     weight: 3.7,
     qty: 1,
     tags: ['Melee'],
-  },
-  {
-    name: 'Smoke Grenade',
-    weight: 1.5,
-    qty: 1,
-    tags: ['Combat'],
   },
   {
     name: 'SNIPERS Harness',

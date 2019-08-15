@@ -3,16 +3,21 @@
 import React, { useState } from 'react';
 import { PropTypes } from 'prop-types';
 import GrenadeData from '../GrenadeData';
-import { grenadeData } from '../../data/grenades';
+import { grenadeData, specialGrenades } from '../../data/grenades';
 import ButtonInfo from '../widgets/buttons/ButtonInfo';
 import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 
 import './GrenadeSelectModal.css';
 
-const GrenadeSelectModal = ({ toggleOffWeaponCardViews, addGrenade }) => {
+const GrenadeSelectModal = ({ toggleOffWeaponCardViews, addGrenade, grenades }) => {
   const [viewGrenade, setGrenadeToView] = useState(null);
 
+  const checkGrenadeInList = grenade => grenades.filter(obj => obj.name === grenade.name).length;
+
   const handleSelection = (grenade) => {
+    if (checkGrenadeInList(grenade)) {
+      return;
+    }
     addGrenade(grenade);
     toggleOffWeaponCardViews('showGrenades');
   };
@@ -31,8 +36,8 @@ const GrenadeSelectModal = ({ toggleOffWeaponCardViews, addGrenade }) => {
 
   const renderGrenadeList = () => (
     <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', marginBottom: '0.5rem' }}>
-      {grenadeData().map(grenade => (
-        <div key={grenade.name} style={{ display: 'flex', width: '16ch' }}>
+      {[...grenadeData(), ...specialGrenades()].map(grenade => (
+        <div key={grenade.name} style={{ display: 'flex', width: '16ch', lineHeight: '100%' }}>
           <div style={{ width: '2ch' }}>
             <ButtonInfo
               className={`view${grenade.name}Stats`}
@@ -40,7 +45,7 @@ const GrenadeSelectModal = ({ toggleOffWeaponCardViews, addGrenade }) => {
             />
           </div>
           <div
-            className={`select${grenade.name}`}
+            className={`select${grenade.name} grenadeRow`}
             onClick={() => handleSelection(grenade)}
             style={{ width: '14ch', display: 'flex', justifyContent: 'space-between', fontSize: 'smaller' }}
           >
@@ -73,6 +78,8 @@ GrenadeSelectModal.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   addGrenade: PropTypes.func,
   toggleOffWeaponCardViews: PropTypes.func,
+  // eslint-disable-next-line react/forbid-prop-types
+  grenades: PropTypes.array,
 };
 
 export default GrenadeSelectModal;

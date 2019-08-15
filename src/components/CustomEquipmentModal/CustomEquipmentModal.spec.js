@@ -18,6 +18,10 @@ describe('adding custom equipment', () => {
     inputValue = createWrapperTextInput(wrapper);
     wrapper.find('#toggleCustomEquipment').simulate('click');
   });
+  it('should be possible to cancel custom input', () => {
+    wrapper.find('.cancelCustomInput').simulate('click');
+    expect(wrapper.find('#equipNameInput').exists()).toEqual(false);
+  });
   it('should be posible to add custom equipment to the list', () => {
     submitCustomEquipment('CustomEquipment', '666');
     expect(wrapper.text()).toContain(666);
