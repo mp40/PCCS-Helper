@@ -1,0 +1,11 @@
+.a4GameSheet {
+    background-color: white;
+    width: 29.7cm;
+    height: 21cm;
+    /* margin: 1.5cm; */
+    margin: 20px;
+}
+
+.a4ContentContainer {
+    padding: 1.5cm;
+}

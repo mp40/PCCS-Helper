@@ -1,5 +1,10 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
+import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
+
+import './GameSheet.css';
+// import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
+import { testFAMAS } from '../../helpers/testHelpers';
 
 const GameSheet = ({ totalWeight, characterStats, combatStats, gear }) => {
   // todo
@@ -7,7 +12,11 @@ const GameSheet = ({ totalWeight, characterStats, combatStats, gear }) => {
     // holding
   };
   return (
-    <div>placeholder</div>
+    <div className="a4GameSheet">
+      <div className="a4ContentContainer">
+        <WeaponsCardWeaponStats gunObj={testFAMAS()} sal={7} size="a4" />
+      </div>
+    </div>
   );
 };
 

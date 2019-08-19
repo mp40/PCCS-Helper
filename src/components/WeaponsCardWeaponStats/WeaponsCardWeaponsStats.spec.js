@@ -68,7 +68,7 @@ describe('<WeaponsCardWeaponStats/> component', () => {
     });
   });
   describe('the aim time data', () => {
-    it('should render the aim time 1', () => {
+    it('should render the aim time', () => {
       expect(lineOne.childAt(1).text()).toContain('1');
       expect(lineOne.childAt(1).text()).toContain('-18');
       expect(lineTwo.childAt(1).text()).toContain('2');
@@ -313,6 +313,55 @@ describe('<WeaponsCardWeaponStats/> component', () => {
     });
     it('should render "12" before "BPHC"', () => {
       expect(lineSeven.childAt(2).text()).toContain('12');
+    });
+  });
+  describe('adding SAL bonus to aim time mod', () => {
+    const sal = 7;
+    const salWrapper = mount(<WeaponsCardWeaponStats gunObj={testFAMAS()} sal={sal} />);
+    it('should render aim time 1 mod with SAL bonus', () => {
+      const aim1 = salWrapper.find('#GunTableLine0').find('.AimMod');
+      const expectedAim1 = testFAMAS().aim.mod[0] + sal;
+      expect(aim1.text()).toBe(`${expectedAim1}`);
+    });
+    it('should render aim time 2 mod with SAL bonus', () => {
+      const aim2 = salWrapper.find('#GunTableLine1').find('.AimMod');
+      const expectedAim2 = testFAMAS().aim.mod[1] + sal;
+      expect(aim2.text()).toBe(`${expectedAim2}`);
+    });
+    it('should render aim time 3 mod with SAL bonus', () => {
+      const aim3 = salWrapper.find('#GunTableLine2').find('.AimMod');
+      const expectedAim3 = testFAMAS().aim.mod[2] + sal;
+      expect(aim3.text()).toBe(`${expectedAim3}`);
+    });
+    it('should render aim time 4 mod with SAL bonus', () => {
+      const aim4 = salWrapper.find('#GunTableLine3').find('.AimMod');
+      const expectedAim4 = testFAMAS().aim.mod[3] + sal;
+      expect(aim4.text()).toBe(`${expectedAim4}`);
+    });
+    it('should render aim time 5 mod with SAL bonus', () => {
+      const aim5 = salWrapper.find('#GunTableLine4').find('.AimMod');
+      const expectedAim5 = testFAMAS().aim.mod[4] + sal;
+      expect(aim5.text()).toBe(`${expectedAim5}`);
+    });
+    it('should render aim time 6 mod with SAL bonus', () => {
+      const aim6 = salWrapper.find('#GunTableLine5').find('.AimMod');
+      const expectedAim6 = testFAMAS().aim.mod[5] + sal;
+      expect(aim6.text()).toBe(`${expectedAim6}`);
+    });
+    it('should render aim time 7 mod with SAL bonus', () => {
+      const aim7 = salWrapper.find('#GunTableLine6').find('.AimMod');
+      const expectedAim7 = testFAMAS().aim.mod[6] + sal;
+      expect(aim7.text()).toBe(`${expectedAim7}`);
+    });
+    it('should render aim time 8 mod with SAL bonus', () => {
+      const aim8 = salWrapper.find('#GunTableLine7').find('.AimMod');
+      const expectedAim8 = testFAMAS().aim.mod[7] + sal;
+      expect(aim8.text()).toBe(`${expectedAim8}`);
+    });
+    it('should render aim time 9 mod with SAL bonus', () => {
+      const aim9 = salWrapper.find('#GunTableLine8').find('.AimMod');
+      const expectedAim9 = testFAMAS().aim.mod[8] + sal;
+      expect(aim9.text()).toBe(`${expectedAim9}`);
     });
   });
 });

@@ -2,21 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { tableLineShape } from '../../helpers/proptypeShapes';
 
+import '../WeaponsCard/WeaponsCard.css';
+
 const WeaponsDataRow = ({ tableLine, index }) => {
   const borderLeftAndRight = { borderLeft: '1px solid rgb(85, 83, 83)', borderRight: '1px solid rgb(85, 83, 83)' };
 
   return (
-    <tr id={`GunTableLine${index}`}>
+    <tr id={`GunTableLine${index}`} className="GunTableTableRow">
       <td id={`WeaponStat${tableLine.dataType.name}`}>
-        <span style={{ marginLeft: '.4rem' }}>{tableLine.dataType.short}</span>
-        <span style={{ marginRight: '.4rem', float: 'right' }}>{tableLine.dataType.data}</span>
+        <span className="DataType">{tableLine.dataType.short}</span>
+        <span className="DataValue">{tableLine.dataType.data}</span>
       </td>
       <td style={borderLeftAndRight}>
-        <span style={{ marginLeft: '.9rem' }}>{tableLine.aim[0]}</span>
-        <span style={{ marginRight: '.9rem', float: 'right' }}>{tableLine.aim[1]}</span>
+        <span className="AimCount">{tableLine.aim[0]}</span>
+        <span className="AimMod">{tableLine.aim[1]}</span>
       </td>
       <td>
-        <span style={{ marginLeft: '.2rem' }}>{tableLine.tag[0]}</span>
+        <span className="AimCount" style={{ marginLeft: '.2rem' }}>{tableLine.tag[0]}</span>
         <span style={{ float: 'right' }}>{tableLine.tag[1]}</span>
       </td>
       {tableLine.array.map((information, dex) => {
