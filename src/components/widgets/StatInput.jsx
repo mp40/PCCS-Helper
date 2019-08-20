@@ -36,7 +36,7 @@ class StatInput extends Component {
                 <input
                   type="text"
                   // eslint-disable-next-line jsx-a11y/no-autofocus
-                  autoFocus="true"
+                  autoFocus
                   className="attInput"
                   onKeyUp={(event) => {
                     if (event.key === 'Enter') {
