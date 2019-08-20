@@ -5,6 +5,7 @@ import { gearShape } from '../../helpers/proptypeShapes';
 import ButtonStandard from '../widgets/buttons/ButtonStandard';
 import TextInput from '../widgets/TextInput';
 import { isNotValidObjectToAdd, isValidCustomEquipmentInput } from '../../helpers/gaurds';
+import { correctFloatingPoint } from '../../reducers/reducerHelpers';
 
 import './CustomEquipmentModal.css';
 
@@ -39,7 +40,7 @@ class CustomEquipmentModal extends Component {
     const { gear, toggleOffEquipmentCardViews, addEquipment } = this.props;
     const { equipmentName, equipmentWeight } = this.state;
     const name = equipmentName;
-    const weight = parseInt(equipmentWeight, 10);
+    const weight = correctFloatingPoint(parseFloat(equipmentWeight));
 
     if (!isValidCustomEquipmentInput(name, weight)) {
       this.setState({ errorMsgInvalidEntry: true });
