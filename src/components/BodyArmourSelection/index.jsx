@@ -6,7 +6,7 @@ import './BodyArmourSelection.css';
 const tableBodyStyles = {
   border: '1px solid black',
 };
-const renderHeading = armourType => (armourType === 'Helmet' ? 'Select Helmet' : 'Select Vest');
+const renderHeading = armourType => (armourType === 'helmet' ? 'Select Helmet' : 'Select Vest');
 
 const renderBody = (armourList, handleDispatch, type) => armourList.map(armour => (
   <React.Fragment key={armour.name}>

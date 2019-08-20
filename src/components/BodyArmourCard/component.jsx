@@ -3,48 +3,27 @@ import PropTypes from 'prop-types';
 import BodyArmourSelection from '../BodyArmourSelection';
 import { helmetStats, bodyArmorStats } from '../../data/uniformAndArmourTypes';
 
-export const selectArmourList = armourType => (armourType === 'Helmet' ? helmetStats() : bodyArmorStats());
+export const selectArmourList = armourType => (armourType === 'helmet' ? helmetStats() : bodyArmorStats());
 
 const BodyArmourCard = ({ helmet, vest, changeHelmet, changeVest }) => {
   const [showBodyArmour, toggleBodyArmourSelect] = useState(false);
 
-  const getHelmetName = () => {
-    if (!helmet) {
-      return 'No Helmet';
-    }
-    return helmet.name;
-  };
-
-  const getHelmetWeight = () => {
-    if (!helmet) {
-      return '0';
-    }
-    return helmet.weight;
-  };
-
-  const getVestName = () => {
-    if (!vest) {
-      return 'No Vest';
-    }
-    return vest.name;
-  };
-
-  const getVestWeight = () => {
-    if (!vest) {
-      return '0';
-    }
-    return vest.weight;
-  };
-
   const handleDispatch = (type, payload) => {
-    if (type === 'Helmet') {
+    if (type === 'helmet') {
       changeHelmet(payload);
     }
-    if (type === 'Vest') {
+    if (type === 'vest') {
       changeVest(payload);
     }
     toggleBodyArmourSelect(false);
   };
+
+  const renderArmourRow = (type, obj) => (
+    <tr className={`${type}BodyArmour`} onClick={() => toggleBodyArmourSelect(type)}>
+      <td>{obj.name}</td>
+      <td>{obj.weight}</td>
+    </tr>
+  );
 
   return (
     <>
@@ -56,14 +35,8 @@ const BodyArmourCard = ({ helmet, vest, changeHelmet, changeVest }) => {
           </tr>
         </thead>
         <tbody>
-          <tr className="helmetBodyArmour" onClick={() => toggleBodyArmourSelect('Helmet')}>
-            <td>{getHelmetName()}</td>
-            <td>{getHelmetWeight()}</td>
-          </tr>
-          <tr className="vestBodyArmour" onClick={() => toggleBodyArmourSelect('Vest')}>
-            <td>{getVestName()}</td>
-            <td>{getVestWeight()}</td>
-          </tr>
+          {renderArmourRow('helmet', helmet)}
+          {renderArmourRow('vest', vest)}
         </tbody>
       </table>
       {showBodyArmour
@@ -86,6 +59,11 @@ BodyArmourCard.propTypes = {
   vest: PropTypes.object,
   changeHelmet: PropTypes.func,
   changeVest: PropTypes.func,
+};
+
+BodyArmourCard.defaultProps = {
+  helmet: { name: 'No Helmet', weight: 0 },
+  vest: { name: 'No Vest', weight: 0 },
 };
 
 export default BodyArmourCard;
