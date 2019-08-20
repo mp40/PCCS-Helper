@@ -20,7 +20,7 @@ const BodyArmourCard = ({ helmet, vest, changeHelmet, changeVest }) => {
 
   const renderArmourRow = (type, obj) => (
     <tr className={`${type}BodyArmour armourStats`} onClick={() => toggleBodyArmourSelect(type)}>
-      <td>{obj.name}</td>
+      <td className="armourName">{obj.name}</td>
       <td style={{ textAlign: 'center' }}>{obj.weight}</td>
     </tr>
   );
