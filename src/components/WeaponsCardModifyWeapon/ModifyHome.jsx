@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { gunObjShape } from '../../helpers/proptypeShapes';
 import ButtonSlim from '../widgets/buttons/ButtonSlim';
 
-import { renderMagazinesHeading, renderMagazines } from './SubComponents';
+import { renderMagazinesHeading, renderMagazines, addModButtonWithMargin } from './SubComponents';
 
 const ModifyHome = ({
   removeAllGunMods,
@@ -32,13 +32,7 @@ const ModifyHome = ({
   const rendeWeaponModifications = () => (
     <div>
       <div style={{ paddingTop: '5px', fontWeight: 'bold' }}>Modifications</div>
-      <div style={{ paddingBottom: '5px' }}>
-        <ButtonSlim
-          name="add"
-          id="modifyWeaponWeight"
-          onClick={() => toggleOnWeaponsCardViews('modifyFirearmWeight')}
-        />
-      </div>
+      {addModButtonWithMargin('modifyWeaponWeight', toggleOnWeaponsCardViews, 'modifyFirearmWeight')}
     </div>
   );
   const renderModificationNotes = notes => (

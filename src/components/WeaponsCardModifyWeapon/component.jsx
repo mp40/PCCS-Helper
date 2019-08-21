@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { gunObjShape } from '../../helpers/proptypeShapes';
-import { renderModificationOption } from './SubComponents';
+import { renderWeaponsCardCustomMag, renderWeaponsCardModifyWeight } from './SubComponents';
 import ModifyHome from './ModifyHome';
-import WeaponsCardCustomMag from '../WeaponsCardCustomMag';
-import WeaponsCardModifyWeight from '../WeaponsCardModifyWeight';
 
 import '../WeaponsCard/WeaponsCard.css';
 
@@ -58,10 +56,8 @@ const WeaponsCardModifyWeapon = ({
       handleRemoveMod={handleRemoveMod}
     />
     )}
-      {createCustomMag && renderModificationOption(handleAddCustomMag, WeaponsCardCustomMag, toggleOffWeaponCardViews)}
-      {modifyFirearmWeight
-        && renderModificationOption(handleModifyFirearmWeight, WeaponsCardModifyWeight, toggleOffWeaponCardViews)
-        }
+      {createCustomMag && renderWeaponsCardCustomMag(handleAddCustomMag, toggleOffWeaponCardViews)}
+      {modifyFirearmWeight && renderWeaponsCardModifyWeight(handleModifyFirearmWeight, toggleOffWeaponCardViews)}
     </>
   );
 };

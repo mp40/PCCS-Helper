@@ -1,5 +1,17 @@
 import React from 'react';
+import WeaponsCardCustomMag from '../WeaponsCardCustomMag';
+import WeaponsCardModifyWeight from '../WeaponsCardModifyWeight';
 import ButtonSlim from '../widgets/buttons/ButtonSlim';
+
+export const addModButtonWithMargin = (id, func, value) => (
+  <div style={{ marginBottom: '5px' }}>
+    <ButtonSlim
+      name="add"
+      id={id}
+      onClick={() => func(value)}
+    />
+  </div>
+);
 
 export const renderAmmoCapacity = (magObj) => {
   if (magObj.type === 'Rnd') {
@@ -8,7 +20,7 @@ export const renderAmmoCapacity = (magObj) => {
   return `${magObj.cap} round ${magObj.type} - `;
 };
 
-export const renderModificationOption = (handleModification, ComponentName, toggleOffWeaponCardViews) => (
+const renderModificationOption = ComponentName => (handleModification, toggleOffWeaponCardViews) => (
   <div style={{ marginLeft: '5rem' }}>
     <ComponentName
       handleModification={handleModification}
@@ -17,16 +29,13 @@ export const renderModificationOption = (handleModification, ComponentName, togg
   </div>
 );
 
+export const renderWeaponsCardCustomMag = renderModificationOption(WeaponsCardCustomMag);
+export const renderWeaponsCardModifyWeight = renderModificationOption(WeaponsCardModifyWeight);
+
 export const renderMagazinesHeading = toggleOnWeaponsCardViews => (
   <div style={{ marginTop: '5px' }}>
     <div style={{ paddingRight: '5px', paddingTop: '5px', fontWeight: 'bold' }}>Magazines</div>
-    <div style={{ marginBottom: '5px' }}>
-      <ButtonSlim
-        name="add"
-        id="addCustomMagazine"
-        onClick={() => toggleOnWeaponsCardViews('createCustomMag')}
-      />
-    </div>
+    {addModButtonWithMargin('addCustomMagazine', toggleOnWeaponsCardViews, 'createCustomMag')}
   </div>
 );
 
