@@ -44,34 +44,44 @@ class WeaponsCardModifyWeapon extends Component {
     return typeOfAction === 'remove' ? removeMagazine(payload) : replaceMagazine(payload);
   }
 
-  render() {
+  renderDefaultContent = () => {
     const {
       gunObj,
-      createCustomMag,
-      modifyFirearmWeight,
       removeAllGunMods,
       toggleOnWeaponsCardViews,
+    } = this.props;
+    return (
+      <div style={{ marginLeft: '3.5rem' }} className="modifyWeaponPanel">
+        {renderModifyWeaponHeader(removeAllGunMods)}
+        {renderModifyMagazines(toggleOnWeaponsCardViews, gunObj, this.setPrimaryMag, this.handleMagazineExistence)}
+        {rendeWeaponModifications(toggleOnWeaponsCardViews)}
+        {gunObj.modNotes && renderModificationNotes(gunObj.modNotes, this.handleRemoveMod)}
+      </div>
+    );
+  }
+
+  renderContent = (createCustomMag, modifyFirearmWeight) => {
+    const {
       toggleOffWeaponCardViews,
     } = this.props;
 
     if (!createCustomMag && !modifyFirearmWeight) {
-      return (
-        <div style={{ marginLeft: '3.5rem' }} className="modifyWeaponPanel">
-          {renderModifyWeaponHeader(removeAllGunMods)}
-          {renderModifyMagazines(toggleOnWeaponsCardViews, gunObj, this.setPrimaryMag, this.handleMagazineExistence)}
-          {rendeWeaponModifications(toggleOnWeaponsCardViews)}
-          {gunObj.modNotes && renderModificationNotes(gunObj.modNotes, this.handleRemoveMod)}
-        </div>
-      );
+      return this.renderDefaultContent();
     }
     if (createCustomMag) {
-      return (
-        renderModificationOption(this.handleAddCustomMag, WeaponsCardCustomMag, toggleOffWeaponCardViews)
-      );
+      return renderModificationOption(this.handleAddCustomMag, WeaponsCardCustomMag, toggleOffWeaponCardViews);
     }
     return (
       renderModificationOption(this.handleModifyFirearmWeight, WeaponsCardModifyWeight, toggleOffWeaponCardViews)
     );
+  }
+
+  render() {
+    const {
+      createCustomMag,
+      modifyFirearmWeight,
+    } = this.props;
+    return this.renderContent(createCustomMag, modifyFirearmWeight);
   }
 }
 
