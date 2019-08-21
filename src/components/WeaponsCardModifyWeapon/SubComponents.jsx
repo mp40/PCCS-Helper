@@ -8,53 +8,12 @@ export const renderAmmoCapacity = (magObj) => {
   return `${magObj.cap} round ${magObj.type} - `;
 };
 
-export const renderModifyWeaponHeader = removeAllGunMods => (
-  <>
-    <div style={{ fontWeight: 'bold' }}>Modify Weapon</div>
-    <ButtonSlim
-      name="remove all mods"
-      className="removeAllMods"
-      onClick={removeAllGunMods.bind(this)}
-    />
-  </>
-);
-
 export const renderModificationOption = (handleModification, ComponentName, toggleOffWeaponCardViews) => (
   <div style={{ marginLeft: '5rem' }}>
     <ComponentName
       handleModification={handleModification}
       toggleOffWeaponCardViews={toggleOffWeaponCardViews}
     />
-  </div>
-);
-
-export const renderModificationNotes = (notes, handleRemoveMod) => (
-  notes.map(noteObj => (
-    <div key={`${noteObj.note}${noteObj.weightMod}`}>
-      <span>{noteObj.note}</span>
-      <span>
-        {`${noteObj.weightMod} lbs`}
-      </span>
-      <ButtonSlim
-        name="remove"
-        className="removeModification"
-        onClick={handleRemoveMod.bind(this, noteObj)}
-
-      />
-    </div>
-  ))
-);
-
-export const rendeWeaponModifications = toggleOnWeaponsCardViews => (
-  <div>
-    <div style={{ paddingTop: '5px', fontWeight: 'bold' }}>Modifications</div>
-    <div style={{ paddingBottom: '5px' }}>
-      <ButtonSlim
-        name="add"
-        id="modifyWeaponWeight"
-        onClick={toggleOnWeaponsCardViews.bind(this, 'modifyFirearmWeight')}
-      />
-    </div>
   </div>
 );
 
@@ -65,7 +24,7 @@ export const renderMagazinesHeading = toggleOnWeaponsCardViews => (
       <ButtonSlim
         name="add"
         id="addCustomMagazine"
-        onClick={toggleOnWeaponsCardViews.bind(this, 'createCustomMag')}
+        onClick={() => toggleOnWeaponsCardViews('createCustomMag')}
       />
     </div>
   </div>
@@ -77,7 +36,7 @@ export const renderRemoveMagazineButton = (handleMagazineExistence, firearm, mag
     <ButtonSlim
       name={buttonName}
       className="handleMagazineInInventory"
-      onClick={handleMagazineExistence.bind(this, buttonName, { firearm, magazine })}
+      onClick={() => handleMagazineExistence(buttonName, { firearm, magazine })}
     />
   );
 };
@@ -94,7 +53,7 @@ export const renderMagazines = (gunObj, setPrimaryMag, handleMagazineExistence) 
         <ButtonSlim
           name="primary"
           className="handleMagazineInInventory"
-          onClick={setPrimaryMag.bind(this, index, magObj.removed)}
+          onClick={() => setPrimaryMag(index, magObj.removed)}
           id={`${gunObj.name}MagAtIndex${index}`}
         />
       )}
@@ -103,10 +62,3 @@ export const renderMagazines = (gunObj, setPrimaryMag, handleMagazineExistence) 
 
   </div>
 ));
-
-export const renderModifyMagazines = (toggleOnWeaponsCardViews, gunObj, setPrimaryMag, handleMagazineExistence) => (
-  <div className="modifyMagazines">
-    {renderMagazinesHeading(toggleOnWeaponsCardViews)}
-    {renderMagazines(gunObj, setPrimaryMag, handleMagazineExistence)}
-  </div>
-);

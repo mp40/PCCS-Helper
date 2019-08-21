@@ -1,13 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { gunObjShape } from '../../helpers/proptypeShapes';
-import {
-  renderModifyWeaponHeader,
-  renderModificationOption,
-  renderModificationNotes,
-  rendeWeaponModifications,
-  renderModifyMagazines,
-} from './SubComponents';
+import { renderModificationOption } from './SubComponents';
+import ModifyHome from './ModifyHome';
 import WeaponsCardCustomMag from '../WeaponsCardCustomMag';
 import WeaponsCardModifyWeight from '../WeaponsCardModifyWeight';
 
@@ -50,28 +45,25 @@ const WeaponsCardModifyWeapon = ({
 
   const handleMagazineExistence = (typeOfAction, payload) => (typeOfAction === 'remove' ? removeMagazine(payload) : replaceMagazine(payload));
 
-  const renderDefaultContent = () => (
-    <div style={{ marginLeft: '3.5rem' }} className="modifyWeaponPanel">
-      {renderModifyWeaponHeader(removeAllGunMods)}
-      {renderModifyMagazines(toggleOnWeaponsCardViews, gunObj, setPrimaryMag, handleMagazineExistence)}
-      {rendeWeaponModifications(toggleOnWeaponsCardViews)}
-      {gunObj.modNotes && renderModificationNotes(gunObj.modNotes, handleRemoveMod)}
-    </div>
+  return (
+    <>
+      {(!createCustomMag && !modifyFirearmWeight)
+    && (
+    <ModifyHome
+      removeAllGunMods={removeAllGunMods}
+      toggleOnWeaponsCardViews={toggleOnWeaponsCardViews}
+      gunObj={gunObj}
+      setPrimaryMag={setPrimaryMag}
+      handleMagazineExistence={handleMagazineExistence}
+      handleRemoveMod={handleRemoveMod}
+    />
+    )}
+      {createCustomMag && renderModificationOption(handleAddCustomMag, WeaponsCardCustomMag, toggleOffWeaponCardViews)}
+      {modifyFirearmWeight
+        && renderModificationOption(handleModifyFirearmWeight, WeaponsCardModifyWeight, toggleOffWeaponCardViews)
+        }
+    </>
   );
-
-  const renderContent = () => {
-    if (!createCustomMag && !modifyFirearmWeight) {
-      return renderDefaultContent();
-    }
-    if (createCustomMag) {
-      return renderModificationOption(handleAddCustomMag, WeaponsCardCustomMag, toggleOffWeaponCardViews);
-    }
-    return (
-      renderModificationOption(handleModifyFirearmWeight, WeaponsCardModifyWeight, toggleOffWeaponCardViews)
-    );
-  };
-
-  return renderContent();
 };
 
 WeaponsCardModifyWeapon.propTypes = {
