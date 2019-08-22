@@ -66,7 +66,7 @@ describe('<GameSheet>', () => {
       expect(wrapperCombatStats.text()).toContain('Max Speed:6')
     })
     it('should render knockout value',()=>{
-      expect(wrapperCombatStats.text()).toContain('Knockout Value:9')
+      expect(wrapperCombatStats.text()).toContain('Knockout Val:9')
     })
     it('should render gun combat level',()=>{
       expect(wrapperCombatStats.text()).toContain('Gun Combat:4')

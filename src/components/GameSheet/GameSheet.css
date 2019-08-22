@@ -2,10 +2,26 @@
     background-color: white;
     width: 29.7cm;
     height: 21cm;
-    /* margin: 1.5cm; */
     margin: 20px;
 }
 
 .a4ContentContainer {
     padding: 1.5cm;
+}
+
+.combatStatsInfo {
+    font-size: 14pt;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid rgb(85, 83, 83);
+    width: 8.5cm;
+    padding: .2cm;
+}
+
+.comabatStatColA {
+    width: 3.5cm;
+}
+
+.comabatStatColB {
+    width: 4.3cm;
 }
