@@ -19,24 +19,24 @@ const characterStats = {
   hlt: 10,
   wil: 10,
   agi: 10,
-  gunLevel: 0,
-  handLevel: 0,
+  gunLevel: 4,
+  handLevel: 1,
 };
 
 const combatStats = {
-  baseSpeed: 3,
+  baseSpeed: 2,
   maxSpeed: 6,
   SAL: 7,
   CE: 3,
-  ISF: 10,
-  ASF: 10,
-  knockoutValue: 5,
-  damageBonus: 1,
-  combatActions: [4, 4],
+  ISF: 17,
+  ASF: 13,
+  knockoutValue: 9,
+  damageBonus: 1.5,
+  combatActions: [5, 3],
 };
 
 const props = {
-  totalWeight: 10,
+  totalWeight: 20.5,
   characterStats,
   combatStats,
   gear: gearDouble(),
@@ -54,4 +54,28 @@ describe('<GameSheet>', () => {
       expect(wrapperGunTable.find('.a4WeaponStatTable').exists()).toBe(true);
     });
   });
+  describe('combat stats',()=>{
+    const wrapperCombatStats = wrapper.find('CombatStatsInfo').dive();
+    it('should render combat stats info box',()=>{
+      expect(wrapper.find('CombatStatsInfo').exists()).toBe(true)
+    })
+    it('should render base speed',()=>{
+      expect(wrapperCombatStats.text()).toContain('Base Speed:2')
+    })
+    it('should render max speed',()=>{
+      expect(wrapperCombatStats.text()).toContain('Max Speed:6')
+    })
+    it('should render knockout value',()=>{
+      expect(wrapperCombatStats.text()).toContain('Knockout Value:9')
+    })
+    it('should render gun combat level',()=>{
+      expect(wrapperCombatStats.text()).toContain('Gun Combat:4')
+    })
+    it('should render hand to hand level',()=>{
+      expect(wrapperCombatStats.text()).toContain('Melee Combat:1')
+    })
+    it('should render damage bonus',()=>{
+      expect(wrapperCombatStats.text()).toContain('Damage Bonus:1.5')
+    })
+  })
 });
