@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './ActionTable.css';
+
 const { actionsPerImpulse } = require('../../helpers/helperFunctions');
 
 const actionsRow = (idRef, heading, actionArray) => (
@@ -15,18 +17,18 @@ const actionsRow = (idRef, heading, actionArray) => (
   </>
 );
 
-const ActionTable = ({ combatActions }) => {
+const ActionTable = ({ combatActions, className }) => {
   const gunActions = actionsPerImpulse(combatActions[0]);
   const handActions = actionsPerImpulse(combatActions[1]);
   return (
-    <table style={{ width: '100%' }} className="combatActions">
+    <table className={`combatActions${className}`}>
       <thead>
         <tr className="actionsHeader">
-          <th className="actionType" style={{ width: '32%' }}> Imp</th>
-          <th style={{ width: '17%' }}>1</th>
-          <th style={{ width: '17%' }}>2</th>
-          <th style={{ width: '17%' }}>3</th>
-          <th style={{ width: '17%' }}>4</th>
+          <th className="actionType">Imp</th>
+          <th className="impluseTH">1</th>
+          <th className="impluseTH">2</th>
+          <th className="impluseTH">3</th>
+          <th className="impluseTH">4</th>
         </tr>
       </thead>
       <tbody>
@@ -39,6 +41,11 @@ const ActionTable = ({ combatActions }) => {
 
 ActionTable.propTypes = {
   combatActions: PropTypes.arrayOf(PropTypes.number),
+  className: PropTypes.string,
+};
+
+ActionTable.defaultProps = {
+  className: '',
 };
 
 export default ActionTable;

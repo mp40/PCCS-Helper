@@ -1,4 +1,5 @@
-const meleeData = require('./melee');
+// const meleeData = require('./melee');
+import { meleeData } from './melee';
 
 const checkMeleeData = () => {
   let result = 'matches basic spec';

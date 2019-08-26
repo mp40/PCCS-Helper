@@ -2,6 +2,7 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
 import CombatStatsInfo from './CombatStatsInfo'
+import ActionTable from '../ActionsCard/ActionTable';
 
 import './GameSheet.css';
 // import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
@@ -27,8 +28,13 @@ const GameSheet = ({ totalWeight, characterStats, combatStats, gear }) => {
   return (
     <div className="a4GameSheet">
       <div className="a4ContentContainer">
-        {/* <CombatStatsInfo combatStats={combatStats} gunLevel={characterStats.gunLevel} handLevel={characterStats.handLevel}/> */}
-        <CombatStatsInfo combatStats={combatStatsX} gunLevel={4} handLevel={1}/>
+        <div style={{display:'flex'}}>
+          {/* <CombatStatsInfo combatStats={combatStats} gunLevel={characterStats.gunLevel} handLevel={characterStats.handLevel}/> */}
+          <CombatStatsInfo combatStats={combatStatsX} gunLevel={4} handLevel={1}/>
+          <div style={{marginLeft:'.2cm'}}>
+          <ActionTable combatActions={combatStatsX.combatActions} className="A4"/>
+          </div>
+        </div>
         {/* <WeaponsCardWeaponStats gunObj={gear.firearms[0]} sal={combatStats.SAL} size="a4" /> */}
         <WeaponsCardWeaponStats gunObj={testFAMAS()} sal={7} size="a4" />
       </div>
