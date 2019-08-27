@@ -3,6 +3,7 @@ import { PropTypes } from 'prop-types';
 import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
 import CombatStatsInfo from './CombatStatsInfo'
 import ActionTable from '../ActionsCard/ActionTable';
+import HandToHandTable from './HandToHandTable';
 
 import './GameSheet.css';
 // import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
@@ -37,6 +38,7 @@ const GameSheet = ({ totalWeight, characterStats, combatStats, gear }) => {
         </div>
         {/* <WeaponsCardWeaponStats gunObj={gear.firearms[0]} sal={combatStats.SAL} size="a4" /> */}
         <WeaponsCardWeaponStats gunObj={testFAMAS()} sal={7} size="a4" />
+        <HandToHandTable meleeList={['SMG', "Saber"]} meleeLevel={1}/>
       </div>
     </div>
   );

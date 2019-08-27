@@ -1,12 +1,21 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import { meleeData } from '../../data/melee';
+import { meleeData, weaponSpeedActionCosts } from '../../data/melee';
 // move helpers to seperate file later
 export const findWeaponSpeed = weaponName => meleeData().reduce((str, weapObj) => (weaponName === weapObj.Name ? str + weapObj.ws : `${str}`), '');
 export const findWeaponClass = weaponName => meleeData().reduce((str, weapObj) => (weaponName === weapObj.Name ? str + weapObj.wc : `${str}`), '');
 export const findWeaponCuttingDamage = weaponName => meleeData().reduce((str, weapObj) => (weaponName === weapObj.Name ? str + weapObj.IDc : `${str}`), '');
 export const findWeaponStabbingDamage = weaponName => meleeData().reduce((str, weapObj) => (weaponName === weapObj.Name ? str + weapObj.IDs : `${str}`), '');
 export const findWeaponRange = weaponName => meleeData().reduce((str, weapObj) => (weaponName === weapObj.Name ? str + weapObj.Rng : `${str}`), '');
+
+export const findParryCost = weaponSpeed => weaponSpeedActionCosts().reduce(
+  (acc, speedArray) => (weaponSpeed >= speedArray[0] ? speedArray[1] : acc), 0);
+export const findSetCost = weaponSpeed => weaponSpeedActionCosts().reduce(
+  (acc, speedArray) => (weaponSpeed >= speedArray[0] ? speedArray[2] : acc), 0);
+export const findStrikeCost = weaponSpeed => weaponSpeedActionCosts().reduce(
+  (acc, speedArray) => (weaponSpeed >= speedArray[0] ? speedArray[3] : acc), 0);
+export const findRecoverCost = weaponSpeed => weaponSpeedActionCosts().reduce(
+  (acc, speedArray) => (weaponSpeed >= speedArray[0] ? speedArray[4] : acc), 0);
 
 const HandToHandTable = ({ meleeList, meleeLevel }) => {
   const hold = () => {
@@ -35,7 +44,13 @@ const HandToHandTable = ({ meleeList, meleeLevel }) => {
           <td className="speed">{findWeaponSpeed(meleeList[0])}</td>
           <td className="class">{findWeaponClass(meleeList[0])}</td>
           <td className="level">{meleeLevel + parseInt(findWeaponClass(meleeList[0]), 10)}</td>
-          <td className="parry">{}</td>
+          <td className="parry">{findParryCost(findWeaponSpeed(meleeList[0]))}</td>
+          <td className="set">{findSetCost(findWeaponSpeed(meleeList[0]))}</td>
+          <td className="strike">{findStrikeCost(findWeaponSpeed(meleeList[0]))}</td>
+          <td className="rec">{findRecoverCost(findWeaponSpeed(meleeList[0]))}</td>
+          <td className="cut">{findWeaponCuttingDamage(meleeList[0])}</td>
+          <td className="stab">{findWeaponStabbingDamage(meleeList[0])}</td>
+          <td className="rng">{findWeaponRange(meleeList[0])}</td>
         </tr>
       </table>
     </div>

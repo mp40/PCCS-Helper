@@ -233,14 +233,12 @@ export const meleeData = () => [
   },
 ];
 
-// weaponSpeed: [parry, set, strike, recover]
-export const weaponSpeedActionCosts = () => ({
-  1: [3, 3, 1, 3],
-  1.2: [2, 2, 1, 2],
-  1.5: [1, 2, 1, 2],
-  1.8: [1, 2, 1, 1],
-  2.3: [1, 1, 1, 1],
-  3.1: [1, 1, 0.5, 0.5],
-});
-
-// module.exports = { meleeData, weaponSpeedActionCosts };
+// [weaponSpeed, parry, set, strike, recover]
+export const weaponSpeedActionCosts = () => [
+  [1, 3, 3, 1, 3],
+  [1.2, 2, 2, 1, 2],
+  [1.5, 1, 2, 1, 2],
+  [1.8, 1, 2, 1, 1],
+  [2.3, 1, 1, 1, 1],
+  [3.1, 1, 1, 0.5, 0.5],
+];
