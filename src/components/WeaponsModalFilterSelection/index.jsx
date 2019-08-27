@@ -37,22 +37,35 @@ const buildCalibreClassName = (value) => {
   return `select${value}Filter`.replace(/[^\w]/g, '');
 };
 
+const getClassName = value => (value === 'type' ? buildTypeClassName : buildCalibreClassName);
+
 const typeButtonValues = ['All', 'Rifles', 'Pistols', 'SMGs', 'MGs', 'Shotguns', 'Sniper Rifles'];
 const calibreButtonValues = ['All', '7.62mm NATO', '5.56mm NATO', '7.62 x 39mm', '5.45 x 39.5mm', '9mm Parabellum', 'Other'];
+const getValueArray = value => (value === 'type' ? typeButtonValues : calibreButtonValues);
+
 
 const WeaponsModalFilterSelection = ({ handleSetFilterByType }) => {
   const [filterByType, setTypeFilter] = useState('All');
   const [filterByCaliber, setCaliberFilter] = useState('All');
 
-  const handleUpdateTypeFilter = (event) => {
-    handleSetFilterByType(event.target.value, filterByCaliber);
-    setTypeFilter(event.target.value);
+  const handleUpdate = (filterBy, setFilter) => (event) => {
+    handleSetFilterByType(event.target.value, filterBy);
+    setFilter(event.target.value);
   };
 
-  const handleUpdateCaliberFilter = (event) => {
-    handleSetFilterByType(filterByType, event.target.value);
-    setCaliberFilter(event.target.value);
-  };
+  const handleUpdateTypeFilter = handleUpdate(filterByCaliber, setTypeFilter);
+
+  // const handleUpdateTypeFilter = (event) => {
+  //   handleSetFilterByType(event.target.value, filterByCaliber);
+  //   setTypeFilter(event.target.value);
+  // };
+
+  const handleUpdateCaliberFilter = handleUpdate(filterByType, setCaliberFilter);
+
+  // const handleUpdateCaliberFilter = (event) => {
+  //   handleSetFilterByType(event.target.value, filterByType);
+  //   setCaliberFilter(event.target.value);
+  // };
 
   const renderRadioButton = (value, checked, className, handleUpdateFilter) => (
     <div style={radioButtonContainer} key={value}>
@@ -69,18 +82,19 @@ const WeaponsModalFilterSelection = ({ handleSetFilterByType }) => {
   );
 
   const renderFilterForm = (filterBy) => {
-    const valueArray = filterBy === 'type' ? typeButtonValues : calibreButtonValues;
+    // const valueArray = filterBy === 'type' ? typeButtonValues : calibreButtonValues;
     const filterValue = filterBy === 'type' ? filterByType : filterByCaliber;
     const handleUpdateFilter = filterBy === 'type' ? handleUpdateTypeFilter : handleUpdateCaliberFilter;
-    const buildClassName = filterBy === 'type' ? buildTypeClassName : buildCalibreClassName;
-
+    // const buildClassName = filterBy === 'type' ? buildTypeClassName : buildCalibreClassName;
+    // const buildClassName = getClassName(filterBy)
     return (
       <form className="filterByFirearmTypeForm" style={filterByTypeStyles}>
-        {valueArray.map(
+        {getValueArray(filterBy).map(
           value => renderRadioButton(
             value,
             filterValue === value,
-            buildClassName(value),
+            // buildClassName(value),
+            getClassName(filterBy)(value),
             handleUpdateFilter,
           ),
         )}
