@@ -54,18 +54,7 @@ const WeaponsModalFilterSelection = ({ handleSetFilterByType }) => {
   };
 
   const handleUpdateTypeFilter = handleUpdate(filterByCaliber, setTypeFilter);
-
-  // const handleUpdateTypeFilter = (event) => {
-  //   handleSetFilterByType(event.target.value, filterByCaliber);
-  //   setTypeFilter(event.target.value);
-  // };
-
   const handleUpdateCaliberFilter = handleUpdate(filterByType, setCaliberFilter);
-
-  // const handleUpdateCaliberFilter = (event) => {
-  //   handleSetFilterByType(event.target.value, filterByType);
-  //   setCaliberFilter(event.target.value);
-  // };
 
   const renderRadioButton = (value, checked, className, handleUpdateFilter) => (
     <div style={radioButtonContainer} key={value}>
@@ -82,18 +71,14 @@ const WeaponsModalFilterSelection = ({ handleSetFilterByType }) => {
   );
 
   const renderFilterForm = (filterBy) => {
-    // const valueArray = filterBy === 'type' ? typeButtonValues : calibreButtonValues;
     const filterValue = filterBy === 'type' ? filterByType : filterByCaliber;
     const handleUpdateFilter = filterBy === 'type' ? handleUpdateTypeFilter : handleUpdateCaliberFilter;
-    // const buildClassName = filterBy === 'type' ? buildTypeClassName : buildCalibreClassName;
-    // const buildClassName = getClassName(filterBy)
     return (
       <form className="filterByFirearmTypeForm" style={filterByTypeStyles}>
         {getValueArray(filterBy).map(
           value => renderRadioButton(
             value,
             filterValue === value,
-            // buildClassName(value),
             getClassName(filterBy)(value),
             handleUpdateFilter,
           ),
