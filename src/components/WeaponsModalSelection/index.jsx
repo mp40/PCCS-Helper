@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import WeaponsModalFilterSelection from '../WeaponsModalFilterSelection';
@@ -18,6 +20,16 @@ const getAllFirearmsArray = () => [
   ...sniperRifles(),
   ...shotguns(),
 ];
+
+const getFirearmList = {
+  Rifles: rifles(),
+  Pistols: pistols(),
+  SMGs: smgs(),
+  MGs: mgs(),
+  'Sniper Rifles': sniperRifles(),
+  Shotguns: shotguns(),
+  All: getAllFirearmsArray(),
+};
 
 const promiseTransitionClose = () => new Promise(((resolve) => {
   setTimeout(() => {
@@ -47,37 +59,9 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, handleAddFirearm }) =
   const [filterClassName, toggleFilterCard] = useState('filterCardWrapper');
   const [gunArrayFilteredByType, setFilteredGunArray] = useState(getAllFirearmsArray());
 
-  const handleSetFilterByType = (type, calibre) => {
-    switch (type) {
-      case 'Rifles':
-        return setFilteredGunArray(
-          filterCalibersFromType(rifles(), calibre),
-        );
-      case 'Pistols':
-        return setFilteredGunArray(
-          filterCalibersFromType(pistols(), calibre),
-        );
-      case 'SMGs':
-        return setFilteredGunArray(
-          filterCalibersFromType(smgs(), calibre),
-        );
-      case 'MGs':
-        return setFilteredGunArray(
-          filterCalibersFromType(mgs(), calibre),
-        );
-      case 'Shotguns':
-        return setFilteredGunArray(
-          filterCalibersFromType(shotguns(), calibre),
-        );
-      case 'Sniper Rifles':
-        return setFilteredGunArray(
-          filterCalibersFromType(sniperRifles(), calibre),
-        );
-      default: setFilteredGunArray(
-        filterCalibersFromType(getAllFirearmsArray(), calibre),
-      );
-    }
-  };
+  const handleSetFilterByType = (type, calibre) => setFilteredGunArray(
+    filterCalibersFromType(getFirearmList[type], calibre),
+  );
 
   const handleToggleViewFilters = () => {
     if (filterClassName === 'filterCardWrapper') {
@@ -167,8 +151,6 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, handleAddFirearm }) =
         />
       </div>
       )}
-
-)
     </>
   );
 };

@@ -72,6 +72,8 @@ describe('promise to wait for transition close', () => {
   });
 });
 
+// todo this will pass tests even if args in handleSetFilterByType are in wrong order.
+// todo mqke sure some tests fail if args in wrong order
 describe('filtering types and calibers helper function', () => {
   const firearmArrayDouble = () => [
     { name: 'AK47', calibre: '7.62 x 39mm' },
