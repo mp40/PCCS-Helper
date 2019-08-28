@@ -1,13 +1,37 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
-import CombatStatsInfo from './CombatStatsInfo'
+import CombatStatsInfo from './CombatStatsInfo';
 import ActionTable from '../ActionsCard/ActionTable';
 import HandToHandTable from './HandToHandTable';
 
 import './GameSheet.css';
 // import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
-import { testFAMAS } from '../../helpers/testHelpers';
+import { testFAMAS } from '../../helpers/testHelpers'; // todo delete this line
+
+const meleeNameList = {
+  pistols: 'Pistol',
+  smgs: 'SMG',
+  light: 'Light Rifle',
+  heavy: 'Heavy Rifle',
+  rifles: true,
+  sniperRifles: true,
+};
+
+const getRifleWeightClass = weight => (weight < 11.2 ? 'light' : 'heavy');
+
+export const prepareHandToHandWeaponList = (firearmsArray) => {
+  const filteredArray = firearmsArray.filter(gun => meleeNameList[gun.list]);
+  if (firearmsArray[0] === undefined) {
+    return [];
+  }
+  const tag = filteredArray[0].list === 'rifles' || filteredArray[0].list === 'sniperRifles'
+    ? getRifleWeightClass(filteredArray[0].weight)
+    : filteredArray[0].list;
+
+  return [meleeNameList[tag]];
+};
+
 
 const combatStatsX = {
   baseSpeed: 2,
@@ -19,31 +43,29 @@ const combatStatsX = {
   knockoutValue: 9,
   damageBonus: 1.5,
   combatActions: [5, 3],
-}
+};
 
-const GameSheet = ({ totalWeight, characterStats, combatStats, gear }) => {
+const GameSheet = ({ totalWeight, characterStats, combatStats, gear }) =>
   // todo
   // const hold = () => {
-    // holding
+// holding
   // };
-  return (
+  (
     <div className="a4GameSheet">
       <div className="a4ContentContainer">
-        <div style={{display:'flex'}}>
+        <div style={{ display: 'flex' }}>
           {/* <CombatStatsInfo combatStats={combatStats} gunLevel={characterStats.gunLevel} handLevel={characterStats.handLevel}/> */}
-          <CombatStatsInfo combatStats={combatStatsX} gunLevel={4} handLevel={1}/>
-          <div style={{marginLeft:'.2cm'}}>
-          <ActionTable combatActions={combatStatsX.combatActions} className="A4"/>
+          <CombatStatsInfo combatStats={combatStatsX} gunLevel={4} handLevel={1} />
+          <div style={{ marginLeft: '.2cm' }}>
+            <ActionTable combatActions={combatStatsX.combatActions} className="A4" />
           </div>
         </div>
         {/* <WeaponsCardWeaponStats gunObj={gear.firearms[0]} sal={combatStats.SAL} size="a4" /> */}
         <WeaponsCardWeaponStats gunObj={testFAMAS()} sal={7} size="a4" />
-        <HandToHandTable meleeList={['SMG', "Saber"]} meleeLevel={1}/>
+        <HandToHandTable meleeList={['SMG', 'Saber', 'Stick (1 hand)', 'Stick (2 hand)']} meleeLevel={1} />
       </div>
     </div>
   );
-};
-
 GameSheet.propTypes = {
   totalWeight: PropTypes.number,
   // eslint-disable-next-line react/forbid-prop-types

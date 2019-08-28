@@ -40,7 +40,7 @@ export const meleeData = () => [
     Rng: '1',
   },
   {
-    Name: 'H Rifle (11.2lbs)',
+    Name: 'Heavy Rifle',
     ws: '1.8',
     wc: '-2',
     IDc: '(8)+3',
@@ -104,7 +104,7 @@ export const meleeData = () => [
     Rng: '1',
   },
   {
-    Name: 'L Rifle (8.0lbs)',
+    Name: 'Light Rifle',
     ws: '1.9',
     wc: '-1',
     IDc: '(6)+3',
