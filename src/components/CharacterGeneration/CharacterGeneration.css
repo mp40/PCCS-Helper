@@ -54,8 +54,18 @@
     padding: 11px;
     border-radius: 3px;
 }
+
+.armourName {
+    position: relative;
+    max-width: 8ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .attributeRow:hover,
-.uniformStats:hover {
+.uniformStats:hover,
+.armourStats:hover {
     background: white;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;

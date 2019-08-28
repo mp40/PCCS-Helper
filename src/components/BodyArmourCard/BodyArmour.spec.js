@@ -29,7 +29,7 @@ describe('the BodyArmourCard', () => {
     changeHelmet={mockHelmetDispatch}
     changeVest={mockVestDispatch}
   />);
-  it('should have a default of no boday armour', () => {
+  it('should have a default of no body armour', () => {
     expect(wrapper.find('.helmetBodyArmour').childAt(0).text()).toBe('No Helmet');
     expect(wrapper.find('.helmetBodyArmour').childAt(1).text()).toBe('0');
     expect(wrapper.find('.vestBodyArmour').childAt(0).text()).toBe('No Vest');
