@@ -48,13 +48,23 @@ const WeaponsModalFilterSelection = ({ handleSetFilterByType }) => {
   const [filterByType, setTypeFilter] = useState('All');
   const [filterByCaliber, setCaliberFilter] = useState('All');
 
-  const handleUpdate = (filterBy, setFilter) => (event) => {
-    handleSetFilterByType(event.target.value, filterBy);
-    setFilter(event.target.value);
+  // because type and caliber are not in correct order it does not behave right
+  // const handleUpdate = (filterBy, setFilter) => (event) => {
+  //   handleSetFilterByType(event.target.value, filterBy);
+  //   setFilter(event.target.value);
+  // };
+  // const handleUpdateTypeFilter = handleUpdate(filterByCaliber, setTypeFilter);
+  // const handleUpdateCaliberFilter = handleUpdate(filterByType, setCaliberFilter);
+
+  const handleUpdateTypeFilter = (event) => {
+    handleSetFilterByType(event.target.value, filterByCaliber);
+    setTypeFilter(event.target.value);
   };
 
-  const handleUpdateTypeFilter = handleUpdate(filterByCaliber, setTypeFilter);
-  const handleUpdateCaliberFilter = handleUpdate(filterByType, setCaliberFilter);
+  const handleUpdateCaliberFilter = (event) => {
+    handleSetFilterByType(filterByType, event.target.value);
+    setCaliberFilter(event.target.value);
+  };
 
   const renderRadioButton = (value, checked, className, handleUpdateFilter) => (
     <div style={radioButtonContainer} key={value}>

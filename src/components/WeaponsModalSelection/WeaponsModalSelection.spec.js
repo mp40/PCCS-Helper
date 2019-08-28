@@ -72,6 +72,10 @@ describe('promise to wait for transition close', () => {
   });
 });
 
+// todo this will pass tests
+// todo but does not test type value
+// todo mock firearms lists
+// todo test handleSetFilterByType
 describe('filtering types and calibers helper function', () => {
   const firearmArrayDouble = () => [
     { name: 'AK47', calibre: '7.62 x 39mm' },
