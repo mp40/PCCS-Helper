@@ -54,28 +54,28 @@ describe('<GameSheet>', () => {
       expect(wrapperGunTable.find('.a4WeaponStatTable').exists()).toBe(true);
     });
   });
-  describe('combat stats',()=>{
+  describe('combat stats', () => {
     const wrapperCombatStats = wrapper.find('CombatStatsInfo').dive();
-    it('should render combat stats info box',()=>{
-      expect(wrapper.find('CombatStatsInfo').exists()).toBe(true)
-    })
-    it('should render base speed',()=>{
-      expect(wrapperCombatStats.text()).toContain('Base Speed:2')
-    })
-    it('should render max speed',()=>{
-      expect(wrapperCombatStats.text()).toContain('Max Speed:6')
-    })
-    it('should render knockout value',()=>{
-      expect(wrapperCombatStats.text()).toContain('Knockout Val:9')
-    })
-    it('should render gun combat level',()=>{
-      expect(wrapperCombatStats.text()).toContain('Gun Combat:4')
-    })
-    it('should render hand to hand level',()=>{
-      expect(wrapperCombatStats.text()).toContain('Melee Combat:1')
-    })
-    it('should render damage bonus',()=>{
-      expect(wrapperCombatStats.text()).toContain('Damage Bonus:1.5')
-    })
-  })
+    it('should render combat stats info box', () => {
+      expect(wrapper.find('CombatStatsInfo').exists()).toBe(true);
+    });
+    it('should render base speed', () => {
+      expect(wrapperCombatStats.text()).toContain('Base Speed:2');
+    });
+    it('should render max speed', () => {
+      expect(wrapperCombatStats.text()).toContain('Max Speed:6');
+    });
+    it('should render knockout value', () => {
+      expect(wrapperCombatStats.text()).toContain('Knockout Val:9');
+    });
+    it('should render gun combat level', () => {
+      expect(wrapperCombatStats.text()).toContain('Gun Combat:4');
+    });
+    it('should render hand to hand level', () => {
+      expect(wrapperCombatStats.text()).toContain('Melee Combat:1');
+    });
+    it('should render damage bonus', () => {
+      expect(wrapperCombatStats.text()).toContain('Damage Bonus:1.5');
+    });
+  });
 });

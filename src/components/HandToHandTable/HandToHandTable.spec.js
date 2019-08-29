@@ -1,6 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
-import { Provider } from 'react-redux';
+import { shallow } from 'enzyme';
 import HandToHandTable, {
   findWeaponSpeed,
   findWeaponClass,
@@ -44,9 +43,6 @@ const meleeDouble = [
 ];
 
 meleeModule.meleeData = jest.fn(() => meleeDouble);
-// import GameSheet from './index.jsx';
-// import { mountAppWithStore, testFAMAS } from '../../helpers/testHelpers';
-// import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
 
 const meleeList = () => ['Knife, Bowie', 'Wood Axe (2 hand)'];
 
@@ -177,28 +173,3 @@ describe('HandToHandTable helpers', () => {
     expect(findRecoverCost(3.2)).toBe(0.5);
   });
 });
-
-//   {
-//     Name: 'Knife, Bowie',
-//     ws: '2.8',
-//     wc: '2',
-//     IDc: '(3)+2',
-//     IDs: '(3)',
-//     Rng: '1',
-//   },
-//   {
-//     Name: 'Knife, Combat',
-//     ws: '2.8',
-//     wc: '2',
-//     IDc: '(3)+1',
-//     IDs: '(3)',
-//     Rng: '1',
-//   },
-// {
-//     Name: 'Wood Axe (2 hand)',
-//     ws: '1.7',
-//     wc: '-2',
-//     IDc: '(10)+6',
-//     IDs: '(5)',
-//     Rng: '2',
-//   },

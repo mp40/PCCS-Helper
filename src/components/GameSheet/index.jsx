@@ -3,7 +3,7 @@ import { PropTypes } from 'prop-types';
 import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
 import CombatStatsInfo from './CombatStatsInfo';
 import ActionTable from '../ActionsCard/ActionTable';
-import HandToHandTable from './HandToHandTable';
+import HandToHandTable from '../HandToHandTable/HandToHandTable';
 
 import './GameSheet.css';
 // import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
@@ -20,7 +20,7 @@ const meleeNameList = {
 
 const getRifleWeightClass = weight => (weight < 11.2 ? 'light' : 'heavy');
 
-export const prepareHandToHandWeaponList = (firearmsArray) => {
+const getFirearmForMeleeList = (firearmsArray) => {
   const filteredArray = firearmsArray.filter(gun => meleeNameList[gun.list]);
   if (firearmsArray[0] === undefined) {
     return [];
@@ -31,6 +31,21 @@ export const prepareHandToHandWeaponList = (firearmsArray) => {
 
   return [meleeNameList[tag]];
 };
+
+const getEquipmentForMeleeList = (equipmentArray) => {
+  if (!equipmentArray) {
+    return [];
+  }
+
+  return equipmentArray.reduce((arr, equipObj) => (equipObj.tags.includes('Melee') ? [...arr, ...equipObj.melee] : [...arr]), []);
+};
+
+export const prepareHandToHandWeaponList = (
+  firearmsArray, equipmentArray,
+) => [
+  ...getFirearmForMeleeList(firearmsArray),
+  ...getEquipmentForMeleeList(equipmentArray),
+].slice(0, 4);
 
 
 const combatStatsX = {
@@ -62,7 +77,7 @@ const GameSheet = ({ totalWeight, characterStats, combatStats, gear }) =>
         </div>
         {/* <WeaponsCardWeaponStats gunObj={gear.firearms[0]} sal={combatStats.SAL} size="a4" /> */}
         <WeaponsCardWeaponStats gunObj={testFAMAS()} sal={7} size="a4" />
-        <HandToHandTable meleeList={['SMG', 'Saber', 'Stick (1 hand)', 'Stick (2 hand)']} meleeLevel={1} />
+        <HandToHandTable meleeList={['SMG', 'Saber', 'Stick (1 hand)', 'Stick (2 hands)']} meleeLevel={1} />
       </div>
     </div>
   );

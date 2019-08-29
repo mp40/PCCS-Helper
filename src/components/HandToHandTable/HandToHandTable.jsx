@@ -6,7 +6,7 @@ import './HandToHandTable.css';
 
 const borderLeftStyles = { borderLeft: '1px solid rgb(85, 83, 83)' };
 
-// move helpers to seperate file later ?
+// todo move helpers to seperate file later ?
 const findWeaponData = objectKey => weaponName => meleeData().reduce(
   (str, weapObj) => (
     weaponName === weapObj.Name ? str + weapObj[objectKey] : `${str}`
@@ -30,7 +30,7 @@ const HandToHandTable = ({ meleeList, meleeLevel }) => {
   const renderTableBody = () => (
     <tbody>
       {meleeList.map((weapon, index) => (
-        <tr key="weapon" className={`weapon${index}`}>
+        <tr key={weapon} className={`weapon${index}`}>
           <td className="name" style={{ textAlign: 'left' }}>{weapon}</td>
           <td className="speed" style={borderLeftStyles}>{findWeaponSpeed(weapon)}</td>
           <td className="class" style={borderLeftStyles}>{findWeaponClass(weapon)}</td>
