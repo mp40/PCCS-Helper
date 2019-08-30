@@ -4,6 +4,7 @@ import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
 import CombatStatsInfo from './CombatStatsInfo';
 import ActionTable from '../ActionsCard/ActionTable';
 import HandToHandTable from '../HandToHandTable/HandToHandTable';
+import BodyArmourTable from '../BodyArmourTable';
 
 import './GameSheet.css';
 // import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
@@ -78,6 +79,7 @@ const GameSheet = ({ totalWeight, characterStats, combatStats, gear }) =>
         {/* <WeaponsCardWeaponStats gunObj={gear.firearms[0]} sal={combatStats.SAL} size="a4" /> */}
         <WeaponsCardWeaponStats gunObj={testFAMAS()} sal={7} size="a4" />
         <HandToHandTable meleeList={['SMG', 'Saber', 'Stick (1 hand)', 'Stick (2 hands)']} meleeLevel={1} />
+        <BodyArmourTable helmet={undefined} vest={undefined} />
       </div>
     </div>
   );
@@ -90,6 +92,10 @@ GameSheet.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   gear: PropTypes.object,
 };
+
+// GameSheet.defaultProps = {
+
+// }
 
 export default GameSheet;
 
