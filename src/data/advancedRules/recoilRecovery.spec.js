@@ -1,0 +1,164 @@
+import { getRecoilRecoveryValue } from './recoilRecovery';
+
+describe('finding recoil recovery value', () => {
+  it('should return 0 if weapon KD is 1', () => {
+    const kdValue = 1;
+    const skillLevel = 0;
+    expect(getRecoilRecoveryValue(kdValue, skillLevel)).toBe(0);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 12)).toBe(0);
+  });
+  it('should return 0 if skill level is 13 or higher', () => {
+    const kdValue = 2;
+    const skillLevel = 13;
+    expect(getRecoilRecoveryValue(kdValue, skillLevel)).toBe(0);
+    expect(getRecoilRecoveryValue(kdValue + 12, skillLevel)).toBe(0);
+  });
+  it('should return correct value for KD 2', () => {
+    const kdValue = 2;
+    const skillLevel = 0;
+    expect(getRecoilRecoveryValue(kdValue, skillLevel)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 1)).toBe(0);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 12)).toBe(0);
+  });
+  it('should return correct value for KD 3', () => {
+    const kdValue = 3;
+    const skillLevel = 0;
+    expect(getRecoilRecoveryValue(kdValue, skillLevel)).toBe(2);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 1)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 2)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 3)).toBe(0);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 12)).toBe(0);
+  });
+  it('should return correct value for KD 4', () => {
+    const kdValue = 4;
+    const skillLevel = 0;
+    expect(getRecoilRecoveryValue(kdValue, skillLevel)).toBe(2);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 1)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 2)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 3)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 4)).toBe(0);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 12)).toBe(0);
+  });
+  it('should return correct value for KD 5', () => {
+    const kdValue = 5;
+    const skillLevel = 0;
+    expect(getRecoilRecoveryValue(kdValue, skillLevel)).toBe(2);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 1)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 2)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 3)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 4)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 5)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 6)).toBe(0);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 12)).toBe(0);
+  });
+  it('should return correct value for KD 6', () => {
+    const kdValue = 6;
+    const skillLevel = 0;
+    expect(getRecoilRecoveryValue(kdValue, skillLevel)).toBe(2);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 1)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 2)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 3)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 4)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 5)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 6)).toBe(0);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 12)).toBe(0);
+  });
+  it('should return correct value for KD 7', () => {
+    const kdValue = 7;
+    const skillLevel = 0;
+    expect(getRecoilRecoveryValue(kdValue, skillLevel)).toBe(3);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 1)).toBe(2);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 2)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 3)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 4)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 5)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 6)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 7)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 8)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 9)).toBe(0);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 12)).toBe(0);
+  });
+  it('should return correct value for KD 9', () => {
+    const kdValue = 9;
+    const skillLevel = 0;
+    expect(getRecoilRecoveryValue(kdValue, skillLevel)).toBe(3);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 1)).toBe(2);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 2)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 3)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 4)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 5)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 6)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 7)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 8)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 9)).toBe(0);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 12)).toBe(0);
+  });
+  it('should return correct value for KD 10', () => {
+    const kdValue = 10;
+    const skillLevel = 0;
+    expect(getRecoilRecoveryValue(kdValue, skillLevel)).toBe(3);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 1)).toBe(3);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 2)).toBe(2);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 3)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 4)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 5)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 6)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 7)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 8)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 9)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 10)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 11)).toBe(0);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 12)).toBe(0);
+  });
+  it('should return correct value for KD 13', () => {
+    const kdValue = 13;
+    const skillLevel = 0;
+    expect(getRecoilRecoveryValue(kdValue, skillLevel)).toBe(3);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 1)).toBe(3);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 2)).toBe(2);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 3)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 4)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 5)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 6)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 7)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 8)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 9)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 10)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 11)).toBe(0);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 12)).toBe(0);
+  });
+  it('should return correct value for KD 14', () => {
+    const kdValue = 14;
+    const skillLevel = 0;
+    expect(getRecoilRecoveryValue(kdValue, skillLevel)).toBe(3);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 1)).toBe(3);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 2)).toBe(3);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 3)).toBe(2);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 4)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 5)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 6)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 7)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 8)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 9)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 10)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 11)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 12)).toBe(1);
+  });
+  it('should return correct value for KD over 14', () => {
+    const kdValue = 15;
+    const skillLevel = 0;
+    expect(getRecoilRecoveryValue(kdValue, skillLevel)).toBe(3);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 1)).toBe(3);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 2)).toBe(3);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 3)).toBe(2);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 4)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 5)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 6)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 7)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 8)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 9)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 10)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 11)).toBe(1);
+    expect(getRecoilRecoveryValue(kdValue, skillLevel + 12)).toBe(1);
+  });
+});
