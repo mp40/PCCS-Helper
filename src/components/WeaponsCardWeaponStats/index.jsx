@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { gunObjShape } from '../../helpers/proptypeShapes';
 import WeaponDataRow from '../WeaponDataRow';
@@ -38,57 +38,43 @@ const getNameStyle = (size) => {
   return { marginTop: '0.5rem', marginLeft: '5.5%', fontWeight: 'bold' };
 };
 
-class WeaponsCardWeaponStats extends Component {
-    getRangeBrackets = (gunObj) => {
-      const standard = standardRangeBrackets;
-      const shotgun = shotgunRangeBrackets;
-      if (!gunObj.projectiles[1]) {
-        return standard;
-      }
-      return gunObj.projectiles[1].type.includes('Shot') ? shotgun : standard;
+const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
+  const getRangeBrackets = () => {
+    const standard = standardRangeBrackets;
+    const shotgun = shotgunRangeBrackets;
+    if (!gunObj.projectiles[1]) {
+      return standard;
     }
+    return gunObj.projectiles[1].type.includes('Shot') ? shotgun : standard;
+  };
 
-    render() {
-      const { gunObj, sal, size } = this.props;
-      const gunTableArray = buildArrayForGunTable(applyModsToAimTime(gunObj, sal));
-      const rangeBrackets = this.getRangeBrackets(gunObj);
-      const WeaponStatTable = size ? `${size}WeaponStatTable` : 'WeaponStatTable';
-
-      return (
-        <>
-          <div style={getNameStyle(size)}>{`${getFirearmNameAndRecoil(gunObj, findSkillLevelFromSAL(sal))}`}</div>
-
-          <div style={{ display: 'flex' }}>
-            <table className={WeaponStatTable}>
-
-              <thead>
-                <tr className="WeaponStatHeader">
-                  <th className="dataCol">Data</th>
-                  <th className="dataCol">Aim Time</th>
-                  <th className="dataCol" />
-                  {rangeBrackets.map(range => <th key={range}>{range}</th>)}
-                </tr>
-              </thead>
-
-              <tbody>
-
-                {gunTableArray.map((tableLine, index) => (
-                  <WeaponDataRow
-                    key={index}
-                    tableLine={tableLine}
-                    index={index}
-                  />
-                ))}
-
-              </tbody>
-
-            </table>
-
-          </div>
-        </>
-      );
-    }
-}
+  return (
+    <>
+      <div style={getNameStyle(size)}>{`${getFirearmNameAndRecoil(gunObj, findSkillLevelFromSAL(sal))}`}</div>
+      <div style={{ display: 'flex' }}>
+        <table className={size ? `${size}WeaponStatTable` : 'WeaponStatTable'}>
+          <thead>
+            <tr className="WeaponStatHeader">
+              <th className="dataCol">Data</th>
+              <th className="dataCol">Aim Time</th>
+              <th className="dataCol" />
+              {getRangeBrackets(gunObj).map(range => <th key={range}>{range}</th>)}
+            </tr>
+          </thead>
+          <tbody>
+            {buildArrayForGunTable(applyModsToAimTime(gunObj, sal)).map((tableLine, index) => (
+              <WeaponDataRow
+                key={index}
+                tableLine={tableLine}
+                index={index}
+              />
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
+  );
+};
 
 WeaponsCardWeaponStats.propTypes = {
   size: PropTypes.string,
