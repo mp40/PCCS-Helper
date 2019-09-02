@@ -1,8 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import WeaponsCardWeaponStats from './index';
+import WeaponsCardWeaponStats, { findSkillLevelFromSAL } from './index';
 import { testM1911A1, testM16WithoutJhpAp, testFAMAS, testRemington } from '../../helpers/testHelpers';
-
 
 describe('<WeaponsCardWeaponStats/> component', () => {
   const wrapper = mount(<WeaponsCardWeaponStats gunObj={testM1911A1()} />);
@@ -363,5 +362,36 @@ describe('<WeaponsCardWeaponStats/> component', () => {
       const expectedAim9 = testFAMAS().aim.mod[8] + sal;
       expect(aim9.text()).toBe(`${expectedAim9}`);
     });
+  });
+  describe('display recoil recovery', () => {
+    const sal = 0;
+    it('should display recoil recovey after weapon name', () => {
+      let rrWrapper = mount(<WeaponsCardWeaponStats gunObj={testFAMAS()} sal={sal} />);
+      expect(rrWrapper.childAt(0).text()).toBe('FAMAS - recoil recovery: 2');
+      rrWrapper = mount(<WeaponsCardWeaponStats gunObj={testFAMAS()} sal={sal + 10} />);
+      expect(rrWrapper.childAt(0).text()).toBe('FAMAS - recoil recovery: 0');
+    });
+    it('should display not recoil recovey when sal is undefined', () => {
+      const rrWrapper = mount(<WeaponsCardWeaponStats gunObj={testFAMAS()} sal={undefined} />);
+      expect(rrWrapper.childAt(0).text()).toBe('FAMAS');
+    });
+  });
+});
+
+describe('findinging gun combat level from SAL', () => {
+  it('should return correct skill level from SAL 0', () => {
+    expect(findSkillLevelFromSAL(0)).toBe(0);
+  });
+  it('should return correct skill level from SAL 5', () => {
+    expect(findSkillLevelFromSAL(5)).toBe(1);
+  });
+  it('should return correct skill level from SAL 5', () => {
+    expect(findSkillLevelFromSAL(10)).toBe(4);
+  });
+  it('should return correct skill level from SAL 5', () => {
+    expect(findSkillLevelFromSAL(26)).toBe(20);
+  });
+  it('should return undefined if SAL not found', () => {
+    expect(findSkillLevelFromSAL(undefined)).toBe(undefined);
   });
 });

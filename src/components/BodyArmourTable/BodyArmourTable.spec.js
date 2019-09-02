@@ -2,9 +2,6 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import BodyArmourTable from './index';
 
-// gear.helmet
-// gear.vest
-
 const helmet = {
   name: 'M1x',
   pf: 5,
