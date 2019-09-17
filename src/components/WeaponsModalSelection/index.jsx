@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import WeaponsModalFilterSelection from '../WeaponsModalFilterSelection';
 import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
+import FirearmNotes from '../FirearmNotes';
 import ButtonStandard from '../widgets/buttons/ButtonStandard';
 import ButtonInfo from '../widgets/buttons/ButtonInfo';
 import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
@@ -11,6 +12,7 @@ import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 import { rifles, pistols, smgs, mgs, sniperRifles, shotguns, filterableCalibers } from '../../data/firearms';
 
 import './WeaponsModalSelection.css';
+
 
 const getAllFirearmsArray = () => [
   ...rifles(),
@@ -110,7 +112,7 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, handleAddFirearm }) =
           {gunArrayFilteredByType.map(gunObj => (
             <div key={gunObj.name} style={{ display: 'flex', width: '30%', paddingLeft: '.2rem', paddingRight: '.2rem' }}>
               <ButtonInfo
-                id={`view${gunObj.name}`}
+                id={`view${gunObj.name.replace(/\s+/g, '')}`}
                 onClick={() => handleShowStatCard(gunObj)}
               />
               <div
@@ -146,9 +148,18 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, handleAddFirearm }) =
             onClick={() => handleCloseStatCard()}
           />
         </div>
-        <WeaponsCardWeaponStats
-          gunObj={firearmToInspect}
-        />
+        <div style={{ display: 'flex' }}>
+          <div>
+            <WeaponsCardWeaponStats gunObj={firearmToInspect} />
+          </div>
+          { firearmToInspect.list !== 'shotguns'
+          && (
+          <div className="firearm-notes-wrapper">
+            <FirearmNotes gunObj={firearmToInspect} viewSpareAmmo={false} />
+          </div>
+          )
+          }
+        </div>
       </div>
       )}
     </>

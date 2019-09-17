@@ -66,4 +66,15 @@ describe('<FirearmNotes/>', () => {
       expect(wrapper.text()).toContain('Full Auto Only');
     });
   });
+  describe('conditional rendering', () => {
+    const wrapper = shallow(<FirearmNotes gunObj={{ mag: getSpareGunMags(0, 20) }} viewSpareAmmo={false} />);
+    it('should display spare ammo if viewSpareAmmo prop is false', () => {
+      expect(wrapper.text()).not.toContain('0 x 20 rnd Mag');
+    });
+    it('should not render "Notes" heading if there are no notes', () => {
+      expect(wrapper.text()).not.toContain('Notes');
+      wrapper.setProps({ gunObj: { mag: [], bipod: true } });
+      expect(wrapper.text()).toContain('Notes');
+    });
+  });
 });

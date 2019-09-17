@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 import WeaponsModalSelection, { filterCalibersFromType } from './index';
 import { mgs } from '../../data/firearms';
@@ -116,5 +116,18 @@ describe('filtering types and calibers helper function', () => {
     const returnedArray = filterCalibersFromType(firearmArrayDouble(), 'Other');
     expect(returnedArray.length).toBe(1);
     expect(returnedArray[0].name).toBe('fakeCaliberGun');
+  });
+});
+
+describe('Weapon Notes', () => {
+  it('should not render for shotguns', () => {
+    const wrapper = shallow(<WeaponsModalSelection />);
+    wrapper.find('#viewRemingtonM870').simulate('click');
+    expect(wrapper.find('FirearmNotes').exists()).toBe(false);
+  });
+  it('should render for other firearms', () => {
+    const wrapper = shallow(<WeaponsModalSelection />);
+    wrapper.find('#viewM60').simulate('click');
+    expect(wrapper.find('FirearmNotes').exists()).toBe(true);
   });
 });

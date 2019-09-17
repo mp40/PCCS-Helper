@@ -75,7 +75,7 @@ const GameSheet = ({ totalWeight, characterStats, combatStats, gear }) =>
             {/* <WeaponsCardWeaponStats gunObj={gear.firearms[0]} sal={combatStats.SAL} size="a4" /> */}
             <WeaponsCardWeaponStats gunObj={testFAMAS()} sal={7} size="a4" />
           </div>
-          <div className="firearm-notes-wrapper">
+          <div className="firearm-notes-a4-wrapper">
             <FirearmNotes gunObj={testFAMAS()} />
           </div>
         </div>

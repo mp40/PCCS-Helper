@@ -1,5 +1,8 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 import { gunObjShape } from '../../helpers/proptypeShapes';
+
+import './FirearmNotes.css';
 
 const renderSpareAmmoNote = (magazine) => {
   if (magazine.type === 'Rnd') {
@@ -17,11 +20,11 @@ const renderModificationNotes = modification => (
   <div key={modification.note}>{modification.note}</div>
 );
 
-const FirearmNotes = ({ gunObj }) => (
+const FirearmNotes = ({ gunObj, viewSpareAmmo }) => (
   <div className="firearm-notes">
-    <div className="firearm-notes-heading">Notes</div>
+    {(viewSpareAmmo || gunObj.bipod || gunObj.optics || gunObj.selector || gunObj.modNotes) && <div className="firearm-notes-heading">Notes</div>}
     <div style={{ marginBottom: '0.1cm' }}>
-      {gunObj.mag.map(magazine => renderSpareAmmoNote(magazine))}
+      {viewSpareAmmo && gunObj.mag.map(magazine => renderSpareAmmoNote(magazine))}
     </div>
     <div style={{ marginBottom: '0.1cm' }}>
       {gunObj.bipod && <div>Bipod</div>}
@@ -34,6 +37,11 @@ const FirearmNotes = ({ gunObj }) => (
 
 FirearmNotes.propTypes = {
   gunObj: gunObjShape,
+  viewSpareAmmo: PropTypes.bool,
+};
+
+FirearmNotes.defaultProps = {
+  viewSpareAmmo: true,
 };
 
 export default FirearmNotes;
