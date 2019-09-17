@@ -5,6 +5,7 @@ import CombatStatsInfo from './CombatStatsInfo';
 import ActionTable from '../ActionsCard/ActionTable';
 import HandToHandTable from '../HandToHandTable/HandToHandTable';
 import BodyArmourTable from '../BodyArmourTable';
+import FirearmNotes from './FirearmNotes';
 
 import './GameSheet.css';
 // import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
@@ -77,7 +78,14 @@ const GameSheet = ({ totalWeight, characterStats, combatStats, gear }) =>
           </div>
         </div>
         {/* <WeaponsCardWeaponStats gunObj={gear.firearms[0]} sal={combatStats.SAL} size="a4" /> */}
-        <WeaponsCardWeaponStats gunObj={testFAMAS()} sal={7} size="a4" />
+        <div style={{ display: 'flex' }}>
+          <div>
+            <WeaponsCardWeaponStats gunObj={testFAMAS()} sal={7} size="a4" />
+          </div>
+          <div className="firearm-notes-wrapper">
+            <FirearmNotes gunObj={testFAMAS()} />
+          </div>
+        </div>
         <HandToHandTable meleeList={['SMG', 'Saber', 'Stick (1 hand)', 'Stick (2 hands)']} meleeLevel={1} />
         <BodyArmourTable helmet={undefined} vest={undefined} />
       </div>

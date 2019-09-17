@@ -48,4 +48,22 @@ describe('<FirearmNotes/>', () => {
       expect(wrapper.text()).toContain('abcd');
     });
   });
+  describe('rendering non-standard gun object keys', () => {
+    const wrapper = shallow(<FirearmNotes gunObj={{ mag: [] }} />);
+    it('should render "Bipod" if key value bipod exists and is true', () => {
+      expect(wrapper.text()).not.toContain('Bipod');
+      wrapper.setProps({ gunObj: { mag: [], bipod: true } });
+      expect(wrapper.text()).toContain('Bipod');
+    });
+    it('should render "Optics" if key value optics exists and is true', () => {
+      expect(wrapper.text()).not.toContain('Optics');
+      wrapper.setProps({ gunObj: { mag: [], optics: true } });
+      expect(wrapper.text()).toContain('Optics');
+    });
+    it('should render selector key value if present', () => {
+      expect(wrapper.text()).not.toContain('Full Auto Only');
+      wrapper.setProps({ gunObj: { mag: [], selector: 'Full Auto Only' } });
+      expect(wrapper.text()).toContain('Full Auto Only');
+    });
+  });
 });
