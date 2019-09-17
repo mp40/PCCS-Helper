@@ -43,9 +43,9 @@ const props = {
 };
 
 describe('<GameSheet>', () => {
-  // eslint-disable-next-line react/jsx-filename-extension
-  const wrapper = shallow(<GameSheet {...props} />);
   describe('firearm table', () => {
+    // eslint-disable-next-line react/jsx-filename-extension
+    const wrapper = shallow(<GameSheet {...props} />);
     const wrapperGunTable = wrapper.find('WeaponsCardWeaponStats').dive();
     it('should render first gun in firearms list', () => {
       expect(wrapperGunTable.text()).toContain('FAMAS');
@@ -54,7 +54,16 @@ describe('<GameSheet>', () => {
       expect(wrapperGunTable.find('.a4WeaponStatTable').exists()).toBe(true);
     });
   });
+  // describe('firearm information', () => {
+  //   const wrapper = shallow(<GameSheet {...props} />);
+  //   it('should render the firearms additional ammo', () => {
+  //     console.log(wrapper.debug());
+  //     expect(wrapper.text()).toContain('spare mags: 0');
+  //   });
+  // });
   describe('combat stats', () => {
+    // eslint-disable-next-line react/jsx-filename-extension
+    const wrapper = shallow(<GameSheet {...props} />);
     const wrapperCombatStats = wrapper.find('CombatStatsInfo').dive();
     it('should render combat stats info box', () => {
       expect(wrapper.find('CombatStatsInfo').exists()).toBe(true);
