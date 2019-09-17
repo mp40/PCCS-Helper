@@ -1,5 +1,4 @@
 import React from 'react';
-import { PropTypes } from 'prop-types';
 import { gunObjShape } from '../../helpers/proptypeShapes';
 
 const renderSpareAmmoNote = (magazine) => {
@@ -34,13 +33,7 @@ const FirearmNotes = ({ gunObj }) => (
 );
 
 FirearmNotes.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  // magazines: PropTypes.array,
   gunObj: gunObjShape,
 };
-
-// FirearmNotes.defaultProps = {
-//   magazines: [{ qty: 0 }],
-// };
 
 export default FirearmNotes;

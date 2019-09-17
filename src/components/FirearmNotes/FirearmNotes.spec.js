@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import FirearmNotes from './FirearmNotes';
+import FirearmNotes from '.';
 
 const getSpareGunMags = (magQty, magCap, magType = 'Mag') => [{ type: magType, qty: magQty, cap: magCap }];
 

@@ -5,11 +5,11 @@ import CombatStatsInfo from './CombatStatsInfo';
 import ActionTable from '../ActionsCard/ActionTable';
 import HandToHandTable from '../HandToHandTable/HandToHandTable';
 import BodyArmourTable from '../BodyArmourTable';
-import FirearmNotes from './FirearmNotes';
+import FirearmNotes from '../FirearmNotes';
 
 import './GameSheet.css';
 // import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
-import { testFAMAS } from '../../helpers/testHelpers'; // todo delete this line
+import { testFAMAS, testRemington, testM16 } from '../../helpers/testHelpers'; // todo delete this line
 
 const meleeNameList = {
   pistols: 'Pistol',
@@ -71,19 +71,19 @@ const GameSheet = ({ totalWeight, characterStats, combatStats, gear }) =>
     <div className="a4GameSheet">
       <div className="a4ContentContainer">
         <div style={{ display: 'flex' }}>
-          {/* <CombatStatsInfo combatStats={combatStats} gunLevel={characterStats.gunLevel} handLevel={characterStats.handLevel}/> */}
-          <CombatStatsInfo combatStats={combatStatsX} gunLevel={4} handLevel={1} />
-          <div style={{ marginLeft: '.2cm' }}>
-            <ActionTable combatActions={combatStatsX.combatActions} className="A4" />
-          </div>
-        </div>
-        {/* <WeaponsCardWeaponStats gunObj={gear.firearms[0]} sal={combatStats.SAL} size="a4" /> */}
-        <div style={{ display: 'flex' }}>
           <div>
+            {/* <WeaponsCardWeaponStats gunObj={gear.firearms[0]} sal={combatStats.SAL} size="a4" /> */}
             <WeaponsCardWeaponStats gunObj={testFAMAS()} sal={7} size="a4" />
           </div>
           <div className="firearm-notes-wrapper">
             <FirearmNotes gunObj={testFAMAS()} />
+          </div>
+        </div>
+        <div style={{ display: 'flex', marginTop: '.5cm' }}>
+          {/* <CombatStatsInfo combatStats={combatStats} gunLevel={characterStats.gunLevel} handLevel={characterStats.handLevel}/> */}
+          <CombatStatsInfo combatStats={combatStatsX} gunLevel={4} handLevel={1} />
+          <div style={{ marginLeft: '.2cm' }}>
+            <ActionTable combatActions={combatStatsX.combatActions} className="A4" />
           </div>
         </div>
         <HandToHandTable meleeList={['SMG', 'Saber', 'Stick (1 hand)', 'Stick (2 hands)']} meleeLevel={1} />
@@ -91,6 +91,7 @@ const GameSheet = ({ totalWeight, characterStats, combatStats, gear }) =>
       </div>
     </div>
   );
+  // above needs KV table, reaction table
 GameSheet.propTypes = {
   totalWeight: PropTypes.number,
   // eslint-disable-next-line react/forbid-prop-types
