@@ -89,13 +89,17 @@ const GameSheet = ({ totalWeight, characterStats, combatStats, gear }) =>
           </div>
         </div>
         <HandToHandTable meleeList={['SMG', 'Saber', 'Stick (1 hand)', 'Stick (2 hands)']} meleeLevel={1} />
-        <BodyArmourTable helmet={undefined} vest={undefined} />
-        <div className="knockout-table-a4-wrapper">
-          <KnockoutTable knockoutValue={combatStatsX.knockoutValue} />
+        <div style={{ display: 'flex' }}>
+          <BodyArmourTable helmet={undefined} vest={undefined} />
+          <div className="reaction-table-a4-wrapper" style={{ marginLeft: '0.2cm' }}>
+            <ReactionTable sal={combatStatsX.SAL} />
+          </div>
+          <div className="knockout-table-a4-wrapper" style={{ marginLeft: '0.2cm' }}>
+            <KnockoutTable knockoutValue={combatStatsX.knockoutValue} />
+          </div>
         </div>
-        <div className="reaction-table-a4-wrapper">
-          <ReactionTable sal={combatStatsX.SAL} />
-        </div>
+
+
       </div>
     </div>
   );

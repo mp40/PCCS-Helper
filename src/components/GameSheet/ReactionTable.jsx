@@ -6,22 +6,21 @@ import './ReactionTable.css';
 const ReactionTable = ({ sal }) => (
   <div className="reaction-table">
     <div>
-      <div>Reaction Time</div>
+      <div className="reaction-table-heading">Reaction Time</div>
     </div>
     <div className="reaction-table-row">
       <div>Any Action</div>
-      <div>≤</div>
-      <div>{sal - 3}</div>
+      <div>{`≤ ${sal - 3}`}</div>
     </div>
     <div className="reaction-table-row">
       <div>Duck/Go Prone</div>
-      <div>≤</div>
-      <div>{sal}</div>
+      <div>{`≤ ${sal}`}</div>
     </div>
     <div className="reaction-table-row">
-      <div>-1 AC, reroll</div>
-      <div>≤</div>
-      <div>{sal + 1}</div>
+      <div>-1 AC &#38; Reroll</div>
+      <div>
+        {`≤ ${sal + 1}`}
+      </div>
     </div>
   </div>
 );
