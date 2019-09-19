@@ -6,6 +6,8 @@ import ActionTable from '../ActionsCard/ActionTable';
 import HandToHandTable from '../HandToHandTable/HandToHandTable';
 import BodyArmourTable from '../BodyArmourTable';
 import FirearmNotes from '../FirearmNotes';
+import KnockoutTable from '../KnockoutTable';
+import ReactionTable from './ReactionTable';
 
 import './GameSheet.css';
 // import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
@@ -88,6 +90,12 @@ const GameSheet = ({ totalWeight, characterStats, combatStats, gear }) =>
         </div>
         <HandToHandTable meleeList={['SMG', 'Saber', 'Stick (1 hand)', 'Stick (2 hands)']} meleeLevel={1} />
         <BodyArmourTable helmet={undefined} vest={undefined} />
+        <div className="knockout-table-a4-wrapper">
+          <KnockoutTable knockoutValue={combatStatsX.knockoutValue} />
+        </div>
+        <div className="reaction-table-a4-wrapper">
+          <ReactionTable sal={combatStatsX.SAL} />
+        </div>
       </div>
     </div>
   );

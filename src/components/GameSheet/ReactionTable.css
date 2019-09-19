@@ -1,0 +1,13 @@
+.reaction-table-a4-wrapper {
+    width: 3cm;
+    font-size: 12pt;
+    margin-top: .5cm;
+}
+
+.reaction-table {
+    border: 1px solid rgb(85, 83, 83);
+}
+
+.reaction-table-row {
+    display: flex;
+}
