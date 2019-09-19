@@ -12,6 +12,11 @@
 
 .BodyArmourTable th {
     border-bottom: 1px solid rgb(85, 83, 83);
+    line-height: 1.4;
+}
+
+.BodyArmourTable tr {
+    line-height: 1.37;
 }
 
 .BodyArmourTable .name {
