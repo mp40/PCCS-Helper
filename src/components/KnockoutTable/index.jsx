@@ -11,7 +11,7 @@ const calculatePD = [multiplyKV(0.1), multiplyKV(0.1), multiplyKV(1), multiplyKV
 const getComparisonSymbol = index => (index === 0 ? '<' : '>');
 
 const renderRowValues = knockoutValue => knockoutOdds.map((percentage, index) => (
-  <div className="kv-table-row" key={`${percentage[index]}percent`}>
+  <div className="kv-table-row" key={`${knockoutOdds[index]}percent`}>
     <div>{`${getComparisonSymbol(index)} ${calculatePD[index](knockoutValue)}`}</div>
     <div>{percentage}</div>
   </div>

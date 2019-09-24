@@ -1,0 +1,14 @@
+.grenade-list-a4-wrapper {
+    font-size: 12pt;
+    border: 1px solid rgb(85, 83, 83);
+    width: 2cm;
+}
+
+.grenade-list {
+    display: flex;
+    justify-content: space-between;
+}
+
+.grenade-list-a4-wrapper .grenade-list > div {
+    padding: 0 .1cm;
+}
