@@ -1,0 +1,23 @@
+.odds-look-up-table {
+    font-size: 12pt;
+    border: 1px solid rgb(85, 83, 83);
+    width: 3cm;
+}
+
+.odds-look-up-header, .odds-look-up-row {
+   display: flex;
+   justify-content: center;
+   text-align: center;
+}
+
+.odds-look-up-header > div, .odds-look-up-row > div {
+    width: .9cm;
+    margin: 0 .1cm;
+}
+
+.odds-look-up-header {
+    color: white;
+    font-weight: bold;
+    background-color: black;
+    padding: .05cm 0;
+}
