@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { oddsOfHittingTable } from '../../data/shootingTables/oddsOfHittingTable';
+import { oddsOfHittingTable } from '../../../../data/shootingTables/oddsOfHittingTable';
 
 import './HitChanceLookUp.css';
 

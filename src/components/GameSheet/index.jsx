@@ -9,8 +9,9 @@ import FirearmNotes from '../FirearmNotes';
 import KnockoutTable from '../KnockoutTable';
 import ReactionTable from './subComponents/ReactionTable/ReactionTable';
 import GrenadeList from './subComponents/GrenadeList/GrenadeList';
-import RangeLookUp from './RangeLookUp';
-import HitChanceLookUp from './HitChanceLookUp';
+import RangeLookUp from './subComponents/rightRangeOddsSideBar/RangeLookUp';
+import HitChanceLookUp from './subComponents/rightRangeOddsSideBar/HitChanceLookUp';
+import SituationAndStanceModTable from './SituationAndStanceModTable';
 
 import './GameSheet.css';
 // import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
@@ -82,22 +83,25 @@ const GameSheet = ({ totalWeight, characterStats, combatStats, gear }) => (
           </div>
         </div>
         <div style={{ display: 'flex', marginTop: '.5cm' }}>
-          {/* <CombatStatsInfo combatStats={combatStats} gunLevel={characterStats.gunLevel} handLevel={characterStats.handLevel}/> */}
-          <CombatStatsInfo combatStats={combatStatsX} gunLevel={4} handLevel={1} />
-          <div style={{ marginLeft: '.2cm' }}>
-            <ActionTable combatActions={combatStatsX.combatActions} className="A4" />
+          <div className="col-a" style={{ display: 'flex', flexWrap: 'wrap', width: '13.6cm', alignContent: 'flex-start' }}>
+            {/* <CombatStatsInfo combatStats={combatStats} gunLevel={characterStats.gunLevel} handLevel={characterStats.handLevel}/> */}
+            <CombatStatsInfo combatStats={combatStatsX} gunLevel={4} handLevel={1} />
+            <div style={{ marginLeft: '.2cm' }}>
+              <ActionTable combatActions={combatStatsX.combatActions} className="A4" />
+            </div>
+            <HandToHandTable meleeList={['SMG', 'Saber', 'Stick (1 hand)', 'Stick (2 hands)']} meleeLevel={1} />
+            <BodyArmourTable helmet={undefined} vest={undefined} />
+            <div className="reaction-table-a4-wrapper" style={{ marginLeft: '0.2cm' }}>
+              <ReactionTable sal={combatStatsX.SAL} />
+            </div>
+            <div className="knockout-table-a4-wrapper" style={{ marginLeft: '0.2cm' }}>
+              <KnockoutTable knockoutValue={combatStatsX.knockoutValue} />
+            </div>
           </div>
+
+          <SituationAndStanceModTable />
         </div>
-        <HandToHandTable meleeList={['SMG', 'Saber', 'Stick (1 hand)', 'Stick (2 hands)']} meleeLevel={1} />
-        <div style={{ display: 'flex' }}>
-          <BodyArmourTable helmet={undefined} vest={undefined} />
-          <div className="reaction-table-a4-wrapper" style={{ marginLeft: '0.2cm' }}>
-            <ReactionTable sal={combatStatsX.SAL} />
-          </div>
-          <div className="knockout-table-a4-wrapper" style={{ marginLeft: '0.2cm' }}>
-            <KnockoutTable knockoutValue={combatStatsX.knockoutValue} />
-          </div>
-        </div>
+
         <div className="grenade-list-a4-wrapper">
           <GrenadeList grenades={[{ name: 'L2 A2', qty: 2 }, { name: 'M62x', qty: 4 }]} />
         </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { rangeTable } from '../../data/shootingTables/rangeTable';
+import { rangeTable } from '../../../../data/shootingTables/rangeTable';
 
 import './RangeLookUp.css';
 
