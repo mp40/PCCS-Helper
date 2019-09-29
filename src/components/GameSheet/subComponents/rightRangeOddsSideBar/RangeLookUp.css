@@ -2,6 +2,7 @@
     font-size: 12pt;
     border: 1px solid rgb(85, 83, 83);
     width: 2cm;
+    height: fit-content;
 }
 
 .range-look-up-header, .range-look-up-row {

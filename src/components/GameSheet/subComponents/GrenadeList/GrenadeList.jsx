@@ -16,7 +16,7 @@ const renderContents = grenades => (grenades.length < 1 ? <div>none</div> : rend
 
 const GrenadeList = ({ grenades }) => (
   <div>
-    Grenades
+    <div className="grenade-list-heading">Grenades</div>
     {renderContents(grenades)}
   </div>
 );

@@ -1,6 +1,6 @@
 /* eslint-disable quote-props */
+
 export const situationAndStanceMods = {
-  'Standing': 0,
   'Standing & Braced ': 4,
   'Kneeling': 3,
   'Kneeling & Braced': 5,
@@ -13,6 +13,11 @@ export const situationAndStanceMods = {
   'Firing Pistol Double Action': -3,
   'Deployed Bipod Not Braced': -2,
   'Bipod Mounted Weapon': 3,
+};
+
+export const situationAndStanceModsFull = {
+  'Standing': 0,
+  ...situationAndStanceMods,
   'Tripod Mounted Weapon': 5,
 };
 
@@ -26,6 +31,10 @@ export const targetSizeMods = {
   'Low Crouch': [7, 11, 2],
   'Hands & Knees': [6, 8, 1],
   'Low Prone': [1, 0, 5],
+};
+
+export const targetSizeModsFull = {
+  ...targetSizeMods,
   'Head': [-3, 0, -3],
   'Body': [5, 8, 3],
   'Legs': [4, 8, 0],

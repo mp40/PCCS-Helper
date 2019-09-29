@@ -16,6 +16,7 @@ import SituationAndStanceModTable from './SituationAndStanceModTable';
 import './GameSheet.css';
 // import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
 import { testFAMAS, testRemington, testM16 } from '../../helpers/testHelpers'; // todo delete this line
+import TargetSizeTable from './TargetSizeTable';
 
 
 const meleeNameList = {
@@ -97,14 +98,17 @@ const GameSheet = ({ totalWeight, characterStats, combatStats, gear }) => (
             <div className="knockout-table-a4-wrapper" style={{ marginLeft: '0.2cm' }}>
               <KnockoutTable knockoutValue={combatStatsX.knockoutValue} />
             </div>
+            <div className="grenade-list-a4-wrapper">
+              <GrenadeList grenades={[{ name: 'L2 A2', qty: 2 }, { name: 'M62x', qty: 4 }]} />
+            </div>
           </div>
-
-          <SituationAndStanceModTable />
+          <div className="alm-mods-col">
+            <SituationAndStanceModTable />
+            <TargetSizeTable />
+          </div>
         </div>
 
-        <div className="grenade-list-a4-wrapper">
-          <GrenadeList grenades={[{ name: 'L2 A2', qty: 2 }, { name: 'M62x', qty: 4 }]} />
-        </div>
+
       </div>
 
       <div className="range-odds-flex-container">

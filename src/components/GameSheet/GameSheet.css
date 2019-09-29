@@ -6,7 +6,8 @@
 }
 
 .a4ContentContainer {
-    padding: 1.5cm;
+    /* padding: 1.5cm; */
+    padding: .8cm 1.5cm;
     display: flex;
 }
 
@@ -35,4 +36,9 @@
 .range-odds-flex-container .range-look-up-table {
     margin-left: .5cm;
     margin-right: .1cm;
+}
+
+.alm-mods-col {
+    display: flex;
+    flex-direction: column;
 }
