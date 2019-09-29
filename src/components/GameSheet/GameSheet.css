@@ -42,3 +42,10 @@
     display: flex;
     flex-direction: column;
 }
+
+.game-data-col-a {
+    display: flex;
+    flex-wrap: wrap;
+    width: 13.6cm;
+    align-content: flex-start;
+}

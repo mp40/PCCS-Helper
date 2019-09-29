@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 import BetaTemp from '../BetaTemp'; // todo delete this once at MVP
 import './Home.css';
 
-import GameSheet from '../GameSheet';
-// import { testFAMAS } from '../../helpers/testHelpers';
-
 const HomePage = props => (
   <div style={{ textAlign: 'center' }}>
     <h1>
@@ -19,8 +16,7 @@ const HomePage = props => (
     >
         Create Character
     </button>
-    {/* <BetaTemp /> */}
-    <GameSheet />
+    <BetaTemp />
   </div>
 );
 

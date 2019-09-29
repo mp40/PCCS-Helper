@@ -12,12 +12,9 @@ import GrenadeList from './subComponents/GrenadeList/GrenadeList';
 import RangeLookUp from './subComponents/rightRangeOddsSideBar/RangeLookUp';
 import HitChanceLookUp from './subComponents/rightRangeOddsSideBar/HitChanceLookUp';
 import SituationAndStanceModTable from './SituationAndStanceModTable';
-
-import './GameSheet.css';
-// import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
-import { testFAMAS, testRemington, testM16 } from '../../helpers/testHelpers'; // todo delete this line
 import TargetSizeTable from './TargetSizeTable';
 
+import './GameSheet.css';
 
 const meleeNameList = {
   pistols: 'Pistol',
@@ -57,49 +54,36 @@ export const prepareHandToHandWeaponList = (
   ...getEquipmentForMeleeList(equipmentArray),
 ].slice(0, 4);
 
-
-const combatStatsX = {
-  baseSpeed: 2,
-  maxSpeed: 6,
-  SAL: 7,
-  CE: 3,
-  ISF: 17,
-  ASF: 13,
-  knockoutValue: 9,
-  damageBonus: 1.5,
-  combatActions: [5, 3],
-};
-
-const GameSheet = ({ totalWeight, characterStats, combatStats, gear }) => (
+const GameSheet = ({ characterStats, combatStats, gear }) => (
   <div className="a4GameSheet">
     <div className="a4ContentContainer">
       <div className="main-content-right">
         <div style={{ display: 'flex' }}>
           <div>
-            {/* <WeaponsCardWeaponStats gunObj={gear.firearms[0]} sal={combatStats.SAL} size="a4" /> */}
-            <WeaponsCardWeaponStats gunObj={testRemington()} sal={7} size="a4" />
+            <WeaponsCardWeaponStats gunObj={gear.firearms[0]} sal={combatStats.SAL} size="a4" />
+            {/* <WeaponsCardWeaponStats gunObj={testFAMAS()} sal={7} size="a4" /> */}
           </div>
           <div className="firearm-notes-a4-wrapper">
-            <FirearmNotes gunObj={testFAMAS()} />
+            <FirearmNotes gunObj={gear.firearms[0]} />
           </div>
         </div>
         <div style={{ display: 'flex', marginTop: '.5cm' }}>
-          <div className="col-a" style={{ display: 'flex', flexWrap: 'wrap', width: '13.6cm', alignContent: 'flex-start' }}>
-            {/* <CombatStatsInfo combatStats={combatStats} gunLevel={characterStats.gunLevel} handLevel={characterStats.handLevel}/> */}
-            <CombatStatsInfo combatStats={combatStatsX} gunLevel={4} handLevel={1} />
+          <div className="game-data-col-a">
+            <CombatStatsInfo combatStats={combatStats} gunLevel={characterStats.gunLevel} handLevel={characterStats.handLevel} />
+            {/* <CombatStatsInfo combatStats={combatStatsX} gunLevel={4} handLevel={1} /> */}
             <div style={{ marginLeft: '.2cm' }}>
-              <ActionTable combatActions={combatStatsX.combatActions} className="A4" />
+              <ActionTable combatActions={combatStats.combatActions} className="A4" />
             </div>
-            <HandToHandTable meleeList={['SMG', 'Saber', 'Stick (1 hand)', 'Stick (2 hands)']} meleeLevel={1} />
-            <BodyArmourTable helmet={undefined} vest={undefined} />
+            <HandToHandTable meleeList={prepareHandToHandWeaponList(gear.firearms, gear.equipment)} meleeLevel={1} />
+            <BodyArmourTable helmet={gear.helmet} vest={gear.vest} />
             <div className="reaction-table-a4-wrapper" style={{ marginLeft: '0.2cm' }}>
-              <ReactionTable sal={combatStatsX.SAL} />
+              <ReactionTable sal={combatStats.SAL} />
             </div>
             <div className="knockout-table-a4-wrapper" style={{ marginLeft: '0.2cm' }}>
-              <KnockoutTable knockoutValue={combatStatsX.knockoutValue} />
+              <KnockoutTable knockoutValue={combatStats.knockoutValue} />
             </div>
             <div className="grenade-list-a4-wrapper">
-              <GrenadeList grenades={[{ name: 'L2 A2', qty: 2 }, { name: 'M62x', qty: 4 }]} />
+              <GrenadeList grenades={gear.grenades} />
             </div>
           </div>
           <div className="alm-mods-col">
@@ -107,19 +91,14 @@ const GameSheet = ({ totalWeight, characterStats, combatStats, gear }) => (
             <TargetSizeTable />
           </div>
         </div>
-
-
       </div>
-
       <div className="range-odds-flex-container">
         <RangeLookUp />
         <HitChanceLookUp />
       </div>
-
     </div>
   </div>
 );
-  // above needs KV table, reaction table
 GameSheet.propTypes = {
   totalWeight: PropTypes.number,
   // eslint-disable-next-line react/forbid-prop-types
@@ -135,40 +114,3 @@ GameSheet.propTypes = {
 // }
 
 export default GameSheet;
-
-// const gearDouble = () => ({
-//   uniform: 'Normal',
-//   equipment: [],
-//   firearms: [testFAMAS()],
-//   grenades: [],
-//   launchers: [],
-// });
-
-// const characterStats = {
-//   str: 10,
-//   int: 10,
-//   hlt: 10,
-//   wil: 10,
-//   agi: 10,
-//   gunLevel: 4,
-//   handLevel: 1,
-// };
-
-// const combatStats = {
-//   baseSpeed: 2,
-//   maxSpeed: 6,
-//   SAL: 7,
-//   CE: 3,
-//   ISF: 17,
-//   ASF: 13,
-//   knockoutValue: 9,
-//   damageBonus: 1.5,
-//   combatActions: [5, 3],
-// };
-
-// const props = {
-//   totalWeight: 20.5,
-//   characterStats,
-//   combatStats,
-//   gear: gearDouble(),
-// };
