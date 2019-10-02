@@ -347,6 +347,33 @@ export const pistols = () => [
     tof: [1, 2, 3, 6, 10, 22, 37, ''],
     offical: true,
   },
+  {
+    name: 'Tokarev TT33',
+    list: 'pistols',
+    calibre: '7.62mm Tokarev',
+    qty: 1,
+    length: 8,
+    weight: 2.0,
+    rt: 4,
+    rof: '*',
+    mag: [{ type: 'Mag', weight: 0.39, cap: 8, qty: 0 }],
+    kd: 3,
+    sab: 4,
+    aim: {
+      ac: [1, 2, 3, 4, 5, 6],
+      mod: [-17, -11, -10, -9, -8, -7],
+    },
+    projectiles: [
+      {
+        type: 'FMJ',
+        pen: [2.6, 2.4, 2, 1.6, 1.3, 0.6, 0.2, 0.1],
+        dc: [3, 3, 2, 2, 1, 1, 1, 1],
+      },
+    ],
+    ba: [46, 38, 29, 22, 17, 8, 3, -1],
+    tof: [0, 1, 2, 3, 5, 12, 20, 29],
+    offical: true,
+  },
 ];
 
 export const sniperRifles = () => [
