@@ -267,6 +267,33 @@ export const pistols = () => [
     offical: true,
   },
   {
+    name: 'MAB PA15',
+    list: 'pistols',
+    calibre: '9mm Parabellum',
+    qty: 1,
+    length: 8,
+    weight: 2.8,
+    rt: 4,
+    rof: '*',
+    mag: [{ type: 'Mag', weight: 0.6, cap: 15, qty: 0 }],
+    kd: 3,
+    sab: 4,
+    aim: {
+      ac: [1, 2, 3, 4, 5, 6],
+      mod: [-18, -11, -10, -9, -8, -7],
+    },
+    projectiles: [
+      {
+        type: 'FMJ',
+        pen: [2.1, 1.9, 1.6, 1.3, 1.0, 0.4, 0.2, 0.1],
+        dc: [3, 3, 2, 2, 1, 1, 1, 1],
+      },
+    ],
+    ba: [46, 38, 29, 22, 17, 8, 2, -1],
+    tof: [1, 1, 2, 4, 6, 15, 24, 35],
+    offical: true,
+  },
+  {
     name: 'Makarov PM',
     list: 'pistols',
     calibre: '9 x 18mm',
