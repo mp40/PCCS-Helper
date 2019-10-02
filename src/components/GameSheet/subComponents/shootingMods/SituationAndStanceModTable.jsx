@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { situationAndStanceMods } from '../../data/shootingTables/shootingModifiers';
+import { situationAndStanceMods } from '../../../../data/shootingTables/shootingModifiers';
 
 import './SituationAndStanceModTable.css';
 

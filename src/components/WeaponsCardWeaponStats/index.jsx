@@ -5,6 +5,8 @@ import WeaponDataRow from '../WeaponDataRow';
 import { buildArrayForGunTable } from '../../helpers/componentHelpers';
 import { getRecoilRecoveryValue } from '../../data/advancedRules/recoilRecovery';
 
+import emptyFirearm from './emptyFirearm';
+
 import '../WeaponsCard/WeaponsCard.css';
 
 const { table1cSAL } = require('../../data/tablesCreateCharacter');
@@ -42,6 +44,7 @@ const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
   const getRangeBrackets = () => {
     const standard = standardRangeBrackets;
     const shotgun = shotgunRangeBrackets;
+    console.log(gunObj.projectiles);
     if (!gunObj.projectiles[1]) {
       return standard;
     }
@@ -80,6 +83,10 @@ WeaponsCardWeaponStats.propTypes = {
   size: PropTypes.string,
   gunObj: gunObjShape,
   sal: PropTypes.number,
+};
+
+WeaponsCardWeaponStats.defaultProps = {
+  gunObj: emptyFirearm(),
 };
 
 export default WeaponsCardWeaponStats;

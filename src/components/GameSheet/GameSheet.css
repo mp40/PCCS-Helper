@@ -1,12 +1,24 @@
 .a4GameSheet {
+    display: none;
+}
+@media print {
+    .App-header, .App-body {
+        display: none;
+    }
+    .a4GameSheet {
+        display: block;
+        color-adjust: exact !important;
+        -webkit-print-color-adjust: exact !important;
+    }
+}
+
+.a4GameSheet {
     background-color: white;
     width: 29.7cm;
     height: 21cm;
-    margin: 20px;
 }
 
 .a4ContentContainer {
-    /* padding: 1.5cm; */
     padding: .8cm 1.5cm;
     display: flex;
 }

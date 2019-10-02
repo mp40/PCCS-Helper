@@ -1,9 +1,7 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
-import { Provider } from 'react-redux';
-import GameSheet from './index.jsx';
-import { mountAppWithStore, testFAMAS } from '../../helpers/testHelpers';
-import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
+import { shallow } from 'enzyme';
+import GameSheet from './component';
+import { testFAMAS } from '../../helpers/testHelpers';
 
 const gearDouble = () => ({
   uniform: 'Normal',
@@ -44,7 +42,6 @@ const props = {
 
 describe('<GameSheet>', () => {
   describe('firearm table', () => {
-    // eslint-disable-next-line react/jsx-filename-extension
     const wrapper = shallow(<GameSheet {...props} />);
     const wrapperGunTable = wrapper.find('WeaponsCardWeaponStats').dive();
     it('should render first gun in firearms list', () => {
@@ -54,15 +51,7 @@ describe('<GameSheet>', () => {
       expect(wrapperGunTable.find('.a4WeaponStatTable').exists()).toBe(true);
     });
   });
-  // describe('firearm information', () => {
-  //   const wrapper = shallow(<GameSheet {...props} />);
-  //   it('should render the firearms additional ammo', () => {
-  //     console.log(wrapper.debug());
-  //     expect(wrapper.text()).toContain('spare mags: 0');
-  //   });
-  // });
   describe('combat stats', () => {
-    // eslint-disable-next-line react/jsx-filename-extension
     const wrapper = shallow(<GameSheet {...props} />);
     const wrapperCombatStats = wrapper.find('CombatStatsInfo').dive();
     it('should render combat stats info box', () => {
@@ -85,6 +74,16 @@ describe('<GameSheet>', () => {
     });
     it('should render damage bonus', () => {
       expect(wrapperCombatStats.text()).toContain('Damage Bonus:1.5');
+    });
+  });
+  describe('default props', () => {
+    // todo move this more appropriate suite
+    it('should provide an "empty" firearm object if no firearm selected', () => {
+      const propsNoFirearm = props;
+      propsNoFirearm.gear.firearms = [];
+      const wrapper = shallow(<GameSheet {...propsNoFirearm} />);
+      expect(wrapper.find('WeaponsCardWeaponStats').props().gunObj).not.toBe(undefined);
+      // console.log(wrapper.find('WeaponsCardWeaponStats').props().gunObj);
     });
   });
 });

@@ -11,8 +11,8 @@ import ReactionTable from './subComponents/ReactionTable/ReactionTable';
 import GrenadeList from './subComponents/GrenadeList/GrenadeList';
 import RangeLookUp from './subComponents/rightRangeOddsSideBar/RangeLookUp';
 import HitChanceLookUp from './subComponents/rightRangeOddsSideBar/HitChanceLookUp';
-import SituationAndStanceModTable from './SituationAndStanceModTable';
-import TargetSizeTable from './TargetSizeTable';
+import SituationAndStanceModTable from './subComponents/shootingMods/SituationAndStanceModTable';
+import TargetSizeTable from './subComponents/shootingMods/TargetSizeTable';
 
 import './GameSheet.css';
 
@@ -56,6 +56,7 @@ export const prepareHandToHandWeaponList = (
 
 const GameSheet = ({ characterStats, combatStats, gear }) => (
   <div className="a4GameSheet">
+    {/* <iframe title="printable gamesheet" id="printable-gamesheet" className="a4GameSheet"> */}
     <div className="a4ContentContainer">
       <div className="main-content-right">
         <div style={{ display: 'flex' }}>
@@ -97,10 +98,10 @@ const GameSheet = ({ characterStats, combatStats, gear }) => (
         <HitChanceLookUp />
       </div>
     </div>
+    {/* </iframe> */}
   </div>
 );
 GameSheet.propTypes = {
-  totalWeight: PropTypes.number,
   // eslint-disable-next-line react/forbid-prop-types
   characterStats: PropTypes.object,
   // eslint-disable-next-line react/forbid-prop-types
@@ -110,7 +111,7 @@ GameSheet.propTypes = {
 };
 
 // GameSheet.defaultProps = {
-
+//   gear.firearms:
 // }
 
 export default GameSheet;

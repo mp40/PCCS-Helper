@@ -2,6 +2,8 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import { gunObjShape } from '../../helpers/proptypeShapes';
 
+import emptyFirearm from '../WeaponsCardWeaponStats/emptyFirearm';
+
 import './FirearmNotes.css';
 
 const renderSpareAmmoNote = (magazine) => {
@@ -41,6 +43,7 @@ FirearmNotes.propTypes = {
 };
 
 FirearmNotes.defaultProps = {
+  gunObj: emptyFirearm(),
   viewSpareAmmo: true,
 };
 

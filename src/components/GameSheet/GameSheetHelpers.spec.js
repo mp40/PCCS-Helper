@@ -1,4 +1,4 @@
-import { prepareHandToHandWeaponList } from './index';
+import { prepareHandToHandWeaponList } from './component';
 
 describe('preparing Hand To Hand weapon array', () => {
   describe('adding firearm to melee list', () => {

@@ -6,17 +6,22 @@ import HomePage from './components/Home';
 import CharacterGeneration from './components/CharacterGeneration';
 import './App.css';
 
+import GameSheet from './components/GameSheet';
+
 const App = ({ currentView }) => (
   <div className="App">
     <header className="App-header">
       <NavBar />
+    </header>
+    <body className="App-body">
       {currentView === 'home'
         && <HomePage />
       }
       {currentView === 'createChar'
         && <CharacterGeneration />
       }
-    </header>
+    </body>
+    <GameSheet />
   </div>
 );
 

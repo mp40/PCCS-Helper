@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { targetSizeMods } from '../../data/shootingTables/shootingModifiers';
+import { targetSizeMods } from '../../../../data/shootingTables/shootingModifiers';
 
 import './TargetSizeTable.css';
 
