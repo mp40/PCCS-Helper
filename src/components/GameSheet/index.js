@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import GameSheet from './component';
+import { selectCurrentView } from '../../actions';
 
 const mapStateToProps = state => ({
   characterStats: state.characterStats,
@@ -8,4 +9,4 @@ const mapStateToProps = state => ({
 
 });
 
-export default connect(mapStateToProps)(GameSheet);
+export default connect(mapStateToProps, { selectCurrentView })(GameSheet);

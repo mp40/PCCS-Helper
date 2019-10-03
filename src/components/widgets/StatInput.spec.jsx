@@ -9,7 +9,6 @@ const id = () => 'updateGun';
 const action = jest.fn();
 
 describe('StatInput Component', () => {
-  // eslint-disable-next-line react/jsx-filename-extension
   const newWrapper = () => shallow(<StatInput
     statLevel={statLevel()}
     statName={statName()}

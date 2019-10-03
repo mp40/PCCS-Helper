@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { PropTypes } from 'prop-types';
 import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
 import CombatStatsInfo from './CombatStatsInfo';
@@ -54,53 +54,56 @@ export const prepareHandToHandWeaponList = (
   ...getEquipmentForMeleeList(equipmentArray),
 ].slice(0, 4);
 
-const GameSheet = ({ characterStats, combatStats, gear }) => (
-  <div className="a4GameSheet">
-    {/* <iframe title="printable gamesheet" id="printable-gamesheet" className="a4GameSheet"> */}
-    <div className="a4ContentContainer">
-      <div className="main-content-right">
-        <div style={{ display: 'flex' }}>
-          <div>
-            <WeaponsCardWeaponStats gunObj={gear.firearms[0]} sal={combatStats.SAL} size="a4" />
-            {/* <WeaponsCardWeaponStats gunObj={testFAMAS()} sal={7} size="a4" /> */}
+const GameSheet = ({ characterStats, combatStats, gear, selectCurrentView }) => {
+  useEffect(() => {
+    window.print();
+    selectCurrentView('createChar');
+  });
+
+  return (
+    <div className="a4GameSheet">
+      <div className="a4ContentContainer">
+        <div className="main-content-right">
+          <div style={{ display: 'flex' }}>
+            <div>
+              <WeaponsCardWeaponStats gunObj={gear.firearms[0]} sal={combatStats.SAL} size="a4" />
+            </div>
+            <div className="firearm-notes-a4-wrapper">
+              <FirearmNotes gunObj={gear.firearms[0]} />
+            </div>
           </div>
-          <div className="firearm-notes-a4-wrapper">
-            <FirearmNotes gunObj={gear.firearms[0]} />
+          <div style={{ display: 'flex', marginTop: '.5cm' }}>
+            <div className="game-data-col-a">
+              <CombatStatsInfo combatStats={combatStats} gunLevel={characterStats.gunLevel} handLevel={characterStats.handLevel} />
+              <div style={{ marginLeft: '.2cm' }}>
+                <ActionTable combatActions={combatStats.combatActions} className="A4" />
+              </div>
+              <HandToHandTable meleeList={prepareHandToHandWeaponList(gear.firearms, gear.equipment)} meleeLevel={1} />
+              <BodyArmourTable helmet={gear.helmet} vest={gear.vest} />
+              <div className="reaction-table-a4-wrapper" style={{ marginLeft: '0.2cm' }}>
+                <ReactionTable sal={combatStats.SAL} />
+              </div>
+              <div className="knockout-table-a4-wrapper" style={{ marginLeft: '0.2cm' }}>
+                <KnockoutTable knockoutValue={combatStats.knockoutValue} />
+              </div>
+              <div className="grenade-list-a4-wrapper">
+                <GrenadeList grenades={gear.grenades} />
+              </div>
+            </div>
+            <div className="alm-mods-col">
+              <SituationAndStanceModTable />
+              <TargetSizeTable />
+            </div>
           </div>
         </div>
-        <div style={{ display: 'flex', marginTop: '.5cm' }}>
-          <div className="game-data-col-a">
-            <CombatStatsInfo combatStats={combatStats} gunLevel={characterStats.gunLevel} handLevel={characterStats.handLevel} />
-            {/* <CombatStatsInfo combatStats={combatStatsX} gunLevel={4} handLevel={1} /> */}
-            <div style={{ marginLeft: '.2cm' }}>
-              <ActionTable combatActions={combatStats.combatActions} className="A4" />
-            </div>
-            <HandToHandTable meleeList={prepareHandToHandWeaponList(gear.firearms, gear.equipment)} meleeLevel={1} />
-            <BodyArmourTable helmet={gear.helmet} vest={gear.vest} />
-            <div className="reaction-table-a4-wrapper" style={{ marginLeft: '0.2cm' }}>
-              <ReactionTable sal={combatStats.SAL} />
-            </div>
-            <div className="knockout-table-a4-wrapper" style={{ marginLeft: '0.2cm' }}>
-              <KnockoutTable knockoutValue={combatStats.knockoutValue} />
-            </div>
-            <div className="grenade-list-a4-wrapper">
-              <GrenadeList grenades={gear.grenades} />
-            </div>
-          </div>
-          <div className="alm-mods-col">
-            <SituationAndStanceModTable />
-            <TargetSizeTable />
-          </div>
+        <div className="range-odds-flex-container">
+          <RangeLookUp />
+          <HitChanceLookUp />
         </div>
-      </div>
-      <div className="range-odds-flex-container">
-        <RangeLookUp />
-        <HitChanceLookUp />
       </div>
     </div>
-    {/* </iframe> */}
-  </div>
-);
+  );
+};
 GameSheet.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   characterStats: PropTypes.object,
@@ -108,6 +111,7 @@ GameSheet.propTypes = {
   combatStats: PropTypes.object,
   // eslint-disable-next-line react/forbid-prop-types
   gear: PropTypes.object,
+  selectCurrentView: PropTypes.func,
 };
 
 // GameSheet.defaultProps = {

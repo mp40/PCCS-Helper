@@ -1,11 +1,6 @@
 import { connect } from 'react-redux';
 import Print from './component';
 
-const mapStateToProps = state => ({
-  characterStats: state.characterStats,
-  combatStats: state.combatStats,
-  gear: state.gear,
+import { selectCurrentView } from '../../actions';
 
-});
-
-export default connect(mapStateToProps)(Print);
+export default connect(null, { selectCurrentView })(Print);

@@ -13,15 +13,18 @@ const App = ({ currentView }) => (
     <header className="App-header">
       <NavBar />
     </header>
-    <body className="App-body">
+    <div className="App-body">
       {currentView === 'home'
         && <HomePage />
       }
-      {currentView === 'createChar'
+      {(currentView === 'createChar' || currentView === 'printRefSheet')
         && <CharacterGeneration />
       }
-    </body>
-    <GameSheet />
+    </div>
+    {currentView === 'printRefSheet'
+    && (
+      <GameSheet />
+    )}
   </div>
 );
 
