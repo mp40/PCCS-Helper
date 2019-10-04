@@ -44,7 +44,6 @@ const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
   const getRangeBrackets = () => {
     const standard = standardRangeBrackets;
     const shotgun = shotgunRangeBrackets;
-    console.log(gunObj.projectiles);
     if (!gunObj.projectiles[1]) {
       return standard;
     }

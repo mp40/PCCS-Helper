@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import GameSheet from './component';
 import { testFAMAS } from '../../helpers/testHelpers';
 
@@ -38,9 +38,25 @@ const props = {
   characterStats,
   combatStats,
   gear: gearDouble(),
+  selectCurrentView: jest.fn(),
 };
 
+global.print = jest.fn();
+
 describe('<GameSheet>', () => {
+  describe('the gamesheet lifecycle', () => {
+    const wrapper = mount(<GameSheet {...props} />);
+    const spySelectCurrentView = jest.spyOn(wrapper.props(), 'selectCurrentView');
+    it('should render', () => {
+      expect(wrapper.exists()).toBe(true);
+    });
+    it('should call window.print after rendering', () => {
+      expect(global.print).toHaveBeenCalled();
+    });
+    it('should call selectCurrentView with "createChar"', () => {
+      expect(spySelectCurrentView).toHaveBeenCalled();
+    });
+  });
   describe('firearm table', () => {
     const wrapper = shallow(<GameSheet {...props} />);
     const wrapperGunTable = wrapper.find('WeaponsCardWeaponStats').dive();
@@ -74,16 +90,6 @@ describe('<GameSheet>', () => {
     });
     it('should render damage bonus', () => {
       expect(wrapperCombatStats.text()).toContain('Damage Bonus:1.5');
-    });
-  });
-  describe('default props', () => {
-    // todo move this more appropriate suite
-    it('should provide an "empty" firearm object if no firearm selected', () => {
-      const propsNoFirearm = props;
-      propsNoFirearm.gear.firearms = [];
-      const wrapper = shallow(<GameSheet {...propsNoFirearm} />);
-      expect(wrapper.find('WeaponsCardWeaponStats').props().gunObj).not.toBe(undefined);
-      // console.log(wrapper.find('WeaponsCardWeaponStats').props().gunObj);
     });
   });
 });
