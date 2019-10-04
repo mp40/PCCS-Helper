@@ -4,6 +4,7 @@ export const equipment = () => [
     weight: 2.2,
     qty: 1,
     tags: ['Melee'],
+    melee: ['Baseball Bat (1 hand)', 'Baseball Bat (2 hands'],
   },
   {
     name: 'Basic Pouch',
@@ -16,12 +17,14 @@ export const equipment = () => [
     weight: 1,
     qty: 1,
     tags: ['Melee'],
+    melee: ['Knife, Combat'],
   },
   {
     name: 'Bayonet, M1 w/M7 scabard',
     weight: 1.56,
     qty: 1,
     tags: ['Melee', 'WW2'],
+    melee: ['Knife, Combat'],
   },
   {
     name: 'Belt',
@@ -46,6 +49,7 @@ export const equipment = () => [
     weight: 0.5,
     qty: 1,
     tags: ['Melee'],
+    melee: ['Billy Club'],
   },
   {
     name: 'Binoculars w/case',
@@ -100,12 +104,14 @@ export const equipment = () => [
     weight: 1.5,
     qty: 1,
     tags: ['Melee', 'Tools'],
+    melee: ['Entrenching Tool (1 hand)', 'Entrenching Tool (2 hands)'],
   },
   {
     name: 'Entrenching tool, M1943 w/carrier',
     weight: 2.94,
     qty: 1,
     tags: ['Melee', 'Tools', 'WW2'],
+    melee: ['Entrenching Tool (1 hand)', 'Entrenching Tool (2 hands)'],
   },
   {
     name: 'Field Dressing',
@@ -136,6 +142,7 @@ export const equipment = () => [
     weight: 2.5,
     qty: 1,
     tags: ['Melee', 'Tools'],
+    melee: ['Hatchet (1 hand)', 'Hatchet (2 hands)'],
   },
   {
     name: 'Headset Coms',
@@ -160,24 +167,28 @@ export const equipment = () => [
     weight: 3,
     qty: 1,
     tags: ['Melee'],
+    melee: ['Katana (1 hand)', 'Katana (2 hands)'],
   },
   {
     name: 'Knife, Bowie',
     weight: 1.1,
     qty: 1,
     tags: ['Melee'],
+    melee: ['Knife, Bowie'],
   },
   {
     name: 'Knife, Combat',
     weight: 0.6,
     qty: 1,
     tags: ['Melee'],
+    melee: ['Knife, Combat'],
   },
   {
     name: 'Knife, Switch Blade',
     weight: 0.3,
     qty: 1,
     tags: ['Melee'],
+    melee: ['Knife, Switch Blade'],
   },
   {
     name: 'K-Ration (1 day)',
@@ -202,6 +213,7 @@ export const equipment = () => [
     weight: 2.4,
     qty: 1,
     tags: ['Melee', 'Tools'],
+    melee: ['Machete (1 hand)', 'Machete (2 hands)'],
   },
   {
     name: 'Magazine Pouch, M1 carbine',
@@ -252,10 +264,11 @@ export const equipment = () => [
     tags: ['Load Bearing', 'WW2', 'Pack'],
   },
   {
-    name: 'Pipe, 24',
+    name: 'Pipe, 24"',
     weight: 2.2,
     qty: 1,
     tags: ['Melee'],
+    melee: ['Pipe, 24" (1 hand)', 'Pipe, 24" (2 hands)'],
   },
   {
     name: 'Rat Pack (1 day)',
@@ -268,18 +281,21 @@ export const equipment = () => [
     weight: 1.5,
     qty: 1,
     tags: ['Melee'],
+    melee: ['Rock'],
   },
   {
     name: 'Saber',
     weight: 2.6,
     qty: 1,
     tags: ['Melee'],
+    melee: ['Saber'],
   },
   {
     name: 'Scimitar',
     weight: 3.7,
     qty: 1,
     tags: ['Melee'],
+    melee: ['Scimitar (1 hand)', 'Scimitar (2 hands)'],
   },
   {
     name: 'SNIPERS Harness',
@@ -298,6 +314,7 @@ export const equipment = () => [
     weight: 2,
     qty: 1,
     tags: ['Melee'],
+    melee: ['Stick (1 hand)', 'Stick (2 hands)'],
   },
   {
     name: 'Tarzan M21 Assault Vest',
@@ -334,6 +351,7 @@ export const equipment = () => [
     weight: 3,
     qty: 1,
     tags: ['Melee'],
+    melee: ['Two by Four (1 hand)', 'Two by Four (2 hands)'],
   },
   {
     name: 'Type 56 AK Chest Rig',
@@ -454,6 +472,7 @@ export const equipment = () => [
     weight: 3.5,
     qty: 1,
     tags: ['Melee', 'Tools'],
+    melee: ['Wood Axe (2 hands)'],
   },
   {
     name: 'Survival Kit',

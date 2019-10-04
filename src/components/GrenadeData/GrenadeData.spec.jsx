@@ -78,7 +78,6 @@ const getFlashBang = () => ({
 
 
 describe('grenade data table', () => {
-  // eslint-disable-next-line react/jsx-filename-extension
   const wrapper = shallow(<GrenadeData grenade={getGrenadeData()} />);
   describe('physical data', () => {
     it('should render length value', () => {

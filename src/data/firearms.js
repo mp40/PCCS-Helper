@@ -139,6 +139,7 @@ export const smgs = () => [
     ma: [0.2, 0.4, 0.8, 1, 2, 4, 6, 8],
     ba: [46, 37, 28, 21, 16, 7, 1, -2],
     tof: [0, 1, 2, 4, 6, 13, 22, 32],
+    selector: 'Full Auto Only',
     offical: true,
   },
   {
@@ -195,6 +196,7 @@ export const smgs = () => [
     ma: [0.2, 0.5, 0.9, 2, 2, 5, 9, 12],
     ba: [45, 36, 27, 20, 15, 5, 0, -4],
     tof: [1, 1, 3, 5, 8, 18, 30, 44],
+    selector: 'Full Auto Only',
     offical: true,
   },
 ];
@@ -439,6 +441,7 @@ export const mgs = () => [
     tof: [0, 0, 1, 2, 2, 5, 8, 11],
     offical: true,
     bipod: true,
+    selector: 'Full Auto Only',
   },
   {
     name: 'RPD',
@@ -468,6 +471,7 @@ export const mgs = () => [
     tof: [0, 1, 1, 2, 3, 6, 10, 15],
     offical: true,
     bipod: true,
+    selector: 'Full Auto Only',
   },
   {
     name: 'DP',
@@ -497,6 +501,7 @@ export const mgs = () => [
     tof: [0, 0, 1, 2, 2, 5, 8, 11],
     offical: true,
     bipod: true,
+    selector: 'Full Auto Only',
   },
 ];
 

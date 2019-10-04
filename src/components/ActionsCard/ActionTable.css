@@ -1,0 +1,27 @@
+.combatActions {
+    border-collapse: collapse;
+    border: 1px solid rgb(85, 83, 83);
+    width: 100%;
+}
+
+.combatActions .ActionType {
+   width: 32%;
+}
+
+.combatActions .impluseTH {
+    width: 17%;
+ }
+
+ .combatActionsA4 {
+    border-collapse: collapse;
+    border: 1px solid rgb(85, 83, 83);
+    font-size: 14pt;
+}
+
+.combatActionsA4 .ActionType {
+    width: 3cm;
+ }
+
+ .combatActionsA4 .impluseTH {
+     width: .7cm;
+  }

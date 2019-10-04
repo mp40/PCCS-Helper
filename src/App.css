@@ -6,10 +6,10 @@ h1 {
 
 .App {
   background-color: #aeb885;
+  min-height: 100vh;
 }
 
 .App-header {
-  min-height: 100vh;
   font-size: calc(3px + 2vmin);
   color: black;
 }

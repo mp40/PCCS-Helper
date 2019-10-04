@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import BetaTemp from '../BetaTemp'; // todo delete this once at MVP
 import './Home.css';
 
-const HomePage = props => (
+const HomePage = ({ selectCurrentView }) => (
   <div style={{ textAlign: 'center' }}>
     <h1>
             Welcome To Phoenix Command Tools
@@ -12,7 +12,7 @@ const HomePage = props => (
       type="button"
       id="activateCreateChar"
       className="buttonStandard"
-      onClick={() => props.selectCurrentView('createChar')}
+      onClick={() => selectCurrentView('createChar')}
     >
         Create Character
     </button>

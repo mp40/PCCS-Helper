@@ -1,4 +1,4 @@
-import { mountAppWithStore, storeWithCreateCharacterView, storeWithEquipment } from '../../helpers/testHelpers';
+import { mountAppWithStore, storeWithCreateCharacterView } from '../../helpers/testHelpers';
 
 describe('the equipment list', () => {
   let wrapper;

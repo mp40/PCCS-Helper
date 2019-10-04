@@ -24,7 +24,6 @@ const vestM69 = {
 describe('the BodyArmourCard', () => {
   const mockHelmetDispatch = jest.fn();
   const mockVestDispatch = jest.fn();
-  // eslint-disable-next-line react/jsx-filename-extension
   const wrapper = mount(<BodyArmourCard
     changeHelmet={mockHelmetDispatch}
     changeVest={mockVestDispatch}

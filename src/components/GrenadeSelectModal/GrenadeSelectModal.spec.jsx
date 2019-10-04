@@ -25,7 +25,6 @@ const doubleM2 = { name: 'M2' };
 
 describe('GrenadeSelectModal', () => {
   const wrapper = mount(
-    // eslint-disable-next-line react/jsx-filename-extension
     <GrenadeSelectModal
       addGrenade={addGrenade}
       toggleOffWeaponCardViews={toggleOffWeaponCardViews}

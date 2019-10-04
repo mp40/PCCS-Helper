@@ -4,7 +4,7 @@ const {
   table1bMaxSpeed,
   table1dCombatActions,
   table1dDamageBonus,
-} = require('../data/tables');
+} = require('../data/tablesCreateCharacter');
 
 const findHighestCombatLevel = (gunLevel, handLevel) => (gunLevel > handLevel ? gunLevel : handLevel);
 

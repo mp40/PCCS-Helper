@@ -120,7 +120,7 @@ class EquipmentCard extends Component {
   }
 
   renderButtonRow = () => (
-    <div style={{ marginTop: '-1rem', marginBottom: '.5rem' }}>
+    <div style={{ marginTop: '-0.5rem', marginBottom: '.5rem' }}>
       <ButtonStandard
         id="addEquipment"
         name="Add Equipment"

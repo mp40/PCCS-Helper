@@ -5,7 +5,6 @@ import WeaponsModalFilterSelection from './index';
 const handleSetFilterByType = jest.fn();
 
 describe('filter weapons by type', () => {
-  // eslint-disable-next-line react/jsx-filename-extension
   const wrapper = shallow(<WeaponsModalFilterSelection handleSetFilterByType={handleSetFilterByType} />);
   it('should have a default of all', () => {
     expect(wrapper.find('.selectAllFilter').props().checked).toBe(true);
@@ -41,7 +40,6 @@ describe('filter weapons by type', () => {
 });
 
 describe('filter weapons by caliber', () => {
-  // eslint-disable-next-line react/jsx-filename-extension
   const wrapper = shallow(<WeaponsModalFilterSelection handleSetFilterByType={handleSetFilterByType} />);
   it('should have a default of all calibers', () => {
     expect(wrapper.find('.selectAllCalibersFilter').props().checked).toBe(true);

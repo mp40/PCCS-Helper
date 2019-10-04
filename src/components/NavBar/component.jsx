@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import NavBarCreateChar from './NavBarCreateChar';
+
+import Print from '../Print';
+
 import './NavBar.css';
 
 const NavBar = ({ currentView, totalWeight }) => (
@@ -10,9 +13,12 @@ const NavBar = ({ currentView, totalWeight }) => (
     </div>
     {currentView === 'createChar'
         && (
-          <NavBarCreateChar
-            totalWeight={totalWeight}
-          />
+          <div>
+            <NavBarCreateChar
+              totalWeight={totalWeight}
+            />
+            <Print />
+          </div>
         )
       }
   </div>

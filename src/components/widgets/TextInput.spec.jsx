@@ -8,7 +8,6 @@ const equipmentValue = () => '';
 const onChange = jest.fn();
 
 describe('TextInput Component', () => {
-  // eslint-disable-next-line react/jsx-filename-extension
   const newWrapper = () => shallow(<TextInput
     onChange={onChange}
     equipmentValue={equipmentValue()}

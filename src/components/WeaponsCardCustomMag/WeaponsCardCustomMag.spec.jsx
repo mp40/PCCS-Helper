@@ -5,7 +5,6 @@ import WeaponsCardCustomMag from './index';
 
 describe('the <WeaponsCardCustomMag/> component', () => {
   const mockToggle = jest.fn();
-  // eslint-disable-next-line react/jsx-filename-extension
   const wrapper = shallow(<WeaponsCardCustomMag toggleOffWeaponCardViews={mockToggle} />);
   const inputValue = createWrapperTextInput(wrapper);
   it('should take an input for ammo capacity', () => {

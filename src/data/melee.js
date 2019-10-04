@@ -1,6 +1,6 @@
-const meleeData = [
+export const meleeData = () => [
   {
-    Name: 'Baseball Bat (1 hnd)',
+    Name: 'Baseball Bat (1 hand)',
     ws: '2.5',
     wc: '1',
     IDc: '(4)+2',
@@ -8,7 +8,7 @@ const meleeData = [
     Rng: '2',
   },
   {
-    Name: 'Baseball Bat (2 hnd)',
+    Name: 'Baseball Bat (2 hands)',
     ws: '2.6',
     wc: '1',
     IDc: '(10)+3',
@@ -40,7 +40,7 @@ const meleeData = [
     Rng: '1',
   },
   {
-    Name: 'H Rifle (11.2lbs)',
+    Name: 'Heavy Rifle',
     ws: '1.8',
     wc: '-2',
     IDc: '(8)+3',
@@ -72,7 +72,7 @@ const meleeData = [
     Rng: '2',
   },
   {
-    Name: 'Katana (2 hand)',
+    Name: 'Katana (2 hands)',
     ws: '2.2',
     wc: '0',
     IDc: '(10)+4',
@@ -104,7 +104,7 @@ const meleeData = [
     Rng: '1',
   },
   {
-    Name: 'L Rifle (8.0lbs)',
+    Name: 'Light Rifle',
     ws: '1.9',
     wc: '-1',
     IDc: '(6)+3',
@@ -176,7 +176,7 @@ const meleeData = [
     Rng: '2+',
   },
   {
-    Name: 'Scimitar (2 hand)',
+    Name: 'Scimitar (2 hands)',
     ws: '2.1',
     wc: '0',
     IDc: '(10)+3',
@@ -200,7 +200,7 @@ const meleeData = [
     Rng: '2',
   },
   {
-    Name: 'Stick (2 hand)',
+    Name: 'Stick (2 hands)',
     ws: '2.6',
     wc: '0',
     IDc: '(10)+5',
@@ -208,7 +208,7 @@ const meleeData = [
     Rng: '2',
   },
   {
-    Name: 'Two by Four (1 hnd)',
+    Name: 'Two by Four (1 hand)',
     ws: '2.4',
     wc: '0',
     IDc: '(5)+2',
@@ -216,7 +216,7 @@ const meleeData = [
     Rng: '2',
   },
   {
-    Name: 'Two by Four (2 hnd)',
+    Name: 'Two by Four (2 hands)',
     ws: '2.5',
     wc: '0',
     IDc: '(8)+4',
@@ -224,7 +224,7 @@ const meleeData = [
     Rng: '2',
   },
   {
-    Name: 'Wood Axe (2 hand)',
+    Name: 'Wood Axe (2 hands)',
     ws: '1.7',
     wc: '-2',
     IDc: '(10)+6',
@@ -233,4 +233,12 @@ const meleeData = [
   },
 ];
 
-module.exports = meleeData;
+// [weaponSpeed, parry, set, strike, recover]
+export const weaponSpeedActionCosts = () => [
+  [1, 3, 3, 1, 3],
+  [1.2, 2, 2, 1, 2],
+  [1.5, 1, 2, 1, 2],
+  [1.8, 1, 2, 1, 1],
+  [2.3, 1, 1, 1, 1],
+  [3.1, 1, 1, 0.5, 0.5],
+];
