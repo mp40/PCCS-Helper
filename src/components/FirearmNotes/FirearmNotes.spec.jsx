@@ -6,7 +6,6 @@ const getSpareGunMags = (magQty, magCap, magType = 'Mag') => [{ type: magType, q
 
 describe('<FirearmNotes/>', () => {
   describe('rendering spare ammo', () => {
-    // eslint-disable-next-line react/jsx-filename-extension
     const wrapper = shallow(<FirearmNotes gunObj={{ mag: [] }} />);
     it('should render the firearms additional ammo', () => {
       wrapper.setProps({ gunObj: { mag: getSpareGunMags(0, 20) } });
@@ -19,8 +18,8 @@ describe('<FirearmNotes/>', () => {
     it('should render additional ammo for loose rounds', () => {
       wrapper.setProps({ gunObj: { mag: getSpareGunMags(0, 7, 'Rnd') } });
       expect(wrapper.text()).toContain('0 x Single Rounds');
-      wrapper.setProps({ gunObj: { mag: getSpareGunMags(0, 7, 'Rnd') } });
-      expect(wrapper.text()).toContain('0 x Single Round');
+      wrapper.setProps({ gunObj: { mag: getSpareGunMags(1, 7, 'Rnd') } });
+      expect(wrapper.childAt(1).text()).toBe('1 x Single Round');
       wrapper.setProps({ gunObj: { mag: getSpareGunMags(2, 7, 'Rnd') } });
       expect(wrapper.text()).toContain('2 x Single Rounds');
       wrapper.setProps({ gunObj: { mag: getSpareGunMags(7, 7, 'Rnd') } });
@@ -34,7 +33,6 @@ describe('<FirearmNotes/>', () => {
     });
   });
   describe('rendering modification notes', () => {
-    // eslint-disable-next-line react/jsx-filename-extension
     const wrapper = shallow(<FirearmNotes gunObj={{ mag: [] }} />);
     it('should render even if modNotes key not present', () => {
       expect(wrapper.exists()).toBe(true);

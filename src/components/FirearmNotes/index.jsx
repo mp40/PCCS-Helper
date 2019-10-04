@@ -8,7 +8,7 @@ import './FirearmNotes.css';
 
 const renderSpareAmmoNote = (magazine) => {
   if (magazine.type === 'Rnd') {
-    const roundsString = magazine.cap === 1 ? 'Single Round' : 'Single Rounds';
+    const roundsString = magazine.qty === 1 ? 'Single Round' : 'Single Rounds';
     return (
       <div key={`${magazine.qty}${magazine.cap}`}>{`${magazine.qty} x ${roundsString}`}</div>
     );
