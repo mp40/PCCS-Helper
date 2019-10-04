@@ -7,7 +7,9 @@ const Print = ({ selectCurrentView }) => {
   };
 
   return (
-    <button type="button" onClick={() => handlePrint()}>Print Icon</button>
+    <div className="print-icon-container">
+      <button type="button" onClick={() => handlePrint()}>Print Icon</button>
+    </div>
   );
 };
 

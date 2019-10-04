@@ -1,0 +1,13 @@
+.print-icon-container > button {
+    border-radius: 2px;
+    /* background-color: transparent; */
+    background-color: inherit;
+    mix-blend-mode: lighten;
+    /* opacity: 0.9; */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.print-icon-container > svg {
+    fill: whitesmoke;
+}
+
