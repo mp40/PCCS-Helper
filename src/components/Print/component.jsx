@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import PrintIcon from './PrintIcon';
+
+import './Print.css';
 
 const Print = ({ selectCurrentView }) => {
   const handlePrint = () => {
@@ -8,7 +11,9 @@ const Print = ({ selectCurrentView }) => {
 
   return (
     <div className="print-icon-container">
-      <button type="button" onClick={() => handlePrint()}>Print Icon</button>
+      <button type="button" className="print-button" onClick={() => handlePrint()}>
+        <PrintIcon />
+      </button>
     </div>
   );
 };

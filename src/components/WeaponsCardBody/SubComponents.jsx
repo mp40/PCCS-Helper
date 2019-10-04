@@ -9,7 +9,7 @@ import { correctFloatingPoint } from '../../reducers/reducerHelpers';
 export const renderCorrectAmmoTitle = magObj => (magObj.type === 'Rnd' ? 'Single Rounds' : `${magObj.cap} round ${magObj.type}`);
 
 export const ButtonBar = (toggleOnWeaponsCardViews, removeAllGuns) => (
-  <div style={{ marginTop: '-1rem', marginBottom: '.5rem' }}>
+  <div style={{ marginTop: '-0.5rem', marginBottom: '.5rem' }}>
     <ButtonStandard
       id="addFirearm"
       name="Add Firearm"
