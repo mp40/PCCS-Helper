@@ -20,7 +20,6 @@ const vest = {
 
 describe('BodyArmourTable', () => {
   describe('defaults', () => {
-    // eslint-disable-next-line react/jsx-filename-extension
     const wrapper = shallow(<BodyArmourTable helmet={undefined} vest={undefined} />);
     const helmetRow = wrapper.find('tbody').childAt(0);
     const vestRow = wrapper.find('tbody').childAt(1);
@@ -38,7 +37,6 @@ describe('BodyArmourTable', () => {
     });
   });
   describe('helmet data', () => {
-    // eslint-disable-next-line react/jsx-filename-extension
     const wrapper = shallow(<BodyArmourTable helmet={helmet} />);
     const helmetRow = wrapper.find('tbody').childAt(0);
     it('should render the helmet name', () => {
@@ -55,7 +53,6 @@ describe('BodyArmourTable', () => {
     });
   });
   describe('vest data', () => {
-    // eslint-disable-next-line react/jsx-filename-extension
     const wrapper = shallow(<BodyArmourTable vest={vest} />);
     const vestRow = wrapper.find('tbody').childAt(1);
     it('should render the vest name', () => {

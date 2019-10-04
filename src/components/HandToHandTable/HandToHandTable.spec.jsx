@@ -48,7 +48,6 @@ const meleeList = () => ['Knife, Bowie', 'Wood Axe (2 hand)'];
 
 
 describe('the hand to hand data table', () => {
-  // eslint-disable-next-line react/jsx-filename-extension
   const wrapper = shallow(<HandToHandTable meleeList={meleeList()} meleeLevel={1} />);
   it('should display weapon name', () => {
     expect(wrapper.text()).toContain('Knife, Bowie');

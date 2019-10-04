@@ -5,7 +5,6 @@ import WeaponsCardModifyWeight from './index';
 
 describe('the <WeaponsCardModifyWeight/> component', () => {
   const mockToggle = jest.fn();
-  // eslint-disable-next-line react/jsx-filename-extension
   const wrapper = shallow(<WeaponsCardModifyWeight toggleOffWeaponCardViews={mockToggle} />);
   const inputValue = createWrapperTextInput(wrapper);
   it('should take an input for a note on modification', () => {

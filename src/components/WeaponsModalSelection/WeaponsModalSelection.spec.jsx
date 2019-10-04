@@ -17,7 +17,6 @@ const waitOneSec = simulate => new Promise(((resolve) => {
 }));
 
 describe('promise to wait for transition close', () => {
-  // eslint-disable-next-line react/jsx-filename-extension
   const wrapper = mount(<WeaponsModalSelection firearmsArray={mgs()} />);
   describe('firearm filter card transitions', () => {
     it('should have a filter card with default class name', () => {

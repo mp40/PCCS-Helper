@@ -4,7 +4,6 @@ import { shallow } from 'enzyme';
 import KnockoutTable from './index';
 
 describe('The Knockout Table', () => {
-  // eslint-disable-next-line react/jsx-filename-extension
   const wrapper = shallow(<KnockoutTable knockoutValue={10} />);
   beforeEach(() => {
     wrapper.setProps({ knockoutValue: 10 });
