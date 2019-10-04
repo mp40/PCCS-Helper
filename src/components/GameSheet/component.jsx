@@ -14,6 +14,8 @@ import HitChanceLookUp from './subComponents/rightRangeOddsSideBar/HitChanceLook
 import SituationAndStanceModTable from './subComponents/shootingMods/SituationAndStanceModTable';
 import TargetSizeTable from './subComponents/shootingMods/TargetSizeTable';
 
+import { combatStatsShape, gearShape } from '../../helpers/proptypeShapes';
+
 import './GameSheet.css';
 
 const meleeNameList = {
@@ -60,6 +62,8 @@ const GameSheet = ({ characterStats, combatStats, gear, selectCurrentView }) => 
     selectCurrentView('createChar');
   });
 
+  const meleeWeaponList = prepareHandToHandWeaponList(gear.firearms, gear.equipment);
+
   return (
     <div className="a4GameSheet">
       <div className="a4ContentContainer">
@@ -74,11 +78,17 @@ const GameSheet = ({ characterStats, combatStats, gear, selectCurrentView }) => 
           </div>
           <div style={{ display: 'flex', marginTop: '.5cm' }}>
             <div className="game-data-col-a">
-              <CombatStatsInfo combatStats={combatStats} gunLevel={characterStats.gunLevel} handLevel={characterStats.handLevel} />
+              <CombatStatsInfo
+                combatStats={combatStats}
+                gunLevel={characterStats.gunLevel}
+                handLevel={characterStats.handLevel}
+              />
               <div style={{ marginLeft: '.2cm' }}>
                 <ActionTable combatActions={combatStats.combatActions} className="A4" />
               </div>
-              <HandToHandTable meleeList={prepareHandToHandWeaponList(gear.firearms, gear.equipment)} meleeLevel={1} />
+              { meleeWeaponList.length > 0 && (
+              <HandToHandTable meleeList={meleeWeaponList} meleeLevel={characterStats.handLevel} />
+              )}
               <BodyArmourTable helmet={gear.helmet} vest={gear.vest} />
               <div className="reaction-table-a4-wrapper" style={{ marginLeft: '0.2cm' }}>
                 <ReactionTable sal={combatStats.SAL} />
@@ -86,9 +96,11 @@ const GameSheet = ({ characterStats, combatStats, gear, selectCurrentView }) => 
               <div className="knockout-table-a4-wrapper" style={{ marginLeft: '0.2cm' }}>
                 <KnockoutTable knockoutValue={combatStats.knockoutValue} />
               </div>
+              {gear.grenades.length > 0 && (
               <div className="grenade-list-a4-wrapper">
                 <GrenadeList grenades={gear.grenades} />
               </div>
+              )}
             </div>
             <div className="alm-mods-col">
               <SituationAndStanceModTable />
@@ -105,17 +117,10 @@ const GameSheet = ({ characterStats, combatStats, gear, selectCurrentView }) => 
   );
 };
 GameSheet.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  characterStats: PropTypes.object,
-  // eslint-disable-next-line react/forbid-prop-types
-  combatStats: PropTypes.object,
-  // eslint-disable-next-line react/forbid-prop-types
-  gear: PropTypes.object,
+  characterStats: PropTypes.objectOf(PropTypes.number),
+  combatStats: combatStatsShape,
+  gear: gearShape,
   selectCurrentView: PropTypes.func,
 };
-
-// GameSheet.defaultProps = {
-//   gear.firearms:
-// }
 
 export default GameSheet;

@@ -3,6 +3,8 @@ import { shallow, mount } from 'enzyme';
 import GameSheet from './component';
 import { testFAMAS } from '../../helpers/testHelpers';
 
+const grenadeDouble = [{ name: 'The Holy Hand Grenade Of Antioch', qty: 1 }];
+
 const gearDouble = () => ({
   uniform: 'Normal',
   equipment: [],
@@ -90,6 +92,27 @@ describe('<GameSheet>', () => {
     });
     it('should render damage bonus', () => {
       expect(wrapperCombatStats.text()).toContain('Damage Bonus:1.5');
+    });
+  });
+  describe('conditional rendering of sections', () => {
+    const wrapper = shallow(<GameSheet {...props} />);
+    it('should not render grenade list if no grenades in inventory', () => {
+      expect(wrapper.find('GrenadeList').exists()).toBe(false);
+    });
+    it('should render grenade list if grenades in inventory', () => {
+      const newPropsWithGrenade = props;
+      newPropsWithGrenade.gear.grenades = grenadeDouble;
+      wrapper.setProps({ ...newPropsWithGrenade });
+      expect(wrapper.find('GrenadeList').exists()).toBe(true);
+    });
+    it('should render melee list if melee weapons in inventory', () => {
+      expect(wrapper.find('HandToHandTable').exists()).toBe(true);
+    });
+    it('should not render melee list if no melee weapons in inventory', () => {
+      const newPropsWithoutGun = props;
+      newPropsWithoutGun.gear.firearms = [];
+      wrapper.setProps({ ...newPropsWithoutGun });
+      expect(wrapper.find('HandToHandTable').exists()).toBe(false);
     });
   });
 });
