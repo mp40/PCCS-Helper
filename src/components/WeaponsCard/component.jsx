@@ -114,7 +114,7 @@ class WeaponsCard extends Component {
     const selectedGrenades = getSelectedWeapons(gear.grenades);
 
     return (
-      <div style={{ width: '33%' }} className="WeaponSelect">
+      <div style={{ width: '36%' }} className="WeaponSelect">
 
         <WeaponsCardBody
           selectedGuns={selectedGuns}

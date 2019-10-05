@@ -120,7 +120,7 @@ class EquipmentCard extends Component {
   }
 
   renderButtonRow = () => (
-    <div style={{ marginTop: '-0.5rem', marginBottom: '.5rem' }}>
+    <div style={{ marginTop: '-1rem', marginBottom: '.5rem' }}>
       <ButtonStandard
         id="addEquipment"
         name="Add Equipment"
@@ -172,7 +172,7 @@ class EquipmentCard extends Component {
     const totalEquipWeight = findEquipmentWeight(gear.equipment);
 
     return (
-      <div style={{ width: '40%' }} className="equipmentSelect">
+      <div style={{ width: '36%' }} className="equipmentSelect">
         {this.renderButtonRow()}
         {this.renderEquipmentCardTable(totalEquipWeight)}
         {this.renderEquipmentDropdown()}

@@ -19,4 +19,8 @@ h1 {
   font-size: 56px;
 }
 
+.App-body {
+  font-size: calc(1px + 2vmin);
+}
+
 button:focus { outline: none; }
