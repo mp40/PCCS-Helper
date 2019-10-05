@@ -19,9 +19,16 @@ describe('preparing Hand To Hand weapon array', () => {
       expect(prepareHandToHandWeaponList([{ list: 'sniperRifles', weight: 11.1 }])).toStrictEqual(['Light Rifle']);
       expect(prepareHandToHandWeaponList([{ list: 'sniperRifles', weight: 11.2 }])).toStrictEqual(['Heavy Rifle']);
     });
+    it('should treat shotguns as rifles', () => {
+      expect(prepareHandToHandWeaponList([{ list: 'shotguns', weight: 11.1 }])).toStrictEqual(['Light Rifle']);
+      expect(prepareHandToHandWeaponList([{ list: 'shotguns', weight: 11.2 }])).toStrictEqual(['Heavy Rifle']);
+    });
+    it('should treat sawn off shotgun as SMG', () => {
+      expect(prepareHandToHandWeaponList([{ name: 'Sawed-Off Shotgun', list: 'shotguns' }])).toStrictEqual(['SMG']);
+    });
     it('should return first legit weapon if non-legit melee firearms preceed', () => {
       const shortGunList = [{ list: 'mgs' }, { list: 'smgs' }];
-      const longGunList = [{ list: 'mgs' }, { list: 'shotguns' }, { list: 'made up' }, { list: 'smgs' }, { list: 'pistols' }];
+      const longGunList = [{ list: 'mgs' }, { list: 'made up' }, { list: 'smgs' }, { list: 'pistols' }];
       expect(prepareHandToHandWeaponList(shortGunList)).toStrictEqual(['SMG']);
       expect(prepareHandToHandWeaponList(longGunList)).toStrictEqual(['SMG']);
     });
@@ -79,7 +86,7 @@ describe('preparing Hand To Hand weapon array', () => {
     });
     it('should have a max length of four', () => {
       const result = prepareHandToHandWeaponList(
-        [shotgun, smg, pistol], [basicPouch, bayonet, billyClub, entrenchingTool, screwDriver],
+        [smg, shotgun, pistol], [basicPouch, bayonet, billyClub, entrenchingTool, screwDriver],
       );
       expect(result.length).toBe(4);
       expect(result).toStrictEqual(['SMG', 'Knife, Combat', 'Billy Club', 'Entrenching Tool (1 hand)']);

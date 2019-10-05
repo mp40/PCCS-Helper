@@ -25,6 +25,7 @@ const meleeNameList = {
   heavy: 'Heavy Rifle',
   rifles: true,
   sniperRifles: true,
+  shotguns: true,
 };
 
 const getRifleWeightClass = weight => (weight < 11.2 ? 'light' : 'heavy');
@@ -34,7 +35,10 @@ const getFirearmForMeleeList = (firearmsArray) => {
   if (firearmsArray[0] === undefined) {
     return [];
   }
-  const tag = filteredArray[0].list === 'rifles' || filteredArray[0].list === 'sniperRifles'
+  if (firearmsArray[0].name === 'Sawed-Off Shotgun') {
+    return ['SMG'];
+  }
+  const tag = filteredArray[0].list === 'rifles' || filteredArray[0].list === 'sniperRifles' || filteredArray[0].list === 'shotguns'
     ? getRifleWeightClass(filteredArray[0].weight)
     : filteredArray[0].list;
 
