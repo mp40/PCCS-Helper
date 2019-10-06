@@ -2,6 +2,7 @@
     width: 3cm;
     font-size: 12pt;
     margin-top: .5cm;
+    margin-left: .2cm;
 }
 
 .kv-table {
@@ -21,4 +22,8 @@
 
 .kv-table-row > div {
     width: 40%;
+}
+
+.kv-table-row > div:nth-of-type(2) {
+    text-align: center;
 }

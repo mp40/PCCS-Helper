@@ -43,3 +43,12 @@ export const tableLineShape = PropTypes.shape({
   tag: PropTypes.array,
   array: PropTypes.array,
 });
+
+export const armourShape = PropTypes.shape({
+  name: PropTypes.string,
+  pf: PropTypes.number,
+  bpf: PropTypes.number,
+  ac: PropTypes.string,
+  weight: PropTypes.number,
+  tags: PropTypes.arrayOf(PropTypes.string),
+});

@@ -61,3 +61,7 @@
     width: 13.6cm;
     align-content: flex-start;
 }
+
+.ActionTable-a4-container {
+   margin-left: .2cm;
+}

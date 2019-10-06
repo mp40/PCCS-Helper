@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import BodyArmourSelection from '../BodyArmourSelection';
 import { helmetStats, bodyArmorStats } from '../../data/uniformAndArmourTypes';
+import { armourShape } from '../../helpers/proptypeShapes';
 
 export const selectArmourList = armourType => (armourType === 'helmet' ? helmetStats() : bodyArmorStats());
 
@@ -53,10 +54,8 @@ const BodyArmourCard = ({ helmet, vest, changeHelmet, changeVest }) => {
 };
 
 BodyArmourCard.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  helmet: PropTypes.object,
-  // eslint-disable-next-line react/forbid-prop-types
-  vest: PropTypes.object,
+  helmet: armourShape,
+  vest: armourShape,
   changeHelmet: PropTypes.func,
   changeVest: PropTypes.func,
 };

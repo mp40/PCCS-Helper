@@ -25,3 +25,8 @@
  .combatActionsA4 .impluseTH {
      width: .7cm;
   }
+
+  .combatActionsA4 .actionsHeader {
+      background: black;
+  }
+
