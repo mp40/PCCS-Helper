@@ -160,6 +160,33 @@ export const rifles = () => [
     tof: [0, 1, 1, 2, 3, 6, 10, 14],
     offical: true,
   },
+  {
+    name: 'M1949-56',
+    list: 'rifles',
+    calibre: '7.5 x 54mm',
+    qty: 1,
+    length: 40,
+    weight: 9.6,
+    rt: 8,
+    rof: '*',
+    mag: [{ type: 'Mag', weight: 0.95, cap: 10, qty: 0 }],
+    kd: 9,
+    sab: 5,
+    aim: {
+      ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      mod: [-23, -12, -9, -7, -6, -5, -4, -3, -2, -1, 0],
+    },
+    projectiles: [
+      {
+        type: 'FMJ',
+        pen: [18, 18, 17, 15, 14, 9.7, 7, 5],
+        dc: [7, 7, 7, 7, 7, 6, 6, 5],
+      },
+    ],
+    ba: [62, 54, 45, 38, 33, 24, 18, 14],
+    tof: [0, 0, 1, 2, 2, 5, 8, 12],
+    offical: true,
+  },
 ];
 
 export const smgs = () => [
