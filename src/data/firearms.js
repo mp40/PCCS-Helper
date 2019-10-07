@@ -28,6 +28,17 @@ const rifleM14 = () => {
   return rifle;
 };
 
+const rifleFNFAL = () => {
+  const rifle = new BattleRifleClass('FN FAL', 43, 10.8);
+  rifle.rof = '*6';
+  rifle.mag[0].weight = 1.4;
+  rifle.aim.mod[1] = -13;
+  rifle.projectiles[0].pen[6] = 7.4;
+  rifle.ma = [0.6, 1, 3, 4, 6, 13, 19, 25];
+  rifle.tof[7] = 11;
+  return rifle;
+};
+
 export const rifles = () => [
   new KalashnikovClass('AK47', 34, 11.3),
   new KalashnikovClass('AKM 47', 35, 8.7),
@@ -99,6 +110,7 @@ export const rifles = () => [
     offical: true,
     bipod: true,
   },
+  rifleFNFAL(),
   new BattleRifleClass('L1A1', 45, 11),
   rifleL1A1F1(),
   rifleM14(),
@@ -134,33 +146,6 @@ export const rifles = () => [
   new M1CarbineClass(),
   getM2Carbine(),
   {
-    name: 'SKS',
-    list: 'rifles',
-    calibre: '7.62 x 39mm',
-    qty: 1,
-    length: 40,
-    weight: 8.6,
-    rt: 9,
-    rof: '*',
-    mag: [{ type: 'CS', weight: 0.62, cap: 10, qty: 0 }],
-    kd: 7,
-    sab: 5,
-    aim: {
-      ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-      mod: [-23, -12, -9, -7, -6, -5, -3, -3, -2, -1],
-    },
-    projectiles: [
-      {
-        type: 'FMJ',
-        pen: [12, 12, 11, 9.4, 8.4, 5.6, 3.8, 2.6],
-        dc: [7, 7, 7, 6, 6, 5, 3, 2],
-      },
-    ],
-    ba: [58, 49, 40, 33, 28, 18, 12, 8],
-    tof: [0, 1, 1, 2, 3, 6, 10, 14],
-    offical: true,
-  },
-  {
     name: 'M1949-56',
     list: 'rifles',
     calibre: '7.5 x 54mm',
@@ -185,6 +170,33 @@ export const rifles = () => [
     ],
     ba: [62, 54, 45, 38, 33, 24, 18, 14],
     tof: [0, 0, 1, 2, 2, 5, 8, 12],
+    offical: true,
+  },
+  {
+    name: 'SKS',
+    list: 'rifles',
+    calibre: '7.62 x 39mm',
+    qty: 1,
+    length: 40,
+    weight: 8.6,
+    rt: 9,
+    rof: '*',
+    mag: [{ type: 'CS', weight: 0.62, cap: 10, qty: 0 }],
+    kd: 7,
+    sab: 5,
+    aim: {
+      ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      mod: [-23, -12, -9, -7, -6, -5, -3, -3, -2, -1],
+    },
+    projectiles: [
+      {
+        type: 'FMJ',
+        pen: [12, 12, 11, 9.4, 8.4, 5.6, 3.8, 2.6],
+        dc: [7, 7, 7, 6, 6, 5, 3, 2],
+      },
+    ],
+    ba: [58, 49, 40, 33, 28, 18, 12, 8],
+    tof: [0, 1, 1, 2, 3, 6, 10, 14],
     offical: true,
   },
 ];
