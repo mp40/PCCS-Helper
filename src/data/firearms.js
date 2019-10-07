@@ -1,4 +1,4 @@
-import { M1CarbineClass, getM2Carbine, M16Class, M16LateClass, KalashnikovClass } from './firearmsClasses';
+import { M1CarbineClass, getM2Carbine, M16Class, M16LateClass, KalashnikovClass, BattleRifleClass } from './firearmsClasses';
 
 export const filterableCalibers = () => [
   '7.62 x 39mm',
@@ -7,6 +7,25 @@ export const filterableCalibers = () => [
   '7.62mm NATO',
   '9mm Parabellum',
 ];
+
+const rifleL1A1F1 = () => {
+  const rifle = new BattleRifleClass('L1A1 F1', 42, 12);
+  rifle.mag[0].weight = 1.6;
+  rifle.aim.mod[2] = -10;
+  rifle.projectiles[0].pen = [18, 18, 17, 15, 14, 9.8, 7.0, 5.0];
+  rifle.projectiles[0].dc[5] = 6;
+  return rifle;
+};
+
+const rifleM14 = () => {
+  const rifle = new BattleRifleClass('M14', 44, 11.2);
+  rifle.mag[0].weight = 1.6;
+  rifle.aim.ac[10] = 12;
+  rifle.aim.mod[2] = -10;
+  rifle.ma = [0.6, 1, 2, 4, 6, 12, 19, 25];
+  rifle.tof[7] = 11;
+  return rifle;
+};
 
 export const rifles = () => [
   new KalashnikovClass('AK47', 34, 11.3),
@@ -79,6 +98,9 @@ export const rifles = () => [
     offical: true,
     bipod: true,
   },
+  new BattleRifleClass('L1A1', 45, 11),
+  rifleL1A1F1(),
+  rifleM14(),
   new M16Class('M16', 39, 8.7),
   new M16LateClass('M16A1', 39, 8),
   {
@@ -149,6 +171,7 @@ export const smgs = () => [
     ma: [0.3, 0.5, 1, 2, 3, 7, 10, 13],
     ba: [45, 36, 27, 20, 15, 6, 0, -3],
     tof: [0, 1, 2, 4, 6, 13, 23, 32],
+    selector: 'Full Auto Only',
     offical: false,
   },
   {
