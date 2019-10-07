@@ -284,6 +284,63 @@ export const smgs = () => [
     selector: 'Full Auto Only',
     offical: true,
   },
+  {
+    name: 'Sten Mk2',
+    list: 'smgs',
+    calibre: '9mm Parabellum',
+    qty: 1,
+    length: '30',
+    weight: 7.2,
+    rt: 9,
+    rof: '*5',
+    mag: [{ type: 'Mag', weight: 1.3, cap: 32, qty: 0 }],
+    kd: 3,
+    sab: 3,
+    aim: {
+      ac: [1, 2, 3, 4, 5, 6, 7, 8],
+      mod: [-22, -12, -9, -7, -6, -5, -4, -3],
+    },
+    projectiles: [
+      {
+        type: 'FMJ',
+        pen: [2.3, 2.1, 1.8, 1.4, 1.1, 0.5, 0.2, 0.1],
+        dc: [3, 3, 3, 2, 1, 1, 1, 1],
+      },
+    ],
+    ma: [0.2, 0.5, 0.9, 2, 2, 5, 7, 9],
+    ba: [45, 36, 27, 20, 15, 6, 0, -3],
+    tof: [0, 1, 2, 4, 6, 13, 23, 32],
+    offical: true,
+  },
+  {
+    name: 'Thompson M1A1',
+    list: 'smgs',
+    calibre: '45 ACP',
+    qty: 1,
+    length: '32',
+    weight: 12,
+    rt: 8,
+    rof: '*6',
+    mag: [{ type: 'Mag', weight: 2.0, cap: 30, qty: 0 }],
+    kd: 5,
+    sab: 3,
+    aim: {
+      ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      mod: [-24, -14, -10, -8, -7, -6, -5, -4, -3, -2, -1],
+    },
+    projectiles: [
+      {
+        type: 'FMJ',
+        pen: [1.7, 1.5, 1.3, 1.0, 0.8, 0.4, 0.2, 0.1],
+        dc: [3, 3, 2, 1, 1, 1, 1, 1],
+      },
+    ],
+    ma: [0.3, 0.6, 1, 2, 3, 6, 9, 12],
+    ba: [45, 36, 27, 20, 15, 5, 0, -4],
+    tof: [1, 1, 3, 5, 8, 18, 30, 44],
+    selector: 'Full Auto Only',
+    offical: true,
+  },
 ];
 
 export const pistols = () => [
