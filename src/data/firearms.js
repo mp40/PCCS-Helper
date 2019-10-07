@@ -133,6 +133,33 @@ export const rifles = () => [
   },
   new M1CarbineClass(),
   getM2Carbine(),
+  {
+    name: 'SKS',
+    list: 'rifles',
+    calibre: '7.62 x 39mm',
+    qty: 1,
+    length: 40,
+    weight: 8.6,
+    rt: 9,
+    rof: '*',
+    mag: [{ type: 'CS', weight: 0.62, cap: 10, qty: 0 }],
+    kd: 7,
+    sab: 5,
+    aim: {
+      ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      mod: [-23, -12, -9, -7, -6, -5, -3, -3, -2, -1],
+    },
+    projectiles: [
+      {
+        type: 'FMJ',
+        pen: [12, 12, 11, 9.4, 8.4, 5.6, 3.8, 2.6],
+        dc: [7, 7, 7, 6, 6, 5, 3, 2],
+      },
+    ],
+    ba: [58, 49, 40, 33, 28, 18, 12, 8],
+    tof: [0, 1, 1, 2, 3, 6, 10, 14],
+    offical: true,
+  },
 ];
 
 export const smgs = () => [
