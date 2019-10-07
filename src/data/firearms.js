@@ -1,4 +1,4 @@
-import { M1CarbineClass, getM2Carbine, M16Class, M16LateClass, KalashnikovClass, BattleRifleClass } from './firearmsClasses';
+import { M1CarbineClass, getM2Carbine, M16Class, M16LateClass, KalashnikovClass, BattleRifleClass, MilitaryBoltActionClass } from './firearmsClasses';
 
 export const filterableCalibers = () => [
   '7.62 x 39mm',
@@ -40,6 +40,7 @@ const rifleFNFAL = () => {
 };
 
 export const rifles = () => [
+  new MilitaryBoltActionClass('Kar 98k', '7.92mm Mauser', 44, 8.9),
   new KalashnikovClass('AK47', 34, 11.3),
   new KalashnikovClass('AKM 47', 35, 8.7),
   {
