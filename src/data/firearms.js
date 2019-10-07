@@ -114,6 +114,44 @@ export const rifles = () => [
 
 export const smgs = () => [
   {
+    name: 'Carl Gustaf M45',
+    list: 'smgs',
+    calibre: '9mm Parabellum',
+    qty: 1,
+    length: '20/32',
+    weight: 7.6,
+    rt: 8,
+    rof: '*5',
+    mag: [{ type: 'Mag', weight: 1.7, cap: 36, qty: 0 }],
+    kd: 3,
+    sab: 3,
+    aim: {
+      ac: [1, 2, 3, 4, 5, 6, 7, 9],
+      mod: [-22, -12, -9, -7, -6, -5, -4, -3],
+    },
+    projectiles: [
+      {
+        type: 'FMJ',
+        pen: [2.3, 2.1, 1.8, 1.4, 1.1, 0.5, 0.2, 0.1],
+        dc: [3, 3, 3, 2, 1, 1, 1, 1],
+      },
+      {
+        type: 'JHP',
+        pen: [2.2, 2, 1.8, 1.7, 1.3, 0.4, 0.2, 0.1],
+        dc: [5, 4, 4, 3, 2, 1, 1, 1],
+      },
+      {
+        type: 'AP',
+        pen: [3.2, 3, 2.5, 1.9, 1.5, 0.6, 0.3, 0.1],
+        dc: [3, 3, 2, 2, 1, 1, 1, 1],
+      },
+    ],
+    ma: [0.3, 0.5, 1, 2, 3, 7, 10, 13],
+    ba: [45, 36, 27, 20, 15, 6, 0, -3],
+    tof: [0, 1, 2, 4, 6, 13, 23, 32],
+    offical: false,
+  },
+  {
     name: 'F1',
     list: 'smgs',
     calibre: '9mm Parabellum',
