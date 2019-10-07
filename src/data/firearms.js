@@ -281,6 +281,7 @@ export const smgs = () => [
     ma: [0.3, 0.5, 1, 2, 3, 5, 8, 11],
     ba: [47, 39, 30, 23, 18, 8, 3, -1],
     tof: [0, 1, 2, 3, 4, 10, 17, 24],
+    selector: 'Full Auto Only',
     offical: true,
   },
 ];
