@@ -19,7 +19,7 @@
 }
 
 .a4ContentContainer {
-    padding: .8cm 1.5cm;
+    padding: .7cm 1.5cm .5cm;
     display: flex;
 }
 
@@ -60,4 +60,8 @@
     flex-wrap: wrap;
     width: 13.6cm;
     align-content: flex-start;
+}
+
+.ActionTable-a4-container {
+   margin-left: .2cm;
 }

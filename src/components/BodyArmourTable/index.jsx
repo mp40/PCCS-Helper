@@ -1,12 +1,12 @@
 import React from 'react';
-import { PropTypes } from 'prop-types';
+import { armourShape } from '../../helpers/proptypeShapes';
 
 import './BodyArmourTable.css';
 
 const getDefaultArmourValues = name => ({ name, pf: '0', bpf: '0', ac: '-' });
 
 const renderArmourRow = armour => (
-  <tr>
+  <tr className="armour-row-values">
     <td className="name">{armour.name}</td>
     <td className="pf">{armour.pf}</td>
     <td className="bpf">{armour.bpf}</td>
@@ -32,10 +32,8 @@ const BodyArmourTable = ({ helmet, vest }) => (
 );
 
 BodyArmourTable.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  helmet: PropTypes.object,
-  // eslint-disable-next-line react/forbid-prop-types
-  vest: PropTypes.object,
+  helmet: armourShape,
+  vest: armourShape,
 };
 
 BodyArmourTable.defaultProps = {

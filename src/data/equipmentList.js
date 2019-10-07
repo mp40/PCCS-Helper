@@ -4,7 +4,7 @@ export const equipment = () => [
     weight: 2.2,
     qty: 1,
     tags: ['Melee'],
-    melee: ['Baseball Bat (1 hand)', 'Baseball Bat (2 hands'],
+    melee: ['Baseball Bat (1 hand)', 'Baseball Bat (2 hands)'],
   },
   {
     name: 'Basic Pouch',

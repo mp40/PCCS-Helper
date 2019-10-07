@@ -87,7 +87,7 @@ const GameSheet = ({ characterStats, combatStats, gear, selectCurrentView }) => 
                 gunLevel={characterStats.gunLevel}
                 handLevel={characterStats.handLevel}
               />
-              <div style={{ marginLeft: '.2cm' }}>
+              <div className="ActionTable-a4-container">
                 <ActionTable combatActions={combatStats.combatActions} className="A4" />
               </div>
               { meleeWeaponList.length > 0 && (
@@ -97,7 +97,7 @@ const GameSheet = ({ characterStats, combatStats, gear, selectCurrentView }) => 
               <div className="reaction-table-a4-wrapper" style={{ marginLeft: '0.2cm' }}>
                 <ReactionTable sal={combatStats.SAL} />
               </div>
-              <div className="knockout-table-a4-wrapper" style={{ marginLeft: '0.2cm' }}>
+              <div className="knockout-table-a4-wrapper">
                 <KnockoutTable knockoutValue={combatStats.knockoutValue} />
               </div>
               {gear.grenades.length > 0 && (
