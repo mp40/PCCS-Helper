@@ -46,8 +46,8 @@ export const tableLineShape = PropTypes.shape({
 
 export const armourShape = PropTypes.shape({
   name: PropTypes.string,
-  pf: PropTypes.number,
-  bpf: PropTypes.number,
+  pf: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  bpf: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   ac: PropTypes.string,
   weight: PropTypes.number,
   tags: PropTypes.arrayOf(PropTypes.string),

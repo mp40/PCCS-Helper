@@ -23,4 +23,30 @@ describe('validating equipment data', () => {
       expect(equipmentList[i].tags.length > 0).toBe(true);
     }
   });
+  it('should have a melee key for melee weapon array', () => {
+    for (let i = 0; i < equipmentList.length; i += 1) {
+      // eslint-disable-next-line no-prototype-builtins
+      if (equipmentList[i].hasOwnProperty('melee')) {
+        expect(Array.isArray(equipmentList[i].melee)).toBe(true);
+      }
+    }
+  });
+  it('should have a melee key array containing one or two entries', () => {
+    for (let i = 0; i < equipmentList.length; i += 1) {
+      // eslint-disable-next-line no-prototype-builtins
+      if (equipmentList[i].hasOwnProperty('melee')) {
+        expect(equipmentList[i].melee.length > 0).toBe(true);
+        expect(equipmentList[i].melee.length > 2).toBe(false);
+      }
+    }
+  });
+  it('should have a "1 hand" and "2 hands" entry if length is two', () => {
+    for (let i = 0; i < equipmentList.length; i += 1) {
+      // eslint-disable-next-line no-prototype-builtins
+      if (equipmentList[i].hasOwnProperty('melee') && equipmentList[i].melee.length === 2) {
+        expect(equipmentList[i].melee[0].includes('(1 hand)')).toBe(true);
+        expect(equipmentList[i].melee[1].includes('(2 hands)')).toBe(true);
+      }
+    }
+  });
 });
