@@ -19,6 +19,7 @@ const rifleL1A1F1 = () => {
 
 const rifleM14 = () => {
   const rifle = new BattleRifleClass('M14', 44, 11.2);
+  rifle.rof = '*6';
   rifle.mag[0].weight = 1.6;
   rifle.aim.ac[10] = 12;
   rifle.aim.mod[2] = -10;
