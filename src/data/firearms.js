@@ -114,6 +114,34 @@ export const rifles = () => [
 
 export const smgs = () => [
   {
+    name: 'F1',
+    list: 'smgs',
+    calibre: '9mm Parabellum',
+    qty: 1,
+    length: '28',
+    weight: 8.6,
+    rt: 9,
+    rof: '*5',
+    mag: [{ type: 'Mag', weight: 1.4, cap: 34, qty: 0 }],
+    kd: 3,
+    sab: 3,
+    aim: {
+      ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      mod: [-23, -12, -9, -8, -6, -5, -4, -3, -3, -2],
+    },
+    projectiles: [
+      {
+        type: 'FMJ',
+        pen: [2.1, 1.9, 1.6, 1.3, 1.0, 0.4, 0.2, 0.1],
+        dc: [3, 3, 2, 2, 1, 1, 1, 1],
+      },
+    ],
+    ma: [0.2, 0.4, 0.8, 1, 2, 4, 6, 8],
+    ba: [46, 37, 28, 21, 16, 6, 1, -2],
+    tof: [1, 1, 2, 4, 6, 14, 24, 34],
+    offical: true,
+  },
+  {
     name: 'MAT 49',
     list: 'smgs',
     calibre: '9mm Parabellum',
