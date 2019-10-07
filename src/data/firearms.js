@@ -227,6 +227,62 @@ export const smgs = () => [
     selector: 'Full Auto Only',
     offical: true,
   },
+  {
+    name: 'PPSh 41',
+    list: 'smgs',
+    calibre: '7.62mm Tokarev',
+    qty: 1,
+    length: '33',
+    weight: 9.7,
+    rt: 12,
+    rof: '*8',
+    mag: [{ type: 'Drm', weight: 2.4, cap: 71, qty: 0 }],
+    kd: 3,
+    sab: 2,
+    aim: {
+      ac: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      mod: [-23, -13, -9, -8, -6, -5, -4, -3, -2],
+    },
+    projectiles: [
+      {
+        type: 'FMJ',
+        pen: [3.6, 3.3, 2.8, 2.3, 1.8, 0.8, 0.4, 0.2],
+        dc: [4, 4, 3, 2, 2, 1, 1, 1],
+      },
+    ],
+    ma: [0.3, 0.6, 1, 2, 3, 6, 9, 12],
+    ba: [47, 39, 30, 22, 18, 8, 3, -1],
+    tof: [0, 1, 2, 3, 4, 10, 17, 25],
+    offical: true,
+  },
+  {
+    name: 'PPS 43',
+    list: 'smgs',
+    calibre: '7.62mm Tokarev',
+    qty: 1,
+    length: '33',
+    weight: 7.7,
+    rt: 8,
+    rof: '*6',
+    mag: [{ type: 'Mag', weight: 1.2, cap: 35, qty: 0 }],
+    kd: 3,
+    sab: 3,
+    aim: {
+      ac: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      mod: [-22, -12, -9, -7, -6, -5, -4, -3, -2],
+    },
+    projectiles: [
+      {
+        type: 'FMJ',
+        pen: [3.6, 3.3, 2.8, 2.3, 1.8, 0.8, 0.4, 0.2],
+        dc: [4, 4, 3, 2, 2, 1, 1, 1],
+      },
+    ],
+    ma: [0.3, 0.5, 1, 2, 3, 5, 8, 11],
+    ba: [47, 39, 30, 23, 18, 8, 3, -1],
+    tof: [0, 1, 2, 3, 4, 10, 17, 24],
+    offical: true,
+  },
 ];
 
 export const pistols = () => [
