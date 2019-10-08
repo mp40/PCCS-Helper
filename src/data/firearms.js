@@ -106,7 +106,7 @@ export const rifles = () => [
   rifleKarabin(),
   rifleMAS36(),
   new KalashnikovClass('AK47', 34, 11.3),
-  new KalashnikovClass('AKM 47', 35, 8.7),
+  new KalashnikovClass('AKM', 35, 8.7),
   {
     name: 'AK 74',
     list: 'rifles',
@@ -264,6 +264,33 @@ export const rifles = () => [
     ],
     ba: [58, 49, 40, 33, 28, 18, 12, 8],
     tof: [0, 1, 1, 2, 3, 6, 10, 14],
+    offical: true,
+  },
+  {
+    name: 'SVT 40',
+    list: 'rifles',
+    calibre: '7.62 x 54mm',
+    qty: 1,
+    length: 48,
+    weight: 9.2,
+    rt: 8,
+    rof: '*',
+    mag: [{ type: 'Mag', weight: 1.1, cap: 10, qty: 0 }],
+    kd: 12,
+    sab: 7,
+    aim: {
+      ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      mod: [-23, -12, -9, -7, -6, -5, -4, -3, -2, -1, 0],
+    },
+    projectiles: [
+      {
+        type: 'FMJ',
+        pen: [24, 23, 22, 21, 19, 15, 12, 9.4],
+        dc: [8, 8, 8, 8, 8, 7, 7, 6],
+      },
+    ],
+    ba: [63, 56, 48, 41, 36, 27, 21, 17],
+    tof: [0, 0, 1, 2, 2, 5, 8, 11],
     offical: true,
   },
 ];
