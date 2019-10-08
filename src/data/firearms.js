@@ -8,6 +8,31 @@ export const filterableCalibers = () => [
   '9mm Parabellum',
 ];
 
+const rifleCAR16 = () => {
+  const rifle = new M16LateClass('CAR 16', '28/31', 7.1);
+  rifle.aim.ac = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  rifle.aim.mod = [-22, -11, -9, -7, -5, -4, -3, -2, -1];
+  rifle.projectiles = [
+    {
+      type: 'FMJ',
+      pen: [14, 13, 12, 11, 9.3, 5.9, 3.7, 2.3],
+      dc: [6, 6, 6, 5, 5, 4, 3, 2],
+    },
+    {
+      type: 'JHP',
+      pen: [14, 13, 12, 10, 8.9, 5.6, 3.5, 2.2],
+      dc: [8, 7, 7, 7, 7, 6, 4, 3],
+    },
+    {
+      type: 'AP',
+      pen: [20, 19, 17, 15, 13, 8.3, 5.2, 3.3],
+      dc: [6, 6, 5, 5, 4, 3, 3, 2],
+    },
+  ];
+  rifle.tof = [0, 0, 1, 1, 2, 5, 8, 11];
+  return rifle;
+};
+
 const rifleL1A1F1 = () => {
   const rifle = new BattleRifleClass('L1A1 F1', 42, 12);
   rifle.mag[0].weight = 1.6;
@@ -39,8 +64,47 @@ const rifleFNFAL = () => {
   return rifle;
 };
 
+const rifleHKG3 = () => {
+  const rifle = new BattleRifleClass('HK G3', 40, 11.1);
+  rifle.rof = '*5';
+  rifle.mag[0].weight = 1.4;
+  rifle.projectiles[0].pen = [17, 16, 15, 14, 13, 8.9, 6.3, 4.5];
+  rifle.projectiles[0].dc = [8, 7, 7, 7, 7, 6, 6, 4];
+  rifle.ma = [0.5, 1, 2, 3, 5, 10, 14, 19];
+  rifle.ba[2] = 44;
+  rifle.tof = [0, 0, 1, 2, 3, 5, 9, 12];
+  return rifle;
+};
+
+const rifleKarabin = () => {
+  const rifle = new MilitaryBoltActionClass('Karabin M1938', '7.62 x 54mm', 40, 8);
+  rifle.mag[0].weight = 0.27;
+  rifle.kd = 12;
+  rifle.aim.ac = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  rifle.aim.mod = [-22, -12, -9, -7, -6, -4, -3, -2, -1];
+  rifle.projectiles[0].pen = [23, 22, 21, 20, 18, 14, 11, 8.9];
+  rifle.projectiles[0].dc = [8, 8, 8, 8, 8, 7, 7, 6];
+  rifle.ba = [64, 54, 48, 41, 36, 27, 21, 17];
+  rifle.tof = [0, 0, 1, 2, 2, 5, 8, 11];
+  return rifle;
+};
+
+const rifleMAS36 = () => {
+  const rifle = new MilitaryBoltActionClass('MAS 36', '7.5mm MAS', 40, 8.6);
+  rifle.mag[0].weight = 0.31;
+  rifle.kd = 9;
+  rifle.sab = 6;
+  rifle.projectiles[0].pen = [18, 18, 17, 15, 14, 9.8, 7, 5.1];
+  rifle.projectiles[0].dc = [8, 7, 7, 7, 7, 6, 6, 4];
+  rifle.ba = [61, 53, 45, 37, 32, 23, 17, 13];
+  rifle.tof = [0, 0, 1, 2, 2, 5, 8, 12];
+  return rifle;
+};
+
 export const rifles = () => [
   new MilitaryBoltActionClass('Kar 98k', '7.92mm Mauser', 44, 8.9),
+  rifleKarabin(),
+  rifleMAS36(),
   new KalashnikovClass('AK47', 34, 11.3),
   new KalashnikovClass('AKM 47', 35, 8.7),
   {
@@ -71,6 +135,7 @@ export const rifles = () => [
     tof: [0, 0, 1, 2, 2, 5, 8, 12],
     offical: true,
   },
+  rifleCAR16(),
   {
     name: 'FAMAS',
     list: 'rifles',
@@ -112,6 +177,7 @@ export const rifles = () => [
     bipod: true,
   },
   rifleFNFAL(),
+  rifleHKG3(),
   new BattleRifleClass('L1A1', 45, 11),
   rifleL1A1F1(),
   rifleM14(),
