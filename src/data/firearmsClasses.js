@@ -153,3 +153,35 @@ export class BattleRifleClass {
     this.offical = true;
   }
 }
+
+export class MilitaryBoltActionClass {
+  constructor(name, calibre, length, weight) {
+    this.name = name;
+    this.list = 'rifles';
+    this.calibre = calibre;
+    this.qty = 1;
+    this.length = length;
+    this.weight = weight;
+    this.rt = 8;
+    this.rof = '3';
+    this.mag = [{ type: 'CS', weight: 0.36, cap: 5, qty: 0 }];
+    this.kd = 10;
+    this.sab = 7;
+    this.aim = {
+      ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      mod: [-23, -12, -9, -7, -6, -5, -4, -3, -2, -1, 0],
+    };
+    this.projectiles = [
+      {
+        type: 'FMJ',
+        pen: [18, 17, 16, 15, 14, 11, 8.1, 6.2],
+        dc: [8, 8, 8, 7, 7, 7, 6, 6],
+      },
+    ];
+    this.trb = null;
+    this.ma = null;
+    this.ba = [63, 55, 47, 39, 35, 25, 19, 15];
+    this.tof = [0, 0, 1, 2, 3, 6, 9, 12];
+    this.offical = true;
+  }
+}
