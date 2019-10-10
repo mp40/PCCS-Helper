@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const TextInput = ({ heading, idRef, equipmentValue, onChange }) => (
+const TextInput = ({ heading, idRef, equipmentValue, onChange, onKeyUpEnter }) => (
   <div className="subContainer">
     <div>{heading}</div>
     <input
@@ -11,6 +11,7 @@ const TextInput = ({ heading, idRef, equipmentValue, onChange }) => (
       className="equipInput"
       value={equipmentValue}
       onChange={onChange}
+      onKeyUp={onKeyUpEnter}// <todo
     />
   </div>
 );

@@ -32,6 +32,7 @@ import { addGrenadeReducer } from './addGrenadeReducer';
 import { removeGrenadeReducer } from './removeGrenadeReducer';
 import { increaseGrenadeReducer } from './increaseGrenadeReducer';
 import { decreaseGrenadeReducer } from './decreaseGrenadeReducer';
+import { changeNameReducer } from './changeNameReducer';
 
 const initialState = initialStore;
 
@@ -105,6 +106,8 @@ function reduceActions(state = initialState, action) {
       return increaseGrenadeReducer(state, action);
     case 'GRENADE_QTY_DECREASED':
       return decreaseGrenadeReducer(state, action);
+    case 'CHARACTER_NAME_CHANGED':
+      return changeNameReducer(state, action);
     case 'TOTAL_WEIGHT':
       return { ...state, totalWeight: action.payload };
     case 'UPDATE_ATTRIBUTES':

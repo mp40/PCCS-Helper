@@ -193,3 +193,8 @@ export const decreaseGrenadeQty = grenade => ({
   type: 'GRENADE_QTY_DECREASED',
   payload: grenade,
 });
+
+export const changeCharacterName = name => ({
+  type: 'CHARACTER_NAME_CHANGED',
+  payload: name,
+});
