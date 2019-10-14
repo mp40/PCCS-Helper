@@ -3,6 +3,7 @@ import GameSheet from './component';
 import { selectCurrentView } from '../../actions';
 
 const mapStateToProps = state => ({
+  currentCharacter: state.currentCharacter,
   characterStats: state.characterStats,
   combatStats: state.combatStats,
   gear: state.gear,

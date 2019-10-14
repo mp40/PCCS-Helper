@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/no-autofocus */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
@@ -35,7 +38,6 @@ class StatInput extends Component {
               ? (
                 <input
                   type="text"
-                  // eslint-disable-next-line jsx-a11y/no-autofocus
                   autoFocus
                   className="attInput"
                   onKeyUp={(event) => {

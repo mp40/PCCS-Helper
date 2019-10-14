@@ -6,6 +6,7 @@ const idRef = () => 'equipNameInput';
 const heading = () => 'Equipment Name';
 const equipmentValue = () => '';
 const onChange = jest.fn();
+const onKeyUpEnter = jest.fn();
 
 describe('TextInput Component', () => {
   const newWrapper = () => shallow(<TextInput
@@ -13,6 +14,7 @@ describe('TextInput Component', () => {
     equipmentValue={equipmentValue()}
     heading={heading()}
     idRef={idRef()}
+    onKeyUp={onKeyUpEnter}
   />);
   describe('the behaviour of TextInput', () => {
     const wrapper = newWrapper();
@@ -23,7 +25,7 @@ describe('TextInput Component', () => {
       expect(wrapper.text()).toContain(heading());
     });
     it('should render the correct stat value', () => {
-      expect(wrapper.find('.equipInput').text()).toBe(String(equipmentValue()));
+      expect(wrapper.find('.textInput').text()).toBe(String(equipmentValue()));
     });
   });
 });

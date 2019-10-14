@@ -7,6 +7,7 @@ import EquipmentCard from '../EquipmentCard';
 import ClothingCard from '../ClothingCard';
 import WeaponsCard from '../WeaponsCard';
 import BodyArmourCard from '../BodyArmourCard';
+import NameCard from '../NameCard';
 
 import './CharacterGeneration.css';
 
@@ -47,6 +48,7 @@ class CharacterGeneration extends Component {
     return (
       <div className="createCharContainer">
         <div className="dataCardContainer">
+          <NameCard />
           <AttributeCard />
           <CombatCard />
           <ActionsCard />

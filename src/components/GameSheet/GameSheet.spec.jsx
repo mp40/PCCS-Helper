@@ -36,6 +36,7 @@ const combatStats = {
 };
 
 const props = {
+  currentCharacter: undefined,
   totalWeight: 20.5,
   characterStats,
   combatStats,
@@ -57,6 +58,18 @@ describe('<GameSheet>', () => {
     });
     it('should call selectCurrentView with "createChar"', () => {
       expect(spySelectCurrentView).toHaveBeenCalled();
+    });
+  });
+  describe('the charcater name', () => {
+    const wrapper = shallow(<GameSheet {...props} />);
+    it('should not render the character name line if name does not exist', () => {
+      expect(wrapper.find('.character-name').exists()).toBe(false);
+    });
+    it('should render the character name', () => {
+      const newPropsWithName = props;
+      newPropsWithName.currentCharacter = 'Biggles';
+      wrapper.setProps({ ...newPropsWithName });
+      expect(wrapper.find('.character-name').text()).toContain('Name: Biggles');
     });
   });
   describe('firearm table', () => {

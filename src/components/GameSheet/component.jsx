@@ -60,7 +60,7 @@ export const prepareHandToHandWeaponList = (
   ...getEquipmentForMeleeList(equipmentArray),
 ].slice(0, 4);
 
-const GameSheet = ({ characterStats, combatStats, gear, selectCurrentView }) => {
+const GameSheet = ({ currentCharacter, characterStats, combatStats, gear, selectCurrentView }) => {
   useEffect(() => {
     window.print();
     selectCurrentView('createChar');
@@ -72,6 +72,11 @@ const GameSheet = ({ characterStats, combatStats, gear, selectCurrentView }) => 
     <div className="a4GameSheet">
       <div className="a4ContentContainer">
         <div className="main-content-right">
+          {currentCharacter.length > 0 && (
+          <div className="character-name">
+            {`Name: ${currentCharacter}`}
+          </div>
+          )}
           <div style={{ display: 'flex' }}>
             <div>
               <WeaponsCardWeaponStats gunObj={gear.firearms[0]} sal={combatStats.SAL} size="a4" />
@@ -120,11 +125,17 @@ const GameSheet = ({ characterStats, combatStats, gear, selectCurrentView }) => 
     </div>
   );
 };
+
 GameSheet.propTypes = {
+  currentCharacter: PropTypes.string,
   characterStats: PropTypes.objectOf(PropTypes.number),
   combatStats: combatStatsShape,
   gear: gearShape,
   selectCurrentView: PropTypes.func,
+};
+
+GameSheet.defaultProps = {
+  currentCharacter: '',
 };
 
 export default GameSheet;
