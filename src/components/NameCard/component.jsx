@@ -9,13 +9,19 @@ import './NameCard.css';
 
 const NameCard = ({ currentCharacter, changeCharacterName }) => {
   const [textInput, toogleTextInput] = useState(false);
+  const [newName, updateNewName] = useState('');
 
-  const handleNameOnChange = (event) => {
+  const handleSubmitName = (event) => {
     if (event.key === 'Enter') {
       toogleTextInput(false);
+      changeCharacterName(newName);
     }
-    changeCharacterName(event.target.value);
   };
+
+  const handleNameOnChange = (event) => {
+    updateNewName(event.target.value);
+  };
+
   return (
     <div className="character-name-card-container">
       <div>Name</div>
@@ -30,9 +36,9 @@ const NameCard = ({ currentCharacter, changeCharacterName }) => {
       {textInput && (
       <div className="character-name-input">
         <TextInput
-          equipmentValue={currentCharacter}
+          equipmentValue={newName}
           onChange={handleNameOnChange}
-          onKeyUpEnter={handleNameOnChange}
+          onKeyUp={handleSubmitName}
         />
       </div>
       )}

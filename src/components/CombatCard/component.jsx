@@ -17,16 +17,14 @@ const renderStatInput = (level, statName, action) => (
 const CombatCard = (props) => {
   const { characterStats, modifyGunCombatLevel, modifyMeleeCombatLevel } = props;
   return (
-    <div>
-      <div id="combatLevelInputContainer" className="tableContainerCombat">
-        <table className="attributeContainer">
-          <tbody>
-            {renderAtrributeAndCombatTableHeadings('Skill')}
-            {renderStatInput(characterStats.gunLevel, 'Gun', modifyGunCombatLevel)}
-            {renderStatInput(characterStats.handLevel, 'Hand', modifyMeleeCombatLevel)}
-          </tbody>
-        </table>
-      </div>
+    <div id="combatLevelInputContainer" className="tableContainerCombat">
+      <table className="attributeContainer">
+        <tbody>
+          {renderAtrributeAndCombatTableHeadings('Skill')}
+          {renderStatInput(characterStats.gunLevel, 'Gun', modifyGunCombatLevel)}
+          {renderStatInput(characterStats.handLevel, 'Hand', modifyMeleeCombatLevel)}
+        </tbody>
+      </table>
     </div>
   );
 };

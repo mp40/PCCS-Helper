@@ -23,6 +23,12 @@
     display: flex;
 }
 
+.character-name {
+    font-weight: bold;
+    margin-top: -0.2cm;
+    margin-bottom: -0.3cm;
+}
+
 .combatStatsInfo {
     font-size: 14pt;
     display: flex;

@@ -2,6 +2,7 @@
     margin-top: 2rem;
     margin-left: 2rem;
     padding: 1rem;
+    color: rgb(85, 83, 83);
     background: whitesmoke;
     border-radius: 3px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -14,8 +15,17 @@
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
+.character-name-card-container > div:nth-of-type(1) {
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+}
+
 .current-character-name {
     min-height: 2.3ex;
+}
+
+.character-name-input {
+    max-height: 2.3ex;
 }
 
 .current-character-name:hover {
