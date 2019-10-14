@@ -24,6 +24,16 @@ describe('<NameCard>', () => {
       expect(wrapper.find('TextInput').exists()).toBe(false);
     });
   });
+  describe('handleSubmitName gaurd clause', () => {
+    const changeCharacterName = jest.fn();
+    const wrapper = mount(<NameCard changeCharacterName={changeCharacterName} />);
+    wrapper.find('.current-character-name').simulate('click');
+    it('should not close text input if "Enter" not pressed', () => {
+      expect(wrapper.find('.character-name-input').exists()).toBe(true);
+      wrapper.find('.character-name-input input').simulate('keyUp', { key: 'Space' });
+      expect(wrapper.find('.character-name-input').exists()).toBe(true);
+    });
+  });
   describe('NameCard intergration test', () => {
     const wrap = mountAppWithStore(storeWithCreateCharacterView());
     const wrappedNameCard = wrap.find('.character-name-card-container');
