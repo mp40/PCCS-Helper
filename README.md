@@ -1,6 +1,6 @@
 ![PCCS Logo](/public/pccsBnW.png)
 
-# Phoenix Command Combat System Assistant 
+# Phoenix Command Combat System Assistant
 
 ### Built with TDD/BDD and CI.
 [![Build Status](https://travis-ci.org/mp40/PCCS-Helper.png?branch=master)](https://travis-ci.org/mp40/PCCS-Helper)
@@ -16,20 +16,22 @@ A beta version for QA testing and user feedback is [deployed here](https://pccs.
 
 Currently the application has the following features:
 
+- Accepts input value for name
 - Accepts input values for attributes
 - Accepts input values for combat levels
 - Calculates combat actions on attribute value, skill level and weight change
-- Calculates damage bonus, base and max speed on attribute value, skill level and weight change
-- Also calculates Intelligence Skill Factor, Agility Skill Factor, Knockout Value which are not yet displayed/directly used
+- Calculates damage bonus, base and max speed, intelligence skill factor, agility skill factor, knockout value on attribute value, skill level and weight change
 - Has filterable equipment list to select equipment from
 - Equipment selection has option of entering equipment not on list
 - Firearms selection, filtereable by firearm type and calibre
 - Supports multiple magazine types for firearms, with ability to specify primary magazine and hide non-primary magazines
 - Ability to add custom magazines to firearm
 - Ability modify firearm weight, changing primary magazine automatically updates firearm weight
+- Grenade selection
 - Body armour selection
+- Able to print basic reference sheet for game play
 
-## Install procedure
+## Install procedure for development
 
 ```
 yarn
@@ -47,15 +49,8 @@ yarn start
 yarn test
 ```
 
-#### WIP
-- Grenade selection
+## Run test coverage report
 
-#### Next
-
-- Refactor code
-- Improve UI/UX
-
-#### To Come
-
-- Hand to hand data
-- Backend
+```
+yarn test --verbose --coverage --watchAll=false
+```
