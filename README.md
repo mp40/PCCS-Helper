@@ -29,6 +29,7 @@ Currently the application has the following features:
 - Ability modify firearm weight, changing primary magazine automatically updates firearm weight
 - Grenade selection
 - Body armour selection
+- Automatically generates hand to hand weapon data from selected equipment and firearms
 - Able to print basic reference sheet for game play
 
 ## Install procedure for development
