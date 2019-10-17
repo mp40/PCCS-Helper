@@ -12,7 +12,8 @@ This was started during my time as a student at Code Chrysalis
 A React-Redux application to assist running calculations required for the Phoenix Command Combat System wargaming/roleplaying rules.
 
 ### This is a work in progress
-A beta version for QA testing and user feedback is [deployed here](https://pccs.herokuapp.com/)
+A beta version for QA testing and user feedback is [deployed here](https://pccs.herokuapp.com/)<br>
+Documentation on how to use the application can be found on [the wiki](https://github.com/mp40/PCCS-Helper/wiki)
 
 Currently the application has the following features:
 
