@@ -5,6 +5,9 @@ describe('preparing Hand To Hand weapon array', () => {
     it('should return an empty array if array is empty', () => {
       expect(prepareHandToHandWeaponList([])).toStrictEqual([]);
     });
+    it('should return an empty array if only gun is machine gun', () => {
+      expect(prepareHandToHandWeaponList([{ list: 'mgs' }])).toStrictEqual([]);
+    });
     it('should return melee equivalent of firearm in index 0 of firearms list', () => {
       expect(prepareHandToHandWeaponList([{ list: 'pistols' }, { list: 'smgs' }])).toStrictEqual(['Pistol']);
       expect(prepareHandToHandWeaponList([{ list: 'smgs' }, { list: 'pistols' }])).toStrictEqual(['SMG']);

@@ -361,6 +361,10 @@ describe('<WeaponsCardWeaponStats/> component', () => {
       const expectedAim9 = testFAMAS().aim.mod[8] + sal;
       expect(aim9.text()).toBe(`${expectedAim9}`);
     });
+    it('should not modify the gun object', () => {
+      const expectedAim9 = testFAMAS().aim.mod[8] + sal;
+      expect(testFAMAS().aim.mod[8]).toBe(expectedAim9 - sal);
+    });
   });
   describe('display recoil recovery', () => {
     const sal = 0;

@@ -32,7 +32,7 @@ const getRifleWeightClass = weight => (weight < 11.2 ? 'light' : 'heavy');
 
 const getFirearmForMeleeList = (firearmsArray) => {
   const filteredArray = firearmsArray.filter(gun => meleeNameList[gun.list]);
-  if (firearmsArray[0] === undefined) {
+  if (filteredArray[0] === undefined) {
     return [];
   }
   if (firearmsArray[0].name === 'Sawed-Off Shotgun') {

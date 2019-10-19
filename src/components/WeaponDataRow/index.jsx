@@ -4,7 +4,9 @@ import { tableLineShape } from '../../helpers/proptypeShapes';
 
 import '../WeaponsCard/WeaponsCard.css';
 
-const WeaponsDataRow = ({ tableLine, index }) => {
+const getModPlusSal = (mod, sal) => (mod === undefined ? '' : mod + sal);
+
+const WeaponsDataRow = ({ tableLine, sal, index }) => {
   const borderLeftAndRight = { borderLeft: '1px solid rgb(85, 83, 83)', borderRight: '1px solid rgb(85, 83, 83)' };
 
   return (
@@ -15,7 +17,7 @@ const WeaponsDataRow = ({ tableLine, index }) => {
       </td>
       <td style={borderLeftAndRight}>
         <span className="AimCount">{tableLine.aim[0]}</span>
-        <span className="AimMod">{tableLine.aim[1]}</span>
+        <span className="AimMod">{getModPlusSal(tableLine.aim[1], sal)}</span>
       </td>
       <td>
         <span className="AimCount" style={{ marginLeft: '.2rem' }}>{tableLine.tag[0]}</span>
@@ -34,7 +36,12 @@ const WeaponsDataRow = ({ tableLine, index }) => {
 
 WeaponsDataRow.propTypes = {
   tableLine: tableLineShape,
+  sal: PropTypes.number,
   index: PropTypes.number,
+};
+
+WeaponsDataRow.defaultProps = {
+  sal: 0,
 };
 
 export default WeaponsDataRow;
