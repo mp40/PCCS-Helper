@@ -19,13 +19,6 @@ export const findSkillLevelFromSAL = (playerSAL) => {
   return result === -1 ? undefined : result;
 };
 
-const applyModsToAimTime = (gunObj, sal = 0) => {
-  const updatedAim = gunObj.aim.mod.map(value => value + sal);
-  const newFirearm = gunObj;
-  newFirearm.aim.mod = updatedAim;
-  return newFirearm;
-};
-
 const getFirearmNameAndRecoil = (gunObj, skillLevel) => {
   if (skillLevel === undefined) {
     return gunObj.name;
@@ -64,10 +57,11 @@ const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
             </tr>
           </thead>
           <tbody>
-            {buildArrayForGunTable(applyModsToAimTime(gunObj, sal)).map((tableLine, index) => (
+            {buildArrayForGunTable(gunObj).map((tableLine, index) => (
               <WeaponDataRow
                 key={index}
                 tableLine={tableLine}
+                sal={sal}
                 index={index}
               />
             ))}
