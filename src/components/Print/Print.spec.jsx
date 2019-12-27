@@ -18,7 +18,7 @@ describe('Printing the reference sheet', () => {
     wrapper.setProps({ currentView: 'printRefSheet' });
     expect(wrapper.find('Connect(GameSheet)').exists()).toBe(true);
   });
-  it('should finish the print life cycle with currentView value ??', () => {
+  it('should finish the print life cycle with GameSheet closed', () => {
     global.print = jest.fn();
     const wrapper = mountAppWithStore(storeWithCreateCharacterView());
     wrapper.find('.print-button').simulate('click');
