@@ -8,7 +8,7 @@ import GameSheet from './components/GameSheet';
 
 import './App.css';
 
-const App = ({ currentView }) => (
+export const App = ({ currentView }) => (
   <div className="App">
     <header className="App-header">
       <NavBar />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
@@ -21,14 +21,7 @@ export const mountAppWithStore = (mockStore = initialStore) => {
 
 export const createWrapperTextInput = wrapper => ((name, value) => wrapper.find(name).simulate('change', { target: { value } }));
 
-class StoreWithEquipment extends MockState {
-  constructor() {
-    super();
-    this.gear.equipment = [{ name: 'newEquipment', weight: 1337, qty: 1, tags: ['test'] }];
-  }
-}
-export const storeWithEquipment = () => new StoreWithEquipment();
-
+//mptodo
 class StoreWithCharacterView extends MockState {
   constructor(gun) {
     super(gun);
