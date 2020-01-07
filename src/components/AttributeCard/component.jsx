@@ -6,15 +6,14 @@ import { isValidAttributeStat } from '../../helpers/gaurds';
 
 const statNameArray = ['Strength', 'Intelligence', 'Willpower', 'Health', 'Agility'];
 
-const AttributeCard = (props) => {
-  const {
-    characterStats,
-    modifyStrengthValue,
-    modifyIntelligenceValue,
-    modifyWillpowerValue,
-    modifyHealthValue,
-    modifyAgilityValue,
-  } = props;
+const AttributeCard = ({
+  characterStats,
+  modifyStrengthValue,
+  modifyIntelligenceValue,
+  modifyWillpowerValue,
+  modifyHealthValue,
+  modifyAgilityValue,
+}) => {
   const actionsArray = [
     modifyStrengthValue,
     modifyIntelligenceValue,
