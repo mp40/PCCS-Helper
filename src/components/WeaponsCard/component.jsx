@@ -72,7 +72,7 @@ class WeaponsCard extends Component {
 
     return (
       <div className="equipmentModalContainer">
-        <div className="ModifyWeaponStatTableContainer" style={{ fontSize: 'medium' }}>
+        <div className="--card ModifyWeaponStatTableContainer" style={{ fontSize: 'medium' }}>
           {this.renderCloseFirearmStatButton()}
           <div style={{ display: 'flex' }}>
             {this.renderFirearmStats(gunToModify)}
@@ -114,7 +114,7 @@ class WeaponsCard extends Component {
     const selectedGrenades = getSelectedWeapons(gear.grenades);
 
     return (
-      <div style={{ width: '36%' }} className="WeaponSelect">
+      <div style={{ width: '36%' }} className="--card WeaponSelect">
 
         <WeaponsCardBody
           selectedGuns={selectedGuns}

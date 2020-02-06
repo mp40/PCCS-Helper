@@ -3,7 +3,7 @@ import ActionTable from './ActionTable';
 import { combatStatsShape } from '../../helpers/proptypeShapes';
 
 const ActionsCard = ({ combatStats }) => (
-  <div className="combatDataContainer">
+  <div className="--card combatDataContainer">
     <ActionTable
       combatActions={combatStats.combatActions}
     />

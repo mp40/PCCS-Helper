@@ -59,7 +59,7 @@ const GrenadeSelectModal = ({ toggleOffWeaponCardViews, addGrenade, grenades }) 
 
   return (
     <div className="equipmentModalContainer">
-      <div className="grenadeListCard">
+      <div className="--card grenadeListCard">
         <div style={{ margin: '1rem 1rem' }}>
           {renderGrenadeHeading()}
           <div>

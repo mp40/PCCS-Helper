@@ -85,7 +85,7 @@ renderHeading = toggleOffEquipmentCardViews => (
 
     return (
       <div className="customEquipmentModalContainer">
-        <div className="customEquipmentListCard">
+        <div className="--card customEquipmentListCard">
           <div className="customContainer">
             {this.renderHeading(toggleOffEquipmentCardViews)}
             {this.renderTextInput('Equipment Name', 'equipNameInput', equipmentName, this.handleChange.bind(this, 'name'))}

@@ -93,7 +93,7 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, handleAddFirearm }) =
 
   return (
     <>
-      <div className="FirearmSelectionListCard" style={{ zIndex: 10 }}>
+      <div className="--card FirearmSelectionListCard" style={{ zIndex: 10 }}>
         <div className="equipmentListHeader">
         Select firearms
           <ButtonStandard

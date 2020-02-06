@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ButtonStandard from '../widgets/buttons/ButtonStandard';
+
 import './BodyArmourSelection.css';
 
 const renderHeading = armourType => (armourType === 'helmet' ? 'Select Helmet' : 'Select Vest');

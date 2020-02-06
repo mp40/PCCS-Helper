@@ -75,7 +75,7 @@ render() {
   return (
     <div className="equipmentModalContainer">
 
-      <div className="equipmentListCard">
+      <div className="--card equipmentListCard">
         <div className="equipmentListHeader">
                     Select Equipment
           <ButtonStandard

@@ -172,7 +172,7 @@ class EquipmentCard extends Component {
     const totalEquipWeight = findEquipmentWeight(gear.equipment);
 
     return (
-      <div style={{ width: '36%' }} className="equipmentSelect">
+      <div style={{ width: '36%' }} className="--card equipmentSelect">
         {this.renderButtonRow()}
         {this.renderEquipmentCardTable(totalEquipWeight)}
         {this.renderEquipmentDropdown()}
