@@ -18,7 +18,7 @@ const BodyArmourTable = ({ helmet, vest }) => (
     <thead>
       <tr>
         {['Body Armour', 'PF', 'BPF', 'AC'].map((value) => (
-          <th>{value}</th>
+          <th key={value}>{value}</th>
         ))}
       </tr>
     </thead>

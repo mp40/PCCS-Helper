@@ -55,10 +55,9 @@ class ClothingCard extends Component {
         </table>
         <div>
           <select id="uniformDropdownSelector" onChange={this.handleChangeUniform}>
-            <option>Select Uniform</option>
-            <option>Normal</option>
-            <option>Tropical</option>
-            <option>Winter</option>
+            {['Select Uniform', 'Normal', 'Tropical', 'Winter'].map((value) => (
+              <option key={value}>{value}</option>
+            ))}
           </select>
         </div>
       </div>
