@@ -5,14 +5,14 @@ import './ActionTable.css';
 
 const { actionsPerImpulse } = require('../../helpers/helperFunctions');
 
+const headings = ['Imp', '1', '2', '3', '4'];
+
 const actionsRow = (idRef, heading, actionArray) => (
   <>
-    <tr id={idRef} className="actionsTable">
-      <td>{heading}</td>
-      <td>{actionArray[0]}</td>
-      <td>{actionArray[1]}</td>
-      <td>{actionArray[2]}</td>
-      <td>{actionArray[3]}</td>
+    <tr className="actionsTable">
+      {[heading, actionArray[0], actionArray[1], actionArray[2], actionArray[3]].map((value, dex) => (
+        <td key={headings[dex]}>{value}</td>
+      ))}
     </tr>
   </>
 );
@@ -24,11 +24,9 @@ const ActionTable = ({ combatActions, className }) => {
     <table className={`combatActions ${className}`}>
       <thead>
         <tr className="actionsHeader">
-          <th className="actionType">Imp</th>
-          <th className="impluseTH">1</th>
-          <th className="impluseTH">2</th>
-          <th className="impluseTH">3</th>
-          <th className="impluseTH">4</th>
+          {headings.map((value) => (
+            <th key={value}>{value}</th>
+          ))}
         </tr>
       </thead>
       <tbody>

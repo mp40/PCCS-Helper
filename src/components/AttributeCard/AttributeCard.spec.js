@@ -60,8 +60,8 @@ describe('Character Attribute Stat Input', () => {
       expect(healthLine.find('.attValue').text()).toBe('18');
     });
     it('updates actions and other combat stats when attributes change', () => {
-      const gunActionsTable = wrapper.find('#gunActionTable');
-      const handActionsTable = wrapper.find('#handActionTable');
+      const gunActionsTable = wrapper.find('.actionsTable').at(0);
+      const handActionsTable = wrapper.find('.actionsTable').at(1);
       const additionalData = wrapper.find('.additionalCombatData');
       expect(gunActionsTable.text()).toEqual('Gun2121');
       expect(handActionsTable.text()).toEqual('Hand3222');

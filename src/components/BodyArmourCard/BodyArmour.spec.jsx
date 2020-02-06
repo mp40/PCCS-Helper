@@ -97,8 +97,8 @@ describe('the BodyArmourCard', () => {
   });
   describe('body armour intergration', () => {
     const wrap = mountAppWithStore(storeWithCreateCharacterView());
-    const gunActionsTable = wrap.find('#gunActionTable');
-    const handActionsTable = wrap.find('#handActionTable');
+    const gunActionsTable = wrap.find('.actionsTable').at(0);
+    const handActionsTable = wrap.find('.actionsTable').at(1);
     const additionalData = wrap.find('.additionalCombatData');
     it('should start with default starting combat values', () => {
       expect(gunActionsTable.text()).toEqual('Gun1111');

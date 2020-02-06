@@ -13,9 +13,10 @@
     color: whitesmoke;
 }
 
-.actionsHeader > th:first-child{
+.actionsHeader > th:first-child,
+.actionsTable > td:first-child {
     text-align: left;
-    /* padding-left: .5rem; */
+    padding-left: .5rem;
 }
 
 .actionsHeader > th:nth-child(n+2) {

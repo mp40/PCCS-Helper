@@ -20,8 +20,8 @@ describe('the CombatCard comonent', () => {
       expect(combatLevels.text()).toContain('2');
     });
     it('updates actions and other combat data when levels change', () => {
-      const gunActionsTable = wrapper.find('#gunActionTable');
-      const handActionsTable = wrapper.find('#handActionTable');
+      const gunActionsTable = wrapper.find('.actionsTable').at(0);
+      const handActionsTable = wrapper.find('.actionsTable').at(1);
       const additionalData = wrapper.find('.additionalCombatData');
       expect(gunActionsTable.text()).toEqual('Gun2122');
       expect(handActionsTable.text()).toEqual('Hand2121');
