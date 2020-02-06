@@ -5,7 +5,7 @@ import './buttons.css';
 const ButtonSlim = ({ onClick, name }) => (
   <button
     type="button"
-    className="buttonSlim"
+    className="--button slimButton"
     onClick={onClick}
   >
     {name}

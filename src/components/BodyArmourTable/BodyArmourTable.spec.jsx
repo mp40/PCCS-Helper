@@ -6,7 +6,7 @@ const helmet = {
   name: 'M1x',
   pf: 5,
   bpf: 4,
-  ac: 'i',
+  ac: 'I',
   weight: 2.5,
 };
 
@@ -14,7 +14,7 @@ const vest = {
   name: 'M69x',
   pf: 6,
   bpf: 2,
-  ac: 'ix',
+  ac: 'Ix',
   weight: 8.5,
 };
 
