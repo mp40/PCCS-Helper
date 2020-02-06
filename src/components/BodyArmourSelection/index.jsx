@@ -3,30 +3,24 @@ import PropTypes from 'prop-types';
 import ButtonStandard from '../widgets/buttons/ButtonStandard';
 import './BodyArmourSelection.css';
 
-const tableBodyStyles = {
-  border: '1px solid black',
-};
 const renderHeading = armourType => (armourType === 'helmet' ? 'Select Helmet' : 'Select Vest');
 
 const renderBody = (armourList, handleDispatch, type) => armourList.map(armour => (
   <React.Fragment key={armour.name}>
     <tr
-      className={`${armour.name}Row bodyArmourRow`}
+      className={`${armour.name}Row --tableRow`}
       onClick={() => handleDispatch(type, armour)}
     >
-      <td style={{ textAlign: 'left' }}>{armour.name}</td>
-      <td>{armour.pf}</td>
-      <td>{armour.bpf}</td>
-      <td>{armour.ac.toUpperCase()}</td>
-      <td>{armour.weight}</td>
-      <td style={{ textAlign: 'left' }}>{armour.tags.join(', ')}</td>
+      {['name', 'pf', 'bpf', 'ac', 'weight', 'tags'].map((value) => (
+        <td key={value}>{Array.isArray(armour[value]) ? armour[value].join(', ') : armour[value]}</td>
+      ))}
     </tr>
   </React.Fragment>
 ));
 
 const BodyArmourSelection = ({ armourType, armourList, handleDispatch }) => (
   <div className="equipmentModalContainer selectBodyArmourModal">
-    <div className="bodyArmourListCard">
+    <div className="--card bodyArmourListCard">
       <div className="equipmentListHeader bodyArmourListHeading">
         {renderHeading(armourType)}
         <div style={{ marginLeft: '5px' }}>
@@ -45,15 +39,12 @@ const BodyArmourSelection = ({ armourType, armourList, handleDispatch }) => (
       <table className="bodyArmourTable">
         <thead>
           <tr>
-            <th style={{ textAlign: 'left' }}>Name</th>
-            <th className="armourCol">PF</th>
-            <th>BPF</th>
-            <th>AC</th>
-            <th>lbs</th>
-            <th style={{ textAlign: 'left' }}>Notes</th>
+            {['Name', 'PF', 'BPF', 'AC', 'lbs', 'Notes'].map((value) => (
+              <th>{value}</th>
+            ))}
           </tr>
         </thead>
-        <tbody style={tableBodyStyles}>
+        <tbody>
           {renderBody(armourList, handleDispatch, armourType)}
         </tbody>
       </table>

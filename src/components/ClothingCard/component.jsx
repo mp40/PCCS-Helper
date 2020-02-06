@@ -7,8 +7,8 @@ import './ClothingCard.css';
 
 const renderTableHeading = () => (
   <tr className="uniformTableHeader">
-    <th className="uniformHeading">Uniform</th>
-    <th className="uniformValHeading">lbs</th>
+    <th className="--tableHeading">Uniform</th>
+    <th className="--tableValue">lbs</th>
   </tr>
 );
 
@@ -32,11 +32,11 @@ class ClothingCard extends Component {
     }
 
     renderUniformCard = (currentUniform, currentUniformWeight) => (
-      <table className="uniformTableContainer">
+      <table className="--tableContainer --card">
         <thead>
           {renderTableHeading()}
           <tr
-            className="uniformStats"
+            className="--tableRow uniformStats"
             onClick={this.toggleSelectUniform}
           >
             <td id="currentUniform">{currentUniform}</td>
@@ -47,7 +47,7 @@ class ClothingCard extends Component {
     )
 
     renderUniformSelection = () => (
-      <div className="uniformTableContainer">
+      <div className="--tableContainer --card">
         <table>
           <thead>
             {renderTableHeading()}

@@ -23,7 +23,7 @@ const AttributeCard = ({
   ];
 
   return (
-    <div className="tableContainer">
+    <div className="--tableContainer --card">
       <table className="attributeContainer">
         <tbody>
           {renderAtrributeAndCombatTableHeadings()}

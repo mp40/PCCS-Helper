@@ -70,11 +70,11 @@ describe('Character Attribute Stat Input', () => {
     describe('edge cases', () => {
       it('should not be possible to enter values under 3', () => {
         inputAttribute('#updateAgi', '2');
-        expect(wrapper.find('.attributeRow').at(4).text()).not.toContain('2');
+        expect(wrapper.find('.statInputTableRow').at(4).text()).not.toContain('2');
       });
       it('should not be possible to enter values over 19', () => {
         inputAttribute('#updateAgi', '20');
-        expect(wrapper.find('.attributeRow').at(4).text()).not.toContain('20');
+        expect(wrapper.find('.statInputTableRow').at(4).text()).not.toContain('20');
       });
     });
   });

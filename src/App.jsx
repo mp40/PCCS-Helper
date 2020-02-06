@@ -6,6 +6,7 @@ import HomePage from './components/Home';
 import CharacterGeneration from './components/CharacterGeneration';
 import GameSheet from './components/GameSheet';
 
+import './stylesheet/styles.css';
 import './App.css';
 
 export const App = ({ currentView }) => (

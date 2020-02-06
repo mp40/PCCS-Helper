@@ -31,8 +31,8 @@ class StatInput extends Component {
 
     return (
       <>
-        <tr className="attributeRow">
-          <td className="attName">{statName}</td>
+        <tr className="--tableRow statInputTableRow">
+          <td className="--tableHeading attName">{statName}</td>
           <td className="attValue" id={idRef} onClick={this.handleToggleInput}>
             {toggleInput
               ? (

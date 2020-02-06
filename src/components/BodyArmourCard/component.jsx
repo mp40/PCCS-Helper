@@ -4,6 +4,8 @@ import BodyArmourSelection from '../BodyArmourSelection';
 import { helmetStats, bodyArmorStats } from '../../data/uniformAndArmourTypes';
 import { armourShape } from '../../helpers/proptypeShapes';
 
+import './BodyArmour.css';
+
 export const selectArmourList = armourType => (armourType === 'helmet' ? helmetStats() : bodyArmorStats());
 
 const BodyArmourCard = ({ helmet, vest, changeHelmet, changeVest }) => {
@@ -20,19 +22,19 @@ const BodyArmourCard = ({ helmet, vest, changeHelmet, changeVest }) => {
   };
 
   const renderArmourRow = (type, obj) => (
-    <tr className={`${type}BodyArmour armourStats`} onClick={() => toggleBodyArmourSelect(type)}>
-      <td className="armourName">{obj.name}</td>
-      <td style={{ textAlign: 'center' }}>{obj.weight}</td>
+    <tr className={`--tableRow ${type}BodyArmour`} onClick={() => toggleBodyArmourSelect(type)}>
+      <td>{obj.name}</td>
+      <td>{obj.weight}</td>
     </tr>
   );
 
   return (
     <>
-      <table className="uniformTableContainer">
+      <table className="--tableContainer --card">
         <thead>
-          <tr className="uniformTableHeader">
-            <th className="uniformHeading">Body Armour</th>
-            <th className="uniformValHeading">lbs</th>
+          <tr>
+            <th className="--tableHeading">Body Armour</th>
+            <th className="--tableValue">lbs</th>
           </tr>
         </thead>
         <tbody>
@@ -47,8 +49,7 @@ const BodyArmourCard = ({ helmet, vest, changeHelmet, changeVest }) => {
         armourList={selectArmourList(showBodyArmour)}
         handleDispatch={handleDispatch}
       />
-      )
-      }
+      )}
     </>
   );
 };
