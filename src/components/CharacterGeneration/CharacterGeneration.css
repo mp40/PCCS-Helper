@@ -111,13 +111,6 @@
     display: inline-block;
 }
 
-.additionalCombatData {
-    width: 100%;
-    text-align: center;
-    font-size: small;
-    margin-top: .1rem;
-}
-
 .equipmentSelect {
     margin-top: 2rem;
     margin-left: 4rem;

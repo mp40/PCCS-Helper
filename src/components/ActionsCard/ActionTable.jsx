@@ -7,7 +7,7 @@ const { actionsPerImpulse } = require('../../helpers/helperFunctions');
 
 const headings = ['Imp', '1', '2', '3', '4'];
 
-const actionsRow = (idRef, heading, actionArray) => (
+const actionsRow = (heading, actionArray) => (
   <>
     <tr className="actionsTable">
       {[heading, actionArray[0], actionArray[1], actionArray[2], actionArray[3]].map((value, dex) => (
@@ -30,8 +30,8 @@ const ActionTable = ({ combatActions, className }) => {
         </tr>
       </thead>
       <tbody>
-        {actionsRow('gunActionTable', 'Gun', gunActions)}
-        {actionsRow('handActionTable', 'Hand', handActions)}
+        {actionsRow('Gun', gunActions)}
+        {actionsRow('Hand', handActions)}
       </tbody>
     </table>
   );
