@@ -8,11 +8,11 @@ const { actionsPerImpulse } = require('../../helpers/helperFunctions');
 const actionsRow = (idRef, heading, actionArray) => (
   <>
     <tr id={idRef} className="actionsTable">
-      <td className="actionType">{heading}</td>
-      <td className="actions">{actionArray[0]}</td>
-      <td className="actions">{actionArray[1]}</td>
-      <td className="actions">{actionArray[2]}</td>
-      <td className="actions">{actionArray[3]}</td>
+      <td>{heading}</td>
+      <td>{actionArray[0]}</td>
+      <td>{actionArray[1]}</td>
+      <td>{actionArray[2]}</td>
+      <td>{actionArray[3]}</td>
     </tr>
   </>
 );
@@ -21,7 +21,7 @@ const ActionTable = ({ combatActions, className }) => {
   const gunActions = actionsPerImpulse(combatActions[0]);
   const handActions = actionsPerImpulse(combatActions[1]);
   return (
-    <table className={`combatActions${className}`}>
+    <table className={`combatActions ${className}`}>
       <thead>
         <tr className="actionsHeader">
           <th className="actionType">Imp</th>
@@ -45,7 +45,7 @@ ActionTable.propTypes = {
 };
 
 ActionTable.defaultProps = {
-  className: '',
+  className: 'default',
 };
 
 export default ActionTable;

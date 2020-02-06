@@ -111,19 +111,16 @@
     display: inline-block;
 }
 
-.actionsHeader {
+/* mptodo */
+/* .actionsHeader {
     background: rgb(85, 83, 83);
     color: whitesmoke;
-}
+} */
 
-.actionType {
+/* .actionType {
     text-align: left;
     padding-left: .5rem;
-}
-
-.actions {
-    text-align: center;
-}
+} */
 
 .additionalCombatData {
     width: 100%;
