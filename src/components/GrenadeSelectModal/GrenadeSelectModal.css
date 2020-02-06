@@ -1,11 +1,11 @@
 .grenadeListCard {
+    display: inline-block;
     margin-top: 2rem;
     position: relative;
     top: calc(50% - 20rem);
     left: calc(50% - 26rem);
     overflow: auto;
     z-index: 2;
-    display: inline-block;
     width: 52ch;
     font-size: smaller;
 }
