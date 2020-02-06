@@ -5,7 +5,7 @@ import './BodyArmourSelection.css';
 
 const renderHeading = armourType => (armourType === 'helmet' ? 'Select Helmet' : 'Select Vest');
 
-const renderBody = (armourList, handleDispatch, type) => armourList.map(armour => (
+const renderBody = (armourList, handleDispatch, type) => armourList.map((armour) => (
   <React.Fragment key={armour.name}>
     <tr
       className={`${armour.name}Row --tableRow`}
@@ -23,7 +23,7 @@ const BodyArmourSelection = ({ armourType, armourList, handleDispatch }) => (
     <div className="--card bodyArmourListCard">
       <div className="equipmentListHeader bodyArmourListHeading">
         {renderHeading(armourType)}
-        <div style={{ marginLeft: '5px' }}>
+        <div>
           <ButtonStandard
             name="Back"
             onClick={() => handleDispatch(null)}
