@@ -36,8 +36,7 @@ const AttributeCard = ({
               action={actionsArray[index]}
               key={stat}
             />
-          ))
-            }
+          ))}
         </tbody>
       </table>
     </div>
