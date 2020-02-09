@@ -8,7 +8,6 @@ const renderStatInput = (level, statName, action) => (
   <StatInput
     statLevel={level}
     statName={statName}
-    idRef={`update${statName}`}
     isValid={isValidCombatLevel}
     action={action}
   />

@@ -4,7 +4,7 @@ import ButtonStandard from '../widgets/buttons/ButtonStandard';
 
 import './BodyArmourSelection.css';
 
-const renderHeading = armourType => (armourType === 'helmet' ? 'Select Helmet' : 'Select Vest');
+const renderHeading = (armourType) => (armourType === 'helmet' ? 'Select Helmet' : 'Select Vest');
 
 const renderBody = (armourList, handleDispatch, type) => armourList.map((armour) => (
   <React.Fragment key={armour.name}>
@@ -41,7 +41,7 @@ const BodyArmourSelection = ({ armourType, armourList, handleDispatch }) => (
         <thead>
           <tr>
             {['Name', 'PF', 'BPF', 'AC', 'lbs', 'Notes'].map((value) => (
-              <th>{value}</th>
+              <th key={value}>{value}</th>
             ))}
           </tr>
         </thead>

@@ -31,7 +31,6 @@ const AttributeCard = ({
             <StatInput
               statLevel={characterStats[stat]}
               statName={statNameArray[index]}
-              idRef={`update${stat.charAt(0).toUpperCase() + stat.slice(1)}`}
               isValid={isValidAttributeStat}
               action={actionsArray[index]}
               key={stat}

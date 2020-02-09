@@ -14,23 +14,6 @@
     color: rgb(85, 83, 83);
     border-collapse: collapse;
 }
-/*
-mptodo
-.armourName {
-    position: relative;
-    max-width: 8ch;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-} */
-
-.attValue {
-    border-bottom: 1px solid #ddd;
-}
-
-.attInput {
-    max-width: 2rem;
-}
 
 .combatDataContainer {
     display: inline-block;

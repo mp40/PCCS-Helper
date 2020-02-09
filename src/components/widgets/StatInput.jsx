@@ -4,6 +4,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import './StatInput.css';
+
 class StatInput extends Component {
   constructor(props) {
     super(props);
@@ -26,20 +28,20 @@ class StatInput extends Component {
   }
 
   render() {
-    const { statLevel, statName, idRef } = this.props;
+    const { statLevel, statName } = this.props;
     const { toggleInput } = this.state;
 
     return (
       <>
         <tr className="--tableRow statInputTableRow">
-          <td className="--tableHeading attName">{statName}</td>
-          <td className="attValue" id={idRef} onClick={this.handleToggleInput}>
+          <td className="--tableHeading statName">{statName}</td>
+          <td className={`statValue update${statName}`} onClick={this.handleToggleInput}>
             {toggleInput
               ? (
                 <input
                   type="text"
                   autoFocus
-                  className="attInput"
+                  className="statInput"
                   onKeyUp={(event) => {
                     if (event.key === 'Enter') {
                       this.handleUpdateValue(event.target.value);
@@ -62,7 +64,6 @@ StatInput.propTypes = {
   action: PropTypes.func,
   statLevel: PropTypes.number,
   statName: PropTypes.string,
-  idRef: PropTypes.string,
 };
 
 export default StatInput;

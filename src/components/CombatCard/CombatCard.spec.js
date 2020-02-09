@@ -12,11 +12,11 @@ describe('the CombatCard comonent', () => {
 
   describe('changing combat level values', () => {
     it('should update gun combat level', () => {
-      inputAttribute('#updateGun', '4');
+      inputAttribute('.updateGun', '4');
       expect(combatLevels.text()).toContain('4');
     });
     it('should update hand to hand combat level', () => {
-      inputAttribute('#updateHand', '2');
+      inputAttribute('.updateHand', '2');
       expect(combatLevels.text()).toContain('2');
     });
     it('updates actions and other combat data when levels change', () => {
