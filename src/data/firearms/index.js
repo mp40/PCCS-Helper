@@ -8,85 +8,34 @@ export const filterableCalibers = () => [
   '9mm Parabellum',
 ];
 
-const rifleCAR16 = () => {
-  const rifle = new M16LateClass('CAR 16', '28/31', 7.1);
-  rifle.aim.ac = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  rifle.aim.mod = [-22, -11, -9, -7, -5, -4, -3, -2, -1];
-  rifle.projectiles = [
+const br = {
+  name: 'MAS 36',
+  list: 'rifles',
+  calibre: '7.5mm MAS',
+  qty: 1,
+  length: 40,
+  weight: 8.6,
+  rt: 8,
+  rof: '3',
+  mag: [{ type: 'CS', weight: 0.31, cap: 5, qty: 0 }],
+  kd: 9,
+  sab: 6,
+  aim: {
+    ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+    mod: [-23, -12, -9, -7, -6, -5, -4, -3, -2, -1, 0],
+  },
+  projectiles: [
     {
       type: 'FMJ',
-      pen: [14, 13, 12, 11, 9.3, 5.9, 3.7, 2.3],
-      dc: [6, 6, 6, 5, 5, 4, 3, 2],
+      pen: [18, 18, 17, 15, 14, 9.8, 7, 5.1],
+      dc: [8, 7, 7, 7, 7, 6, 6, 4],
     },
-    {
-      type: 'JHP',
-      pen: [14, 13, 12, 10, 8.9, 5.6, 3.5, 2.2],
-      dc: [8, 7, 7, 7, 7, 6, 4, 3],
-    },
-    {
-      type: 'AP',
-      pen: [20, 19, 17, 15, 13, 8.3, 5.2, 3.3],
-      dc: [6, 6, 5, 5, 4, 3, 3, 2],
-    },
-  ];
-  rifle.tof = [0, 0, 1, 1, 2, 5, 8, 11];
-  return rifle;
-};
-
-const rifleL1A1F1 = () => {
-  const rifle = new BattleRifleClass('L1A1 F1', 42, 12);
-  rifle.mag[0].weight = 1.6;
-  rifle.aim.mod[2] = -10;
-  rifle.projectiles[0].pen = [18, 18, 17, 15, 14, 9.8, 7.0, 5.0];
-  rifle.projectiles[0].dc[5] = 6;
-  return rifle;
-};
-
-const rifleM14 = () => {
-  const rifle = new BattleRifleClass('M14', 44, 11.2);
-  rifle.rof = '*6';
-  rifle.mag[0].weight = 1.6;
-  rifle.aim.ac[10] = 12;
-  rifle.aim.mod[2] = -10;
-  rifle.ma = [0.6, 1, 2, 4, 6, 12, 19, 25];
-  rifle.tof[7] = 11;
-  return rifle;
-};
-
-const rifleFNFAL = () => {
-  const rifle = new BattleRifleClass('FN FAL', 43, 10.8);
-  rifle.rof = '*6';
-  rifle.mag[0].weight = 1.4;
-  rifle.aim.mod[1] = -13;
-  rifle.projectiles[0].pen[6] = 7.4;
-  rifle.ma = [0.6, 1, 3, 4, 6, 13, 19, 25];
-  rifle.tof[7] = 11;
-  return rifle;
-};
-
-const rifleHKG3 = () => {
-  const rifle = new BattleRifleClass('HK G3', 40, 11.1);
-  rifle.rof = '*5';
-  rifle.mag[0].weight = 1.4;
-  rifle.projectiles[0].pen = [17, 16, 15, 14, 13, 8.9, 6.3, 4.5];
-  rifle.projectiles[0].dc = [8, 7, 7, 7, 7, 6, 6, 4];
-  rifle.ma = [0.5, 1, 2, 3, 5, 10, 14, 19];
-  rifle.ba[2] = 44;
-  rifle.tof = [0, 0, 1, 2, 3, 5, 9, 12];
-  return rifle;
-};
-
-const rifleKarabin = () => {
-  const rifle = new MilitaryBoltActionClass('Karabin M1938', '7.62 x 54mm', 40, 8);
-  rifle.mag[0].weight = 0.27;
-  rifle.kd = 12;
-  rifle.aim.ac = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  rifle.aim.mod = [-22, -12, -9, -7, -6, -4, -3, -2, -1];
-  rifle.projectiles[0].pen = [23, 22, 21, 20, 18, 14, 11, 8.9];
-  rifle.projectiles[0].dc = [8, 8, 8, 8, 8, 7, 7, 6];
-  rifle.ba = [64, 54, 48, 41, 36, 27, 21, 17];
-  rifle.tof = [0, 0, 1, 2, 2, 5, 8, 11];
-  return rifle;
+  ],
+  trb: null,
+  ma: null,
+  ba: [61, 53, 45, 37, 32, 23, 17, 13],
+  tof: [0, 0, 1, 2, 2, 5, 8, 12],
+  offical: true,
 };
 
 const rifleMAS36 = () => {
@@ -103,7 +52,35 @@ const rifleMAS36 = () => {
 
 export const rifles = () => [
   new MilitaryBoltActionClass('Kar 98k', '7.92mm Mauser', 44, 8.9),
-  rifleKarabin(),
+  {
+    name: 'Karabin M1938',
+    list: 'rifles',
+    calibre: '7.62 x 54mm',
+    qty: 1,
+    length: 40,
+    weight: 8,
+    rt: 8,
+    rof: '3',
+    mag: [{ type: 'CS', weight: 0.27, cap: 5, qty: 0 }],
+    kd: 12,
+    sab: 7,
+    aim: {
+      ac: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      mod: [-22, -12, -9, -7, -6, -4, -3, -2, -1],
+    },
+    projectiles: [
+      {
+        type: 'FMJ',
+        pen: [23, 22, 21, 20, 18, 14, 11, 8.9],
+        dc: [8, 8, 8, 8, 8, 7, 7, 6],
+      },
+    ],
+    trb: null,
+    ma: null,
+    ba: [64, 54, 48, 41, 36, 27, 21, 17],
+    tof: [0, 0, 1, 2, 2, 5, 8, 11],
+    offical: true,
+  },
   rifleMAS36(),
   new KalashnikovClass('AK47', 34, 11.3),
   new KalashnikovClass('AKM', 35, 8.7),
@@ -135,7 +112,45 @@ export const rifles = () => [
     tof: [0, 0, 1, 2, 2, 5, 8, 12],
     offical: true,
   },
-  rifleCAR16(),
+  {
+    name: 'CAR 16',
+    list: 'rifles',
+    calibre: '5.56mm NATO',
+    qty: 1,
+    length: '28/31',
+    weight: 7.1,
+    rt: 8,
+    rof: '*7',
+    mag: [{ type: 'Mag', weight: 1, cap: 30, qty: 0 }, { type: 'Mag', weight: 0.7, cap: 20, qty: 0 }],
+    kd: 4,
+    sab: 3,
+    aim: {
+      ac: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      mod: [-22, -11, -9, -7, -5, -4, -3, -2, -1],
+    },
+    projectiles: [
+      {
+        type: 'FMJ',
+        pen: [14, 13, 12, 11, 9.3, 5.9, 3.7, 2.3],
+        dc: [6, 6, 6, 5, 5, 4, 3, 2],
+      },
+      {
+        type: 'JHP',
+        pen: [14, 13, 12, 10, 8.9, 5.6, 3.5, 2.2],
+        dc: [8, 7, 7, 7, 7, 6, 4, 3],
+      },
+      {
+        type: 'AP',
+        pen: [20, 19, 17, 15, 13, 8.3, 5.2, 3.3],
+        dc: [6, 6, 5, 5, 4, 3, 3, 2],
+      },
+    ],
+    trb: null,
+    ma: [0.4, 0.8, 2, 3, 4, 8, 11, 15],
+    ba: [60, 51, 42, 35, 30, 20, 15, 11],
+    tof: [0, 0, 1, 1, 2, 5, 8, 11],
+    offical: true,
+  },
   {
     name: 'FAMAS',
     list: 'rifles',
@@ -176,11 +191,151 @@ export const rifles = () => [
     offical: true,
     bipod: true,
   },
-  rifleFNFAL(),
-  rifleHKG3(),
-  new BattleRifleClass('L1A1', 45, 11),
-  rifleL1A1F1(),
-  rifleM14(),
+  {
+    name: 'FN FAL',
+    list: 'rifles',
+    calibre: '7.62mm NATO',
+    qty: 1,
+    length: 43,
+    weight: 10.8,
+    rt: 8,
+    rof: '*6',
+    mag: [{ type: 'Mag', weight: 1.4, cap: 20, qty: 0 }],
+    kd: 10,
+    sab: 5,
+    aim: {
+      ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      mod: [-24, -13, -9, -8, -6, -5, -4, -3, -2, -1, 0],
+    },
+    projectiles: [
+      {
+        type: 'FMJ',
+        pen: [19, 19, 17, 16, 14, 10, 7.4, 5.3],
+        dc: [8, 8, 8, 7, 7, 7, 6, 5],
+      },
+    ],
+    trb: null,
+    ma: [0.6, 1, 3, 4, 6, 13, 19, 25],
+    ba: [61, 53, 45, 37, 32, 23, 17, 13],
+    tof: [0, 0, 1, 2, 2, 5, 8, 11],
+    offical: true,
+  },
+  {
+    name: 'HK G3',
+    list: 'rifles',
+    calibre: '7.62mm NATO',
+    qty: 1,
+    length: 40,
+    weight: 11.1,
+    rt: 8,
+    rof: '*5',
+    mag: [{ type: 'Mag', weight: 1.4, cap: 20, qty: 0 }],
+    kd: 10,
+    sab: 5,
+    aim: {
+      ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      mod: [-24, -14, -9, -8, -6, -5, -4, -3, -2, -1, 0],
+    },
+    projectiles: [
+      {
+        type: 'FMJ',
+        pen: [17, 16, 15, 14, 13, 8.9, 6.3, 4.5],
+        dc: [8, 7, 7, 7, 7, 6, 6, 4],
+      },
+    ],
+    trb: null,
+    ma: [0.5, 1, 2, 3, 5, 10, 14, 19],
+    ba: [61, 53, 44, 37, 32, 23, 17, 13],
+    tof: [0, 0, 1, 2, 3, 5, 9, 12],
+    offical: true,
+  },
+  {
+    name: 'L1A1',
+    list: 'rifles',
+    calibre: '7.62mm NATO',
+    qty: 1,
+    length: 45,
+    weight: 11,
+    rt: 8,
+    rof: '*',
+    mag: [{ type: 'Mag', weight: 1.5, cap: 20, qty: 0 }],
+    kd: 10,
+    sab: 5,
+    aim: {
+      ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      mod: [-24, -14, -9, -8, -6, -5, -4, -3, -2, -1, 0],
+    },
+    projectiles: [
+      {
+        type: 'FMJ',
+        pen: [19, 19, 17, 16, 14, 10, 7.3, 5.3],
+        dc: [8, 8, 8, 7, 7, 7, 6, 5],
+      },
+    ],
+    trb: null,
+    ma: null,
+    ba: [61, 53, 45, 37, 32, 23, 17, 13],
+    tof: [0, 0, 1, 2, 2, 5, 8, 12],
+    offical: true,
+  },
+  {
+    name: 'L1A1 F1',
+    list: 'rifles',
+    calibre: '7.62mm NATO',
+    qty: 1,
+    length: 42,
+    weight: 12,
+    rt: 8,
+    rof: '*',
+    mag: [{ type: 'Mag', weight: 1.6, cap: 20, qty: 0 }],
+    kd: 10,
+    sab: 5,
+    aim: {
+      ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      mod: [-24, -14, -10, -8, -6, -5, -4, -3, -2, -1, 0],
+    },
+    projectiles: [
+      {
+        type: 'FMJ',
+        pen: [18, 18, 17, 15, 14, 9.8, 7.0, 5.0],
+        dc: [8, 8, 8, 7, 7, 6, 6, 5],
+      },
+    ],
+    trb: null,
+    ma: null,
+    ba: [61, 53, 45, 37, 32, 23, 17, 13],
+    tof: [0, 0, 1, 2, 2, 5, 8, 12],
+    offical: true,
+  },
+  {
+    name: 'M14',
+    list: 'rifles',
+    calibre: '7.62mm NATO',
+    qty: 1,
+    length: 44,
+    weight: 11.2,
+    rt: 8,
+    rof: '*6',
+    mag: [{ type: 'Mag', weight: 1.6, cap: 20, qty: 0 }],
+    kd: 10,
+    sab: 5,
+    aim: {
+      ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12],
+      mod: [-24, -14, -10, -8, -6, -5, -4, -3, -2, -1, 0],
+    },
+    projectiles: [
+      {
+        type: 'FMJ',
+        pen: [19, 19, 17, 16, 14, 10, 7.3, 5.3],
+        dc: [8, 8, 8, 7, 7, 7, 6, 5],
+      },
+    ],
+    trb: null,
+    ma: [0.6, 1, 2, 4, 6, 12, 19, 25],
+    ba: [61, 53, 45, 37, 32, 23, 17, 13],
+    tof: [0, 0, 1, 2, 2, 5, 8, 11],
+    offical: true,
+  },
   new M16Class('M16', 39, 8.7),
   new M16LateClass('M16A1', 39, 8),
   {

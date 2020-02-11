@@ -50,9 +50,9 @@ export const filterCalibersFromType = (typeArray, caliber) => {
     return typeArray;
   }
   if (caliber === 'Other') {
-    return typeArray.filter(firearm => !filterableCalibers().includes(firearm.calibre));
+    return typeArray.filter((firearm) => !filterableCalibers().includes(firearm.calibre));
   }
-  return typeArray.filter(firearm => firearm.calibre === caliber);
+  return typeArray.filter((firearm) => firearm.calibre === caliber);
 };
 
 const WeaponsModalSelection = ({ toggleOffWeaponCardViews, handleAddFirearm }) => {
@@ -109,7 +109,7 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, handleAddFirearm }) =
         </div>
 
         <div className="equipmentListBody">
-          {gunArrayFilteredByType.map(gunObj => (
+          {gunArrayFilteredByType.map((gunObj) => (
             <div key={gunObj.name} style={{ display: 'flex', width: '30%', paddingLeft: '.2rem', paddingRight: '.2rem' }}>
               <ButtonInfo
                 id={`view${gunObj.name.replace(/\s+/g, '')}`}
@@ -157,8 +157,7 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, handleAddFirearm }) =
           <div className="firearm-notes-wrapper">
             <FirearmNotes gunObj={firearmToInspect} viewSpareAmmo={false} />
           </div>
-          )
-          }
+          )}
         </div>
       </div>
       )}

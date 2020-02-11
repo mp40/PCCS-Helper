@@ -122,38 +122,6 @@ export class KalashnikovClass {
   }
 }
 
-export class BattleRifleClass {
-  constructor(name, length, weight) {
-    this.name = name;
-    this.list = 'rifles';
-    this.calibre = '7.62mm NATO';
-    this.qty = 1;
-    this.length = length;
-    this.weight = weight;
-    this.rt = 8;
-    this.rof = '*';
-    this.mag = [{ type: 'Mag', weight: 1.5, cap: 20, qty: 0 }];
-    this.kd = 10;
-    this.sab = 5;
-    this.aim = {
-      ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-      mod: [-24, -14, -9, -8, -6, -5, -4, -3, -2, -1, 0],
-    };
-    this.projectiles = [
-      {
-        type: 'FMJ',
-        pen: [19, 19, 17, 16, 14, 10, 7.3, 5.3],
-        dc: [8, 8, 8, 7, 7, 7, 6, 5],
-      },
-    ];
-    this.trb = null;
-    this.ma = null;
-    this.ba = [61, 53, 45, 37, 32, 23, 17, 13];
-    this.tof = [0, 0, 1, 2, 2, 5, 8, 12];
-    this.offical = true;
-  }
-}
-
 export class MilitaryBoltActionClass {
   constructor(name, calibre, length, weight) {
     this.name = name;
