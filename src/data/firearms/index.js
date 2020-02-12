@@ -1,3 +1,6 @@
+import { averageRifle11Aims, belowAverageverageRifle11Aims, aboveAverageRifle11Aims, improvedRifle11Aims, averageRifle9Aims, averageSMG8Aims, averagePistol6Aims, belowAveragePistol6Aims } from './aimTimes';
+import { averageRifle762FMJ, averageRifle762x39FMJ, averageRifle556FMJ, averageRifle30CarbineFMJ, averageSMG9mmParabellumFMJ, belowAverageSMG9mmParabellumFMJ, averageSMG45AcpFMJ, averageSMG762TokarevFMJ, averagePistol9mmParabellumFMJ, averageOther762FMJ } from './projectiles';
+
 export const filterableCalibers = () => [
   '7.62 x 39mm',
   '5.45 x 39.5mm',
@@ -5,36 +8,6 @@ export const filterableCalibers = () => [
   '7.62mm NATO',
   '9mm Parabellum',
 ];
-
-const br = {
-  name: 'M2 Carbine',
-  list: 'rifles',
-  calibre: '.30 Carbine',
-  qty: 1,
-  length: 36,
-  weight: 6.3,
-  rt: 8,
-  rof: '*8',
-  mag: [{ type: 'Mag', weight: 1.5, cap: 30, qty: 0 }, { type: 'Mag', weight: 0.77, cap: 15, qty: 0 }],
-  kd: 5,
-  sab: 4,
-  aim: {
-    ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-    mod: [-21, -11, -9, -7, -6, -4, -3, -2, -2, -1, 0],
-  },
-  projectiles: [
-    {
-      type: 'FMJ',
-      pen: [6.8, 6.4, 5.8, 4.9, 4.2, 2.4, 1.4, 0.8],
-      dc: [6, 6, 5, 5, 4, 2, 1, 1],
-    },
-  ],
-  trb: null,
-  ma: [0.6, 1, 2, 4, 6, 12, 17, 23],
-  ba: [55, 46, 37, 29, 24, 14, 8, 5],
-  tof: [0, 1, 1, 2, 3, 8, 13, 18],
-  offical: true,
-};
 
 export const rifles = () => [
   {
@@ -49,10 +22,7 @@ export const rifles = () => [
     mag: [{ type: 'CS', weight: 0.36, cap: 5, qty: 0 }],
     kd: 10,
     sab: 7,
-    aim: {
-      ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-      mod: [-23, -12, -9, -7, -6, -5, -4, -3, -2, -1, 0],
-    },
+    aim: averageRifle11Aims,
     projectiles: [
       {
         type: 'FMJ',
@@ -107,10 +77,7 @@ export const rifles = () => [
     mag: [{ type: 'CS', weight: 0.31, cap: 5, qty: 0 }],
     kd: 9,
     sab: 6,
-    aim: {
-      ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-      mod: [-23, -12, -9, -7, -6, -5, -4, -3, -2, -1, 0],
-    },
+    aim: averageRifle11Aims,
     projectiles: [
       {
         type: 'FMJ',
@@ -136,17 +103,8 @@ export const rifles = () => [
     mag: [{ type: 'Mag', weight: 1.8, cap: 30, qty: 0 }],
     kd: 7,
     sab: 5,
-    aim: {
-      ac: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-      mod: [-23, -12, -9, -7, -6, -4, -3, -2, -1],
-    },
-    projectiles: [
-      {
-        type: 'FMJ',
-        pen: [11, 11, 9.8, 8.6, 7.5, 4.8, 3.1, 2.0],
-        dc: [7, 7, 6, 6, 6, 5, 3, 2],
-      },
-    ],
+    aim: averageRifle9Aims,
+    projectiles: [averageRifle762x39FMJ],
     trb: null,
     ma: [0.4, 0.8, 2, 3, 4, 8, 12, 17],
     ba: [58, 50, 40, 33, 28, 18, 13, 9],
@@ -165,17 +123,8 @@ export const rifles = () => [
     mag: [{ type: 'Mag', weight: 1.8, cap: 30, qty: 0 }],
     kd: 7,
     sab: 5,
-    aim: {
-      ac: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-      mod: [-23, -12, -9, -7, -6, -4, -3, -2, -1],
-    },
-    projectiles: [
-      {
-        type: 'FMJ',
-        pen: [11, 11, 9.8, 8.6, 7.5, 4.8, 3.1, 2.0],
-        dc: [7, 7, 6, 6, 6, 5, 3, 2],
-      },
-    ],
+    aim: averageRifle9Aims,
+    projectiles: [averageRifle762x39FMJ],
     trb: null,
     ma: [0.4, 0.8, 2, 3, 4, 8, 12, 17],
     ba: [58, 50, 40, 33, 28, 18, 13, 9],
@@ -194,10 +143,7 @@ export const rifles = () => [
     mag: [{ type: 'Mag', weight: 1.1, cap: 30, qty: 0 }],
     kd: 4,
     sab: 2,
-    aim: {
-      ac: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-      mod: [-23, -12, -9, -7, -6, -4, -3, -2, -1],
-    },
+    aim: averageRifle9Aims,
     projectiles: [
       {
         type: 'FMJ',
@@ -261,10 +207,7 @@ export const rifles = () => [
     mag: [{ type: 'Mag', weight: 1, cap: 25, qty: 0 }],
     kd: 4,
     sab: 3,
-    aim: {
-      ac: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-      mod: [-23, -12, -9, -7, -6, -4, -3, -2, -1],
-    },
+    aim: averageRifle9Aims,
     projectiles: [
       {
         type: 'FMJ',
@@ -330,10 +273,7 @@ export const rifles = () => [
     mag: [{ type: 'Mag', weight: 1.4, cap: 20, qty: 0 }],
     kd: 10,
     sab: 5,
-    aim: {
-      ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-      mod: [-24, -14, -9, -8, -6, -5, -4, -3, -2, -1, 0],
-    },
+    aim: belowAverageverageRifle11Aims,
     projectiles: [
       {
         type: 'FMJ',
@@ -359,17 +299,8 @@ export const rifles = () => [
     mag: [{ type: 'Mag', weight: 1.5, cap: 20, qty: 0 }],
     kd: 10,
     sab: 5,
-    aim: {
-      ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-      mod: [-24, -14, -9, -8, -6, -5, -4, -3, -2, -1, 0],
-    },
-    projectiles: [
-      {
-        type: 'FMJ',
-        pen: [19, 19, 17, 16, 14, 10, 7.3, 5.3],
-        dc: [8, 8, 8, 7, 7, 7, 6, 5],
-      },
-    ],
+    aim: belowAverageverageRifle11Aims,
+    projectiles: [averageRifle762FMJ],
     trb: null,
     ma: null,
     ba: [61, 53, 45, 37, 32, 23, 17, 13],
@@ -421,13 +352,7 @@ export const rifles = () => [
       ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12],
       mod: [-24, -14, -10, -8, -6, -5, -4, -3, -2, -1, 0],
     },
-    projectiles: [
-      {
-        type: 'FMJ',
-        pen: [19, 19, 17, 16, 14, 10, 7.3, 5.3],
-        dc: [8, 8, 8, 7, 7, 7, 6, 5],
-      },
-    ],
+    projectiles: [averageRifle762FMJ],
     trb: null,
     ma: [0.6, 1, 2, 4, 6, 12, 19, 25],
     ba: [61, 53, 45, 37, 32, 23, 17, 13],
@@ -446,16 +371,9 @@ export const rifles = () => [
     mag: [{ type: 'Mag', weight: 0.7, cap: 20, qty: 0 }, { type: 'Mag', weight: 1, cap: 30, qty: 0 }],
     kd: 4,
     sab: 3,
-    aim: {
-      ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-      mod: [-22, -12, -9, -7, -6, -5, -4, -3, -2, -1, 0],
-    },
+    aim: aboveAverageRifle11Aims,
     projectiles: [
-      {
-        type: 'FMJ',
-        pen: [17, 16, 15, 13, 11, 7.1, 4.5, 2.9],
-        dc: [6, 6, 6, 6, 5, 4, 3, 2],
-      },
+      averageRifle556FMJ,
       {
         type: 'JHP',
         pen: [16, 15, 14, 12, 11, 6.8, 4.4, 2.8],
@@ -485,16 +403,9 @@ export const rifles = () => [
     mag: [{ type: 'Mag', weight: 1, cap: 30, qty: 0 }, { type: 'Mag', weight: 0.7, cap: 20, qty: 0 }],
     kd: 4,
     sab: 3,
-    aim: {
-      ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-      mod: [-22, -12, -9, -7, -6, -5, -4, -3, -2, -1, 0],
-    },
+    aim: aboveAverageRifle11Aims,
     projectiles: [
-      {
-        type: 'FMJ',
-        pen: [17, 16, 15, 13, 11, 7.1, 4.5, 2.9],
-        dc: [6, 6, 6, 6, 5, 4, 3, 2],
-      },
+      averageRifle556FMJ,
       {
         type: 'JHP',
         pen: [16, 15, 14, 12, 11, 6.8, 4.4, 2.8],
@@ -551,17 +462,8 @@ export const rifles = () => [
     mag: [{ type: 'Mag', weight: 0.77, cap: 15, qty: 0 }, { type: 'Mag', weight: 1.5, cap: 30, qty: 0 }],
     kd: 5,
     sab: 4,
-    aim: {
-      ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-      mod: [-21, -11, -9, -7, -6, -4, -3, -2, -2, -1, 0],
-    },
-    projectiles: [
-      {
-        type: 'FMJ',
-        pen: [6.8, 6.4, 5.8, 4.9, 4.2, 2.4, 1.4, 0.8],
-        dc: [6, 6, 5, 5, 4, 2, 1, 1],
-      },
-    ],
+    aim: improvedRifle11Aims,
+    projectiles: [averageRifle30CarbineFMJ],
     trb: null,
     ma: null,
     ba: [55, 46, 37, 29, 24, 14, 8, 5],
@@ -580,17 +482,8 @@ export const rifles = () => [
     mag: [{ type: 'Mag', weight: 1.5, cap: 30, qty: 0 }, { type: 'Mag', weight: 0.77, cap: 15, qty: 0 }],
     kd: 5,
     sab: 4,
-    aim: {
-      ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-      mod: [-21, -11, -9, -7, -6, -4, -3, -2, -2, -1, 0],
-    },
-    projectiles: [
-      {
-        type: 'FMJ',
-        pen: [6.8, 6.4, 5.8, 4.9, 4.2, 2.4, 1.4, 0.8],
-        dc: [6, 6, 5, 5, 4, 2, 1, 1],
-      },
-    ],
+    aim: improvedRifle11Aims,
+    projectiles: [averageRifle30CarbineFMJ],
     trb: null,
     ma: [0.6, 1, 2, 4, 6, 12, 17, 23],
     ba: [55, 46, 37, 29, 24, 14, 8, 5],
@@ -609,10 +502,7 @@ export const rifles = () => [
     mag: [{ type: 'Mag', weight: 0.95, cap: 10, qty: 0 }],
     kd: 9,
     sab: 5,
-    aim: {
-      ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-      mod: [-23, -12, -9, -7, -6, -5, -4, -3, -2, -1, 0],
-    },
+    aim: averageRifle11Aims,
     projectiles: [
       {
         type: 'FMJ',
@@ -663,10 +553,7 @@ export const rifles = () => [
     mag: [{ type: 'Mag', weight: 1.1, cap: 10, qty: 0 }],
     kd: 12,
     sab: 7,
-    aim: {
-      ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-      mod: [-23, -12, -9, -7, -6, -5, -4, -3, -2, -1, 0],
-    },
+    aim: averageRifle11Aims,
     projectiles: [
       {
         type: 'FMJ',
@@ -693,16 +580,9 @@ export const smgs = () => [
     mag: [{ type: 'Mag', weight: 1.7, cap: 36, qty: 0 }],
     kd: 3,
     sab: 3,
-    aim: {
-      ac: [1, 2, 3, 4, 5, 6, 7, 8],
-      mod: [-22, -12, -9, -7, -6, -5, -4, -3],
-    },
+    aim: averageSMG8Aims,
     projectiles: [
-      {
-        type: 'FMJ',
-        pen: [2.3, 2.1, 1.8, 1.4, 1.1, 0.5, 0.2, 0.1],
-        dc: [3, 3, 3, 2, 1, 1, 1, 1],
-      },
+      averageSMG9mmParabellumFMJ,
       {
         type: 'JHP',
         pen: [2.2, 2, 1.8, 1.7, 1.3, 0.4, 0.2, 0.1],
@@ -736,13 +616,7 @@ export const smgs = () => [
       ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
       mod: [-23, -12, -9, -8, -6, -5, -4, -3, -3, -2],
     },
-    projectiles: [
-      {
-        type: 'FMJ',
-        pen: [2.1, 1.9, 1.6, 1.3, 1.0, 0.4, 0.2, 0.1],
-        dc: [3, 3, 2, 2, 1, 1, 1, 1],
-      },
-    ],
+    projectiles: [belowAverageSMG9mmParabellumFMJ],
     ma: [0.2, 0.4, 0.8, 1, 2, 4, 6, 8],
     ba: [46, 37, 28, 21, 16, 6, 1, -2],
     tof: [1, 1, 2, 4, 6, 14, 24, 34],
@@ -793,13 +667,7 @@ export const smgs = () => [
       ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
       mod: [-23, -13, -10, -8, -7, -5, -4, -4, -3, -2, -1],
     },
-    projectiles: [
-      {
-        type: 'FMJ',
-        pen: [2.3, 2.1, 1.8, 1.4, 1.1, 0.5, 0.2, 0.1],
-        dc: [3, 3, 3, 2, 1, 1, 1, 1],
-      },
-    ],
+    projectiles: [averageSMG9mmParabellumFMJ],
     ma: [0.2, 0.5, 0.9, 2, 2, 5, 7, 9],
     ba: [45, 36, 27, 20, 15, 6, 0, -3],
     tof: [0, 1, 2, 4, 6, 13, 23, 32],
@@ -821,13 +689,7 @@ export const smgs = () => [
       ac: [1, 2, 3, 4, 5, 6, 7, 8],
       mod: [-23, -12, -9, -8, -6, -5, -4, -3],
     },
-    projectiles: [
-      {
-        type: 'FMJ',
-        pen: [1.7, 1.5, 1.3, 1.0, 0.8, 0.4, 0.2, 0.1],
-        dc: [3, 3, 2, 1, 1, 1, 1, 1],
-      },
-    ],
+    projectiles: [averageSMG45AcpFMJ],
     ma: [0.2, 0.5, 0.9, 2, 2, 5, 9, 12],
     ba: [45, 36, 27, 20, 15, 5, 0, -4],
     tof: [1, 1, 3, 5, 8, 18, 30, 44],
@@ -850,13 +712,7 @@ export const smgs = () => [
       ac: [1, 2, 3, 4, 5, 6, 7, 8, 9],
       mod: [-23, -13, -9, -8, -6, -5, -4, -3, -2],
     },
-    projectiles: [
-      {
-        type: 'FMJ',
-        pen: [3.6, 3.3, 2.8, 2.3, 1.8, 0.8, 0.4, 0.2],
-        dc: [4, 4, 3, 2, 2, 1, 1, 1],
-      },
-    ],
+    projectiles: [averageSMG762TokarevFMJ],
     ma: [0.3, 0.6, 1, 2, 3, 6, 9, 12],
     ba: [47, 39, 30, 22, 18, 8, 3, -1],
     tof: [0, 1, 2, 3, 4, 10, 17, 25],
@@ -878,13 +734,7 @@ export const smgs = () => [
       ac: [1, 2, 3, 4, 5, 6, 7, 8, 9],
       mod: [-22, -12, -9, -7, -6, -5, -4, -3, -2],
     },
-    projectiles: [
-      {
-        type: 'FMJ',
-        pen: [3.6, 3.3, 2.8, 2.3, 1.8, 0.8, 0.4, 0.2],
-        dc: [4, 4, 3, 2, 2, 1, 1, 1],
-      },
-    ],
+    projectiles: [averageSMG762TokarevFMJ],
     ma: [0.3, 0.5, 1, 2, 3, 5, 8, 11],
     ba: [47, 39, 30, 23, 18, 8, 3, -1],
     tof: [0, 1, 2, 3, 4, 10, 17, 24],
@@ -903,17 +753,8 @@ export const smgs = () => [
     mag: [{ type: 'Mag', weight: 1.3, cap: 32, qty: 0 }],
     kd: 3,
     sab: 3,
-    aim: {
-      ac: [1, 2, 3, 4, 5, 6, 7, 8],
-      mod: [-22, -12, -9, -7, -6, -5, -4, -3],
-    },
-    projectiles: [
-      {
-        type: 'FMJ',
-        pen: [2.3, 2.1, 1.8, 1.4, 1.1, 0.5, 0.2, 0.1],
-        dc: [3, 3, 3, 2, 1, 1, 1, 1],
-      },
-    ],
+    aim: averageSMG8Aims,
+    projectiles: [averageSMG9mmParabellumFMJ],
     ma: [0.2, 0.5, 0.9, 2, 2, 5, 7, 9],
     ba: [45, 36, 27, 20, 15, 6, 0, -3],
     tof: [0, 1, 2, 4, 6, 13, 23, 32],
@@ -935,13 +776,7 @@ export const smgs = () => [
       ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
       mod: [-24, -14, -10, -8, -7, -6, -5, -4, -3, -2, -1],
     },
-    projectiles: [
-      {
-        type: 'FMJ',
-        pen: [1.7, 1.5, 1.3, 1.0, 0.8, 0.4, 0.2, 0.1],
-        dc: [3, 3, 2, 1, 1, 1, 1, 1],
-      },
-    ],
+    projectiles: [averageSMG45AcpFMJ],
     ma: [0.3, 0.6, 1, 2, 3, 6, 9, 12],
     ba: [45, 36, 27, 20, 15, 5, 0, -4],
     tof: [1, 1, 3, 5, 8, 18, 30, 44],
@@ -963,17 +798,8 @@ export const pistols = () => [
     mag: [{ type: 'Mag', weight: 0.5, cap: 13, qty: 0 }],
     kd: 3,
     sab: 4,
-    aim: {
-      ac: [1, 2, 3, 4, 5, 6],
-      mod: [-17, -11, -10, -9, -8, -7],
-    },
-    projectiles: [
-      {
-        type: 'FMJ',
-        pen: [2.1, 1.9, 1.6, 1.3, 1.0, 0.4, 0.2, 0.1],
-        dc: [3, 3, 2, 2, 1, 1, 1, 1],
-      },
-    ],
+    aim: averagePistol6Aims,
+    projectiles: [averagePistol9mmParabellumFMJ],
     ba: [46, 38, 29, 22, 17, 8, 2, -1],
     tof: [1, 1, 2, 4, 6, 15, 24, 35],
     offical: true,
@@ -990,10 +816,7 @@ export const pistols = () => [
     mag: [{ type: 'Mag', weight: 0.7, cap: 7, qty: 0 }],
     kd: 5,
     sab: 5,
-    aim: {
-      ac: [1, 2, 3, 4, 5, 6],
-      mod: [-18, -11, -10, -9, -8, -7],
-    },
+    aim: belowAveragePistol6Aims,
     projectiles: [
       {
         type: 'FMJ',
@@ -1027,17 +850,8 @@ export const pistols = () => [
     mag: [{ type: 'Mag', weight: 0.6, cap: 15, qty: 0 }],
     kd: 3,
     sab: 4,
-    aim: {
-      ac: [1, 2, 3, 4, 5, 6],
-      mod: [-18, -11, -10, -9, -8, -7],
-    },
-    projectiles: [
-      {
-        type: 'FMJ',
-        pen: [2.1, 1.9, 1.6, 1.3, 1.0, 0.4, 0.2, 0.1],
-        dc: [3, 3, 2, 2, 1, 1, 1, 1],
-      },
-    ],
+    aim: belowAveragePistol6Aims,
+    projectiles: [averagePistol9mmParabellumFMJ],
     ba: [46, 38, 29, 22, 17, 8, 2, -1],
     tof: [1, 1, 2, 4, 6, 15, 24, 35],
     offical: true,
@@ -1081,10 +895,7 @@ export const pistols = () => [
     mag: [{ type: 'HMC', weight: 0.18, cap: 6, qty: 0 }],
     kd: 2,
     sab: 3,
-    aim: {
-      ac: [1, 2, 3, 4, 5, 6],
-      mod: [-17, -11, -10, -9, -8, -7],
-    },
+    aim: averagePistol6Aims,
     projectiles: [
       {
         type: 'LRN',
@@ -1108,10 +919,7 @@ export const pistols = () => [
     mag: [{ type: 'Mag', weight: 0.39, cap: 8, qty: 0 }],
     kd: 3,
     sab: 4,
-    aim: {
-      ac: [1, 2, 3, 4, 5, 6],
-      mod: [-17, -11, -10, -9, -8, -7],
-    },
+    aim: averagePistol6Aims,
     projectiles: [
       {
         type: 'FMJ',
@@ -1181,11 +989,7 @@ export const sniperRifles = () => [
       mod: [-25, -15, -8, -6, -4, -3, -1, 1, 2, 3, 4],
     },
     projectiles: [
-      {
-        type: 'FMJ',
-        pen: [20, 19, 18, 16, 15, 11, 7.7, 5.5],
-        dc: [8, 8, 8, 7, 7, 7, 6, 5],
-      },
+      averageOther762FMJ,
       {
         type: 'JHP',
         pen: [19, 18, 17, 16, 14, 10, 7.4, 5.3],
@@ -1348,13 +1152,7 @@ export const mgs = () => [
       ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
       mod: [-30, -20, -14, -10, -8, -6, -5, -4, -3, -2, 0],
     },
-    projectiles: [
-      {
-        type: 'FMJ',
-        pen: [20, 19, 18, 16, 15, 11, 7.7, 5.5],
-        dc: [8, 8, 8, 7, 7, 7, 6, 5],
-      },
-    ],
+    projectiles: [averageOther762FMJ],
     ma: [0.3, 0.5, 1, 2, 3, 5, 8, 10],
     ba: [61, 53, 45, 37, 32, 23, 17, 13],
     tof: [0, 0, 1, 2, 2, 5, 8, 11],
