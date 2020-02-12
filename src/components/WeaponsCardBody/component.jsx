@@ -70,7 +70,7 @@ const WeaponsCardBody = ({
 
 
   return (
-    <div>
+    <>
       {ButtonBar(toggleOnWeaponsCardViews, removeAllFirearms)}
       <table className="--gearTable">
         {TableHeader(calculateFirearmsArrayWeight(selectedGuns))}
@@ -79,7 +79,7 @@ const WeaponsCardBody = ({
           {renderGrenadeFragment()}
         </tbody>
       </table>
-    </div>
+    </>
   );
 };
 
