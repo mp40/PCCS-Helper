@@ -1,5 +1,5 @@
 import { averageRifle11Aims, belowAverageverageRifle11Aims, aboveAverageRifle11Aims, improvedRifle11Aims, averageRifle9Aims, averageSMG8Aims, averagePistol6Aims, belowAveragePistol6Aims } from './aimTimes';
-import { averageRifle762FMJ, averageRifle762x39FMJ, averageRifle556FMJ, averageRifle30CarbineFMJ, averageSMG9mmParabellumFMJ, belowAverageSMG9mmParabellumFMJ, averageSMG45AcpFMJ, averageSMG762TokarevFMJ, averagePistol9mmParabellumFMJ, averageOther762FMJ } from './projectiles';
+import { averageRifle762FMJ, averageRifle762x39FMJ, averageRifle556FMJ, averageRifle556JHP,  averageRifle556AP, averageRifle30CarbineFMJ, averageSMG9mmParabellumFMJ, belowAverageSMG9mmParabellumFMJ, averageSMG45AcpFMJ, averageSMG762TokarevFMJ, averagePistol9mmParabellumFMJ, averageOther762FMJ } from './projectiles';
 
 export const filterableCalibers = () => [
   '7.62 x 39mm',
@@ -374,16 +374,8 @@ export const rifles = () => [
     aim: aboveAverageRifle11Aims,
     projectiles: [
       averageRifle556FMJ,
-      {
-        type: 'JHP',
-        pen: [16, 15, 14, 12, 11, 6.8, 4.4, 2.8],
-        dc: [8, 8, 8, 7, 7, 6, 5, 3],
-      },
-      {
-        type: 'AP',
-        pen: [23, 22, 20, 18, 16, 10, 6.4, 4.1],
-        dc: [6, 6, 6, 6, 5, 4, 3, 2],
-      },
+      averageRifle556JHP,
+      averageRifle556AP,
     ],
     trb: null,
     ma: [0.4, 0.8, 2, 3, 4, 8, 11, 15],
@@ -406,16 +398,8 @@ export const rifles = () => [
     aim: aboveAverageRifle11Aims,
     projectiles: [
       averageRifle556FMJ,
-      {
-        type: 'JHP',
-        pen: [16, 15, 14, 12, 11, 6.8, 4.4, 2.8],
-        dc: [8, 8, 8, 7, 7, 6, 5, 3],
-      },
-      {
-        type: 'AP',
-        pen: [23, 22, 20, 18, 16, 10, 6.4, 4.1],
-        dc: [6, 6, 6, 6, 5, 4, 3, 2],
-      },
+      averageRifle556JHP,
+      averageRifle556AP,
     ],
     trb: null,
     ma: [0.4, 0.8, 2, 3, 4, 8, 11, 15],

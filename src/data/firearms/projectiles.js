@@ -1,5 +1,3 @@
-// FMJ
-
 // 7.62 NATO Rifles
 // M14, L1A1
 export const averageRifle762FMJ = {
@@ -21,6 +19,19 @@ export const averageRifle762x39FMJ = {
 export const averageRifle556FMJ = {
   type: 'FMJ',
   pen: [17, 16, 15, 13, 11, 7.1, 4.5, 2.9],
+  dc: [6, 6, 6, 6, 5, 4, 3, 2],
+};
+// M16, M16A1
+export const averageRifle556JHP = {
+  type: 'JHP',
+  pen: [16, 15, 14, 12, 11, 6.8, 4.4, 2.8],
+  dc: [8, 8, 8, 7, 7, 6, 5, 3],
+};
+
+// M16, M16A1
+export const averageRifle556AP = {
+  type: 'AP',
+  pen: [23, 22, 20, 18, 16, 10, 6.4, 4.1],
   dc: [6, 6, 6, 6, 5, 4, 3, 2],
 };
 
