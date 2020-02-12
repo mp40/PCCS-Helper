@@ -1,6 +1,5 @@
 import { averageRifle11Aims, belowAverageverageRifle11Aims, aboveAverageRifle11Aims, improvedRifle11Aims, averageRifle9Aims, averageSMG8Aims, averagePistol6Aims, belowAveragePistol6Aims } from './aimTimes';
-import { averageRifle762FMJ, averageRifle762x39FMJ, averageRifle556FMJ, averageRifle556JHP, averageRifle556AP, averageRifle30CarbineFMJ, averageSMG9mmParabellumFMJ, belowAverageSMG9mmParabellumFMJ, averageSMG45AcpFMJ, averageSMG762TokarevFMJ, averagePistol9mmParabellumFMJ, averageOther762FMJ } from './projectiles';
-import { mag762Cap20, mag762Cap20Hvy, mag762x39Cap30, stanagCap20, stanagCap30, mag30CarbineCap15, mag30CarbineCap30, mag9mmParabellumCap34, mag45AcpCap30 } from './magazines';
+import { averageRifle762FMJ, averageRifle762x39FMJ, averageRifle556FMJ, averageRifle556JHP,  averageRifle556AP, averageRifle30CarbineFMJ, averageSMG9mmParabellumFMJ, belowAverageSMG9mmParabellumFMJ, averageSMG45AcpFMJ, averageSMG762TokarevFMJ, averagePistol9mmParabellumFMJ, averageOther762FMJ } from './projectiles';
 
 export const filterableCalibers = () => [
   '7.62 x 39mm',
@@ -101,7 +100,7 @@ export const rifles = () => [
     weight: 11.3,
     rt: 8,
     rof: '*5',
-    mag: [mag762x39Cap30],
+    mag: [{ type: 'Mag', weight: 1.8, cap: 30, qty: 0 }],
     kd: 7,
     sab: 5,
     aim: averageRifle9Aims,
@@ -121,7 +120,7 @@ export const rifles = () => [
     weight: 8.7,
     rt: 8,
     rof: '*5',
-    mag: [mag762x39Cap30],
+    mag: [{ type: 'Mag', weight: 1.8, cap: 30, qty: 0 }],
     kd: 7,
     sab: 5,
     aim: averageRifle9Aims,
@@ -166,7 +165,7 @@ export const rifles = () => [
     weight: 7.1,
     rt: 8,
     rof: '*7',
-    mag: [stanagCap30, stanagCap20],
+    mag: [{ type: 'Mag', weight: 1, cap: 30, qty: 0 }, { type: 'Mag', weight: 0.7, cap: 20, qty: 0 }],
     kd: 4,
     sab: 3,
     aim: {
@@ -242,7 +241,7 @@ export const rifles = () => [
     weight: 10.8,
     rt: 8,
     rof: '*6',
-    mag: [mag762Cap20],
+    mag: [{ type: 'Mag', weight: 1.4, cap: 20, qty: 0 }],
     kd: 10,
     sab: 5,
     aim: {
@@ -271,7 +270,7 @@ export const rifles = () => [
     weight: 11.1,
     rt: 8,
     rof: '*5',
-    mag: [mag762Cap20],
+    mag: [{ type: 'Mag', weight: 1.4, cap: 20, qty: 0 }],
     kd: 10,
     sab: 5,
     aim: belowAverageverageRifle11Aims,
@@ -317,7 +316,7 @@ export const rifles = () => [
     weight: 12,
     rt: 8,
     rof: '*',
-    mag: [mag762Cap20Hvy],
+    mag: [{ type: 'Mag', weight: 1.6, cap: 20, qty: 0 }],
     kd: 10,
     sab: 5,
     aim: {
@@ -346,7 +345,7 @@ export const rifles = () => [
     weight: 11.2,
     rt: 8,
     rof: '*6',
-    mag: [mag762Cap20Hvy],
+    mag: [{ type: 'Mag', weight: 1.6, cap: 20, qty: 0 }],
     kd: 10,
     sab: 5,
     aim: {
@@ -369,7 +368,7 @@ export const rifles = () => [
     weight: 8.7,
     rt: 8,
     rof: '*7',
-    mag: [stanagCap20, stanagCap30],
+    mag: [{ type: 'Mag', weight: 0.7, cap: 20, qty: 0 }, { type: 'Mag', weight: 1, cap: 30, qty: 0 }],
     kd: 4,
     sab: 3,
     aim: aboveAverageRifle11Aims,
@@ -393,7 +392,7 @@ export const rifles = () => [
     weight: 8,
     rt: 8,
     rof: '*7',
-    mag: [stanagCap30, stanagCap20],
+    mag: [{ type: 'Mag', weight: 1, cap: 30, qty: 0 }, { type: 'Mag', weight: 0.7, cap: 20, qty: 0 }],
     kd: 4,
     sab: 3,
     aim: aboveAverageRifle11Aims,
@@ -444,7 +443,7 @@ export const rifles = () => [
     weight: 5.9,
     rt: 8,
     rof: '*',
-    mag: [mag30CarbineCap15, mag30CarbineCap30],
+    mag: [{ type: 'Mag', weight: 0.77, cap: 15, qty: 0 }, { type: 'Mag', weight: 1.5, cap: 30, qty: 0 }],
     kd: 5,
     sab: 4,
     aim: improvedRifle11Aims,
@@ -464,7 +463,7 @@ export const rifles = () => [
     weight: 6.3,
     rt: 8,
     rof: '*8',
-    mag: [mag30CarbineCap30, mag30CarbineCap15],
+    mag: [{ type: 'Mag', weight: 1.5, cap: 30, qty: 0 }, { type: 'Mag', weight: 0.77, cap: 15, qty: 0 }],
     kd: 5,
     sab: 4,
     aim: improvedRifle11Aims,
@@ -594,7 +593,7 @@ export const smgs = () => [
     weight: 8.6,
     rt: 9,
     rof: '*5',
-    mag: [mag9mmParabellumCap34],
+    mag: [{ type: 'Mag', weight: 1.4, cap: 34, qty: 0 }],
     kd: 3,
     sab: 3,
     aim: {
@@ -645,7 +644,7 @@ export const smgs = () => [
     weight: 10.1,
     rt: 9,
     rof: '*6',
-    mag: [mag9mmParabellumCap34],
+    mag: [{ type: 'Mag', weight: 1.4, cap: 34, qty: 0 }],
     kd: 3,
     sab: 2,
     aim: {
@@ -667,7 +666,7 @@ export const smgs = () => [
     weight: 9.4,
     rt: 8,
     rof: '*4',
-    mag: [mag45AcpCap30],
+    mag: [{ type: 'Mag', weight: 2.0, cap: 30, qty: 0 }],
     kd: 5,
     sab: 3,
     aim: {
@@ -754,7 +753,7 @@ export const smgs = () => [
     weight: 12,
     rt: 8,
     rof: '*6',
-    mag: [mag45AcpCap30],
+    mag: [{ type: 'Mag', weight: 2.0, cap: 30, qty: 0 }],
     kd: 5,
     sab: 3,
     aim: {
