@@ -37,7 +37,7 @@ const CharacterGeneration = ({ updateAttributes, updateWeight }) => {
 
   return (
     <div className="createCharContainer">
-      <div className="dataCardContainer">
+      <div>
         <NameCard />
         <AttributeCard />
         <CombatCard />

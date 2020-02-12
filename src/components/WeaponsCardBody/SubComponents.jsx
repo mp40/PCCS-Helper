@@ -29,7 +29,7 @@ export const ButtonBar = (toggleOnWeaponsCardViews, removeAllGuns) => (
 );
 
 export const TableHeader = totalWeight => (
-  <thead className="equipmentHeader" id="weaponsHeader" style={{ width: '100%' }}>
+  <thead className="--reverseHeading" id="weaponsHeader" style={{ width: '100%' }}>
     <tr>
       <th>
         <span>Weapons</span>

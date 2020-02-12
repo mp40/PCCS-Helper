@@ -39,8 +39,8 @@ class ClothingCard extends Component {
             className="--tableRow uniformStats"
             onClick={this.toggleSelectUniform}
           >
-            <td id="currentUniform">{currentUniform}</td>
-            <td id="uniformWeight" style={{ textAlign: 'center' }}>{currentUniformWeight}</td>
+            <td className="currentUniform">{currentUniform}</td>
+            <td className="uniformWeight">{currentUniformWeight}</td>
           </tr>
         </thead>
       </table>
@@ -54,7 +54,7 @@ class ClothingCard extends Component {
           </thead>
         </table>
         <div>
-          <select id="uniformDropdownSelector" onChange={this.handleChangeUniform}>
+          <select className="uniformDropdownSelector" onChange={this.handleChangeUniform}>
             {['Select Uniform', 'Normal', 'Tropical', 'Winter'].map((value) => (
               <option key={value}>{value}</option>
             ))}

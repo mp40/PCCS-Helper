@@ -10,6 +10,8 @@ import { findEquipmentWeight } from '../../helpers/actionHelpers';
 import { toggleTagsInList } from '../../helpers/equipmentListFunctions';
 import { handleIncrement } from '../../helpers/gaurds';
 
+import './EquipmentCard.css';
+
 class EquipmentCard extends Component {
   constructor(props) {
     super(props);
@@ -70,7 +72,7 @@ class EquipmentCard extends Component {
             id="removeEquip"
             onClick={() => this.handleRemoveEquipment(equipmentObject)}
           />
-          <span style={{ marginLeft: '1rem' }}>
+          <span>
             {equipmentObject.name}
           </span>
         </td>
@@ -141,7 +143,7 @@ class EquipmentCard extends Component {
 
   renderTableHead = totalEquipWeight => (
     <thead>
-      <tr className="equipmentHeader">
+      <tr className="--reverseHeading">
         <th>Equipment</th>
         <th style={{ width: '9%' }}>Weight</th>
         <th style={{ width: '9%' }}>Qty</th>
@@ -161,7 +163,7 @@ class EquipmentCard extends Component {
   )
 
   renderEquipmentCardTable = totalEquipWeight => (
-    <table style={{ width: '100%' }} className="equipmentTable">
+    <table className="--gearTable">
       {this.renderTableHead(totalEquipWeight)}
       {this.renderTableBody()}
     </table>
@@ -172,7 +174,7 @@ class EquipmentCard extends Component {
     const totalEquipWeight = findEquipmentWeight(gear.equipment);
 
     return (
-      <div style={{ width: '36%' }} className="--card equipmentSelect">
+      <div className="--card --gearCard">
         {this.renderButtonRow()}
         {this.renderEquipmentCardTable(totalEquipWeight)}
         {this.renderEquipmentDropdown()}

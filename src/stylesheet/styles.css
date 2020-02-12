@@ -36,6 +36,30 @@
     transition: 0.3s;
 }
 
+.--reverseHeading {
+    background: rgb(85, 83, 83);
+    color: whitesmoke;
+}
+
+.--gearCard {
+    display: inline-block;
+    margin-top: 2rem;
+    margin-left: 3rem;
+    padding: 1rem;
+    width: 36%;
+    height: 28.5rem;
+    overflow: auto;
+}
+
+.--gearCard:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.--gearTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
 .--button {
     color: rgb(85, 83, 83);
     background: whitesmoke;

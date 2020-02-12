@@ -7,3 +7,7 @@ select {
     width: 100%;
     font-size: smaller;
 }
+
+.uniformWeight {
+   text-align: center;
+}
