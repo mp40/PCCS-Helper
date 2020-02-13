@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import { gearShape } from '../../helpers/proptypeShapes';
 import EquipmentDropdown from '../EquipmentDropdown';
 import CustomEquipmentModal from '../CustomEquipmentModal';
-import ButtonStandard from '../widgets/buttons/ButtonStandard';
 import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 import ButtonIncrementArrows from '../widgets/buttons/ButtonIncrementArrows';
 import { findEquipmentWeight } from '../../helpers/actionHelpers';
 import { toggleTagsInList } from '../../helpers/equipmentListFunctions';
 import { handleIncrement } from '../../helpers/gaurds';
+
+import GearCard from '../GearCard';
 
 import './EquipmentCard.css';
 
@@ -121,25 +122,26 @@ class EquipmentCard extends Component {
       );
   }
 
-  renderButtonRow = () => (
-    <div style={{ marginTop: '-1rem', marginBottom: '.5rem' }}>
-      <ButtonStandard
-        id="addEquipment"
-        name="Add Equipment"
-        onClick={() => this.toggleOnEquipmentCardViews('showEquipment')}
-      />
-      <ButtonStandard
-        id="toggleCustomEquipment"
-        name="Add Custom"
-        onClick={() => this.toggleOnEquipmentCardViews('showCustomInput')}
-      />
-      <ButtonStandard
-        id="clearAllEquipment"
-        name="Clear All"
-        onClick={() => this.handleRemoveAllEquipment()}
-      />
-    </div>
-  )
+  // mptodo
+  // renderButtonRow = () => (
+  //   <div style={{ marginTop: '-1rem', marginBottom: '.5rem' }}>
+  //     <ButtonStandard
+  //       id="addEquipment"
+  //       name="Add Equipment"
+  //       onClick={() => this.toggleOnEquipmentCardViews('showEquipment')}
+  //     />
+  //     <ButtonStandard
+  //       id="toggleCustomEquipment"
+  //       name="Add Custom"
+  //       onClick={() => this.toggleOnEquipmentCardViews('showCustomInput')}
+  //     />
+  //     <ButtonStandard
+  //       id="clearAllEquipment"
+  //       name="Clear All"
+  //       onClick={() => this.handleRemoveAllEquipment()}
+  //     />
+  //   </div>
+  // )
 
   renderTableHead = totalEquipWeight => (
     <thead>
@@ -174,12 +176,11 @@ class EquipmentCard extends Component {
     const totalEquipWeight = findEquipmentWeight(gear.equipment);
 
     return (
-      <div className="--card --gearCard">
-        {this.renderButtonRow()}
+      <GearCard gearType="equipment" buttonFunctions={[() => this.toggleOnEquipmentCardViews('showEquipment'), () => this.toggleOnEquipmentCardViews('showCustomInput'), () => this.handleRemoveAllEquipment()]}>
         {this.renderEquipmentCardTable(totalEquipWeight)}
         {this.renderEquipmentDropdown()}
         {this.renderCustomEquipmentModal()}
-      </div>
+      </GearCard>
     );
   }
 }

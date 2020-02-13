@@ -3,30 +3,9 @@
 import React from 'react';
 import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 import ButtonIncrementArrows from '../widgets/buttons/ButtonIncrementArrows';
-import ButtonStandard from '../widgets/buttons/ButtonStandard';
 import { correctFloatingPoint } from '../../reducers/reducerHelpers';
 
 export const renderCorrectAmmoTitle = magObj => (magObj.type === 'Rnd' ? 'Single Rounds' : `${magObj.cap} round ${magObj.type}`);
-
-export const ButtonBar = (toggleOnWeaponsCardViews, removeAllGuns) => (
-  <div style={{ marginTop: '-1rem', marginBottom: '.5rem' }}>
-    <ButtonStandard
-      id="addFirearm"
-      name="Add Firearm"
-      onClick={() => toggleOnWeaponsCardViews('showFirearms')}
-    />
-    <ButtonStandard
-      id="clearAllFirearms"
-      name="Clear Firearms"
-      onClick={() => removeAllGuns([])}
-    />
-    <ButtonStandard
-      id="addGrenade"
-      name="Add Grenade"
-      onClick={() => toggleOnWeaponsCardViews('showGrenades')}
-    />
-  </div>
-);
 
 export const TableHeader = totalWeight => (
   <thead className="--reverseHeading" id="weaponsHeader" style={{ width: '100%' }}>

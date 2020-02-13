@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { gearShape } from '../../helpers/proptypeShapes';
+import GearCard from '../GearCard';
 import WeaponsCardBody from '../WeaponsCardBody';
 import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
 import WeaponsCardSelectModal from '../WeaponsCardSelectModal';
@@ -108,14 +109,12 @@ class WeaponsCard extends Component {
   )
 
   render() {
-    const { gear } = this.props;
+    const { gear, removeAllFirearms } = this.props;
     const { showFirearms, modifyFirearm, showGrenades } = this.state;
     const selectedGuns = getSelectedWeapons(gear.firearms);
     const selectedGrenades = getSelectedWeapons(gear.grenades);
-
     return (
-      <div className="--card --gearCard">
-
+      <GearCard gearType="weapons" buttonFunctions={[() => this.toggleOnWeaponsCardViews('showFirearms'), () => removeAllFirearms([]), () => this.toggleOnWeaponsCardViews('showGrenades')]}>
         <WeaponsCardBody
           selectedGuns={selectedGuns}
           selectedGrenades={selectedGrenades}
@@ -125,12 +124,13 @@ class WeaponsCard extends Component {
         {showFirearms && this.renderWeaponSelect()}
         {modifyFirearm && this.renderModifyFirearm()}
         {showGrenades && this.renderGrenadeSelect()}
-      </div>
+      </GearCard>
     );
   }
 }
 
 WeaponsCard.propTypes = {
+  removeAllFirearms: PropTypes.func,
   removeAllModificationsFromFirearm: PropTypes.func,
   gear: gearShape,
 };
