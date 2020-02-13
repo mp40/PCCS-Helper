@@ -7,20 +7,6 @@ import { correctFloatingPoint } from '../../reducers/reducerHelpers';
 
 export const renderCorrectAmmoTitle = magObj => (magObj.type === 'Rnd' ? 'Single Rounds' : `${magObj.cap} round ${magObj.type}`);
 
-export const TableHeader = totalWeight => (
-  <thead className="--reverseHeading" id="weaponsHeader" style={{ width: '100%' }}>
-    <tr>
-      <th>
-        <span>Weapons</span>
-      </th>
-      <th style={{ width: '10%' }}>Weight</th>
-      <th style={{ width: '10%' }}>Qty</th>
-      <th style={{ width: '10%' }}>lbs</th>
-      <th style={{ width: '10%' }}>{totalWeight}</th>
-    </tr>
-  </thead>
-);
-
 export const RenderGunName = (gunObj, removeFirearm, toggleModifyWeapon) => (
   <td>
     <span>

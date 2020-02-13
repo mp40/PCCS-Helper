@@ -4,15 +4,13 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 import ButtonIncrementArrows from '../widgets/buttons/ButtonIncrementArrows';
-import { TableHeader, RenderGunMags, RenderGunName, RenderGunInfo } from './SubComponents';
+import { RenderGunMags, RenderGunName, RenderGunInfo } from './SubComponents';
 import { correctFloatingPoint } from '../../reducers/reducerHelpers';
-
-import { calculateFirearmsArrayWeight } from '../../helpers/actionHelpers';
 
 import '../CharacterGeneration/CharacterGeneration.css';
 import '../WeaponsCard/WeaponsCard.css';
 
-const WeaponsCardBody = ({
+const WeaponsTableBody = ({
   toggleModifyWeapon,
   selectedGuns,
   selectedGrenades,
@@ -68,20 +66,15 @@ const WeaponsCardBody = ({
 
 
   return (
-    <>
-      <table className="--gearTable">
-        {TableHeader(calculateFirearmsArrayWeight(selectedGuns))}
-        <tbody id="characterWeaponList">
-          {renderGunFragment()}
-          {renderGrenadeFragment()}
-        </tbody>
-      </table>
-    </>
+    <tbody id="characterWeaponList">
+      {renderGunFragment()}
+      {renderGrenadeFragment()}
+    </tbody>
   );
 };
 
 
-WeaponsCardBody.propTypes = {
+WeaponsTableBody.propTypes = {
   increaseMagazineQty: PropTypes.func,
   decreaseMagazineQty: PropTypes.func,
   removeFirearm: PropTypes.func,
@@ -95,4 +88,4 @@ WeaponsCardBody.propTypes = {
   selectedGrenades: PropTypes.arrayOf(PropTypes.object),
 };
 
-export default WeaponsCardBody;
+export default WeaponsTableBody;

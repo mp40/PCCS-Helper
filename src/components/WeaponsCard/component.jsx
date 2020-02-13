@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { gearShape } from '../../helpers/proptypeShapes';
 import GearCard from '../GearCard';
-import WeaponsCardBody from '../WeaponsCardBody';
+import GearTable from '../GearTable';
+import WeaponsTableBody from '../WeaponsTableBody';
 import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
 import WeaponsCardSelectModal from '../WeaponsCardSelectModal';
 import WeaponsCardModifyWeapon from '../WeaponsCardModifyWeapon';
 import GrenadeSelectModal from '../GrenadeSelectModal';
 import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
+import { calculateFirearmsArrayWeight } from '../../helpers/actionHelpers';
 
 import './WeaponsCard.css';
 
@@ -113,14 +115,18 @@ class WeaponsCard extends Component {
     const { showFirearms, modifyFirearm, showGrenades } = this.state;
     const selectedGuns = getSelectedWeapons(gear.firearms);
     const selectedGrenades = getSelectedWeapons(gear.grenades);
+    const firearmsWeight = calculateFirearmsArrayWeight(selectedGuns);
+
     return (
       <GearCard gearType="weapons" buttonFunctions={[() => this.toggleOnWeaponsCardViews('showFirearms'), () => removeAllFirearms([]), () => this.toggleOnWeaponsCardViews('showGrenades')]}>
-        <WeaponsCardBody
-          selectedGuns={selectedGuns}
-          selectedGrenades={selectedGrenades}
-          toggleOnWeaponsCardViews={this.toggleOnWeaponsCardViews}
-          toggleModifyWeapon={this.toggleModifyWeapon}
-        />
+        <GearTable gearHeading="Weapons" totalWeight={Math.round(firearmsWeight * 1000) / 1000}>
+          <WeaponsTableBody
+            selectedGuns={selectedGuns}
+            selectedGrenades={selectedGrenades}
+            toggleOnWeaponsCardViews={this.toggleOnWeaponsCardViews}
+            toggleModifyWeapon={this.toggleModifyWeapon}
+          />
+        </GearTable>
         {showFirearms && this.renderWeaponSelect()}
         {modifyFirearm && this.renderModifyFirearm()}
         {showGrenades && this.renderGrenadeSelect()}

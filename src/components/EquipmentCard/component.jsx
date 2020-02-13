@@ -10,6 +10,7 @@ import { toggleTagsInList } from '../../helpers/equipmentListFunctions';
 import { handleIncrement } from '../../helpers/gaurds';
 
 import GearCard from '../GearCard';
+import GearTable from '../GearTable';
 
 import './EquipmentCard.css';
 
@@ -122,27 +123,6 @@ class EquipmentCard extends Component {
       );
   }
 
-  // mptodo
-  // renderButtonRow = () => (
-  //   <div style={{ marginTop: '-1rem', marginBottom: '.5rem' }}>
-  //     <ButtonStandard
-  //       id="addEquipment"
-  //       name="Add Equipment"
-  //       onClick={() => this.toggleOnEquipmentCardViews('showEquipment')}
-  //     />
-  //     <ButtonStandard
-  //       id="toggleCustomEquipment"
-  //       name="Add Custom"
-  //       onClick={() => this.toggleOnEquipmentCardViews('showCustomInput')}
-  //     />
-  //     <ButtonStandard
-  //       id="clearAllEquipment"
-  //       name="Clear All"
-  //       onClick={() => this.handleRemoveAllEquipment()}
-  //     />
-  //   </div>
-  // )
-
   renderTableHead = totalEquipWeight => (
     <thead>
       <tr className="--reverseHeading">
@@ -174,10 +154,14 @@ class EquipmentCard extends Component {
   render() {
     const { gear } = this.props;
     const totalEquipWeight = findEquipmentWeight(gear.equipment);
-
+    // gearHeading: PropTypes.string,
+    // totalWeight: PropTypes.number,
     return (
       <GearCard gearType="equipment" buttonFunctions={[() => this.toggleOnEquipmentCardViews('showEquipment'), () => this.toggleOnEquipmentCardViews('showCustomInput'), () => this.handleRemoveAllEquipment()]}>
-        {this.renderEquipmentCardTable(totalEquipWeight)}
+        {/* {this.renderEquipmentCardTable(totalEquipWeight)} */}
+        <GearTable gearHeading="Equipment" totalWeight={Math.round(totalEquipWeight * 1000) / 1000}>
+          {this.renderTableBody()}
+        </GearTable>
         {this.renderEquipmentDropdown()}
         {this.renderCustomEquipmentModal()}
       </GearCard>

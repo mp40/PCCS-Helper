@@ -11,7 +11,7 @@ const waitOneSec = simulate => new Promise(((resolve) => {
 describe('The Weapons Card', () => {
   const gunList = wrapper => wrapper.find('.equipmentListBody');
   const selectedWeapons = wrapper => wrapper.find('#characterWeaponList');
-  const header = wrapper => wrapper.find('#weaponsHeader');
+  const header = wrapper => wrapper.find('.weaponsHeader');
   const navBarWeight = wrapper => wrapper.find('.navEquipWeight');
 
   describe('Firearms', () => {
