@@ -123,20 +123,6 @@ class EquipmentCard extends Component {
       );
   }
 
-  renderTableHead = totalEquipWeight => (
-    <thead>
-      <tr className="--reverseHeading">
-        <th>Equipment</th>
-        <th style={{ width: '9%' }}>Weight</th>
-        <th style={{ width: '9%' }}>Qty</th>
-        <th style={{ width: '9%' }}>lbs</th>
-        <th style={{ width: '9%' }}>
-          {Math.round(totalEquipWeight * 1000) / 1000}
-        </th>
-      </tr>
-    </thead>
-  )
-
   renderTableBody = () => (
     <tbody id="characterEquipmentList">
       <tr className="addEquipment" />
@@ -144,21 +130,11 @@ class EquipmentCard extends Component {
     </tbody>
   )
 
-  renderEquipmentCardTable = totalEquipWeight => (
-    <table className="--gearTable">
-      {this.renderTableHead(totalEquipWeight)}
-      {this.renderTableBody()}
-    </table>
-  )
-
   render() {
     const { gear } = this.props;
     const totalEquipWeight = findEquipmentWeight(gear.equipment);
-    // gearHeading: PropTypes.string,
-    // totalWeight: PropTypes.number,
     return (
       <GearCard gearType="equipment" buttonFunctions={[() => this.toggleOnEquipmentCardViews('showEquipment'), () => this.toggleOnEquipmentCardViews('showCustomInput'), () => this.handleRemoveAllEquipment()]}>
-        {/* {this.renderEquipmentCardTable(totalEquipWeight)} */}
         <GearTable gearHeading="Equipment" totalWeight={Math.round(totalEquipWeight * 1000) / 1000}>
           {this.renderTableBody()}
         </GearTable>

@@ -14,9 +14,7 @@ const GearTable = ({ gearHeading, totalWeight, children }) => {
           )}
         </tr>
       </thead>
-      {/* <tbody> */}
       { children }
-      {/* </tbody> */}
     </table>
   );
 };
