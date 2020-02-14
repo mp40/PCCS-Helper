@@ -52,3 +52,14 @@ export const armourShape = PropTypes.shape({
   weight: PropTypes.number,
   tags: PropTypes.arrayOf(PropTypes.string),
 });
+
+export const weaponRowDataShape = PropTypes.shape({
+  type: PropTypes.string.isRequired,
+  remove: PropTypes.func.isRequired,
+  up: PropTypes.func.isRequired,
+  down: PropTypes.func.isRequired,
+  modify: PropTypes.func,
+  magUp: PropTypes.func,
+  magDown: PropTypes.func,
+  array: PropTypes.arrayOf(PropTypes.object).isRequired,
+});

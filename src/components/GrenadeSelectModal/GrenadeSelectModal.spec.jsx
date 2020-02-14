@@ -8,8 +8,8 @@ const toggleOffWeaponCardViews = jest.fn();
 const dataM61Grenade = {
   name: 'M61',
   qty: 1,
-  l: 3.8,
-  w: 1,
+  length: 3.8,
+  weight: 1,
   at: 3,
   fl: 2,
   r: 15,

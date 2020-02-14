@@ -1,4 +1,4 @@
-import { renderCorrectAmmoTitle } from './SubComponents';
+import { renderCorrectAmmoTitle } from './WeaponRow';
 
 describe('rendering the correct information', () => {
   it('should return "Single Rounds" if type is "Rnd"', () => {

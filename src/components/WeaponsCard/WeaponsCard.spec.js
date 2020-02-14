@@ -36,15 +36,15 @@ describe('The Weapons Card', () => {
       expect(navBarWeight(wrapper).text()).toContain('13.7');
     });
     it('should be possible to increase qty of a gun', () => {
-      wrapper.find('#qtyUpGun').simulate('click');
+      wrapper.find('#qtyUpFirearm').simulate('click');
       expect(selectedWeapons(wrapper).text()).toContain('2');
     });
     it('should be possible to decrease qty of a gun', () => {
-      wrapper.find('#qtyDownGun').simulate('click');
+      wrapper.find('#qtyDownFirearm').simulate('click');
       expect(selectedWeapons(wrapper).text()).toContain('1');
     });
     it('should be possible to delete a gun', () => {
-      wrapper.find('#removeGun').simulate('click');
+      wrapper.find('.removeM16').simulate('click');
       expect(wrapper.text()).not.toContain('M16');
     });
     it('should be possible to increase spare ammo', () => {
@@ -63,7 +63,7 @@ describe('The Weapons Card', () => {
     });
     it('should remove spare ammo weight from total when weapon removed', () => {
       wrapper.find('#qtyUpMagType1').simulate('click');
-      wrapper.find('#removeGun').simulate('click');
+      wrapper.find('.removeM1911A1').simulate('click');
       expect(header(wrapper).text()).toContain('0');
       expect(navBarWeight(wrapper).text()).toContain('5');
       expect(navBarWeight(wrapper).text()).not.toContain('5.7');
@@ -88,24 +88,24 @@ describe('The Weapons Card', () => {
     it('should increment only the intended mag when weapons have multiple mag types', () => {
       gunList(wrapper).find('#M16').simulate('click');
       expect(selectedWeapons(wrapper).text()).toContain('M16');
-      const spareMags = wrapper.find('.spareMags');
-      const firstMag = spareMags.at(0);
-      const secondMag = spareMags.at(1);
+      const spareMagRow = wrapper.find('.spareMagRow');
+      const firstMag = spareMagRow.at(0);
+      const secondMag = spareMagRow.at(1);
       firstMag.find('#qtyUpMagType1').simulate('click');
       expect(firstMag.find('.magQtySpan').text()).toContain('1');
       expect(secondMag.find('.magQtySpan').text()).not.toContain('1');
     });
     it('should not allow gun qty to be less than one', () => {
       gunList(wrapper).find('#M60').simulate('click');
-      wrapper.find('#qtyDownGun').simulate('click');
-      expect(selectedWeapons(wrapper).find('#M60_qty').text()).toContain('1');
-      expect(selectedWeapons(wrapper).find('#M60_qty').text()).not.toContain('0');
+      wrapper.find('#qtyDownFirearm').simulate('click');
+      expect(wrapper.find('.M60Row').childAt(2).text()).toContain('1');
+      expect(wrapper.find('.M60Row').childAt(2).text()).not.toContain('0');
     });
     it('should not allow mag qty to be less than 0', () => {
       gunList(wrapper).find('#M16').simulate('click');
-      const spareMags = wrapper.find('.spareMags');
-      const firstMag = spareMags.at(0);
-      const secondMag = spareMags.at(1);
+      const spareMagRow = wrapper.find('.spareMagRow');
+      const firstMag = spareMagRow.at(0);
+      const secondMag = spareMagRow.at(1);
       firstMag.find('#qtyDownMagType1').simulate('click');
       expect(firstMag.find('.magQtySpan').text()).toContain('0');
       secondMag.find('#qtyDownMagType2').simulate('click');

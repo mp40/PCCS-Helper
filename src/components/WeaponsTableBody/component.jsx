@@ -1,11 +1,9 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
-import ButtonIncrementArrows from '../widgets/buttons/ButtonIncrementArrows';
-import { RenderGunMags, RenderGunName, RenderGunInfo } from './SubComponents';
-import { correctFloatingPoint } from '../../reducers/reducerHelpers';
+
+import WeaponRow from './WeaponRow';
 
 import '../CharacterGeneration/CharacterGeneration.css';
 import '../WeaponsCard/WeaponsCard.css';
@@ -23,56 +21,16 @@ const WeaponsTableBody = ({
   increaseMagazineQty,
   decreaseMagazineQty,
 
-}) => {
-  const renderGunFragment = () => (
-    selectedGuns.map(gunObj => (
-      <Fragment key={gunObj.name}>
-        <tr className="SelectedGunsFragment">
-          {RenderGunName(gunObj, removeFirearm, toggleModifyWeapon)}
-          {RenderGunInfo(gunObj, increaseFirearmQty, decreaseFirearmQty)}
-        </tr>
-        {RenderGunMags(gunObj, increaseMagazineQty, decreaseMagazineQty)}
-      </Fragment>
-    ))
-  );
-
-  const renderGrenadeFragment = () => (
-    selectedGrenades.map(grenade => (
-      <tr key={grenade.name} className={`${grenade.name}Row`} style={{ fontSize: 'small' }}>
-        <td>
-          <span style={{ paddingRight: '5px' }}>
-            <ButtonDeleteX
-              className={`remove${grenade.name}`}
-              onClick={() => removeGrenade(grenade)}
-            />
-          </span>
-          {grenade.name}
-        </td>
-        <td>{grenade.w}</td>
-        <td>{grenade.qty}</td>
-        <td>{correctFloatingPoint(grenade.qty * grenade.w)}</td>
-        <td>
-          <ButtonIncrementArrows
-            className="ButtonIncrementArrows"
-            idUp="qtyUpGrenade"
-            idDown="qtyDownGrenade"
-            onClickUp={() => increaseGrenadeQty(grenade, 'up')}
-            onClickDown={() => (grenade.qty === 1 ? null : decreaseGrenadeQty(grenade, 'down'))}
-          />
-        </td>
-      </tr>
-    ))
-  );
-
-
-  return (
-    <tbody id="characterWeaponList">
-      {renderGunFragment()}
-      {renderGrenadeFragment()}
-    </tbody>
-  );
-};
-
+}) => (
+  <tbody id="characterWeaponList">
+    <WeaponRow
+      weapons={{ type: 'Firearm', remove: removeFirearm, up: increaseFirearmQty, down: decreaseFirearmQty, modify: toggleModifyWeapon, magUp: increaseMagazineQty, magDown: decreaseMagazineQty, array: selectedGuns }}
+    />
+    <WeaponRow
+      weapons={{ type: 'Grenade', remove: removeGrenade, up: increaseGrenadeQty, down: decreaseGrenadeQty, array: selectedGrenades }}
+    />
+  </tbody>
+);
 
 WeaponsTableBody.propTypes = {
   increaseMagazineQty: PropTypes.func,
