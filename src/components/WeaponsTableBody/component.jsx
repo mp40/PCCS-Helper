@@ -2,8 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import WeaponRow from './WeaponRow';
+import GearRow from '../GearRow';
 
 import '../CharacterGeneration/CharacterGeneration.css';
 import '../WeaponsCard/WeaponsCard.css';
@@ -23,11 +22,11 @@ const WeaponsTableBody = ({
 
 }) => (
   <tbody id="characterWeaponList">
-    <WeaponRow
-      weapons={{ type: 'Firearm', remove: removeFirearm, up: increaseFirearmQty, down: decreaseFirearmQty, modify: toggleModifyWeapon, magUp: increaseMagazineQty, magDown: decreaseMagazineQty, array: selectedGuns }}
+    <GearRow
+      gear={{ type: 'Firearm', remove: removeFirearm, up: increaseFirearmQty, down: decreaseFirearmQty, modify: toggleModifyWeapon, magUp: increaseMagazineQty, magDown: decreaseMagazineQty, array: selectedGuns }}
     />
-    <WeaponRow
-      weapons={{ type: 'Grenade', remove: removeGrenade, up: increaseGrenadeQty, down: decreaseGrenadeQty, array: selectedGrenades }}
+    <GearRow
+      gear={{ type: 'Grenade', remove: removeGrenade, up: increaseGrenadeQty, down: decreaseGrenadeQty, array: selectedGrenades }}
     />
   </tbody>
 );

@@ -1,5 +1,6 @@
-.tableRow {
-    font-size: smaller;
+.tableRow,
+.spareMagRow {
+    font-size: small;
 }
 
 .tableRow > td:nth-of-type(n+2) {
@@ -10,6 +11,6 @@
    margin-right: 0.5rem;
 }
 
-.spareMagRow > span {
-    margin: 0, 0.2rem, 0, 2rem;
+.spareMagRow > td > span:nth-of-type(1) {
+    margin: 0 1rem 0 2rem;
 }

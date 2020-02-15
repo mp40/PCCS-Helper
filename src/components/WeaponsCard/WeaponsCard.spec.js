@@ -2,17 +2,17 @@ import { act } from 'react-dom/test-utils';
 import { mountAppWithStore, storeWithCreateCharacterView } from '../../helpers/testHelpers';
 import { getSelectedWeapons } from './component';
 
-const waitOneSec = simulate => new Promise(((resolve) => {
+const waitOneSec = (simulate) => new Promise(((resolve) => {
   setTimeout(() => {
     resolve(simulate);
   }, 1001);
 }));
 
 describe('The Weapons Card', () => {
-  const gunList = wrapper => wrapper.find('.equipmentListBody');
-  const selectedWeapons = wrapper => wrapper.find('#characterWeaponList');
-  const header = wrapper => wrapper.find('.weaponsHeader');
-  const navBarWeight = wrapper => wrapper.find('.navEquipWeight');
+  const gunList = (wrapper) => wrapper.find('.equipmentListBody');
+  const selectedWeapons = (wrapper) => wrapper.find('#characterWeaponList');
+  const header = (wrapper) => wrapper.find('.weaponsHeader');
+  const navBarWeight = (wrapper) => wrapper.find('.navEquipWeight');
 
   describe('Firearms', () => {
     const wrapper = mountAppWithStore(storeWithCreateCharacterView());
@@ -92,8 +92,8 @@ describe('The Weapons Card', () => {
       const firstMag = spareMagRow.at(0);
       const secondMag = spareMagRow.at(1);
       firstMag.find('#qtyUpMagType1').simulate('click');
-      expect(firstMag.find('.magQtySpan').text()).toContain('1');
-      expect(secondMag.find('.magQtySpan').text()).not.toContain('1');
+      expect(firstMag.find('.spareMagRow').text()).toContain('1');
+      expect(secondMag.find('.spareMagRow').text()).not.toContain('1');
     });
     it('should not allow gun qty to be less than one', () => {
       gunList(wrapper).find('#M60').simulate('click');
@@ -107,9 +107,9 @@ describe('The Weapons Card', () => {
       const firstMag = spareMagRow.at(0);
       const secondMag = spareMagRow.at(1);
       firstMag.find('#qtyDownMagType1').simulate('click');
-      expect(firstMag.find('.magQtySpan').text()).toContain('0');
+      expect(firstMag.find('.spareMagRow').text()).toContain('0');
       secondMag.find('#qtyDownMagType2').simulate('click');
-      expect(firstMag.find('.magQtySpan').text()).toContain('0');
+      expect(firstMag.find('.spareMagRow').text()).toContain('0');
     });
     it('should not be possible to select the same weapon twice', () => {
       gunList(wrapper).find('#M16').simulate('click');
