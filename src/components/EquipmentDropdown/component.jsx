@@ -12,7 +12,7 @@ import './EquipmentDropdown.css';
 class EquipmentDropdown extends Component {
 mapEquipmentFilterTags = () => {
   const { filteredTags, handleTags } = this.props;
-  return createFilterSet(equipment()).map(tag => (
+  return createFilterSet(equipment()).map((tag) => (
     <div
       className="equipTags"
       style={{ fontWeight: filteredTags.includes(tag)
@@ -28,7 +28,7 @@ mapEquipmentFilterTags = () => {
 
 mapFilteredEquipment = () => {
   const { filteredTags } = this.props;
-  return filterEquipment(filteredTags).map(equipObj => (
+  return filterEquipment(filteredTags).map((equipObj) => (
     <div
       className="equipmentEntry"
       key={equipObj.name}

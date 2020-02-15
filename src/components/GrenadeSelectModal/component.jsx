@@ -12,7 +12,7 @@ import './GrenadeSelectModal.css';
 const GrenadeSelectModal = ({ toggleOffWeaponCardViews, addGrenade, grenades }) => {
   const [viewGrenade, setGrenadeToView] = useState(null);
 
-  const checkGrenadeInList = grenade => grenades.filter(obj => obj.name === grenade.name).length;
+  const checkGrenadeInList = (grenade) => grenades.filter((obj) => obj.name === grenade.name).length;
 
   const handleSelection = (grenade) => {
     if (checkGrenadeInList(grenade)) {
@@ -36,7 +36,7 @@ const GrenadeSelectModal = ({ toggleOffWeaponCardViews, addGrenade, grenades }) 
 
   const renderGrenadeList = () => (
     <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', marginBottom: '0.5rem' }}>
-      {[...grenadeData(), ...specialGrenades()].map(grenade => (
+      {[...grenadeData(), ...specialGrenades()].map((grenade) => (
         <div key={grenade.name} style={{ display: 'flex', width: '16ch', lineHeight: '100%' }}>
           <div style={{ width: '2ch' }}>
             <ButtonInfo

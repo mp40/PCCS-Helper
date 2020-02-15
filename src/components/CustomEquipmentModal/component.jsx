@@ -56,7 +56,7 @@ class CustomEquipmentModal extends Component {
     toggleOffEquipmentCardViews('showCustomInput');
   }
 
-renderHeading = toggleOffEquipmentCardViews => (
+renderHeading = (toggleOffEquipmentCardViews) => (
   <div className="subContainer">
     <div className="customEquipmentListHeader">
       Add Equipment To List
@@ -98,12 +98,10 @@ renderHeading = toggleOffEquipmentCardViews => (
             />
 
             {errorMsgInvalidEntry
-              && <div style={{ color: 'red' }}>Please Enter Valid Equipment Name and Weight</div>
-            }
+              && <div style={{ color: 'red' }}>Please Enter Valid Equipment Name and Weight</div>}
 
             {errorMsgExistsInArray
-              && <div style={{ color: 'red' }}>Already In List, Please Enter Valid Equipment Name</div>
-            }
+              && <div style={{ color: 'red' }}>Already In List, Please Enter Valid Equipment Name</div>}
 
           </div>
         </div>

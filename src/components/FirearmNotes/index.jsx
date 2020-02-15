@@ -18,7 +18,7 @@ const renderSpareAmmoNote = (magazine) => {
   );
 };
 
-const renderModificationNotes = modification => (
+const renderModificationNotes = (modification) => (
   <div key={modification.note}>{modification.note}</div>
 );
 
@@ -26,14 +26,14 @@ const FirearmNotes = ({ gunObj, viewSpareAmmo }) => (
   <div className="firearm-notes">
     {(viewSpareAmmo || gunObj.bipod || gunObj.optics || gunObj.selector || gunObj.modNotes) && <div className="firearm-notes-heading">Notes</div>}
     <div style={{ marginBottom: '0.1cm' }}>
-      {viewSpareAmmo && gunObj.mag.map(magazine => renderSpareAmmoNote(magazine))}
+      {viewSpareAmmo && gunObj.mag.map((magazine) => renderSpareAmmoNote(magazine))}
     </div>
     <div style={{ marginBottom: '0.1cm' }}>
       {gunObj.bipod && <div>Bipod</div>}
       {gunObj.optics && <div>Optics</div>}
       {gunObj.selector && <div>{gunObj.selector}</div>}
     </div>
-    {gunObj.modNotes && gunObj.modNotes.map(modification => renderModificationNotes(modification))}
+    {gunObj.modNotes && gunObj.modNotes.map((modification) => renderModificationNotes(modification))}
   </div>
 );
 

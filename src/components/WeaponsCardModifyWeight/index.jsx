@@ -60,8 +60,7 @@ class WeaponsCardModifyWeight extends Component {
           onClick={() => toggleOffWeaponCardViews('modifyFirearmWeight')}
         />
         {warning
-          && <div style={{ color: 'red', fontWeight: 'bold' }}>Please Enter Valid Data</div>
-        }
+          && <div style={{ color: 'red', fontWeight: 'bold' }}>Please Enter Valid Data</div>}
       </div>
     );
   }

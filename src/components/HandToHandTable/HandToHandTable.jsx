@@ -7,7 +7,7 @@ import './HandToHandTable.css';
 const borderLeftStyles = { borderLeft: '1px solid rgb(85, 83, 83)' };
 
 // todo move helpers to seperate file later ?
-const findWeaponData = objectKey => weaponName => meleeData().reduce(
+const findWeaponData = (objectKey) => (weaponName) => meleeData().reduce(
   (str, weapObj) => (
     weaponName === weapObj.Name ? str + weapObj[objectKey] : `${str}`
   ), '');
@@ -18,7 +18,7 @@ export const findWeaponCuttingDamage = findWeaponData('IDc');
 export const findWeaponStabbingDamage = findWeaponData('IDs');
 export const findWeaponRange = findWeaponData('Rng');
 
-const findActionCost = arrayIndex => weaponSpeed => weaponSpeedActionCosts().reduce(
+const findActionCost = (arrayIndex) => (weaponSpeed) => weaponSpeedActionCosts().reduce(
   (acc, speedArray) => (weaponSpeed >= speedArray[0] ? speedArray[arrayIndex] : acc), 0);
 
 export const findParryCost = findActionCost(1);

@@ -9,8 +9,8 @@ const standardRangeBrackets = ['', '', '', 'C', '0', '1', '2', '3', '5', '10'];
 const williePeteRangeBrackets = ['', '', '', 'C', '0', '1', '2', '3', '4', '5', '6', '8'];
 const seeRules = ['', '', '', 'See ', 'Rules', '-', 'Book', '10208', '', ''];
 
-const checkIfSpecialGrenade = grenadeName => specialGrenades().filter(
-  grenadeObj => grenadeObj.name === grenadeName,
+const checkIfSpecialGrenade = (grenadeName) => specialGrenades().filter(
+  (grenadeObj) => grenadeObj.name === grenadeName,
 )[0];
 
 const getRangeBrackets = (grenadeName) => {
@@ -23,7 +23,7 @@ const getRangeBrackets = (grenadeName) => {
   return standardRangeBrackets;
 };
 
-const getLengthOfTable = previousRow => (previousRow ? previousRow.length : 7);
+const getLengthOfTable = (previousRow) => (previousRow ? previousRow.length : 7);
 
 const renderHeading = (grenade) => {
   const rangeBrackets = getRangeBrackets(grenade.name);
@@ -57,7 +57,7 @@ const createDataHeadings = (grenade) => {
   if (checkIfSpecialGrenade(grenade.name)) {
     return [];
   }
-  return Object.keys(grenade.data).map(value => value.toUpperCase());
+  return Object.keys(grenade.data).map((value) => value.toUpperCase());
 };
 
 export const prepareDataForRender = (grenade) => {

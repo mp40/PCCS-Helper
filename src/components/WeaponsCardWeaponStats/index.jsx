@@ -15,7 +15,7 @@ export const standardRangeBrackets = [10, 20, 40, 70, 100, 200, 300, 400];
 export const shotgunRangeBrackets = [1, 2, 4, 6, 8, 10, 15, 20, 30, 40, 80];
 
 export const findSkillLevelFromSAL = (playerSAL) => {
-  const result = table1cSAL.findIndex(salValue => salValue === playerSAL);
+  const result = table1cSAL.findIndex((salValue) => salValue === playerSAL);
   return result === -1 ? undefined : result;
 };
 
@@ -53,7 +53,7 @@ const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
               <th className="dataCol">Data</th>
               <th className="dataCol">Aim Time</th>
               <th className="dataCol" />
-              {getRangeBrackets(gunObj).map(range => <th key={range}>{range}</th>)}
+              {getRangeBrackets(gunObj).map((range) => <th key={range}>{range}</th>)}
             </tr>
           </thead>
           <tbody>

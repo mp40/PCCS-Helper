@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { gearShape } from '../../helpers/proptypeShapes';
+import GearCard from '../GearCard';
+import GearTable from '../GearTable';
 import GearRow from '../GearRow';
 import EquipmentDropdown from '../EquipmentDropdown';
 import CustomEquipmentModal from '../CustomEquipmentModal';
 import { findEquipmentWeight } from '../../helpers/actionHelpers';
 import { toggleTagsInList } from '../../helpers/equipmentListFunctions';
-
-import GearCard from '../GearCard';
-import GearTable from '../GearTable';
 
 import './EquipmentCard.css';
 

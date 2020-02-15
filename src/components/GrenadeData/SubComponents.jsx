@@ -18,5 +18,5 @@ const renderGrenade = (dataForRender, type) => (
   </tbody>
 );
 
-export const renderWilliePete = dataForRender => renderGrenade(dataForRender, 'WilliePete');
-export const renderStandardGrenade = dataForRender => renderGrenade(dataForRender, 'Explosive');
+export const renderWilliePete = (dataForRender) => renderGrenade(dataForRender, 'WilliePete');
+export const renderStandardGrenade = (dataForRender) => renderGrenade(dataForRender, 'Explosive');

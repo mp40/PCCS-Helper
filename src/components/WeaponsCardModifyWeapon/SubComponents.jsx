@@ -20,7 +20,7 @@ export const renderAmmoCapacity = (magObj) => {
   return `${magObj.cap} round ${magObj.type} - `;
 };
 
-const renderModificationOption = ComponentName => (handleModification, toggleOffWeaponCardViews) => (
+const renderModificationOption = (ComponentName) => (handleModification, toggleOffWeaponCardViews) => (
   <div style={{ marginLeft: '5rem' }}>
     <ComponentName
       handleModification={handleModification}
@@ -32,7 +32,7 @@ const renderModificationOption = ComponentName => (handleModification, toggleOff
 export const renderWeaponsCardCustomMag = renderModificationOption(WeaponsCardCustomMag);
 export const renderWeaponsCardModifyWeight = renderModificationOption(WeaponsCardModifyWeight);
 
-export const renderMagazinesHeading = toggleOnWeaponsCardViews => (
+export const renderMagazinesHeading = (toggleOnWeaponsCardViews) => (
   <div style={{ marginTop: '5px' }}>
     <div style={{ paddingRight: '5px', paddingTop: '5px', fontWeight: 'bold' }}>Magazines</div>
     {addModButtonWithMargin('addCustomMagazine', toggleOnWeaponsCardViews, 'createCustomMag')}

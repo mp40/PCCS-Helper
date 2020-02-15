@@ -19,8 +19,7 @@ const NavBar = ({ currentView, totalWeight }) => (
             />
             <Print />
           </div>
-        )
-      }
+        )}
   </div>
 );
 

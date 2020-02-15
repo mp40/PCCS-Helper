@@ -35,8 +35,8 @@ const ModifyHome = ({
       {addModButtonWithMargin('modifyWeaponWeight', toggleOnWeaponsCardViews, 'modifyFirearmWeight')}
     </div>
   );
-  const renderModificationNotes = notes => (
-    notes.map(noteObj => (
+  const renderModificationNotes = (notes) => (
+    notes.map((noteObj) => (
       <div key={`${noteObj.note}${noteObj.weightMod}`}>
         <span>{noteObj.note}</span>
         <span>

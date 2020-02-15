@@ -74,8 +74,7 @@ class WeaponsCardCustomMag extends Component {
           onClick={() => toggleOffWeaponCardViews('createCustomMag')}
         />
         {warning
-          && <div style={{ color: 'red', fontWeight: 'bold' }}>Please Enter Valid Data</div>
-        }
+          && <div style={{ color: 'red', fontWeight: 'bold' }}>Please Enter Valid Data</div>}
       </div>
     );
   }

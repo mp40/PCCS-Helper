@@ -37,11 +37,11 @@ const buildCalibreClassName = (value) => {
   return `select${value}Filter`.replace(/[^\w]/g, '');
 };
 
-const getClassName = value => (value === 'type' ? buildTypeClassName : buildCalibreClassName);
+const getClassName = (value) => (value === 'type' ? buildTypeClassName : buildCalibreClassName);
 
 const typeButtonValues = ['All', 'Rifles', 'Pistols', 'SMGs', 'MGs', 'Shotguns', 'Sniper Rifles'];
 const calibreButtonValues = ['All', '7.62mm NATO', '5.56mm NATO', '7.62 x 39mm', '5.45 x 39.5mm', '9mm Parabellum', 'Other'];
-const getValueArray = value => (value === 'type' ? typeButtonValues : calibreButtonValues);
+const getValueArray = (value) => (value === 'type' ? typeButtonValues : calibreButtonValues);
 
 const WeaponsModalFilterSelection = ({ handleSetFilterByType }) => {
   const [filterByType, setTypeFilter] = useState('All');
@@ -77,7 +77,7 @@ const WeaponsModalFilterSelection = ({ handleSetFilterByType }) => {
     return (
       <form className="filterByFirearmTypeForm" style={filterByTypeStyles}>
         {getValueArray(filterBy).map(
-          value => renderRadioButton(
+          (value) => renderRadioButton(
             value,
             filterValue === value,
             getClassName(filterBy)(value),

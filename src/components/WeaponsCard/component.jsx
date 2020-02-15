@@ -13,7 +13,7 @@ import { calculateFirearmsArrayWeight } from '../../helpers/actionHelpers';
 
 import './WeaponsCard.css';
 
-export const getSelectedWeapons = weaponArray => (weaponArray === undefined ? [] : weaponArray);
+export const getSelectedWeapons = (weaponArray) => (weaponArray === undefined ? [] : weaponArray);
 
 class WeaponsCard extends Component {
   constructor(props) {
@@ -71,7 +71,7 @@ class WeaponsCard extends Component {
     const { gear } = this.props;
     const { firearmToModify, createCustomMag, modifyFirearmWeight } = this.state;
     const selectedGuns = getSelectedWeapons(gear.firearms);
-    const gunToModify = selectedGuns.filter(gunObj => gunObj.name === firearmToModify)[0];
+    const gunToModify = selectedGuns.filter((gunObj) => gunObj.name === firearmToModify)[0];
 
     return (
       <div className="equipmentModalContainer">
@@ -102,7 +102,7 @@ class WeaponsCard extends Component {
     </div>
   )
 
-  renderFirearmStats = gunToModify => (
+  renderFirearmStats = (gunToModify) => (
     <div style={{ width: '40rem' }}>
       <WeaponsCardWeaponStats
         gunObj={gunToModify}
