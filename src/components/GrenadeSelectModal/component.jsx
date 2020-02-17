@@ -23,52 +23,43 @@ const GrenadeSelectModal = ({ toggleOffWeaponCardViews, addGrenade, grenades }) 
   };
 
   const renderGrenadeHeading = () => (
-    <div style={{ display: 'flex' }}>
-      <span style={{ fontSize: 'small' }}>
-        <ButtonDeleteX
-          className="closeModal"
-          onClick={() => toggleOffWeaponCardViews('showGrenades')}
-        />
-      </span>
-      <div style={{ marginBottom: '0.5rem', marginLeft: '5px' }}>Select Grenade</div>
+    <div className="grenadeListCardHeading">
+      <ButtonDeleteX
+        className="closeModal"
+        onClick={() => toggleOffWeaponCardViews('showGrenades')}
+      />
+      <div>Select Grenade</div>
     </div>
   );
 
   const renderGrenadeList = () => (
-    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', marginBottom: '0.5rem' }}>
-      {[...grenadeData(), ...specialGrenades()].map((grenade) => (
-        <div key={grenade.name} style={{ display: 'flex', width: '16ch', lineHeight: '100%' }}>
-          <div style={{ width: '2ch' }}>
-            <ButtonInfo
-              className={`view${grenade.name}Stats`}
-              onClick={() => setGrenadeToView(grenade)}
-            />
-          </div>
-          <div
-            className={`select${grenade.name} grenadeRow`}
-            onClick={() => handleSelection(grenade)}
-            style={{ width: '14ch', display: 'flex', justifyContent: 'space-between', fontSize: 'smaller' }}
-          >
-            <div>{grenade.name}</div>
-            <div>{grenade.w}</div>
-          </div>
+    [...grenadeData(), ...specialGrenades()].map((grenade) => (
+      <div key={grenade.name}>
+        <ButtonInfo
+          className={`view${grenade.name}Stats`}
+          onClick={() => setGrenadeToView(grenade)}
+        />
+        <div
+          className={`select${grenade.name} grenadeRow`}
+          onClick={() => handleSelection(grenade)}
+        >
+          <div>{grenade.name}</div>
+          <div>{grenade.w}</div>
         </div>
-      ))}
-    </div>
+      </div>
+    ))
   );
 
   return (
     <div className="equipmentModalContainer">
       <div className="--card grenadeListCard">
-        <div style={{ margin: '1rem 1rem' }}>
-          {renderGrenadeHeading()}
-          <div>
-            {renderGrenadeList()}
-            {viewGrenade && (
-            <GrenadeData grenade={viewGrenade} />
-            )}
-          </div>
+        {renderGrenadeHeading()}
+        <div className="grenadeList">
+          {renderGrenadeList()}
         </div>
+        {viewGrenade && (
+          <GrenadeData grenade={viewGrenade} />
+        )}
       </div>
     </div>
   );
