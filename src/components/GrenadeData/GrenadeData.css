@@ -1,0 +1,45 @@
+.grenadeTable {
+    border: 1px solid rgb(85, 83, 83);
+    border-collapse: collapse;
+    empty-cells: show;
+}
+.grenadeTable > tbody {
+    background-color: aqua;
+    /* border-right: 1px solid rgb(85, 83, 83); */
+    /* border-collapse: collapse; */
+    /* empty-cells: show;s */
+}
+
+/* .grenadeTableHeader {
+    border: 1px solid rgb(85, 83, 83);
+    border-collapse: collapse;
+} */
+
+/* .grenadeTableDataDivide {
+    text-align: right;
+    padding-right: 3px;
+    border-right: 1px solid rgb(85, 83, 83);
+    border-collapse: collapse;
+} */
+
+/* .grenadeTableExplosiveKeys {
+    padding-left: 3px;
+} */
+
+/* .grenadeTableWilliePeteKeys {
+    padding-left: 3px;
+    width: 9ch;
+    font-size: smaller;
+} */
+
+/* .grenadeTableWilliePeteData {
+    text-align: center;
+    font-size: smaller;
+} */
+/*
+.grenadeTableExplosiveData {
+    text-align: center;
+} */
+
+/* .greandeTableBody{
+} */
