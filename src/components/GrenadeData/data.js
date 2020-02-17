@@ -24,7 +24,6 @@ export const effectsSpecial = [
   'pd7',
 ];
 
-//mptodo I dont need all of these?
 export const text = {
   length: 'L',
   weight: 'W',
@@ -33,16 +32,6 @@ export const text = {
   r: 'R',
   smk: 'Smk',
   dur: 'Dur',
-  pen: 'PEN',
-  dc: 'DC',
-  bshc: 'BSHC',
-  bc: 'BC',
-  bwphc: 'BWPHC',
-  pdBody: 'PD Body',
-  pdLimb: 'PD Limb',
-  pd0: 'PDs TS 0',
-  pd4: 'PDs TS 4',
-  pd7: 'PDs TS 7',
 };
 
 export const tableHeadings = {

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { gearShape } from '../../helpers/proptypeShapes';
 import GearCard from '../GearCard';
 import GearTable from '../GearTable';
 import GearRow from '../GearRow';
@@ -72,17 +71,17 @@ class EquipmentCard extends Component {
   }
 
   renderTableBody = () => {
-    const { gear, removeEquipment, increaseEquipmentQty, decreaseEquipmentQty } = this.props;
+    const { equipment, removeEquipment, increaseEquipmentQty, decreaseEquipmentQty } = this.props;
     return (
-      <tbody id="characterEquipmentList">
-        <GearRow gear={{ type: 'Equipment', remove: removeEquipment, up: increaseEquipmentQty, down: decreaseEquipmentQty, array: gear.equipment }} />
+      <tbody>
+        <GearRow gear={{ type: 'Equipment', remove: removeEquipment, up: increaseEquipmentQty, down: decreaseEquipmentQty, array: equipment }} />
       </tbody>
     );
   }
 
   render() {
-    const { gear, removeAllEquipment } = this.props;
-    const totalEquipWeight = findEquipmentWeight(gear.equipment);
+    const { equipment, removeAllEquipment } = this.props;
+    const totalEquipWeight = findEquipmentWeight(equipment);
     return (
       <GearCard gearType="equipment" buttonFunctions={[() => this.toggleOnEquipmentCardViews('showEquipment'), () => this.toggleOnEquipmentCardViews('showCustomInput'), () => removeAllEquipment([])]}>
         <GearTable gearHeading="Equipment" totalWeight={Math.round(totalEquipWeight * 1000) / 1000}>
@@ -100,7 +99,7 @@ EquipmentCard.propTypes = {
   increaseEquipmentQty: PropTypes.func,
   removeAllEquipment: PropTypes.func,
   removeEquipment: PropTypes.func,
-  gear: gearShape,
+  equipment: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default EquipmentCard;
