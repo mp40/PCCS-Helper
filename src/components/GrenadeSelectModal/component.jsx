@@ -44,7 +44,7 @@ const GrenadeSelectModal = ({ toggleOffWeaponCardViews, addGrenade, grenades }) 
           onClick={() => handleSelection(grenade)}
         >
           <div>{grenade.name}</div>
-          <div>{grenade.w}</div>
+          <div>{grenade.weight}</div>
         </div>
       </div>
     ))
@@ -66,11 +66,9 @@ const GrenadeSelectModal = ({ toggleOffWeaponCardViews, addGrenade, grenades }) 
 };
 
 GrenadeSelectModal.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
   addGrenade: PropTypes.func,
   toggleOffWeaponCardViews: PropTypes.func,
-  // eslint-disable-next-line react/forbid-prop-types
-  grenades: PropTypes.array,
+  grenades: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default GrenadeSelectModal;

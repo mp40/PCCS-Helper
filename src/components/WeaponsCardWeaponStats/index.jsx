@@ -52,7 +52,7 @@ const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
             <tr className="WeaponStatHeader">
               <th className="dataCol">Data</th>
               <th className="dataCol">Aim Time</th>
-              <th className="dataCol" />
+              <th className="dataCol">{' '}</th>
               {getRangeBrackets(gunObj).map((range) => <th key={range}>{range}</th>)}
             </tr>
           </thead>

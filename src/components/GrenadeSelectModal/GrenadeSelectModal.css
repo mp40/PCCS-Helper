@@ -16,8 +16,10 @@
 }
 
 .grenadeListCardHeading > button {
-    font-size: small;
-    /* padding: 0.2ex, 0.2ch; */
+    padding: 0;
+    height: 20px;
+    width: 20px;
+    text-align: center;
 }
 
 .grenadeListCardHeading > div {
