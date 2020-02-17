@@ -22,8 +22,8 @@ const getGrenadeData = () => ({
 const getWilliePeteData = () => ({
   name: 'M15 WP',
   qty: 1,
-  l: 6,
-  w: 1.9,
+  length: 6,
+  weight: 1.9,
   at: 4,
   fl: 2,
   r: 11,
@@ -43,8 +43,8 @@ const getWilliePeteData = () => ({
 const getSmokeData = () => ({
   name: 'Smoke',
   qty: 1,
-  l: 5.7,
-  w: 1.5,
+  length: 5.7,
+  weight: 1.5,
   at: 4,
   fl: 1,
   r: 12,
@@ -57,8 +57,8 @@ const getSmokeData = () => ({
 const getTearGasData = () => ({
   name: 'Tear Gas',
   qty: 1,
-  l: 5.7,
-  w: 1.2,
+  length: 5.7,
+  weight: 1.2,
   at: 4,
   fl: 1,
   r: 14,
@@ -72,8 +72,8 @@ const getTearGasData = () => ({
 const getFlashBang = () => ({
   name: 'Flash Bang',
   qty: 1,
-  l: 5,
-  w: 0.6,
+  length: 5,
+  weight: 0.6,
   at: 3,
   fl: 1,
   r: 20,

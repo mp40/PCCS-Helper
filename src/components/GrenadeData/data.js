@@ -24,6 +24,7 @@ export const effectsSpecial = [
   'pd7',
 ];
 
+//mptodo I dont need all of these?
 export const text = {
   length: 'L',
   weight: 'W',

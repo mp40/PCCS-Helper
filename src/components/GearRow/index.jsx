@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 
 import React, { Fragment } from 'react';
-import { weaponRowDataShape } from '../../helpers/proptypeShapes';
+import { gearRowShape } from '../../helpers/proptypeShapes';
 import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 import ButtonIncrementArrows from '../widgets/buttons/ButtonIncrementArrows';
 import { correctFloatingPoint } from '../../reducers/reducerHelpers';
@@ -89,7 +89,7 @@ const GearRow = ({ gear }) => {
 };
 
 GearRow.propTypes = {
-  gear: weaponRowDataShape,
+  gear: gearRowShape,
 };
 
 export default GearRow;

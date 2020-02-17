@@ -3,43 +3,39 @@
     border-collapse: collapse;
     empty-cells: show;
 }
-.grenadeTable > tbody {
-    background-color: aqua;
-    /* border-right: 1px solid rgb(85, 83, 83); */
-    /* border-collapse: collapse; */
-    /* empty-cells: show;s */
-}
 
-/* .grenadeTableHeader {
+.grenadeTableHeader {
     border: 1px solid rgb(85, 83, 83);
     border-collapse: collapse;
-} */
+}
 
-/* .grenadeTableDataDivide {
+.grenadeTableHeader > tr > th {
+    width: 4ch;
+}
+
+.williwPeteHeader > tr > th {
+    width: 3ch;
+}
+
+.grenadeTableBody > tr > td:nth-of-type(1),
+.grenadeTableBody > tr > td:nth-of-type(3) {
+    padding-left: 3px;
+}
+
+.grenadeTableBody > tr > td:nth-of-type(2) {
+    border-right: 1px solid rgb(85, 83, 83);
     text-align: right;
     padding-right: 3px;
-    border-right: 1px solid rgb(85, 83, 83);
-    border-collapse: collapse;
-} */
+}
 
-/* .grenadeTableExplosiveKeys {
-    padding-left: 3px;
-} */
+.grenadeTableBody > tr > td:nth-of-type(n+4) {
+    text-align: center;
+}
 
-/* .grenadeTableWilliePeteKeys {
-    padding-left: 3px;
+.williePeteBody > tr > td:nth-last-of-type(3) {
     width: 9ch;
-    font-size: smaller;
-} */
+}
 
-/* .grenadeTableWilliePeteData {
-    text-align: center;
+.williePeteBody > tr > td:nth-last-of-type(n+3) {
     font-size: smaller;
-} */
-/*
-.grenadeTableExplosiveData {
-    text-align: center;
-} */
-
-/* .greandeTableBody{
-} */
+}
