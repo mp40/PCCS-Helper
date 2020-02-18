@@ -16,11 +16,9 @@ export const App = ({ currentView }) => (
     </header>
     <div className="App-body">
       {currentView === 'home'
-        && <HomePage />
-      }
+        && <HomePage />}
       {(currentView === 'createChar' || currentView === 'printRefSheet')
-        && <CharacterGeneration />
-      }
+        && <CharacterGeneration />}
     </div>
     {currentView === 'printRefSheet'
     && (
@@ -33,7 +31,7 @@ App.propTypes = {
   currentView: PropTypes.string,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   currentView: state.currentView,
 });
 

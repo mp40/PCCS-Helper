@@ -7,6 +7,9 @@ import ButtonStandard from '../widgets/buttons/ButtonStandard';
 import { filterEquipment, createFilterSet } from '../../helpers/equipmentListFunctions';
 import { isNotValidObjectToAdd } from '../../helpers/gaurds';
 import { equipment } from '../../data/equipmentList';
+
+import GearModal from '../GearModal';
+
 import './EquipmentDropdown.css';
 
 class EquipmentDropdown extends Component {
@@ -73,27 +76,24 @@ render() {
   const { showFilters, closeShowEquipment, toggleFilters } = this.props;
 
   return (
-    <div className="equipmentModalContainer">
-
-      <div className="--card equipmentListCard">
-        <div className="equipmentListHeader">
-                    Select Equipment
-          <ButtonStandard
-            id="closeEquipmentModal"
-            name="Close List"
-            onClick={closeShowEquipment}
-          />
-          <ButtonStandard
-            id="filterEquipmentList"
-            name={showFilters
-              ? 'Apply Filter'
-              : 'Filter List'}
-            onClick={toggleFilters}
-          />
-        </div>
-        {this.renderContent()}
+    <GearModal>
+      <div className="equipmentListHeader">
+        <span>Select Equipment</span>
+        <ButtonStandard
+          id="closeEquipmentModal"
+          name="Close List"
+          onClick={closeShowEquipment}
+        />
+        <ButtonStandard
+          id="filterEquipmentList"
+          name={showFilters
+            ? 'Apply Filter'
+            : 'Filter List'}
+          onClick={toggleFilters}
+        />
       </div>
-    </div>
+      {this.renderContent()}
+    </GearModal>
   );
 }
 }
