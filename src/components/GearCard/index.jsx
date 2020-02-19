@@ -4,23 +4,28 @@ import ButtonStandard from '../widgets/buttons/ButtonStandard';
 
 import buttonData from './data';
 
-const GearCard = ({ gearType, buttonFunctions, children }) => {
-  const renderButtons = () => (
-    <div>
-      {buttonData(gearType).map((obj, index) => (
-        <ButtonStandard
-          key={obj.id}
-          id={obj.id}
-          name={obj.name}
-          onClick={buttonFunctions[index]}
-        />
-      ),
-      )}
-    </div>
-  );
+const GearCard = ({ gearType, name, hasButtonFunctions, buttonFunctions, children }) => {
+  const renderButtons = () => {
+    if (!hasButtonFunctions) {
+      return null;
+    }
+    return (
+      <div>
+        {buttonData(gearType).map((obj, index) => (
+          <ButtonStandard
+            key={obj.id}
+            id={obj.id}
+            name={obj.name}
+            onClick={buttonFunctions[index]}
+          />
+        ),
+        )}
+      </div>
+    );
+  };
 
   return (
-    <div className="--card --gearCard">
+    <div className={`--card ${name}`}>
       {renderButtons()}
       { children }
     </div>
@@ -29,8 +34,15 @@ const GearCard = ({ gearType, buttonFunctions, children }) => {
 
 GearCard.propTypes = {
   gearType: PropTypes.string,
+  name: PropTypes.string,
+  hasButtonFunctions: PropTypes.bool,
   buttonFunctions: PropTypes.arrayOf(PropTypes.func),
   children: PropTypes.arrayOf(PropTypes.node),
+};
+
+GearCard.defaultProps = {
+  name: '--gearCard',
+  hasButtonFunctions: true,
 };
 
 export default GearCard;

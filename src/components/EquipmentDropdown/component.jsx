@@ -9,6 +9,7 @@ import { isNotValidObjectToAdd } from '../../helpers/gaurds';
 import { equipment } from '../../data/equipmentList';
 
 import GearModal from '../GearModal';
+import GearModalContents from '../GearModalContents';
 
 import './EquipmentDropdown.css';
 
@@ -62,9 +63,9 @@ renderFilterList = () => (
 )
 
 renderEquipment = () => (
-  <div className="equipmentListBody">
+  <GearModalContents name="equipmentListBody">
     {this.mapFilteredEquipment()}
-  </div>
+  </GearModalContents>
 )
 
 renderContent = () => {

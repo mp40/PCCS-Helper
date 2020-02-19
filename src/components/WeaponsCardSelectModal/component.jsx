@@ -4,6 +4,10 @@ import { gearShape } from '../../helpers/proptypeShapes';
 import WeaponsModalSelection from '../WeaponsModalSelection';
 import { isNotValidObjectToAdd } from '../../helpers/gaurds';
 
+import GearModal from '../GearModal';
+
+import './test.css';
+import GearCard from '../GearCard';
 
 const WeaponsCardSelectModal = ({ addFirearm, gear, toggleOffWeaponCardViews }) => {
   const handleAddFirearm = (gunObj) => {
@@ -15,12 +19,14 @@ const WeaponsCardSelectModal = ({ addFirearm, gear, toggleOffWeaponCardViews }) 
 
 
   return (
-    <div className="equipmentModalContainer">
-      <WeaponsModalSelection
-        toggleOffWeaponCardViews={toggleOffWeaponCardViews}
-        handleAddFirearm={handleAddFirearm}
-      />
-    </div>
+    <GearModal>
+      {/* <GearCard name="modalCard"> */}
+        <WeaponsModalSelection
+          toggleOffWeaponCardViews={toggleOffWeaponCardViews}
+          handleAddFirearm={handleAddFirearm}
+        />
+      {/* </GearCard> */}
+    </GearModal>
   );
 };
 

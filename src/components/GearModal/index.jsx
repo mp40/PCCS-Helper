@@ -5,16 +5,16 @@ import './GearModal.css';
 
 const GearModal = ({ children }) => (
   <div className="modalOverlay">
-    <div className="--card modalCard">
-      {/* <div className="test"> */}
+    {/* ???? */}
+    {/* <div className="--card modalCard"> */}
       { children }
-      {/* </div> */}
-    </div>
+    {/* </div> */}
   </div>
 );
+
+
 GearModal.propTypes = {
-//   gearType: PropTypes.string,
-//   buttonFunctions: PropTypes.arrayOf(PropTypes.func),
+  // outerElements: PropTypes.arrayOf(PropTypes.node),
   children: PropTypes.arrayOf(PropTypes.node),
 };
 

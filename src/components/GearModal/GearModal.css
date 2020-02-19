@@ -16,4 +16,5 @@
     top: calc(50% - 12rem);
     left: calc(50% - 30rem);
     overflow: auto;
+    z-index: 10;
 }

@@ -11,6 +11,10 @@ import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 
 import { rifles, pistols, smgs, mgs, sniperRifles, shotguns, filterableCalibers } from '../../data/firearms';
 
+import GearModalContents from '../GearModalContents';
+
+import GearCard from '../GearCard';
+
 import './WeaponsModalSelection.css';
 
 
@@ -93,9 +97,9 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, handleAddFirearm }) =
 
   return (
     <>
-      <div className="--card FirearmSelectionListCard" style={{ zIndex: 10 }}>
+    <GearCard name="modalCard" hasButtonFunctions={false}>
         <div className="equipmentListHeader">
-        Select firearms
+          <span>Select firearms</span>
           <ButtonStandard
             id="closeFirearmModal"
             name="Close List"
@@ -107,33 +111,27 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, handleAddFirearm }) =
             onClick={handleToggleViewFilters}
           />
         </div>
-
-        <div className="equipmentListBody">
-          {gunArrayFilteredByType.map((gunObj) => (
-            <div key={gunObj.name} style={{ display: 'flex', width: '30%', paddingLeft: '.2rem', paddingRight: '.2rem' }}>
-              <ButtonInfo
-                id={`view${gunObj.name.replace(/\s+/g, '')}`}
-                onClick={() => handleShowStatCard(gunObj)}
-              />
-              <div
-                className="equipmentEntry"
-                style={{ width: '100%' }}
-                id={gunObj.name}
-                onClick={() => addFirearmToList(gunObj)}
-              >
-                <div>
-                  {gunObj.name}
-                </div>
-                <div>
-                  {`${gunObj.weight} lbs`}
-                </div>
-              </div>
+      <GearModalContents className="test">
+        {gunArrayFilteredByType.map((gunObj) => (
+          <div key={gunObj.name} style={{ display: 'flex', width: '30%', paddingLeft: '.2rem', paddingRight: '.2rem' }}>
+            <ButtonInfo
+              id={`view${gunObj.name.replace(/\s+/g, '')}`}
+              onClick={() => handleShowStatCard(gunObj)}
+            />
+            <div
+              className="firearmEntry"
+              // className="equipmentEntry"
+              // style={{ width: '100%' }}
+              id={gunObj.name}
+              onClick={() => addFirearmToList(gunObj)}
+            >
+              <span>{gunObj.name}</span>
+              <span>{`${gunObj.weight} lbs`}</span>
             </div>
-          ))}
-        </div>
-
-      </div>
-
+          </div>
+        ))}
+      </GearModalContents>
+      </GearCard>
       <div className={filterClassName}>
         <WeaponsModalFilterSelection
           handleSetFilterByType={handleSetFilterByType}

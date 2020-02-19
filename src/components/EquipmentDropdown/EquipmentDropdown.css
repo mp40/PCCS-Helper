@@ -6,7 +6,8 @@
     margin: 0 .1rem 0 .3rem;
 }
 
-.equipmentListBody {
+/* mptodo */
+/* .equipmentListBody {
     display: flex;
     flex-wrap: wrap;
     padding-bottom: 0.5rem;
@@ -21,7 +22,7 @@
 
 .equipmentEntry:nth-of-type(3n+2) {
     margin: 0 15px;
-}
+} */
 
 .tagContainer {
     display: flex;

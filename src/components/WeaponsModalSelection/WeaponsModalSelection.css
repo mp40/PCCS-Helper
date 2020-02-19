@@ -1,11 +1,23 @@
 .FirearmSelectionListCard {
-  margin-top: 2rem;
+  /* margin-top: 2rem;
   height: 20rem;
   width: 60rem;
   position: relative;
   top: calc(50% - 15rem);
   left: calc(50% - 30rem);
-  overflow: auto;
+  overflow: auto; */
+}
+
+.firearmEntry {
+  width: 100%;
+}
+
+.firearmEntry > span:last-of-type {
+  float: right;
+}
+
+.test {
+  z-index:10;
 }
 
   .filterCardWrapper {
@@ -16,18 +28,26 @@
     margin-top: 2rem;
     height: 11rem;
     width: 30rem;
-    position: relative;
-    top: calc(50% - 36rem);
+    /* position: relative; */
+    position: fixed;
+    /* top: calc(50% - 36rem); */
+    top: 0;
+    transform: translateY(100%);
     left: calc(50% - 10rem);
     overflow: auto;
   }
 
   .filterCardWrapper.trans {
-      top: calc(50% - 47.5rem);
+      /* top: calc(50% - 47.5rem); */
+      transform: translateY(0);
+      background-color: lightcoral;
+      position: fixed;
   }
 
   .filterCardWrapper.trans.final {
     z-index: 20;
+    background-color: lightblue;
+    position: fixed;
 }
 
   .ModifyWeaponStatTableContainer {
