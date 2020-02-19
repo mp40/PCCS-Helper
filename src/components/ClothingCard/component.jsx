@@ -36,7 +36,7 @@ class ClothingCard extends Component {
         <thead>
           {renderTableHeading()}
           <tr
-            className="--tableRow uniformStats"
+            className="--selectableRow uniformStats"
             onClick={this.toggleSelectUniform}
           >
             <td className="currentUniform">{currentUniform}</td>

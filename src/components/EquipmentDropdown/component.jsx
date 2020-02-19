@@ -19,7 +19,7 @@ mapEquipmentFilterTags = () => {
   const { filteredTags, handleTags } = this.props;
   return createFilterSet(equipment()).map((tag) => (
     <div
-      className="equipTags"
+      className="--selectableRow equipTags"
       style={{ fontWeight: filteredTags.includes(tag)
         ? 'bold'
         : null }}
@@ -35,7 +35,7 @@ mapFilteredEquipment = () => {
   const { filteredTags } = this.props;
   return filterEquipment(filteredTags).map((equipObj) => (
     <div
-      className="equipmentEntry"
+      className="--selectableRow equipmentEntry"
       key={equipObj.name}
       onClick={this.handleAddEquipment.bind(this, equipObj)}
     >

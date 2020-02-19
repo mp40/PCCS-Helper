@@ -28,7 +28,7 @@ const GrenadeSelectModal = ({ toggleOffWeaponCardViews, addGrenade, grenades }) 
         className="closeModal"
         onClick={() => toggleOffWeaponCardViews('showGrenades')}
       />
-      <div>Select Grenade</div>
+      <span>Select Grenade</span>
     </div>
   );
 
@@ -40,7 +40,7 @@ const GrenadeSelectModal = ({ toggleOffWeaponCardViews, addGrenade, grenades }) 
           onClick={() => setGrenadeToView(grenade)}
         />
         <div
-          className={`select${grenade.name} grenadeRow`}
+          className={`--selectableRow select${grenade.name}`}
           onClick={() => handleSelection(grenade)}
         >
           <div>{grenade.name}</div>

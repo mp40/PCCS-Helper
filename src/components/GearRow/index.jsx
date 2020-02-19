@@ -43,6 +43,7 @@ const GearRow = ({ gear }) => {
         <span
           id={`modify${item.name}`}
           onClick={() => gear.modify(item)}
+          className="--selectableRow"
         >
           {item.name}
         </span>

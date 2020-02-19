@@ -33,7 +33,7 @@ class StatInput extends Component {
 
     return (
       <>
-        <tr className="--tableRow statInputTableRow">
+        <tr className="--selectableRow statInputTableRow">
           <td className="--tableHeading statName">{statName}</td>
           <td className={`statValue update${statName}`} onClick={this.handleToggleInput}>
             {toggleInput

@@ -15,16 +15,11 @@
     border-bottom: 1px solid #ddd;
 }
 
-.current-character-name {
+
+.character-name-card-container > div:nth-of-type(2) {
     min-height: 2.3ex;
 }
 
 .character-name-input {
     max-height: 2.3ex;
-}
-
-.current-character-name:hover {
-    background: white;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
 }

@@ -9,7 +9,7 @@ const renderHeading = (armourType) => (armourType === 'helmet' ? 'Select Helmet'
 const renderBody = (armourList, handleDispatch, type) => armourList.map((armour) => (
   <React.Fragment key={armour.name}>
     <tr
-      className={`${armour.name}Row --tableRow`}
+      className={`${armour.name}Row --selectableRow`}
       onClick={() => handleDispatch(type, armour)}
     >
       {['name', 'pf', 'bpf', 'ac', 'weight', 'tags'].map((value) => (
@@ -20,9 +20,9 @@ const renderBody = (armourList, handleDispatch, type) => armourList.map((armour)
 ));
 
 const BodyArmourSelection = ({ armourType, armourList, handleDispatch }) => (
-  <div className="equipmentModalContainer selectBodyArmourModal">
+  <div className="--modalOverlay selectBodyArmourModal">
     <div className="--card bodyArmourListCard">
-      <div className="equipmentListHeader bodyArmourListHeading">
+      <div className="bodyArmourListHeading">
         {renderHeading(armourType)}
         <div>
           <ButtonStandard

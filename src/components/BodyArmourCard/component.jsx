@@ -6,7 +6,7 @@ import { armourShape } from '../../helpers/proptypeShapes';
 
 import './BodyArmour.css';
 
-export const selectArmourList = armourType => (armourType === 'helmet' ? helmetStats() : bodyArmorStats());
+export const selectArmourList = (armourType) => (armourType === 'helmet' ? helmetStats() : bodyArmorStats());
 
 const BodyArmourCard = ({ helmet, vest, changeHelmet, changeVest }) => {
   const [showBodyArmour, toggleBodyArmourSelect] = useState(false);
@@ -22,7 +22,7 @@ const BodyArmourCard = ({ helmet, vest, changeHelmet, changeVest }) => {
   };
 
   const renderArmourRow = (type, obj) => (
-    <tr className={`--tableRow ${type}BodyArmour`} onClick={() => toggleBodyArmourSelect(type)}>
+    <tr className={`--selectableRow ${type}BodyArmour`} onClick={() => toggleBodyArmourSelect(type)}>
       <td>{obj.name}</td>
       <td>{obj.weight}</td>
     </tr>

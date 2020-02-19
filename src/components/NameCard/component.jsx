@@ -27,7 +27,7 @@ const NameCard = ({ currentCharacter, changeCharacterName }) => {
       <div>Name</div>
       {!textInput && (
       <div
-        className="current-character-name"
+        className="--selectableRow"
         onClick={() => toogleTextInput(true)}
       >
         {currentCharacter}
