@@ -28,7 +28,7 @@ describe('the <WeaponsCardCustomMag/> component', () => {
 describe('custom magazine gaurd clases', () => {
   let wrapper;
   let inputValue;
-  const gunList = () => wrapper.find('.equipmentListBody');
+  const gunList = () => wrapper.find('.firearmSelectModal').find('.gearModalContents');
   const selectedWeapons = () => wrapper.find('#characterWeaponList');
   const modifyPanel = () => wrapper.find('.modifyWeaponPanel');
   const enterMagCapacity = () => {

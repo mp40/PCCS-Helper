@@ -4,7 +4,7 @@ import { renderAmmoCapacity } from './SubComponents';
 describe('modifying weapons', () => {
   let wrapper;
   let inputValue;
-  const gunList = () => wrapper.find('.equipmentListBody');
+  const gunList = () => wrapper.find('.firearmSelectModal').find('.gearModalContents');
   const selectedWeapons = () => wrapper.find('#characterWeaponList');
   const modifyPanel = () => wrapper.find('.modifyWeaponPanel');
   beforeEach(() => {

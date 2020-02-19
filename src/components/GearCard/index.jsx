@@ -37,7 +37,9 @@ GearCard.propTypes = {
   name: PropTypes.string,
   hasButtonFunctions: PropTypes.bool,
   buttonFunctions: PropTypes.arrayOf(PropTypes.func),
-  children: PropTypes.arrayOf(PropTypes.node),
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node]),
 };
 
 GearCard.defaultProps = {

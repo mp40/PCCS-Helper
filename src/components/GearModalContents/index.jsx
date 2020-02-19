@@ -11,7 +11,9 @@ const GearModalContents = ({ name, children }) => (
 
 GearModalContents.propTypes = {
   name: PropTypes.string,
-  children: PropTypes.arrayOf(PropTypes.node),
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node]),
 };
 
 GearModalContents.defaultProps = {

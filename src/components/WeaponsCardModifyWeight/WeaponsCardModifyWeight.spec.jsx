@@ -24,7 +24,7 @@ describe('the <WeaponsCardModifyWeight/> component', () => {
 describe('modifing firearm weight', () => {
   let wrapper;
   let inputValue;
-  const gunList = () => wrapper.find('.equipmentListBody');
+  const gunList = () => wrapper.find('.firearmSelectModal').find('.gearModalContents');
   const selectedWeapons = () => wrapper.find('#characterWeaponList');
   const modifyPanel = () => wrapper.find('.modifyWeaponPanel');
   const addTorchAsMod = () => {
@@ -59,7 +59,7 @@ describe('modifing firearm weight', () => {
 describe('modify weapon weight gaurd clauses', () => {
   let wrapper;
   let inputValue;
-  const gunList = () => wrapper.find('.equipmentListBody');
+  const gunList = () => wrapper.find('.firearmSelectModal').find('.gearModalContents');
   const selectedWeapons = () => wrapper.find('#characterWeaponList');
   const modifyPanel = () => wrapper.find('.modifyWeaponPanel');
 

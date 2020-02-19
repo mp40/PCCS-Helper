@@ -97,7 +97,7 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, handleAddFirearm }) =
 
   return (
     <>
-      <GearCard name="modalCard">
+      <GearCard name="modalCard firearmSelectModal">
         <div className="equipmentListHeader">
           <span>Select firearms</span>
           <ButtonStandard

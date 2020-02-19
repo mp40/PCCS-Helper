@@ -51,7 +51,7 @@ const GrenadeSelectModal = ({ toggleOffWeaponCardViews, addGrenade, grenades }) 
   );
 
   return (
-    <div className="equipmentModalContainer">
+    <div className="--modalOverlay">
       <div className="--card grenadeListCard">
         {renderGrenadeHeading()}
         <div className="grenadeList">
