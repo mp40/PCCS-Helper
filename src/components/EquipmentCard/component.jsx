@@ -83,7 +83,7 @@ class EquipmentCard extends Component {
     const { equipment, removeAllEquipment } = this.props;
     const totalEquipWeight = findEquipmentWeight(equipment);
     return (
-      <GearCard gearType="equipment" buttonFunctions={[() => this.toggleOnEquipmentCardViews('showEquipment'), () => this.toggleOnEquipmentCardViews('showCustomInput'), () => removeAllEquipment([])]}>
+      <GearCard gearType="equipment" hasButtonFunctions buttonFunctions={[() => this.toggleOnEquipmentCardViews('showEquipment'), () => this.toggleOnEquipmentCardViews('showCustomInput'), () => removeAllEquipment([])]}>
         <GearTable gearHeading="Equipment" totalWeight={Math.round(totalEquipWeight * 1000) / 1000}>
           {this.renderTableBody()}
         </GearTable>

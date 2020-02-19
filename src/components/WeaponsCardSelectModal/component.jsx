@@ -6,7 +6,6 @@ import { isNotValidObjectToAdd } from '../../helpers/gaurds';
 
 import GearModal from '../GearModal';
 
-import './test.css';
 import GearCard from '../GearCard';
 
 const WeaponsCardSelectModal = ({ addFirearm, gear, toggleOffWeaponCardViews }) => {
@@ -21,10 +20,10 @@ const WeaponsCardSelectModal = ({ addFirearm, gear, toggleOffWeaponCardViews }) 
   return (
     <GearModal>
       {/* <GearCard name="modalCard"> */}
-        <WeaponsModalSelection
-          toggleOffWeaponCardViews={toggleOffWeaponCardViews}
-          handleAddFirearm={handleAddFirearm}
-        />
+      <WeaponsModalSelection
+        toggleOffWeaponCardViews={toggleOffWeaponCardViews}
+        handleAddFirearm={handleAddFirearm}
+      />
       {/* </GearCard> */}
     </GearModal>
   );

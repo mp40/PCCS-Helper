@@ -42,7 +42,7 @@ GearCard.propTypes = {
 
 GearCard.defaultProps = {
   name: '--gearCard',
-  hasButtonFunctions: true,
+  hasButtonFunctions: false,
 };
 
 export default GearCard;

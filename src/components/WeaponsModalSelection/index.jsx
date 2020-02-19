@@ -97,7 +97,7 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, handleAddFirearm }) =
 
   return (
     <>
-    <GearCard name="modalCard" hasButtonFunctions={false}>
+      <GearCard name="modalCard">
         <div className="equipmentListHeader">
           <span>Select firearms</span>
           <ButtonStandard
@@ -111,26 +111,24 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, handleAddFirearm }) =
             onClick={handleToggleViewFilters}
           />
         </div>
-      <GearModalContents className="test">
-        {gunArrayFilteredByType.map((gunObj) => (
-          <div key={gunObj.name} style={{ display: 'flex', width: '30%', paddingLeft: '.2rem', paddingRight: '.2rem' }}>
-            <ButtonInfo
-              id={`view${gunObj.name.replace(/\s+/g, '')}`}
-              onClick={() => handleShowStatCard(gunObj)}
-            />
-            <div
-              className="firearmEntry"
-              // className="equipmentEntry"
-              // style={{ width: '100%' }}
-              id={gunObj.name}
-              onClick={() => addFirearmToList(gunObj)}
-            >
-              <span>{gunObj.name}</span>
-              <span>{`${gunObj.weight} lbs`}</span>
+        <GearModalContents>
+          {gunArrayFilteredByType.map((gunObj) => (
+            <div key={gunObj.name} style={{ display: 'flex', width: '30%', paddingLeft: '.2rem', paddingRight: '.2rem' }}>
+              <ButtonInfo
+                id={`view${gunObj.name.replace(/\s+/g, '')}`}
+                onClick={() => handleShowStatCard(gunObj)}
+              />
+              <div
+                className="firearmEntry"
+                id={gunObj.name}
+                onClick={() => addFirearmToList(gunObj)}
+              >
+                <span>{gunObj.name}</span>
+                <span>{`${gunObj.weight} lbs`}</span>
+              </div>
             </div>
-          </div>
-        ))}
-      </GearModalContents>
+          ))}
+        </GearModalContents>
       </GearCard>
       <div className={filterClassName}>
         <WeaponsModalFilterSelection
@@ -139,25 +137,25 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, handleAddFirearm }) =
       </div>
 
       {firearmToInspect && (
-      <div className={statBoxClassName} style={{ fontSize: 'medium' }}>
-        <div style={{ marginTop: '2px', marginLeft: '2px' }}>
-          <ButtonDeleteX
-            id="closeGunStatView"
-            onClick={() => handleCloseStatCard()}
-          />
-        </div>
-        <div style={{ display: 'flex' }}>
-          <div>
-            <WeaponsCardWeaponStats gunObj={firearmToInspect} />
+        <div className={statBoxClassName} style={{ fontSize: 'medium' }}>
+          <div style={{ marginTop: '2px', marginLeft: '2px' }}>
+            <ButtonDeleteX
+              id="closeGunStatView"
+              onClick={() => handleCloseStatCard()}
+            />
           </div>
-          { firearmToInspect.list !== 'shotguns'
+          <div style={{ display: 'flex' }}>
+            <div>
+              <WeaponsCardWeaponStats gunObj={firearmToInspect} />
+            </div>
+            { firearmToInspect.list !== 'shotguns'
           && (
           <div className="firearm-notes-wrapper">
             <FirearmNotes gunObj={firearmToInspect} viewSpareAmmo={false} />
           </div>
           )}
+          </div>
         </div>
-      </div>
       )}
     </>
   );

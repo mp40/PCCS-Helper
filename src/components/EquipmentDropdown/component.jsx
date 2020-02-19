@@ -9,6 +9,7 @@ import { isNotValidObjectToAdd } from '../../helpers/gaurds';
 import { equipment } from '../../data/equipmentList';
 
 import GearModal from '../GearModal';
+import GearCard from '../GearCard';
 import GearModalContents from '../GearModalContents';
 
 import './EquipmentDropdown.css';
@@ -78,22 +79,24 @@ render() {
 
   return (
     <GearModal>
-      <div className="equipmentListHeader">
-        <span>Select Equipment</span>
-        <ButtonStandard
-          id="closeEquipmentModal"
-          name="Close List"
-          onClick={closeShowEquipment}
-        />
-        <ButtonStandard
-          id="filterEquipmentList"
-          name={showFilters
-            ? 'Apply Filter'
-            : 'Filter List'}
-          onClick={toggleFilters}
-        />
-      </div>
-      {this.renderContent()}
+      <GearCard name="modalCard">
+        <div className="equipmentListHeader">
+          <span>Select Equipment</span>
+          <ButtonStandard
+            id="closeEquipmentModal"
+            name="Close List"
+            onClick={closeShowEquipment}
+          />
+          <ButtonStandard
+            id="filterEquipmentList"
+            name={showFilters
+              ? 'Apply Filter'
+              : 'Filter List'}
+            onClick={toggleFilters}
+          />
+        </div>
+        {this.renderContent()}
+      </GearCard>
     </GearModal>
   );
 }

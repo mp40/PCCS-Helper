@@ -5,10 +5,7 @@ import './GearModal.css';
 
 const GearModal = ({ children }) => (
   <div className="modalOverlay">
-    {/* ???? */}
-    {/* <div className="--card modalCard"> */}
-      { children }
-    {/* </div> */}
+    { children }
   </div>
 );
 
