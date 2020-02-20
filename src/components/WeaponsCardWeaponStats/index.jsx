@@ -44,7 +44,7 @@ const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
   };
 
   return (
-    <>
+    <div>
       <div style={getNameStyle(size)}>{`${getFirearmNameAndRecoil(gunObj, findSkillLevelFromSAL(sal))}`}</div>
       <div style={{ display: 'flex' }}>
         <table className={size ? `${size}WeaponStatTable` : 'WeaponStatTable'}>
@@ -68,7 +68,7 @@ const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
           </tbody>
         </table>
       </div>
-    </>
+    </div>
   );
 };
 

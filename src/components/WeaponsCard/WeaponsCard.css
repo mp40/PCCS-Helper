@@ -86,3 +86,13 @@
     margin-right: .2cm;
     float: right;
 }
+
+/* mptod0 - rename / move with code to seperate component */
+.ModifyWeaponStatTableContainer {
+    font-size: medium;
+    padding-top: 1rem;
+}
+
+.ModifyWeaponStatTableContainer > div {
+   display: flex;
+}
