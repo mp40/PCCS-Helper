@@ -8,7 +8,7 @@ import { removeFirearmModification,
   removeMagazine,
   replaceMagazine } from '../../actions';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   gear: state.gear,
 });
 

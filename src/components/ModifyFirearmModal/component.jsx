@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { gearShape } from '../../helpers/proptypeShapes';
+
+import { gearShape, gunObjShape } from '../../helpers/proptypeShapes';
 import GearCard from '../GearCard';
 import GearTable from '../GearTable';
 import WeaponsTableBody from '../WeaponsTableBody';
@@ -12,11 +13,49 @@ import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 import { calculateFirearmsArrayWeight } from '../../helpers/actionHelpers';
 
 import GearModal from '../GearModal';
-// import GearCard from '../GearCard';
 
-import './WeaponsCard.css';
+const ModifyFirearmModal = ({
+  gunToModify,
+  // handleCloseFirearmStats,
+  // toggleOnWeaponsCardViews,
+  // toggleOffWeaponCardViews,
+  removeAllModificationsFromFirearm }) => {
+  // const [modifyFirearmWeight, toggleModifyWeight] = useState(false);
+  // const [createCustomMag, toggleCreateMagazine] = useState(false);
 
-export const getSelectedWeapons = (weaponArray) => (weaponArray === undefined ? [] : weaponArray);
+  return (
+    <GearModal>
+      <GearCard name="modalCard ModifyWeaponStatTableContainer">
+        <ButtonDeleteX
+          id="closeGunStatView"
+          // onClick={handleCloseFirearmStats}
+        />
+        <div>
+          <WeaponsCardWeaponStats
+            gunObj={gunToModify}
+          />
+          <WeaponsCardModifyWeapon
+            gunObj={gunToModify}
+            // createCustomMag={createCustomMag}
+            // modifyFirearmWeight={modifyFirearmWeight}
+            // toggleOnWeaponsCardViews={this.toggleOnWeaponsCardViews}
+            // toggleOffWeaponCardViews={this.toggleOffWeaponCardViews}
+            removeAllGunMods={() => removeAllModificationsFromFirearm(gunToModify.name)}
+          />
+        </div>
+      </GearCard>
+    </GearModal>
+  );
+};
+
+ModifyFirearmModal.propTypes = {
+  gunToModify: gunObjShape,
+  removeAllModificationsFromFirearm: PropTypes.func,
+};
+
+export default ModifyFirearmModal;
+
+/*
 
 class WeaponsCard extends Component {
   constructor(props) {
@@ -41,7 +80,7 @@ class WeaponsCard extends Component {
 
   toggleModifyWeapon = (gunObj) => {
     const { modifyFirearm } = this.state;
-    this.setState({ firearmToModify: gunObj.name }); // mptodo <----
+    this.setState({ firearmToModify: gunObj.name });
     this.setState({ modifyFirearm: !modifyFirearm });
   }
 
@@ -58,19 +97,10 @@ class WeaponsCard extends Component {
     this.toggleOffWeaponCardViews('modifyFirearm');
   }
 
-  renderWeaponSelect = () => (
-    <WeaponsCardSelectModal
-      toggleOffWeaponCardViews={this.toggleOffWeaponCardViews}
-    />
-  )
+  */
 
-  renderGrenadeSelect = () => (
-    <GrenadeSelectModal
-      toggleOffWeaponCardViews={this.toggleOffWeaponCardViews}
-    />
-  )
-
-  renderModifyFirearm = () => {
+/*
+renderModifyFirearm = () => {
     const { gear } = this.props;
     const { firearmToModify, createCustomMag, modifyFirearmWeight } = this.state;
     const selectedGuns = getSelectedWeapons(gear.firearms);
@@ -101,35 +131,5 @@ class WeaponsCard extends Component {
     );
   }
 
-  render() {
-    const { gear, removeAllFirearms } = this.props;
-    const { showFirearms, modifyFirearm, showGrenades } = this.state;
-    const selectedGuns = getSelectedWeapons(gear.firearms);
-    const selectedGrenades = getSelectedWeapons(gear.grenades);
-    const firearmsWeight = calculateFirearmsArrayWeight(selectedGuns);
 
-    return (
-      <GearCard gearType="weapons" hasButtonFunctions buttonFunctions={[() => this.toggleOnWeaponsCardViews('showFirearms'), () => removeAllFirearms([]), () => this.toggleOnWeaponsCardViews('showGrenades')]}>
-        <GearTable gearHeading="Weapons" totalWeight={Math.round(firearmsWeight * 1000) / 1000}>
-          <WeaponsTableBody
-            selectedGuns={selectedGuns}
-            selectedGrenades={selectedGrenades}
-            toggleOnWeaponsCardViews={this.toggleOnWeaponsCardViews}
-            toggleModifyWeapon={this.toggleModifyWeapon}
-          />
-        </GearTable>
-        {showFirearms && this.renderWeaponSelect()}
-        {modifyFirearm && this.renderModifyFirearm()}
-        {showGrenades && this.renderGrenadeSelect()}
-      </GearCard>
-    );
-  }
-}
-
-WeaponsCard.propTypes = {
-  removeAllFirearms: PropTypes.func,
-  removeAllModificationsFromFirearm: PropTypes.func,
-  gear: gearShape,
-};
-
-export default WeaponsCard;
+*/
