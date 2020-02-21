@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { gunObjShape } from '../../helpers/proptypeShapes';
-import { renderWeaponsCardCustomMag, renderWeaponsCardModifyWeight } from './SubComponents';
+import { renderWeaponsCardCustomMag, renderWeaponsCardModifyWeight, renderMagazinesHeading, renderMagazines, addModButtonWithMargin } from './SubComponents';
 import ModifyHome from './ModifyHome';
 
-import { renderMagazinesHeading, renderMagazines, addModButtonWithMargin } from './SubComponents';
 
 import ButtonSlim from '../widgets/buttons/ButtonSlim';
 
-import {magazineTableHeadings} from './data';
+import { magazineTableHeadings } from './data';
 
 import '../WeaponsCard/WeaponsCard.css';
 import './styles.css';
@@ -36,7 +35,6 @@ const WeaponsCardModifyWeapon = ({
     if (removed) {
       return;
     }
-    console.log("??>", index, gunObj.name)
     setPrimaryMagazine({ firearm: gunObj.name, magazine: index });
   };
 
@@ -55,30 +53,21 @@ const WeaponsCardModifyWeapon = ({
   };
 
 
-  const renderRemoveMagazineButton = (handleMagazineExistence, firearm, magazine, removed = false) => {
-    const buttonName = removed === true ? 'replace' : 'remove';
-    return (
-      <ButtonSlim
-      name={buttonName}
-      className="handleMagazineInInventory"
-      onClick={() => handleMagazineExistence(buttonName, { firearm, magazine })}
-      />
-      );
-    };
-    const handleMagazineExistence = (typeOfAction, payload) => (typeOfAction === 'remove' ? removeMagazine(payload) : replaceMagazine(payload));
+  const handleMagazineExistence = (payload) => (payload.magazine.removed ? replaceMagazine(payload) : removeMagazine(payload));
 
+  // console.log('>>>', gunObj.mag);
   return (
     <>
       {(!createCustomMag && !modifyFirearmWeight)
     && (
-      <div style={{ marginLeft: '3.5rem' }} className="modifyWeaponPanel">
+      <div className="modifyWeaponPanel">
         <span>Magazines</span>
         <ButtonSlim
           name="add"
           // id={id}
           onClick={() => toggleCreateCustomMag(true)}
         />
-        <table>
+        <table className="magazineTable">
           <thead>
             <tr>
               {magazineTableHeadings.map((value) => (
@@ -88,45 +77,35 @@ const WeaponsCardModifyWeapon = ({
           </thead>
           <tbody>
             {gunObj.mag.map((magObj, index) => (
-              <tr>
+              <tr className={`${magObj.removed ? 'removedMagazine' : ''}${index === 0 ? 'primaryMagazine' : ''}`}>
                 <td>{magObj.type}</td>
                 <td>{magObj.cap}</td>
                 <td>{magObj.weight}</td>
                 <td>
-                  {/* <span className="checkbox">
-                    <span className="inner" />
-                  </span> */}
                   <button
                     type="button"
-                    className={`${'?'} radioButton`}
+                    className={`index${index} selectPrimaryButton`}
                     onClick={() => setPrimaryMag(index, false)}
                   >
-                    <span className="outerCircle">
-                      <span className="inner" />
-                    </span>
+                    <span className="buttonCircle" />
                   </button>
                 </td>
                 <td>
-                  <span className="checkbox">
-                    <span className="inner" />
-                  </span>
-                  {/* <span className="outerCircle">
-                    <span className="inner"></span>
-                  </span> */}
+                  <button
+                    type="button"
+                    className={`index${index} removeMagazineButton selectPrimaryButton`}
+                    onClick={() => handleMagazineExistence({ firearm: gunObj.name, magazine: magObj })}
+                  >
+                    <span className="checkbox">
+                      <span className="inner" />
+                    </span>
+                  </button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-    // <ModifyHome
-    //   gunObj={gunObj}
-    //   removeAllGunMods={removeAllGunMods}
-    //   toggleOnWeaponsCardViews={toggleOnWeaponsCardViews}
-    //   setPrimaryMag={setPrimaryMag}
-    //   handleMagazineExistence={handleMagazineExistence}
-    //   handleRemoveMod={handleRemoveMod}
-    // />
     )}
       {createCustomMag && renderWeaponsCardCustomMag(handleAddCustomMag, toggleOffWeaponCardViews)}
       {modifyFirearmWeight && renderWeaponsCardModifyWeight(handleModifyFirearmWeight, toggleOffWeaponCardViews)}

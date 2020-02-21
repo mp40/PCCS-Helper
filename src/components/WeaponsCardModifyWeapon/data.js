@@ -1,1 +1,1 @@
-export const magazineTableHeadings = ['Type', 'Cap', 'Lbs', 'Primary', 'Remove'];
+export const magazineTableHeadings = ['Type', 'Cap', 'Lbs', 'Primary', 'Removed'];

@@ -26,13 +26,6 @@ const getFirearmNameAndRecoil = (gunObj, skillLevel) => {
   return `${gunObj.name} - recoil recovery: ${getRecoilRecoveryValue(gunObj.kd, skillLevel)}`;
 };
 
-const getNameStyle = (size) => {
-  if (size === 'a4') {
-    return { marginTop: '0.5cm', marginLeft: '.1cm', fontWeight: 'bold', fontSize: '12pt', textAlign: 'left' };
-  }
-  return { marginTop: '0.5rem', marginLeft: '5.5%', fontWeight: 'bold' };
-};
-
 const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
   const getRangeBrackets = () => {
     const standard = standardRangeBrackets;
@@ -44,9 +37,9 @@ const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
   };
 
   return (
-    <div>
-      <div style={getNameStyle(size)}>{`${getFirearmNameAndRecoil(gunObj, findSkillLevelFromSAL(sal))}`}</div>
-      <div style={{ display: 'flex' }}>
+    <div className={`WeaponStatsContainer ${size}`}>
+      <div>{`${getFirearmNameAndRecoil(gunObj, findSkillLevelFromSAL(sal))}`}</div>
+      <div>
         <table className={size ? `${size}WeaponStatTable` : 'WeaponStatTable'}>
           <thead>
             <tr className="WeaponStatHeader">
