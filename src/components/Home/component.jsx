@@ -5,6 +5,8 @@ import BetaTemp from '../BetaTemp'; // todo delete this once at MVP
 import ModifyFirearmModal from '../ModifyFirearmModal';
 import { testM1911A1, testM16 } from '../../helpers/testHelpers';
 
+import TabCard from '../WeaponsCardModifyWeapon/tabCard';
+
 import './Home.css';
 
 const HomePage = ({ selectCurrentView }) => (
@@ -22,6 +24,7 @@ const HomePage = ({ selectCurrentView }) => (
     </button>
     {/* <ModifyFirearmModal gunToModify={testM16()} /> */}
     {/* <BetaTemp /> */}
+    <TabCard />
   </div>
 );
 

@@ -12,3 +12,38 @@
     border: solid 1px red;
     font-size: small;
 }
+
+.-checkBox {
+    height: 1rem;
+    width: 1rem;
+    border-radius: 3px;
+    background-color: #fff;
+    display: inline-block;
+    position: relative;
+    /* margin-top: 1.5rem; */
+    /* transform: translateY(-0.75rem); */
+    /* margin-right: .3rem; */
+    -webkit-box-shadow: inset 0px 0px 3px 0px rgba(0,0,0,0.8);
+    -moz-box-shadow: inset 0px 0px 3px 0px rgba(0,0,0,0.8);
+    box-shadow: inset 0px 0px 3px 0px rgba(0,0,0,0.8);
+}
+
+
+.-checkBox.active > .inner:after {
+    content: " \2714";
+    color: #fff;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: .8rem;
+    height: 0.8rem;
+    width: 0.8rem;
+    border-radius: 3px;
+    background: rgb(190,210,100);
+    background: -moz-radial-gradient(circle, rgba(190,210,100,1) 0%, rgba(85,103,63,1) 100%);
+    background: -webkit-radial-gradient(circle, rgba(190,210,100,1) 0%, rgba(85,103,63,1) 100%);
+    background: radial-gradient(circle, rgba(190,210,100,1) 0%, rgba(85,103,63,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#bed264",endColorstr="#55673f",GradientType=1);
+}
