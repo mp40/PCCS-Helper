@@ -37,7 +37,7 @@ const BodyArmourSelection = ({ armourType, armourList, handleDispatch }) => (
           />
         </div>
       </div>
-      <table className="bodyArmourTable">
+      <table className="--collapseBorder bodyArmourTable">
         <thead>
           <tr>
             {['Name', 'PF', 'BPF', 'AC', 'lbs', 'Notes'].map((value) => (

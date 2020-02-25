@@ -6,6 +6,10 @@
     transition: 0.3s;
 }
 
+.--collapseBorder {
+    border-collapse: collapse;
+}
+
 .--tableContainer {
     display: inline-block;
     margin-top: 0.5rem;
@@ -72,7 +76,7 @@
 .--modalOverlay {
     position: absolute;
     top: 0;
-    bottom: 0;
+    bottom: -0.5rem;
     left: 0;
     right: 0;
     background: rgba(0,0,0,0.3);

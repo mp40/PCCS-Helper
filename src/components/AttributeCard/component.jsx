@@ -24,7 +24,7 @@ const AttributeCard = ({
 
   return (
     <div className="--tableContainer --card">
-      <table className="attributeContainer">
+      <table className="--collapseBorder attributeContainer">
         <tbody>
           {renderAtrributeAndCombatTableHeadings()}
           {Object.keys(characterStats).slice(0, 5).map((stat, index) => (
