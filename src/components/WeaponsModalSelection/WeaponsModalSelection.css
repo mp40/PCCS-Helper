@@ -4,7 +4,7 @@
 }
 
 .firearmEntry:hover {
-  background: white;
+  background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
 }
@@ -14,14 +14,14 @@
 }
 
 .filterCardWrapper {
-  background: whitesmoke;
+  background-color: whitesmoke;
   border-radius: 3px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 1s;
   height: 11rem;
   width: 30rem;
   position: relative;
-  top: -1rem;
+  top: -6.5rem;
   left: calc(50% - 10rem);
   overflow: auto;
 }
