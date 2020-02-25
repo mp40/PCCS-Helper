@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './buttons.css';
 
-// mptodo?
 const CheckBox = ({ name, onClick, isActive }) => {
   const [isChecked, toggleChecked] = useState(isActive);
   const handleClick = () => {
@@ -24,13 +23,12 @@ const CheckBox = ({ name, onClick, isActive }) => {
 
 CheckBox.propTypes = {
   name: PropTypes.string,
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
   isActive: PropTypes.bool,
 };
 
 CheckBox.defaultProps = {
   name: 'default',
-  onClick: () => {},
   isActive: false,
 };
 

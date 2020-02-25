@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './buttons.css';
 
-// mptodo?
 const ClickButton = ({ name, onClick }) => (
   <button
     type="button"
@@ -17,12 +16,11 @@ const ClickButton = ({ name, onClick }) => (
 
 ClickButton.propTypes = {
   name: PropTypes.string,
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
 };
 
 ClickButton.defaultProps = {
   name: 'default',
-  onClick: () => {},
 };
 
 export default ClickButton;

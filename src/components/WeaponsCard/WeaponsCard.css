@@ -1,4 +1,4 @@
-/* mptod0 */
+/* mptodo */
 #weaponsHeaderStats {
     text-align: center;
     display: flex;
@@ -25,7 +25,6 @@
 .WeaponStatsContainer > div:first-of-type {
     padding-top: 1rem;
     margin-top: 1rem;
-    /* margin-left: 5.5%; */
     font-weight: bold;
     text-align: left;
 }
@@ -34,9 +33,6 @@
     padding-top: 0;
     margin-top: 0.5cm;
     margin-left: 0.1cm;
-    /* mptodo */
-    /* font-weight: bold; */
-    /* text-align: left; */
     font-size: 12pt;
 }
 
@@ -45,7 +41,6 @@
 }
 
 .WeaponStatTable {
-    /* margin-left: 5%; */
     border: 1px solid rgb(85, 83, 83);
     border-collapse: collapse;
 }
@@ -110,7 +105,6 @@
     float: right;
 }
 
-/* mptod0 - rename / move with code to seperate component */
 .ModifyWeaponStatTableContainer {
     font-size: medium;
     padding-top: 1rem;
