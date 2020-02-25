@@ -20,8 +20,8 @@
   transition: 1s;
   height: 11rem;
   width: 30rem;
-  position: relative;
-  top: -6.5rem;
+  position: absolute;
+  top: calc(50% - 11rem);
   left: calc(50% - 10rem);
   overflow: auto;
 }
