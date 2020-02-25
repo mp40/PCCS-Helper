@@ -54,6 +54,11 @@ describe('modifing firearm weight', () => {
     expect(wrapper.find('#WeaponStatWeight').text()).toContain('8.7');
     expect(wrapper.text()).not.toContain('added torch');
   });
+  it('should be possible to exit the modifcatyion form', () => {
+    modifyPanel().find('#modifyWeaponWeight').simulate('click');
+    modifyPanel().find('#backModifiedWeight').simulate('click');
+    expect(modifyPanel().text()).not.toContain('Modify Weapon Weight');
+  });
 });
 
 describe('modify weapon weight gaurd clauses', () => {
