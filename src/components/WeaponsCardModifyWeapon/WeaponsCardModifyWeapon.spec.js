@@ -1,6 +1,4 @@
 import { mountAppWithStore, storeWithCreateCharacterView, createWrapperTextInput } from '../../helpers/testHelpers';
-import { renderAmmoCapacity } from './SubComponents';
-import { belowAveragePistol6Aims } from '../../data/firearms/aimTimes';
 
 describe('modifying weapons', () => {
   let wrapper;
@@ -53,11 +51,8 @@ describe('modifying weapons', () => {
   // });
   it('should not be possible to remove the primary magazine', () => {
     const remove20RoundMagazineButton = wrapper.find('.removeMagazineButton').first();
-    // console.log('>> ', remove20RoundMagazineButton.debug());
     remove20RoundMagazineButton.simulate('click');
     expect(wrapper.find('#characterWeaponList').text()).not.toContain('20 round Mag');
-    // console.log
-    // expect(wrapper.find('.modifyMagazines').find('.modifyMagazinesButtons').first().children().length).toBe(0);
   });
   // mptodo this test is too tightly coupled to old implementation
   // it('should be possible to replace the magazine', () => {
@@ -67,7 +62,7 @@ describe('modifying weapons', () => {
   //   handle30RoundMagazineButton.simulate('click');
   //   expect(modifyPanel().text()).not.toContain('replace');
   // });
-  it.only('should not be possible to set a removed magazine as primary', () => {
+  it('should not be possible to set a removed magazine as primary', () => {
     const remove30RoundMagazineButton = wrapper.find('.removeMagazineButton').last();
     const set30RoundMagazineAsPrimaryButton = wrapper.find('.selectPrimaryButton').last();
     remove30RoundMagazineButton.simulate('click');
@@ -76,14 +71,15 @@ describe('modifying weapons', () => {
     expect(wrapper.find('#WeaponStatWeight').text()).toBe('W8.7');
     expect(wrapper.find('#WeaponStatAW').text()).toBe('AW0.7');
   });
-  describe('helper functions', () => {
-    it('should return string describing rounds in magazine', () => {
-      const magDouble = { cap: 30, type: 'Mag' };
-      expect(renderAmmoCapacity(magDouble)).toBe('30 round Mag - ');
-    });
-    it('should return string describing amount of loose rounds', () => {
-      const magDouble = { cap: 5, type: 'Rnd' };
-      expect(renderAmmoCapacity(magDouble)).toBe('5 loose rounds - ');
-    });
-  });
+  // mptodo this function no longer exisits
+  // describe('helper functions', () => {
+  //   it('should return string describing rounds in magazine', () => {
+  //     const magDouble = { cap: 30, type: 'Mag' };
+  //     expect(renderAmmoCapacity(magDouble)).toBe('30 round Mag - ');
+  //   });
+  //   it('should return string describing amount of loose rounds', () => {
+  //     const magDouble = { cap: 5, type: 'Rnd' };
+  //     expect(renderAmmoCapacity(magDouble)).toBe('5 loose rounds - ');
+  //   });
+  // });
 });

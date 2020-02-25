@@ -20,10 +20,7 @@ const Modifications = ({ firearmName, modNotes, removeFirearmModification }) => 
         <ButtonSlim
           name="remove"
           className="removeModification"
-          onClick={() => {
-            console.log(firearmName, noteObj);
-            removeFirearmModification({ firearm: firearmName, modNote: noteObj });
-          }}
+          onClick={() => removeFirearmModification({ firearm: firearmName, modNote: noteObj })}
         />
       </div>
     ))}

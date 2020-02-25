@@ -59,6 +59,7 @@ describe('<GameSheet>', () => {
     it('should call selectCurrentView with "createChar"', () => {
       expect(spySelectCurrentView).toHaveBeenCalled();
     });
+    //mptodo
     // it('should end the lifecycle with the GameSheet Hidden', () => {
     //   // console.log(">>>>",wrapper.state());
     //   // expect(wrapper).toBe()

@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { gunObjShape } from '../../helpers/proptypeShapes';
-import { renderWeaponsCardCustomMag, renderWeaponsCardModifyWeight, renderMagazinesHeading, renderMagazines, addModButtonWithMargin } from './SubComponents';
-import ModifyHome from './ModifyHome';
 
 import Magazines from './magazines';
 import Modifications from './modifications';

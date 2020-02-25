@@ -370,13 +370,14 @@ describe('<WeaponsCardWeaponStats/> component', () => {
     const sal = 0;
     it('should display recoil recovey after weapon name', () => {
       let rrWrapper = mount(<WeaponsCardWeaponStats gunObj={testFAMAS()} sal={sal} />);
-      expect(rrWrapper.childAt(0).text()).toBe('FAMAS - recoil recovery: 2');
+      expect(rrWrapper.childAt(0).text()).toContain('FAMAS - recoil recovery: 2');
       rrWrapper = mount(<WeaponsCardWeaponStats gunObj={testFAMAS()} sal={sal + 10} />);
-      expect(rrWrapper.childAt(0).text()).toBe('FAMAS - recoil recovery: 0');
+      expect(rrWrapper.childAt(0).text()).toContain('FAMAS - recoil recovery: 0');
     });
     it('should display not recoil recovey when sal is undefined', () => {
       const rrWrapper = mount(<WeaponsCardWeaponStats gunObj={testFAMAS()} sal={undefined} />);
-      expect(rrWrapper.childAt(0).text()).toBe('FAMAS');
+      expect(rrWrapper.childAt(0).text()).toContain('FAMAS');
+      expect(rrWrapper.childAt(0).text()).not.toContain('recoil recovery');
     });
   });
 });

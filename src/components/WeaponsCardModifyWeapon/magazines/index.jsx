@@ -12,19 +12,19 @@ const Magazines = ({ gunObj, setPrimaryMag, handleMagazineExistence }) => (
     <div className="magazinesHeading">Magazines</div>
     <div className="magazineDetailsHeading">
       {magazineTableHeadings.map((value) => (
-        <span>{value}</span>
+        <span key={value}>{value}</span>
       ))}
     </div>
     {gunObj.mag.map((magObj, index) => (
-      <div className={`magazineDetailsBody ${gunObj.name}MagAtIndex${index} ${magObj.removed ? 'removedMagazine' : ''}${index === 0 ? 'primaryMagazine' : ''}`}>
+      <div key={magObj.cap} className={`magazineDetailsBody ${gunObj.name}MagAtIndex${index} ${magObj.removed ? 'removedMagazine' : ''}${index === 0 ? 'primaryMagazine' : ''}`}>
         {['type', 'cap', 'weight'].map((value) => (
-          <span>{magObj[value]}</span>
+          <span key={value}>{magObj[value]}</span>
         ))}
         <span>
-          <ClickButton name={`index${index} selectPrimaryButton`} preventDefault={index === 0} onClick={() => setPrimaryMag(index, false)} />
+          <ClickButton name={`index${index} selectPrimaryButton`} preventDefault={index === 0} onClick={() => setPrimaryMag(index, magObj.removed)} />
         </span>
         <span>
-          <CheckBox name={`index${index} removeMagazineButton`} preventDefault={magObj.removed === true} onClick={() => handleMagazineExistence({ firearm: gunObj.name, magazine: magObj })} />
+          <CheckBox name={`index${index} removeMagazineButton`} onClick={() => handleMagazineExistence({ firearm: gunObj.name, magazine: magObj })} />
         </span>
       </div>
     ))}
