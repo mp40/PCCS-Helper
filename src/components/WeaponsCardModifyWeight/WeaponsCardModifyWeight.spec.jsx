@@ -17,7 +17,7 @@ describe('the <WeaponsCardModifyWeight/> component', () => {
   });
   it('should have a back button', () => {
     wrapper.find('#backModifiedWeight').simulate('click');
-    expect(mockToggle).toHaveBeenCalledWith('modifyFirearmWeight');
+    expect(mockToggle).toHaveBeenCalled();
   });
 });
 

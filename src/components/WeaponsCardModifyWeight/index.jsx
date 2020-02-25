@@ -57,7 +57,7 @@ class WeaponsCardModifyWeight extends Component {
         <ButtonStandard
           name="Back"
           id="backModifiedWeight"
-          onClick={() => toggleOffWeaponCardViews('modifyFirearmWeight')}
+          onClick={toggleOffWeaponCardViews}
         />
         {warning
           && <div style={{ color: 'red', fontWeight: 'bold' }}>Please Enter Valid Data</div>}

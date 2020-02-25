@@ -10,31 +10,19 @@ import WeaponsCardModifyWeight from '../WeaponsCardModifyWeight';
 
 import ButtonSlim from '../widgets/buttons/ButtonSlim';
 
-import CheckBox from '../widgets/buttons/CheckBox';
-import ClickButton from '../widgets/buttons/ClickButton';
-
-import { magazineTableHeadings } from './data';
-
 import '../WeaponsCard/WeaponsCard.css';
 import './styles.css';
 
 const WeaponsCardModifyWeapon = ({
-  // createCustomMag,
-  // modifyFirearmWeight,
   gunObj,
-  removeAllGunMods,
-  toggleOnWeaponsCardViews,
   setPrimaryMagazine,
   removeFirearmModification,
   addCustomMagazine,
-  toggleOffWeaponCardViews,
   modifyFirearm,
   removeMagazine,
   replaceMagazine,
   removeAllModificationsFromFirearm,
 }) => {
-  // createCustomMag,
-  // modifyFirearmWeight,
   const [createCustomMag, toggleCreateCustomMag] = useState(false);
   const [modifyFirearmWeight, toggleModifyFirearmWeight] = useState(false);
 
@@ -43,10 +31,6 @@ const WeaponsCardModifyWeapon = ({
       return;
     }
     setPrimaryMagazine({ firearm: gunObj.name, magazine: index });
-  };
-
-  const handleRemoveMod = (modNote) => {
-    removeFirearmModification({ firearm: gunObj.name, modNote });
   };
 
   const handleAddCustomMag = (newCustomMagazine) => {
@@ -60,7 +44,9 @@ const WeaponsCardModifyWeapon = ({
   };
 
 
-  const handleMagazineExistence = (payload) => (payload.magazine.removed ? replaceMagazine(payload) : removeMagazine(payload));
+  const handleMagazineExistence = (payload) => (
+    payload.magazine.removed ? replaceMagazine(payload) : removeMagazine(payload)
+  );
 
   return (
     <div className="modifyWeaponPanel">
@@ -117,12 +103,7 @@ WeaponsCardModifyWeapon.propTypes = {
   addCustomMagazine: PropTypes.func,
   setPrimaryMagazine: PropTypes.func,
   removeFirearmModification: PropTypes.func,
-  createCustomMag: PropTypes.bool,
-  modifyFirearmWeight: PropTypes.bool,
-  removeAllGunMods: PropTypes.func,
   removeAllModificationsFromFirearm: PropTypes.func,
-  toggleOnWeaponsCardViews: PropTypes.func,
-  toggleOffWeaponCardViews: PropTypes.func,
   gunObj: gunObjShape,
 };
 

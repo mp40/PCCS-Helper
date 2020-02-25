@@ -37,31 +37,26 @@ describe('modifying weapons', () => {
     wrapper.find('#closeGunStatView').simulate('click');
     expect(wrapper.text()).not.toContain('Modify Weapon');
   });
-  it('should be possible to remove/hide a particular magazine', () => {
+  it('should be possible to remove/hide a particular magazine in the weapon list', () => {
     const remove30RoundMagazineButton = wrapper.find('.removeMagazineButton').last();
     remove30RoundMagazineButton.simulate('click');
     expect(wrapper.find('#characterWeaponList').text()).not.toContain('30 round Mag');
   });
-  // mptodo - re below, it longer does this
-  // it('should change name of button to "replace" after removing magazine', () => {
-  //   expect(modifyPanel().text()).not.toContain('replace');
-  //   const remove30RoundMagazineButton = wrapper.find('.modifyMagazines').find('button').last();
-  //   remove30RoundMagazineButton.simulate('click');
-  //   expect(modifyPanel().text()).toContain('replace');
-  // });
   it('should not be possible to remove the primary magazine', () => {
     const remove20RoundMagazineButton = wrapper.find('.removeMagazineButton').first();
     remove20RoundMagazineButton.simulate('click');
     expect(wrapper.find('#characterWeaponList').text()).not.toContain('20 round Mag');
   });
-  // mptodo this test is too tightly coupled to old implementation
-  // it('should be possible to replace the magazine', () => {
-  //   const handle30RoundMagazineButton = wrapper.find('.removeMagazineButton').last();
-  //   handle30RoundMagazineButton.simulate('click');
-  //   expect(modifyPanel().text()).toContain('replace');
-  //   handle30RoundMagazineButton.simulate('click');
-  //   expect(modifyPanel().text()).not.toContain('replace');
-  // });
+  it('should be possible to replace the magazine', () => {
+    const handle30RoundMagazineButton = wrapper.find('.removeMagazineButton').last();
+    expect(modifyPanel().find('.M16MagAtIndex1').hasClass('removedMagazine')).toBe(false);
+    handle30RoundMagazineButton.simulate('click');
+    expect(modifyPanel().find('.M16MagAtIndex1').hasClass('removedMagazine')).toBe(true);
+    expect(wrapper.find('#characterWeaponList').text()).not.toContain('30 round Mag');
+    handle30RoundMagazineButton.simulate('click');
+    expect(modifyPanel().find('.M16MagAtIndex1').hasClass('removedMagazine')).toBe(false);
+    expect(wrapper.find('#characterWeaponList').text()).toContain('30 round Mag');
+  });
   it('should not be possible to set a removed magazine as primary', () => {
     const remove30RoundMagazineButton = wrapper.find('.removeMagazineButton').last();
     const set30RoundMagazineAsPrimaryButton = wrapper.find('.selectPrimaryButton').last();
@@ -71,15 +66,9 @@ describe('modifying weapons', () => {
     expect(wrapper.find('#WeaponStatWeight').text()).toBe('W8.7');
     expect(wrapper.find('#WeaponStatAW').text()).toBe('AW0.7');
   });
-  // mptodo this function no longer exisits
-  // describe('helper functions', () => {
-  //   it('should return string describing rounds in magazine', () => {
-  //     const magDouble = { cap: 30, type: 'Mag' };
-  //     expect(renderAmmoCapacity(magDouble)).toBe('30 round Mag - ');
-  //   });
-  //   it('should return string describing amount of loose rounds', () => {
-  //     const magDouble = { cap: 5, type: 'Rnd' };
-  //     expect(renderAmmoCapacity(magDouble)).toBe('5 loose rounds - ');
-  //   });
-  // });
+  it('should be possible to exit custom magazine form', () => {
+    modifyPanel().find('#addCustomMagazine').simulate('click');
+    modifyPanel().find('button').last().simulate('click');
+    expect(modifyPanel().text()).not.toContain('Custom Magazine Details');
+  });
 });

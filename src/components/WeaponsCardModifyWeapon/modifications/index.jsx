@@ -1,11 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { gunObjShape } from '../../../helpers/proptypeShapes';
-
-import CheckBox from '../../widgets/buttons/CheckBox';
-import ClickButton from '../../widgets/buttons/ClickButton';
-
-import { magazineTableHeadings } from '../data';
 import ButtonSlim from '../../widgets/buttons/ButtonSlim';
 
 const Modifications = ({ firearmName, modNotes, removeFirearmModification }) => (

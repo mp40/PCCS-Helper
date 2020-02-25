@@ -21,7 +21,7 @@ describe('the <WeaponsCardCustomMag/> component', () => {
   });
   it('should have a back button', () => {
     wrapper.find('#backCustomMag').simulate('click');
-    expect(mockToggle).toHaveBeenCalledWith('createCustomMag');
+    expect(mockToggle).toHaveBeenCalled();
   });
 });
 

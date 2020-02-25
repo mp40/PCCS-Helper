@@ -25,8 +25,6 @@ class WeaponsCard extends Component {
       showFirearms: false,
       modifyFirearm: false,
       firearmToModify: null,
-      createCustomMag: false,
-      modifyFirearmWeight: false,
       showGrenades: false,
     };
   }
@@ -41,21 +39,8 @@ class WeaponsCard extends Component {
 
   toggleModifyWeapon = (gunObj) => {
     const { modifyFirearm } = this.state;
-    this.setState({ firearmToModify: gunObj.name }); // mptodo <----
+    this.setState({ firearmToModify: gunObj.name }); // mptodo <---- ???
     this.setState({ modifyFirearm: !modifyFirearm });
-  }
-
-  removeAllGunMods = () => {
-    const { removeAllModificationsFromFirearm } = this.props;
-    const { firearmToModify } = this.state;
-
-    removeAllModificationsFromFirearm(firearmToModify);
-  }
-
-  handleCloseFirearmStats = () => {
-    this.setState({ modifyFirearmWeight: false });
-    this.setState({ createCustomMag: false });
-    this.toggleOffWeaponCardViews('modifyFirearm');
   }
 
   renderWeaponSelect = () => (
@@ -72,7 +57,7 @@ class WeaponsCard extends Component {
 
   renderModifyFirearm = () => {
     const { gear } = this.props;
-    const { firearmToModify, createCustomMag, modifyFirearmWeight } = this.state;
+    const { firearmToModify } = this.state;
     const selectedGuns = getSelectedWeapons(gear.firearms);
     const gunToModify = selectedGuns.filter((gunObj) => gunObj.name === firearmToModify)[0];
 
@@ -81,7 +66,7 @@ class WeaponsCard extends Component {
         <GearCard name="modalCard ModifyWeaponStatTableContainer">
           <ButtonDeleteX
             id="closeGunStatView"
-            onClick={this.handleCloseFirearmStats}
+            onClick={() => this.toggleOffWeaponCardViews('modifyFirearm')}
           />
           <div>
             <WeaponsCardWeaponStats
@@ -89,11 +74,6 @@ class WeaponsCard extends Component {
             />
             <WeaponsCardModifyWeapon
               gunObj={gunToModify}
-              createCustomMag={createCustomMag}
-              modifyFirearmWeight={modifyFirearmWeight}
-              toggleOnWeaponsCardViews={this.toggleOnWeaponsCardViews}
-              toggleOffWeaponCardViews={this.toggleOffWeaponCardViews}
-              removeAllGunMods={this.removeAllGunMods}
             />
           </div>
         </GearCard>
@@ -128,7 +108,6 @@ class WeaponsCard extends Component {
 
 WeaponsCard.propTypes = {
   removeAllFirearms: PropTypes.func,
-  removeAllModificationsFromFirearm: PropTypes.func,
   gear: gearShape,
 };
 
