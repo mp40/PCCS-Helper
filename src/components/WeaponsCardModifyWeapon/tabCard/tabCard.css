@@ -1,11 +1,27 @@
 .tabCardContainer {
-    position: relative;
+    position: absolute;
+    top: calc(50% - 11.8rem);
+    left: calc(50%);
+    z-index:-1;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
+
+/* .modalCard {
+    padding: 0 1.5rem;
+    height: 20rem;
+    width: 60rem;
+    position: relative;
+    top: calc(50% - 12rem);
+    left: calc(50% - 30rem);
+    overflow: auto;
+    z-index: 10;
+} */
 
 .tab,
 .tabCard {
     background-color: whitesmoke;
+    /* background-color: rgb(243, 243, 243); */
+    /* background-color: cornflowerblue; */
 }
 
 .tab {

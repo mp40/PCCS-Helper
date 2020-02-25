@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './buttons.css';
 
-//mptodo?
+// mptodo?
 const CheckBox = ({ name, onClick, isActive }) => {
   const [isChecked, toggleChecked] = useState(isActive);
   const handleClick = () => {
@@ -12,8 +12,8 @@ const CheckBox = ({ name, onClick, isActive }) => {
   return (
     <button
       type="button"
-      className={name}
-      onClick={() => handleClick}
+      className={`-checkBoxContainer ${name}`}
+      onClick={handleClick}
     >
       <span className={`-checkBox ${isChecked ? 'active' : ''}`}>
         <span className="inner" />

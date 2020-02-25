@@ -6,7 +6,8 @@ import { removeFirearmModification,
   setPrimaryMagazine,
   addCustomMagazine,
   removeMagazine,
-  replaceMagazine } from '../../actions';
+  replaceMagazine,
+  removeAllModificationsFromFirearm } from '../../actions';
 
 const mapStateToProps = (state) => ({
   gear: state.gear,
@@ -19,4 +20,5 @@ export default connect(mapStateToProps, {
   addCustomMagazine,
   removeMagazine,
   replaceMagazine,
+  removeAllModificationsFromFirearm,
 })(WeaponsCardModifyWeapon);

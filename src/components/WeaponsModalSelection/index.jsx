@@ -138,7 +138,7 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, handleAddFirearm }) =
 
       {firearmToInspect && (
         <div className={statBoxClassName} style={{ fontSize: 'medium' }}>
-          <div style={{ marginTop: '2px', marginLeft: '2px' }}>
+          <div>
             <ButtonDeleteX
               id="closeGunStatView"
               onClick={() => handleCloseStatCard()}

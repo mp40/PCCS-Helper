@@ -34,6 +34,7 @@ const ModifyFirearmModal = ({ gunToModify,
           />
           <WeaponsCardModifyWeapon
             gunObj={gunToModify}
+            // mptodo
             // createCustomMag={createCustomMag}
             // modifyFirearmWeight={modifyFirearmWeight}
             // toggleOnWeaponsCardViews={this.toggleOnWeaponsCardViews}

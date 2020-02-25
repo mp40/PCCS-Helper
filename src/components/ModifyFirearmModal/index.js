@@ -6,6 +6,8 @@ const mapStateToProps = (state) => ({
   gear: state.gear,
 });
 
-export default connect(mapStateToProps, { removeAllModificationsFromFirearm })(ModifyFirearmModal);
+// export default connect(mapStateToProps, { removeAllModificationsFromFirearm })(ModifyFirearmModal);
 
-//mptodo -> do I need gear
+export default connect(mapStateToProps)(ModifyFirearmModal);
+
+// mptodo -> do I need gear

@@ -14,6 +14,8 @@ import { calculateFirearmsArrayWeight } from '../../helpers/actionHelpers';
 import GearModal from '../GearModal';
 // import GearCard from '../GearCard';
 
+import TabCard from '../WeaponsCardModifyWeapon/tabCard/index';
+
 import './WeaponsCard.css';
 
 export const getSelectedWeapons = (weaponArray) => (weaponArray === undefined ? [] : weaponArray);
