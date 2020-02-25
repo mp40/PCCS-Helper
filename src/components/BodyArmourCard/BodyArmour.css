@@ -1,0 +1,13 @@
+.helmetBodyArmour > td:first-of-type,
+.vestBodyArmour > td:first-of-type {
+    position: relative;
+    max-width: 8ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.helmetBodyArmour > td:last-of-type,
+.vestBodyArmour > td:last-of-type {
+    text-align: center;
+}

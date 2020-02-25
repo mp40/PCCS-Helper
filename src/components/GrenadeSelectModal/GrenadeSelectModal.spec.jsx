@@ -8,17 +8,18 @@ const toggleOffWeaponCardViews = jest.fn();
 const dataM61Grenade = {
   name: 'M61',
   qty: 1,
-  l: 3.8,
-  w: 1,
+  length: 3.8,
+  weight: 1,
   at: 3,
   fl: 2,
   r: 15,
   data: {
-    pen: [3.4, 2.4, 2.2, 1.8, 1.5, '1.0', 0.4],
-    dc: [10, 2, 2, 2, 2, 1, 1],
-    bshc: ['*2h', '*3', 84, 20, 8, 2, -1],
-    bc: ['13k', 704, 176, 52, 27, 12, 4],
+    pen: ['PEN', 3.4, 2.4, 2.2, 1.8, 1.5, '1.0', 0.4],
+    dc: ['DC', 10, 2, 2, 2, 2, 1, 1],
+    bshc: ['BSHC', '*2h', '*3', 84, 20, 8, 2, -1],
+    bc: ['BC', '13k', 704, 176, 52, 27, 12, 4],
   },
+  heading: 'standard',
 };
 
 const doubleM2 = { name: 'M2' };

@@ -1,0 +1,10 @@
+.modalCard {
+    padding: 0 1.5rem;
+    height: 20rem;
+    width: 60rem;
+    position: relative;
+    top: calc(50% - 12rem);
+    left: calc(50% - 30rem);
+    overflow: auto;
+    z-index: 10;
+}

@@ -9,12 +9,10 @@ describe('<NameCard>', () => {
     const changeCharacterName = jest.fn();
     const wrapper = mount(<NameCard changeCharacterName={changeCharacterName} />);
     it('should render with default of empty string', () => {
-      expect(wrapper.find('.current-character-name').text()).toBe('');
+      expect(wrapper.find('.character-name-card-container').childAt(1).text()).toBe('');
     });
     it('should be possible to open text input', () => {
-      expect(wrapper.find('.current-character-name').exists()).toBe(true);
-      wrapper.find('.current-character-name').simulate('click');
-      expect(wrapper.find('.current-character-name').exists()).toBe(false);
+      wrapper.find('.character-name-card-container').childAt(1).simulate('click');
       expect(wrapper.find('.character-name-input').exists()).toBe(true);
     });
     it('should close the open text input when enter is pressed', () => {
@@ -27,7 +25,7 @@ describe('<NameCard>', () => {
   describe('handleSubmitName gaurd clause', () => {
     const changeCharacterName = jest.fn();
     const wrapper = mount(<NameCard changeCharacterName={changeCharacterName} />);
-    wrapper.find('.current-character-name').simulate('click');
+    wrapper.find('.character-name-card-container').childAt(1).simulate('click');
     it('should not close text input if "Enter" not pressed', () => {
       expect(wrapper.find('.character-name-input').exists()).toBe(true);
       wrapper.find('.character-name-input input').simulate('keyUp', { key: 'Space' });
@@ -38,7 +36,7 @@ describe('<NameCard>', () => {
     const wrap = mountAppWithStore(storeWithCreateCharacterView());
     const wrappedNameCard = wrap.find('.character-name-card-container');
     it('should open name text input', () => {
-      wrappedNameCard.find('.current-character-name').simulate('click');
+      wrappedNameCard.childAt(1).simulate('click');
       expect(wrap.find('.character-name-input').exists()).toBe(true);
     });
     it('should be possible to update name', () => {

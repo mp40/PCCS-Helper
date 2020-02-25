@@ -1,0 +1,65 @@
+.modifyWeaponPanel {
+    margin-top: 3rem;
+    margin-left: 3.5rem;
+}
+
+.magazinesHeading {
+    margin-top: 0.5rem;
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+}
+
+.modificationsHeading {
+    margin-top: 0.5rem;
+    font-weight: 600;
+}
+
+.selectPrimaryButton {
+    border: none;
+    background-color: whitesmoke;
+}
+
+.index0 {
+    display: none;
+}
+
+.magazineDetailsHeading > span:nth-of-type(1),
+.magazineDetailsBody > span:nth-of-type(1) {
+    padding-right: 3px;
+    display: inline-block;
+    width: 3.5ch;
+}
+
+.magazineDetailsHeading > span:nth-of-type(n+2),
+.magazineDetailsBody > span:nth-of-type(n+2) {
+    text-align: center;
+    display: inline-block;
+    padding: 0 3px;
+    width: 3.5ch;
+}
+
+.magazineDetailsHeading > span:nth-of-type(n+4){
+    font-size: small;
+    width: 3.5rem;
+}
+
+.magazineDetailsBody > span:nth-of-type(n+4){
+    width: 3.5rem;
+}
+
+.primaryMagazine > span:nth-of-type(4):after {
+    content: " \2714";
+}
+
+.primaryMagazine > span:nth-of-type(5):after {
+    content: "\2718";
+}
+
+.removedMagazine > span:nth-of-type(-n+3){
+    opacity: 0.4;
+}
+
+.removedMagazine > span:nth-of-type(4){
+    opacity: 0;
+    pointer-events: none;
+}

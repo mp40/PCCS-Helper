@@ -17,14 +17,14 @@ describe('the <WeaponsCardModifyWeight/> component', () => {
   });
   it('should have a back button', () => {
     wrapper.find('#backModifiedWeight').simulate('click');
-    expect(mockToggle).toHaveBeenCalledWith('modifyFirearmWeight');
+    expect(mockToggle).toHaveBeenCalled();
   });
 });
 
 describe('modifing firearm weight', () => {
   let wrapper;
   let inputValue;
-  const gunList = () => wrapper.find('.equipmentListBody');
+  const gunList = () => wrapper.find('.firearmSelectModal').find('.gearModalContents');
   const selectedWeapons = () => wrapper.find('#characterWeaponList');
   const modifyPanel = () => wrapper.find('.modifyWeaponPanel');
   const addTorchAsMod = () => {
@@ -54,12 +54,17 @@ describe('modifing firearm weight', () => {
     expect(wrapper.find('#WeaponStatWeight').text()).toContain('8.7');
     expect(wrapper.text()).not.toContain('added torch');
   });
+  it('should be possible to exit the modifcatyion form', () => {
+    modifyPanel().find('#modifyWeaponWeight').simulate('click');
+    modifyPanel().find('#backModifiedWeight').simulate('click');
+    expect(modifyPanel().text()).not.toContain('Modify Weapon Weight');
+  });
 });
 
 describe('modify weapon weight gaurd clauses', () => {
   let wrapper;
   let inputValue;
-  const gunList = () => wrapper.find('.equipmentListBody');
+  const gunList = () => wrapper.find('.firearmSelectModal').find('.gearModalContents');
   const selectedWeapons = () => wrapper.find('#characterWeaponList');
   const modifyPanel = () => wrapper.find('.modifyWeaponPanel');
 

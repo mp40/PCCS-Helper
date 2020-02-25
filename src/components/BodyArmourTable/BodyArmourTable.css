@@ -23,8 +23,6 @@
     border-right: 1px solid rgb(85, 83, 83);
 }
 
-.armour-row-values .pf,
-.armour-row-values .bpf,
-.armour-row-values .ac {
+.armour-row-values > td:nth-of-type(n+2) {
     text-align: center;
 }

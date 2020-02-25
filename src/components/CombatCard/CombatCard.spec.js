@@ -12,16 +12,16 @@ describe('the CombatCard comonent', () => {
 
   describe('changing combat level values', () => {
     it('should update gun combat level', () => {
-      inputAttribute('#updateGun', '4');
+      inputAttribute('.updateGun', '4');
       expect(combatLevels.text()).toContain('4');
     });
     it('should update hand to hand combat level', () => {
-      inputAttribute('#updateHand', '2');
+      inputAttribute('.updateHand', '2');
       expect(combatLevels.text()).toContain('2');
     });
     it('updates actions and other combat data when levels change', () => {
-      const gunActionsTable = wrapper.find('#gunActionTable');
-      const handActionsTable = wrapper.find('#handActionTable');
+      const gunActionsTable = wrapper.find('.actionsTable').at(0);
+      const handActionsTable = wrapper.find('.actionsTable').at(1);
       const additionalData = wrapper.find('.additionalCombatData');
       expect(gunActionsTable.text()).toEqual('Gun2122');
       expect(handActionsTable.text()).toEqual('Hand2121');

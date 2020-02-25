@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import BetaTemp from '../BetaTemp'; // todo delete this once at MVP
+import BetaTemp from '../BetaTemp'; // mptodo delete this once at MVP
+
 import './Home.css';
 
 const HomePage = ({ selectCurrentView }) => (

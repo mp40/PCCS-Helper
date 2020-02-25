@@ -1,0 +1,7 @@
+.addedEqipRow {
+    font-size: medium;
+}
+
+.addedEqipRow > td > span {
+    margin-left: 1rem;
+}

@@ -37,6 +37,20 @@ export const gunObjShape = PropTypes.shape({
   offical: PropTypes.bool,
 });
 
+export const grenadeShape = PropTypes.shape({
+  name: PropTypes.string.isRequired,
+  qty: PropTypes.number.isRequired,
+  length: PropTypes.number.isRequired,
+  weight: PropTypes.number.isRequired,
+  at: PropTypes.number.isRequired,
+  fl: PropTypes.number.isRequired,
+  r: PropTypes.number.isRequired,
+  smk: PropTypes.number,
+  dur: PropTypes.number,
+  data: PropTypes.object.isRequired,
+  heading: PropTypes.string.isRequired,
+});
+
 export const tableLineShape = PropTypes.shape({
   dataType: PropTypes.object,
   aim: PropTypes.array,
@@ -51,4 +65,15 @@ export const armourShape = PropTypes.shape({
   ac: PropTypes.string,
   weight: PropTypes.number,
   tags: PropTypes.arrayOf(PropTypes.string),
+});
+
+export const gearRowShape = PropTypes.shape({
+  type: PropTypes.string.isRequired,
+  remove: PropTypes.func.isRequired,
+  up: PropTypes.func.isRequired,
+  down: PropTypes.func.isRequired,
+  modify: PropTypes.func,
+  magUp: PropTypes.func,
+  magDown: PropTypes.func,
+  array: PropTypes.arrayOf(PropTypes.object).isRequired,
 });

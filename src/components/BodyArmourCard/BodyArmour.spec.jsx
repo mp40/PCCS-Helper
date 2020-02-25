@@ -7,7 +7,7 @@ const helmetM1 = {
   name: 'M1',
   pf: 4,
   bpf: 4,
-  ac: 'i',
+  ac: 'I',
   weight: 2.5,
   tags: ['USA', 'WW2', 'Cold War'],
 };
@@ -16,7 +16,7 @@ const vestM69 = {
   name: 'M69',
   pf: 5,
   bpf: 2,
-  ac: 'i',
+  ac: 'I',
   weight: 8.5,
   tags: ['USA', 'Cold War'],
 };
@@ -97,8 +97,8 @@ describe('the BodyArmourCard', () => {
   });
   describe('body armour intergration', () => {
     const wrap = mountAppWithStore(storeWithCreateCharacterView());
-    const gunActionsTable = wrap.find('#gunActionTable');
-    const handActionsTable = wrap.find('#handActionTable');
+    const gunActionsTable = wrap.find('.actionsTable').at(0);
+    const handActionsTable = wrap.find('.actionsTable').at(1);
     const additionalData = wrap.find('.additionalCombatData');
     it('should start with default starting combat values', () => {
       expect(gunActionsTable.text()).toEqual('Gun1111');

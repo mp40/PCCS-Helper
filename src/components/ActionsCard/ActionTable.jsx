@@ -5,14 +5,14 @@ import './ActionTable.css';
 
 const { actionsPerImpulse } = require('../../helpers/helperFunctions');
 
-const actionsRow = (idRef, heading, actionArray) => (
+const headings = ['Imp', '1', '2', '3', '4'];
+
+const actionsRow = (heading, actionArray) => (
   <>
-    <tr id={idRef} className="actionsTable">
-      <td className="actionType">{heading}</td>
-      <td className="actions">{actionArray[0]}</td>
-      <td className="actions">{actionArray[1]}</td>
-      <td className="actions">{actionArray[2]}</td>
-      <td className="actions">{actionArray[3]}</td>
+    <tr className="actionsTable">
+      {[heading, actionArray[0], actionArray[1], actionArray[2], actionArray[3]].map((value, dex) => (
+        <td key={headings[dex]}>{value}</td>
+      ))}
     </tr>
   </>
 );
@@ -21,19 +21,17 @@ const ActionTable = ({ combatActions, className }) => {
   const gunActions = actionsPerImpulse(combatActions[0]);
   const handActions = actionsPerImpulse(combatActions[1]);
   return (
-    <table className={`combatActions${className}`}>
+    <table className={`combatActions ${className}`}>
       <thead>
         <tr className="actionsHeader">
-          <th className="actionType">Imp</th>
-          <th className="impluseTH">1</th>
-          <th className="impluseTH">2</th>
-          <th className="impluseTH">3</th>
-          <th className="impluseTH">4</th>
+          {headings.map((value) => (
+            <th key={value}>{value}</th>
+          ))}
         </tr>
       </thead>
       <tbody>
-        {actionsRow('gunActionTable', 'Gun', gunActions)}
-        {actionsRow('handActionTable', 'Hand', handActions)}
+        {actionsRow('Gun', gunActions)}
+        {actionsRow('Hand', handActions)}
       </tbody>
     </table>
   );
@@ -45,7 +43,7 @@ ActionTable.propTypes = {
 };
 
 ActionTable.defaultProps = {
-  className: '',
+  className: 'default',
 };
 
 export default ActionTable;

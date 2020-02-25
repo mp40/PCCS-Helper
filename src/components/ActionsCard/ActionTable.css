@@ -4,29 +4,46 @@
     width: 100%;
 }
 
-.combatActions .ActionType {
-   width: 32%;
-}
-
-.combatActions .impluseTH {
-    width: 17%;
- }
-
- .combatActionsA4 {
-    border-collapse: collapse;
-    border: 1px solid rgb(85, 83, 83);
+.combatActions.A4 {
     font-size: 14pt;
 }
 
-.combatActionsA4 .ActionType {
-    width: 3cm;
- }
+.actionsHeader {
+    background: rgb(85, 83, 83);
+    color: whitesmoke;
+}
 
- .combatActionsA4 .impluseTH {
-     width: .7cm;
-  }
+.actionsHeader > th:first-child,
+.actionsTable > td:first-child {
+    text-align: left;
+    padding-left: .5rem;
+}
 
-  .combatActionsA4 .actionsHeader {
-      background: black;
-  }
+.actionsHeader > th:nth-child(n+2) {
+    width: 17%;
+}
 
+.combatActions.A4 * .actionsHeader > th:nth-child(n+2) {
+    width: .7cm;
+}
+
+.combatActions.A4 * .actionsHeader {
+    background: black;
+}
+
+.actionsTable > td:nth-child(n+2) {
+    text-align: center;
+}
+
+.additionalCombatData {
+    width: 100%;
+    text-align: center;
+    font-size: small;
+    margin-top: .1rem;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.additionalCombatData > div {
+    width: 33.33%;
+}

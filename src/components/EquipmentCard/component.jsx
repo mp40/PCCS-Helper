@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { gearShape } from '../../helpers/proptypeShapes';
+import GearCard from '../GearCard';
+import GearTable from '../GearTable';
+import GearRow from '../GearRow';
 import EquipmentDropdown from '../EquipmentDropdown';
 import CustomEquipmentModal from '../CustomEquipmentModal';
-import ButtonStandard from '../widgets/buttons/ButtonStandard';
-import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
-import ButtonIncrementArrows from '../widgets/buttons/ButtonIncrementArrows';
 import { findEquipmentWeight } from '../../helpers/actionHelpers';
 import { toggleTagsInList } from '../../helpers/equipmentListFunctions';
-import { handleIncrement } from '../../helpers/gaurds';
+
+import './EquipmentCard.css';
 
 class EquipmentCard extends Component {
   constructor(props) {
@@ -46,55 +46,6 @@ class EquipmentCard extends Component {
     this.setState({ filteredTags: toggleTagsInList(filteredTags, tag) });
   }
 
-  handleRemoveEquipment = (equipmentToRemove) => {
-    const { removeEquipment } = this.props;
-    removeEquipment(equipmentToRemove);
-  }
-
-  handleRemoveAllEquipment = () => {
-    const { removeAllEquipment } = this.props;
-    removeAllEquipment([]);
-  }
-
-  handleIncrementEquipmentQty = (equipmentObject, increment) => {
-    const { increaseEquipmentQty, decreaseEquipmentQty } = this.props;
-    handleIncrement(equipmentObject, increment, increaseEquipmentQty, decreaseEquipmentQty);
-  }
-
-  mapEquipment = () => {
-    const { gear } = this.props;
-    return gear.equipment.map(equipmentObject => (
-      <tr key={equipmentObject.name} className="addedEqipRow">
-        <td>
-          <ButtonDeleteX
-            id="removeEquip"
-            onClick={() => this.handleRemoveEquipment(equipmentObject)}
-          />
-          <span style={{ marginLeft: '1rem' }}>
-            {equipmentObject.name}
-          </span>
-        </td>
-        <td>
-          {equipmentObject.weight}
-        </td>
-        <td>
-          {equipmentObject.qty}
-        </td>
-        <td>
-          {Math.round((equipmentObject.qty * equipmentObject.weight) * 1000) / 1000}
-        </td>
-        <td className="arrowBox">
-          <ButtonIncrementArrows
-            idUp="qtyUp"
-            idDown="qtyDown"
-            onClickUp={() => this.handleIncrementEquipmentQty(equipmentObject, 'up')}
-            onClickDown={() => this.handleIncrementEquipmentQty(equipmentObject, 'down')}
-          />
-        </td>
-      </tr>
-    ));
-  }
-
   renderEquipmentDropdown = () => {
     const { showEquipment, showFilters, filteredTags } = this.state;
     return showEquipment
@@ -119,65 +70,26 @@ class EquipmentCard extends Component {
       );
   }
 
-  renderButtonRow = () => (
-    <div style={{ marginTop: '-1rem', marginBottom: '.5rem' }}>
-      <ButtonStandard
-        id="addEquipment"
-        name="Add Equipment"
-        onClick={() => this.toggleOnEquipmentCardViews('showEquipment')}
-      />
-      <ButtonStandard
-        id="toggleCustomEquipment"
-        name="Add Custom"
-        onClick={() => this.toggleOnEquipmentCardViews('showCustomInput')}
-      />
-      <ButtonStandard
-        id="clearAllEquipment"
-        name="Clear All"
-        onClick={() => this.handleRemoveAllEquipment()}
-      />
-    </div>
-  )
-
-  renderTableHead = totalEquipWeight => (
-    <thead>
-      <tr className="equipmentHeader">
-        <th>Equipment</th>
-        <th style={{ width: '9%' }}>Weight</th>
-        <th style={{ width: '9%' }}>Qty</th>
-        <th style={{ width: '9%' }}>lbs</th>
-        <th style={{ width: '9%' }}>
-          {Math.round(totalEquipWeight * 1000) / 1000}
-        </th>
-      </tr>
-    </thead>
-  )
-
-  renderTableBody = () => (
-    <tbody id="characterEquipmentList">
-      <tr className="addEquipment" />
-      {this.mapEquipment()}
-    </tbody>
-  )
-
-  renderEquipmentCardTable = totalEquipWeight => (
-    <table style={{ width: '100%' }} className="equipmentTable">
-      {this.renderTableHead(totalEquipWeight)}
-      {this.renderTableBody()}
-    </table>
-  )
+  renderTableBody = () => {
+    const { equipment, removeEquipment, increaseEquipmentQty, decreaseEquipmentQty } = this.props;
+    return (
+      <tbody>
+        <GearRow gear={{ type: 'Equipment', remove: removeEquipment, up: increaseEquipmentQty, down: decreaseEquipmentQty, array: equipment }} />
+      </tbody>
+    );
+  }
 
   render() {
-    const { gear } = this.props;
-    const totalEquipWeight = findEquipmentWeight(gear.equipment);
-
+    const { equipment, removeAllEquipment } = this.props;
+    const totalEquipWeight = findEquipmentWeight(equipment);
     return (
-      <div style={{ width: '36%' }} className="equipmentSelect">
-        {this.renderButtonRow()}
-        {this.renderEquipmentCardTable(totalEquipWeight)}
+      <GearCard gearType="equipment" hasButtonFunctions buttonFunctions={[() => this.toggleOnEquipmentCardViews('showEquipment'), () => this.toggleOnEquipmentCardViews('showCustomInput'), () => removeAllEquipment([])]}>
+        <GearTable gearHeading="Equipment" totalWeight={Math.round(totalEquipWeight * 1000) / 1000}>
+          {this.renderTableBody()}
+        </GearTable>
         {this.renderEquipmentDropdown()}
         {this.renderCustomEquipmentModal()}
-      </div>
+      </GearCard>
     );
   }
 }
@@ -187,7 +99,7 @@ EquipmentCard.propTypes = {
   increaseEquipmentQty: PropTypes.func,
   removeAllEquipment: PropTypes.func,
   removeEquipment: PropTypes.func,
-  gear: gearShape,
+  equipment: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default EquipmentCard;

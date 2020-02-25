@@ -1,4 +1,4 @@
-import { rifles, pistols, smgs, mgs, shotguns, sniperRifles } from './firearms';
+import { rifles, pistols, smgs, mgs, shotguns, sniperRifles } from '.';
 
 const allGuns = () => [...rifles(), ...pistols(), ...smgs(), ...mgs(), ...sniperRifles(), ...shotguns()];
 
@@ -21,7 +21,7 @@ const firearmObjectKeys = [
   'offical',
 ];
 
-const checkAtLeastTwo = value => value >= 2;
+const checkAtLeastTwo = (value) => value >= 2;
 
 describe('Check weapon data input', () => {
   it('should have the correct minimum keys', () => {

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import AttributeCard from '../AttributeCard';
 import CombatCard from '../CombatCard';
@@ -21,45 +21,39 @@ const defaultStats = {
   handLevel: 0,
 };
 
-class CharacterGeneration extends Component {
-  static get propTypes() {
-    return {
-      updateWeight: PropTypes.func,
-      updateAttributes: PropTypes.func,
-    };
-  }
-
-  componentDidMount() {
-    this.handleUpdateAttributes();
-    this.handleUpdateWeight();
-  }
-
-  handleUpdateAttributes = () => {
-    const { updateAttributes } = this.props;
+const CharacterGeneration = ({ updateAttributes, updateWeight }) => {
+  const handleUpdateAttributes = () => {
     updateAttributes(defaultStats, 0);
-  }
+  };
 
-  handleUpdateWeight = () => {
-    const { updateWeight } = this.props;
+  const handleUpdateWeight = () => {
     updateWeight(5, defaultStats);
-  }
+  };
 
-  render() {
-    return (
-      <div className="createCharContainer">
-        <div className="dataCardContainer">
-          <NameCard />
-          <AttributeCard />
-          <CombatCard />
-          <ActionsCard />
-          <ClothingCard />
-          <BodyArmourCard />
-        </div>
-        <EquipmentCard />
-        <WeaponsCard />
+  useEffect(() => {
+    handleUpdateAttributes();
+    handleUpdateWeight();
+  });
+
+  return (
+    <div className="createCharContainer">
+      <div>
+        <NameCard />
+        <AttributeCard />
+        <CombatCard />
+        <ActionsCard />
+        <ClothingCard />
+        <BodyArmourCard />
       </div>
-    );
-  }
-}
+      <EquipmentCard />
+      <WeaponsCard />
+    </div>
+  );
+};
+
+CharacterGeneration.propTypes = {
+  updateWeight: PropTypes.func,
+  updateAttributes: PropTypes.func,
+};
 
 export default CharacterGeneration;

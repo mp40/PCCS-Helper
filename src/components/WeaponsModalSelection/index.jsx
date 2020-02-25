@@ -11,6 +11,10 @@ import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 
 import { rifles, pistols, smgs, mgs, sniperRifles, shotguns, filterableCalibers } from '../../data/firearms';
 
+import GearModalContents from '../GearModalContents';
+
+import GearCard from '../GearCard';
+
 import './WeaponsModalSelection.css';
 
 
@@ -50,9 +54,9 @@ export const filterCalibersFromType = (typeArray, caliber) => {
     return typeArray;
   }
   if (caliber === 'Other') {
-    return typeArray.filter(firearm => !filterableCalibers().includes(firearm.calibre));
+    return typeArray.filter((firearm) => !filterableCalibers().includes(firearm.calibre));
   }
-  return typeArray.filter(firearm => firearm.calibre === caliber);
+  return typeArray.filter((firearm) => firearm.calibre === caliber);
 };
 
 const WeaponsModalSelection = ({ toggleOffWeaponCardViews, handleAddFirearm }) => {
@@ -93,9 +97,9 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, handleAddFirearm }) =
 
   return (
     <>
-      <div className="FirearmSelectionListCard" style={{ zIndex: 10 }}>
+      <GearCard name="modalCard firearmSelectModal">
         <div className="equipmentListHeader">
-        Select firearms
+          <span>Select firearms</span>
           <ButtonStandard
             id="closeFirearmModal"
             name="Close List"
@@ -107,33 +111,25 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, handleAddFirearm }) =
             onClick={handleToggleViewFilters}
           />
         </div>
-
-        <div className="equipmentListBody">
-          {gunArrayFilteredByType.map(gunObj => (
+        <GearModalContents>
+          {gunArrayFilteredByType.map((gunObj) => (
             <div key={gunObj.name} style={{ display: 'flex', width: '30%', paddingLeft: '.2rem', paddingRight: '.2rem' }}>
               <ButtonInfo
                 id={`view${gunObj.name.replace(/\s+/g, '')}`}
                 onClick={() => handleShowStatCard(gunObj)}
               />
               <div
-                className="equipmentEntry"
-                style={{ width: '100%' }}
+                className="firearmEntry"
                 id={gunObj.name}
                 onClick={() => addFirearmToList(gunObj)}
               >
-                <div>
-                  {gunObj.name}
-                </div>
-                <div>
-                  {`${gunObj.weight} lbs`}
-                </div>
+                <span>{gunObj.name}</span>
+                <span>{`${gunObj.weight} lbs`}</span>
               </div>
             </div>
           ))}
-        </div>
-
-      </div>
-
+        </GearModalContents>
+      </GearCard>
       <div className={filterClassName}>
         <WeaponsModalFilterSelection
           handleSetFilterByType={handleSetFilterByType}
@@ -141,26 +137,25 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, handleAddFirearm }) =
       </div>
 
       {firearmToInspect && (
-      <div className={statBoxClassName} style={{ fontSize: 'medium' }}>
-        <div style={{ marginTop: '2px', marginLeft: '2px' }}>
-          <ButtonDeleteX
-            id="closeGunStatView"
-            onClick={() => handleCloseStatCard()}
-          />
-        </div>
-        <div style={{ display: 'flex' }}>
+        <div className={statBoxClassName} style={{ fontSize: 'medium' }}>
           <div>
-            <WeaponsCardWeaponStats gunObj={firearmToInspect} />
+            <ButtonDeleteX
+              id="closeGunStatView"
+              onClick={() => handleCloseStatCard()}
+            />
           </div>
-          { firearmToInspect.list !== 'shotguns'
+          <div style={{ display: 'flex' }}>
+            <div>
+              <WeaponsCardWeaponStats gunObj={firearmToInspect} />
+            </div>
+            { firearmToInspect.list !== 'shotguns'
           && (
           <div className="firearm-notes-wrapper">
             <FirearmNotes gunObj={firearmToInspect} viewSpareAmmo={false} />
           </div>
-          )
-          }
+          )}
+          </div>
         </div>
-      </div>
       )}
     </>
   );

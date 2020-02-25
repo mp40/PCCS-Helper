@@ -6,15 +6,14 @@ import { isValidAttributeStat } from '../../helpers/gaurds';
 
 const statNameArray = ['Strength', 'Intelligence', 'Willpower', 'Health', 'Agility'];
 
-const AttributeCard = (props) => {
-  const {
-    characterStats,
-    modifyStrengthValue,
-    modifyIntelligenceValue,
-    modifyWillpowerValue,
-    modifyHealthValue,
-    modifyAgilityValue,
-  } = props;
+const AttributeCard = ({
+  characterStats,
+  modifyStrengthValue,
+  modifyIntelligenceValue,
+  modifyWillpowerValue,
+  modifyHealthValue,
+  modifyAgilityValue,
+}) => {
   const actionsArray = [
     modifyStrengthValue,
     modifyIntelligenceValue,
@@ -24,21 +23,19 @@ const AttributeCard = (props) => {
   ];
 
   return (
-    <div className="tableContainer">
-      <table className="attributeContainer">
+    <div className="--tableContainer --card">
+      <table className="--collapseBorder attributeContainer">
         <tbody>
           {renderAtrributeAndCombatTableHeadings()}
           {Object.keys(characterStats).slice(0, 5).map((stat, index) => (
             <StatInput
               statLevel={characterStats[stat]}
               statName={statNameArray[index]}
-              idRef={`update${stat.charAt(0).toUpperCase() + stat.slice(1)}`}
               isValid={isValidAttributeStat}
               action={actionsArray[index]}
               key={stat}
             />
-          ))
-            }
+          ))}
         </tbody>
       </table>
     </div>

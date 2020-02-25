@@ -15,7 +15,7 @@ export const standardRangeBrackets = [10, 20, 40, 70, 100, 200, 300, 400];
 export const shotgunRangeBrackets = [1, 2, 4, 6, 8, 10, 15, 20, 30, 40, 80];
 
 export const findSkillLevelFromSAL = (playerSAL) => {
-  const result = table1cSAL.findIndex(salValue => salValue === playerSAL);
+  const result = table1cSAL.findIndex((salValue) => salValue === playerSAL);
   return result === -1 ? undefined : result;
 };
 
@@ -24,13 +24,6 @@ const getFirearmNameAndRecoil = (gunObj, skillLevel) => {
     return gunObj.name;
   }
   return `${gunObj.name} - recoil recovery: ${getRecoilRecoveryValue(gunObj.kd, skillLevel)}`;
-};
-
-const getNameStyle = (size) => {
-  if (size === 'a4') {
-    return { marginTop: '0.5cm', marginLeft: '.1cm', fontWeight: 'bold', fontSize: '12pt', textAlign: 'left' };
-  }
-  return { marginTop: '0.5rem', marginLeft: '5.5%', fontWeight: 'bold' };
 };
 
 const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
@@ -44,16 +37,16 @@ const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
   };
 
   return (
-    <>
-      <div style={getNameStyle(size)}>{`${getFirearmNameAndRecoil(gunObj, findSkillLevelFromSAL(sal))}`}</div>
-      <div style={{ display: 'flex' }}>
+    <div className={`WeaponStatsContainer ${size}`}>
+      <div>{`${getFirearmNameAndRecoil(gunObj, findSkillLevelFromSAL(sal))}`}</div>
+      <div>
         <table className={size ? `${size}WeaponStatTable` : 'WeaponStatTable'}>
           <thead>
             <tr className="WeaponStatHeader">
               <th className="dataCol">Data</th>
               <th className="dataCol">Aim Time</th>
-              <th className="dataCol" />
-              {getRangeBrackets(gunObj).map(range => <th key={range}>{range}</th>)}
+              <th className="dataCol">{' '}</th>
+              {getRangeBrackets(gunObj).map((range) => <th key={range}>{range}</th>)}
             </tr>
           </thead>
           <tbody>
@@ -68,7 +61,7 @@ const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
           </tbody>
         </table>
       </div>
-    </>
+    </div>
   );
 };
 

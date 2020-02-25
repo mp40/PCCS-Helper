@@ -4,7 +4,7 @@ import { isValidCombatLevel,
   isValidCustomEquipmentInput,
   isValidToDecreaseQantity,
   isValidToDecreaseMagazine,
-  handleIncrement,
+  // handleIncrement,
   isValid } from './gaurds';
 
 describe('stat level gaurd clauses', () => {
@@ -70,7 +70,6 @@ describe('decrease gear quantity gaurd', () => {
 });
 
 describe('increment up and down logic gaurd', () => {
-  const actionableObject = { name: 'test', qty: 2 };
   const actionUp = jest.fn();
   const actionDown = jest.fn();
   afterEach(() => {
@@ -84,28 +83,5 @@ describe('increment up and down logic gaurd', () => {
     it('should use isValidToDecreaseMagazine if object containsfirearm and magazine objects', () => {
       expect(isValid({ magazine: { qty: 1 } })).toBe(true);
     });
-  });
-  it('should call actionUp if increment equals up', () => {
-    handleIncrement(actionableObject, 'up', actionUp, actionDown);
-    expect(actionUp).toHaveBeenCalledWith(actionableObject);
-    expect(actionDown).not.toHaveBeenCalled();
-  });
-  it('should call actionDown if increment equals down', () => {
-    handleIncrement(actionableObject, 'down', actionUp, actionDown);
-    expect(actionDown).toHaveBeenCalledWith(actionableObject);
-    expect(actionUp).not.toHaveBeenCalled();
-  });
-  it('should not call actionDown if increment equals down but qty equals 0', () => {
-    const objectQtyOne = { qty: 1 };
-    handleIncrement(objectQtyOne, 'down', actionUp, actionDown);
-    expect(actionDown).not.toHaveBeenCalled();
-    expect(actionUp).not.toHaveBeenCalled();
-  });
-  it('should work with object containing firearm and magazine object', () => {
-    const firearm = { qty: 1 };
-    const magazine = { qty: 1 };
-    handleIncrement({ firearm, magazine }, 'down', actionUp, actionDown);
-    expect(actionDown).toHaveBeenCalledWith({ firearm, magazine });
-    expect(actionUp).not.toHaveBeenCalled();
   });
 });

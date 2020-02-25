@@ -5,8 +5,8 @@ import { removeEquipment,
   increaseEquipmentQty,
   decreaseEquipmentQty } from '../../actions';
 
-const mapStateToProps = state => ({
-  gear: state.gear,
+const mapStateToProps = (state) => ({
+  equipment: state.gear.equipment,
 });
 
 

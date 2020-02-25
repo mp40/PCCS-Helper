@@ -5,7 +5,7 @@ import './buttons.css';
 const ButtonInfo = ({ onClick }) => (
   <button
     type="button"
-    className="button"
+    className="--button standardButton"
     style={{ lineHeight: '70%', padding: '0.25em 0.4em' }}
     onClick={onClick}
   >

@@ -6,6 +6,7 @@ import HomePage from './components/Home';
 import CharacterGeneration from './components/CharacterGeneration';
 import GameSheet from './components/GameSheet';
 
+import './stylesheet/styles.css';
 import './App.css';
 
 export const App = ({ currentView }) => (
@@ -15,11 +16,9 @@ export const App = ({ currentView }) => (
     </header>
     <div className="App-body">
       {currentView === 'home'
-        && <HomePage />
-      }
+        && <HomePage />}
       {(currentView === 'createChar' || currentView === 'printRefSheet')
-        && <CharacterGeneration />
-      }
+        && <CharacterGeneration />}
     </div>
     {currentView === 'printRefSheet'
     && (
@@ -32,7 +31,7 @@ App.propTypes = {
   currentView: PropTypes.string,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   currentView: state.currentView,
 });
 

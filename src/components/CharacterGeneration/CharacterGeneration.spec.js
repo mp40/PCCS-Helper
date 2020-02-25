@@ -5,13 +5,13 @@ describe('Selecting Charcter Generation', () => {
     const wrapper = mountAppWithStore();
     wrapper.find('#activateCreateChar').simulate('click');
     expect(wrapper.find('.navEquipWeight').text()).toContain(5);
-    expect(wrapper.find('#updateStr').text()).toBe('10');
-    expect(wrapper.find('#updateInt').text()).toBe('10');
-    expect(wrapper.find('#updateWil').text()).toBe('10');
-    expect(wrapper.find('#updateHlt').text()).toBe('10');
-    expect(wrapper.find('#updateAgi').text()).toBe('10');
-    expect(wrapper.find('#updateGun').text()).toBe('0');
-    expect(wrapper.find('#updateHand').text()).toBe('0');
+    expect(wrapper.find('.updateStrength').text()).toBe('10');
+    expect(wrapper.find('.updateIntelligence').text()).toBe('10');
+    expect(wrapper.find('.updateWillpower').text()).toBe('10');
+    expect(wrapper.find('.updateHealth').text()).toBe('10');
+    expect(wrapper.find('.updateAgility').text()).toBe('10');
+    expect(wrapper.find('.updateGun').text()).toBe('0');
+    expect(wrapper.find('.updateHand').text()).toBe('0');
   });
 });
 

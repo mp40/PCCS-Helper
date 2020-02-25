@@ -71,11 +71,10 @@ class WeaponsCardCustomMag extends Component {
         <ButtonStandard
           name="Back"
           id="backCustomMag"
-          onClick={() => toggleOffWeaponCardViews('createCustomMag')}
+          onClick={toggleOffWeaponCardViews}
         />
         {warning
-          && <div style={{ color: 'red', fontWeight: 'bold' }}>Please Enter Valid Data</div>
-        }
+          && <div style={{ color: 'red', fontWeight: 'bold' }}>Please Enter Valid Data</div>}
       </div>
     );
   }

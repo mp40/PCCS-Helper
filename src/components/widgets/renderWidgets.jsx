@@ -16,7 +16,7 @@ export const renderModificationTextInput = (heading, idRef, value, onChange) => 
 
 export const renderAtrributeAndCombatTableHeadings = (heading = 'Attribute') => (
   <tr>
-    <th className="attHeading">{heading}</th>
-    <th className="attValHeading">{heading === 'Skill' ? 'Level' : 'Value'}</th>
+    <th className="--tableHeading">{heading}</th>
+    <th className="--tableValue">{heading === 'Skill' ? 'Level' : 'Value'}</th>
   </tr>
 );

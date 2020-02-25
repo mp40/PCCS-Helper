@@ -1,34 +1,70 @@
-.button {
-    position: relative;
-    display: inline-block;
+.standardButton {
     padding: 0.25em 0.5em;
-    text-decoration: none;
-    color: rgb(85, 83, 83);
-    background: whitesmoke;
-    border: solid 1px #aeb885;
-    border-radius: 4px;
 }
 
-.buttonSlim {
-    position: relative;
-    display: inline-block;
-    text-decoration: none;
-    color: rgb(85, 83, 83);
-    background: whitesmoke;
-    border: solid 1px #aeb885;
-    border-radius: 4px;
+.slimButton {
     padding-left: 3px;
     padding-right: 3px;
-}
-
-.button:hover,
-.buttonSlim:hover {
-    border: solid 1.5px #d7ec80;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
 .select {
     background: grey;
     border: solid 1px red;
     font-size: small;
+}
+
+.-checkBoxContainer,
+.-clickButtonContainer {
+    background-color: whitesmoke;
+    border: none;
+}
+
+.-checkBox {
+    height: .9rem;
+    width: .9rem;
+    border-radius: 3px;
+    background-color: #fff;
+    display: inline-block;
+    position: relative;
+    -webkit-box-shadow: inset 0px 0px 3px 0px rgba(0,0,0,0.8);
+    -moz-box-shadow: inset 0px 0px 3px 0px rgba(0,0,0,0.8);
+    box-shadow: inset 0px 0px 3px 0px rgba(0,0,0,0.8);
+}
+
+
+.-checkBox.active > .inner:after {
+    content: " \2714";
+    color: #fff;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: .8rem;
+    height: 0.8rem;
+    width: 0.8rem;
+    border-radius: 3px;
+    background: rgb(190,210,100);
+    background: -moz-radial-gradient(circle, rgba(190,210,100,1) 0%, rgba(85,103,63,1) 100%);
+    background: -webkit-radial-gradient(circle, rgba(190,210,100,1) 0%, rgba(85,103,63,1) 100%);
+    background: radial-gradient(circle, rgba(190,210,100,1) 0%, rgba(85,103,63,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#bed264",endColorstr="#55673f",GradientType=1);
+}
+
+
+.-clickButton {
+    height: .9rem;
+    width: .9rem;
+    background-color: #fff;
+    border-radius: 50%;
+    display: inline-block;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.8);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.8);
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.8);
+}
+
+.-clickButton:active {
+    -webkit-box-shadow: inset 0px 0px 3px 0px rgba(0,0,0,0.8);
+    -moz-box-shadow: inset 0px 0px 3px 0px rgba(0,0,0,0.8);
+    box-shadow: inset 0px 0px 3px 0px rgba(0,0,0,0.8);
 }

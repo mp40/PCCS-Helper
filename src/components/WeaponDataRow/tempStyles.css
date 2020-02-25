@@ -1,0 +1,26 @@
+.GunTableTableRow > td:nth-of-type(2) {
+    border-left: 1px solid rgb(85, 83, 83);
+    border-right: 1px solid rgb(85, 83, 83);
+}
+
+.GunTableTableRow > td:nth-of-type(1) > span:first-of-type,
+.GunTableTableRow > td:nth-of-type(2) > span:first-of-type,
+.GunTableTableRow > td:nth-of-type(3) > span:first-of-type {
+    float: left;
+}
+
+.GunTableTableRow > td:nth-of-type(1) > span:last-of-type,
+.GunTableTableRow > td:nth-of-type(2) > span:last-of-type,
+.GunTableTableRow > td:nth-of-type(3) > span:last-of-type {
+    float: right;
+}
+
+.GunTableTableRow > td:nth-of-type(3) > span:first-of-type {
+    margin-left: 0.2rem;
+}
+
+.GunTableTableRow > td:nth-of-type(n+4) {
+    text-align: center;
+    width: 2rem;
+    /* padding: 0 1px; */
+}

@@ -1,6 +1,6 @@
 import { mountAppWithStore, storeWithCreateCharacterView } from '../../helpers/testHelpers';
 
-describe('the CombatCard comonent', () => {
+describe('the CombatCard component', () => {
   const wrapper = mountAppWithStore(storeWithCreateCharacterView());
 
   describe('rendering combat actions', () => {

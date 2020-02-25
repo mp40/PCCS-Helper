@@ -7,14 +7,19 @@ import ButtonStandard from '../widgets/buttons/ButtonStandard';
 import { filterEquipment, createFilterSet } from '../../helpers/equipmentListFunctions';
 import { isNotValidObjectToAdd } from '../../helpers/gaurds';
 import { equipment } from '../../data/equipmentList';
+
+import GearModal from '../GearModal';
+import GearCard from '../GearCard';
+import GearModalContents from '../GearModalContents';
+
 import './EquipmentDropdown.css';
 
 class EquipmentDropdown extends Component {
 mapEquipmentFilterTags = () => {
   const { filteredTags, handleTags } = this.props;
-  return createFilterSet(equipment()).map(tag => (
+  return createFilterSet(equipment()).map((tag) => (
     <div
-      className="equipTags"
+      className="--selectableRow equipTags"
       style={{ fontWeight: filteredTags.includes(tag)
         ? 'bold'
         : null }}
@@ -28,9 +33,9 @@ mapEquipmentFilterTags = () => {
 
 mapFilteredEquipment = () => {
   const { filteredTags } = this.props;
-  return filterEquipment(filteredTags).map(equipObj => (
+  return filterEquipment(filteredTags).map((equipObj) => (
     <div
-      className="equipmentEntry"
+      className="--selectableRow equipmentEntry"
       key={equipObj.name}
       onClick={this.handleAddEquipment.bind(this, equipObj)}
     >
@@ -59,9 +64,9 @@ renderFilterList = () => (
 )
 
 renderEquipment = () => (
-  <div className="equipmentListBody">
+  <GearModalContents name="equipmentListBody">
     {this.mapFilteredEquipment()}
-  </div>
+  </GearModalContents>
 )
 
 renderContent = () => {
@@ -73,11 +78,10 @@ render() {
   const { showFilters, closeShowEquipment, toggleFilters } = this.props;
 
   return (
-    <div className="equipmentModalContainer">
-
-      <div className="equipmentListCard">
+    <GearModal>
+      <GearCard name="modalCard">
         <div className="equipmentListHeader">
-                    Select Equipment
+          <span>Select Equipment</span>
           <ButtonStandard
             id="closeEquipmentModal"
             name="Close List"
@@ -92,8 +96,8 @@ render() {
           />
         </div>
         {this.renderContent()}
-      </div>
-    </div>
+      </GearCard>
+    </GearModal>
   );
 }
 }

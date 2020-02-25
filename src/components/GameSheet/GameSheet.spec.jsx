@@ -59,11 +59,6 @@ describe('<GameSheet>', () => {
     it('should call selectCurrentView with "createChar"', () => {
       expect(spySelectCurrentView).toHaveBeenCalled();
     });
-    // it('should end the lifecycle with the GameSheet Hidden', () => {
-    //   // console.log(">>>>",wrapper.state());
-    //   // expect(wrapper).toBe()
-
-    // });
   });
   describe('the charcater name', () => {
     const wrapper = shallow(<GameSheet {...props} />);

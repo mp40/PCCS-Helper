@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { gearShape } from '../../helpers/proptypeShapes';
-import WeaponsModalSelection from '../WeaponsModalSelection';
-import { isNotValidObjectToAdd } from '../../helpers/gaurds';
 
+import WeaponsModalSelection from '../WeaponsModalSelection';
+import GearModal from '../GearModal';
+
+import { isNotValidObjectToAdd } from '../../helpers/gaurds';
 
 const WeaponsCardSelectModal = ({ addFirearm, gear, toggleOffWeaponCardViews }) => {
   const handleAddFirearm = (gunObj) => {
@@ -13,14 +15,13 @@ const WeaponsCardSelectModal = ({ addFirearm, gear, toggleOffWeaponCardViews }) 
     addFirearm(gunObj);
   };
 
-
   return (
-    <div className="equipmentModalContainer">
+    <GearModal>
       <WeaponsModalSelection
         toggleOffWeaponCardViews={toggleOffWeaponCardViews}
         handleAddFirearm={handleAddFirearm}
       />
-    </div>
+    </GearModal>
   );
 };
 

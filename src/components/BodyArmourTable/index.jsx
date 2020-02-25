@@ -7,10 +7,9 @@ const getDefaultArmourValues = name => ({ name, pf: '0', bpf: '0', ac: '-' });
 
 const renderArmourRow = armour => (
   <tr className="armour-row-values">
-    <td className="name">{armour.name}</td>
-    <td className="pf">{armour.pf}</td>
-    <td className="bpf">{armour.bpf}</td>
-    <td className="ac">{armour.ac.toUpperCase()}</td>
+    {['name', 'pf', 'bpf', 'ac'].map((value) => (
+      <td key={value} className={value}>{armour[value]}</td>
+    ))}
   </tr>
 );
 
@@ -18,10 +17,9 @@ const BodyArmourTable = ({ helmet, vest }) => (
   <table className="BodyArmourTable">
     <thead>
       <tr>
-        <th className="name">Body Armour</th>
-        <th className="pf">PF</th>
-        <th className="bpf">BPF</th>
-        <th className="ac">AC</th>
+        {['Body Armour', 'PF', 'BPF', 'AC'].map((value) => (
+          <th key={value}>{value}</th>
+        ))}
       </tr>
     </thead>
     <tbody>

@@ -1,4 +1,4 @@
-select{
+select {
     background-color: whitesmoke;
     border: solid 1.5px #d7ec80;
     border-radius: 3px;
@@ -6,4 +6,8 @@ select{
     transition: 0.3s;
     width: 100%;
     font-size: smaller;
+}
+
+.uniformWeight {
+   text-align: center;
 }

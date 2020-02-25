@@ -7,8 +7,8 @@ import './ClothingCard.css';
 
 const renderTableHeading = () => (
   <tr className="uniformTableHeader">
-    <th className="uniformHeading">Uniform</th>
-    <th className="uniformValHeading">lbs</th>
+    <th className="--tableHeading">Uniform</th>
+    <th className="--tableValue">lbs</th>
   </tr>
 );
 
@@ -32,33 +32,32 @@ class ClothingCard extends Component {
     }
 
     renderUniformCard = (currentUniform, currentUniformWeight) => (
-      <table className="uniformTableContainer">
+      <table className="--tableContainer --card">
         <thead>
           {renderTableHeading()}
           <tr
-            className="uniformStats"
+            className="--selectableRow uniformStats"
             onClick={this.toggleSelectUniform}
           >
-            <td id="currentUniform">{currentUniform}</td>
-            <td id="uniformWeight" style={{ textAlign: 'center' }}>{currentUniformWeight}</td>
+            <td className="currentUniform">{currentUniform}</td>
+            <td className="uniformWeight">{currentUniformWeight}</td>
           </tr>
         </thead>
       </table>
     )
 
     renderUniformSelection = () => (
-      <div className="uniformTableContainer">
+      <div className="--tableContainer --card">
         <table>
           <thead>
             {renderTableHeading()}
           </thead>
         </table>
         <div>
-          <select id="uniformDropdownSelector" onChange={this.handleChangeUniform}>
-            <option>Select Uniform</option>
-            <option>Normal</option>
-            <option>Tropical</option>
-            <option>Winter</option>
+          <select className="uniformDropdownSelector" onChange={this.handleChangeUniform}>
+            {['Select Uniform', 'Normal', 'Tropical', 'Winter'].map((value) => (
+              <option key={value}>{value}</option>
+            ))}
           </select>
         </div>
       </div>

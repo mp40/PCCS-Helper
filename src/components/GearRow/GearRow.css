@@ -1,0 +1,19 @@
+.tableRow,
+.spareMagRow {
+    font-size: small;
+}
+
+.tableRow > td:nth-of-type(n+2) {
+    text-align: center;
+ }
+
+.tableRow > td:first-of-type > :first-child {
+   margin-right: 0.2rem;
+}
+.tableRow > td:first-of-type > :nth-child(2) {
+    padding: 0 .4rem;
+ }
+
+.spareMagRow > td > span:nth-of-type(1) {
+    margin: 0 1rem 0 2rem;
+}
