@@ -3,23 +3,23 @@ import { shallow } from 'enzyme';
 import { mountAppWithStore, storeWithCreateCharacterView, testM1911A1WithMods, createWrapperTextInput } from '../../helpers/testHelpers';
 import WeaponsCardModifyWeight from './index';
 
-describe('the <WeaponsCardModifyWeight/> component', () => {
-  const mockToggle = jest.fn();
-  const wrapper = shallow(<WeaponsCardModifyWeight toggleOffWeaponCardViews={mockToggle} />);
-  const inputValue = createWrapperTextInput(wrapper);
-  it('should take an input for a note on modification', () => {
-    inputValue('#modifyWeightNoteInput', 'removed stock');
-    expect(wrapper.state('modWeightNote')).toEqual('removed stock');
-  });
-  it('should take an input for weight', () => {
-    inputValue('#modifyWeightValueInput', '1.2');
-    expect(wrapper.state('modWeightNumber')).toEqual('1.2');
-  });
-  it('should have a back button', () => {
-    wrapper.find('#backModifiedWeight').simulate('click');
-    expect(mockToggle).toHaveBeenCalled();
-  });
-});
+// describe('the <WeaponsCardModifyWeight/> component', () => {
+//   const mockToggle = jest.fn();
+//   const wrapper = shallow(<WeaponsCardModifyWeight toggleOffWeaponCardViews={mockToggle} />);
+//   const inputValue = createWrapperTextInput(wrapper);
+//   it('should take an input for a note on modification', () => {
+//     inputValue('#modifyWeightNoteInput', 'removed stock');
+//     expect(wrapper.state('modWeightNote')).toEqual('removed stock');
+//   });
+//   it('should take an input for weight', () => {
+//     inputValue('#modifyWeightValueInput', '1.2');
+//     expect(wrapper.state('modWeightNumber')).toEqual('1.2');
+//   });
+//   it('should have a back button', () => {
+//     wrapper.find('#backModifiedWeight').simulate('click');
+//     expect(mockToggle).toHaveBeenCalled();
+//   });
+// });
 
 describe('modifing firearm weight', () => {
   let wrapper;
