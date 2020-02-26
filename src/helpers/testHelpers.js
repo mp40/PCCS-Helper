@@ -19,6 +19,7 @@ export const mountAppWithStore = (mockStore = initialStore) => {
   );
 };
 
+//mptodo phase this out
 export const createWrapperTextInput = wrapper => ((name, value) => wrapper.find(name).simulate('change', { target: { value } }));
 
 //mptodo

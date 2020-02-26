@@ -16,7 +16,7 @@ const FirearmModificationForm = ({ formDetails, handleModification, toggleOffWea
   const funcs = [updateModification, updateWeight, updateType];
 
   const validateInput = () => {
-    const input = createModificationObject('firearm')(modification, weight, type);
+    const input = createModificationObject(formDetails.formType)(modification, weight, type);
     if (input === false) {
       toggleWarning(true);
       return;
@@ -25,8 +25,8 @@ const FirearmModificationForm = ({ formDetails, handleModification, toggleOffWea
   };
 
   return (
-    <div className="modifyWeightForm">
-      <div>Modify Weapon Weight</div>
+    <div className={formDetails.formClassName}>
+      <div>{formDetails.title}</div>
       {formDetails.fields.map((field, index) => (
         <TextInput
           key={field.heading}
@@ -38,12 +38,12 @@ const FirearmModificationForm = ({ formDetails, handleModification, toggleOffWea
       ))}
       <ButtonStandard
         name="Submit"
-        id="submitModifiedWeight"
+        className={`submitCustom${formDetails.formType}`}
         onClick={validateInput}
       />
       <ButtonStandard
         name="Back"
-        id="backModifiedWeight"
+        className="exitModificationForm"
         onClick={toggleOffWeaponCardViews}
       />
       {warning

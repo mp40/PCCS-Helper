@@ -27,7 +27,7 @@ describe('modifying weapons', () => {
     inputValue('#customMagCapacityInput', '18');
     inputValue('#customMagWeightInput', '.65');
     inputValue('#customMagTypeInput', 'Mag');
-    wrapper.find('#submitCustomMag').simulate('click');
+    wrapper.find('.submitCustomMagazine').simulate('click');
     expect(modifyPanel().find('.M16MagAtIndex2').exists()).toBe(true);
     expect(modifyPanel().find('.M16MagAtIndex2').text()).toContain('18');
     expect(modifyPanel().find('.M16MagAtIndex2').text()).toContain('0.65');

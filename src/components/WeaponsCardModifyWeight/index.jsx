@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { renderModificationTextInput } from '../widgets/renderWidgets';
-import ButtonStandard from '../widgets/buttons/ButtonStandard';
 
 import FirearmModificationForm from '../FirearmModificationForm';
 
 const formDetails = {
+  title: 'Modify Weapon Weight',
+  formClassName: 'modifyWeightForm',
+  formType: 'Firearm',
   fields: [
     {
       heading: 'Note',

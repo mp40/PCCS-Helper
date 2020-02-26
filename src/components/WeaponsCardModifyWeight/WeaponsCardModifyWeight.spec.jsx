@@ -31,7 +31,7 @@ describe('modifing firearm weight', () => {
     modifyPanel().find('#modifyWeaponWeight').simulate('click');
     inputValue('#modifyWeightNoteInput', 'added torch');
     inputValue('#modifyWeightValueInput', '.5');
-    wrapper.find('#submitModifiedWeight').simulate('click');
+    wrapper.find('.submitCustomFirearm').simulate('click');
   };
 
   beforeEach(() => {
@@ -56,7 +56,7 @@ describe('modifing firearm weight', () => {
   });
   it('should be possible to exit the modifcatyion form', () => {
     modifyPanel().find('#modifyWeaponWeight').simulate('click');
-    modifyPanel().find('#backModifiedWeight').simulate('click');
+    modifyPanel().find('.exitModificationForm').simulate('click');
     expect(modifyPanel().text()).not.toContain('Modify Weapon Weight');
   });
 });
@@ -80,12 +80,12 @@ describe('modify weapon weight gaurd clauses', () => {
   it('should only accept numbers for weight value', () => {
     inputValue('#modifyWeightNoteInput', 'added torch');
     inputValue('#modifyWeightValueInput', 'one pound');
-    wrapper.find('#submitModifiedWeight').simulate('click');
+    wrapper.find('.submitCustomFirearm').simulate('click');
     expect(wrapper.text()).toContain('Please Enter Valid Data');
   });
   it('should have a value entered in type nore feild', () => {
     inputValue('#modifyWeightValueInput', '1');
-    wrapper.find('#submitModifiedWeight').simulate('click');
+    wrapper.find('.submitCustomFirearm').simulate('click');
     expect(wrapper.text()).toContain('Please Enter Valid Data');
   });
   it('should be possible to remove all mods', () => {
