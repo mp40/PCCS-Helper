@@ -4,13 +4,13 @@ import { act } from 'react-dom/test-utils';
 import WeaponsModalSelection, { filterCalibersFromType } from './index';
 import { mgs } from '../../data/firearms';
 
-const waitOneTick = simulate => new Promise(((resolve) => {
+const waitOneTick = (simulate) => new Promise(((resolve) => {
   setTimeout(() => {
     resolve(simulate);
   }, 0);
 }));
 
-const waitOneSec = simulate => new Promise(((resolve) => {
+const waitOneSec = (simulate) => new Promise(((resolve) => {
   setTimeout(() => {
     resolve(simulate);
   }, 1001);
@@ -71,8 +71,8 @@ describe('promise to wait for transition close', () => {
   });
 });
 
-// todo this will pass tests even if args in handleSetFilterByType are in wrong order.
-// todo mqke sure some tests fail if args in wrong order
+// mptodo this will pass tests even if args in handleSetFilterByType are in wrong order.
+// mptodo mqke sure some tests fail if args in wrong order
 describe('filtering types and calibers helper function', () => {
   const firearmArrayDouble = () => [
     { name: 'AK47', calibre: '7.62 x 39mm' },

@@ -8,7 +8,7 @@ const {
 
 const findHighestCombatLevel = (gunLevel, handLevel) => (gunLevel > handLevel ? gunLevel : handLevel);
 
-const findSAL = level => table1cSAL[level] * 1;
+const findSAL = (level) => table1cSAL[level] * 1;
 
 const findKey = (enc, arr) => {
   let result;
@@ -59,7 +59,7 @@ const calcDB = (ms, asf) => {
   return table1dDamageBonus[ms][index] * 1;
 };
 
-// TODO delete this when reducer migration complete...
+// mpTODO delete this when reducer migration complete...
 const calculateStateObject = (characterStats, weight) => {
   const bs = calcBaseSpeed(characterStats.str, weight);
   const ms = calcMaxSpeed(characterStats.agi, bs);
