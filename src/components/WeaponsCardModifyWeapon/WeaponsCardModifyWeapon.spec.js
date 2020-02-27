@@ -123,7 +123,6 @@ describe('Customising Firearm', () => {
     const inputModificationWeight = (value = '.5') => wrapper.find('#modifyWeightValueInput').simulate('change', { target: { value } });
 
     describe('adding modification', () => {
-
       const addTorchAsMod = () => {
         modifyPanel().find('#modifyWeaponWeight').simulate('click');
         inputModificationName();
@@ -157,7 +156,6 @@ describe('Customising Firearm', () => {
       });
     });
     describe('modify weapon weight warnings', () => {
-
       beforeEach(() => {
         wrapper = mountAppWithStore(storeWithCreateCharacterView());
         wrapper.find('#addFirearm').simulate('click');

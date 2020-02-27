@@ -69,7 +69,10 @@ const calculateStateObject = (characterStats, weight) => {
   const ceResult = findSAL(characterStats.handLevel);
   const asfResult = calcSkillFactor(characterStats.agi, ceResult);
   const handResults = calcCombatActions(ms, asfResult);
-  const knockout = calcKV(characterStats.wil, characterStats.gunLevel > characterStats.handLevel ? characterStats.gunLevel : characterStats.handLevel);
+  const knockout = calcKV(
+    characterStats.wil,
+    characterStats.gunLevel > characterStats.handLevel ? characterStats.gunLevel : characterStats.handLevel,
+  );
   const damBonus = calcDB(ms, asfResult);
 
   return {

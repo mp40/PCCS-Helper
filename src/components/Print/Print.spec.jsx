@@ -1,7 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Print from './component';
+
+// eslint-disable-next-line import/named
 import { App } from '../../App';
+
 import { mountAppWithStore, storeWithCreateCharacterView } from '../../helpers/testHelpers';
 
 const selectCurrentView = jest.fn();

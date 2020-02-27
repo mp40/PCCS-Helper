@@ -3,9 +3,9 @@ import { armourShape } from '../../helpers/proptypeShapes';
 
 import './BodyArmourTable.css';
 
-const getDefaultArmourValues = name => ({ name, pf: '0', bpf: '0', ac: '-' });
+const getDefaultArmourValues = (name) => ({ name, pf: '0', bpf: '0', ac: '-' });
 
-const renderArmourRow = armour => (
+const renderArmourRow = (armour) => (
   <tr className="armour-row-values">
     {['name', 'pf', 'bpf', 'ac'].map((value) => (
       <td key={value} className={value}>{armour[value]}</td>
