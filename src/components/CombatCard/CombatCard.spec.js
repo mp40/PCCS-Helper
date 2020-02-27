@@ -8,7 +8,7 @@ describe('the CombatCard comonent', () => {
     wrapper.find(`${attributeId} input`).simulate('keyUp', { target: { value: newValue },
       key: 'Enter' });
   };
-  const combatLevels = wrapper.find('#combatLevelInputContainer');
+  const combatLevels = wrapper.find('.combatLevelCard');
 
   describe('changing combat level values', () => {
     it('should update gun combat level', () => {
