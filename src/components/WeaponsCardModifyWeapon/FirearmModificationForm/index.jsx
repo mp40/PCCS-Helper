@@ -6,6 +6,8 @@ import TextInput from './textInput';
 
 import { getFormDetails, createModificationObject } from './data';
 
+import './FirearmModificationForm.css';
+
 const FirearmModificationForm = ({ formType, handleModification, toggleOffWeaponCardViews }) => {
   const [modification, updateModification] = useState('');
   const [weight, updateWeight] = useState('');
