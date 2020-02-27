@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import ButtonStandard from '../widgets/buttons/ButtonStandard';
 import TextInput from './textInput';
 
-import { createModificationObject } from './data';
+import { getFormDetails, createModificationObject } from './data';
 
-const FirearmModificationForm = ({ formDetails, handleModification, toggleOffWeaponCardViews }) => {
+const FirearmModificationForm = ({ formType, handleModification, toggleOffWeaponCardViews }) => {
   const [modification, updateModification] = useState('');
   const [weight, updateWeight] = useState('');
   const [type, updateType] = useState('');
@@ -15,8 +15,10 @@ const FirearmModificationForm = ({ formDetails, handleModification, toggleOffWea
   const values = [modification, weight, type];
   const funcs = [updateModification, updateWeight, updateType];
 
+  const formDetails = getFormDetails(formType);
+
   const validateInput = () => {
-    const input = createModificationObject(formDetails.formType)(modification, weight, type);
+    const input = createModificationObject(formType)(modification, weight, type);
     if (input === false) {
       toggleWarning(true);
       return;
@@ -38,7 +40,7 @@ const FirearmModificationForm = ({ formDetails, handleModification, toggleOffWea
       ))}
       <ButtonStandard
         name="Submit"
-        className={`submitCustom${formDetails.formType}`}
+        className={`submitCustom${formType}`}
         onClick={validateInput}
       />
       <ButtonStandard
@@ -47,16 +49,13 @@ const FirearmModificationForm = ({ formDetails, handleModification, toggleOffWea
         onClick={toggleOffWeaponCardViews}
       />
       {warning
-      && <div style={{ color: 'red', fontWeight: 'bold' }}>Please Enter Valid Data</div>}
+      && <div className="modificationFormWarning">Please Enter Valid Data</div>}
     </div>
   );
 };
 
 FirearmModificationForm.propTypes = {
-  formDetails: PropTypes.objectOf(PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.string,
-  ])).isRequired,
+  formType: PropTypes.string.isRequired,
   handleModification: PropTypes.func.isRequired,
   toggleOffWeaponCardViews: PropTypes.func.isRequired,
 };

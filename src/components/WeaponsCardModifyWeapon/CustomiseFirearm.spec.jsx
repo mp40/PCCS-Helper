@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { mountAppWithStore, storeWithCreateCharacterView, testM1911A1WithMods, createWrapperTextInput } from '../../helpers/testHelpers';
-import WeaponsCardModifyWeight from './index';
+// import WeaponsCardModifyWeight from './index';
 
 // describe('the <WeaponsCardModifyWeight/> component', () => {
 //   const mockToggle = jest.fn();

@@ -2,10 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const TextInput = ({ heading, idRef, value, onChange }) => (
-  <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}>
+  <div className="modificationFormTextInput">
     <div>{heading}</div>
     <input
-      style={{ width: '30%' }}
       type="text"
       autoComplete="off"
       id={idRef}

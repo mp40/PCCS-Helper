@@ -1,0 +1,14 @@
+.modificationFormTextInput {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.modificationFormTextInput > input {
+    width: 30%;
+}
+
+.modificationFormWarning {
+    color: red;
+    font-weight: bold;
+}
