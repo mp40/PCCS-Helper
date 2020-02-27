@@ -5,7 +5,7 @@ import { gunObjShape } from '../../helpers/proptypeShapes';
 import Magazines from './magazines';
 import Modifications from './modifications';
 
-import FirearmModificationForm from '../FirearmModificationForm';
+import FirearmModificationForm from './FirearmModificationForm';
 
 import ButtonSlim from '../widgets/buttons/ButtonSlim';
 

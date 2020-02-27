@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import ButtonStandard from '../widgets/buttons/ButtonStandard';
+import ButtonStandard from '../../widgets/buttons/ButtonStandard';
 import TextInput from './textInput';
 
 import { getFormDetails, createModificationObject } from './data';
