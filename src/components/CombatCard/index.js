@@ -3,7 +3,7 @@ import { modifyGunCombatLevel, modifyMeleeCombatLevel } from '../../actions';
 
 import CombatCard from './component';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   characterStats: state.characterStats,
 });
 
