@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import LevelsCard from '../LevelsCard';
 import StatInput from '../widgets/StatInput';
-import { renderAtrributeAndCombatTableHeadings } from '../widgets/renderWidgets';
 import { isValidCombatLevel } from '../../helpers/gaurds';
 
 const renderStatInput = (level, statName, action) => (
@@ -16,15 +16,10 @@ const renderStatInput = (level, statName, action) => (
 const CombatCard = (props) => {
   const { characterStats, modifyGunCombatLevel, modifyMeleeCombatLevel } = props;
   return (
-    <div id="combatLevelInputContainer" className="--tableContainer --card">
-      <table className="--collapseBorder attributeContainer">
-        <tbody>
-          {renderAtrributeAndCombatTableHeadings('Skill')}
-          {renderStatInput(characterStats.gunLevel, 'Gun', modifyGunCombatLevel)}
-          {renderStatInput(characterStats.handLevel, 'Hand', modifyMeleeCombatLevel)}
-        </tbody>
-      </table>
-    </div>
+    <LevelsCard className="combatLevelCard" levelType="combat">
+      {renderStatInput(characterStats.gunLevel, 'Gun', modifyGunCombatLevel)}
+      {renderStatInput(characterStats.handLevel, 'Hand', modifyMeleeCombatLevel)}
+    </LevelsCard>
   );
 };
 

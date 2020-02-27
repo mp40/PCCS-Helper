@@ -16,8 +16,8 @@ describe('Selecting Charcter Generation', () => {
 });
 
 describe('Character Generation', () => {
-  // todo overall intergration tests here
+  // mptodo overall intergration tests here
   it('should be able to clear filters', () => {
-    // TODO
+    // mpTODO
   });
 });

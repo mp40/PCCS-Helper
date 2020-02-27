@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import LevelsCard from '../LevelsCard';
 import StatInput from '../widgets/StatInput';
-import { renderAtrributeAndCombatTableHeadings } from '../widgets/renderWidgets';
 import { isValidAttributeStat } from '../../helpers/gaurds';
 
-const statNameArray = ['Strength', 'Intelligence', 'Willpower', 'Health', 'Agility'];
+import { statKeys, statNames } from './data';
 
 const AttributeCard = ({
   characterStats,
@@ -23,22 +23,17 @@ const AttributeCard = ({
   ];
 
   return (
-    <div className="--tableContainer --card">
-      <table className="--collapseBorder attributeContainer">
-        <tbody>
-          {renderAtrributeAndCombatTableHeadings()}
-          {Object.keys(characterStats).slice(0, 5).map((stat, index) => (
-            <StatInput
-              statLevel={characterStats[stat]}
-              statName={statNameArray[index]}
-              isValid={isValidAttributeStat}
-              action={actionsArray[index]}
-              key={stat}
-            />
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <LevelsCard className="attributeLevelCard" levelType="attribute">
+      {statKeys.map((stat, index) => (
+        <StatInput
+          statLevel={characterStats[stat]}
+          statName={statNames[index]}
+          isValid={isValidAttributeStat}
+          action={actionsArray[index]}
+          key={stat}
+        />
+      ))}
+    </LevelsCard>
   );
 };
 

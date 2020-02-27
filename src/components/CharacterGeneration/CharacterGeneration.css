@@ -8,10 +8,6 @@
     flex-direction: column;
 }
 
-.attributeContainer {
-    text-align: center;
-}
-
 .combatDataContainer {
     display: inline-block;
     margin-top: 0.5rem;

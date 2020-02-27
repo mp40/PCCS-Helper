@@ -5,8 +5,7 @@ import { gunObjShape } from '../../helpers/proptypeShapes';
 import Magazines from './magazines';
 import Modifications from './modifications';
 
-import WeaponsCardCustomMag from '../WeaponsCardCustomMag';
-import WeaponsCardModifyWeight from '../WeaponsCardModifyWeight';
+import FirearmModificationForm from './FirearmModificationForm';
 
 import ButtonSlim from '../widgets/buttons/ButtonSlim';
 
@@ -81,13 +80,15 @@ const WeaponsCardModifyWeapon = ({
           </>
         )}
       {createCustomMag && (
-        <WeaponsCardCustomMag
+        <FirearmModificationForm
+          formType="Magazine"
           handleModification={handleAddCustomMag}
           toggleOffWeaponCardViews={() => toggleCreateCustomMag(false)}
         />
       )}
       {modifyFirearmWeight && (
-        <WeaponsCardModifyWeight
+        <FirearmModificationForm
+          formType="Firearm"
           handleModification={handleModifyFirearmWeight}
           toggleOffWeaponCardViews={() => toggleModifyFirearmWeight(false)}
         />

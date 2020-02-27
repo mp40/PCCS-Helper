@@ -23,41 +23,41 @@ describe('Character Attribute Stat Input', () => {
     expect(wrapper.text()).toContain('10');
   });
   describe('changing attribute values', () => {
-    const attributeTable = wrapper.find('.attributeContainer').first().childAt(0);
+    const attributeTable = wrapper.find('.attributeLevelCard').childAt(0);
     it('should update strength', () => {
       inputAttribute('.updateStrength', '11');
       expect(wrapper.text()).toContain('11');
-      const healthLine = attributeTable.childAt(1);
-      expect(healthLine.find('.statName').text()).toBe('Strength');
-      expect(healthLine.find('.statValue').text()).toBe('11');
+      const strengthRow = attributeTable.find('.statInputTableRow').at(0);
+      expect(strengthRow.find('.statName').text()).toBe('Strength');
+      expect(strengthRow.find('.statValue').text()).toBe('11');
     });
     it('should update intelligence', () => {
       inputAttribute('.updateIntelligence', '12');
       expect(wrapper.text()).toContain('12');
-      const healthLine = attributeTable.childAt(2);
-      expect(healthLine.find('.statName').text()).toBe('Intelligence');
-      expect(healthLine.find('.statValue').text()).toBe('12');
+      const intelligenceRow = attributeTable.find('.statInputTableRow').at(1);
+      expect(intelligenceRow.find('.statName').text()).toBe('Intelligence');
+      expect(intelligenceRow.find('.statValue').text()).toBe('12');
     });
     it('should update willpower', () => {
       inputAttribute('.updateWillpower', '17');
       expect(wrapper.text()).toContain('17');
-      const willLine = attributeTable.childAt(3);
-      expect(willLine.find('.statName').text()).toBe('Willpower');
-      expect(willLine.find('.statValue').text()).toBe('17');
+      const willpowerRow = attributeTable.find('.statInputTableRow').at(2);
+      expect(willpowerRow.find('.statName').text()).toBe('Willpower');
+      expect(willpowerRow.find('.statValue').text()).toBe('17');
     });
     it('should update health', () => {
       inputAttribute('.updateHealth', '14');
       expect(wrapper.text()).toContain('14');
-      const healthLine = attributeTable.childAt(4);
-      expect(healthLine.find('.statName').text()).toBe('Health');
-      expect(healthLine.find('.statValue').text()).toBe('14');
+      const healthRow = attributeTable.find('.statInputTableRow').at(3);
+      expect(healthRow.find('.statName').text()).toBe('Health');
+      expect(healthRow.find('.statValue').text()).toBe('14');
     });
     it('should update agility', () => {
       inputAttribute('.updateAgility', '18');
       expect(wrapper.text()).toContain('18');
-      const healthLine = attributeTable.childAt(5);
-      expect(healthLine.find('.statName').text()).toBe('Agility');
-      expect(healthLine.find('.statValue').text()).toBe('18');
+      const agilityRow = attributeTable.find('.statInputTableRow').at(4);
+      expect(agilityRow.find('.statName').text()).toBe('Agility');
+      expect(agilityRow.find('.statValue').text()).toBe('18');
     });
     it('updates actions and other combat stats when attributes change', () => {
       const gunActionsTable = wrapper.find('.actionsTable').at(0);

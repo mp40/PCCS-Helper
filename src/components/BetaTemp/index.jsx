@@ -13,4 +13,4 @@ const BetaTemp = () => (
 
 export default BetaTemp;
 
-// todo delete this component once at MVP
+// mptodo delete this component once at MVP

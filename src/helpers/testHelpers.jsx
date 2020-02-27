@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
@@ -19,9 +19,6 @@ export const mountAppWithStore = (mockStore = initialStore) => {
   );
 };
 
-export const createWrapperTextInput = wrapper => ((name, value) => wrapper.find(name).simulate('change', { target: { value } }));
-
-//mptodo
 class StoreWithCharacterView extends MockState {
   constructor(gun) {
     super(gun);
@@ -30,9 +27,9 @@ class StoreWithCharacterView extends MockState {
     this.gear.firearms = gun === undefined ? [] : [gun];
   }
 }
-export const storeWithCreateCharacterView = gun => new StoreWithCharacterView(gun);
+export const storeWithCreateCharacterView = (gun) => new StoreWithCharacterView(gun);
 
-export const findFirearmByName = (list, gunName) => list.find(object => object.name === gunName);
+export const findFirearmByName = (list, gunName) => list.find((object) => object.name === gunName);
 
 export const testM1911A1 = (qty = 1) => {
   const m1911A1 = findFirearmByName(pistols(), 'M1911A1');

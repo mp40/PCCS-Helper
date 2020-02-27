@@ -1,48 +1,52 @@
-import { mountAppWithStore, storeWithCreateCharacterView, createWrapperTextInput } from '../../helpers/testHelpers';
+import { mountAppWithStore, storeWithCreateCharacterView } from '../../helpers/testHelpers';
 import { createValidEqipmentObject } from './component';
 
 describe('adding custom equipment', () => {
   let wrapper;
-  let inputValue;
-  const submitCustomEquipment = (name, weight) => {
-    if (name) {
-      inputValue('#equipNameInput', name);
-    }
-    if (weight) {
-      inputValue('#equipWeightInput', weight);
-    }
-    wrapper.find('#submitCustomEquipButton').simulate('click');
-  };
+
+  const inputCustomEquipmentName = (value) => wrapper.find('#equipNameInput').simulate('change', { target: { value } });
+  const inputCustomEquipmentWeight = (value) => wrapper.find('#equipWeightInput').simulate('change', { target: { value } });
+
   beforeEach(() => {
     wrapper = mountAppWithStore(storeWithCreateCharacterView());
-    inputValue = createWrapperTextInput(wrapper);
     wrapper.find('#toggleCustomEquipment').simulate('click');
   });
+
   it('should be possible to cancel custom input', () => {
     wrapper.find('.cancelCustomInput').simulate('click');
     expect(wrapper.find('#equipNameInput').exists()).toEqual(false);
   });
   it('should be posible to add custom equipment to the list', () => {
-    submitCustomEquipment('CustomEquipment', '666');
+    inputCustomEquipmentName('CustomEquipment');
+    inputCustomEquipmentWeight('666');
+    wrapper.find('#submitCustomEquipButton').simulate('click');
     expect(wrapper.text()).toContain(666);
     expect(wrapper.text()).toContain('CustomEquipment');
   });
   it('should display error msg if custom equipment name not provided', () => {
-    submitCustomEquipment(undefined, '666');
+    inputCustomEquipmentWeight('666');
+    wrapper.find('#submitCustomEquipButton').simulate('click');
     expect(wrapper.text()).toContain('Please Enter Valid Equipment Name and Weight');
   });
   it('should display error msg if custom equipment weight not provided', () => {
-    submitCustomEquipment('newEquipment', undefined);
+    inputCustomEquipmentName('New Equipment');
+    wrapper.find('#submitCustomEquipButton').simulate('click');
     expect(wrapper.text()).toContain('Please Enter Valid Equipment Name and Weight');
   });
   it('should display error msg if custom equipment weight input not a number', () => {
-    submitCustomEquipment('CustomEquipment', 'x666');
+    inputCustomEquipmentName('CustomEquipment');
+    inputCustomEquipmentWeight('x666');
+    wrapper.find('#submitCustomEquipButton').simulate('click');
     expect(wrapper.text()).toContain('Please Enter Valid Equipment Name and Weight');
   });
   it('should display error msg if equipment name already selected', () => {
-    submitCustomEquipment('newCustomEquipment', '666');
+    inputCustomEquipmentName('newCustomEquipment');
+    inputCustomEquipmentWeight('666');
+    wrapper.find('#submitCustomEquipButton').simulate('click');
     wrapper.find('#toggleCustomEquipment').simulate('click');
-    submitCustomEquipment('newCustomEquipment', '666');
+    inputCustomEquipmentName('newCustomEquipment');
+    inputCustomEquipmentWeight('666');
+    wrapper.find('#submitCustomEquipButton').simulate('click');
     expect(wrapper.text()).toContain('Already In List, Please Enter Valid Equipment Name');
   });
   describe('creating valid equipment object', () => {
