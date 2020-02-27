@@ -24,14 +24,12 @@ describe('adding custom equipment', () => {
     expect(wrapper.text()).toContain('CustomEquipment');
   });
   it('should display error msg if custom equipment name not provided', () => {
-    inputCustomEquipmentName(undefined);
     inputCustomEquipmentWeight('666');
     wrapper.find('#submitCustomEquipButton').simulate('click');
     expect(wrapper.text()).toContain('Please Enter Valid Equipment Name and Weight');
   });
   it('should display error msg if custom equipment weight not provided', () => {
     inputCustomEquipmentName('New Equipment');
-    inputCustomEquipmentWeight(undefined);
     wrapper.find('#submitCustomEquipButton').simulate('click');
     expect(wrapper.text()).toContain('Please Enter Valid Equipment Name and Weight');
   });
