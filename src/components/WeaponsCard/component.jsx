@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { gearShape } from '../../helpers/proptypeShapes';
+import { gunObjShape, grenadeShape } from '../../helpers/proptypeShapes';
 import GearCard from '../GearCard';
 import GearTable from '../GearTable';
 import WeaponsTableBody from '../WeaponsTableBody';
@@ -39,7 +39,7 @@ class WeaponsCard extends Component {
 
   toggleModifyWeapon = (gunObj) => {
     const { modifyFirearm } = this.state;
-    this.setState({ firearmToModify: gunObj.name }); // mptodo <---- ???
+    this.setState({ firearmToModify: gunObj.name });
     this.setState({ modifyFirearm: !modifyFirearm });
   }
 
@@ -56,9 +56,9 @@ class WeaponsCard extends Component {
   )
 
   renderModifyFirearm = () => {
-    const { gear } = this.props;
+    const { firearms } = this.props;
     const { firearmToModify } = this.state;
-    const selectedGuns = getSelectedWeapons(gear.firearms);
+    const selectedGuns = getSelectedWeapons(firearms);
     const gunToModify = selectedGuns.filter((gunObj) => gunObj.name === firearmToModify)[0];
 
     return (
@@ -82,10 +82,10 @@ class WeaponsCard extends Component {
   }
 
   render() {
-    const { gear, removeAllFirearms } = this.props;
+    const { firearms, grenades, removeAllFirearms } = this.props;
     const { showFirearms, modifyFirearm, showGrenades } = this.state;
-    const selectedGuns = getSelectedWeapons(gear.firearms);
-    const selectedGrenades = getSelectedWeapons(gear.grenades);
+    const selectedGuns = getSelectedWeapons(firearms);
+    const selectedGrenades = getSelectedWeapons(grenades);
     const firearmsWeight = calculateFirearmsArrayWeight(selectedGuns);
 
     return (
@@ -107,8 +107,9 @@ class WeaponsCard extends Component {
 }
 
 WeaponsCard.propTypes = {
-  removeAllFirearms: PropTypes.func,
-  gear: gearShape,
+  firearms: PropTypes.arrayOf(gunObjShape),
+  grenades: PropTypes.arrayOf(grenadeShape),
+  removeAllFirearms: PropTypes.func.isRequired,
 };
 
 export default WeaponsCard;

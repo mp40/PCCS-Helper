@@ -8,11 +8,6 @@
     flex-direction: column;
 }
 
-/* mptodo delete this when possible */
-.attributeContainer {
-    text-align: center;
-}
-
 .combatDataContainer {
     display: inline-block;
     margin-top: 0.5rem;

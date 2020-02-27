@@ -4,10 +4,8 @@ import { removeAllFirearms } from '../../actions';
 import './WeaponsCard.css';
 
 const mapStateToProps = (state) => ({
-  totalWeight: state.totalWeight,
-  gear: state.gear,
+  firearms: state.gear.firearms,
+  grenades: state.gear.grenades,
 });
 
 export default connect(mapStateToProps, { removeAllFirearms })(WeaponsCard);
-
-//mptodo -> also, do I need all gear? or just gear.firearms && gear.grenades?
