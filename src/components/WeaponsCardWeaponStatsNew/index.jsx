@@ -6,6 +6,7 @@ import { buildArrayForGunTable } from '../../helpers/componentHelpers';
 import { getRecoilRecoveryValue } from '../../data/advancedRules/recoilRecovery';
 
 import emptyFirearm from './emptyFirearm';
+import { weaponCharacteristics, defaultTemplate } from './data';
 
 import '../WeaponsCard/WeaponsCard.css';
 
@@ -28,12 +29,47 @@ const getFirearmNameAndRecoil = (gunObj, skillLevel) => {
 
 const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
   const getRangeBrackets = () => {
-    const standard = standardRangeBrackets;
-    const shotgun = shotgunRangeBrackets;
-    if (!gunObj.projectiles[1]) {
-      return standard;
+    return gunObj.list === 'shotguns' ? shotgunRangeBrackets : standardRangeBrackets;
+  };
+
+  const getProjectileKeys = (index) => {
+    const data = defaultTemplate[index];
+    if (typeof data !== 'object') {
+      return '';
     }
-    return gunObj.projectiles[1].type.includes('Shot') ? shotgun : standard;
+    if (!gunObj.projectiles[data.index]) {
+      return '';
+    }
+    return (
+      <>
+        <span>{gunObj.projectiles[data.index][data.typeKey]}</span>
+        <span>{data.valueKey.toUpperCase()}</span>
+      </>
+    );
+  };
+
+  const getProjectileData = (index) => {
+    const data = defaultTemplate[index];
+    const emptyRow = new Array(8).fill('');
+    if (typeof data === 'object' && gunObj.projectiles[data.index]) {
+      return (
+        gunObj.projectiles[data.index][data.valueKey].map((value) => (
+          <td>{value}</td>
+        ))
+      );
+    }
+    if (gunObj[data] === undefined || gunObj[data] === null) {
+      return (
+        emptyRow.map((value) => (
+          <td>{value}</td>
+        ))
+      );
+    }
+    return (
+      gunObj[data].map((value) => (
+        <td>{value}</td>
+      ))
+    );
   };
 
   return (
@@ -50,13 +86,21 @@ const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
             </tr>
           </thead>
           <tbody>
-            {buildArrayForGunTable(gunObj).map((tableLine, index) => (
-              <WeaponDataRow
-                key={index}
-                tableLine={tableLine}
-                sal={sal}
-                index={index}
-              />
+            {weaponCharacteristics.map((value, index) => (
+              <tr>
+                <td>
+                  <span>{value.abbreviation}</span>
+                  <span>{gunObj[value.data]}</span>
+                </td>
+                <td>
+                  <span>{gunObj.aim.ac[index]}</span>
+                  <span>{gunObj.aim.mod[index]}</span>
+                </td>
+                <td>
+                  {getProjectileKeys(index)}
+                </td>
+                {getProjectileData(index)}
+              </tr>
             ))}
           </tbody>
         </table>
