@@ -45,20 +45,6 @@ export const weaponCharacteristics = [
   },
 ];
 
-// export const defaultTemplate = [
-//   ['type', 'pen', 0],
-//   ['', 'dc', 0],
-//   '',
-//   ['type', 'pen', 1],
-//   ['', 'dc', 1],
-//   '',
-//   ['type', 'pen', 2],
-//   ['', 'dc', 2],
-//   'ma',
-//   'ba',
-//   'tof',
-// ];
-
 export const defaultTemplate = [
   { typeKey: 'type', valueKey: 'pen', index: 0 },
   { typeKey: '', valueKey: 'dc', index: 0 },
@@ -68,6 +54,35 @@ export const defaultTemplate = [
   '',
   { typeKey: 'type', valueKey: 'pen', index: 2 },
   { typeKey: '', valueKey: 'dc', index: 2 },
+  'ma',
+  'ba',
+  'tof',
+];
+
+const shotgunTemplate = [
+  { typeKey: 'type', valueKey: 'pen', index: 0 },
+  { typeKey: '', valueKey: 'dc', index: 0 },
+  '',
+  { typeKey: 'type', valueKey: 'pen', index: 1 },
+  { typeKey: '', valueKey: 'dc', index: 1 },
+  { typeKey: '', valueKey: 'salm', index: 1 },
+  { typeKey: '', valueKey: 'bphc', index: 1 },
+  { typeKey: '', valueKey: 'pr', index: 1 },
+  '',
+  'ma',
+  'ba',
+  'tof',
+];
+
+const threeRoundBurstTemplate = [
+  { typeKey: 'type', valueKey: 'pen', index: 0 },
+  { typeKey: '', valueKey: 'dc', index: 0 },
+  { typeKey: 'type', valueKey: 'pen', index: 1 },
+  { typeKey: '', valueKey: 'dc', index: 1 },
+  { typeKey: 'type', valueKey: 'pen', index: 2 },
+  { typeKey: '', valueKey: 'dc', index: 2 },
+  '',
+  'trb',
   'ma',
   'ba',
   'tof',
