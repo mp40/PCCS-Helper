@@ -30,58 +30,27 @@ const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
   const rangeBrackets = gunObj.list === 'shotguns' ? shotgunRangeBrackets : standardRangeBrackets;
   const dataTemplate = getTemplate(gunObj.list === 'shotguns', gunObj.trb !== null, gunObj.projectiles.length);
   const emptyRow = new Array(rangeBrackets.length + 1).fill('');
-  const getProjectileKeys = (index) => {
-    const data = dataTemplate[index];
-    const projectile = gunObj.projectiles[data.index];
-    const shotgunPellets = projectile && Array.isArray(projectile.type);
 
-    if (projectile || gunObj[data.valueKey]) {
-      return (
-        <>
-          {projectile && !shotgunPellets && <span>{projectile[data.typeKey]}</span>}
-          {shotgunPellets && <span>{projectile.type[index - 3]}</span>}
-          <span>{data.valueKey.toUpperCase()}</span>
-        </>
-      );
-    }
-    return '';
-  };
-
-  const getProjectileData = (index) => {
-    const data = dataTemplate[index];
-    const emptyRow = new Array(rangeBrackets.length + 1).fill('');
-    if (typeof data === 'object' && gunObj.projectiles[data.index]) {
-      return (
-        gunObj.projectiles[data.index][data.valueKey].map((value) => (
-          <td>{value}</td>
-        ))
-      );
-    }
-    if (typeof data === 'object' && gunObj[data.valueKey]) {
-      return (
-        gunObj[data.valueKey].map((value) => (
-          <td>{value}</td>
-        ))
-      );
-    }
-    return (
-      emptyRow.map((value) => (
-        <td>{value}</td>
-      ))
-    );
-  };
   const getData = (index) => {
     const data = dataTemplate[index];
-    if (data === null) {
-      return (
-        emptyRow.map((value) => (
-          <td>{value}</td>
-        ))
-      );
-    }
     const projectileData = gunObj.projectiles?.[data.index]?.[data.valueKey];
     const ballasticsData = gunObj?.[data.valueKey];
+
+    // const renderData = (nestedArray) => (
+    //   <>
+    //     <td>
+    //       {nestedArray[0].map((value) => (
+    //         <span>{value}</span>
+    //       ))}
+    //     </td>
+    //     {nestedArray[1].map((value) => (
+    //       <td>{value}</td>
+    //     ))}
+    //   </>
+    // );
+
     if (projectileData) {
+      // renderData(projectileData);
       return (
         <>
           <td>
@@ -95,7 +64,9 @@ const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
         </>
       );
     }
+
     if (ballasticsData) {
+      // renderData(ballasticsData);
       return (
         <>
           <td>
@@ -109,20 +80,13 @@ const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
         </>
       );
     }
+
     return (
       emptyRow.map((value) => (
         <td>{value}</td>
       ))
     );
   };
-  // const getData = (index) => {
-  //   const dataKeys = defaultTemplate[index];
-  //   if (dataKeys === null) {
-  //     return emptyDouble;
-  //   }
-  //   const projectileData = gunObj.projectiles?.[dataKeys.index]?.[dataKeys.valueKey];
-  //   return projectileData ? projectileData.flatMap((value) => value) : gunObj[dataKeys.valueKey].flatMap((value) => value);
-  // };
 
   return (
     <div className={`WeaponStatsContainer ${size}`}>
@@ -148,13 +112,7 @@ const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
                   <span>{gunObj.aim.ac[index]}</span>
                   <span>{gunObj.aim.mod[index]}</span>
                 </td>
-                {/* <td> */}
                 {getData(index)}
-                {/* </td> */}
-                {/* <td>
-                  {getProjectileKeys(index)}
-                </td>
-                {getProjectileData(index)} */}
               </tr>
             ))}
           </tbody>
