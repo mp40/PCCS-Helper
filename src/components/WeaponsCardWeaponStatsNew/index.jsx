@@ -29,6 +29,7 @@ const getFirearmNameAndRecoil = (gunObj, skillLevel) => {
 const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
   const rangeBrackets = gunObj.list === 'shotguns' ? shotgunRangeBrackets : standardRangeBrackets;
   const dataTemplate = getTemplate(gunObj.list === 'shotguns', gunObj.trb !== null, gunObj.projectiles.length);
+  const emptyRow = new Array(rangeBrackets.length + 1).fill('');
   const getProjectileKeys = (index) => {
     const data = dataTemplate[index];
     const projectile = gunObj.projectiles[data.index];
@@ -48,7 +49,7 @@ const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
 
   const getProjectileData = (index) => {
     const data = dataTemplate[index];
-    const emptyRow = new Array(rangeBrackets.length).fill('');
+    const emptyRow = new Array(rangeBrackets.length + 1).fill('');
     if (typeof data === 'object' && gunObj.projectiles[data.index]) {
       return (
         gunObj.projectiles[data.index][data.valueKey].map((value) => (
@@ -69,6 +70,59 @@ const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
       ))
     );
   };
+  const getData = (index) => {
+    const data = dataTemplate[index];
+    if (data === null) {
+      return (
+        emptyRow.map((value) => (
+          <td>{value}</td>
+        ))
+      );
+    }
+    const projectileData = gunObj.projectiles?.[data.index]?.[data.valueKey];
+    const ballasticsData = gunObj?.[data.valueKey];
+    if (projectileData) {
+      return (
+        <>
+          <td>
+            {projectileData[0].map((value) => (
+              <span>{value}</span>
+            ))}
+          </td>
+          {projectileData[1].map((value) => (
+            <td>{value}</td>
+          ))}
+        </>
+      );
+    }
+    if (ballasticsData) {
+      return (
+        <>
+          <td>
+            {ballasticsData[0].map((value) => (
+              <span>{value}</span>
+            ))}
+          </td>
+          {ballasticsData[1].map((value) => (
+            <td>{value}</td>
+          ))}
+        </>
+      );
+    }
+    return (
+      emptyRow.map((value) => (
+        <td>{value}</td>
+      ))
+    );
+  };
+  // const getData = (index) => {
+  //   const dataKeys = defaultTemplate[index];
+  //   if (dataKeys === null) {
+  //     return emptyDouble;
+  //   }
+  //   const projectileData = gunObj.projectiles?.[dataKeys.index]?.[dataKeys.valueKey];
+  //   return projectileData ? projectileData.flatMap((value) => value) : gunObj[dataKeys.valueKey].flatMap((value) => value);
+  // };
 
   return (
     <div className={`WeaponStatsContainer ${size}`}>
@@ -94,10 +148,13 @@ const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
                   <span>{gunObj.aim.ac[index]}</span>
                   <span>{gunObj.aim.mod[index]}</span>
                 </td>
-                <td>
+                {/* <td> */}
+                {getData(index)}
+                {/* </td> */}
+                {/* <td>
                   {getProjectileKeys(index)}
                 </td>
-                {getProjectileData(index)}
+                {getProjectileData(index)} */}
               </tr>
             ))}
           </tbody>

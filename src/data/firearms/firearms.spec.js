@@ -23,7 +23,7 @@ const firearmObjectKeys = [
 
 const checkAtLeastTwo = (value) => value >= 2;
 
-describe('Check weapon data input', () => {
+describe('Check weapon data shape', () => {
   it('should have the correct minimum keys', () => {
     const gunArray = allGuns();
     for (let i = 0; i < gunArray.length; i += 1) {
@@ -86,10 +86,17 @@ describe('Check weapon data input', () => {
       expect(Array.isArray(gunArray[i].mag)).toBe(true);
     }
   });
-  it('should have an array to store projectile data', () => {
+  it('should have a nested array to store projectile data', () => {
     const gunArray = allGuns();
     for (let i = 0; i < gunArray.length; i += 1) {
       expect(Array.isArray(gunArray[i].projectiles)).toBe(true);
+      for (let j = 0; j < gunArray[i].projectiles.length; j += 1) {
+        expect(Array.isArray(gunArray[i].projectiles[j].pen[0])).toBe(true);
+        expect(Array.isArray(gunArray[i].projectiles[j].pen[1])).toBe(true);
+        expect(Array.isArray(gunArray[i].projectiles[j].dc[0])).toBe(true);
+        expect(Array.isArray(gunArray[i].projectiles[j].pen[1])).toBe(true);
+        expect(gunArray[i].projectiles[j].type).toBe(gunArray[i].projectiles[j].pen[0][0]);
+      }
     }
   });
   it('should have an the same length for range based data rows', () => {
