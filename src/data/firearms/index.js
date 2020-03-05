@@ -1,5 +1,5 @@
 import { averageRifle11Aims, belowAverageverageRifle11Aims, aboveAverageRifle11Aims, improvedRifle11Aims, averageRifle9Aims, averageSMG8Aims, averagePistol6Aims, belowAveragePistol6Aims } from './aimTimes';
-import { averageRifle762FMJ, averageRifle762x39FMJ, averageRifle556FMJ, averageRifle556JHP,  averageRifle556AP, averageRifle30CarbineFMJ, averageSMG9mmParabellumFMJ, belowAverageSMG9mmParabellumFMJ, averageSMG45AcpFMJ, averageSMG762TokarevFMJ, averagePistol9mmParabellumFMJ, averageOther762FMJ } from './projectiles';
+import { averageRifle762FMJ, averageRifle762x39FMJ, averageRifle556FMJ, averageRifle556JHP, averageRifle556AP, averageRifle30CarbineFMJ, averageSMG9mmParabellumFMJ, belowAverageSMG9mmParabellumFMJ, averageSMG45AcpFMJ, averageSMG762TokarevFMJ, averagePistol9mmParabellumFMJ, averageOther762FMJ } from './projectiles';
 
 export const filterableCalibers = () => [
   '7.62 x 39mm',
@@ -1230,7 +1230,7 @@ export const shotguns = () => [
         dc: [10, 10, 10, 10, 10, 10, 10, 10, 10, 9, 9],
       },
       {
-        type: ['Shot', '(00)', 12],
+        type: ['Shot', '(00)', '', 12],
         pen: [5.4, 1.7, 1.7, 1.6, 1.6, 1.6, 1.4, 1.4, 1.2, 1.0, 0.6],
         dc: [8, 3, 3, 3, 3, 3, 2, 2, 2, 2, 1],
         salm: [-14, -9, -4, -1, 1, 2, 5, 7, 10, 12, 17],
@@ -1265,7 +1265,7 @@ export const shotguns = () => [
         dc: [9, 9, 9, 9, 9, 9, 9, 9, 8, 8, 6],
       },
       {
-        type: ['Shot', '(00)', 12],
+        type: ['Shot', '(00)', '', 12],
         pen: [1.6, 1.6, 1.6, 1.5, 1.4, 1.4, 1.3, 1.2, 1.1, 0.9, 0.5],
         dc: [10, 4, 3, 3, 3, 3, 3, 3, 2, 2, 1],
         salm: [-13, -8, -3, 0, 2, 4, 7, 9, 11, 14, 19],
@@ -1300,7 +1300,7 @@ export const shotguns = () => [
         dc: [8, 8, 8, 8, 8, 8, 8, 8, 7, 7, 5],
       },
       {
-        type: ['Shot', '(00)', 12],
+        type: ['Shot', '(00)', '', 12],
         pen: [1.3, 1.3, 1.2, 1.2, 1.1, 1.1, 1.0, 0.9, 0.8, 0.7, 0.4],
         dc: [3, 3, 3, 3, 2, 2, 2, 2, 2, 1, 1],
         salm: [-9, -4, 1, 4, 6, 8, 11, 13, 16, 18, 23],

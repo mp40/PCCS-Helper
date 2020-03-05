@@ -38,9 +38,7 @@ const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
       return (
         <>
           {projectile && !shotgunPellets && <span>{projectile[data.typeKey]}</span>}
-          {shotgunPellets && data.valueKey === 'pen' && <span>{projectile.type[0]}</span>}
-          {shotgunPellets && data.valueKey === 'dc' && <span>{projectile.type[1]}</span>}
-          {shotgunPellets && data.valueKey === 'bphc' && <span>{projectile.type[2]}</span>}
+          {shotgunPellets && <span>{projectile.type[index - 3]}</span>}
           <span>{data.valueKey.toUpperCase()}</span>
         </>
       );
