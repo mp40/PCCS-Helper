@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { gunObjShape } from '../../helpers/proptypeShapes';
-import WeaponDataRow from '../WeaponDataRow';
-import { buildArrayForGunTable } from '../../helpers/componentHelpers';
 import { getRecoilRecoveryValue } from '../../data/advancedRules/recoilRecovery';
 
 import emptyFirearm from './emptyFirearm';
-import { weaponCharacteristics, defaultTemplate } from './data';
+import { weaponCharacteristics, getTemplate } from './data';
 
 import '../WeaponsCard/WeaponsCard.css';
+import './styles.css';
 
 const { table1cSAL } = require('../../data/tablesCreateCharacter');
 
@@ -28,29 +27,30 @@ const getFirearmNameAndRecoil = (gunObj, skillLevel) => {
 };
 
 const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
-  const getRangeBrackets = () => {
-    return gunObj.list === 'shotguns' ? shotgunRangeBrackets : standardRangeBrackets;
-  };
-
+  const rangeBrackets = gunObj.list === 'shotguns' ? shotgunRangeBrackets : standardRangeBrackets;
+  const dataTemplate = getTemplate(gunObj.list === 'shotguns', gunObj.trb !== null, gunObj.projectiles.length);
   const getProjectileKeys = (index) => {
-    const data = defaultTemplate[index];
-    if (typeof data !== 'object') {
-      return '';
+    const data = dataTemplate[index];
+    const projectile = gunObj.projectiles[data.index];
+    const shotgunPellets = projectile && Array.isArray(projectile.type);
+
+    if (projectile || gunObj[data.valueKey]) {
+      return (
+        <>
+          {projectile && !shotgunPellets && <span>{projectile[data.typeKey]}</span>}
+          {shotgunPellets && data.valueKey === 'pen' && <span>{projectile.type[0]}</span>}
+          {shotgunPellets && data.valueKey === 'dc' && <span>{projectile.type[1]}</span>}
+          {shotgunPellets && data.valueKey === 'bphc' && <span>{projectile.type[2]}</span>}
+          <span>{data.valueKey.toUpperCase()}</span>
+        </>
+      );
     }
-    if (!gunObj.projectiles[data.index]) {
-      return '';
-    }
-    return (
-      <>
-        <span>{gunObj.projectiles[data.index][data.typeKey]}</span>
-        <span>{data.valueKey.toUpperCase()}</span>
-      </>
-    );
+    return '';
   };
 
   const getProjectileData = (index) => {
-    const data = defaultTemplate[index];
-    const emptyRow = new Array(8).fill('');
+    const data = dataTemplate[index];
+    const emptyRow = new Array(rangeBrackets.length).fill('');
     if (typeof data === 'object' && gunObj.projectiles[data.index]) {
       return (
         gunObj.projectiles[data.index][data.valueKey].map((value) => (
@@ -58,15 +58,15 @@ const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
         ))
       );
     }
-    if (gunObj[data] === undefined || gunObj[data] === null) {
+    if (typeof data === 'object' && gunObj[data.valueKey]) {
       return (
-        emptyRow.map((value) => (
+        gunObj[data.valueKey].map((value) => (
           <td>{value}</td>
         ))
       );
     }
     return (
-      gunObj[data].map((value) => (
+      emptyRow.map((value) => (
         <td>{value}</td>
       ))
     );
@@ -82,7 +82,7 @@ const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
               <th className="dataCol">Data</th>
               <th className="dataCol">Aim Time</th>
               <th className="dataCol">{' '}</th>
-              {getRangeBrackets(gunObj).map((range) => <th key={range}>{range}</th>)}
+              {rangeBrackets.map((range) => <th key={range}>{range}</th>)}
             </tr>
           </thead>
           <tbody>

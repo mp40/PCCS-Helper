@@ -54,9 +54,9 @@ export const defaultTemplate = [
   '',
   { typeKey: 'type', valueKey: 'pen', index: 2 },
   { typeKey: '', valueKey: 'dc', index: 2 },
-  'ma',
-  'ba',
-  'tof',
+  { typeKey: '', valueKey: 'ma' },
+  { typeKey: '', valueKey: 'ba' },
+  { typeKey: '', valueKey: 'tof' },
 ];
 
 const shotgunTemplate = [
@@ -68,10 +68,9 @@ const shotgunTemplate = [
   { typeKey: '', valueKey: 'salm', index: 1 },
   { typeKey: '', valueKey: 'bphc', index: 1 },
   { typeKey: '', valueKey: 'pr', index: 1 },
-  '',
-  'ma',
-  'ba',
-  'tof',
+  { typeKey: '', valueKey: 'ma' },
+  { typeKey: '', valueKey: 'ba' },
+  { typeKey: '', valueKey: 'tof' },
 ];
 
 const threeRoundBurstTemplate = [
@@ -82,8 +81,18 @@ const threeRoundBurstTemplate = [
   { typeKey: 'type', valueKey: 'pen', index: 2 },
   { typeKey: '', valueKey: 'dc', index: 2 },
   '',
-  'trb',
-  'ma',
-  'ba',
-  'tof',
+  { typeKey: '', valueKey: 'trb' },
+  { typeKey: '', valueKey: 'ma' },
+  { typeKey: '', valueKey: 'ba' },
+  { typeKey: '', valueKey: 'tof' },
 ];
+
+export const getTemplate = (isShotgun, hasThreeRoundBurst, numberOfProjectileTypes) => {
+  if (isShotgun) {
+    return shotgunTemplate;
+  }
+  if (hasThreeRoundBurst && numberOfProjectileTypes > 2) {
+    return threeRoundBurstTemplate;
+  }
+  return defaultTemplate;
+};
