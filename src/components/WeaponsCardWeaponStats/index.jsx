@@ -6,7 +6,7 @@ import { getRecoilRecoveryValue } from '../../data/advancedRules/recoilRecovery'
 import emptyFirearm from './emptyFirearm';
 import { weaponCharacteristics, getTemplate, keys } from './data';
 
-import '../WeaponsCard/WeaponsCard.css';
+// import '../WeaponsCard/WeaponsCard.css';
 import './styles.css';
 
 const { table1cSAL } = require('../../data/tablesCreateCharacter');
@@ -30,6 +30,7 @@ const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
   const rangeBrackets = gunObj.list === 'shotguns' ? shotgunRangeBrackets : standardRangeBrackets;
   const dataTemplate = getTemplate(gunObj.list === 'shotguns', gunObj.trb, gunObj.projectiles.length);
   const emptyRow = new Array(rangeBrackets.length + 1).fill('');
+  const tableHeadings = ['Data', 'Aim Time', ' ', ...rangeBrackets];
 
   const parseStatValue = (value) => String(value).substring(1);
 
@@ -81,10 +82,9 @@ const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
         <table className={size ? `${size}WeaponStatTable` : 'WeaponStatTable'}>
           <thead>
             <tr className="WeaponStatHeader">
-              <th className="dataCol">Data</th>
-              <th className="dataCol">Aim Time</th>
-              <th className="dataCol">{' '}</th>
-              {rangeBrackets.map((range) => <th key={range}>{range}</th>)}
+              {tableHeadings.map((value) => (
+                <th key={value}>{value}</th>
+              ))}
             </tr>
           </thead>
           <tbody>
