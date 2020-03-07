@@ -4,17 +4,17 @@ import WeaponsCardWeaponStats, { findSkillLevelFromSAL } from './index';
 import { testM1911A1, testM16WithoutJhpAp, testFAMAS, testRemington } from '../../helpers/testHelpers';
 
 describe('<WeaponsCardWeaponStats/> component', () => {
-  const lineOne = wrapper => wrapper.find('#GunTableLine0');
-  const lineTwo = wrapper => wrapper.find('#GunTableLine1');
-  const lineThree = wrapper => wrapper.find('#GunTableLine2');
-  const lineFour = wrapper => wrapper.find('#GunTableLine3');
-  const lineFive = wrapper => wrapper.find('#GunTableLine4');
-  const lineSix = wrapper => wrapper.find('#GunTableLine5');
-  const lineSeven = wrapper => wrapper.find('#GunTableLine6');
-  const lineEight = wrapper => wrapper.find('#GunTableLine7');
-  const lineNine = wrapper => wrapper.find('#GunTableLine8');
-  const lineTen = wrapper => wrapper.find('#GunTableLine9');
-  const lineEleven = wrapper => wrapper.find('#GunTableLine10');
+  const lineOne = (wrapper) => wrapper.find('.gunTableLine1');
+  const lineTwo = (wrapper) => wrapper.find('.gunTableLine2');
+  const lineThree = (wrapper) => wrapper.find('.gunTableLine3');
+  const lineFour = (wrapper) => wrapper.find('.gunTableLine4');
+  const lineFive = (wrapper) => wrapper.find('.gunTableLine5');
+  const lineSix = (wrapper) => wrapper.find('.gunTableLine6');
+  const lineSeven = (wrapper) => wrapper.find('.gunTableLine7');
+  const lineEight = (wrapper) => wrapper.find('.gunTableLine8');
+  const lineNine = (wrapper) => wrapper.find('.gunTableLine9');
+  const lineTen = (wrapper) => wrapper.find('.gunTableLine10');
+  const lineEleven = (wrapper) => wrapper.find('.gunTableLine11');
 
   describe('default props for firearm', () => {
     it('should provide an "empty" firearm object if no firearm selected', () => {
@@ -41,39 +41,31 @@ describe('<WeaponsCardWeaponStats/> component', () => {
     const wrapper = mount(<WeaponsCardWeaponStats gunObj={testM1911A1()} />);
     describe('the physcial data', () => {
       it('should render the length', () => {
-        expect(wrapper.find('#WeaponStatLength').text()).toContain('L');
-        expect(wrapper.find('#WeaponStatLength').text()).toContain('9');
+        expect(lineOne(wrapper).childAt(0).text()).toContain('L9');
       });
       it('should render the weight', () => {
-        expect(wrapper.find('#WeaponStatWeight').text()).toContain('W');
-        expect(wrapper.find('#WeaponStatWeight').text()).toContain('3');
+        expect(lineTwo(wrapper).childAt(0).text()).toContain('W3');
       });
       it('should render the reload time', () => {
-        expect(wrapper.find('#WeaponStatReload').text()).toContain('RT');
-        expect(wrapper.find('#WeaponStatReload').text()).toContain('4');
+        expect(lineFour(wrapper).childAt(0).text()).toContain('RT4');
       });
       it('should render the rate of fire', () => {
-        expect(wrapper.find('#WeaponStatROF').text()).toContain('ROF');
-        expect(wrapper.find('#WeaponStatROF').text()).toContain('*');
+        expect(lineFive(wrapper).childAt(0).text()).toContain('ROF*');
       });
       it('should render the ammo capacity', () => {
-        expect(wrapper.find('#WeaponStatCapacity').text()).toContain('Cap');
-        expect(wrapper.find('#WeaponStatCapacity').text()).toContain('7');
+        expect(lineSeven(wrapper).childAt(0).text()).toContain('Cap7');
       });
       it('should render the ammo weight', () => {
-        expect(wrapper.find('#WeaponStatAW').text()).toContain('AW');
-        expect(wrapper.find('#WeaponStatAW').text()).toContain('.7');
+        expect(lineEight(wrapper).childAt(0).text()).toContain('AW.7');
       });
       it('should render the reload method', () => {
         expect(lineNine(wrapper).childAt(0).text()).toContain('Mag');
       });
       it('should render the knock down value', () => {
-        expect(wrapper.find('#WeaponStatKnockDown').text()).toContain('KD');
-        expect(wrapper.find('#WeaponStatKnockDown').text()).toContain('5');
+        expect(lineTen(wrapper).childAt(0).text()).toContain('KD5');
       });
       it('should render the SAB value', () => {
-        expect(wrapper.find('#WeaponStatSAB').text()).toContain('SAB');
-        expect(wrapper.find('#WeaponStatSAB').text()).toContain('5');
+        expect(lineEleven(wrapper).childAt(0).text()).toContain('SAB5');
       });
     });
     describe('the aim time data', () => {
@@ -317,47 +309,47 @@ describe('<WeaponsCardWeaponStats/> component', () => {
     const sal = 7;
     const salWrapper = mount(<WeaponsCardWeaponStats gunObj={testFAMAS()} sal={sal} />);
     it('should render aim time 1 mod with SAL bonus', () => {
-      const aim1 = salWrapper.find('#GunTableLine0').find('.AimMod');
+      const aim1 = salWrapper.find('.gunTableLine1').childAt(1).childAt(1);
       const expectedAim1 = testFAMAS().aim.mod[0] + sal;
       expect(aim1.text()).toBe(`${expectedAim1}`);
     });
     it('should render aim time 2 mod with SAL bonus', () => {
-      const aim2 = salWrapper.find('#GunTableLine1').find('.AimMod');
+      const aim2 = salWrapper.find('.gunTableLine2').childAt(1).childAt(1);
       const expectedAim2 = testFAMAS().aim.mod[1] + sal;
       expect(aim2.text()).toBe(`${expectedAim2}`);
     });
     it('should render aim time 3 mod with SAL bonus', () => {
-      const aim3 = salWrapper.find('#GunTableLine2').find('.AimMod');
+      const aim3 = salWrapper.find('.gunTableLine3').childAt(1).childAt(1);
       const expectedAim3 = testFAMAS().aim.mod[2] + sal;
       expect(aim3.text()).toBe(`${expectedAim3}`);
     });
     it('should render aim time 4 mod with SAL bonus', () => {
-      const aim4 = salWrapper.find('#GunTableLine3').find('.AimMod');
+      const aim4 = salWrapper.find('.gunTableLine4').childAt(1).childAt(1);
       const expectedAim4 = testFAMAS().aim.mod[3] + sal;
       expect(aim4.text()).toBe(`${expectedAim4}`);
     });
     it('should render aim time 5 mod with SAL bonus', () => {
-      const aim5 = salWrapper.find('#GunTableLine4').find('.AimMod');
+      const aim5 = salWrapper.find('.gunTableLine5').childAt(1).childAt(1);
       const expectedAim5 = testFAMAS().aim.mod[4] + sal;
       expect(aim5.text()).toBe(`${expectedAim5}`);
     });
     it('should render aim time 6 mod with SAL bonus', () => {
-      const aim6 = salWrapper.find('#GunTableLine5').find('.AimMod');
+      const aim6 = salWrapper.find('.gunTableLine6').childAt(1).childAt(1);
       const expectedAim6 = testFAMAS().aim.mod[5] + sal;
       expect(aim6.text()).toBe(`${expectedAim6}`);
     });
     it('should render aim time 7 mod with SAL bonus', () => {
-      const aim7 = salWrapper.find('#GunTableLine6').find('.AimMod');
+      const aim7 = salWrapper.find('.gunTableLine7').childAt(1).childAt(1);
       const expectedAim7 = testFAMAS().aim.mod[6] + sal;
       expect(aim7.text()).toBe(`${expectedAim7}`);
     });
     it('should render aim time 8 mod with SAL bonus', () => {
-      const aim8 = salWrapper.find('#GunTableLine7').find('.AimMod');
+      const aim8 = salWrapper.find('.gunTableLine8').childAt(1).childAt(1);
       const expectedAim8 = testFAMAS().aim.mod[7] + sal;
       expect(aim8.text()).toBe(`${expectedAim8}`);
     });
     it('should render aim time 9 mod with SAL bonus', () => {
-      const aim9 = salWrapper.find('#GunTableLine8').find('.AimMod');
+      const aim9 = salWrapper.find('.gunTableLine9').childAt(1).childAt(1);
       const expectedAim9 = testFAMAS().aim.mod[8] + sal;
       expect(aim9.text()).toBe(`${expectedAim9}`);
     });

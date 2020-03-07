@@ -11,13 +11,16 @@ describe('Customising Firearm', () => {
     const inputCapacityValue = (value = '18') => wrapper.find('#customMagCapacityInput').simulate('change', { target: { value } });
     const inputWeightValue = (value = '.65') => wrapper.find('#customMagWeightInput').simulate('change', { target: { value } });
     const inputTypeValue = (value = 'Mag') => wrapper.find('#customMagTypeInput').simulate('change', { target: { value } });
-
+    let ammoWeight;
+    let gunWeight;
     describe('creating custom magazine', () => {
       beforeEach(() => {
         wrapper = mountAppWithStore(storeWithCreateCharacterView());
         wrapper.find('#addFirearm').simulate('click');
         gunList(wrapper).find('#M16').simulate('click');
         selectedWeapons(wrapper).find('#modifyM16').simulate('click');
+        ammoWeight = wrapper.find('.gunTableLine8').childAt(0);
+        gunWeight = wrapper.find('.gunTableLine2').childAt(0);
       });
 
       it('should be possible to change default magazine type when magazine options are available', () => {
@@ -26,8 +29,8 @@ describe('Customising Firearm', () => {
       });
       it('should update weight when primary mags changed', () => {
         modifyPanel().find('.M16MagAtIndex1').find('.selectPrimaryButton').simulate('click');
-        expect(wrapper.find('#WeaponStatAW').text()).toContain('1');
-        expect(wrapper.find('#WeaponStatWeight').text()).toContain('9');
+        expect(ammoWeight.text()).toContain('1');
+        expect(gunWeight.text()).toContain('9');
       });
       it('should be possible to add custom magazine', () => {
         modifyPanel().find('#addCustomMagazine').simulate('click');
@@ -68,10 +71,10 @@ describe('Customising Firearm', () => {
         const remove30RoundMagazineButton = wrapper.find('.removeMagazineButton').last();
         const set30RoundMagazineAsPrimaryButton = wrapper.find('.selectPrimaryButton').last();
         remove30RoundMagazineButton.simulate('click');
-        expect(wrapper.find('#WeaponStatWeight').text()).toBe('W8.7');
+        expect(gunWeight.text()).toBe('W8.7');
         set30RoundMagazineAsPrimaryButton.simulate('click');
-        expect(wrapper.find('#WeaponStatWeight').text()).toBe('W8.7');
-        expect(wrapper.find('#WeaponStatAW').text()).toBe('AW0.7');
+        expect(gunWeight.text()).toBe('W8.7');
+        expect(ammoWeight.text()).toBe('AW.7');
       });
       it('should be possible to exit custom magazine form', () => {
         modifyPanel().find('#addCustomMagazine').simulate('click');
@@ -123,6 +126,7 @@ describe('Customising Firearm', () => {
     const inputModificationWeight = (value = '.5') => wrapper.find('#modifyWeightValueInput').simulate('change', { target: { value } });
 
     describe('adding modification', () => {
+      let gunWeight;
       const addTorchAsMod = () => {
         modifyPanel().find('#modifyWeaponWeight').simulate('click');
         inputModificationName();
@@ -135,18 +139,19 @@ describe('Customising Firearm', () => {
         wrapper.find('#addFirearm').simulate('click');
         gunList(wrapper).find('#M16').simulate('click');
         selectedWeapons(wrapper).find('#modifyM16').simulate('click');
+        gunWeight = wrapper.find('.gunTableLine2').childAt(0);
       });
 
       it('should be possible to modify and render firearm weight', () => {
         addTorchAsMod();
-        expect(wrapper.find('#WeaponStatWeight').text()).toContain('9.2');
+        expect(gunWeight.text()).toContain('9.2');
         expect(modifyPanel().text()).toContain('added torch');
         expect(modifyPanel().text()).toContain('0.5');
       });
       it('should be possible to remove weapon weight modifications', () => {
         addTorchAsMod();
         wrapper.find('.removeModification').simulate('click');
-        expect(wrapper.find('#WeaponStatWeight').text()).toContain('8.7');
+        expect(gunWeight.text()).toContain('8.7');
         expect(wrapper.text()).not.toContain('added torch');
       });
       it('should be possible to exit the modifcatyion form', () => {
@@ -180,7 +185,7 @@ describe('Customising Firearm', () => {
         selectedWeapons(wrapper).find('#modifyM1911A1').simulate('click');
         modifyPanel().find('.removeAllMods').simulate('click');
         expect(modifyPanel().text()).not.toContain('TestMag');
-        expect(wrapper.find('#WeaponStatWeight').text()).toContain('3');
+        expect(wrapper.find('.gunTableLine2').childAt(0).text()).toContain('3');
       });
     });
   });

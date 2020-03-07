@@ -1,3 +1,5 @@
+export const keys = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l'];
+
 export const weaponCharacteristics = [
   {
     data: 'length',
@@ -24,16 +26,19 @@ export const weaponCharacteristics = [
     abbreviation: '',
   },
   {
-    data: ['mag', 'cap'],
+    data: 'cap',
     abbreviation: 'Cap',
+    mag: true,
   },
   {
-    data: ['mag', 'weight'],
+    data: 'weight',
     abbreviation: 'AW',
+    mag: true,
   },
   {
-    data: ['mag', 'type'],
-    abbreviation: 'Mag',
+    data: 'type',
+    abbreviation: '',
+    mag: true,
   },
   {
     data: 'kd',

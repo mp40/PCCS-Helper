@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { gunObjShape } from '../../helpers/proptypeShapes';
-import WeaponDataRow from '../WeaponDataRow';
-import { buildArrayForGunTable } from '../../helpers/componentHelpers';
 import { getRecoilRecoveryValue } from '../../data/advancedRules/recoilRecovery';
 
 import emptyFirearm from './emptyFirearm';
+import { weaponCharacteristics, getTemplate, keys } from './data';
 
 import '../WeaponsCard/WeaponsCard.css';
+import './styles.css';
 
 const { table1cSAL } = require('../../data/tablesCreateCharacter');
 
@@ -27,13 +27,75 @@ const getFirearmNameAndRecoil = (gunObj, skillLevel) => {
 };
 
 const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
-  const getRangeBrackets = () => {
-    const standard = standardRangeBrackets;
-    const shotgun = shotgunRangeBrackets;
-    if (!gunObj.projectiles[1]) {
-      return standard;
+  const rangeBrackets = gunObj.list === 'shotguns' ? shotgunRangeBrackets : standardRangeBrackets;
+  const dataTemplate = getTemplate(gunObj.list === 'shotguns', gunObj.trb, gunObj.projectiles.length);
+  const emptyRow = new Array(rangeBrackets.length + 1).fill('');
+
+  const parseStatValue = (value) => String(value).substring(1);
+
+  const parseProjectileValue = (value) => (value === 1 ? '1.0' : value);
+
+  const getStatValue = (value, mag) => {
+    const returnValue = mag ? gunObj.mag[0][value] : gunObj[value];
+    return returnValue < 1 ? parseStatValue(returnValue) : returnValue;
+  };
+
+  const getData = (index) => {
+    const data = dataTemplate[index];
+    const projectileData = gunObj.projectiles?.[data.index]?.[data.valueKey];
+    const ballasticsData = gunObj?.[data.valueKey];
+
+
+    // const renderData = (nestedArray) => (
+    //   <>
+    //     <td>
+    //       {nestedArray[0].map((value) => (
+    //         <span>{value}</span>
+    //       ))}
+    //     </td>
+    //     {nestedArray[1].map((value) => (
+    //       <td>{value}</td>
+    //     ))}
+    //   </>
+    // );
+
+    if (projectileData) {
+      // renderData(projectileData);
+      return (
+        <>
+          <td>
+            {projectileData[0].map((value, dex) => (
+              <span key={keys[dex]}>{value}</span>
+            ))}
+          </td>
+          {projectileData[1].map((value, dex) => (
+            <td key={keys[dex]}>{parseProjectileValue(value)}</td>
+          ))}
+        </>
+      );
     }
-    return gunObj.projectiles[1].type.includes('Shot') ? shotgun : standard;
+
+    if (ballasticsData) {
+      // renderData(ballasticsData);
+      return (
+        <>
+          <td>
+            {ballasticsData[0].map((value, dex) => (
+              <span key={keys[dex]}>{value}</span>
+            ))}
+          </td>
+          {ballasticsData[1].map((value, dex) => (
+            <td key={keys[dex]}>{value}</td>
+          ))}
+        </>
+      );
+    }
+
+    return (
+      emptyRow.map((value, dex) => (
+        <td key={keys[dex]}>{value}</td>
+      ))
+    );
   };
 
   return (
@@ -46,17 +108,22 @@ const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
               <th className="dataCol">Data</th>
               <th className="dataCol">Aim Time</th>
               <th className="dataCol">{' '}</th>
-              {getRangeBrackets(gunObj).map((range) => <th key={range}>{range}</th>)}
+              {rangeBrackets.map((range) => <th key={range}>{range}</th>)}
             </tr>
           </thead>
           <tbody>
-            {buildArrayForGunTable(gunObj).map((tableLine, index) => (
-              <WeaponDataRow
-                key={index}
-                tableLine={tableLine}
-                sal={sal}
-                index={index}
-              />
+            {weaponCharacteristics.map((value, index) => (
+              <tr key={keys[index]} className={`gunTableLine${index + 1}`}>
+                <td>
+                  <span>{value.abbreviation}</span>
+                  <span>{getStatValue(value.data, value.mag)}</span>
+                </td>
+                <td>
+                  <span>{gunObj.aim.ac[index]}</span>
+                  <span>{index < gunObj.aim.mod.length && sal ? gunObj.aim.mod[index] + sal : gunObj.aim.mod[index]}</span>
+                </td>
+                {getData(index)}
+              </tr>
             ))}
           </tbody>
         </table>
@@ -73,6 +140,7 @@ WeaponsCardWeaponStats.propTypes = {
 
 WeaponsCardWeaponStats.defaultProps = {
   gunObj: emptyFirearm(),
+  // sal: 0,
 };
 
 export default WeaponsCardWeaponStats;

@@ -9,7 +9,7 @@ import ButtonStandard from '../widgets/buttons/ButtonStandard';
 import ButtonInfo from '../widgets/buttons/ButtonInfo';
 import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 
-import WeaponsCardWeaponStats from '../WeaponsCardWeaponStatsNew';
+import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
 
 import { rifles, pistols, smgs, mgs, sniperRifles, shotguns, filterableCalibers } from '../../data/firearms';
 
