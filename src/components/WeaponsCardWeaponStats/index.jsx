@@ -8,6 +8,7 @@ import { weaponCharacteristics, getTemplate, keys } from './data';
 
 // import '../WeaponsCard/WeaponsCard.css';
 import './styles.css';
+import './stylesA4.css';
 
 const { table1cSAL } = require('../../data/tablesCreateCharacter');
 
@@ -89,7 +90,7 @@ const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
           </thead>
           <tbody>
             {weaponCharacteristics.map((value, index) => (
-              <tr key={keys[index]} className={`gunTableLine${index + 1}`}>
+              <tr key={keys[index]} className={`gunTableLine gunTableLine${index + 1}`}>
                 <td>
                   <span>{value.abbreviation}</span>
                   <span>{getStatValue(value.data, value.mag)}</span>
@@ -116,7 +117,6 @@ WeaponsCardWeaponStats.propTypes = {
 
 WeaponsCardWeaponStats.defaultProps = {
   gunObj: emptyFirearm(),
-  // sal: 0,
 };
 
 export default WeaponsCardWeaponStats;

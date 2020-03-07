@@ -22,7 +22,7 @@
     font-size: small;
 }
 
-.WeaponStatsContainer > div:first-of-type {
+/* .WeaponStatsContainer > div:first-of-type {
     padding-top: 1rem;
     margin-top: 1rem;
     font-weight: bold;
@@ -103,7 +103,8 @@
 .a4WeaponStatTable .GunTableTableRow .AimMod {
     margin-right: .2cm;
     float: right;
-}
+} */
+/* mptodo */
 
 .ModifyWeaponStatTableContainer {
     font-size: medium;
