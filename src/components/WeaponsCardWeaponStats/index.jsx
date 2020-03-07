@@ -33,7 +33,7 @@ const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
 
   const parseStatValue = (value) => String(value).substring(1);
 
-  const parseProjectileValue = (value) => (value === 1 ? '1.0' : value);
+  const parseProjectilePenValue = (value) => (value === 1 ? '1.0' : value);
 
   const getStatValue = (value, mag) => {
     const returnValue = mag ? gunObj.mag[0][value] : gunObj[value];
@@ -44,51 +44,27 @@ const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
     const data = dataTemplate[index];
     const projectileData = gunObj.projectiles?.[data.index]?.[data.valueKey];
     const ballasticsData = gunObj?.[data.valueKey];
+    const isPenData = projectileData?.[0][1] === 'PEN';
 
-
-    // const renderData = (nestedArray) => (
-    //   <>
-    //     <td>
-    //       {nestedArray[0].map((value) => (
-    //         <span>{value}</span>
-    //       ))}
-    //     </td>
-    //     {nestedArray[1].map((value) => (
-    //       <td>{value}</td>
-    //     ))}
-    //   </>
-    // );
+    const renderData = (nestedArray) => (
+      <>
+        <td>
+          {nestedArray[0].map((value, dex) => (
+            <span key={keys[dex]}>{value}</span>
+          ))}
+        </td>
+        {nestedArray[1].map((value, dex) => (
+          <td key={keys[dex]}>{isPenData ? parseProjectilePenValue(value) : value }</td>
+        ))}
+      </>
+    );
 
     if (projectileData) {
-      // renderData(projectileData);
-      return (
-        <>
-          <td>
-            {projectileData[0].map((value, dex) => (
-              <span key={keys[dex]}>{value}</span>
-            ))}
-          </td>
-          {projectileData[1].map((value, dex) => (
-            <td key={keys[dex]}>{parseProjectileValue(value)}</td>
-          ))}
-        </>
-      );
+      return renderData(projectileData);
     }
 
     if (ballasticsData) {
-      // renderData(ballasticsData);
-      return (
-        <>
-          <td>
-            {ballasticsData[0].map((value, dex) => (
-              <span key={keys[dex]}>{value}</span>
-            ))}
-          </td>
-          {ballasticsData[1].map((value, dex) => (
-            <td key={keys[dex]}>{value}</td>
-          ))}
-        </>
-      );
+      return renderData(ballasticsData);
     }
 
     return (
