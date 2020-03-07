@@ -6,9 +6,8 @@ import { getRecoilRecoveryValue } from '../../data/advancedRules/recoilRecovery'
 import emptyFirearm from './emptyFirearm';
 import { weaponCharacteristics, getTemplate, keys } from './data';
 
-// import '../WeaponsCard/WeaponsCard.css';
-import './styles.css';
-import './stylesA4.css';
+import './FirearmStatsTable.css';
+import './FirearmStatsTableA4.css';
 
 const { table1cSAL } = require('../../data/tablesCreateCharacter');
 
@@ -27,7 +26,7 @@ const getFirearmNameAndRecoil = (gunObj, skillLevel) => {
   return `${gunObj.name} - recoil recovery: ${getRecoilRecoveryValue(gunObj.kd, skillLevel)}`;
 };
 
-const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
+const FirearmStatsTable = ({ gunObj, sal, size }) => {
   const rangeBrackets = gunObj.list === 'shotguns' ? shotgunRangeBrackets : standardRangeBrackets;
   const dataTemplate = getTemplate(gunObj.list === 'shotguns', gunObj.trb, gunObj.projectiles.length);
   const emptyRow = new Array(rangeBrackets.length + 1).fill('');
@@ -109,14 +108,14 @@ const WeaponsCardWeaponStats = ({ gunObj, sal, size }) => {
   );
 };
 
-WeaponsCardWeaponStats.propTypes = {
+FirearmStatsTable.propTypes = {
   size: PropTypes.string,
   gunObj: gunObjShape,
   sal: PropTypes.number,
 };
 
-WeaponsCardWeaponStats.defaultProps = {
+FirearmStatsTable.defaultProps = {
   gunObj: emptyFirearm(),
 };
 
-export default WeaponsCardWeaponStats;
+export default FirearmStatsTable;

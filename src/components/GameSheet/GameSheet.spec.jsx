@@ -74,7 +74,7 @@ describe('<GameSheet>', () => {
   });
   describe('firearm table', () => {
     const wrapper = shallow(<GameSheet {...props} />);
-    const wrapperGunTable = wrapper.find('WeaponsCardWeaponStats').dive();
+    const wrapperGunTable = wrapper.find('FirearmStatsTable').dive();
     it('should render first gun in firearms list', () => {
       expect(wrapperGunTable.text()).toContain('FAMAS');
     });

@@ -2,7 +2,7 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import { gunObjShape } from '../../helpers/proptypeShapes';
 
-import emptyFirearm from '../WeaponsCardWeaponStats/emptyFirearm';
+import emptyFirearm from '../FirearmStatsTable/emptyFirearm';
 
 import './FirearmNotes.css';
 

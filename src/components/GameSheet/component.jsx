@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { PropTypes } from 'prop-types';
-import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
+import FirearmStatsTable from '../FirearmStatsTable';
 import CombatStatsInfo from './CombatStatsInfo';
 import ActionTable from '../ActionsCard/ActionTable';
 import HandToHandTable from '../HandToHandTable/HandToHandTable';
@@ -79,7 +79,7 @@ const GameSheet = ({ currentCharacter, characterStats, combatStats, gear, select
           )}
           <div style={{ display: 'flex' }}>
             <div>
-              <WeaponsCardWeaponStats gunObj={gear.firearms[0]} sal={combatStats.SAL} size="a4" />
+              <FirearmStatsTable gunObj={gear.firearms[0]} sal={combatStats.SAL} size="a4" />
             </div>
             <div className="firearm-notes-a4-wrapper">
               <FirearmNotes gunObj={gear.firearms[0]} />

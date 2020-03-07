@@ -1,9 +1,9 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import WeaponsCardWeaponStats, { findSkillLevelFromSAL } from './index';
+import FirearmStatsTable, { findSkillLevelFromSAL } from './index';
 import { testM1911A1, testM16WithoutJhpAp, testFAMAS, testRemington } from '../../helpers/testHelpers';
 
-describe('<WeaponsCardWeaponStats/> component', () => {
+describe('<FirearmStatsTable/> component', () => {
   const lineOne = (wrapper) => wrapper.find('.gunTableLine1');
   const lineTwo = (wrapper) => wrapper.find('.gunTableLine2');
   const lineThree = (wrapper) => wrapper.find('.gunTableLine3');
@@ -18,13 +18,13 @@ describe('<WeaponsCardWeaponStats/> component', () => {
 
   describe('default props for firearm', () => {
     it('should provide an "empty" firearm object if no firearm selected', () => {
-      const wrapper = mount(<WeaponsCardWeaponStats gunObj={undefined} />);
+      const wrapper = mount(<FirearmStatsTable gunObj={undefined} />);
       expect(wrapper.props().gunObj).not.toBe(undefined);
     });
   });
   describe('the table', () => {
     it('should render the table header', () => {
-      const wrapper = shallow(<WeaponsCardWeaponStats gunObj={undefined} />);
+      const wrapper = shallow(<FirearmStatsTable gunObj={undefined} />);
       expect(wrapper.find('.WeaponStatHeader').text()).toContain('Data');
       expect(wrapper.find('.WeaponStatHeader').text()).toContain('Aim Time');
       expect(wrapper.find('.WeaponStatHeader').text()).toContain('10');
@@ -38,7 +38,7 @@ describe('<WeaponsCardWeaponStats/> component', () => {
     });
   });
   describe('rendering standard firearm data', () => {
-    const wrapper = mount(<WeaponsCardWeaponStats gunObj={testM1911A1()} />);
+    const wrapper = mount(<FirearmStatsTable gunObj={testM1911A1()} />);
     describe('the physcial data', () => {
       it('should render the length', () => {
         expect(lineOne(wrapper).childAt(0).text()).toContain('L9');
@@ -192,7 +192,7 @@ describe('<WeaponsCardWeaponStats/> component', () => {
   });
   describe('edge cases', () => {
     describe('no data for JHP/AP', () => {
-      const wrapper = mount(<WeaponsCardWeaponStats gunObj={testM16WithoutJhpAp()} />);
+      const wrapper = mount(<FirearmStatsTable gunObj={testM16WithoutJhpAp()} />);
       it('should not render JHP data ', () => {
         expect(lineFour(wrapper).childAt(2).text()).not.toContain('JHP');
         expect(lineFour(wrapper).childAt(2).text()).not.toContain('PEN');
@@ -213,7 +213,7 @@ describe('<WeaponsCardWeaponStats/> component', () => {
     });
   });
   describe('automatic weapons', () => {
-    const wrapper = mount(<WeaponsCardWeaponStats gunObj={testFAMAS()} />);
+    const wrapper = mount(<FirearmStatsTable gunObj={testFAMAS()} />);
     it('should render the minimum arc values', () => {
       expect(lineNine(wrapper).childAt(2).text()).toContain('MA');
       expect(lineNine(wrapper).childAt(3).text()).toContain('.4');
@@ -238,7 +238,7 @@ describe('<WeaponsCardWeaponStats/> component', () => {
     });
   });
   describe('shotguns', () => {
-    const wrapper = mount(<WeaponsCardWeaponStats gunObj={testRemington()} />);
+    const wrapper = mount(<FirearmStatsTable gunObj={testRemington()} />);
     it('should render the correct range brackets', () => {
       expect(wrapper.find('.WeaponStatHeader').text()).toContain('1');
       expect(wrapper.find('.WeaponStatHeader').text()).toContain('2');
@@ -307,7 +307,7 @@ describe('<WeaponsCardWeaponStats/> component', () => {
   });
   describe('adding SAL bonus to aim time mod', () => {
     const sal = 7;
-    const salWrapper = mount(<WeaponsCardWeaponStats gunObj={testFAMAS()} sal={sal} />);
+    const salWrapper = mount(<FirearmStatsTable gunObj={testFAMAS()} sal={sal} />);
     it('should render aim time 1 mod with SAL bonus', () => {
       const aim1 = salWrapper.find('.gunTableLine1').childAt(1).childAt(1);
       const expectedAim1 = testFAMAS().aim.mod[0] + sal;
@@ -361,13 +361,13 @@ describe('<WeaponsCardWeaponStats/> component', () => {
   describe('display recoil recovery', () => {
     const sal = 0;
     it('should display recoil recovey after weapon name', () => {
-      let rrWrapper = mount(<WeaponsCardWeaponStats gunObj={testFAMAS()} sal={sal} />);
+      let rrWrapper = mount(<FirearmStatsTable gunObj={testFAMAS()} sal={sal} />);
       expect(rrWrapper.childAt(0).text()).toContain('FAMAS - recoil recovery: 2');
-      rrWrapper = mount(<WeaponsCardWeaponStats gunObj={testFAMAS()} sal={sal + 10} />);
+      rrWrapper = mount(<FirearmStatsTable gunObj={testFAMAS()} sal={sal + 10} />);
       expect(rrWrapper.childAt(0).text()).toContain('FAMAS - recoil recovery: 0');
     });
     it('should display not recoil recovey when sal is undefined', () => {
-      const rrWrapper = mount(<WeaponsCardWeaponStats gunObj={testFAMAS()} sal={undefined} />);
+      const rrWrapper = mount(<FirearmStatsTable gunObj={testFAMAS()} sal={undefined} />);
       expect(rrWrapper.childAt(0).text()).toContain('FAMAS');
       expect(rrWrapper.childAt(0).text()).not.toContain('recoil recovery');
     });
