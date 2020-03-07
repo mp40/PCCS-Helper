@@ -103,26 +103,57 @@ describe('Check weapon data shape', () => {
     const gunArray = allGuns();
     for (let i = 0; i < gunArray.length; i += 1) {
       expect(gunArray[i].tof.length).toBe(gunArray[i].ba.length);
+      expect(gunArray[i].tof[0].length).toBe(gunArray[i].ba[0].length);
+      expect(gunArray[i].tof[1].length).toBe(gunArray[i].ba[1].length);
       if (gunArray[i].ma) {
         expect(gunArray[i].ma.length).toBe(gunArray[i].ba.length);
+        expect(gunArray[i].ma[0].length).toBe(gunArray[i].ba[0].length);
+        expect(gunArray[i].ma[1].length).toBe(gunArray[i].ba[1].length);
       }
       if (gunArray[i].trb) {
         expect(gunArray[i].trb.length).toBe(gunArray[i].ba.length);
+        expect(gunArray[i].trb[0].length).toBe(gunArray[i].ba[0].length);
+        expect(gunArray[i].trb[1].length).toBe(gunArray[i].ba[1].length);
       }
       expect(gunArray[i].projectiles[0].pen.length).toBe(gunArray[i].ba.length);
+      expect(gunArray[i].projectiles[0].pen[0].length).toBe(gunArray[i].ba[0].length);
+      expect(gunArray[i].projectiles[0].pen[1].length).toBe(gunArray[i].ba[1].length);
+
       expect(gunArray[i].projectiles[0].dc.length).toBe(gunArray[i].ba.length);
+      expect(gunArray[i].projectiles[0].dc[0].length).toBe(gunArray[i].ba[0].length);
+      expect(gunArray[i].projectiles[0].dc[1].length).toBe(gunArray[i].ba[1].length);
+
       if (gunArray[i].projectiles[1]) {
         expect(gunArray[i].projectiles[1].pen.length).toBe(gunArray[i].ba.length);
+        expect(gunArray[i].projectiles[1].pen[0].length).toBe(gunArray[i].ba[0].length);
+        expect(gunArray[i].projectiles[1].pen[1].length).toBe(gunArray[i].ba[1].length);
+
         expect(gunArray[i].projectiles[1].dc.length).toBe(gunArray[i].ba.length);
+        expect(gunArray[i].projectiles[1].dc[0].length).toBe(gunArray[i].ba[0].length);
+        expect(gunArray[i].projectiles[1].dc[1].length).toBe(gunArray[i].ba[1].length);
+
         if (gunArray[i].list === 'shotguns') {
           expect(gunArray[i].projectiles[1].salm.length).toBe(gunArray[i].ba.length);
+          expect(gunArray[i].projectiles[1].salm[0].length).toBe(gunArray[i].ba[0].length);
+          expect(gunArray[i].projectiles[1].salm[1].length).toBe(gunArray[i].ba[1].length);
+
           expect(gunArray[i].projectiles[1].bphc.length).toBe(gunArray[i].ba.length);
+          expect(gunArray[i].projectiles[1].bphc[0].length).toBe(gunArray[i].ba[0].length);
+          expect(gunArray[i].projectiles[1].bphc[1].length).toBe(gunArray[i].ba[1].length);
+
           expect(gunArray[i].projectiles[1].pr.length).toBe(gunArray[i].ba.length);
+          expect(gunArray[i].projectiles[1].pr[0].length).toBe(gunArray[i].ba[0].length);
+          expect(gunArray[i].projectiles[1].pr[1].length).toBe(gunArray[i].ba[1].length);
         }
       }
       if (gunArray[i].projectiles[2]) {
         expect(gunArray[i].projectiles[2].pen.length).toBe(gunArray[i].ba.length);
+        expect(gunArray[i].projectiles[2].pen[0].length).toBe(gunArray[i].ba[0].length);
+        expect(gunArray[i].projectiles[2].pen[1].length).toBe(gunArray[i].ba[1].length);
+
         expect(gunArray[i].projectiles[2].dc.length).toBe(gunArray[i].ba.length);
+        expect(gunArray[i].projectiles[2].dc[0].length).toBe(gunArray[i].ba[0].length);
+        expect(gunArray[i].projectiles[2].dc[1].length).toBe(gunArray[i].ba[1].length);
       }
     }
   });
