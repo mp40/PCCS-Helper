@@ -4,7 +4,7 @@ import { gunObjShape, grenadeShape } from '../../helpers/proptypeShapes';
 import GearCard from '../GearCard';
 import GearTable from '../GearTable';
 import WeaponsTableBody from '../WeaponsTableBody';
-import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
+import FirearmStatsTable from '../FirearmStatsTable';
 import WeaponsCardSelectModal from '../WeaponsCardSelectModal';
 import WeaponsCardModifyWeapon from '../WeaponsCardModifyWeapon';
 import GrenadeSelectModal from '../GrenadeSelectModal';
@@ -69,7 +69,7 @@ class WeaponsCard extends Component {
             onClick={() => this.toggleOffWeaponCardViews('modifyFirearm')}
           />
           <div>
-            <WeaponsCardWeaponStats
+            <FirearmStatsTable
               gunObj={gunToModify}
             />
             <WeaponsCardModifyWeapon

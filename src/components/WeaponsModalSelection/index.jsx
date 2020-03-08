@@ -2,12 +2,13 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import FirearmStatsTable from '../FirearmStatsTable';
 import WeaponsModalFilterSelection from '../WeaponsModalFilterSelection';
-import WeaponsCardWeaponStats from '../WeaponsCardWeaponStats';
 import FirearmNotes from '../FirearmNotes';
 import ButtonStandard from '../widgets/buttons/ButtonStandard';
 import ButtonInfo from '../widgets/buttons/ButtonInfo';
 import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
+
 
 import { rifles, pistols, smgs, mgs, sniperRifles, shotguns, filterableCalibers } from '../../data/firearms';
 
@@ -146,7 +147,7 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, handleAddFirearm }) =
           </div>
           <div style={{ display: 'flex' }}>
             <div>
-              <WeaponsCardWeaponStats gunObj={firearmToInspect} />
+              <FirearmStatsTable gunObj={firearmToInspect} />
             </div>
             { firearmToInspect.list !== 'shotguns'
           && (

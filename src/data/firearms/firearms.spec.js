@@ -23,7 +23,7 @@ const firearmObjectKeys = [
 
 const checkAtLeastTwo = (value) => value >= 2;
 
-describe('Check weapon data input', () => {
+describe('Check weapon data shape', () => {
   it('should have the correct minimum keys', () => {
     const gunArray = allGuns();
     for (let i = 0; i < gunArray.length; i += 1) {
@@ -104,9 +104,11 @@ describe('Check weapon data input', () => {
       }
       expect(gunArray[i].projectiles[0].pen.length).toBe(gunArray[i].ba.length);
       expect(gunArray[i].projectiles[0].dc.length).toBe(gunArray[i].ba.length);
+
       if (gunArray[i].projectiles[1]) {
         expect(gunArray[i].projectiles[1].pen.length).toBe(gunArray[i].ba.length);
         expect(gunArray[i].projectiles[1].dc.length).toBe(gunArray[i].ba.length);
+
         if (gunArray[i].list === 'shotguns') {
           expect(gunArray[i].projectiles[1].salm.length).toBe(gunArray[i].ba.length);
           expect(gunArray[i].projectiles[1].bphc.length).toBe(gunArray[i].ba.length);
