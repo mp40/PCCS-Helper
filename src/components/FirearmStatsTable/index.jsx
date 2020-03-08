@@ -29,8 +29,8 @@ const getFirearmNameAndRecoil = (gunObj, skillLevel) => {
 const FirearmStatsTable = ({ gunObj, sal, size }) => {
   const rangeBrackets = gunObj.list === 'shotguns' ? shotgunRangeBrackets : standardRangeBrackets;
   const dataTemplate = getTemplate(gunObj.list === 'shotguns', gunObj.trb, gunObj.projectiles.length);
-  const emptyRow = new Array(rangeBrackets.length + 1).fill('');
-  const tableHeadings = ['Data', 'Aim Time', ' ', ...rangeBrackets];
+  const emptyRow = new Array(rangeBrackets.length + 2).fill('');
+  const tableHeadings = ['Data', 'Aim Time', '', '', ...rangeBrackets];
 
   const parseStatValue = (value) => String(value).substring(1);
 
@@ -45,27 +45,21 @@ const FirearmStatsTable = ({ gunObj, sal, size }) => {
     const data = dataTemplate[index];
     const projectileData = gunObj.projectiles?.[data.index]?.[data.valueKey];
     const ballasticsData = gunObj?.[data.valueKey];
-    const isPenData = projectileData?.[0][1] === 'PEN';
-
-    const renderData = (nestedArray) => (
-      <>
-        <td>
-          {nestedArray[0].map((value, dex) => (
-            <span key={keys[dex]}>{value}</span>
-          ))}
-        </td>
-        {nestedArray[1].map((value, dex) => (
-          <td key={keys[dex]}>{isPenData ? parseProjectilePenValue(value) : value }</td>
-        ))}
-      </>
-    );
+    const isPenData = data.valueKey === 'pen';
+    const renderData = (nestedArray) => (nestedArray.map((value, dex) => (
+      <td key={keys[dex]}>{isPenData ? parseProjectilePenValue(value) : value }</td>
+    )));
 
     if (projectileData) {
-      return renderData(projectileData);
+      return renderData(
+        isPenData
+          ? [gunObj.projectiles[data.index].type, ...data.prefix, ...projectileData]
+          : [...data.prefix, ...projectileData],
+      );
     }
 
     if (ballasticsData) {
-      return renderData(ballasticsData);
+      return renderData([...data.prefix, ...ballasticsData]);
     }
 
     return (
@@ -82,8 +76,8 @@ const FirearmStatsTable = ({ gunObj, sal, size }) => {
         <table className={size ? `${size}WeaponStatTable` : 'WeaponStatTable'}>
           <thead>
             <tr className="WeaponStatHeader">
-              {tableHeadings.map((value) => (
-                <th key={value}>{value}</th>
+              {tableHeadings.map((value, index) => (
+                <th key={keys[index]}>{value}</th>
               ))}
             </tr>
           </thead>
@@ -96,7 +90,12 @@ const FirearmStatsTable = ({ gunObj, sal, size }) => {
                 </td>
                 <td>
                   <span>{gunObj.aim.ac[index]}</span>
-                  <span>{index < gunObj.aim.mod.length && sal ? gunObj.aim.mod[index] + sal : gunObj.aim.mod[index]}</span>
+                  <span>
+                    {index < gunObj.aim.mod.length && sal
+                      ? gunObj.aim.mod[index] + sal
+                      : gunObj.aim.mod[index]}
+
+                  </span>
                 </td>
                 {getData(index)}
               </tr>

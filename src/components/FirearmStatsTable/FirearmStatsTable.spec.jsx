@@ -87,105 +87,105 @@ describe('<FirearmStatsTable/> component', () => {
     describe('the bullet data', () => {
       it('should render the FMJ/JHP/AP tags', () => {
         expect(lineOne(wrapper).childAt(2).text()).toContain('FMJ');
-        expect(lineOne(wrapper).childAt(2).text()).toContain('PEN');
-        expect(lineTwo(wrapper).childAt(2).text()).toContain('DC');
+        expect(lineOne(wrapper).childAt(3).text()).toContain('PEN');
+        expect(lineTwo(wrapper).childAt(3).text()).toContain('DC');
         expect(lineFour(wrapper).childAt(2).text()).toContain('JHP');
-        expect(lineFour(wrapper).childAt(2).text()).toContain('PEN');
-        expect(lineFive(wrapper).childAt(2).text()).toContain('DC');
+        expect(lineFour(wrapper).childAt(3).text()).toContain('PEN');
+        expect(lineFive(wrapper).childAt(3).text()).toContain('DC');
         expect(lineSeven(wrapper).childAt(2).text()).toContain('AP');
-        expect(lineSeven(wrapper).childAt(2).text()).toContain('PEN');
-        expect(lineEight(wrapper).childAt(2).text()).toContain('DC');
+        expect(lineSeven(wrapper).childAt(3).text()).toContain('PEN');
+        expect(lineEight(wrapper).childAt(3).text()).toContain('DC');
       });
       describe('the FMJ PEN/DC data', () => {
         it('should render the PEN stats for each range bracket', () => {
-          expect(lineOne(wrapper).childAt(3).text()).toContain('1.6');
-          expect(lineOne(wrapper).childAt(4).text()).toContain('1.5');
-          expect(lineOne(wrapper).childAt(5).text()).toContain('1.2');
-          expect(lineOne(wrapper).childAt(6).text()).toContain('1.0');
-          expect(lineOne(wrapper).childAt(7).text()).toContain('.8');
-          expect(lineOne(wrapper).childAt(8).text()).toContain('.3');
-          expect(lineOne(wrapper).childAt(9).text()).toContain('.2');
-          expect(lineOne(wrapper).childAt(10).text()).toContain('.1');
+          expect(lineOne(wrapper).childAt(4).text()).toContain('1.6');
+          expect(lineOne(wrapper).childAt(5).text()).toContain('1.5');
+          expect(lineOne(wrapper).childAt(6).text()).toContain('1.2');
+          expect(lineOne(wrapper).childAt(7).text()).toContain('1.0');
+          expect(lineOne(wrapper).childAt(8).text()).toContain('.8');
+          expect(lineOne(wrapper).childAt(9).text()).toContain('.3');
+          expect(lineOne(wrapper).childAt(10).text()).toContain('.2');
+          expect(lineOne(wrapper).childAt(11).text()).toContain('.1');
         });
         it('should render the DC stats for each range bracket', () => {
-          expect(lineTwo(wrapper).childAt(3).text()).toContain('3');
           expect(lineTwo(wrapper).childAt(4).text()).toContain('3');
-          expect(lineTwo(wrapper).childAt(5).text()).toContain('2');
-          expect(lineTwo(wrapper).childAt(6).text()).toContain('1');
+          expect(lineTwo(wrapper).childAt(5).text()).toContain('3');
+          expect(lineTwo(wrapper).childAt(6).text()).toContain('2');
           expect(lineTwo(wrapper).childAt(7).text()).toContain('1');
           expect(lineTwo(wrapper).childAt(8).text()).toContain('1');
           expect(lineTwo(wrapper).childAt(9).text()).toContain('1');
           expect(lineTwo(wrapper).childAt(10).text()).toContain('1');
+          expect(lineTwo(wrapper).childAt(11).text()).toContain('1');
         });
       });
       describe('the JHP PEN/DC data', () => {
         it('should render the PEN stats for each range bracket', () => {
-          expect(lineFour(wrapper).childAt(3).text()).toContain('1.5');
-          expect(lineFour(wrapper).childAt(4).text()).toContain('1.4');
-          expect(lineFour(wrapper).childAt(5).text()).toContain('1.2');
-          expect(lineFour(wrapper).childAt(6).text()).toContain('.9');
-          expect(lineFour(wrapper).childAt(7).text()).toContain('.7');
-          expect(lineFour(wrapper).childAt(8).text()).toContain('.3');
-          expect(lineFour(wrapper).childAt(9).text()).toContain('.1');
+          expect(lineFour(wrapper).childAt(4).text()).toContain('1.5');
+          expect(lineFour(wrapper).childAt(5).text()).toContain('1.4');
+          expect(lineFour(wrapper).childAt(6).text()).toContain('1.2');
+          expect(lineFour(wrapper).childAt(7).text()).toContain('.9');
+          expect(lineFour(wrapper).childAt(8).text()).toContain('.7');
+          expect(lineFour(wrapper).childAt(9).text()).toContain('.3');
           expect(lineFour(wrapper).childAt(10).text()).toContain('.1');
+          expect(lineFour(wrapper).childAt(11).text()).toContain('.1');
         });
         it('should render the DC stats for each range bracket', () => {
-          expect(lineFive(wrapper).childAt(3).text()).toContain('4');
           expect(lineFive(wrapper).childAt(4).text()).toContain('4');
-          expect(lineFive(wrapper).childAt(5).text()).toContain('3');
-          expect(lineFive(wrapper).childAt(6).text()).toContain('2');
-          expect(lineFive(wrapper).childAt(7).text()).toContain('1');
+          expect(lineFive(wrapper).childAt(5).text()).toContain('4');
+          expect(lineFive(wrapper).childAt(6).text()).toContain('3');
+          expect(lineFive(wrapper).childAt(7).text()).toContain('2');
           expect(lineFive(wrapper).childAt(8).text()).toContain('1');
           expect(lineFive(wrapper).childAt(9).text()).toContain('1');
           expect(lineFive(wrapper).childAt(10).text()).toContain('1');
+          expect(lineFive(wrapper).childAt(11).text()).toContain('1');
         });
       });
       describe('the AP PEN/DC data', () => {
         it('should render the PEN stats for each range bracket', () => {
-          expect(lineSeven(wrapper).childAt(3).text()).toContain('2.2');
-          expect(lineSeven(wrapper).childAt(4).text()).toContain('2.1');
-          expect(lineSeven(wrapper).childAt(5).text()).toContain('1.8');
-          expect(lineSeven(wrapper).childAt(6).text()).toContain('1.4');
-          expect(lineSeven(wrapper).childAt(7).text()).toContain('1.1');
-          expect(lineSeven(wrapper).childAt(8).text()).toContain('.5');
-          expect(lineSeven(wrapper).childAt(9).text()).toContain('.2');
-          expect(lineSeven(wrapper).childAt(10).text()).toContain('.1');
+          expect(lineSeven(wrapper).childAt(4).text()).toContain('2.2');
+          expect(lineSeven(wrapper).childAt(5).text()).toContain('2.1');
+          expect(lineSeven(wrapper).childAt(6).text()).toContain('1.8');
+          expect(lineSeven(wrapper).childAt(7).text()).toContain('1.4');
+          expect(lineSeven(wrapper).childAt(8).text()).toContain('1.1');
+          expect(lineSeven(wrapper).childAt(9).text()).toContain('.5');
+          expect(lineSeven(wrapper).childAt(10).text()).toContain('.2');
+          expect(lineSeven(wrapper).childAt(11).text()).toContain('.1');
         });
         it('should render the DC stats for each range bracket', () => {
-          expect(lineEight(wrapper).childAt(3).text()).toContain('3');
           expect(lineEight(wrapper).childAt(4).text()).toContain('3');
-          expect(lineEight(wrapper).childAt(5).text()).toContain('2');
-          expect(lineEight(wrapper).childAt(6).text()).toContain('1');
+          expect(lineEight(wrapper).childAt(5).text()).toContain('3');
+          expect(lineEight(wrapper).childAt(6).text()).toContain('2');
           expect(lineEight(wrapper).childAt(7).text()).toContain('1');
           expect(lineEight(wrapper).childAt(8).text()).toContain('1');
           expect(lineEight(wrapper).childAt(9).text()).toContain('1');
           expect(lineEight(wrapper).childAt(10).text()).toContain('1');
+          expect(lineEight(wrapper).childAt(11).text()).toContain('1');
         });
       });
       describe('the Balistic Accuracy and Time Of Flight Data', () => {
         it('should render the BA and TOF tags', () => {
-          expect(lineTen(wrapper).childAt(2).text()).toContain('BA');
-          expect(lineEleven(wrapper).childAt(2).text()).toContain('TOF');
+          expect(lineTen(wrapper).childAt(3).text()).toContain('BA');
+          expect(lineEleven(wrapper).childAt(3).text()).toContain('TOF');
         });
         it('should render the BA stats for each range bracket', () => {
-          expect(lineTen(wrapper).childAt(3).text()).toContain('45');
-          expect(lineTen(wrapper).childAt(4).text()).toContain('36');
-          expect(lineTen(wrapper).childAt(5).text()).toContain('27');
-          expect(lineTen(wrapper).childAt(6).text()).toContain('20');
-          expect(lineTen(wrapper).childAt(7).text()).toContain('15');
-          expect(lineTen(wrapper).childAt(8).text()).toContain('5');
-          expect(lineTen(wrapper).childAt(9).text()).toContain('0');
-          expect(lineTen(wrapper).childAt(10).text()).toContain('-4');
+          expect(lineTen(wrapper).childAt(4).text()).toContain('45');
+          expect(lineTen(wrapper).childAt(5).text()).toContain('36');
+          expect(lineTen(wrapper).childAt(6).text()).toContain('27');
+          expect(lineTen(wrapper).childAt(7).text()).toContain('20');
+          expect(lineTen(wrapper).childAt(8).text()).toContain('15');
+          expect(lineTen(wrapper).childAt(9).text()).toContain('5');
+          expect(lineTen(wrapper).childAt(10).text()).toContain('0');
+          expect(lineTen(wrapper).childAt(11).text()).toContain('-4');
         });
         it('should render the TOF stats for each range bracket', () => {
-          expect(lineEleven(wrapper).childAt(3).text()).toContain('1');
-          expect(lineEleven(wrapper).childAt(4).text()).toContain('2');
-          expect(lineEleven(wrapper).childAt(5).text()).toContain('3');
-          expect(lineEleven(wrapper).childAt(6).text()).toContain('5');
-          expect(lineEleven(wrapper).childAt(7).text()).toContain('8');
-          expect(lineEleven(wrapper).childAt(8).text()).toContain('19');
-          expect(lineEleven(wrapper).childAt(9).text()).toContain('31');
-          expect(lineEleven(wrapper).childAt(10).text()).toContain('45');
+          expect(lineEleven(wrapper).childAt(4).text()).toContain('1');
+          expect(lineEleven(wrapper).childAt(5).text()).toContain('2');
+          expect(lineEleven(wrapper).childAt(6).text()).toContain('3');
+          expect(lineEleven(wrapper).childAt(7).text()).toContain('5');
+          expect(lineEleven(wrapper).childAt(8).text()).toContain('8');
+          expect(lineEleven(wrapper).childAt(9).text()).toContain('19');
+          expect(lineEleven(wrapper).childAt(10).text()).toContain('31');
+          expect(lineEleven(wrapper).childAt(11).text()).toContain('45');
         });
       });
     });
@@ -195,17 +195,17 @@ describe('<FirearmStatsTable/> component', () => {
       const wrapper = mount(<FirearmStatsTable gunObj={testM16WithoutJhpAp()} />);
       it('should not render JHP data ', () => {
         expect(lineFour(wrapper).childAt(2).text()).not.toContain('JHP');
-        expect(lineFour(wrapper).childAt(2).text()).not.toContain('PEN');
-        expect(lineFive(wrapper).childAt(2).text()).not.toContain('DC');
-        expect(lineFour(wrapper).childAt(3).text().length).toBe(0);
-        expect(lineFive(wrapper).childAt(3).text().length).toBe(0);
+        expect(lineFour(wrapper).childAt(3).text()).not.toContain('PEN');
+        expect(lineFive(wrapper).childAt(3).text()).not.toContain('DC');
+        expect(lineFour(wrapper).childAt(4).text().length).toBe(0);
+        expect(lineFive(wrapper).childAt(4).text().length).toBe(0);
       });
       it('should not render AP tags', () => {
         expect(lineSeven(wrapper).childAt(2).text()).not.toContain('AP');
-        expect(lineSeven(wrapper).childAt(2).text()).not.toContain('PEN');
-        expect(lineEight(wrapper).childAt(2).text()).not.toContain('DC');
-        expect(lineSeven(wrapper).childAt(3).text().length).toBe(0);
-        expect(lineEight(wrapper).childAt(3).text().length).toBe(0);
+        expect(lineSeven(wrapper).childAt(3).text()).not.toContain('PEN');
+        expect(lineEight(wrapper).childAt(3).text()).not.toContain('DC');
+        expect(lineSeven(wrapper).childAt(4).text().length).toBe(0);
+        expect(lineEight(wrapper).childAt(4).text().length).toBe(0);
       });
       it('should not render a third line', () => {
         expect(lineThree(wrapper).text()).toEqual('3-9');
@@ -215,26 +215,26 @@ describe('<FirearmStatsTable/> component', () => {
   describe('automatic weapons', () => {
     const wrapper = mount(<FirearmStatsTable gunObj={testFAMAS()} />);
     it('should render the minimum arc values', () => {
-      expect(lineNine(wrapper).childAt(2).text()).toContain('MA');
-      expect(lineNine(wrapper).childAt(3).text()).toContain('.4');
-      expect(lineNine(wrapper).childAt(4).text()).toContain('.8');
-      expect(lineNine(wrapper).childAt(5).text()).toContain('2');
-      expect(lineNine(wrapper).childAt(6).text()).toContain('3');
-      expect(lineNine(wrapper).childAt(7).text()).toContain('4');
-      expect(lineNine(wrapper).childAt(8).text()).toContain('8');
-      expect(lineNine(wrapper).childAt(9).text()).toContain('12');
-      expect(lineNine(wrapper).childAt(10).text()).toContain('16');
+      expect(lineNine(wrapper).childAt(3).text()).toContain('MA');
+      expect(lineNine(wrapper).childAt(4).text()).toContain('.4');
+      expect(lineNine(wrapper).childAt(5).text()).toContain('.8');
+      expect(lineNine(wrapper).childAt(6).text()).toContain('2');
+      expect(lineNine(wrapper).childAt(7).text()).toContain('3');
+      expect(lineNine(wrapper).childAt(8).text()).toContain('4');
+      expect(lineNine(wrapper).childAt(9).text()).toContain('8');
+      expect(lineNine(wrapper).childAt(10).text()).toContain('12');
+      expect(lineNine(wrapper).childAt(11).text()).toContain('16');
     });
     it('should render the three round burst values', () => {
-      expect(lineEight(wrapper).childAt(2).text()).toContain('3RB');
-      expect(lineEight(wrapper).childAt(3).text()).toContain('-6');
-      expect(lineEight(wrapper).childAt(4).text()).toContain('-1');
-      expect(lineEight(wrapper).childAt(5).text()).toContain('4');
-      expect(lineEight(wrapper).childAt(6).text()).toContain('8');
-      expect(lineEight(wrapper).childAt(7).text()).toContain('10');
-      expect(lineEight(wrapper).childAt(8).text()).toContain('15');
-      expect(lineEight(wrapper).childAt(9).text()).toContain('18');
-      expect(lineEight(wrapper).childAt(10).text()).toContain('20');
+      expect(lineEight(wrapper).childAt(3).text()).toContain('3RB');
+      expect(lineEight(wrapper).childAt(4).text()).toContain('-6');
+      expect(lineEight(wrapper).childAt(5).text()).toContain('-1');
+      expect(lineEight(wrapper).childAt(6).text()).toContain('4');
+      expect(lineEight(wrapper).childAt(7).text()).toContain('8');
+      expect(lineEight(wrapper).childAt(8).text()).toContain('10');
+      expect(lineEight(wrapper).childAt(9).text()).toContain('15');
+      expect(lineEight(wrapper).childAt(10).text()).toContain('18');
+      expect(lineEight(wrapper).childAt(11).text()).toContain('20');
     });
   });
   describe('shotguns', () => {
@@ -253,50 +253,50 @@ describe('<FirearmStatsTable/> component', () => {
       expect(wrapper.find('.WeaponStatHeader').text()).toContain('80');
     });
     it('should render SALM data', () => {
-      expect(lineSix(wrapper).childAt(2).text()).toContain('SALM');
-      expect(lineSix(wrapper).childAt(3).text()).toContain('-14');
-      expect(lineSix(wrapper).childAt(4).text()).toContain('-9');
-      expect(lineSix(wrapper).childAt(5).text()).toContain('-4');
-      expect(lineSix(wrapper).childAt(6).text()).toContain('-1');
-      expect(lineSix(wrapper).childAt(7).text()).toContain('1');
-      expect(lineSix(wrapper).childAt(8).text()).toContain('2');
-      expect(lineSix(wrapper).childAt(9).text()).toContain('5');
-      expect(lineSix(wrapper).childAt(10).text()).toContain('7');
-      expect(lineSix(wrapper).childAt(11).text()).toContain('10');
-      expect(lineSix(wrapper).childAt(12).text()).toContain('12');
-      expect(lineSix(wrapper).childAt(13).text()).toContain('17');
+      expect(lineSix(wrapper).childAt(3).text()).toContain('SALM');
+      expect(lineSix(wrapper).childAt(4).text()).toContain('-14');
+      expect(lineSix(wrapper).childAt(5).text()).toContain('-9');
+      expect(lineSix(wrapper).childAt(6).text()).toContain('-4');
+      expect(lineSix(wrapper).childAt(7).text()).toContain('-1');
+      expect(lineSix(wrapper).childAt(8).text()).toContain('1');
+      expect(lineSix(wrapper).childAt(9).text()).toContain('2');
+      expect(lineSix(wrapper).childAt(10).text()).toContain('5');
+      expect(lineSix(wrapper).childAt(11).text()).toContain('7');
+      expect(lineSix(wrapper).childAt(12).text()).toContain('10');
+      expect(lineSix(wrapper).childAt(13).text()).toContain('12');
+      expect(lineSix(wrapper).childAt(14).text()).toContain('17');
     });
     it('should render the Base Pellet Hit Chance data', () => {
-      expect(lineSeven(wrapper).childAt(2).text()).toContain('BPHC');
-      expect(lineSeven(wrapper).childAt(3).text()).toContain('');
-      expect(lineSeven(wrapper).childAt(4).text()).toContain('*11');
-      expect(lineSeven(wrapper).childAt(5).text()).toContain('*10');
-      expect(lineSeven(wrapper).childAt(6).text()).toContain('*9');
-      expect(lineSeven(wrapper).childAt(7).text()).toContain('*7');
-      expect(lineSeven(wrapper).childAt(8).text()).toContain('*5');
-      expect(lineSeven(wrapper).childAt(9).text()).toContain('*2');
-      expect(lineSeven(wrapper).childAt(10).text()).toContain('*1');
-      expect(lineSeven(wrapper).childAt(11).text()).toContain('62');
-      expect(lineSeven(wrapper).childAt(12).text()).toContain('35');
-      expect(lineSeven(wrapper).childAt(13).text()).toContain('8');
+      expect(lineSeven(wrapper).childAt(3).text()).toContain('BPHC');
+      expect(lineSeven(wrapper).childAt(4).text()).toContain('');
+      expect(lineSeven(wrapper).childAt(5).text()).toContain('*11');
+      expect(lineSeven(wrapper).childAt(6).text()).toContain('*10');
+      expect(lineSeven(wrapper).childAt(7).text()).toContain('*9');
+      expect(lineSeven(wrapper).childAt(8).text()).toContain('*7');
+      expect(lineSeven(wrapper).childAt(9).text()).toContain('*5');
+      expect(lineSeven(wrapper).childAt(10).text()).toContain('*2');
+      expect(lineSeven(wrapper).childAt(11).text()).toContain('*1');
+      expect(lineSeven(wrapper).childAt(12).text()).toContain('62');
+      expect(lineSeven(wrapper).childAt(13).text()).toContain('35');
+      expect(lineSeven(wrapper).childAt(14).text()).toContain('8');
     });
     it('should render the Pellet Radius data', () => {
-      expect(lineEight(wrapper).childAt(2).text()).toContain('PR');
-      expect(lineEight(wrapper).childAt(3).text()).toContain('.0');
+      expect(lineEight(wrapper).childAt(3).text()).toContain('PR');
       expect(lineEight(wrapper).childAt(4).text()).toContain('.0');
       expect(lineEight(wrapper).childAt(5).text()).toContain('.0');
-      expect(lineEight(wrapper).childAt(6).text()).toContain('.1');
+      expect(lineEight(wrapper).childAt(6).text()).toContain('.0');
       expect(lineEight(wrapper).childAt(7).text()).toContain('.1');
       expect(lineEight(wrapper).childAt(8).text()).toContain('.1');
       expect(lineEight(wrapper).childAt(9).text()).toContain('.1');
-      expect(lineEight(wrapper).childAt(10).text()).toContain('.2');
-      expect(lineEight(wrapper).childAt(11).text()).toContain('.3');
-      expect(lineEight(wrapper).childAt(12).text()).toContain('.4');
-      expect(lineEight(wrapper).childAt(13).text()).toContain('.7');
+      expect(lineEight(wrapper).childAt(10).text()).toContain('.1');
+      expect(lineEight(wrapper).childAt(11).text()).toContain('.2');
+      expect(lineEight(wrapper).childAt(12).text()).toContain('.3');
+      expect(lineEight(wrapper).childAt(13).text()).toContain('.4');
+      expect(lineEight(wrapper).childAt(14).text()).toContain('.7');
     });
     it('should not render "(00)" or "12" after "Shot"', () => {
-      expect(lineFour(wrapper).childAt(2).text()).not.toContain('(00)');
-      expect(lineFour(wrapper).childAt(2).text()).not.toContain('12');
+      expect(lineFour(wrapper).childAt(3).text()).not.toContain('(00)');
+      expect(lineFour(wrapper).childAt(3).text()).not.toContain('12');
     });
     it('should render "(00)" before the DC', () => {
       expect(lineFive(wrapper).childAt(2).text()).toContain('(00)');

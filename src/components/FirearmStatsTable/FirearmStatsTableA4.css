@@ -19,11 +19,16 @@
     border-bottom: 1px solid rgb(85, 83, 83);
 }
 
-.a4WeaponStatTable .WeaponStatHeader > th:nth-of-type(-n + 3) {
+.a4WeaponStatTable .WeaponStatHeader > th:nth-of-type(-n + 2) {
     width: 2cm;
 }
 
-.WeaponStatHeader > th:nth-of-type(n + 4) {
+.WeaponStatHeader > th:nth-of-type(3),
+.WeaponStatHeader > th:nth-of-type(4) {
+    width: 1cm;
+}
+
+.WeaponStatHeader > th:nth-of-type(n + 5) {
     width: 0.83cm;
 }
 
@@ -45,4 +50,9 @@
 .a4WeaponStatTable .gunTableLine > td:nth-of-type(2) > span:last-of-type {
     margin-right: .2cm;
     float: right;
+}
+
+.a4WeaponStatTable .gunTableLine > td:nth-of-type(3),
+.a4WeaponStatTable .gunTableLine > td:nth-of-type(4) {
+    padding-left: .1cm;
 }
