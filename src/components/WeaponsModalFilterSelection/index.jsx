@@ -1,24 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+
 import '../WeaponsCard/WeaponsCard.css';
 
-const filterByTypeStyles = {
-  fontSize: 'medium',
-  marginLeft: '1rem',
-  marginBottom: '0.33rem',
-  textAlign: 'center',
-};
-
-const radioButtonContainer = {
-  display: 'flex',
-  justifyContent: 'space-between',
-  fontSize: 'small',
-};
-
-const filterWrapperStyles = {
-  display: 'flex',
-  marginTop: '0.5rem',
-};
+import './styles.css';
 
 const buildTypeClassName = (value) => {
   if (value === 'Sniper Rifles') {
@@ -58,7 +43,7 @@ const WeaponsModalFilterSelection = ({ handleSetFilterByType }) => {
   };
 
   const renderRadioButton = (value, checked, className, handleUpdateFilter) => (
-    <div style={radioButtonContainer} key={value}>
+    <div key={value}>
       <div>{value}</div>
       <input
         type="radio"
@@ -75,7 +60,7 @@ const WeaponsModalFilterSelection = ({ handleSetFilterByType }) => {
     const filterValue = filterBy === 'type' ? filterByType : filterByCaliber;
     const handleUpdateFilter = filterBy === 'type' ? handleUpdateTypeFilter : handleUpdateCaliberFilter;
     return (
-      <form className="filterByFirearmTypeForm" style={filterByTypeStyles}>
+      <form className="filterByFirearmTypeForm">
         {getValueArray(filterBy).map(
           (value) => renderRadioButton(
             value,
@@ -92,13 +77,13 @@ const WeaponsModalFilterSelection = ({ handleSetFilterByType }) => {
   const renderFilterByCalibreForm = () => renderFilterForm('calibre');
 
   return (
-    <div style={filterWrapperStyles}>
+    <div className="filterCard">
       <div>
-        <div style={filterByTypeStyles}>Filter By Type</div>
+        <div>Filter By Type</div>
         {renderFilterByTypeForm()}
       </div>
-      <div style={{ marginLeft: '1rem' }}>
-        <div style={filterByTypeStyles}>Filter By Calibre</div>
+      <div>
+        <div>Filter By Calibre</div>
         {renderFilterByCalibreForm()}
       </div>
     </div>
