@@ -46,7 +46,8 @@ const FirearmStatsTable = ({ gunObj, sal, size }) => {
     const projectileData = gunObj.projectiles?.[data.index]?.[data.valueKey];
     const ballasticsData = gunObj?.[data.valueKey];
     const isPenData = data.valueKey === 'pen';
-    const renderData = (nestedArray) => (nestedArray.map((value, dex) => (
+
+    const renderData = (arr) => (arr.map((value, dex) => (
       <td key={keys[dex]}>{isPenData ? parseProjectilePenValue(value) : value }</td>
     )));
 
@@ -62,11 +63,7 @@ const FirearmStatsTable = ({ gunObj, sal, size }) => {
       return renderData([...data.prefix, ...ballasticsData]);
     }
 
-    return (
-      emptyRow.map((value, dex) => (
-        <td key={keys[dex]}>{value}</td>
-      ))
-    );
+    return renderData(emptyRow);
   };
 
   return (
