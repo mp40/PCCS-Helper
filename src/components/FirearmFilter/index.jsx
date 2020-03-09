@@ -7,9 +7,9 @@ import { types, calibres } from './data';
 
 import '../WeaponsCard/WeaponsCard.css';
 
-import './styles.css';
+import './FirearmFilter.css';
 
-const WeaponsModalFilterSelection = ({ handleSetFilterByType }) => {
+const FirearmFilter = ({ handleSetFilterByType }) => {
   const [filterByType, setTypeFilter] = useState('All');
   const [filterByCaliber, setCaliberFilter] = useState('All');
 
@@ -32,7 +32,7 @@ const WeaponsModalFilterSelection = ({ handleSetFilterByType }) => {
             <RadioButton
               key={type.key}
               value={type.value}
-              className={type.className}
+              classNameValue={type.className}
               checked={filterByType === type.value}
               handleUpdate={handleUpdateTypeFilter}
             />
@@ -47,7 +47,7 @@ const WeaponsModalFilterSelection = ({ handleSetFilterByType }) => {
             <RadioButton
               key={calibre.key}
               value={calibre.value}
-              className={calibre.className}
+              classNameValue={calibre.className}
               checked={filterByCaliber === calibre.value}
               handleUpdate={handleUpdateCaliberFilter}
             />
@@ -59,9 +59,9 @@ const WeaponsModalFilterSelection = ({ handleSetFilterByType }) => {
   );
 };
 
-WeaponsModalFilterSelection.propTypes = {
+FirearmFilter.propTypes = {
   handleSetFilterByType: PropTypes.func,
 };
 
 
-export default WeaponsModalFilterSelection;
+export default FirearmFilter;

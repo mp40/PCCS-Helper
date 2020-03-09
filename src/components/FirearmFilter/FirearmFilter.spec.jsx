@@ -1,11 +1,11 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import WeaponsModalFilterSelection from './index';
+import { mount } from 'enzyme';
+import FirearmFilter from './index';
 
 const handleSetFilterByType = jest.fn();
 
 describe('filter weapons by type', () => {
-  const wrapper = shallow(<WeaponsModalFilterSelection handleSetFilterByType={handleSetFilterByType} />);
+  const wrapper = mount(<FirearmFilter handleSetFilterByType={handleSetFilterByType} />);
   it('should have a default of all', () => {
     expect(wrapper.find('.selectAllFilter').hasClass('checked')).toBe(true);
   });
@@ -40,7 +40,7 @@ describe('filter weapons by type', () => {
 });
 
 describe('filter weapons by caliber', () => {
-  const wrapper = shallow(<WeaponsModalFilterSelection handleSetFilterByType={handleSetFilterByType} />);
+  const wrapper = mount(<FirearmFilter handleSetFilterByType={handleSetFilterByType} />);
   it('should have a default of all calibers', () => {
     expect(wrapper.find('.selectAllCalibersFilter').hasClass('checked')).toBe(true);
   });

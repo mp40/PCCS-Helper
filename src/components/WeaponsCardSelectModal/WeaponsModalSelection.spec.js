@@ -18,7 +18,6 @@ describe('Firearms selection', () => {
       expect(wrapper.find('.filterByFirearmTypeForm').exists()).toBe(true);
     });
     it('should be possible filter to only rifles', () => {
-      // wrapper.find('.selectRiflesFilter').simulate('change', { target: { value: 'Rifles' } });
       wrapper.find('.selectRiflesFilter').simulate('click');
       expect(wrapper.find('.firearmSelectModal').find('.gearModalContents').children().length).toBe(rifles().length);
       expect(wrapper.find('.firearmSelectModal').find('.gearModalContents').text()).not.toContain('M1911A1');

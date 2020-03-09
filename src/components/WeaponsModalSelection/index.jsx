@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import FirearmStatsTable from '../FirearmStatsTable';
-import WeaponsModalFilterSelection from '../WeaponsModalFilterSelection';
+import FirearmFilter from '../FirearmFilter';
 import FirearmNotes from '../FirearmNotes';
 import ButtonStandard from '../widgets/buttons/ButtonStandard';
 import ButtonInfo from '../widgets/buttons/ButtonInfo';
@@ -132,7 +132,7 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, handleAddFirearm }) =
         </GearModalContents>
       </GearCard>
       <div className={filterClassName}>
-        <WeaponsModalFilterSelection
+        <FirearmFilter
           handleSetFilterByType={handleSetFilterByType}
         />
       </div>
