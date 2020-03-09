@@ -14,7 +14,8 @@
     padding-left: 1rem;
 }
 
-.filterByFirearmTypeForm > div {
+.filterByFirearmTypeForm > div,
+.filterByFirearmCalibreForm > div {
     display: flex;
     justify-content: space-between;
     font-size: small;
