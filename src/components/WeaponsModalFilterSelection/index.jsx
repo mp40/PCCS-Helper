@@ -32,27 +32,28 @@ const WeaponsModalFilterSelection = ({ handleSetFilterByType }) => {
   const [filterByType, setTypeFilter] = useState('All');
   const [filterByCaliber, setCaliberFilter] = useState('All');
 
-  const handleUpdateTypeFilter = (event) => {
-    handleSetFilterByType(event.target.value, filterByCaliber);
-    setTypeFilter(event.target.value);
+  const handleUpdateTypeFilter = (value) => {
+    handleSetFilterByType(value, filterByCaliber);
+    setTypeFilter(value);
   };
 
-  const handleUpdateCaliberFilter = (event) => {
-    handleSetFilterByType(filterByType, event.target.value);
-    setCaliberFilter(event.target.value);
+  const handleUpdateCaliberFilter = (value) => {
+    handleSetFilterByType(filterByType, value);
+    setCaliberFilter(value);
   };
 
   const renderRadioButton = (value, checked, className, handleUpdateFilter) => (
     <div key={value}>
       <div>{value}</div>
-      <input
-        type="radio"
-        name="filter"
-        value={value}
-        checked={checked}
-        className={className}
-        onChange={handleUpdateFilter}
-      />
+      <button
+        type="button"
+        className={`${className} radioButton ${checked ? 'checked' : ''}`}
+        onClick={() => handleUpdateFilter(value)}
+      >
+        <span className="outerCircle">
+          <span className="inner" />
+        </span>
+      </button>
     </div>
   );
 
@@ -60,7 +61,7 @@ const WeaponsModalFilterSelection = ({ handleSetFilterByType }) => {
     const filterValue = filterBy === 'type' ? filterByType : filterByCaliber;
     const handleUpdateFilter = filterBy === 'type' ? handleUpdateTypeFilter : handleUpdateCaliberFilter;
     return (
-      <form className="filterByFirearmTypeForm">
+      <div className="filterByFirearmTypeForm">
         {getValueArray(filterBy).map(
           (value) => renderRadioButton(
             value,
@@ -69,7 +70,7 @@ const WeaponsModalFilterSelection = ({ handleSetFilterByType }) => {
             handleUpdateFilter,
           ),
         )}
-      </form>
+      </div>
     );
   };
 
