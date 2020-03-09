@@ -32,9 +32,7 @@ const magazineFormDetails = {
   ],
 };
 
-export const getFormDetails = (formType) => {
-  return formType === 'Firearm' ? firearmFormDetails : magazineFormDetails;
-};
+export const getFormDetails = (formType) => (formType === 'Firearm' ? firearmFormDetails : magazineFormDetails);
 
 const createFirearmModificationObject = () => (modification, weight) => {
   if (modification.length < 1) {
@@ -68,6 +66,4 @@ const createMagazineModificationObject = () => (modification, weight, type) => {
   };
 };
 
-export const createModificationObject = (formType) => {
-  return formType === 'Firearm' ? createFirearmModificationObject() : createMagazineModificationObject();
-};
+export const createModificationObject = (formType) => (formType === 'Firearm' ? createFirearmModificationObject() : createMagazineModificationObject());
