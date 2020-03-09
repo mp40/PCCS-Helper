@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const FilterForm = ({ heading, classNameValue, children }) => (
+const FilterForm = ({ heading, children }) => (
   <div>
     <div>{heading}</div>
-    <div className={classNameValue}>
+    <div>
       {children}
     </div>
   </div>
@@ -12,7 +12,6 @@ const FilterForm = ({ heading, classNameValue, children }) => (
 
 FilterForm.propTypes = {
   heading: PropTypes.string.isRequired,
-  classNameValue: PropTypes.string.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node]).isRequired,

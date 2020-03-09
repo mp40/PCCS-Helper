@@ -6,7 +6,7 @@ import RadioButton from './RadioButton';
 
 import { types, calibres } from './data';
 
-import '../WeaponsCard/WeaponsCard.css';
+// import '../WeaponsCard/WeaponsCard.css';
 
 import './FirearmFilter.css';
 
@@ -26,7 +26,7 @@ const FirearmFilter = ({ handleSetFilterByType }) => {
 
   return (
     <div className="filterCard">
-      <FilterForm heading="Filter By Type" classNameValue="filterByFirearmTypeForm">
+      <FilterForm heading="Filter By Type">
         {types.map((type) => (
           <RadioButton
             key={type.key}
@@ -38,7 +38,7 @@ const FirearmFilter = ({ handleSetFilterByType }) => {
         ),
         )}
       </FilterForm>
-      <FilterForm heading="Filter By Calibre" classNameValue="filterByFirearmCalibreForm">
+      <FilterForm heading="Filter By Calibre">
         {calibres.map((calibre) => (
           <RadioButton
             key={calibre.key}

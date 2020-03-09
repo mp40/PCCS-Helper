@@ -13,10 +13,6 @@ describe('Firearms selection', () => {
     it('should render an unfiltered list by defult', () => {
       expect(wrapper.find('.firearmSelectModal').find('.gearModalContents').children().length).toBe(fullFirearmsList().length);
     });
-    it('should be possible to open firearm filter options', () => {
-      wrapper.find('#showFirearmFilters').simulate('click');
-      expect(wrapper.find('.filterByFirearmTypeForm').exists()).toBe(true);
-    });
     it('should be possible filter to only rifles', () => {
       wrapper.find('.selectRiflesFilter').simulate('click');
       expect(wrapper.find('.firearmSelectModal').find('.gearModalContents').children().length).toBe(rifles().length);

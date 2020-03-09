@@ -68,7 +68,7 @@ describe('filter weapons by caliber', () => {
     wrapper.find('.selectOtherCaliberFilter').simulate('click');
     expect(wrapper.find('.selectOtherCaliberFilter').hasClass('checked')).toBe(true);
   });
-  it('should select all caliberswhen appropraite button clicked', () => {
+  it('should select all calibers when appropraite button clicked', () => {
     wrapper.find('.selectAllCalibersFilter').simulate('click');
     expect(wrapper.find('.selectAllCalibersFilter').hasClass('checked')).toBe(true);
   });
