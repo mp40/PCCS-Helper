@@ -24,10 +24,24 @@ const FirearmFilter = ({ handleSetFilterByType }) => {
     setCaliberFilter(value);
   };
 
+  const renderButtons = (values, checkedFilter, handleUpdate) => (
+    values.map((data) => (
+      <RadioButton
+        key={data.key}
+        value={data.value}
+        classNameValue={data.className}
+        checked={checkedFilter === data.value}
+        handleUpdate={handleUpdate}
+      />
+    ),
+    )
+  );
+
   return (
     <div className="filterCard">
       <FilterForm heading="Filter By Type">
-        {types.map((type) => (
+        {renderButtons(types, filterByType, handleUpdateTypeFilter)}
+        {/* {types.map((type) => (
           <RadioButton
             key={type.key}
             value={type.value}
@@ -36,10 +50,11 @@ const FirearmFilter = ({ handleSetFilterByType }) => {
             handleUpdate={handleUpdateTypeFilter}
           />
         ),
-        )}
+        )} */}
       </FilterForm>
       <FilterForm heading="Filter By Calibre">
-        {calibres.map((calibre) => (
+        {renderButtons(calibres, filterByCaliber, handleUpdateCaliberFilter)}
+        {/* {calibres.map((calibre) => (
           <RadioButton
             key={calibre.key}
             value={calibre.value}
@@ -48,7 +63,7 @@ const FirearmFilter = ({ handleSetFilterByType }) => {
             handleUpdate={handleUpdateCaliberFilter}
           />
         ),
-        )}
+        )} */}
       </FilterForm>
     </div>
   );
