@@ -38,13 +38,14 @@ export const modifyObjectQtyInArray = (array, obj, modifier = 0) => array.map((e
   return newElement;
 });
 
-export const removeObjectFromArray = (array, obj) => array.filter(element => element.name && element.name !== obj.name);
+export const removeObjectFromArray = (array, obj) => array.filter(
+  (element) => element.name && element.name !== obj.name);
 
-export const findUniformWeight = uniform => uniformWeights[uniform];
+export const findUniformWeight = (uniform) => uniformWeights[uniform];
 
-export const findEquipmentWeight = equipment => equipment.reduce((sum, obj) => sum + obj.weight * obj.qty, 0);
+export const findEquipmentWeight = (equipment) => equipment.reduce((sum, obj) => sum + obj.weight * obj.qty, 0);
 
-const calculateGrenadeArray = grenades => grenades.reduce((sum, obj) => sum + obj.w * obj.qty, 0);
+const calculateGrenadeArray = (grenades) => grenades.reduce((sum, obj) => sum + obj.weight * obj.qty, 0);
 
 export const calculateTotalWeight = (gear) => {
   let totalWeight = findUniformWeight(gear.uniform)

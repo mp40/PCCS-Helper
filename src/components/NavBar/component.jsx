@@ -9,7 +9,7 @@ import './NavBar.css';
 const NavBar = ({ currentView, totalWeight }) => (
   <div className="menuBar">
     <div className="menuTitle">
-        PCCS
+      PCCS
     </div>
     {currentView === 'createChar'
         && (

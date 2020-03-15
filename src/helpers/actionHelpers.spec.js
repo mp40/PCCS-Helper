@@ -122,7 +122,7 @@ describe('calculating total weight of all equipment', () => {
     const uniform = 'Normal';
     const equipment = [belt, pouch];
     const firearms = [testRifle(), testPistol()];
-    const grenades = [{ name: 'bang', w: 1, qty: 2 }, { name: 'boom', w: 1.5, qty: 1 }];
+    const grenades = [{ name: 'bang', weight: 1, qty: 2 }, { name: 'boom', weight: 1.5, qty: 1 }];
     expect(calculateTotalWeight({ uniform, equipment, firearms, grenades })).toEqual(5 + 1.5 + 17 + 3.5);
   });
 });

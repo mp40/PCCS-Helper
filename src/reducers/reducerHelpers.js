@@ -7,9 +7,9 @@ const {
   calcDB,
 } = require('../helpers/helperFunctions');
 
-export const correctFloatingPoint = number => Math.round(number * 1000) / 1000;
+export const correctFloatingPoint = (number) => Math.round(number * 1000) / 1000;
 
-const returnUpdatedWeightAndGear = gearToUpdate => (state, updatedGear) => {
+const returnUpdatedWeightAndGear = (gearToUpdate) => (state, updatedGear) => {
   const newGear = { ...state.gear, [gearToUpdate]: updatedGear };
   const newTotalWeight = calculateTotalWeight(newGear);
 
@@ -37,7 +37,7 @@ export const returnUpdatedUniform = returnUpdatedWeightAndGear('uniform');
 export const returnUpdatedVest = returnUpdatedWeightAndGear('vest');
 export const returnUpdatedHelmet = returnUpdatedWeightAndGear('helmet');
 
-const incrementQuantity = incrementer => (array, targetName) => array.map((element) => {
+const incrementQuantity = (incrementer) => (array, targetName) => array.map((element) => {
   const object = element;
   if (object.name === targetName) {
     object.qty += incrementer;

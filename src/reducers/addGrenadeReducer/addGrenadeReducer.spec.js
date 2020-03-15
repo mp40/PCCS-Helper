@@ -4,13 +4,13 @@ import { MockState } from '../mockState';
 const getGrenadeData = () => ({
   name: 'L2 A2',
   qty: 1,
-  w: 0.9,
+  weight: 0.9,
 });
 
 const getHeavyGrenadeData = () => ({
   name: 'TNT',
   qty: 1,
-  w: 10,
+  weight: 10,
 });
 
 const characterWithTNT = () => addGrenadeReducer(new MockState(), { payload: getHeavyGrenadeData() });

@@ -42,8 +42,14 @@ export const grenadeShape = PropTypes.shape({
   qty: PropTypes.number.isRequired,
   length: PropTypes.number.isRequired,
   weight: PropTypes.number.isRequired,
-  at: PropTypes.number.isRequired,
-  fl: PropTypes.number.isRequired,
+  at: PropTypes.oneOfType([
+    PropTypes.number.isRequired,
+    PropTypes.string.isRequired,
+  ]),
+  fl: PropTypes.oneOfType([
+    PropTypes.number.isRequired,
+    PropTypes.string.isRequired,
+  ]),
   r: PropTypes.number.isRequired,
   smk: PropTypes.number,
   dur: PropTypes.number,

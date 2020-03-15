@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import NavBar from './component';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   currentView: state.currentView,
   totalWeight: state.totalWeight,
 });
