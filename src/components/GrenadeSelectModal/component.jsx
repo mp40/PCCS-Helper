@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { PropTypes } from 'prop-types';
 import GrenadeData from '../GrenadeData';
 import { grenadeData, specialGrenades } from '../../data/grenades';
+import { grenadeShape } from '../../helpers/proptypeShapes';
 import ButtonInfo from '../widgets/buttons/ButtonInfo';
 import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 
@@ -68,7 +69,7 @@ const GrenadeSelectModal = ({ toggleOffWeaponCardViews, addGrenade, grenades }) 
 GrenadeSelectModal.propTypes = {
   addGrenade: PropTypes.func,
   toggleOffWeaponCardViews: PropTypes.func,
-  grenades: PropTypes.arrayOf(PropTypes.object),
+  grenades: PropTypes.arrayOf(grenadeShape),
 };
 
 export default GrenadeSelectModal;

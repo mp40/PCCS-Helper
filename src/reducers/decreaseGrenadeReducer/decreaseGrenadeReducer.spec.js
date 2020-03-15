@@ -4,13 +4,13 @@ import { MockState } from '../mockState';
 const getGrenadeData = () => ({
   name: 'L2 A2',
   qty: 1,
-  w: 0.9,
+  weight: 0.9,
 });
 
 const getHeavyGrenadeData = () => ({
   name: 'TNT',
   qty: 1,
-  w: 10,
+  weight: 10,
 });
 
 const characterWithTNT = () => {
@@ -48,12 +48,12 @@ const characterWithTNTAndTwoGrenades = () => {
 };
 
 describe('increaseGrenadeReducer function', () => {
-  it('should decrease quantity of the gun by one', () => {
+  it('should decrease quantity of the grenade by one', () => {
     const action = { payload: getHeavyGrenadeData() };
     const newState = decreaseGrenadeReducer(characterWithTwoTNT(), action);
     expect(newState).toMatchObject(characterWithTNT());
   });
-  it('should increase quantity of the target gun in array with more than item', () => {
+  it('should increase quantity of the target grenade in array with more than item', () => {
     const action = { payload: getGrenadeData() };
     const newState = decreaseGrenadeReducer(characterWithTNTAndTwoGrenades(), action);
     expect(newState.gear.grenades[1].name).toBe('L2 A2');

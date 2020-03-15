@@ -22,7 +22,22 @@ const dataM61Grenade = {
   heading: 'standard',
 };
 
-const doubleM2 = { name: 'M2' };
+const doubleM2 = {
+  name: 'M2',
+  qty: 1,
+  length: 4.5,
+  weight: 1.3,
+  at: 3,
+  fl: 2,
+  r: 13,
+  data: {
+    pen: ['PEN', 2.3, 1, 1, 1, 1, '', ''],
+    dc: ['DC', 10, 2, 2, 2, 2, '', ''],
+    bshc: ['BSHC', '*2', 2, -1, -6, -9, '', ''],
+    bc: ['BC', '43H', 335, 95, 30, 15, 7, 4],
+  },
+  heading: 'standard',
+};
 
 describe('GrenadeSelectModal', () => {
   const wrapper = mount(

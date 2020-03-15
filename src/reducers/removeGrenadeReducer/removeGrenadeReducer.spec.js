@@ -4,13 +4,13 @@ import { MockState } from '../mockState';
 const getGrenadeData = () => ({
   name: 'L2 A2',
   qty: 1,
-  w: 0.9,
+  weight: 0.9,
 });
 
 const getHeavyGrenadeData = () => ({
   name: 'TNT',
   qty: 1,
-  w: 10,
+  weight: 10,
 });
 
 const characterWithTNT = () => {
@@ -30,13 +30,13 @@ const characterWithGrenadeAndTNT = () => {
   return character;
 };
 
-describe('removeEquipmentReducer function', () => {
-  it('should return correct values when equipment removed from list', () => {
+describe('removeGrenadeReducer function', () => {
+  it('should return correct values when grenade removed from list', () => {
     const action = { payload: getHeavyGrenadeData() };
     const newState = removeGrenadeReducer(characterWithTNT(), action);
     expect(newState).toMatchObject(new MockState());
   });
-  it('should return correct values when equipment removed from list with more than one equipment type', () => {
+  it('should return correct values when grenade removed from list with more than one grenade type', () => {
     const action = { payload: getGrenadeData() };
     const newState = removeGrenadeReducer(characterWithGrenadeAndTNT(), action);
     expect(newState).toMatchObject(characterWithTNT());
