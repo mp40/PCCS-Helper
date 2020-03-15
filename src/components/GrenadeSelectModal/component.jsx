@@ -69,7 +69,6 @@ const GrenadeSelectModal = ({ toggleOffWeaponCardViews, addGrenade, grenades }) 
 GrenadeSelectModal.propTypes = {
   addGrenade: PropTypes.func,
   toggleOffWeaponCardViews: PropTypes.func,
-  // grenades: PropTypes.arrayOf(PropTypes.object),
   grenades: PropTypes.arrayOf(grenadeShape),
 };
 
