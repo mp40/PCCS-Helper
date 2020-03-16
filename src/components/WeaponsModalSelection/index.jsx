@@ -2,6 +2,8 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import GearModalContents from '../GearModalContents';
+import GearCard from '../GearCard';
 import FirearmStatsTable from '../FirearmStatsTable';
 import FirearmFilter from '../FirearmFilter';
 import FirearmNotes from '../FirearmNotes';
@@ -11,10 +13,6 @@ import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 
 
 import { rifles, pistols, smgs, mgs, sniperRifles, shotguns, filterableCalibers } from '../../data/firearms';
-
-import GearModalContents from '../GearModalContents';
-
-import GearCard from '../GearCard';
 
 import './WeaponsModalSelection.css';
 

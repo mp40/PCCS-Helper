@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import BetaTemp from '../BetaTemp'; // mptodo delete this once at MVP
 
+import SelectLauncherModal from '../SelectLauncherModal';
+
 import './Home.css';
 
 const HomePage = ({ selectCurrentView }) => (
@@ -17,6 +19,7 @@ const HomePage = ({ selectCurrentView }) => (
     >
         Create Character
     </button>
+    <SelectLauncherModal />
     <BetaTemp />
   </div>
 );

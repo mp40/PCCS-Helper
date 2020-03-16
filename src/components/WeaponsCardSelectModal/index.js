@@ -7,3 +7,4 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { addFirearm })(WeaponsCardSelectModal);
+// mptodo, change gear to gear.firearms ?
