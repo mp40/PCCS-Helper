@@ -32,24 +32,26 @@ const SelectLauncherModal = () => {
     <GearModal>
       <GearCard name="modalCard">
         <GearModalContents>
-          <>
-            {launchers().map((launcher) => (
-              <div key={launcher.name} style={{ display: 'flex', width: '30%', paddingLeft: '.2rem', paddingRight: '.2rem' }}>
-                <ButtonInfo
-                  id={`view${launcher.name.replace(/\s+/g, '')}`}
-                  onClick={() => handleToggleShowStats(launcher)}
-                />
-                <div
-                  className="firearmEntry"
-                  id={launcher.name}
-                >
-                  <span>{launcher.name}</span>
-                  <span>{`${launcher.weight} lbs`}</span>
+          <div className="launcherContentsContainer">
+            <div className="launcherRowContainer">
+              {launchers().map((launcher) => (
+                <div key={launcher.name} className="launcherRow">
+                  <ButtonInfo
+                    id={`view${launcher.name.replace(/\s+/g, '')}`}
+                    onClick={() => handleToggleShowStats(launcher)}
+                  />
+                  <div
+                    className="launcherEntry"
+                    id={launcher.name}
+                  >
+                    <span>{launcher.name}</span>
+                    <span>{`${launcher.weight} lbs`}</span>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
             {showStats && <WeaponStatsTable weapon={launcherToView} />}
-          </>
+          </div>
         </GearModalContents>
       </GearCard>
     </GearModal>

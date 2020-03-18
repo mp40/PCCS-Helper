@@ -1,6 +1,9 @@
+import React from 'react';
 import { act } from 'react-dom/test-utils';
+import { mount, shallow } from 'enzyme';
+import WeaponsCard, { getSelectedWeapons } from './component';
 import { mountAppWithStore, storeWithCreateCharacterView } from '../../helpers/testHelpers';
-import { getSelectedWeapons } from './component';
+
 
 const waitOneSec = (simulate) => new Promise(((resolve) => {
   setTimeout(() => {
@@ -159,6 +162,16 @@ describe('The Weapons Card', () => {
     it('should be possible ro remove grenade', () => {
       wrapper.find('.removeM2').simulate('click');
       expect(selectedWeapons(wrapper).text()).not.toContain('M21.311.3');
+    });
+  });
+  describe('launchers', () => {
+    const wrapper = shallow(<WeaponsCard firearms={[]} grenades={[]} removeAllFirearms={() => {}} />);
+    const setSpy = () => jest.spyOn(wrapper.instance(), 'toggleOnWeaponsCardViews');
+    it('should be possible to open a list of selectable launchers', () => {
+      const spyOnMethod = setSpy();
+      wrapper.find('GearCard').dive().find('#addLauncher').simulate('click');
+      expect(spyOnMethod).toHaveBeenCalledWith('showLaunchers');
+      spyOnMethod.mockRestore();
     });
   });
 });
