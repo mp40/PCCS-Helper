@@ -5,7 +5,7 @@
 }
 
 .gearModalContents > div {
-    width: calc((100% - 30px) / 3);
+    /* width: calc((100% - 30px) / 3); */ /*mptodo*/
     font-size: small;
     display: flex;
     justify-content: space-between;

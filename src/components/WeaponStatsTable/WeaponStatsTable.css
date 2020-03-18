@@ -42,7 +42,7 @@
 }
 
 .gunTableLine > td:nth-of-type(2) > span:first-of-type {
-    margin-left: .9rem
+    margin-left: .9rem;
 }
 
 .gunTableLine > td:nth-of-type(2) > span:last-of-type {

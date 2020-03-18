@@ -9,6 +9,10 @@
   transition: 0.3s;
 }
 
+.firearmEntry > span:first-of-type {
+  float: left;
+}
+
 .firearmEntry > span:last-of-type {
   float: right;
 }

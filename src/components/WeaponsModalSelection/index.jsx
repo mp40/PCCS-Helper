@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import GearModalContents from '../GearModalContents';
 import GearCard from '../GearCard';
-import FirearmStatsTable from '../FirearmStatsTable';
+import WeaponStatsTable from '../WeaponStatsTable';
 import FirearmFilter from '../FirearmFilter';
 import FirearmNotes from '../FirearmNotes';
 import ButtonStandard from '../widgets/buttons/ButtonStandard';
@@ -145,7 +145,7 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, handleAddFirearm }) =
           </div>
           <div style={{ display: 'flex' }}>
             <div>
-              <FirearmStatsTable gunObj={firearmToInspect} />
+              <WeaponStatsTable weapon={firearmToInspect} />
             </div>
             { firearmToInspect.list !== 'shotguns'
           && (

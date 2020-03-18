@@ -1,6 +1,7 @@
 export const launchers = () => [
   {
     name: 'M79',
+    list: 'launchers',
     qty: 1,
     length: 29,
     weight: 6.5,
@@ -21,6 +22,14 @@ export const launchers = () => [
         dc: [10, 10, 10, ''],
       },
       {
+        type: 'HE',
+        data: 'ballistic',
+        pen: [2.1, 2.1, 2.1, ''],
+        dc: [10, 10, 10, ''],
+      },
+    ],
+    explosive: [
+      {
         type: 'HEAT',
         data: 'explosive',
         pen: [1.6, 1.4, 1.0, 0.7, 0.4, ''],
@@ -30,16 +39,10 @@ export const launchers = () => [
       },
       {
         type: 'HE',
-        data: 'ballistic',
-        pen: [2.1, 2.1, 2.1, ''],
-        dc: [10, 10, 10, ''],
-      },
-      {
-        type: 'HE',
         data: 'explosive',
         pen: [1.6, 1.4, 1.0, 0.7, 0.4, ''],
         dc: [1, 1, 1, 1, 1, ''],
-        bshc: ['*3', 62, 15, 6, 2],
+        bshc: ['*3', 62, 15, 6, 2, ''],
         bc: [273, 80, 25, 13, 6, 1],
       },
     ],
@@ -49,12 +52,13 @@ export const launchers = () => [
   },
   {
     name: 'M72 A2 LAW',
+    list: 'launchers',
     qty: 1,
     length: '26/35',
     weight: 5.2,
     rt: 14,
     rof: '-',
-    mag: [{ type: 'Disposable' }],
+    mag: [{ type: '', weight: '-', cap: 1 }],
     mr: 650,
     sab: '',
     aim: {
@@ -68,6 +72,8 @@ export const launchers = () => [
         pen: ['68h', '68h', '68h', '68h'],
         dc: [10, 10, 10, 10],
       },
+    ],
+    explosive: [
       {
         type: 'HEAT',
         data: 'explosive',
@@ -83,6 +89,7 @@ export const launchers = () => [
   },
   {
     name: 'RPG 7V',
+    list: 'launchers',
     qty: 1,
     length: '39/54',
     weight: 20.4,
@@ -103,18 +110,21 @@ export const launchers = () => [
         dc: [10, 10, 10, 10],
       },
       {
+        type: 'HE',
+        data: 'ballistic',
+        pen: [8.2, 8.2, 8.2, 8.2],
+        dc: [10, 10, 10, 10],
+      },
+
+    ],
+    explosive: [
+      {
         type: 'HEAT',
         data: 'explosive',
         pen: [7.2, 7.1, 6.9, 6.7, 6.2, 5.2],
         dc: [8, 8, 8, 8, 8, 7],
         bshc: [11, 2, -1, -4, -8, -13],
         bc: ['20h', 393, 105, 52, 22, 7],
-      },
-      {
-        type: 'HE',
-        data: 'ballistic',
-        pen: [8.2, 8.2, 8.2, 8.2],
-        dc: [10, 10, 10, 10],
       },
       {
         type: 'HE',

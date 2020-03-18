@@ -21,7 +21,6 @@ export const gearShape = PropTypes.shape({
 export const gunObjShape = PropTypes.shape({
   name: PropTypes.string,
   list: PropTypes.string,
-  type: PropTypes.array,
   length: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   weight: PropTypes.number,
   rt: PropTypes.number,
@@ -55,6 +54,23 @@ export const grenadeShape = PropTypes.shape({
   dur: PropTypes.number,
   data: PropTypes.object.isRequired,
   heading: PropTypes.string.isRequired,
+});
+
+export const launcherShape = PropTypes.shape({
+  name: PropTypes.string,
+  list: PropTypes.string,
+  length: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  weight: PropTypes.number,
+  rt: PropTypes.number,
+  rof: PropTypes.string,
+  mag: PropTypes.array,
+  mr: PropTypes.number,
+  sab: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  aim: PropTypes.object,
+  projectiles: PropTypes.array,
+  moi: PropTypes.array,
+  ba: PropTypes.array,
+  tof: PropTypes.array,
 });
 
 export const tableLineShape = PropTypes.shape({

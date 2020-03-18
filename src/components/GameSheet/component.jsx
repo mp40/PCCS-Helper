@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { PropTypes } from 'prop-types';
-import FirearmStatsTable from '../FirearmStatsTable';
+import WeaponStatsTable from '../WeaponStatsTable';
 import CombatStatsInfo from './CombatStatsInfo';
 import ActionTable from '../ActionsCard/ActionTable';
 import HandToHandTable from '../HandToHandTable/HandToHandTable';
@@ -28,10 +28,10 @@ const meleeNameList = {
   shotguns: true,
 };
 
-const getRifleWeightClass = weight => (weight < 11.2 ? 'light' : 'heavy');
+const getRifleWeightClass = (weight) => (weight < 11.2 ? 'light' : 'heavy');
 
 const getFirearmForMeleeList = (firearmsArray) => {
-  const filteredArray = firearmsArray.filter(gun => meleeNameList[gun.list]);
+  const filteredArray = firearmsArray.filter((gun) => meleeNameList[gun.list]);
   if (filteredArray[0] === undefined) {
     return [];
   }
@@ -79,7 +79,7 @@ const GameSheet = ({ currentCharacter, characterStats, combatStats, gear, select
           )}
           <div style={{ display: 'flex' }}>
             <div>
-              <FirearmStatsTable gunObj={gear.firearms[0]} sal={combatStats.SAL} size="a4" />
+              <WeaponStatsTable weapon={gear.firearms[0]} sal={combatStats.SAL} size="a4" />
             </div>
             <div className="firearm-notes-a4-wrapper">
               <FirearmNotes gunObj={gear.firearms[0]} />
