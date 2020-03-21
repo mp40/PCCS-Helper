@@ -11,6 +11,8 @@ import {
   increaseLauncherQty,
   decreaseLauncherQty,
   removeLauncher,
+  increaseLauncherAmmo,
+  decreaseLauncherAmmo,
 } from '../../actions';
 import WeaponsTableBody from './component';
 
@@ -26,4 +28,6 @@ export default connect(null, {
   increaseLauncherQty,
   decreaseLauncherQty,
   removeLauncher,
+  increaseLauncherAmmo,
+  decreaseLauncherAmmo,
 })(WeaponsTableBody);

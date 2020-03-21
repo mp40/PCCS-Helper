@@ -218,3 +218,13 @@ export const removeLauncher = (launcher) => ({
   type: 'LAUNCHER_REMOVED',
   payload: launcher,
 });
+
+export const increaseLauncherAmmo = (launcherAndAmmoType) => ({
+  type: 'LAUNCHER_AMMO_QTY_INCREASED',
+  payload: launcherAndAmmoType,
+});
+
+export const decreaseLauncherAmmo = (launcherAndAmmoType) => ({
+  type: 'LAUNCHER_AMMO_QTY_DECREASED',
+  payload: launcherAndAmmoType,
+});

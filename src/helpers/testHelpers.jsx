@@ -57,7 +57,13 @@ export const testFAMAS = () => findFirearmByName(rifles(), 'FAMAS');
 
 export const testRemington = () => findFirearmByName(shotguns(), 'Remington M870');
 
-export const testM79 = () => findFirearmByName(launchers(), 'M79');
+// export const testM79 = () => findFirearmByName(launchers(), 'M79');
+
+export const testM79 = (ammo = 0) => {
+  const m79 = findFirearmByName(launchers(), 'M79');
+  m79.mag[0].qty = ammo;
+  return m79;
+};
 
 export const testM72 = (qty = 1) => {
   const m72 = findFirearmByName(launchers(), 'M72 A2 LAW');

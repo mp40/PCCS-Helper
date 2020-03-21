@@ -52,6 +52,8 @@ describe('rendering weapons', () => {
   const increaseLauncherQty = jest.fn();
   const decreaseLauncherQty = jest.fn();
   const removeLauncher = jest.fn();
+  const increaseLauncherAmmo = jest.fn();
+  const decreaseLauncherAmmo = jest.fn();
   const getProps = () => ({
     toggleModifyWeapon,
     selectedGuns,
@@ -68,6 +70,8 @@ describe('rendering weapons', () => {
     increaseLauncherQty,
     decreaseLauncherQty,
     removeLauncher,
+    increaseLauncherAmmo,
+    decreaseLauncherAmmo,
   });
   describe('default render', () => {
     const props = getProps();
@@ -131,6 +135,25 @@ describe('rendering weapons', () => {
       const m72Row = wrapper.find('.M72A2LAWRow');
       m72Row.find('.removeM72A2LAW').simulate('click');
       expect(removeLauncher).toHaveBeenCalledWith(testM72(2));
+    });
+    it('should possible to increment launcher ammo up', () => {
+      const m79Ammo = wrapper.find('.spareMagRow').at(0);
+      m79Ammo.find('#qtyUpMagType1').simulate('click');
+      expect(increaseLauncherAmmo).toHaveBeenCalledWith({ firearm: testM79(), magazine: testM79().mag[0] });
+    });
+    it('should possible to increment launcher ammo down', () => {
+      const tempProps = getProps();
+      tempProps.selectedLaunchers = [testM79(1)];
+      const m79Ammo = mount(<WeaponsTableBody {...tempProps} />, {
+        attachTo: document.createElement('table'),
+      });
+      m79Ammo.find('#qtyDownMagType1').simulate('click');
+      expect(decreaseLauncherAmmo).toHaveBeenCalledWith({ firearm: testM79(1), magazine: testM79(1).mag[0] });
+    });
+    it('should not be possible to decrement ammo if it is 0', () => {
+      const m79Ammo = wrapper.find('.spareMagRow').at(0);
+      m79Ammo.find('#qtyDownMagType1').simulate('click');
+      expect(increaseLauncherAmmo).not.toHaveBeenCalled();
     });
   });
 });
