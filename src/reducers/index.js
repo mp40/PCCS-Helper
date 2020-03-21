@@ -131,18 +131,3 @@ function reduceActions(state = initialState, action) {
 }
 
 export default reduceActions;
-
-// export const increaseLauncherQty = (launcher) => ({
-//   type: 'LAUNCHER_QTY_INCREASED',
-//   payload: launcher,
-// });
-
-// export const decreaseLauncherQty = (launcher) => ({
-//   type: 'LAUNCHER_QTY_DECREASED',
-//   payload: launcher,
-// });
-
-// export const removeLauncher = (launcher) => ({
-//   type: 'LAUNCHER_REMOVED',
-//   payload: launcher,
-// });

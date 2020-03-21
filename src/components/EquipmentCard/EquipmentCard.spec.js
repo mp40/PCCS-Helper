@@ -36,29 +36,29 @@ describe('the equipment list', () => {
     it('should be possible increment qty up and down', () => {
       addEquipment(wrapper);
       wrapper.find('#qtyUpEquipment').simulate('click');
-      expect(wrapper.find('.BatRow').childAt(2).text()).toContain(2);
+      expect(wrapper.find('.BaseballBatRow').childAt(2).text()).toContain(2);
       wrapper.find('#qtyDownEquipment').simulate('click');
-      expect(wrapper.find('.BatRow').childAt(2).text()).toContain(1);
+      expect(wrapper.find('.BaseballBatRow').childAt(2).text()).toContain(1);
     });
     it('should calculate weight * qty', () => {
       addEquipment(wrapper);
-      expect(wrapper.find('.BatRow').childAt(3).text()).toContain(2.2);
+      expect(wrapper.find('.BaseballBatRow').childAt(3).text()).toContain(2.2);
       wrapper.find('#qtyUpEquipment').simulate('click');
-      expect(wrapper.find('.BatRow').childAt(3).text()).toContain(4.4);
+      expect(wrapper.find('.BaseballBatRow').childAt(3).text()).toContain(4.4);
     });
   });
   describe('removing equipment', () => {
     it('should be possible to remove equipment from list', () => {
       addEquipment(wrapper);
       wrapper.find('#filterEquipmentList').simulate('click');
-      wrapper.find('.removeBaseball').simulate('click');
+      wrapper.find('.removeBaseballBat').simulate('click');
       expect(wrapper.text()).not.toContain('Baseball Bat');
     });
     it('should remove weight of deleted quipment', () => {
       addEquipment(wrapper);
       wrapper.find('#filterEquipmentList').simulate('click');
       wrapper.find('#qtyUpEquipment').simulate('click');
-      wrapper.find('.removeBaseball').simulate('click');
+      wrapper.find('.removeBaseballBat').simulate('click');
       expect(wrapper.find('.menuBar').text()).toContain(5);
     });
     it('should clear all equipment from list', () => {
