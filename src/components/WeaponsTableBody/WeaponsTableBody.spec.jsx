@@ -102,7 +102,9 @@ describe('rendering weapons', () => {
   describe('rendering launchers', () => {
     const props = getProps();
     props.selectedLaunchers = [testM79(), testM72(2)];
-    const wrapper = mount(<WeaponsTableBody {...props} />);
+    const wrapper = mount(<WeaponsTableBody {...props} />, {
+      attachTo: document.createElement('table'),
+    });
     afterEach(() => {
       jest.clearAllMocks();
     });
