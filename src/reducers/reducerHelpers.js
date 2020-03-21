@@ -32,6 +32,7 @@ const returnUpdatedWeightAndGear = (gearToUpdate) => (state, updatedGear) => {
 export const returnUpdatedWeightAndEquipment = returnUpdatedWeightAndGear('equipment');
 export const returnUpdatedWeightAndFirearms = returnUpdatedWeightAndGear('firearms');
 export const returnUpdatedWeightAndGrenades = returnUpdatedWeightAndGear('grenades');
+export const returnUpdatedWeightAndLaunchers = returnUpdatedWeightAndGear('launchers');
 
 export const returnUpdatedUniform = returnUpdatedWeightAndGear('uniform');
 export const returnUpdatedVest = returnUpdatedWeightAndGear('vest');

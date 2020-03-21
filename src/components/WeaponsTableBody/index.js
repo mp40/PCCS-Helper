@@ -8,6 +8,9 @@ import {
   decreaseFirearmQty,
   increaseMagazineQty,
   decreaseMagazineQty,
+  increaseLauncherQty,
+  decreaseLauncherQty,
+  removeLauncher,
 } from '../../actions';
 import WeaponsTableBody from './component';
 
@@ -20,4 +23,7 @@ export default connect(null, {
   decreaseFirearmQty,
   increaseMagazineQty,
   decreaseMagazineQty,
+  increaseLauncherQty,
+  decreaseLauncherQty,
+  removeLauncher,
 })(WeaponsTableBody);

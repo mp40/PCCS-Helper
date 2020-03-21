@@ -27,6 +27,7 @@ export class MockState {
       equipment: [],
       firearms: [],
       grenades: [],
+      launchers: [],
     };
   }
 }

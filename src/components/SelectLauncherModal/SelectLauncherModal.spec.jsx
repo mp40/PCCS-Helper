@@ -1,10 +1,18 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import SelectLauncherModal from './index';
+import SelectLauncherModal from './component';
 
 describe('the select grenade/rocket launcher modal', () => {
   describe('the list of launchers', () => {
-    const wrapper = mount(<SelectLauncherModal />);
+    let wrapper;
+    const toggleOffWeaponCardViews = jest.fn();
+    const addLauncher = jest.fn();
+    beforeEach(() => {
+      wrapper = mount(
+        <SelectLauncherModal toggleOffWeaponCardViews={toggleOffWeaponCardViews} addLauncher={addLauncher} />,
+      );
+      jest.clearAllMocks();
+    });
     it('should display list of weapons', () => {
       expect(wrapper.text()).toContain('M79');
     });
@@ -14,6 +22,16 @@ describe('the select grenade/rocket launcher modal', () => {
     it('should be possible to see launcher stats', () => {
       wrapper.find('#viewM79').simulate('click');
       expect(wrapper.find('WeaponStatsTable').exists()).toBe(true);
+    });
+    it('should be possible select a launcher', () => {
+      wrapper.find('#M79').simulate('click');
+      expect(addLauncher).toHaveBeenCalledWith(
+        expect.objectContaining({ name: 'M79' }),
+      );
+    });
+    it('should close the modal when selection made', () => {
+      wrapper.find('#M79').simulate('click');
+      expect(toggleOffWeaponCardViews).toHaveBeenCalledWith('showLaunchers');
     });
   });
   describe('rendering data for grenade launchers', () => {

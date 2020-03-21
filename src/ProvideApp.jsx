@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 
 import App from './App';
 
-const ProvideApp = store => (
+const ProvideApp = (store) => (
   <Provider store={store}>
     <App />
   </Provider>

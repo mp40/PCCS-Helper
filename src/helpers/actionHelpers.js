@@ -1,21 +1,24 @@
 import { uniformWeights } from '../data/uniformAndArmourTypes';
 
-export const calculateAmmoWeight = (gunObj) => {
-  const ammoWeight = gunObj.mag.reduce((accumulator, magObj) => accumulator + (magObj.weight * magObj.qty), 0);
+export const calculateAmmoWeight = (weapon) => {
+  if (weapon.mag[0].weight === '-') {
+    return 0;
+  }
+  const ammoWeight = weapon.mag.reduce((accumulator, magObj) => accumulator + (magObj.weight * magObj.qty), 0);
   return Math.round(ammoWeight * 1000) / 1000;
 };
 
-export const calculateGunAndAmmoWeight = (gunObj) => {
-  const ammoWeight = calculateAmmoWeight(gunObj);
-  const gunWeight = gunObj.weight * gunObj.qty;
-  return Math.round((ammoWeight + gunWeight) * 1000) / 1000;
+export const calculateWeaponAndAmmoWeight = (weapon) => {
+  const ammoWeight = calculateAmmoWeight(weapon);
+  const weaponWeight = weapon.weight * weapon.qty;
+  return Math.round((ammoWeight + weaponWeight) * 1000) / 1000;
 };
 
-export const calculateFirearmsArrayWeight = (gunArray) => {
+export const calculateWeaponArrayWeight = (gunArray) => {
   if (gunArray === undefined) {
     return null;
   }
-  const totalWeight = gunArray.reduce((accumulator, gunObj) => accumulator + calculateGunAndAmmoWeight(gunObj), 0);
+  const totalWeight = gunArray.reduce((accumulator, gunObj) => accumulator + calculateWeaponAndAmmoWeight(gunObj), 0);
   return Math.round(totalWeight * 1000) / 1000;
 };
 
@@ -50,7 +53,7 @@ const calculateGrenadeArray = (grenades) => grenades.reduce((sum, obj) => sum + 
 export const calculateTotalWeight = (gear) => {
   let totalWeight = findUniformWeight(gear.uniform)
   + findEquipmentWeight(gear.equipment)
-  + calculateFirearmsArrayWeight(gear.firearms)
+  + calculateWeaponArrayWeight([...gear.firearms, ...gear.launchers])
   + calculateGrenadeArray(gear.grenades);
   if (gear.helmet) {
     totalWeight += gear.helmet.weight;

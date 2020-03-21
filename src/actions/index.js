@@ -198,3 +198,23 @@ export const changeCharacterName = (name) => ({
   type: 'CHARACTER_NAME_CHANGED',
   payload: name,
 });
+
+export const addLauncher = (launcher) => ({
+  type: 'LAUNCHER_ADDED',
+  payload: launcher,
+});
+
+export const increaseLauncherQty = (launcher) => ({
+  type: 'LAUNCHER_QTY_INCREASED',
+  payload: launcher,
+});
+
+export const decreaseLauncherQty = (launcher) => ({
+  type: 'LAUNCHER_QTY_DECREASED',
+  payload: launcher,
+});
+
+export const removeLauncher = (launcher) => ({
+  type: 'LAUNCHER_REMOVED',
+  payload: launcher,
+});

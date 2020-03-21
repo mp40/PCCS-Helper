@@ -28,6 +28,7 @@ export const initialStore = {
     equipment: [],
     firearms: [],
     grenades: [],
+    launchers: [],
   },
 };
 

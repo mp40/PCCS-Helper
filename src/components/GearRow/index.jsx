@@ -7,6 +7,8 @@ import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 import ButtonIncrementArrows from '../widgets/buttons/ButtonIncrementArrows';
 import { correctFloatingPoint } from '../../reducers/reducerHelpers';
 
+import keys from './data';
+
 import './GearRow.css';
 
 export const renderCorrectAmmoTitle = (mag) => (mag.type === 'Rnd' ? 'Single Rounds' : `${mag.cap} round ${mag.type}`);
@@ -14,7 +16,7 @@ export const renderCorrectAmmoTitle = (mag) => (mag.type === 'Rnd' ? 'Single Rou
 const GearRow = ({ gear }) => {
   const renderRemoveButton = (item) => (
     <ButtonDeleteX
-      className={`remove${item.name}`}
+      className={`remove${item.name.replace(/\s/g, '')}`}
       onClick={() => gear.remove(item)}
     />
   );
@@ -55,7 +57,7 @@ const GearRow = ({ gear }) => {
   return (
     gear.array.map((item) => (
       <Fragment key={item.name}>
-        <tr className={`${item.name}Row tableRow`}>
+        <tr className={`${item.name.replace(/\s/g, '')}Row tableRow`}>
           <td>
             {renderRemoveButton(item)}
             {wrapWithClickable(item)}
@@ -70,7 +72,7 @@ const GearRow = ({ gear }) => {
             return null;
           }
           return (
-            <tr key={`${mag.cap}${mag.weight}`} className="spareMagRow">
+            <tr key={keys[index]} className="spareMagRow">
               <td>
                 <span>
                   {`${mag.qty} x ${renderCorrectAmmoTitle(mag)}`}

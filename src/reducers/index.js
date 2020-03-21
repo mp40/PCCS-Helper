@@ -33,6 +33,10 @@ import { removeGrenadeReducer } from './removeGrenadeReducer';
 import { increaseGrenadeReducer } from './increaseGrenadeReducer';
 import { decreaseGrenadeReducer } from './decreaseGrenadeReducer';
 import { changeNameReducer } from './changeNameReducer';
+import { addLauncherReducer } from './addLauncherReducer';
+import { removeLauncherReducer } from './removeLauncherReducer';
+import { increaseLauncherReducer } from './increaseLauncherReducer';
+import { decreaseLauncherReducer } from './decreaseLauncherReducer';
 
 const initialState = initialStore;
 
@@ -106,6 +110,14 @@ function reduceActions(state = initialState, action) {
       return increaseGrenadeReducer(state, action);
     case 'GRENADE_QTY_DECREASED':
       return decreaseGrenadeReducer(state, action);
+    case 'LAUNCHER_ADDED':
+      return addLauncherReducer(state, action);
+    case 'LAUNCHER_REMOVED':
+      return removeLauncherReducer(state, action);
+    case 'LAUNCHER_QTY_INCREASED':
+      return increaseLauncherReducer(state, action);
+    case 'LAUNCHER_QTY_DECREASED':
+      return decreaseLauncherReducer(state, action);
     case 'CHARACTER_NAME_CHANGED':
       return changeNameReducer(state, action);
     case 'TOTAL_WEIGHT':
@@ -119,3 +131,18 @@ function reduceActions(state = initialState, action) {
 }
 
 export default reduceActions;
+
+// export const increaseLauncherQty = (launcher) => ({
+//   type: 'LAUNCHER_QTY_INCREASED',
+//   payload: launcher,
+// });
+
+// export const decreaseLauncherQty = (launcher) => ({
+//   type: 'LAUNCHER_QTY_DECREASED',
+//   payload: launcher,
+// });
+
+// export const removeLauncher = (launcher) => ({
+//   type: 'LAUNCHER_REMOVED',
+//   payload: launcher,
+// });

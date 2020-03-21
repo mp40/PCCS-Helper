@@ -11,6 +11,7 @@ const WeaponsTableBody = ({
   toggleModifyWeapon,
   selectedGuns,
   selectedGrenades,
+  selectedLaunchers,
   removeGrenade,
   increaseGrenadeQty,
   decreaseGrenadeQty,
@@ -19,7 +20,9 @@ const WeaponsTableBody = ({
   decreaseFirearmQty,
   increaseMagazineQty,
   decreaseMagazineQty,
-
+  increaseLauncherQty,
+  decreaseLauncherQty,
+  removeLauncher,
 }) => (
   <tbody id="characterWeaponList">
     <GearRow
@@ -27,6 +30,9 @@ const WeaponsTableBody = ({
     />
     <GearRow
       gear={{ type: 'Grenade', remove: removeGrenade, up: increaseGrenadeQty, down: decreaseGrenadeQty, array: selectedGrenades }}
+    />
+    <GearRow
+      gear={{ type: 'Launcher', remove: removeLauncher, up: increaseLauncherQty, down: decreaseLauncherQty, array: selectedLaunchers }}
     />
   </tbody>
 );
@@ -40,9 +46,13 @@ WeaponsTableBody.propTypes = {
   increaseGrenadeQty: PropTypes.func,
   decreaseGrenadeQty: PropTypes.func,
   removeGrenade: PropTypes.func,
+  increaseLauncherQty: PropTypes.func,
+  decreaseLauncherQty: PropTypes.func,
+  removeLauncher: PropTypes.func,
   toggleModifyWeapon: PropTypes.func,
   selectedGuns: PropTypes.arrayOf(PropTypes.object),
   selectedGrenades: PropTypes.arrayOf(PropTypes.object),
+  selectedLaunchers: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default WeaponsTableBody;

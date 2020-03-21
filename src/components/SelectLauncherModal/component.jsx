@@ -17,15 +17,20 @@ import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 
 import { launchers } from '../../data/launchers';
 
-import './styles.css';
+import './SelectLauncherModal.css';
 
-const SelectLauncherModal = () => {
+const SelectLauncherModal = ({ toggleOffWeaponCardViews, addLauncher }) => {
   const [showStats, toggleShowStats] = useState(false);
   const [launcherToView, setLauncherToView] = useState(null);
 
   const handleToggleShowStats = (launcher) => {
     setLauncherToView(launcher);
     toggleShowStats(true);
+  };
+
+  const handleAddLauncher = (launcher) => {
+    addLauncher(launcher);
+    toggleOffWeaponCardViews('showLaunchers');
   };
 
   return (
@@ -41,8 +46,9 @@ const SelectLauncherModal = () => {
                     onClick={() => handleToggleShowStats(launcher)}
                   />
                   <div
-                    className="launcherEntry"
+                    className="--selectableRow launcherEntry"
                     id={launcher.name}
+                    onClick={() => handleAddLauncher(launcher)}
                   >
                     <span>{launcher.name}</span>
                     <span>{`${launcher.weight} lbs`}</span>
@@ -56,6 +62,11 @@ const SelectLauncherModal = () => {
       </GearCard>
     </GearModal>
   );
+};
+
+SelectLauncherModal.propTypes = {
+  toggleOffWeaponCardViews: PropTypes.func,
+  addLauncher: PropTypes.func,
 };
 
 export default SelectLauncherModal;
