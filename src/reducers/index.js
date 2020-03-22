@@ -37,6 +37,8 @@ import { addLauncherReducer } from './addLauncherReducer';
 import { removeLauncherReducer } from './removeLauncherReducer';
 import { increaseLauncherReducer } from './increaseLauncherReducer';
 import { decreaseLauncherReducer } from './decreaseLauncherReducer';
+import { increaseLauncherAmmoReducer } from './increaseLauncherAmmoReducer';
+import { decreaseLauncherAmmoReducer } from './decreaseLauncherAmmoReducer';
 
 const initialState = initialStore;
 
@@ -118,6 +120,10 @@ function reduceActions(state = initialState, action) {
       return increaseLauncherReducer(state, action);
     case 'LAUNCHER_QTY_DECREASED':
       return decreaseLauncherReducer(state, action);
+    case 'LAUNCHER_AMMO_QTY_INCREASED':
+      return increaseLauncherAmmoReducer(state, action);
+    case 'LAUNCHER_AMMO_QTY_DECREASED':
+      return decreaseLauncherAmmoReducer(state, action);
     case 'CHARACTER_NAME_CHANGED':
       return changeNameReducer(state, action);
     case 'TOTAL_WEIGHT':
