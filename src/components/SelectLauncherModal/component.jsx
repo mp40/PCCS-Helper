@@ -2,18 +2,12 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-
-import WeaponsModalSelection from '../WeaponsModalSelection';
 import GearModal from '../GearModal';
-
 import GearModalContents from '../GearModalContents';
 import GearCard from '../GearCard';
-
 import WeaponStatsTable from '../WeaponStatsTable';
 
-import ButtonStandard from '../widgets/buttons/ButtonStandard';
 import ButtonInfo from '../widgets/buttons/ButtonInfo';
-import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 
 import { launchers } from '../../data/launchers';
 
