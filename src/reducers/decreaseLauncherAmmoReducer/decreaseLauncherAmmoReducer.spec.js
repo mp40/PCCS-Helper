@@ -31,16 +31,16 @@ const characterWithM72AndM79AndSpareRound = () => {
 
 describe('decreaseLauncherAmmoReducer', () => {
   it('should decrease quantity of the ammo by one', () => {
-    const magazine = testM79().mag[0];
-    magazine.qty = 1;
-    const action = { payload: { firearm: testM79(1), magazine } };
+    const weapon = testM79(1);
+    const magazine = weapon.mag[0];
+    const action = { payload: { weapon, magazine } };
     const newState = decreaseLauncherAmmoReducer(characterWithM79AndSpareRound(), action);
     expect(newState).toMatchObject(characterWithM79NoSpareAmmo());
   });
   it('should increase quantity of the target ammo in array with more than one launcher', () => {
-    const firearm = testM79(1);
-    const magazine = firearm.mag[0];
-    const action = { payload: { firearm, magazine } };
+    const weapon = testM79(1);
+    const magazine = weapon.mag[0];
+    const action = { payload: { weapon, magazine } };
     const newState = decreaseLauncherAmmoReducer(characterWithM72AndM79AndSpareRound(), action);
     expect(newState.totalWeight).toBe(5 + testM79().weight + testM72().weight);
     expect(newState.gear.launchers[1].mag[0].qty).toBe(0);

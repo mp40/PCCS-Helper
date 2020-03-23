@@ -28,12 +28,12 @@ describe('increaseMagazineReducer function', () => {
   };
   it('should increase quantity of the magazine by one', () => {
     const withAdditionalMagzine = updateMockStateWithM1911A1Mag(new AddedM1911A1());
-    const action = { payload: { firearm: testM1911A1(), magazine: m1911A1Magazine() } };
+    const action = { payload: { weapon: testM1911A1(), magazine: m1911A1Magazine() } };
     const newState = increaseMagazineReducer(new AddedM1911A1(), action);
     expect(newState).toMatchObject(withAdditionalMagzine);
   });
   it('should increase quantity of the target magazine in array with more than one firearm', () => {
-    const action = { payload: { firearm: testM1911A1(), magazine: m1911A1Magazine() } };
+    const action = { payload: { weapon: testM1911A1(), magazine: m1911A1Magazine() } };
     const newState = increaseMagazineReducer(new AddedM1911A1AndM16(), action);
     expect(newState.totalWeight).toBe(17.4);
     expect(newState.combatStats.baseSpeed).toBe(2);

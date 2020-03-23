@@ -40,8 +40,8 @@ const GearRow = ({ gear }) => {
     gear.type, () => gear.up(item), () => (item.qty === 1 ? null : gear.down(item)),
   );
 
-  const renderIncrementMagazineButtons = (firearm, magazine, index) => renderIncrementButtons(
-    `MagType${index + 1}`, () => gear.magUp({ firearm, magazine }), () => (magazine.qty === 0 ? null : gear.magDown({ firearm, magazine })),
+  const renderIncrementMagazineButtons = (weapon, magazine, index) => renderIncrementButtons(
+    `MagType${index + 1}`, () => gear.magUp({ weapon, magazine }), () => (magazine.qty === 0 ? null : gear.magDown({ weapon, magazine })),
   );
 
   const wrapWithClickable = (item) => {

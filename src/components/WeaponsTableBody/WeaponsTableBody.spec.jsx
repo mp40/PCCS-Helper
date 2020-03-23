@@ -149,7 +149,7 @@ describe('rendering weapons', () => {
     it('should possible to increment launcher ammo up', () => {
       const m79Ammo = wrapper.find('.spareMagRow').at(0);
       m79Ammo.find('#qtyUpMagType1').simulate('click');
-      expect(increaseLauncherAmmo).toHaveBeenCalledWith({ firearm: testM79(), magazine: testM79().mag[0] });
+      expect(increaseLauncherAmmo).toHaveBeenCalledWith({ weapon: testM79(), magazine: testM79().mag[0] });
     });
     it('should possible to increment launcher ammo down', () => {
       const tempProps = getProps();
@@ -158,7 +158,7 @@ describe('rendering weapons', () => {
         attachTo: document.createElement('table'),
       });
       m79Ammo.find('#qtyDownMagType1').simulate('click');
-      expect(decreaseLauncherAmmo).toHaveBeenCalledWith({ firearm: testM79(1), magazine: testM79(1).mag[0] });
+      expect(decreaseLauncherAmmo).toHaveBeenCalledWith({ weapon: testM79(1), magazine: testM79(1).mag[0] });
     });
     it('should not be possible to decrement ammo if it is 0', () => {
       const m79Ammo = wrapper.find('.spareMagRow').at(0);

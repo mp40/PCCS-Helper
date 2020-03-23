@@ -11,7 +11,7 @@ const updateLauncherAmmo = (arr, ammoClass) => arr.map((mag) => {
 });
 
 export const increaseLauncherAmmoReducer = (state, action) => {
-  const updatedWeapon = action.payload.firearm;
+  const updatedWeapon = action.payload.weapon;
 
   updatedWeapon.mag = updateLauncherAmmo(updatedWeapon.mag, action.payload.magazine.class);
   const newLauncherArray = modifyObjectQtyInArray(state.gear.launchers, updatedWeapon);
