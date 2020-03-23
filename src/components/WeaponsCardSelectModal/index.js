@@ -3,8 +3,7 @@ import WeaponsCardSelectModal from './component';
 import { addFirearm } from '../../actions';
 
 const mapStateToProps = (state) => ({
-  gear: state.gear,
+  firearms: state.gear.firearms,
 });
 
 export default connect(mapStateToProps, { addFirearm })(WeaponsCardSelectModal);
-// mptodo, change gear to gear.firearms ?
