@@ -1,8 +1,10 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { act } from 'react-dom/test-utils';
 import { mount, shallow } from 'enzyme';
+// import { Provider } from 'react-redux';
 import WeaponsCard, { getSelectedWeapons } from './component';
-import { mountAppWithStore, storeWithCreateCharacterView } from '../../helpers/testHelpers';
+import { mountAppWithStore, storeWithCreateCharacterView, getStore } from '../../helpers/testHelpers';
 
 
 const waitOneSec = (simulate) => new Promise(((resolve) => {
@@ -172,6 +174,41 @@ describe('The Weapons Card', () => {
       wrapper.find('GearCard').dive().find('#addLauncher').simulate('click');
       expect(spyOnMethod).toHaveBeenCalledWith('showLaunchers');
       spyOnMethod.mockRestore();
+    });
+  });
+  describe('launchers intergration', () => {
+    const wrapper = mountAppWithStore(storeWithCreateCharacterView());
+    it('should be possible to select a launcher', () => {
+      wrapper.find('#addLauncher').simulate('click');
+      wrapper.find('#M79').simulate('click');
+      expect(wrapper.find('#characterWeaponList').text()).toContain('M79');
+      expect(wrapper.find('#characterWeaponList').text()).toContain('0 x HEAT');
+      expect(wrapper.find('#characterWeaponList').text()).toContain('0 x HE');
+    });
+    it('should be possible to increment launcher ammo', () => {
+      const heatAmmo = wrapper.find('.spareMagRow').at(0);
+      heatAmmo.find('#qtyUpMagType1').simulate('click');
+      expect(heatAmmo.text()).toContain('1 x HEAT');
+    });
+    it('should be possible to decrement launcher ammo', () => {
+      const heatAmmo = wrapper.find('.spareMagRow').at(0);
+      heatAmmo.find('#qtyDownMagType1').simulate('click');
+      expect(heatAmmo.text()).toContain('0 x HEAT');
+    });
+    it('should be possible to increment launcher qty', () => {
+      const m79 = wrapper.find('.M79Row');
+      m79.find('#qtyUpLauncher').simulate('click');
+      expect(m79.childAt(2).text()).toBe('2');
+    });
+    it('should be possible to decrement launcher qty', () => {
+      const m79 = wrapper.find('.M79Row');
+      m79.find('#qtyDownLauncher').simulate('click');
+      expect(m79.childAt(2).text()).toBe('1');
+    });
+    it('should be possible to remove launcher', () => {
+      const m79 = wrapper.find('.M79Row');
+      m79.find('.removeM79').simulate('click');
+      expect(wrapper.find('#characterWeaponList').text()).not.toContain('M79');
     });
   });
 });

@@ -3,7 +3,7 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import WeaponsTableBody from './component';
 
-import { testFAMAS, testM1911A1, testM79, testM72 } from '../../helpers/testHelpers';
+import { getStore, testFAMAS, testM1911A1, testM79, testM72 } from '../../helpers/testHelpers';
 
 import { renderCorrectAmmoTitle } from '../GearRow';
 
@@ -144,7 +144,6 @@ describe('rendering weapons', () => {
     });
     it('should not display spare rounds for disposable weapons', () => {
       const m72Ammo = wrapper.find('.spareMagRow').at(2);
-      console.log(m72Ammo.debug());
       expect(m72Ammo.exists()).toBe(false);
     });
     it('should possible to increment launcher ammo up', () => {
