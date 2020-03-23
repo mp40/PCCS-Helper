@@ -33,6 +33,10 @@ describe('the select grenade/rocket launcher modal', () => {
       wrapper.find('#M79').simulate('click');
       expect(toggleOffWeaponCardViews).toHaveBeenCalledWith('showLaunchers');
     });
+    it('should be possible to close modal without selecting launcher', () => {
+      wrapper.find('#closeLauncherModal').simulate('click');
+      expect(toggleOffWeaponCardViews).toHaveBeenCalledWith('showLaunchers');
+    });
   });
   describe('rendering data for grenade launchers', () => {
     let wrapper;

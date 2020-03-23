@@ -1,12 +1,11 @@
   .launcherContentsContainer {
-    width: 100%;
+    width: 100% !important;
     display: flex;
     justify-content: space-between;
   }
 
-  .launcherRowsContainer {
-    display: flex;
-    flex-direction: column;
+  .launcherRowContainer > button {
+    margin: 1rem 0;
   }
 
   .launcherRow {

@@ -8,6 +8,7 @@ import GearCard from '../GearCard';
 import WeaponStatsTable from '../WeaponStatsTable';
 
 import ButtonInfo from '../widgets/buttons/ButtonInfo';
+import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 
 import { launchers } from '../../data/launchers';
 
@@ -33,6 +34,11 @@ const SelectLauncherModal = ({ toggleOffWeaponCardViews, addLauncher }) => {
         <GearModalContents>
           <div className="launcherContentsContainer">
             <div className="launcherRowContainer">
+              <ButtonDeleteX
+                id="closeLauncherModal"
+                onClick={() => toggleOffWeaponCardViews('showLaunchers')}
+                className="closeModal"
+              />
               {launchers().map((launcher) => (
                 <div key={launcher.name} className="launcherRow">
                   <ButtonInfo

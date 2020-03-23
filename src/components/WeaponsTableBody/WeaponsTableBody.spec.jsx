@@ -136,6 +136,17 @@ describe('rendering weapons', () => {
       m72Row.find('.removeM72A2LAW').simulate('click');
       expect(removeLauncher).toHaveBeenCalledWith(testM72(2));
     });
+    it('should display types of spare rounds to increment', () => {
+      const m79HeatAmmo = wrapper.find('.spareMagRow').at(0);
+      const m79HeAmmo = wrapper.find('.spareMagRow').at(1);
+      expect(m79HeatAmmo.text()).toContain('0 x HEAT');
+      expect(m79HeAmmo.text()).toContain('0 x HE');
+    });
+    it('should not display spare rounds for disposable weapons', () => {
+      const m72Ammo = wrapper.find('.spareMagRow').at(2);
+      console.log(m72Ammo.debug());
+      expect(m72Ammo.exists()).toBe(false);
+    });
     it('should possible to increment launcher ammo up', () => {
       const m79Ammo = wrapper.find('.spareMagRow').at(0);
       m79Ammo.find('#qtyUpMagType1').simulate('click');

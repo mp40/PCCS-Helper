@@ -11,7 +11,12 @@ import keys from './data';
 
 import './GearRow.css';
 
-export const renderCorrectAmmoTitle = (mag) => (mag.type === 'Rnd' ? 'Single Rounds' : `${mag.cap} round ${mag.type}`);
+export const renderCorrectAmmoTitle = (mag) => {
+  if (mag?.class) {
+    return mag.class;
+  }
+  return (mag.type === 'Rnd' ? 'Single Rounds' : `${mag.cap} round ${mag.type}`);
+};
 
 const GearRow = ({ gear }) => {
   const renderRemoveButton = (item) => (
@@ -68,7 +73,7 @@ const GearRow = ({ gear }) => {
           <td>{renderIncrementItemButtons(item)}</td>
         </tr>
         {item.mag && item.mag.map((mag, index) => {
-          if (mag.removed === true) {
+          if (mag.removed === true || mag.weight === '-') {
             return null;
           }
           return (
@@ -81,6 +86,10 @@ const GearRow = ({ gear }) => {
                   {renderIncrementMagazineButtons(item, mag, index)}
                 </span>
               </td>
+              <td />
+              <td />
+              <td />
+              <td />
             </tr>
           );
         },
