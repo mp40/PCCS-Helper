@@ -1,5 +1,6 @@
 import { averageRifle11Aims, belowAverageverageRifle11Aims, aboveAverageRifle11Aims, improvedRifle11Aims, averageRifle9Aims, averageSMG8Aims, averagePistol6Aims, belowAveragePistol6Aims } from './aimTimes';
 import { averageRifle762FMJ, averageRifle762x39FMJ, averageRifle556FMJ, averageRifle556JHP, averageRifle556AP, averageRifle30CarbineFMJ, averageSMG9mmParabellumFMJ, belowAverageSMG9mmParabellumFMJ, averageSMG45AcpFMJ, averageSMG762TokarevFMJ, averagePistol9mmParabellumFMJ, averageOther762FMJ } from './projectiles';
+import { m203 } from './launchers';
 
 export const filterableCalibers = () => [
   '7.62 x 39mm',
@@ -405,6 +406,34 @@ export const rifles = () => [
     ma: [0.4, 0.8, 2, 3, 4, 8, 11, 15],
     ba: [60, 51, 42, 35, 30, 20, 15, 11],
     tof: [0, 0, 1, 1, 2, 4, 7, 10],
+    offical: true,
+  },
+  {
+    name: 'M203',
+    list: 'rifles',
+    calibre: '5.56mm NATO',
+    qty: 1,
+    length: 39,
+    weight: 11.6,
+    rt: 8,
+    rof: '*7',
+    mag: [{ type: 'Mag', weight: 1, cap: 30, qty: 0 }, { type: 'Mag', weight: 0.7, cap: 20, qty: 0 }, { type: 'Rnd', class: 'HEAT', weight: 0.51, cap: 1, qty: 0 }, { type: 'Rnd', class: 'HE', weight: 0.51, cap: 1, qty: 0 }],
+    kd: 4,
+    sab: 3,
+    aim: {
+      ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      mod: [-25, -15, -9, -8, -6, -5, -4, -3, -2, -1, 0],
+    },
+    projectiles: [
+      averageRifle556FMJ,
+      averageRifle556JHP,
+      averageRifle556AP,
+    ],
+    trb: null,
+    ma: [0.4, 0.8, 2, 3, 4, 8, 11, 15],
+    ba: [60, 51, 42, 35, 30, 20, 15, 11],
+    tof: [0, 0, 1, 1, 2, 4, 7, 10],
+    launcher: m203,
     offical: true,
   },
   {

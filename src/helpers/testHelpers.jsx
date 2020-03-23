@@ -68,3 +68,9 @@ export const testM72 = (qty = 1) => {
   m72.qty = qty;
   return m72;
 };
+
+export const testM203 = (ammo = 0) => {
+  const m203 = findFirearmByName(rifles(), 'M203');
+  m203.mag[2].qty = ammo;
+  return m203;
+};
