@@ -4,6 +4,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import GearRow from '../GearRow';
 
+import { gunObjShape, grenadeShape, launcherShape } from '../../helpers/proptypeShapes';
+
 import '../CharacterGeneration/CharacterGeneration.css';
 import '../WeaponsCard/WeaponsCard.css';
 
@@ -54,9 +56,9 @@ WeaponsTableBody.propTypes = {
   increaseLauncherAmmo: PropTypes.func,
   decreaseLauncherAmmo: PropTypes.func,
   toggleModifyWeapon: PropTypes.func,
-  selectedGuns: PropTypes.arrayOf(PropTypes.object),
-  selectedGrenades: PropTypes.arrayOf(PropTypes.object),
-  selectedLaunchers: PropTypes.arrayOf(PropTypes.object),
+  selectedGuns: PropTypes.arrayOf(gunObjShape),
+  selectedGrenades: PropTypes.arrayOf(grenadeShape),
+  selectedLaunchers: PropTypes.arrayOf(launcherShape),
 };
 
 export default WeaponsTableBody;

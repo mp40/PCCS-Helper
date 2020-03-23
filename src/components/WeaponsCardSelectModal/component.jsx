@@ -28,7 +28,7 @@ const WeaponsCardSelectModal = ({ addFirearm, firearms, toggleOffWeaponCardViews
 WeaponsCardSelectModal.propTypes = {
   addFirearm: PropTypes.func,
   toggleOffWeaponCardViews: PropTypes.func,
-  firearms: gunObjShape,
+  firearms: PropTypes.arrayOf(gunObjShape),
 };
 
 export default WeaponsCardSelectModal;

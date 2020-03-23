@@ -23,8 +23,6 @@ export const initialStore = {
   },
   gear: {
     uniform: 'Normal',
-    // helmet: 'None', mpTODO
-    // bodyArmour: 'None', mpTODO
     equipment: [],
     firearms: [],
     grenades: [],
