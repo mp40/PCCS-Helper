@@ -4,15 +4,15 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import GearModalContents from '../GearModalContents';
 import GearCard from '../GearCard';
-import WeaponStatsTable from '../WeaponStatsTable';
 import FirearmFilter from '../FirearmFilter';
-import FirearmNotes from '../FirearmNotes';
 import ButtonStandard from '../widgets/buttons/ButtonStandard';
 import ButtonInfo from '../widgets/buttons/ButtonInfo';
-import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 
+import FirearmInspection from './FirearmInspection';
 
 import { rifles, pistols, smgs, mgs, sniperRifles, shotguns, filterableCalibers } from '../../data/firearms';
+
+import { firearmLists } from './data';
 
 import './WeaponsModalSelection.css';
 
@@ -25,16 +25,6 @@ const getAllFirearmsArray = () => [
   ...sniperRifles(),
   ...shotguns(),
 ];
-
-const getFirearmList = {
-  Rifles: rifles(),
-  Pistols: pistols(),
-  SMGs: smgs(),
-  MGs: mgs(),
-  'Sniper Rifles': sniperRifles(),
-  Shotguns: shotguns(),
-  All: getAllFirearmsArray(),
-};
 
 const promiseTransitionClose = () => new Promise(((resolve) => {
   setTimeout(() => {
@@ -65,7 +55,7 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, handleAddFirearm }) =
   const [gunArrayFilteredByType, setFilteredGunArray] = useState(getAllFirearmsArray());
 
   const handleSetFilterByType = (type, calibre) => setFilteredGunArray(
-    filterCalibersFromType(getFirearmList[type], calibre),
+    filterCalibersFromType(firearmLists[type], calibre),
   );
 
   const handleToggleViewFilters = () => {
@@ -136,25 +126,11 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, handleAddFirearm }) =
       </div>
 
       {firearmToInspect && (
-        <div className={statBoxClassName} style={{ fontSize: 'medium' }}>
-          <div>
-            <ButtonDeleteX
-              id="closeGunStatView"
-              onClick={() => handleCloseStatCard()}
-            />
-          </div>
-          <div style={{ display: 'flex' }}>
-            <div>
-              <WeaponStatsTable weapon={firearmToInspect} />
-            </div>
-            { firearmToInspect.list !== 'shotguns'
-          && (
-          <div className="firearm-notes-wrapper">
-            <FirearmNotes gunObj={firearmToInspect} viewSpareAmmo={false} />
-          </div>
-          )}
-          </div>
-        </div>
+        <FirearmInspection
+          statBoxClassName={statBoxClassName}
+          firearmToInspect={firearmToInspect}
+          handleCloseStatCard={handleCloseStatCard}
+        />
       )}
     </>
   );

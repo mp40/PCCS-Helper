@@ -119,14 +119,18 @@ describe('filtering types and calibers helper function', () => {
 });
 
 describe('Weapon Notes', () => {
+  let wrapper;
+  beforeEach(() => {
+    wrapper = shallow(<WeaponsModalSelection />);
+  });
   it('should not render for shotguns', () => {
-    const wrapper = shallow(<WeaponsModalSelection />);
     wrapper.find('#viewRemingtonM870').simulate('click');
-    expect(wrapper.find('FirearmNotes').exists()).toBe(false);
+    const inspectedFirearm = wrapper.find('FirearmInspection').dive(0);
+    expect(inspectedFirearm.find('FirearmNotes').exists()).toBe(false);
   });
   it('should render for other firearms', () => {
-    const wrapper = shallow(<WeaponsModalSelection />);
     wrapper.find('#viewM60').simulate('click');
-    expect(wrapper.find('FirearmNotes').exists()).toBe(true);
+    const inspectedFirearm = wrapper.find('FirearmInspection').dive(0);
+    expect(inspectedFirearm.find('FirearmNotes').exists()).toBe(true);
   });
 });
