@@ -146,7 +146,7 @@ const projectileMa = { valueKey: 'ma', prefix: ['', 'MA'], suffix: [] };
 const projectileBa = { valueKey: 'ba', prefix: ['', 'BA'], suffix: [] };
 const projectileTof = { valueKey: 'tof', prefix: ['', 'TOF'], suffix: [] };
 
-const emptyLine = '';
+const emptyLine = 'empty';
 
 
 const defaultTemplate = [

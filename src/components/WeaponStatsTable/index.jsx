@@ -32,6 +32,10 @@ const WeaponStatsTable = ({ weapon, sal, size }) => {
   const dataTemplate = getTemplate(weapon.list, weapon.trb, weapon.projectiles.length);
   const emptyRow = getEmptyRow(weapon.list);
 
+  const renderData = (arr) => arr.map((value, dex) => (
+    <td key={keys[dex]}>{value }</td>
+  ));
+
   const getData = (index) => {
     const data = dataTemplate[index];
     const projectileData = weapon.projectiles?.[data.index]?.[data.valueKey];
@@ -39,10 +43,6 @@ const WeaponStatsTable = ({ weapon, sal, size }) => {
     const isPenData = data.valueKey === 'pen';
     const isLauncherProjectile = data?.laucherProjectile === true && weapon.projectiles.length > data.index;
     const isLauncherExplosive = data?.explosiveData === true && weapon.projectiles.length > data.index;
-
-    const renderData = (arr) => (arr.map((value, dex) => (
-      <td key={keys[dex]}>{value }</td>
-    )));
 
     if (isLauncherProjectile) {
       return renderData(
