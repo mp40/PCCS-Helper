@@ -24,7 +24,7 @@ describe('<WeaponStatsTable/> component', () => {
   });
   describe('the table', () => {
     it('should render the table header', () => {
-      const wrapper = shallow(<WeaponStatsTable weapon={undefined} />);
+      const wrapper = shallow(<WeaponStatsTable weapon={undefined} />).find('TableHead').dive();
       expect(wrapper.find('.WeaponStatHeader').text()).toContain('Data');
       expect(wrapper.find('.WeaponStatHeader').text()).toContain('Aim Time');
       expect(wrapper.find('.WeaponStatHeader').text()).toContain('10');

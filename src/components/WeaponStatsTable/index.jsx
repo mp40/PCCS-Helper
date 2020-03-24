@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+import TableHead from './TableHead';
+
 import { gunObjShape, launcherShape } from '../../helpers/proptypeShapes';
 import { getRecoilRecoveryValue } from '../../data/advancedRules/recoilRecovery';
 
@@ -24,10 +27,9 @@ const getFirearmNameAndRecoil = (weapon, skillLevel) => {
 };
 
 const WeaponStatsTable = ({ weapon, sal, size }) => {
-  const rangeBrackets = getRangeBrackets(weapon.list);
+  const rangeBrackets = getRangeBrackets(weapon.list); // mptodo this is tied to emptyrow generation
   const dataTemplate = getTemplate(weapon.list === 'launchers', weapon.list === 'shotguns', weapon.trb, weapon.projectiles.length);
   const emptyRow = new Array(rangeBrackets.length + 2).fill('');
-  const tableHeadings = ['Data', 'Aim Time', '', '', ...rangeBrackets];
 
   const parseStatValue = (value) => String(value).substring(1);
 
@@ -87,13 +89,7 @@ const WeaponStatsTable = ({ weapon, sal, size }) => {
       <div>{`${getFirearmNameAndRecoil(weapon, findSkillLevelFromSAL(sal))}`}</div>
       <div>
         <table className={size ? `${size}WeaponStatTable` : 'WeaponStatTable'}>
-          <thead>
-            <tr className="WeaponStatHeader">
-              {tableHeadings.map((value, index) => (
-                <th key={keys[index]}>{value}</th>
-              ))}
-            </tr>
-          </thead>
+          <TableHead weaponList={weapon.list} />
           <tbody>
             {getWeaponCharacteristics(weapon.list).map((value, index) => (
               <tr key={keys[index]} className={`gunTableLine gunTableLine${index + 1}`}>
