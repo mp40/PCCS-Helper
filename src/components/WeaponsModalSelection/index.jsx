@@ -16,7 +16,6 @@ import { firearmLists } from './data';
 
 import './WeaponsModalSelection.css';
 
-
 const getAllFirearmsArray = () => [
   ...rifles(),
   ...pistols(),
@@ -80,10 +79,6 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, handleAddFirearm }) =
     promiseTransitionClose().then(() => setFirearmToInspect(null));
   };
 
-  const addFirearmToList = (gunObj) => {
-    handleAddFirearm(gunObj);
-  };
-
   return (
     <>
       <GearCard name="modalCard firearmSelectModal">
@@ -110,7 +105,7 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, handleAddFirearm }) =
               <div
                 className="firearmEntry"
                 id={gunObj.name}
-                onClick={() => addFirearmToList(gunObj)}
+                onClick={() => handleAddFirearm(gunObj)}
               >
                 <span>{gunObj.name}</span>
                 <span>{`${gunObj.weight} lbs`}</span>
