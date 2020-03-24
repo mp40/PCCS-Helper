@@ -54,7 +54,7 @@ describe('promise to wait for transition close', () => {
     it('should render the card in pre-transition location then apply transition', async () => {
       expect(wrapper.find('.WeaponStatTableContainer').exists()).toEqual(false);
       await act(async () => {
-        await waitOneTick(wrapper.find('#viewM60').simulate('click'));
+        await waitOneTick(wrapper.find('.viewM60').simulate('click'));
       });
       wrapper.update();
       expect(wrapper.find('.WeaponStatTableContainer').hasClass('trans')).toEqual(true);
@@ -124,12 +124,12 @@ describe('Weapon Notes', () => {
     wrapper = shallow(<WeaponsModalSelection />);
   });
   it('should not render for shotguns', () => {
-    wrapper.find('#viewRemingtonM870').simulate('click');
+    wrapper.find('.viewRemingtonM870').simulate('click');
     const inspectedFirearm = wrapper.find('FirearmInspection').dive(0);
     expect(inspectedFirearm.find('FirearmNotes').exists()).toBe(false);
   });
   it('should render for other firearms', () => {
-    wrapper.find('#viewM60').simulate('click');
+    wrapper.find('.viewM60').simulate('click');
     const inspectedFirearm = wrapper.find('FirearmInspection').dive(0);
     expect(inspectedFirearm.find('FirearmNotes').exists()).toBe(true);
   });

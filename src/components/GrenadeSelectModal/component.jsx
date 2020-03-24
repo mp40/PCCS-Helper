@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
@@ -5,7 +6,6 @@ import { PropTypes } from 'prop-types';
 import GrenadeData from '../GrenadeData';
 import { grenadeData, specialGrenades } from '../../data/grenades';
 import { grenadeShape } from '../../helpers/proptypeShapes';
-import ButtonInfo from '../widgets/buttons/ButtonInfo';
 import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 
 import './GrenadeSelectModal.css';
@@ -36,8 +36,9 @@ const GrenadeSelectModal = ({ toggleOffWeaponCardViews, addGrenade, grenades }) 
   const renderGrenadeList = () => (
     [...grenadeData(), ...specialGrenades()].map((grenade) => (
       <div key={grenade.name}>
-        <ButtonInfo
-          className={`view${grenade.name}Stats`}
+        <button
+          type="button"
+          className={`--infoButton --button view${grenade.name}Stats`}
           onClick={() => setGrenadeToView(grenade)}
         />
         <div

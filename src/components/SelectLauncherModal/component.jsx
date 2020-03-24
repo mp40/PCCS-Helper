@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState } from 'react';
@@ -7,7 +8,6 @@ import GearModalContents from '../GearModalContents';
 import GearCard from '../GearCard';
 import WeaponStatsTable from '../WeaponStatsTable';
 
-import ButtonInfo from '../widgets/buttons/ButtonInfo';
 import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 
 import { launchers } from '../../data/launchers';
@@ -41,8 +41,9 @@ const SelectLauncherModal = ({ toggleOffWeaponCardViews, addLauncher }) => {
               />
               {launchers().map((launcher) => (
                 <div key={launcher.name} className="launcherRow">
-                  <ButtonInfo
-                    id={`view${launcher.name.replace(/\s+/g, '')}`}
+                  <button
+                    type="button"
+                    className={`--infoButton --button view${launcher.name.replace(/\s+/g, '')}`}
                     onClick={() => handleToggleShowStats(launcher)}
                   />
                   <div

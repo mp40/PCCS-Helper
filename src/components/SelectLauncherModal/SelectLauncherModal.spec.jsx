@@ -20,7 +20,7 @@ describe('the select grenade/rocket launcher modal', () => {
       expect(wrapper.find('WeaponStatsTable').exists()).toBe(false);
     });
     it('should be possible to see launcher stats', () => {
-      wrapper.find('#viewM79').simulate('click');
+      wrapper.find('.viewM79').simulate('click');
       expect(wrapper.find('WeaponStatsTable').exists()).toBe(true);
     });
     it('should be possible select a launcher', () => {
@@ -42,7 +42,7 @@ describe('the select grenade/rocket launcher modal', () => {
     let wrapper;
     beforeEach(() => {
       wrapper = mount(<SelectLauncherModal />);
-      wrapper.find('#viewM79').simulate('click');
+      wrapper.find('.viewM79').simulate('click');
     });
     it('should render the correct ballistic ranges', () => {
       const header = wrapper.find('.WeaponStatHeader');
@@ -105,7 +105,7 @@ describe('the select grenade/rocket launcher modal', () => {
     let wrapper;
     beforeEach(() => {
       wrapper = mount(<SelectLauncherModal />);
-      wrapper.find('#viewM72A2LAW').simulate('click');
+      wrapper.find('.viewM72A2LAW').simulate('click');
     });
     it('should contain the correct data on line one of the table', () => {
       const lineOne = wrapper.find('.gunTableLine1');

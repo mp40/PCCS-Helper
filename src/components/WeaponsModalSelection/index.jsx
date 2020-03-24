@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
@@ -6,7 +7,6 @@ import GearModalContents from '../GearModalContents';
 import GearCard from '../GearCard';
 import FirearmFilter from '../FirearmFilter';
 import ButtonStandard from '../widgets/buttons/ButtonStandard';
-import ButtonInfo from '../widgets/buttons/ButtonInfo';
 
 import FirearmInspection from './FirearmInspection';
 
@@ -98,8 +98,9 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, handleAddFirearm }) =
         <GearModalContents>
           {gunArrayFilteredByType.map((gunObj) => (
             <div key={gunObj.name} style={{ display: 'flex', width: '30%', paddingLeft: '.2rem', paddingRight: '.2rem' }}>
-              <ButtonInfo
-                id={`view${gunObj.name.replace(/\s+/g, '')}`}
+              <button
+                type="button"
+                className={`--infoButton --button view${gunObj.name.replace(/\s+/g, '')}`}
                 onClick={() => handleShowStatCard(gunObj)}
               />
               <div

@@ -9,7 +9,7 @@ const ButtonInfo = ({ onClick }) => (
     style={{ lineHeight: '70%', padding: '0.25em 0.4em' }}
     onClick={onClick}
   >
-                ?
+    ?
   </button>
 );
 

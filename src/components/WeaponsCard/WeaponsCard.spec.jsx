@@ -127,7 +127,7 @@ describe('The Weapons Card', () => {
     wrapper.find('#addFirearm').simulate('click');
     gunList(wrapper).find('#M1911A1').simulate('click');
     it('should be possible to view firearms stats', () => {
-      wrapper.find('#viewM1911A1').simulate('click');
+      wrapper.find('.viewM1911A1').simulate('click');
       expect(wrapper.text()).toContain('ROF');
     });
     it('should be possible to close firearms stats', async () => {
