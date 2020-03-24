@@ -207,15 +207,22 @@ const launcherTemplate = [
   { valueKey: 'tof', prefix: ['', 'TOF'], suffix: ['', '', '', '', '', '', ''] },
 ];
 
-export const getTemplate = (isLauncher, isShotgun, hasThreeRoundBurst, numberOfProjectileTypes) => {
-  if (isLauncher) {
+export const getTemplate = (list, hasThreeRoundBurst, numberOfProjectileTypes) => {
+  if (list === 'launchers') {
     return launcherTemplate;
   }
-  if (isShotgun) {
+  if (list === 'shotguns') {
     return shotgunTemplate;
   }
   if (hasThreeRoundBurst && numberOfProjectileTypes > 2) {
     return threeRoundBurstTemplate;
   }
   return defaultTemplate;
+};
+
+export const getEmptyRow = (list) => {
+  if (list === 'launchers' || list === 'shotguns') {
+    return new Array(13).fill('');
+  }
+  return new Array(10).fill('');
 };

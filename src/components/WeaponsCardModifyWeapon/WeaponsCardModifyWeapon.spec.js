@@ -74,7 +74,7 @@ describe('Customising Firearm', () => {
         expect(gunWeight.text()).toBe('W8.7');
         set30RoundMagazineAsPrimaryButton.simulate('click');
         expect(gunWeight.text()).toBe('W8.7');
-        expect(ammoWeight.text()).toBe('AW.7');
+        expect(ammoWeight.text()).toBe('AW0.7');
       });
       it('should be possible to exit custom magazine form', () => {
         modifyPanel().find('#addCustomMagazine').simulate('click');

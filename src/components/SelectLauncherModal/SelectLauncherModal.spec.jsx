@@ -50,7 +50,7 @@ describe('the select grenade/rocket launcher modal', () => {
     });
     it('should contain the correct data on line one of the table', () => {
       const lineOne = wrapper.find('.gunTableLine1');
-      expect(lineOne.text()).toBe('L291-21HEATPEN288288288PEN1.61.41.00.70.4');
+      expect(lineOne.text()).toBe('L291-21HEATPEN288288288PEN1.61.410.70.4');
     });
     it('should contain the correct data on line two of the table', () => {
       const lineOne = wrapper.find('.gunTableLine2');
@@ -70,7 +70,7 @@ describe('the select grenade/rocket launcher modal', () => {
     });
     it('should contain the correct data on line six of the table', () => {
       const lineOne = wrapper.find('.gunTableLine6');
-      expect(lineOne.text()).toBe('6-4HEPEN2.12.12.1PEN1.61.41.00.70.4');
+      expect(lineOne.text()).toBe('6-4HEPEN2.12.12.1PEN1.61.410.70.4');
     });
     it('should contain the correct data on line seven of the table', () => {
       const lineOne = wrapper.find('.gunTableLine7');
@@ -78,7 +78,7 @@ describe('the select grenade/rocket launcher modal', () => {
     });
     it('should contain the correct data on line eight of the table', () => {
       const lineOne = wrapper.find('.gunTableLine8');
-      expect(lineOne.text()).toBe('AW.51BSHC*3621562');
+      expect(lineOne.text()).toBe('AW0.51BSHC*3621562');
     });
     it('should contain the correct data on line nine of the table', () => {
       const lineOne = wrapper.find('.gunTableLine9');
