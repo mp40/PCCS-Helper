@@ -50,3 +50,15 @@ export const returnUpdatedWeightAndArray = (state, payload, incrementer, arrayNa
   const newArray = incrementQuantity(incrementer)(state.gear[arrayName], payload.name);
   return returnUpdatedWeightAndGear(arrayName)(state, newArray);
 };
+
+const updateLauncherAmmo = (adjustment) => (arr, ammoClass) => arr.map((mag) => {
+  if (ammoClass === mag.class) {
+    const newMag = mag;
+    newMag.qty += adjustment;
+    return newMag;
+  }
+  return mag;
+});
+
+export const increaseLauncherAmmo = updateLauncherAmmo(1);
+export const decreaseLauncherAmmo = updateLauncherAmmo(-1);
