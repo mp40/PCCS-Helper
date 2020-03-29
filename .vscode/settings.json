@@ -1,0 +1,14 @@
+{
+  "window.zoomLevel": 2,
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "eslint.alwaysShowStatus": true,
+  "files.trimTrailingWhitespace": true,
+  "python.jediEnabled": false,
+  "workbench.startupEditor": "newUntitledFile",
+  "prettier.jsxSingleQuote": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.formatOnSave": false,
+}

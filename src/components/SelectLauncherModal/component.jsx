@@ -43,8 +43,8 @@ const SelectLauncherModal = ({ toggleOffWeaponCardViews, addLauncher }) => {
                 <div key={launcher.name} className="launcherRow">
                   <button
                     type="button"
-                    className={`--infoButton --button view${launcher.name.replace(/\s+/g, '')}`}
                     onClick={() => handleToggleShowStats(launcher)}
+                    className={`--infoButton --button view${launcher.name.replace(/\s+/g, '')}`}
                   />
                   <div
                     className="--selectableRow launcherEntry"
