@@ -125,6 +125,7 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, handleAddFirearm }) =
         <FirearmInspection
           statBoxClassName={statBoxClassName}
           firearmToInspect={firearmToInspect}
+          setFirearmToInspect={setFirearmToInspect}
           handleCloseStatCard={handleCloseStatCard}
         />
       )}

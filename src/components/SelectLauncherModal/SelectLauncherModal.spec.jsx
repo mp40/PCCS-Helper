@@ -16,9 +16,6 @@ describe('the select grenade/rocket launcher modal', () => {
     it('should display list of weapons', () => {
       expect(wrapper.text()).toContain('M79');
     });
-    it('should render with the stat table hidden', () => {
-      expect(wrapper.find('WeaponStatsTable').exists()).toBe(false);
-    });
     it('should be possible to see launcher stats', () => {
       wrapper.find('.viewM79').simulate('click');
       expect(wrapper.find('WeaponStatsTable').exists()).toBe(true);

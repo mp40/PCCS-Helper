@@ -6,9 +6,9 @@ export const filterEquipment = (findType) => {
     return equipmentList;
   }
 
-  const findTag = element => findType.includes(element);
+  const findTag = (element) => findType.includes(element);
 
-  return equipmentList.filter(equipmentObject => equipmentObject.tags.some(findTag));
+  return equipmentList.filter((equipmentObject) => equipmentObject.tags.some(findTag));
 };
 
 export const createFilterSet = (equipmentList) => {
@@ -18,7 +18,7 @@ export const createFilterSet = (equipmentList) => {
 
 export const toggleTagsInList = ((list, tag) => {
   if (list.includes(tag)) {
-    return list.filter(element => element !== tag);
+    return list.filter((element) => element !== tag);
   }
   return [...list, tag];
 });

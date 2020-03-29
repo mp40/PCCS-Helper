@@ -134,3 +134,29 @@ describe('Weapon Notes', () => {
     expect(inspectedFirearm.find('FirearmNotes').exists()).toBe(true);
   });
 });
+
+describe('Firearms with grenade launchers', () => {
+  let wrapper;
+  beforeEach(() => {
+    wrapper = mount(<WeaponsModalSelection />);
+  });
+  it('should be able to toggle to view grenade launcher data', () => {
+    wrapper.find('.viewM203').simulate('click');
+    wrapper.find('.toggleViewGrenadeLauncher').simulate('click');
+    expect(wrapper.text()).toContain('AW0.51');
+    expect(wrapper.text()).toContain('HEAT');
+  });
+  it('should be able to toggle back to rifle data', () => {
+    wrapper.find('.viewM203').simulate('click');
+    wrapper.find('.toggleViewGrenadeLauncher').simulate('click');
+    expect(wrapper.text()).toContain('AW0.51');
+    expect(wrapper.text()).toContain('HEAT');
+    wrapper.find('.toggleViewGrenadeLauncher').simulate('click');
+    expect(wrapper.text()).not.toContain('AW0.51');
+    expect(wrapper.text()).not.toContain('HEAT');
+  });
+  it('should not render toggle button if firearm does not have launcher', () => {
+    wrapper.find('.viewM60').simulate('click');
+    expect(wrapper.find('.toggleViewGrenadeLauncher').exists()).toBe(false);
+  });
+});

@@ -63,3 +63,7 @@
   transform: translateY(calc(100% - 0.5rem));
   height: 20rem;
 }
+
+.toggleViewGrenadeLauncher {
+  padding: 0.25em 0.5em;
+}

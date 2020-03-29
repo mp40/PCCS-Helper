@@ -11,17 +11,12 @@ import WeaponStatsTable from '../WeaponStatsTable';
 import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 
 import { launchers } from '../../data/launchers';
+import { emptyLauncher } from './data';
 
 import './SelectLauncherModal.css';
 
 const SelectLauncherModal = ({ toggleOffWeaponCardViews, addLauncher }) => {
-  const [showStats, toggleShowStats] = useState(false);
-  const [launcherToView, setLauncherToView] = useState(null);
-
-  const handleToggleShowStats = (launcher) => {
-    setLauncherToView(launcher);
-    toggleShowStats(true);
-  };
+  const [launcherToView, setLauncherToView] = useState(emptyLauncher);
 
   const handleAddLauncher = (launcher) => {
     addLauncher(launcher);
@@ -43,7 +38,7 @@ const SelectLauncherModal = ({ toggleOffWeaponCardViews, addLauncher }) => {
                 <div key={launcher.name} className="launcherRow">
                   <button
                     type="button"
-                    onClick={() => handleToggleShowStats(launcher)}
+                    onClick={() => setLauncherToView(launcher)}
                     className={`--infoButton --button view${launcher.name.replace(/\s+/g, '')}`}
                   />
                   <div
@@ -57,7 +52,7 @@ const SelectLauncherModal = ({ toggleOffWeaponCardViews, addLauncher }) => {
                 </div>
               ))}
             </div>
-            {showStats && <WeaponStatsTable weapon={launcherToView} />}
+            <WeaponStatsTable weapon={launcherToView} />
           </div>
         </GearModalContents>
       </GearCard>

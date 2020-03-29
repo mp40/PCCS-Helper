@@ -58,3 +58,13 @@
 .gunTableLine > td:nth-of-type(n+5) {
     text-align: center;
 }
+
+.launchers * tbody {
+    font-size: 0.8rem;
+}
+
+.launchers * tbody > tr > td:nth-of-type(9){
+    text-align: left;
+    padding-left: 3px;
+    border-left: 1px solid rgb(85, 83, 83);
+}

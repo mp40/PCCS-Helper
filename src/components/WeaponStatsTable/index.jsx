@@ -77,7 +77,7 @@ const WeaponStatsTable = ({ weapon, sal, size }) => {
   };
 
   return (
-    <div className={`WeaponStatsContainer ${size}`}>
+    <div className={`WeaponStatsContainer ${size} ${weapon.list}`}>
       <div>{`${getFirearmNameAndRecoil(weapon, findSkillLevelFromSAL(sal))}`}</div>
       <div>
         <table className={size ? `${size}WeaponStatTable` : 'WeaponStatTable'}>

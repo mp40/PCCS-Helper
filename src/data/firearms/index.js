@@ -1,6 +1,6 @@
 import { averageRifle11Aims, belowAverageverageRifle11Aims, aboveAverageRifle11Aims, improvedRifle11Aims, averageRifle9Aims, averageSMG8Aims, averagePistol6Aims, belowAveragePistol6Aims } from './aimTimes';
 import { averageRifle762FMJ, averageRifle762x39FMJ, averageRifle556FMJ, averageRifle556JHP, averageRifle556AP, averageRifle30CarbineFMJ, averageSMG9mmParabellumFMJ, belowAverageSMG9mmParabellumFMJ, averageSMG45AcpFMJ, averageSMG762TokarevFMJ, averagePistol9mmParabellumFMJ, averageOther762FMJ } from './projectiles';
-import { m203 } from './launchers';
+import { m203, gp25 } from './launchers';
 
 export const filterableCalibers = () => [
   '7.62 x 39mm',
@@ -155,6 +155,32 @@ export const rifles = () => [
     ma: [0.2, 0.3, 0.5, 0.9, 1, 3, 4, 5],
     ba: [60, 52, 43, 36, 31, 21, 16, 12],
     tof: [0, 0, 1, 2, 2, 5, 8, 12],
+    offical: true,
+  },
+  {
+    name: 'AK 74 GP-25',
+    list: 'rifles',
+    calibre: '5.45 x 39.5mm',
+    qty: 1,
+    length: 37,
+    weight: 10.1,
+    rt: 8,
+    rof: '*5',
+    mag: [{ type: 'Mag', weight: 1.1, cap: 30, qty: 0 }],
+    kd: 4,
+    sab: 2,
+    aim: averageRifle9Aims,
+    projectiles: [
+      {
+        type: 'FMJ',
+        pen: [14, 13, 12, 10, 9.1, 5.8, 3.7, 2.4],
+        dc: [6, 6, 5, 5, 4, 3, 3, 2],
+      },
+    ],
+    ma: [0.2, 0.3, 0.5, 0.9, 1, 3, 4, 5],
+    ba: [60, 52, 43, 36, 31, 21, 16, 12],
+    tof: [0, 0, 1, 2, 2, 5, 8, 12],
+    launcher: gp25,
     offical: true,
   },
   {
