@@ -7,7 +7,7 @@ import './Home.css';
 const HomePage = ({ selectCurrentView }) => (
   <div style={{ textAlign: 'center' }}>
     <h1>
-            Welcome To Phoenix Command Tools
+      Welcome To Phoenix Command Tools
     </h1>
     <button
       type="button"
@@ -15,7 +15,7 @@ const HomePage = ({ selectCurrentView }) => (
       className="buttonStandard"
       onClick={() => selectCurrentView('createChar')}
     >
-        Create Character
+      Create Character
     </button>
     <BetaTemp />
   </div>

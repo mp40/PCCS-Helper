@@ -9,6 +9,7 @@ const buttonData = (gearType) => {
     { id: 'addFirearm', name: 'Add Firearm' },
     { id: 'clearAllFirearms', name: 'Clear Firearms' },
     { id: 'addGrenade', name: 'Add Grenade' },
+    { id: 'addLauncher', name: 'Add Launcher' },
   ];
   return gearType === 'equipment' ? equipmentButtonData : weaponsButtondata;
 };

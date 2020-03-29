@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { gearShape } from '../../helpers/proptypeShapes';
+import { gunObjShape } from '../../helpers/proptypeShapes';
 
 import WeaponsModalSelection from '../WeaponsModalSelection';
 import GearModal from '../GearModal';
 
 import { isNotValidObjectToAdd } from '../../helpers/gaurds';
 
-const WeaponsCardSelectModal = ({ addFirearm, gear, toggleOffWeaponCardViews }) => {
+const WeaponsCardSelectModal = ({ addFirearm, firearms, toggleOffWeaponCardViews }) => {
   const handleAddFirearm = (gunObj) => {
-    if (isNotValidObjectToAdd(gear.firearms, gunObj)) {
+    if (isNotValidObjectToAdd(firearms, gunObj)) {
       return;
     }
     addFirearm(gunObj);
@@ -28,7 +28,7 @@ const WeaponsCardSelectModal = ({ addFirearm, gear, toggleOffWeaponCardViews }) 
 WeaponsCardSelectModal.propTypes = {
   addFirearm: PropTypes.func,
   toggleOffWeaponCardViews: PropTypes.func,
-  gear: gearShape,
+  firearms: PropTypes.arrayOf(gunObjShape),
 };
 
 export default WeaponsCardSelectModal;

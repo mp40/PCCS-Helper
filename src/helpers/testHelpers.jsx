@@ -8,6 +8,7 @@ import App from '../App';
 import { initialStore } from './initialStore';
 import { MockState } from '../reducers/mockState';
 import { pistols, rifles, shotguns } from '../data/firearms';
+import { launchers } from '../data/launchers';
 
 export const mountAppWithStore = (mockStore = initialStore) => {
   const store = createStore(reducers, mockStore, applyMiddleware(thunk));
@@ -55,3 +56,21 @@ export const testM16WithoutJhpAp = () => {
 export const testFAMAS = () => findFirearmByName(rifles(), 'FAMAS');
 
 export const testRemington = () => findFirearmByName(shotguns(), 'Remington M870');
+
+export const testM79 = (ammo = 0) => {
+  const m79 = findFirearmByName(launchers(), 'M79');
+  m79.mag[0].qty = ammo;
+  return m79;
+};
+
+export const testM72 = (qty = 1) => {
+  const m72 = findFirearmByName(launchers(), 'M72 A2 LAW');
+  m72.qty = qty;
+  return m72;
+};
+
+export const testM203 = (ammo = 0) => {
+  const m203 = findFirearmByName(rifles(), 'M203');
+  m203.mag[2].qty = ammo;
+  return m203;
+};

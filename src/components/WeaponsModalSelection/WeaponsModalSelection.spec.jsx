@@ -54,7 +54,7 @@ describe('promise to wait for transition close', () => {
     it('should render the card in pre-transition location then apply transition', async () => {
       expect(wrapper.find('.WeaponStatTableContainer').exists()).toEqual(false);
       await act(async () => {
-        await waitOneTick(wrapper.find('#viewM60').simulate('click'));
+        await waitOneTick(wrapper.find('.viewM60').simulate('click'));
       });
       wrapper.update();
       expect(wrapper.find('.WeaponStatTableContainer').hasClass('trans')).toEqual(true);
@@ -119,14 +119,44 @@ describe('filtering types and calibers helper function', () => {
 });
 
 describe('Weapon Notes', () => {
+  let wrapper;
+  beforeEach(() => {
+    wrapper = shallow(<WeaponsModalSelection />);
+  });
   it('should not render for shotguns', () => {
-    const wrapper = shallow(<WeaponsModalSelection />);
-    wrapper.find('#viewRemingtonM870').simulate('click');
-    expect(wrapper.find('FirearmNotes').exists()).toBe(false);
+    wrapper.find('.viewRemingtonM870').simulate('click');
+    const inspectedFirearm = wrapper.find('FirearmInspection').dive(0);
+    expect(inspectedFirearm.find('FirearmNotes').exists()).toBe(false);
   });
   it('should render for other firearms', () => {
-    const wrapper = shallow(<WeaponsModalSelection />);
-    wrapper.find('#viewM60').simulate('click');
-    expect(wrapper.find('FirearmNotes').exists()).toBe(true);
+    wrapper.find('.viewM60').simulate('click');
+    const inspectedFirearm = wrapper.find('FirearmInspection').dive(0);
+    expect(inspectedFirearm.find('FirearmNotes').exists()).toBe(true);
+  });
+});
+
+describe('Firearms with grenade launchers', () => {
+  let wrapper;
+  beforeEach(() => {
+    wrapper = mount(<WeaponsModalSelection />);
+  });
+  it('should be able to toggle to view grenade launcher data', () => {
+    wrapper.find('.viewM203').simulate('click');
+    wrapper.find('.toggleViewGrenadeLauncher').simulate('click');
+    expect(wrapper.text()).toContain('AW0.51');
+    expect(wrapper.text()).toContain('HEAT');
+  });
+  it('should be able to toggle back to rifle data', () => {
+    wrapper.find('.viewM203').simulate('click');
+    wrapper.find('.toggleViewGrenadeLauncher').simulate('click');
+    expect(wrapper.text()).toContain('AW0.51');
+    expect(wrapper.text()).toContain('HEAT');
+    wrapper.find('.toggleViewGrenadeLauncher').simulate('click');
+    expect(wrapper.text()).not.toContain('AW0.51');
+    expect(wrapper.text()).not.toContain('HEAT');
+  });
+  it('should not render toggle button if firearm does not have launcher', () => {
+    wrapper.find('.viewM60').simulate('click');
+    expect(wrapper.find('.toggleViewGrenadeLauncher').exists()).toBe(false);
   });
 });

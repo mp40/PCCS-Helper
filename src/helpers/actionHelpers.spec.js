@@ -1,7 +1,7 @@
 import {
   calculateAmmoWeight,
-  calculateGunAndAmmoWeight,
-  calculateFirearmsArrayWeight,
+  calculateWeaponAndAmmoWeight,
+  calculateWeaponArrayWeight,
   calculateObjectWeightDifference,
   calculateTotalWeight,
   findUniformWeight,
@@ -20,6 +20,18 @@ const testRifle = () => ({
   mag: [{ weight: 1, qty: 1 }, { weight: 1.5, qty: 2 }],
 });
 
+const testGrenadeLauncher = () => ({
+  weight: 6,
+  qty: 1,
+  mag: [{ weight: 0.5, qty: 2 }, { weight: 0.6, qty: 1 }],
+});
+
+const testAntiTank = () => ({
+  weight: 5,
+  qty: 2,
+  mag: [{ weight: '-' }],
+});
+
 const belt = {
   name: 'belt',
   weight: 0.7,
@@ -32,20 +44,27 @@ const pouch = {
   qty: 2,
 };
 
-describe('calculating firearms weight', () => {
-  it('should calculate total ammo weight of gun object', () => {
+describe('calculating firearms and launchers weight', () => {
+  it('should calculate total ammo weight of weapon', () => {
     expect(calculateAmmoWeight(testPistol())).toBe(1);
     expect(calculateAmmoWeight(testRifle())).toBe(4);
+    expect(calculateAmmoWeight(testGrenadeLauncher())).toBe(1.6);
   });
-  it('should calculate the weight of the gun and spare ammo', () => {
-    expect(calculateGunAndAmmoWeight(testPistol())).toBe(3);
-    expect(calculateGunAndAmmoWeight(testRifle())).toBe(14);
+  it('should return 0 for non-reloadable launchers', () => {
+    expect(calculateAmmoWeight(testAntiTank())).toBe(0);
   });
-  it('should calulate multiple types of same gun', () => {
-    expect(calculateGunAndAmmoWeight(testPistol(2))).toBe(5);
+  it('should calculate the weight of the weapon and spare ammo', () => {
+    expect(calculateWeaponAndAmmoWeight(testPistol())).toBe(3);
+    expect(calculateWeaponAndAmmoWeight(testRifle())).toBe(14);
+    expect(calculateWeaponAndAmmoWeight(testGrenadeLauncher())).toBe(7.6);
   });
-  it('should calculate weight of array of firearms', () => {
-    expect(calculateFirearmsArrayWeight([testPistol(), testRifle()])).toBe(17);
+  it('should calulate multiple types of same weapon', () => {
+    expect(calculateWeaponAndAmmoWeight(testPistol(2))).toBe(5);
+    expect(calculateWeaponAndAmmoWeight(testAntiTank())).toBe(10);
+  });
+  it('should calculate weight of array of weapons', () => {
+    expect(calculateWeaponArrayWeight([testPistol(), testRifle()])).toBe(17);
+    expect(calculateWeaponArrayWeight([testGrenadeLauncher(), testAntiTank()])).toBe(17.6);
   });
   it('should claculate difference between old gun/mag object and new gun/mag object', () => {
     expect(calculateObjectWeightDifference(testPistol(), 1)).toBe(2);
@@ -75,7 +94,8 @@ describe('calculating total weight of all equipment', () => {
     const equipment = [belt, pouch];
     const firearms = [testRifle(), testPistol()];
     const grenades = [];
-    expect(calculateTotalWeight({ uniform, equipment, firearms, grenades })).toEqual(5 + 1.5 + 17);
+    const launchers = [];
+    expect(calculateTotalWeight({ uniform, equipment, firearms, grenades, launchers })).toEqual(5 + 1.5 + 17);
   });
   it('should return a number if the equipment array is empty', () => {
     const equipment = [];
@@ -83,46 +103,63 @@ describe('calculating total weight of all equipment', () => {
   });
   it('should return 0 if no guns are selected', () => {
     const firearms = [];
-    expect(calculateFirearmsArrayWeight(firearms)).toEqual(0);
+    expect(calculateWeaponArrayWeight(firearms)).toEqual(0);
   });
   it('should return null if array is undefined', () => {
-    expect(calculateFirearmsArrayWeight(undefined)).toEqual(null);
+    expect(calculateWeaponArrayWeight(undefined)).toEqual(null);
   });
   it('should calculate correct weight if equipment array is empty', () => {
     const uniform = 'Normal';
     const equipment = [];
     const firearms = [testRifle(), testPistol()];
     const grenades = [];
-    expect(calculateTotalWeight({ uniform, equipment, firearms, grenades })).toEqual(5 + 17);
+    const launchers = [];
+    expect(calculateTotalWeight({ uniform, equipment, firearms, grenades, launchers })).toEqual(5 + 17);
   });
   it('should calculate correct weight if firearm array is empty', () => {
     const uniform = 'Normal';
     const equipment = [belt, pouch];
     const firearms = [];
     const grenades = [];
-    expect(calculateTotalWeight({ uniform, equipment, firearms, grenades })).toEqual(5 + 1.5);
+    const launchers = [];
+    expect(calculateTotalWeight({ uniform, equipment, firearms, grenades, launchers })).toEqual(5 + 1.5);
   });
   it('should calculate correct weight if helmet is present', () => {
     const uniform = 'Normal';
     const equipment = [belt, pouch];
     const firearms = [testRifle(), testPistol()];
     const grenades = [];
+    const launchers = [];
     const helmet = { name: 'testHelmet', weight: 2.5 };
-    expect(calculateTotalWeight({ uniform, equipment, firearms, helmet, grenades })).toEqual(5 + 1.5 + 17 + 2.5);
+    expect(calculateTotalWeight({ uniform, equipment, firearms, helmet, grenades, launchers })).toEqual(5 + 1.5 + 17 + 2.5);
   });
   it('should calculate correct weight if vest is present', () => {
     const uniform = 'Normal';
     const equipment = [belt, pouch];
     const firearms = [testRifle(), testPistol()];
     const grenades = [];
+    const launchers = [];
     const vest = { name: 'testVest', weight: 5 };
-    expect(calculateTotalWeight({ uniform, equipment, firearms, vest, grenades })).toEqual(5 + 1.5 + 17 + 5);
+    expect(calculateTotalWeight({ uniform, equipment, firearms, vest, grenades, launchers })).toEqual(5 + 1.5 + 17 + 5);
   });
   it('should calculate correct weight if grenades are present', () => {
     const uniform = 'Normal';
     const equipment = [belt, pouch];
     const firearms = [testRifle(), testPistol()];
     const grenades = [{ name: 'bang', weight: 1, qty: 2 }, { name: 'boom', weight: 1.5, qty: 1 }];
-    expect(calculateTotalWeight({ uniform, equipment, firearms, grenades })).toEqual(5 + 1.5 + 17 + 3.5);
+    const launchers = [];
+    expect(calculateTotalWeight({ uniform, equipment, firearms, grenades, launchers })).toEqual(5 + 1.5 + 17 + 3.5);
+  });
+  it('should calculate correct weight if launchers are present', () => {
+    const uniform = 'Normal';
+    const equipment = [belt, pouch];
+    const firearms = [testRifle(), testPistol()];
+    const grenades = [{ name: 'bang', weight: 1, qty: 2 }, { name: 'boom', weight: 1.5, qty: 1 }];
+    const launchers = [testGrenadeLauncher(), testAntiTank()];
+    expect(
+      calculateTotalWeight(
+        { uniform, equipment, firearms, grenades, launchers },
+      ),
+    ).toEqual(5 + 1.5 + 17 + 3.5 + 17.6);
   });
 });

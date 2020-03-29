@@ -4,6 +4,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import GearRow from '../GearRow';
 
+import { gunObjShape, grenadeShape, launcherShape } from '../../helpers/proptypeShapes';
+
 import '../CharacterGeneration/CharacterGeneration.css';
 import '../WeaponsCard/WeaponsCard.css';
 
@@ -11,6 +13,7 @@ const WeaponsTableBody = ({
   toggleModifyWeapon,
   selectedGuns,
   selectedGrenades,
+  selectedLaunchers,
   removeGrenade,
   increaseGrenadeQty,
   decreaseGrenadeQty,
@@ -19,7 +22,11 @@ const WeaponsTableBody = ({
   decreaseFirearmQty,
   increaseMagazineQty,
   decreaseMagazineQty,
-
+  increaseLauncherQty,
+  decreaseLauncherQty,
+  removeLauncher,
+  increaseLauncherAmmo,
+  decreaseLauncherAmmo,
 }) => (
   <tbody id="characterWeaponList">
     <GearRow
@@ -27,6 +34,9 @@ const WeaponsTableBody = ({
     />
     <GearRow
       gear={{ type: 'Grenade', remove: removeGrenade, up: increaseGrenadeQty, down: decreaseGrenadeQty, array: selectedGrenades }}
+    />
+    <GearRow
+      gear={{ type: 'Launcher', remove: removeLauncher, up: increaseLauncherQty, down: decreaseLauncherQty, magUp: increaseLauncherAmmo, magDown: decreaseLauncherAmmo, array: selectedLaunchers }}
     />
   </tbody>
 );
@@ -40,9 +50,15 @@ WeaponsTableBody.propTypes = {
   increaseGrenadeQty: PropTypes.func,
   decreaseGrenadeQty: PropTypes.func,
   removeGrenade: PropTypes.func,
+  increaseLauncherQty: PropTypes.func,
+  decreaseLauncherQty: PropTypes.func,
+  removeLauncher: PropTypes.func,
+  increaseLauncherAmmo: PropTypes.func,
+  decreaseLauncherAmmo: PropTypes.func,
   toggleModifyWeapon: PropTypes.func,
-  selectedGuns: PropTypes.arrayOf(PropTypes.object),
-  selectedGrenades: PropTypes.arrayOf(PropTypes.object),
+  selectedGuns: PropTypes.arrayOf(gunObjShape),
+  selectedGrenades: PropTypes.arrayOf(grenadeShape),
+  selectedLaunchers: PropTypes.arrayOf(launcherShape),
 };
 
 export default WeaponsTableBody;

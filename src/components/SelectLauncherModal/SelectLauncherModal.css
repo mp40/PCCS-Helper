@@ -1,0 +1,26 @@
+  .launcherContentsContainer {
+    width: 100% !important;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .launcherRowContainer > button {
+    margin: 1rem 0;
+  }
+
+  .launcherRow {
+    display: flex;
+  }
+
+  .launcherRow > div {
+    margin-left: 3px;
+    width: 10rem;
+  }
+
+  .launcherRow > div > span:nth-of-type(1) {
+    float: left;
+  }
+
+  .launcherRow > div > span:nth-of-type(2) {
+    float: right;
+  }

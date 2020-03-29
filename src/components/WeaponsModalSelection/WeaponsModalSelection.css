@@ -9,6 +9,10 @@
   transition: 0.3s;
 }
 
+.firearmEntry > span:first-of-type {
+  float: left;
+}
+
 .firearmEntry > span:last-of-type {
   float: right;
 }
@@ -58,4 +62,8 @@
 .WeaponStatTableContainer.trans  {
   transform: translateY(calc(100% - 0.5rem));
   height: 20rem;
+}
+
+.toggleViewGrenadeLauncher {
+  padding: 0.25em 0.5em;
 }

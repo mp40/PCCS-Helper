@@ -1,23 +1,20 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import FirearmStatsTable from '../FirearmStatsTable';
+import GearModalContents from '../GearModalContents';
+import GearCard from '../GearCard';
 import FirearmFilter from '../FirearmFilter';
-import FirearmNotes from '../FirearmNotes';
 import ButtonStandard from '../widgets/buttons/ButtonStandard';
-import ButtonInfo from '../widgets/buttons/ButtonInfo';
-import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 
+import FirearmInspection from './FirearmInspection';
 
 import { rifles, pistols, smgs, mgs, sniperRifles, shotguns, filterableCalibers } from '../../data/firearms';
 
-import GearModalContents from '../GearModalContents';
-
-import GearCard from '../GearCard';
+import { firearmLists } from './data';
 
 import './WeaponsModalSelection.css';
-
 
 const getAllFirearmsArray = () => [
   ...rifles(),
@@ -27,16 +24,6 @@ const getAllFirearmsArray = () => [
   ...sniperRifles(),
   ...shotguns(),
 ];
-
-const getFirearmList = {
-  Rifles: rifles(),
-  Pistols: pistols(),
-  SMGs: smgs(),
-  MGs: mgs(),
-  'Sniper Rifles': sniperRifles(),
-  Shotguns: shotguns(),
-  All: getAllFirearmsArray(),
-};
 
 const promiseTransitionClose = () => new Promise(((resolve) => {
   setTimeout(() => {
@@ -67,7 +54,7 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, handleAddFirearm }) =
   const [gunArrayFilteredByType, setFilteredGunArray] = useState(getAllFirearmsArray());
 
   const handleSetFilterByType = (type, calibre) => setFilteredGunArray(
-    filterCalibersFromType(getFirearmList[type], calibre),
+    filterCalibersFromType(firearmLists[type], calibre),
   );
 
   const handleToggleViewFilters = () => {
@@ -92,10 +79,6 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, handleAddFirearm }) =
     promiseTransitionClose().then(() => setFirearmToInspect(null));
   };
 
-  const addFirearmToList = (gunObj) => {
-    handleAddFirearm(gunObj);
-  };
-
   return (
     <>
       <GearCard name="modalCard firearmSelectModal">
@@ -115,14 +98,15 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, handleAddFirearm }) =
         <GearModalContents>
           {gunArrayFilteredByType.map((gunObj) => (
             <div key={gunObj.name} style={{ display: 'flex', width: '30%', paddingLeft: '.2rem', paddingRight: '.2rem' }}>
-              <ButtonInfo
-                id={`view${gunObj.name.replace(/\s+/g, '')}`}
+              <button
+                type="button"
+                className={`--infoButton --button view${gunObj.name.replace(/\s+/g, '')}`}
                 onClick={() => handleShowStatCard(gunObj)}
               />
               <div
                 className="firearmEntry"
                 id={gunObj.name}
-                onClick={() => addFirearmToList(gunObj)}
+                onClick={() => handleAddFirearm(gunObj)}
               >
                 <span>{gunObj.name}</span>
                 <span>{`${gunObj.weight} lbs`}</span>
@@ -138,25 +122,12 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, handleAddFirearm }) =
       </div>
 
       {firearmToInspect && (
-        <div className={statBoxClassName} style={{ fontSize: 'medium' }}>
-          <div>
-            <ButtonDeleteX
-              id="closeGunStatView"
-              onClick={() => handleCloseStatCard()}
-            />
-          </div>
-          <div style={{ display: 'flex' }}>
-            <div>
-              <FirearmStatsTable gunObj={firearmToInspect} />
-            </div>
-            { firearmToInspect.list !== 'shotguns'
-          && (
-          <div className="firearm-notes-wrapper">
-            <FirearmNotes gunObj={firearmToInspect} viewSpareAmmo={false} />
-          </div>
-          )}
-          </div>
-        </div>
+        <FirearmInspection
+          statBoxClassName={statBoxClassName}
+          firearmToInspect={firearmToInspect}
+          setFirearmToInspect={setFirearmToInspect}
+          handleCloseStatCard={handleCloseStatCard}
+        />
       )}
     </>
   );

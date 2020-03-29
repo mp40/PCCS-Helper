@@ -32,6 +32,7 @@ const returnUpdatedWeightAndGear = (gearToUpdate) => (state, updatedGear) => {
 export const returnUpdatedWeightAndEquipment = returnUpdatedWeightAndGear('equipment');
 export const returnUpdatedWeightAndFirearms = returnUpdatedWeightAndGear('firearms');
 export const returnUpdatedWeightAndGrenades = returnUpdatedWeightAndGear('grenades');
+export const returnUpdatedWeightAndLaunchers = returnUpdatedWeightAndGear('launchers');
 
 export const returnUpdatedUniform = returnUpdatedWeightAndGear('uniform');
 export const returnUpdatedVest = returnUpdatedWeightAndGear('vest');
@@ -49,3 +50,15 @@ export const returnUpdatedWeightAndArray = (state, payload, incrementer, arrayNa
   const newArray = incrementQuantity(incrementer)(state.gear[arrayName], payload.name);
   return returnUpdatedWeightAndGear(arrayName)(state, newArray);
 };
+
+const updateLauncherAmmo = (adjustment) => (arr, ammoClass) => arr.map((mag) => {
+  if (ammoClass === mag.class) {
+    const newMag = mag;
+    newMag.qty += adjustment;
+    return newMag;
+  }
+  return mag;
+});
+
+export const increaseLauncherAmmo = updateLauncherAmmo(1);
+export const decreaseLauncherAmmo = updateLauncherAmmo(-1);

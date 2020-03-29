@@ -7,14 +7,21 @@ import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 import ButtonIncrementArrows from '../widgets/buttons/ButtonIncrementArrows';
 import { correctFloatingPoint } from '../../reducers/reducerHelpers';
 
+import keys from './data';
+
 import './GearRow.css';
 
-export const renderCorrectAmmoTitle = (mag) => (mag.type === 'Rnd' ? 'Single Rounds' : `${mag.cap} round ${mag.type}`);
+export const renderCorrectAmmoTitle = (mag) => {
+  if (mag?.class) {
+    return mag.class;
+  }
+  return (mag.type === 'Rnd' ? 'Single Rounds' : `${mag.cap} round ${mag.type}`);
+};
 
 const GearRow = ({ gear }) => {
   const renderRemoveButton = (item) => (
     <ButtonDeleteX
-      className={`remove${item.name}`}
+      className={`remove${item.name.replace(/\s/g, '')}`}
       onClick={() => gear.remove(item)}
     />
   );
@@ -33,8 +40,8 @@ const GearRow = ({ gear }) => {
     gear.type, () => gear.up(item), () => (item.qty === 1 ? null : gear.down(item)),
   );
 
-  const renderIncrementMagazineButtons = (firearm, magazine, index) => renderIncrementButtons(
-    `MagType${index + 1}`, () => gear.magUp({ firearm, magazine }), () => (magazine.qty === 0 ? null : gear.magDown({ firearm, magazine })),
+  const renderIncrementMagazineButtons = (weapon, magazine, index) => renderIncrementButtons(
+    `MagType${index + 1}`, () => gear.magUp({ weapon, magazine }), () => (magazine.qty === 0 ? null : gear.magDown({ weapon, magazine })),
   );
 
   const wrapWithClickable = (item) => {
@@ -55,7 +62,7 @@ const GearRow = ({ gear }) => {
   return (
     gear.array.map((item) => (
       <Fragment key={item.name}>
-        <tr className={`${item.name}Row tableRow`}>
+        <tr className={`${item.name.replace(/\s/g, '')}Row tableRow`}>
           <td>
             {renderRemoveButton(item)}
             {wrapWithClickable(item)}
@@ -66,11 +73,11 @@ const GearRow = ({ gear }) => {
           <td>{renderIncrementItemButtons(item)}</td>
         </tr>
         {item.mag && item.mag.map((mag, index) => {
-          if (mag.removed === true) {
+          if (mag.removed === true || mag.weight === '-') {
             return null;
           }
           return (
-            <tr key={`${mag.cap}${mag.weight}`} className="spareMagRow">
+            <tr key={keys[index]} className="spareMagRow">
               <td>
                 <span>
                   {`${mag.qty} x ${renderCorrectAmmoTitle(mag)}`}
@@ -79,6 +86,10 @@ const GearRow = ({ gear }) => {
                   {renderIncrementMagazineButtons(item, mag, index)}
                 </span>
               </td>
+              <td />
+              <td />
+              <td />
+              <td />
             </tr>
           );
         },

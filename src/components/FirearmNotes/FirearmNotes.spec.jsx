@@ -63,6 +63,11 @@ describe('<FirearmNotes/>', () => {
       wrapper.setProps({ gunObj: { mag: [], selector: 'Full Auto Only' } });
       expect(wrapper.text()).toContain('Full Auto Only');
     });
+    it('should render if grenade launcher present', () => {
+      expect(wrapper.text()).not.toContain('Grenade Launcher');
+      wrapper.setProps({ gunObj: { mag: [], launcher: true } });
+      expect(wrapper.text()).toContain('Grenade Launcher');
+    });
   });
   describe('conditional rendering', () => {
     const wrapper = shallow(<FirearmNotes gunObj={{ mag: getSpareGunMags(0, 20) }} viewSpareAmmo={false} />);

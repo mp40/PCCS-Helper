@@ -4,7 +4,7 @@ import EquipmentDropdown from './component';
 import './EquipmentDropdown.css';
 
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   gear: {
     equipment: state.gear.equipment,
   },
