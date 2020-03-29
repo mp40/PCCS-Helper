@@ -11,7 +11,7 @@ const PhysicalData = ({ weapon, value }) => (
 );
 
 PhysicalData.propTypes = {
-  weapon: PropTypes.oneOfType([gunObjShape, launcherShape]).isRequired,
+  weapon: PropTypes.oneOfType([gunObjShape, launcherShape]),
   value: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.bool])).isRequired,
 };
 

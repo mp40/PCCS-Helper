@@ -1,4 +1,4 @@
-import { rifles, pistols, smgs, mgs, sniperRifles, shotguns, filterableCalibers } from '../../data/firearms';
+import { rifles, pistols, smgs, mgs, sniperRifles, shotguns } from '../../data/firearms';
 
 export const firearmLists = {
   Rifles: rifles(),

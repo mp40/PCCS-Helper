@@ -3,15 +3,15 @@ export const emptyLauncher = {
   list: 'launchers',
   qty: 1,
   length: '',
-  weight: '',
-  rt: '',
+  weight: 0,
+  rt: 0,
   rof: '-',
   mag: [{ type: '', weight: '-', cap: '' }],
-  mr: '',
-  sab: '',
+  mr: 0,
+  sab: 0,
   aim: {
-    ac: [],
-    mod: [],
+    ac: [0],
+    mod: [0],
   },
   projectiles: [
     {
