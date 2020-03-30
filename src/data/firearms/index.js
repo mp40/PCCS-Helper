@@ -166,7 +166,7 @@ export const rifles = () => [
     weight: 10.1,
     rt: 8,
     rof: '*5',
-    mag: [{ type: 'Mag', weight: 1.1, cap: 30, qty: 0 }],
+    mag: [{ type: 'Mag', weight: 1.1, cap: 30, qty: 0 }, { type: 'Rnd', class: 'HE', weight: 0.56, cap: 1, qty: 0 }],
     kd: 4,
     sab: 2,
     aim: averageRifle9Aims,
