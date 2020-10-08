@@ -1,29 +1,26 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import NavBar from './components/NavBar';
-import HomePage from './components/Home';
-import CharacterGeneration from './components/CharacterGeneration';
-import GameSheet from './components/GameSheet';
+import React from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import Header from "./components/header";
+import HomePage from "./components/Home";
+import CharacterGeneration from "./components/CharacterGeneration";
+import GameSheet from "./components/GameSheet";
 
-import './stylesheet/styles.css';
-import './App.css';
+import "./stylesheet/styles.css";
+import "./App.css";
 
 export const App = ({ currentView }) => (
-  <div className="App">
-    <header className="App-header">
-      <NavBar />
+  <div className='App'>
+    <header className='App-header'>
+      <Header />
     </header>
-    <div className="App-body">
-      {currentView === 'home'
-        && <HomePage />}
-      {(currentView === 'createChar' || currentView === 'printRefSheet')
-        && <CharacterGeneration />}
+    <div className='App-body'>
+      {currentView === "home" && <HomePage />}
+      {(currentView === "createChar" || currentView === "printRefSheet") && (
+        <CharacterGeneration />
+      )}
     </div>
-    {currentView === 'printRefSheet'
-    && (
-      <GameSheet />
-    )}
+    {currentView === "printRefSheet" && <GameSheet />}
   </div>
 );
 
