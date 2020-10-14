@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-import HeaderCreateCharacter from "./createCharacter";
+import HeaderCreateCharacter from "./create_character";
 import HeaderButtons from "./buttons";
 import HeaderModal from "./modal";
+import HeaderDropdown from "./dropdown";
 
 import Print from "../Print";
 
@@ -12,6 +13,15 @@ import "./header.css";
 const Header = ({ currentView, totalWeight }) => {
   const [showSignUp, setShowSignUp] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleWindowResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => window.removeEventListener("resize", handleWindowResize);
+  }, []);
 
   const handleShowSignUp = () => {
     setShowSignIn(false);
@@ -23,19 +33,34 @@ const Header = ({ currentView, totalWeight }) => {
     setShowSignIn(!showSignIn);
   };
 
+  const handleShowDropdown = () => {
+    setShowDropdown(!showDropdown);
+  };
+
   return (
     <div className='menuBar'>
-      <div className='menuTitle'>PCCS</div>
-      <HeaderButtons
-        handleShowSignUp={handleShowSignUp}
-        handleShowSignIn={handleShowSignIn}
-      />
+      <div>PCCS</div>
       {currentView === "createChar" && (
-        <div>
+        <div className='wrapper'>
           <HeaderCreateCharacter totalWeight={totalWeight} />
           <Print />
         </div>
       )}
+
+      <HeaderButtons
+        handleShowSignUp={handleShowSignUp}
+        handleShowSignIn={handleShowSignIn}
+        handleShowDropdown={handleShowDropdown}
+        width={width}
+      />
+
+      {showDropdown && (
+        <HeaderDropdown
+          handleShowSignUp={handleShowSignUp}
+          handleShowSignIn={handleShowSignIn}
+        />
+      )}
+
       {showSignUp && (
         <HeaderModal
           type='signup'

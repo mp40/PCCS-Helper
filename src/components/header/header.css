@@ -6,53 +6,37 @@
   height: 4rem;
   position: relative;
   color: whitesmoke;
+  z-index: 5;
 }
 
-.menuTitle {
+.menuBar > div:first-of-type {
   margin-left: 2rem;
-  width: 4%;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
 }
 
+.menuBar > .wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: fit-content;
+  height: 100%;
+  margin: 0 auto;
+}
+
 .navCreateCharacterContainer {
   text-align: center;
-  padding-top: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 .navEquipWeight {
   font-size: smaller;
 }
 
-.menuBar > .buttons {
-  float: right;
-  margin-right: 2rem;
-  display: flex;
-  align-items: center;
-  height: 100%;
-}
-
-.menuBar > .buttons > button:first-of-type {
-  margin-right: 1rem;
-}
-
-.menuBar > .buttons > button {
-  width: 5rem;
-  height: 2rem;
-  border-radius: 5px;
-  background-color: transparent;
-  border: none;
-  color: whitesmoke;
-  font-size: 1.125rem;
-  font-weight: 500;
-}
-
-.menuBar > .buttons > button:hover {
-  border: 1.5px solid whitesmoke;
-}
-
-.menuBar > .buttons > button:active {
-  border: 1px solid whitesmoke;
-  opacity: 0.75;
+@media screen and (max-width: 800px) {
+  .menuBar > div:first-of-type {
+    font-size: 1rem;
+    margin-left: 30px;
+  }
 }

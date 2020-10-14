@@ -50,15 +50,15 @@ const HeaderModal = ({
 
   return (
     <>
-      <div className='modal' />
-      <div className='card'>
+      <div className={styles.modal} />
+      <div className={styles.card}>
         <button
-          className='close'
+          className={styles.close}
           type='button'
           onClick={() => handleShowModal()}
         />
         <div>{text[type].title}</div>
-        <form className='form' onSubmit={(event) => handleSubmit(event)}>
+        <form className={styles.form} onSubmit={(event) => handleSubmit(event)}>
           <label>
             <span className={errors.email ? styles.error : ""}>
               {text.label.email}
@@ -89,7 +89,7 @@ const HeaderModal = ({
           <input type='submit' value={text[type].title} />
         </form>
         <button
-          className='switchModal'
+          className={styles.switchModal}
           type='button'
           onClick={() => {
             handleSwitchModal();

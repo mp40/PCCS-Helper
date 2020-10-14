@@ -5,24 +5,50 @@ import HeaderButtons from "./index";
 describe("Header Buttons", () => {
   const handleShowSignUp = jest.fn();
   const handleShowSignIn = jest.fn();
-  const wrapper = shallow(
-    <HeaderButtons
-      handleShowSignUp={handleShowSignUp}
-      handleShowSignIn={handleShowSignIn}
-    />
-  );
+  const handleShowDropdown = jest.fn();
 
-  afterEach(() => {
-    jest.clearAllMocks();
+  describe("desktop", () => {
+    const wrapper = shallow(
+      <HeaderButtons
+        handleShowSignUp={handleShowSignUp}
+        handleShowSignIn={handleShowSignIn}
+        handleShowDropdown={handleShowDropdown}
+        width={800}
+      />
+    );
+
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
+    it("should not display a burger menu button ", () => {
+      expect(wrapper.find(".burger").exists()).toBe(false);
+      expect(wrapper.find("HeaderProfile").exists()).toBe(true);
+    });
   });
 
-  it("should open sign up modal when sign up clicked", () => {
-    wrapper.find("button").at(0).simulate("click");
-    expect(handleShowSignUp).toHaveBeenCalled();
-  });
+  describe("mobile", () => {
+    const wrapper = shallow(
+      <HeaderButtons
+        handleShowSignUp={handleShowSignUp}
+        handleShowSignIn={handleShowSignIn}
+        handleShowDropdown={handleShowDropdown}
+        width={799}
+      />
+    );
 
-  it("should open sign in modal when sign in clicked", () => {
-    wrapper.find("button").at(1).simulate("click");
-    expect(handleShowSignIn).toHaveBeenCalled();
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
+    it("should display a burger menu button instead of sign up and in buttons", () => {
+      expect(wrapper.find(".burger").exists()).toBe(true);
+      expect(wrapper.find("HeaderProfile").exists()).toBe(false);
+    });
+
+    it("should display drop down menu when burger clicked ", () => {
+      wrapper.find(".burger").simulate("click");
+      expect(handleShowDropdown).toHaveBeenCalled();
+    });
   });
 });
