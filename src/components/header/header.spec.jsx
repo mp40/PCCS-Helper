@@ -1,159 +1,88 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
 import Header from "./component";
+
 import { act } from "react-dom/test-utils";
 
-const handleResize = (width) => {
-  window.innerWidth = width;
-  window.dispatchEvent(new Event("resize"));
-};
-
 describe("The Header", () => {
-  describe("Header User Profile desktop", () => {
-    describe("sign up modal", () => {
-      let wrapper;
+  describe("sign up modal", () => {
+    let wrapper;
 
-      beforeEach(() => {
-        wrapper = mount(<Header />);
-      });
-
-      it("should open sign up modal when Sign Up clicked", () => {
-        wrapper.find("button").at(0).simulate("click");
-        const title = wrapper.find("HeaderModal").find("div").at(2);
-
-        expect(title.text()).toBe("Sign Up");
-      });
-
-      it("should be possible to close modal", () => {
-        wrapper.find("button").at(0).simulate("click");
-        wrapper.find(".close").simulate("click");
-
-        expect(wrapper.find("HeaderModal").exists()).toBe(false);
-      });
-
-      it("should be possible to switch modal", () => {
-        wrapper.find("button").at(0).simulate("click");
-        wrapper.find(".switchModal").simulate("click");
-
-        const title = wrapper.find("HeaderModal").find("div").at(2);
-
-        expect(title.text()).toContain("Sign In");
-      });
+    beforeEach(() => {
+      wrapper = mount(<Header />);
     });
 
-    describe("sign in modal", () => {
-      let wrapper;
+    it("should open sign up modal when Sign Up clicked", () => {
+      wrapper.find("button").at(0).simulate("click");
+      const title = wrapper.find("HeaderModal").find("div").at(2);
 
-      beforeEach(() => {
-        wrapper = mount(<Header />);
-      });
+      expect(title.text()).toBe("Sign Up");
+    });
 
-      it("should open sign in modal", () => {
-        wrapper.find("button").at(1).simulate("click");
-        const title = wrapper.find("HeaderModal").find("div").at(2);
+    it("should be possible to close modal", () => {
+      wrapper.find("button").at(0).simulate("click");
+      wrapper.find(".close").simulate("click");
 
-        expect(title.text()).toContain("Sign In");
-      });
+      expect(wrapper.find("HeaderModal").exists()).toBe(false);
+    });
 
-      it("should be possible to close modal", () => {
-        wrapper.find("button").at(1).simulate("click");
-        wrapper.find(".close").simulate("click");
+    it("should be possible to switch modal", () => {
+      wrapper.find("button").at(0).simulate("click");
+      wrapper.find(".switchModal").simulate("click");
 
-        expect(wrapper.find("HeaderModal").exists()).toBe(false);
-      });
+      const title = wrapper.find("HeaderModal").find("div").at(2);
 
-      it("should be possible to switch modal", () => {
-        wrapper.find("button").at(1).simulate("click");
-        wrapper.find(".switchModal").simulate("click");
-
-        const title = wrapper.find("HeaderModal").find("div").at(2);
-
-        expect(title.text()).toContain("Sign Up");
-      });
+      expect(title.text()).toContain("Sign In");
     });
   });
 
-  describe("Header User Profile mobile", () => {
-    describe("burger button", () => {
-      let wrapper;
+  describe("sign in modal", () => {
+    let wrapper;
 
-      beforeEach(() => {
-        // window.innerWidth = 500;
-        // window.dispatchEvent(new Event("resize"));
-        wrapper = mount(<Header />);
-        // act(() => {
-        //   global.innerWidth = 500;
-        //   global.dispatchEvent(new Event("resize"));
-        // });
-        // act(() => {
-        //   window.innerWidth = 500;
-        //   window.dispatchEvent(new Event("resize"));
-        // });
-      });
-
-      it("should open sign up modal when Sign Up clicked", () => {
-        // act(() => {
-        //   window.innerWidth = 500;
-        //   window.dispatchEvent(new Event("resize"));
-        // });
-        // act(async () => {
-        //   await handleResize(400);
-        // });
-
-        // window.innerWidth = 500;
-        // window.dispatchEvent(new Event("resize"));
-        console.log(wrapper.debug());
-        // wrapper.find("button").at(0).simulate("click");
-        // const title = wrapper.find("HeaderModal").find("div").at(2);
-        // expect(title.text()).toBe("Sign Up");
-      });
-
-      // it("should be possible to close modal", () => {
-      //   wrapper.find("button").at(0).simulate("click");
-      //   wrapper.find(".close").simulate("click");
-
-      //   expect(wrapper.find("HeaderModal").exists()).toBe(false);
-      // });
-
-      // it("should be possible to switch modal", () => {
-      //   wrapper.find("button").at(0).simulate("click");
-      //   wrapper.find(".switchModal").simulate("click");
-
-      //   const title = wrapper.find("HeaderModal").find("div").at(2);
-
-      //   expect(title.text()).toContain("Sign In");
-      // });
+    beforeEach(() => {
+      wrapper = mount(<Header />);
     });
 
-    describe("sign in modal", () => {
-      let wrapper;
+    it("should open sign in modal", () => {
+      wrapper.find("button").at(1).simulate("click");
+      const title = wrapper.find("HeaderModal").find("div").at(2);
 
-      beforeEach(() => {
-        wrapper = mount(<Header />);
+      expect(title.text()).toContain("Sign In");
+    });
+
+    it("should be possible to close modal", () => {
+      wrapper.find("button").at(1).simulate("click");
+      wrapper.find(".close").simulate("click");
+
+      expect(wrapper.find("HeaderModal").exists()).toBe(false);
+    });
+
+    it("should be possible to switch modal", () => {
+      wrapper.find("button").at(1).simulate("click");
+      wrapper.find(".switchModal").simulate("click");
+
+      const title = wrapper.find("HeaderModal").find("div").at(2);
+
+      expect(title.text()).toContain("Sign Up");
+    });
+  });
+
+  describe("burger button in mobile", () => {
+    let wrapper;
+
+    beforeEach(() => {
+      wrapper = mount(<Header />);
+
+      act(() => {
+        window.innerWidth = 799;
+        window.dispatchEvent(new Event("resize"));
       });
+    });
 
-      // it("should open sign in modal", () => {
-      //   wrapper.find("button").at(1).simulate("click");
-      //   const title = wrapper.find("HeaderModal").find("div").at(2);
-
-      //   expect(title.text()).toContain("Sign In");
-      // });
-
-      // it("should be possible to close modal", () => {
-      //   wrapper.find("button").at(1).simulate("click");
-      //   wrapper.find(".close").simulate("click");
-
-      //   expect(wrapper.find("HeaderModal").exists()).toBe(false);
-      // });
-
-      // it("should be possible to switch modal", () => {
-      //   wrapper.find("button").at(1).simulate("click");
-      //   wrapper.find(".switchModal").simulate("click");
-
-      //   const title = wrapper.find("HeaderModal").find("div").at(2);
-
-      //   expect(title.text()).toContain("Sign Up");
-      // });
+    it("should open dropdown when burger clicked", () => {
+      wrapper.update();
+      wrapper.find(".burger").simulate("click");
+      expect(wrapper.find("HeaderDropdown").exists()).toBe(true);
     });
   });
 
