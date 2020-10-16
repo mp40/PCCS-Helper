@@ -8,6 +8,8 @@ import HeaderDropdown from "./dropdown";
 
 import Print from "../Print";
 
+import { fetchSignup, fetchSignin } from "../../fetch";
+
 import "./header.css";
 
 const Header = ({ currentView, totalWeight }) => {
@@ -35,6 +37,26 @@ const Header = ({ currentView, totalWeight }) => {
 
   const handleShowDropdown = () => {
     setShowDropdown(!showDropdown);
+  };
+
+  const handleSignupUser = async (user) => {
+    const res = await fetchSignup(user);
+
+    if (res.error) {
+      return;
+    }
+
+    setShowSignUp(false);
+  };
+
+  const handleSigninUser = async (user) => {
+    const res = await fetchSignin(user);
+
+    if (res.error) {
+      return;
+    }
+
+    setShowSignIn(false);
   };
 
   return (
@@ -66,7 +88,7 @@ const Header = ({ currentView, totalWeight }) => {
           type='signup'
           handleShowModal={handleShowSignUp}
           handleSwitchModal={handleShowSignIn}
-          handleSubmitUser={() => {}}
+          handleSubmitUser={handleSignupUser}
         />
       )}
       {showSignIn && (
@@ -74,7 +96,7 @@ const Header = ({ currentView, totalWeight }) => {
           type='signin'
           handleShowModal={handleShowSignIn}
           handleSwitchModal={handleShowSignUp}
-          handleSubmitUser={() => {}}
+          handleSubmitUser={handleSigninUser}
         />
       )}
     </div>
