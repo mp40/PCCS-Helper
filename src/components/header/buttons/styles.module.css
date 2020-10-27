@@ -11,7 +11,7 @@
 }
 
 .buttons > button {
-  width: 5rem;
+  width: 5.5rem;
   height: 2rem;
   border-radius: 5px;
   background-color: transparent;
@@ -34,6 +34,10 @@
   .buttons {
     width: 0;
     margin-right: 30px;
+  }
+
+  .burger {
+    width: 5rem;
   }
 
   .burger::before {

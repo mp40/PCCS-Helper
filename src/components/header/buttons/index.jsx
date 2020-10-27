@@ -10,6 +10,7 @@ const HeaderButtons = ({
   handleShowSignIn,
   handleShowDropdown,
   width,
+  signedIn,
 }) => {
   const breakpoint = 800;
 
@@ -26,6 +27,7 @@ const HeaderButtons = ({
         <HeaderProfile
           handleShowSignUp={handleShowSignUp}
           handleShowSignIn={handleShowSignIn}
+          signedIn={signedIn}
         />
       )}
     </div>
@@ -37,6 +39,7 @@ HeaderButtons.propTypes = {
   handleShowSignIn: PropTypes.func.isRequired,
   handleShowDropdown: PropTypes.func.isRequired,
   width: PropTypes.number.isRequired,
+  signedIn: PropTypes.bool.isRequired,
 };
 
 export default HeaderButtons;

@@ -14,6 +14,7 @@ describe("Header Buttons", () => {
         handleShowSignIn={handleShowSignIn}
         handleShowDropdown={handleShowDropdown}
         width={800}
+        signedIn={false}
       />
     );
 
@@ -34,6 +35,7 @@ describe("Header Buttons", () => {
         handleShowSignIn={handleShowSignIn}
         handleShowDropdown={handleShowDropdown}
         width={799}
+        signedIn={false}
       />
     );
 

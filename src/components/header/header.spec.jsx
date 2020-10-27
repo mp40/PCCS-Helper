@@ -4,12 +4,23 @@ import Header from "./component";
 
 import { act } from "react-dom/test-utils";
 
+const waitOneTick = (simulate) =>
+  new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(simulate);
+    }, 0);
+  });
+
 describe("The Header", () => {
   describe("sign up modal", () => {
     let wrapper;
 
     beforeEach(() => {
       wrapper = mount(<Header />);
+    });
+
+    afterEach(() => {
+      jest.clearAllMocks();
     });
 
     it("should open sign up modal when Sign Up clicked", () => {
@@ -34,6 +45,73 @@ describe("The Header", () => {
 
       expect(title.text()).toContain("Sign In");
     });
+
+    it("should close modal on sign up", async () => {
+      global.fetch = jest.fn(() =>
+        Promise.resolve({
+          text: () =>
+            JSON.stringify({
+              id: "1",
+              email: "testSan@gmail.com",
+              password: "hashed_password",
+            }),
+        })
+      );
+
+      wrapper.find("button").at(0).simulate("click");
+
+      wrapper
+        .find("input")
+        .at(0)
+        .simulate("change", { target: { value: "test@gmail.com" } });
+
+      wrapper
+        .find("input")
+        .at(1)
+        .simulate("change", { target: { value: "password" } });
+
+      await act(async () => {
+        await waitOneTick(wrapper.find("form").simulate("submit"));
+      });
+
+      wrapper.update();
+
+      expect(wrapper.text()).not.toContain("Email");
+      expect(wrapper.text()).not.toContain("Password");
+    });
+
+    it("should not close modal on sign up error", async () => {
+      global.fetch = jest.fn(() =>
+        Promise.resolve({
+          text: () =>
+            JSON.stringify({
+              error: "error",
+              message: "Signup Error",
+            }),
+        })
+      );
+
+      wrapper.find("button").at(0).simulate("click");
+
+      wrapper
+        .find("input")
+        .at(0)
+        .simulate("change", { target: { value: "test@gmail.com" } });
+
+      wrapper
+        .find("input")
+        .at(1)
+        .simulate("change", { target: { value: "password" } });
+
+      await act(async () => {
+        await waitOneTick(wrapper.find("form").simulate("submit"));
+      });
+
+      wrapper.update();
+
+      expect(wrapper.text()).toContain("Email");
+      expect(wrapper.text()).toContain("Password");
+    });
   });
 
   describe("sign in modal", () => {
@@ -41,6 +119,10 @@ describe("The Header", () => {
 
     beforeEach(() => {
       wrapper = mount(<Header />);
+    });
+
+    afterEach(() => {
+      jest.clearAllMocks();
     });
 
     it("should open sign in modal", () => {
@@ -64,6 +146,69 @@ describe("The Header", () => {
       const title = wrapper.find("HeaderModal").find("div").at(2);
 
       expect(title.text()).toContain("Sign Up");
+    });
+
+    it("should be possible to sign in", async () => {
+      global.fetch = jest.fn(() =>
+        Promise.resolve({
+          text: () => JSON.stringify({ message: "Signed In" }),
+        })
+      );
+
+      wrapper.find("button").at(1).simulate("click");
+
+      wrapper
+        .find("input")
+        .at(0)
+        .simulate("change", { target: { value: "test@gmail.com" } });
+
+      wrapper
+        .find("input")
+        .at(1)
+        .simulate("change", { target: { value: "password" } });
+
+      await act(async () => {
+        await waitOneTick(wrapper.find("form").simulate("submit"));
+      });
+
+      wrapper.update();
+
+      expect(wrapper.text()).toContain("Sign Out");
+    });
+
+    it("should not close modal on sign up error", async () => {
+      global.fetch = jest.fn(() =>
+        Promise.resolve({
+          text: () =>
+            JSON.stringify({
+              error: "error",
+              message: "Signup Error",
+            }),
+        })
+      );
+
+      wrapper.find("button").at(1).simulate("click");
+
+      wrapper
+        .find("input")
+        .at(0)
+        .simulate("change", { target: { value: "test@gmail.com" } });
+
+      wrapper
+        .find("input")
+        .at(1)
+        .simulate("change", { target: { value: "password" } });
+
+      await act(async () => {
+        await waitOneTick(wrapper.find("form").simulate("submit"));
+      });
+
+      wrapper.update();
+
+      expect(wrapper.text()).not.toContain("Sign Out");
+
+      expect(wrapper.text()).toContain("Email");
+      expect(wrapper.text()).toContain("Password");
     });
   });
 

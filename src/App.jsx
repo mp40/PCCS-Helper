@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Header from "./components/header";
@@ -9,20 +9,22 @@ import GameSheet from "./components/GameSheet";
 import "./stylesheet/styles.css";
 import "./App.css";
 
-export const App = ({ currentView }) => (
-  <div className='App'>
-    <header className='App-header'>
-      <Header />
-    </header>
-    <div className='App-body'>
-      {currentView === "home" && <HomePage />}
-      {(currentView === "createChar" || currentView === "printRefSheet") && (
-        <CharacterGeneration />
-      )}
+export const App = ({ currentView }) => {
+  return (
+    <div className='App'>
+      <header className='App-header'>
+        <Header />
+      </header>
+      <div className='App-body'>
+        {currentView === "home" && <HomePage />}
+        {(currentView === "createChar" || currentView === "printRefSheet") && (
+          <CharacterGeneration />
+        )}
+      </div>
+      {currentView === "printRefSheet" && <GameSheet />}
     </div>
-    {currentView === "printRefSheet" && <GameSheet />}
-  </div>
-);
+  );
+};
 
 App.propTypes = {
   currentView: PropTypes.string,

@@ -16,6 +16,7 @@ const Header = ({ currentView, totalWeight }) => {
   const [showSignUp, setShowSignUp] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [signedIn, setSignedIn] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -56,7 +57,9 @@ const Header = ({ currentView, totalWeight }) => {
       return;
     }
 
+    setShowDropdown(false);
     setShowSignIn(false);
+    setSignedIn(!signedIn);
   };
 
   return (
@@ -74,12 +77,14 @@ const Header = ({ currentView, totalWeight }) => {
         handleShowSignIn={handleShowSignIn}
         handleShowDropdown={handleShowDropdown}
         width={width}
+        signedIn={signedIn}
       />
 
       {showDropdown && (
         <HeaderDropdown
           handleShowSignUp={handleShowSignUp}
           handleShowSignIn={handleShowSignIn}
+          signedIn={signedIn}
         />
       )}
 

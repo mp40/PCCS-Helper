@@ -5,56 +5,51 @@ import HeaderProfile from "./index";
 describe("Header Buttons", () => {
   const handleShowSignUp = jest.fn();
   const handleShowSignIn = jest.fn();
-  //   const handleShowDropdown = jest.fn();
 
-  //   describe("desktop", () => {
-  const wrapper = shallow(
-    <HeaderProfile
-      handleShowSignUp={handleShowSignUp}
-      handleShowSignIn={handleShowSignIn}
-      // handleShowDropdown={handleShowDropdown}
-      // width={800}
-    />
-  );
+  describe("when signed out", () => {
+    const wrapper = shallow(
+      <HeaderProfile
+        handleShowSignUp={handleShowSignUp}
+        handleShowSignIn={handleShowSignIn}
+        signedIn={false}
+      />
+    );
 
-  afterEach(() => {
-    jest.clearAllMocks();
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
+    it("should not render sign out button", () => {
+      expect(wrapper.text()).not.toContain("Sign Out");
+    });
+
+    it("should open sign up modal when sign up clicked", () => {
+      wrapper.find("button").at(0).simulate("click");
+      expect(handleShowSignUp).toHaveBeenCalled();
+    });
+
+    it("should open sign in modal when sign in clicked", () => {
+      wrapper.find("button").at(1).simulate("click");
+      expect(handleShowSignIn).toHaveBeenCalled();
+    });
   });
 
-  it("should open sign up modal when sign up clicked", () => {
-    wrapper.find("button").at(0).simulate("click");
-    expect(handleShowSignUp).toHaveBeenCalled();
-  });
+  describe("when signed in", () => {
+    const wrapper = shallow(
+      <HeaderProfile
+        handleShowSignUp={handleShowSignUp}
+        handleShowSignIn={handleShowSignIn}
+        signedIn={true}
+      />
+    );
 
-  it("should open sign in modal when sign in clicked", () => {
-    wrapper.find("button").at(1).simulate("click");
-    expect(handleShowSignIn).toHaveBeenCalled();
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
+    it("should not render sign up and sign in button", () => {
+      expect(wrapper.text()).not.toContain("Sign In");
+      expect(wrapper.text()).not.toContain("Sign Up");
+    });
   });
 });
-
-//   describe("mobile", () => {
-//     const wrapper = shallow(
-//       <HeaderButtons
-//         handleShowSignUp={handleShowSignUp}
-//         handleShowSignIn={handleShowSignIn}
-//         handleShowDropdown={handleShowDropdown}
-//         width={799}
-//       />
-//     );
-
-//     afterEach(() => {
-//       jest.clearAllMocks();
-//     });
-
-//     it("should display a burger menu button instead of sign up and in buttons", () => {
-//       expect(wrapper.find(".burger").exists()).toBe(true);
-//       expect(wrapper.text()).not.toContain("Sign Up");
-//       expect(wrapper.text()).not.toContain("Sign In");
-//     });
-
-//     it("should display drop down menu when burger clicked ", () => {
-//       wrapper.find(".burger").simulate("click");
-//       expect(handleShowDropdown).toHaveBeenCalled();
-//     });
-//   });
-// });

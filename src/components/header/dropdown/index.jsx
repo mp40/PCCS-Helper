@@ -5,12 +5,13 @@ import HeaderProfile from "../profile";
 
 import styles from "./styles.module.css";
 
-const HeaderDropdown = ({ handleShowSignUp, handleShowSignIn }) => {
+const HeaderDropdown = ({ handleShowSignUp, handleShowSignIn, signedIn }) => {
   return (
     <div className={styles.wrapper}>
       <HeaderProfile
         handleShowSignUp={handleShowSignUp}
         handleShowSignIn={handleShowSignIn}
+        signedIn={signedIn}
       />
     </div>
   );
@@ -19,6 +20,7 @@ const HeaderDropdown = ({ handleShowSignUp, handleShowSignIn }) => {
 HeaderDropdown.propTypes = {
   handleShowSignUp: PropTypes.func.isRequired,
   handleShowSignIn: PropTypes.func.isRequired,
+  signedIn: PropTypes.bool.isRequired,
 };
 
 export default HeaderDropdown;
