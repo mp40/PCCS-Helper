@@ -1,4 +1,4 @@
-import { fetchSignup, fetchSignin } from "./index";
+import { fetchSignup, fetchSignin, fetchSignedIn } from "./index";
 
 describe("Calling the Server", () => {
   afterEach(() => {
@@ -86,5 +86,36 @@ describe("Calling the Server", () => {
     expect(fetch).toHaveBeenCalled();
 
     expect(res).toEqual({ error: "error", message: "Signin Error" });
+  });
+
+  it("should get /signedIn", async () => {
+    global.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        text: () => JSON.stringify({ message: "Signed In" }),
+      });
+    });
+
+    const res = await fetchSignedIn();
+
+    expect(fetch).toHaveBeenCalled();
+
+    expect(res).toEqual({
+      message: "Signed In",
+    });
+  });
+
+  it("should return error on get /signedIn failure", async () => {
+    global.fetch = jest.fn().mockImplementation(() => {
+      return Promise.reject("error");
+    });
+
+    const res = await fetchSignedIn();
+
+    expect(fetch).toHaveBeenCalled();
+
+    expect(res).toEqual({
+      error: "error",
+      message: "SignedIn Error",
+    });
   });
 });

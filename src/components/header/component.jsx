@@ -12,11 +12,10 @@ import { fetchSignup, fetchSignin } from "../../fetch";
 
 import "./header.css";
 
-const Header = ({ currentView, totalWeight }) => {
+const Header = ({ currentView, totalWeight, signedIn, handleSetSignedIn }) => {
   const [showSignUp, setShowSignUp] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
-  const [signedIn, setSignedIn] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -59,7 +58,7 @@ const Header = ({ currentView, totalWeight }) => {
 
     setShowDropdown(false);
     setShowSignIn(false);
-    setSignedIn(!signedIn);
+    handleSetSignedIn();
   };
 
   return (
@@ -111,6 +110,8 @@ const Header = ({ currentView, totalWeight }) => {
 Header.propTypes = {
   totalWeight: PropTypes.number,
   currentView: PropTypes.string,
+  signedIn: PropTypes.bool.isRequired,
+  handleSetSignedIn: PropTypes.func.isRequired,
 };
 
 export default Header;

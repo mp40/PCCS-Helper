@@ -12,11 +12,15 @@ const waitOneTick = (simulate) =>
   });
 
 describe("The Header", () => {
+  const handleSetSignedIn = jest.fn();
+
   describe("sign up modal", () => {
     let wrapper;
 
     beforeEach(() => {
-      wrapper = mount(<Header />);
+      wrapper = mount(
+        <Header handleSetSignedIn={handleSetSignedIn} signedIn={false} />
+      );
     });
 
     afterEach(() => {
@@ -118,7 +122,9 @@ describe("The Header", () => {
     let wrapper;
 
     beforeEach(() => {
-      wrapper = mount(<Header />);
+      wrapper = mount(
+        <Header handleSetSignedIn={handleSetSignedIn} signedIn={false} />
+      );
     });
 
     afterEach(() => {
@@ -173,7 +179,7 @@ describe("The Header", () => {
 
       wrapper.update();
 
-      expect(wrapper.text()).toContain("Sign Out");
+      expect(handleSetSignedIn).toHaveBeenCalled();
     });
 
     it("should not close modal on sign up error", async () => {
@@ -205,7 +211,7 @@ describe("The Header", () => {
 
       wrapper.update();
 
-      expect(wrapper.text()).not.toContain("Sign Out");
+      expect(handleSetSignedIn).not.toHaveBeenCalled();
 
       expect(wrapper.text()).toContain("Email");
       expect(wrapper.text()).toContain("Password");
@@ -216,7 +222,9 @@ describe("The Header", () => {
     let wrapper;
 
     beforeEach(() => {
-      wrapper = mount(<Header />);
+      wrapper = mount(
+        <Header handleSetSignedIn={handleSetSignedIn} signedIn={false} />
+      );
 
       act(() => {
         window.innerWidth = 799;
@@ -236,7 +244,12 @@ describe("The Header", () => {
     const totalWeight = 6.66;
 
     const wrapper = shallow(
-      <Header currentView={currentView} totalWeight={totalWeight} />
+      <Header
+        currentView={currentView}
+        totalWeight={totalWeight}
+        handleSetSignedIn={handleSetSignedIn}
+        signedIn={false}
+      />
     );
 
     it("should render the title", () => {
