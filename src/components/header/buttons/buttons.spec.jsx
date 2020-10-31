@@ -6,6 +6,7 @@ describe("Header Buttons", () => {
   const handleShowSignUp = jest.fn();
   const handleShowSignIn = jest.fn();
   const handleShowDropdown = jest.fn();
+  const handleSignOut = jest.fn();
 
   describe("desktop", () => {
     const wrapper = shallow(
@@ -13,6 +14,7 @@ describe("Header Buttons", () => {
         handleShowSignUp={handleShowSignUp}
         handleShowSignIn={handleShowSignIn}
         handleShowDropdown={handleShowDropdown}
+        handleSignOut={handleSignOut}
         width={800}
         signedIn={false}
       />
@@ -34,6 +36,7 @@ describe("Header Buttons", () => {
         handleShowSignUp={handleShowSignUp}
         handleShowSignIn={handleShowSignIn}
         handleShowDropdown={handleShowDropdown}
+        handleSignOut={handleSignOut}
         width={799}
         signedIn={false}
       />

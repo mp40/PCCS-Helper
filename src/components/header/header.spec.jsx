@@ -218,6 +218,54 @@ describe("The Header", () => {
     });
   });
 
+  describe("Signing Out", () => {
+    let wrapper;
+
+    beforeEach(() => {
+      wrapper = shallow(
+        <Header handleSetSignedIn={handleSetSignedIn} signedIn={true} />
+      );
+    });
+
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
+    it("should be possible to sign out", async () => {
+      global.fetch = jest.fn(() =>
+        Promise.resolve({
+          text: () => JSON.stringify({ message: "Cookie Cleared" }),
+        })
+      );
+
+      await act(async () => {
+        await waitOneTick(
+          wrapper.find("HeaderButtons").invoke("handleSignOut")()
+        );
+      });
+
+      expect(fetch).toHaveBeenCalled();
+      expect(handleSetSignedIn).toHaveBeenCalled()
+    });
+
+    it("should not sign out if error", async () => {
+      global.fetch = jest.fn(() =>
+        Promise.resolve({
+          text: () => JSON.stringify({ message: "Sign Out Error" }),
+        })
+      );
+
+      await act(async () => {
+        await waitOneTick(
+          wrapper.find("HeaderButtons").invoke("handleSignOut")()
+        );
+      });
+
+      expect(fetch).toHaveBeenCalled();
+      expect(handleSetSignedIn).not.toHaveBeenCalled()
+    });
+  });
+
   describe("burger button in mobile", () => {
     let wrapper;
 

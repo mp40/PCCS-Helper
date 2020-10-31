@@ -8,7 +8,7 @@ import HeaderDropdown from "./dropdown";
 
 import Print from "../Print";
 
-import { fetchSignup, fetchSignin } from "../../fetch";
+import { fetchSignup, fetchSignin, fetchSignOut } from "../../fetch";
 
 import "./header.css";
 
@@ -61,6 +61,14 @@ const Header = ({ currentView, totalWeight, signedIn, handleSetSignedIn }) => {
     handleSetSignedIn();
   };
 
+  const handleSignOut = async () => {
+    const res = await fetchSignOut();
+
+    if(res.message === "Cookie Cleared") {
+      handleSetSignedIn();
+    }
+  };
+
   return (
     <div className='menuBar'>
       <div>PCCS</div>
@@ -75,6 +83,7 @@ const Header = ({ currentView, totalWeight, signedIn, handleSetSignedIn }) => {
         handleShowSignUp={handleShowSignUp}
         handleShowSignIn={handleShowSignIn}
         handleShowDropdown={handleShowDropdown}
+        handleSignOut={handleSignOut}
         width={width}
         signedIn={signedIn}
       />
@@ -83,6 +92,7 @@ const Header = ({ currentView, totalWeight, signedIn, handleSetSignedIn }) => {
         <HeaderDropdown
           handleShowSignUp={handleShowSignUp}
           handleShowSignIn={handleShowSignIn}
+          handleSignOut={handleSignOut}
           signedIn={signedIn}
         />
       )}

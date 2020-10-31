@@ -9,6 +9,7 @@ const HeaderButtons = ({
   handleShowSignUp,
   handleShowSignIn,
   handleShowDropdown,
+  handleSignOut,
   width,
   signedIn,
 }) => {
@@ -27,6 +28,7 @@ const HeaderButtons = ({
         <HeaderProfile
           handleShowSignUp={handleShowSignUp}
           handleShowSignIn={handleShowSignIn}
+          handleSignOut={handleSignOut}
           signedIn={signedIn}
         />
       )}
@@ -38,6 +40,7 @@ HeaderButtons.propTypes = {
   handleShowSignUp: PropTypes.func.isRequired,
   handleShowSignIn: PropTypes.func.isRequired,
   handleShowDropdown: PropTypes.func.isRequired,
+  handleSignOut: PropTypes.func.isRequired,
   width: PropTypes.number.isRequired,
   signedIn: PropTypes.bool.isRequired,
 };

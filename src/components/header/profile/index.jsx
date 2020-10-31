@@ -1,13 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const HeaderProfile = ({ handleShowSignUp, handleShowSignIn, signedIn }) => {
+const HeaderProfile = ({
+  handleShowSignUp,
+  handleShowSignIn,
+  handleSignOut,
+  signedIn,
+}) => {
   return (
     <>
       {signedIn && (
         <button
           type='button'
-          // onClick={() => {}}
+          onClick={() => {
+            handleSignOut();
+          }}
         >
           Sign Out
         </button>
@@ -39,6 +46,7 @@ const HeaderProfile = ({ handleShowSignUp, handleShowSignIn, signedIn }) => {
 HeaderProfile.propTypes = {
   handleShowSignUp: PropTypes.func.isRequired,
   handleShowSignIn: PropTypes.func.isRequired,
+  handleSignOut: PropTypes.func.isRequired,
   signedIn: PropTypes.bool.isRequired,
 };
 

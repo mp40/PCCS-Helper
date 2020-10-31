@@ -1,4 +1,4 @@
-import { fetchSignup, fetchSignin, fetchSignedIn } from "./index";
+import { fetchSignup, fetchSignin, fetchSignedIn, fetchSignOut } from "./index";
 
 describe("Calling the Server", () => {
   afterEach(() => {
@@ -116,6 +116,37 @@ describe("Calling the Server", () => {
     expect(res).toEqual({
       error: "error",
       message: "SignedIn Error",
+    });
+  });
+
+  it("should get /signOut", async () => {
+    global.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        text: () => JSON.stringify({ message: "Cookie Cleared" }),
+      });
+    });
+
+    const res = await fetchSignOut();
+
+    expect(fetch).toHaveBeenCalled();
+
+    expect(res).toEqual({
+      message: "Cookie Cleared",
+    });
+  });
+
+  it("should return error on /signOut failure", async () => {
+    global.fetch = jest.fn().mockImplementation(() => {
+      return Promise.reject("error");
+    });
+
+    const res = await fetchSignOut();
+
+    expect(fetch).toHaveBeenCalled();
+
+    expect(res).toEqual({
+      error: "error",
+      message: "Sign Out Error",
     });
   });
 });

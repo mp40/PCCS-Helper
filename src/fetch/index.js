@@ -1,4 +1,4 @@
-import { URL_SIGNUP, URL_SIGNIN, URL_SIGNEDIN } from "./constants";
+import { URL_SIGNUP, URL_SIGNIN, URL_SIGNEDIN, URL_SIGNOUT } from "./constants";
 
 export const fetchSignup = async (user) => {
   let res;
@@ -71,6 +71,31 @@ export const fetchSignedIn = async () => {
     })
     .catch((error) => {
       res = { message: "SignedIn Error", error: error };
+    });
+
+  return res;
+};
+
+export const fetchSignOut = async () => {
+  let res;
+
+  await fetch(URL_SIGNOUT, {
+    credentials: "include",
+    mode: "cors",
+    method: "get",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      return response.text();
+    })
+    .then((data) => {
+      res = JSON.parse(data);
+    })
+    .catch((error) => {
+      res = { message: "Sign Out Error", error: error };
     });
 
   return res;

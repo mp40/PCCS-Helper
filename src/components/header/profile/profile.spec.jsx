@@ -5,12 +5,14 @@ import HeaderProfile from "./index";
 describe("Header Buttons", () => {
   const handleShowSignUp = jest.fn();
   const handleShowSignIn = jest.fn();
+  const handleSignOut = jest.fn();
 
   describe("when signed out", () => {
     const wrapper = shallow(
       <HeaderProfile
         handleShowSignUp={handleShowSignUp}
         handleShowSignIn={handleShowSignIn}
+        handleSignOut={handleSignOut}
         signedIn={false}
       />
     );
@@ -39,6 +41,7 @@ describe("Header Buttons", () => {
       <HeaderProfile
         handleShowSignUp={handleShowSignUp}
         handleShowSignIn={handleShowSignIn}
+        handleSignOut={handleSignOut}
         signedIn={true}
       />
     );
@@ -50,6 +53,11 @@ describe("Header Buttons", () => {
     it("should not render sign up and sign in button", () => {
       expect(wrapper.text()).not.toContain("Sign In");
       expect(wrapper.text()).not.toContain("Sign Up");
+    });
+
+    it("should handle sign out when sign out button clicked", () => {
+      wrapper.find("button").simulate("click");
+      expect(handleSignOut).toHaveBeenCalled();
     });
   });
 });
