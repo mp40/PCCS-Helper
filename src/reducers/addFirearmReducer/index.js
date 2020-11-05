@@ -1,7 +1,28 @@
-import { returnUpdatedWeightAndFirearms } from '../reducerHelpers';
+import { correctFloatingPoint } from '../reducerHelpers';
+
+const {
+  calcBaseSpeed,
+  calcMaxSpeed,
+  calcCombatActions,
+  calcDB,
+} = require('../../helpers/helperFunctions');
 
 export const addFirearmReducer = (state, action) => {
-  const newFirearmArray = [...state.gear.firearms, action.payload];
+  const newTotalWeight = correctFloatingPoint(state.currentCharacter.totalWeight + action.payload.weight);
 
-  return returnUpdatedWeightAndFirearms(state, newFirearmArray);
+  const newBaseSpeed = calcBaseSpeed(state.currentCharacter.str, newTotalWeight);
+  const newMaxSpeed = calcMaxSpeed(state.currentCharacter.agi, newBaseSpeed);
+  const newDamageBonus = calcDB(newMaxSpeed, state.currentCharacter.ASF);
+  const newGunCombatActions = calcCombatActions(newMaxSpeed, state.currentCharacter.ISF);
+  const newMeleeCombatActions = calcCombatActions(newMaxSpeed, state.currentCharacter.ASF);
+
+  return { ...state,
+    currentCharacter: { ...state.currentCharacter,
+      totalWeight: newTotalWeight,
+      firearms: [...state.currentCharacter.firearms, action.payload],
+      baseSpeed: newBaseSpeed,
+      maxSpeed: newMaxSpeed,
+      damageBonus: newDamageBonus,
+      gunCombatActions: newGunCombatActions,
+      handCombatActions: newMeleeCombatActions } };
 };

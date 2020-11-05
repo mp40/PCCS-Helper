@@ -1,86 +1,156 @@
+import { MockState } from '../mockState';
 import { increaseMagazineReducer } from './index';
 import { modifyObjectQtyInArray } from '../../helpers/actionHelpers';
-import { testM1911A1, testM203 } from '../../helpers/testHelpers';
-import { MockState } from '../mockState';
-import {
-  AddedM1911A1,
-  AddedM1911A1AndM16,
-} from '../testResouces';
+import { correctFloatingPoint } from '../reducerHelpers';
 
-const m1911A1Magazine = () => testM1911A1().mag[0];
+const mockM1911A1 = (ammo = 0) => ({
+  name: 'M1911A1',
+  qty: 1,
+  weight: 3,
+  mag: [{ type: 'Mag', weight: 0.7, cap: 7, qty: ammo }],
+});
 
-const characterWithM203 = () => {
-  const m203 = testM203();
-  const character = new MockState();
-  character.gear.firearms = [m203];
-  return character;
-};
+const mockM16 = (ammo = 0) => ({
+  name: 'M16',
+  qty: 1,
+  weight: 8.7,
+  mag: [
+    { type: 'Mag', weight: 0.7, cap: 20, qty: 0 },
+    { type: 'Mag', weight: 1, cap: 30, qty: ammo },
+  ],
+});
+
+const mockM203 = (grenades = 0) => ({
+  name: 'M203',
+  qty: 1,
+  weight: 11.6,
+  mag: [
+    { type: 'Mag', weight: 1, cap: 30, qty: 0 },
+    { type: 'Mag', weight: 0.7, cap: 20, qty: 0 },
+    { type: 'Rnd', class: 'HEAT', weight: 0.51, cap: 1, qty: grenades },
+    { type: 'Rnd', class: 'HE', weight: 0.51, cap: 1, qty: 0 },
+  ],
+});
 
 describe('increaseMagazineReducer function', () => {
-  const updateMockStateWithM1911A1Mag = (mockState) => {
-    const updateMockState = mockState;
-    updateMockState.combatStats = {
-      ASF: 10,
-      CE: 0,
-      ISF: 10,
-      SAL: 0,
-      baseSpeed: 3,
-      combatActions: [4, 4],
-      damageBonus: 1,
-      knockoutValue: 5,
-      maxSpeed: 6,
-    };
-    updateMockState.gear.firearms[0].mag[0].qty += 1;
-    updateMockState.totalWeight += m1911A1Magazine().weight;
-    return updateMockState;
-  };
+  let state = new MockState();
+
   it('should increase quantity of the magazine by one', () => {
-    const withAdditionalMagzine = updateMockStateWithM1911A1Mag(new AddedM1911A1());
-    const action = { payload: { weapon: testM1911A1(), magazine: m1911A1Magazine() } };
-    const newState = increaseMagazineReducer(new AddedM1911A1(), action);
-    expect(newState).toMatchObject(withAdditionalMagzine);
+    state = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: state.currentCharacter.totalWeight + mockM1911A1(0).weight,
+        firearms: [mockM1911A1(0)],
+      } };
+
+    const action = { payload: { weapon: mockM1911A1(), magazine: mockM1911A1().mag[0] } };
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: state.currentCharacter.totalWeight + mockM1911A1(0).mag[0].weight,
+        firearms: [mockM1911A1(1)],
+      } };
+
+    state = increaseMagazineReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
+
   it('should increase quantity of the target magazine in array with more than one firearm', () => {
-    const action = { payload: { weapon: testM1911A1(), magazine: m1911A1Magazine() } };
-    const newState = increaseMagazineReducer(new AddedM1911A1AndM16(), action);
-    expect(newState.totalWeight).toBe(17.4);
-    expect(newState.combatStats.baseSpeed).toBe(2);
-    expect(newState.combatStats.maxSpeed).toBe(4);
-    expect(newState.combatStats.damageBonus).toBe(1);
-    expect(newState.combatStats.combatActions[0]).toBe(3);
-    expect(newState.combatStats.combatActions[1]).toBe(3);
-    expect(newState.gear.firearms[0].mag[0].qty).toBe(1);
+    state = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: 5 + mockM1911A1(0).weight + mockM16(0).weight,
+        baseSpeed: 2,
+        maxSpeed: 4,
+        gunCombatActions: 3,
+        handCombatActions: 3,
+        firearms: [mockM1911A1(0), mockM16(0)],
+      } };
+
+    const action = { payload: { weapon: mockM1911A1(), magazine: mockM1911A1().mag[0] } };
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: state.currentCharacter.totalWeight + mockM1911A1(0).mag[0].weight,
+        firearms: [mockM1911A1(1), mockM16()],
+      } };
+
+    state = increaseMagazineReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
+
   it('should increase the correct magazine', () => {
-    const weapon = testM203();
-    const magazine = weapon.mag[0];
+    state = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: 5 + mockM16(0).weight,
+        baseSpeed: 2.5,
+        maxSpeed: 5,
+        gunCombatActions: 3,
+        handCombatActions: 3,
+        firearms: [mockM16(0)],
+      } };
+
+    const weapon = mockM16();
+    const magazine = weapon.mag[1];
     const action = { payload: { weapon, magazine } };
-    const newState = increaseMagazineReducer(characterWithM203(), action);
-    expect(newState.gear.firearms[0].mag[0].qty).toBe(1);
-    expect(newState.gear.firearms[0].mag[1].qty).toBe(0);
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: state.currentCharacter.totalWeight + mockM16(0).mag[1].weight,
+        firearms: [mockM16(1)],
+      } };
+
+    state = increaseMagazineReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
+
   it('should increase ammo for attached grenade launcher correctly', () => {
-    const weapon = testM203();
+    state = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: 5 + mockM203(0).weight,
+        baseSpeed: 2,
+        maxSpeed: 4,
+        gunCombatActions: 3,
+        handCombatActions: 3,
+        firearms: [mockM203(0)],
+      } };
+
+    const weapon = mockM203();
     const magazine = weapon.mag[2];
     const action = { payload: { weapon, magazine } };
-    const newState = increaseMagazineReducer(characterWithM203(), action);
-    expect(newState.gear.firearms[0].mag[2].qty).toBe(1);
-    expect(newState.gear.firearms[0].mag[3].qty).toBe(0);
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: correctFloatingPoint(state.currentCharacter.totalWeight + mockM203(0).mag[2].weight),
+        firearms: [mockM203(1)],
+      } };
+
+    state = increaseMagazineReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
 });
 
 describe('modifing contents of an array', () => {
-  const oneSpareMag = { cap: 7,
-    qty: 1,
-    type: 'Mag',
-    weight: 0.7 };
   it('should update magazine quantity in magazine array', () => {
-    expect(modifyObjectQtyInArray([m1911A1Magazine()], m1911A1Magazine(), 1)).toEqual([oneSpareMag]);
+    expect(modifyObjectQtyInArray(
+      mockM1911A1().mag, mockM1911A1().mag[0], 1)).toEqual(mockM1911A1(1).mag);
   });
+
   it('should update the firearm in the array', () => {
-    const magArray = modifyObjectQtyInArray([m1911A1Magazine()], m1911A1Magazine(), 1);
-    const updatedGun = testM1911A1();
+    const magArray = modifyObjectQtyInArray(mockM1911A1().mag, mockM1911A1().mag[0], 1);
+    const updatedGun = mockM1911A1(1);
     updatedGun.mag = magArray;
-    expect(modifyObjectQtyInArray([testM1911A1()], updatedGun)[0].mag[0]).toEqual(oneSpareMag);
+
+    expect(modifyObjectQtyInArray([mockM1911A1()], updatedGun)[0].mag[0]).toEqual(mockM1911A1(1).mag[0]);
   });
 });

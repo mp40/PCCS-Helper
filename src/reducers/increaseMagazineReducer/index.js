@@ -1,5 +1,12 @@
 import { modifyObjectQtyInArray } from '../../helpers/actionHelpers';
-import { returnUpdatedWeightAndFirearms, increaseLauncherAmmo } from '../reducerHelpers';
+import { increaseLauncherAmmo, correctFloatingPoint } from '../reducerHelpers';
+
+const {
+  calcBaseSpeed,
+  calcMaxSpeed,
+  calcCombatActions,
+  calcDB,
+} = require('../../helpers/helperFunctions');
 
 export const increaseMagazineReducer = (state, action) => {
   const newGunObj = action.payload.weapon;
@@ -8,7 +15,23 @@ export const increaseMagazineReducer = (state, action) => {
     ? increaseLauncherAmmo(newGunObj.mag, action.payload.magazine.class)
     : modifyObjectQtyInArray(newGunObj.mag, action.payload.magazine, 1);
 
-  const newFirearmArray = modifyObjectQtyInArray(state.gear.firearms, newGunObj);
+  const newFirearms = modifyObjectQtyInArray(state.currentCharacter.firearms, newGunObj);
 
-  return returnUpdatedWeightAndFirearms(state, newFirearmArray);
+  const newTotalWeight = correctFloatingPoint(state.currentCharacter.totalWeight + action.payload.magazine.weight);
+
+  const newBaseSpeed = calcBaseSpeed(state.currentCharacter.str, newTotalWeight);
+  const newMaxSpeed = calcMaxSpeed(state.currentCharacter.agi, newBaseSpeed);
+  const newDamageBonus = calcDB(newMaxSpeed, state.currentCharacter.ASF);
+  const newGunCombatActions = calcCombatActions(newMaxSpeed, state.currentCharacter.ISF);
+  const newMeleeCombatActions = calcCombatActions(newMaxSpeed, state.currentCharacter.ASF);
+
+  return { ...state,
+    currentCharacter: { ...state.currentCharacter,
+      totalWeight: newTotalWeight,
+      firearms: newFirearms,
+      baseSpeed: newBaseSpeed,
+      maxSpeed: newMaxSpeed,
+      damageBonus: newDamageBonus,
+      gunCombatActions: newGunCombatActions,
+      handCombatActions: newMeleeCombatActions } };
 };

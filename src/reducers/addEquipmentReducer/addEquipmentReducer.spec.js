@@ -1,16 +1,44 @@
 import { addEquipmentReducer } from './index';
 import { MockState } from '../mockState';
-import { AddedEquipment, AddedEquipmentAgain, Equipment, OtherEquipment } from '../testResouces';
 
 describe('addEquipmentReducer function', () => {
+  let state = new MockState();
+
   it('should return correct values when equipment added to empty list', () => {
-    const action = { payload: new Equipment() };
-    const newState = addEquipmentReducer(new MockState(), action);
-    expect(newState).toMatchObject(new AddedEquipment());
+    const action = { payload: {
+      name: 'testEquipment',
+      weight: 1.53,
+      qty: 1,
+    } };
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: state.currentCharacter.totalWeight + action.payload.weight,
+        equipment: [...state.currentCharacter.equipment, action.payload],
+      } };
+
+    state = addEquipmentReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
+
   it('should return correct values when additional equipment added', () => {
-    const action = { payload: new OtherEquipment() };
-    const newState = addEquipmentReducer(new AddedEquipment(), action);
-    expect(newState).toMatchObject(new AddedEquipmentAgain());
+    const action = { payload: {
+      name: 'otherEquipment',
+      weight: 2.47,
+      qty: 1,
+    } };
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: state.currentCharacter.totalWeight + action.payload.weight,
+        equipment: [...state.currentCharacter.equipment, action.payload],
+      } };
+
+    state = addEquipmentReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
 });

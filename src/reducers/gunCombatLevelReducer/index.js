@@ -8,15 +8,15 @@ const {
 
 export const modifyGunCombatLevelReducer = (state, action) => {
   const newSkillAccuracyLevel = findSAL(action.payload);
-  const newIntelligenceSkillFactor = calcSkillFactor(state.characterStats.int, newSkillAccuracyLevel);
-  const newGunCombatActions = calcCombatActions(state.combatStats.maxSpeed, newIntelligenceSkillFactor);
-  const highestCombatSkill = findHighestCombatLevel(action.payload, state.characterStats.handLevel);
+  const newIntelligenceSkillFactor = calcSkillFactor(state.currentCharacter.int, newSkillAccuracyLevel);
+  const newGunCombatActions = calcCombatActions(state.currentCharacter.maxSpeed, newIntelligenceSkillFactor);
+  const highestCombatSkill = findHighestCombatLevel(action.payload, state.currentCharacter.handLevel);
+
   return { ...state,
-    characterStats:
-      { ...state.characterStats, gunLevel: action.payload },
-    combatStats: { ...state.combatStats,
+    currentCharacter: { ...state.currentCharacter,
+      gunLevel: action.payload,
       SAL: newSkillAccuracyLevel,
       ISF: newIntelligenceSkillFactor,
-      knockoutValue: calcKV(state.characterStats.wil, highestCombatSkill),
-      combatActions: [newGunCombatActions, ...state.combatStats.combatActions.slice(1)] } };
+      knockoutValue: calcKV(state.currentCharacter.wil, highestCombatSkill),
+      gunCombatActions: newGunCombatActions } };
 };

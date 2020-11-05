@@ -11,49 +11,49 @@ import NameCard from '../NameCard';
 
 import './CharacterGeneration.css';
 
-const defaultStats = {
-  str: 10,
-  int: 10,
-  wil: 10,
-  hlt: 10,
-  agi: 10,
-  gunLevel: 0,
-  handLevel: 0,
-};
+// mpTODO
+// const defaultStats = {
+//   str: 10,
+//   int: 10,
+//   wil: 10,
+//   hlt: 10,
+//   agi: 10,
+//   gunLevel: 0,
+//   handLevel: 0,
+// };
 
-const CharacterGeneration = ({ updateAttributes, updateWeight }) => {
-  const handleUpdateAttributes = () => {
-    updateAttributes(defaultStats, 0);
-  };
+// const CharacterGeneration = ({ updateAttributes, updateWeight }) => {
+// const handleUpdateAttributes = () => {
+//   updateAttributes(defaultStats, 0);
+// };
 
-  const handleUpdateWeight = () => {
-    updateWeight(5, defaultStats);
-  };
+// const handleUpdateWeight = () => {
+//   updateWeight(5, defaultStats);
+// };
 
-  useEffect(() => {
-    handleUpdateAttributes();
-    handleUpdateWeight();
-  });
-
-  return (
-    <div className="createCharContainer">
-      <div>
-        <NameCard />
-        <AttributeCard />
-        <CombatCard />
-        <ActionsCard />
-        <ClothingCard />
-        <BodyArmourCard />
-      </div>
-      <EquipmentCard />
-      <WeaponsCard />
+// useEffect(() => {
+//   handleUpdateAttributes();
+//   handleUpdateWeight();
+// });
+const CharacterGeneration = () => (
+  <div className="createCharContainer">
+    <div>
+      <NameCard />
+      <AttributeCard />
+      <CombatCard />
+      <ActionsCard />
+      <ClothingCard />
+      <BodyArmourCard />
     </div>
-  );
-};
+    <EquipmentCard />
+    <WeaponsCard />
+  </div>
+);
 
-CharacterGeneration.propTypes = {
-  updateWeight: PropTypes.func,
-  updateAttributes: PropTypes.func,
-};
+// mptodo - clean this shit up
+// CharacterGeneration.propTypes = {
+//   updateWeight: PropTypes.func,
+//   updateAttributes: PropTypes.func,
+// };
 
 export default CharacterGeneration;

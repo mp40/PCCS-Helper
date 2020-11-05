@@ -95,10 +95,12 @@ class WeaponsCard extends Component {
     const selectedGrenades = getSelectedWeapons(grenades);
     const selectedLaunchers = getSelectedWeapons(launchers);
     const firearmsWeight = calculateWeaponArrayWeight(selectedGuns);
+    const grenadesWeight = selectedGrenades.reduce((acc, obj) => acc + (obj.qty * obj.weight), 0);
+    const launchersWeight = calculateWeaponArrayWeight(selectedLaunchers);
 
     return (
       <GearCard gearType="weapons" hasButtonFunctions buttonFunctions={[() => this.toggleOnWeaponsCardViews('showFirearms'), () => removeAllFirearms([]), () => this.toggleOnWeaponsCardViews('showGrenades'), () => this.toggleOnWeaponsCardViews('showLaunchers')]}>
-        <GearTable gearHeading="Weapons" totalWeight={Math.round(firearmsWeight * 1000) / 1000}>
+        <GearTable gearHeading="Weapons" totalWeight={Math.round((firearmsWeight + grenadesWeight + launchersWeight) * 1000) / 1000}>
           <WeaponsTableBody
             selectedGuns={selectedGuns}
             selectedGrenades={selectedGrenades}

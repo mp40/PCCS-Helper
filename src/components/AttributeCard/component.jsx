@@ -4,10 +4,14 @@ import LevelsCard from '../LevelsCard';
 import StatInput from '../widgets/StatInput';
 import { isValidAttributeStat } from '../../helpers/gaurds';
 
-import { statKeys, statNames } from './data';
+import { statNames } from './data';
 
 const AttributeCard = ({
-  characterStats,
+  str,
+  int,
+  hlt,
+  wil,
+  agi,
   modifyStrengthValue,
   modifyIntelligenceValue,
   modifyWillpowerValue,
@@ -24,13 +28,13 @@ const AttributeCard = ({
 
   return (
     <LevelsCard className="attributeLevelCard" levelType="attribute">
-      {statKeys.map((stat, index) => (
+      {[str, int, wil, hlt, agi].map((stat, index) => (
         <StatInput
-          statLevel={characterStats[stat]}
+          statLevel={stat}
           statName={statNames[index]}
           isValid={isValidAttributeStat}
           action={actionsArray[index]}
-          key={stat}
+          key={statNames[index]}
         />
       ))}
     </LevelsCard>
@@ -38,7 +42,11 @@ const AttributeCard = ({
 };
 
 AttributeCard.propTypes = {
-  characterStats: PropTypes.objectOf(PropTypes.number),
+  str: PropTypes.number,
+  int: PropTypes.number,
+  hlt: PropTypes.number,
+  wil: PropTypes.number,
+  agi: PropTypes.number,
   modifyStrengthValue: PropTypes.func,
   modifyIntelligenceValue: PropTypes.func,
   modifyHealthValue: PropTypes.func,

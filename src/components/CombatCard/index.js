@@ -4,7 +4,8 @@ import { modifyGunCombatLevel, modifyMeleeCombatLevel } from '../../actions';
 import CombatCard from './component';
 
 const mapStateToProps = (state) => ({
-  characterStats: state.characterStats,
+  gunLevel: state.currentCharacter.gunLevel,
+  handLevel: state.currentCharacter.handLevel,
 });
 
 export default connect(mapStateToProps, { modifyGunCombatLevel, modifyMeleeCombatLevel })(CombatCard);

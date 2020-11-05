@@ -1,62 +1,74 @@
 import { decreaseGrenadeReducer } from './index';
 import { MockState } from '../mockState';
 
-const getGrenadeData = () => ({
+const lightGrenade = () => ({
   name: 'L2 A2',
   qty: 1,
   weight: 0.9,
 });
 
-const getHeavyGrenadeData = () => ({
+const heavyGrenade = (qty) => ({
   name: 'TNT',
-  qty: 1,
+  qty,
   weight: 10,
 });
 
-const characterWithTNT = () => {
-  const character = new MockState();
-  character.totalWeight += 10;
-  character.gear.grenades = [getHeavyGrenadeData()];
-  character.combatStats.baseSpeed = 2.5;
-  character.combatStats.maxSpeed = 5;
-  character.combatStats.combatActions = [3, 3];
-  return character;
-};
-
-const characterWithTwoTNT = () => {
-  const character = characterWithTNT();
-  character.totalWeight += 10;
-  character.gear.grenades[0].qty += 1;
-  character.combatStats.baseSpeed = 2;
-  character.combatStats.maxSpeed = 4;
-  character.combatStats.combatActions = [3, 3];
-  return character;
-};
-
-const characterWithGrenadeAndTNT = () => {
-  const character = characterWithTNT();
-  character.totalWeight += 0.9;
-  character.gear.grenades = [...character.gear.grenades, getGrenadeData()];
-  return character;
-};
-
-const characterWithTNTAndTwoGrenades = () => {
-  const character = characterWithGrenadeAndTNT();
-  character.totalWeight += 0.9;
-  character.gear.grenades[1].qty += 1;
-  return character;
-};
-
-describe('increaseGrenadeReducer function', () => {
+describe('decreaseGrenadeReducer function', () => {
   it('should decrease quantity of the grenade by one', () => {
-    const action = { payload: getHeavyGrenadeData() };
-    const newState = decreaseGrenadeReducer(characterWithTwoTNT(), action);
-    expect(newState).toMatchObject(characterWithTNT());
+    let state = new MockState();
+
+    state = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: state.currentCharacter.totalWeight + (heavyGrenade(2).weight * 2),
+        baseSpeed: 2,
+        maxSpeed: 4,
+        gunCombatActions: 3,
+        handCombatActions: 3,
+        grenades: [heavyGrenade(2)],
+      } };
+
+    const action = { payload: heavyGrenade(2) };
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: state.currentCharacter.totalWeight - heavyGrenade(2).weight,
+        baseSpeed: 2.5,
+        maxSpeed: 5,
+        grenades: [heavyGrenade(1)],
+      } };
+
+    state = decreaseGrenadeReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
+
   it('should increase quantity of the target grenade in array with more than item', () => {
-    const action = { payload: getGrenadeData() };
-    const newState = decreaseGrenadeReducer(characterWithTNTAndTwoGrenades(), action);
-    expect(newState.gear.grenades[1].name).toBe('L2 A2');
-    expect(newState.gear.grenades[1].qty).toBe(1);
+    let state = new MockState();
+
+    state = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: state.currentCharacter.totalWeight + (heavyGrenade(2).weight * 2) + lightGrenade().weight,
+        baseSpeed: 2,
+        maxSpeed: 4,
+        gunCombatActions: 3,
+        handCombatActions: 3,
+        grenades: [lightGrenade(), heavyGrenade(2)],
+      } };
+
+    const action = { payload: heavyGrenade(2) };
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: state.currentCharacter.totalWeight - heavyGrenade(2).weight,
+        grenades: [lightGrenade(), heavyGrenade(1)],
+      } };
+
+    state = decreaseGrenadeReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
 });

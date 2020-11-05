@@ -17,28 +17,25 @@ const actionsRow = (heading, actionArray) => (
   </>
 );
 
-const ActionTable = ({ combatActions, className }) => {
-  const gunActions = actionsPerImpulse(combatActions[0]);
-  const handActions = actionsPerImpulse(combatActions[1]);
-  return (
-    <table className={`combatActions ${className}`}>
-      <thead>
-        <tr className="actionsHeader">
-          {headings.map((value) => (
-            <th key={value}>{value}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {actionsRow('Gun', gunActions)}
-        {actionsRow('Hand', handActions)}
-      </tbody>
-    </table>
-  );
-};
+const ActionTable = ({ gunCombatActions, handCombatActions, className }) => (
+  <table className={`combatActions ${className}`}>
+    <thead>
+      <tr className="actionsHeader">
+        {headings.map((value) => (
+          <th key={value}>{value}</th>
+        ))}
+      </tr>
+    </thead>
+    <tbody>
+      {actionsRow('Gun', actionsPerImpulse(gunCombatActions))}
+      {actionsRow('Hand', actionsPerImpulse(handCombatActions))}
+    </tbody>
+  </table>
+);
 
 ActionTable.propTypes = {
-  combatActions: PropTypes.arrayOf(PropTypes.number),
+  gunCombatActions: PropTypes.number.isRequired,
+  handCombatActions: PropTypes.number.isRequired,
   className: PropTypes.string,
 };
 

@@ -1,16 +1,36 @@
 import { modifyWillpowerValueReducer } from './index';
 import { MockState } from '../mockState';
-import { WillpowerThree, WillpowerEighteen } from './testResources';
 
 describe('willpowerStatReducer function', () => {
+  let state = new MockState();
+
   it('should return correct values when willpower changes to 3', () => {
     const action = { payload: 3 };
-    const newState = modifyWillpowerValueReducer(new MockState(), action);
-    expect(newState).toMatchObject(new WillpowerThree());
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        wil: action.payload,
+        knockoutValue: 1,
+      } };
+
+    state = modifyWillpowerValueReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
+
   it('should return correct values when willpower changes to 18', () => {
     const action = { payload: 18 };
-    const newState = modifyWillpowerValueReducer(new MockState(), action);
-    expect(newState).toMatchObject(new WillpowerEighteen());
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        wil: action.payload,
+        knockoutValue: 9,
+      } };
+
+    state = modifyWillpowerValueReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
 });

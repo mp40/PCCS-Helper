@@ -1,21 +1,57 @@
+import { MockState } from '../mockState';
 import { decreaseFirearmReducer } from './index';
-import { testM1911A1 } from '../../helpers/testHelpers';
-import {
-  AddedM1911A1,
-  AddedM1911A1AndM16,
-  AddedTwoM1911A1,
-  AddedTwoM1911A1AndOneM16,
-} from '../testResouces';
+import { testM1911A1, testM16 } from '../../helpers/testHelpers';
 
-describe('addFirearmReducer function', () => {
+describe('decreaseFirearmReducer function', () => {
   it('should decrease quantity of the gun by one', () => {
-    const action = { payload: testM1911A1() };
-    const newState = decreaseFirearmReducer(new AddedTwoM1911A1(), action);
-    expect(newState).toMatchObject(new AddedM1911A1());
+    let state = new MockState();
+
+    state = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: state.currentCharacter.totalWeight + (testM1911A1().weight * 2),
+        firearms: [testM1911A1(2)],
+      } };
+
+    const action = { payload: testM1911A1(2) };
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: state.currentCharacter.totalWeight - action.payload.weight,
+        firearms: [testM1911A1(1)],
+      } };
+
+    state = decreaseFirearmReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
+
   it('should decrease quantity of the target gun in array with more than item', () => {
-    const action = { payload: testM1911A1() };
-    const newState = decreaseFirearmReducer(new AddedTwoM1911A1AndOneM16(), action);
-    expect(newState).toMatchObject(new AddedM1911A1AndM16());
+    let state = new MockState();
+
+    state = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: state.currentCharacter.totalWeight + (testM1911A1().weight * 2) + testM16().weight,
+        baseSpeed: 2,
+        maxSpeed: 4,
+        gunCombatActions: 3,
+        handCombatActions: 3,
+        firearms: [testM16(), testM1911A1(2)],
+      } };
+
+    const action = { payload: testM1911A1(2) };
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: state.currentCharacter.totalWeight - action.payload.weight,
+        firearms: [testM16(), testM1911A1(1)],
+      } };
+
+    state = decreaseFirearmReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
 });

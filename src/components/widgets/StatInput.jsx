@@ -58,7 +58,6 @@ class StatInput extends Component {
   }
 }
 
-
 StatInput.propTypes = {
   isValid: PropTypes.func,
   action: PropTypes.func,

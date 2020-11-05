@@ -1,1 +1,5 @@
-export const changeNameReducer = (state, action) => ({ ...state, currentCharacter: action.payload });
+export const changeNameReducer = (state, action) => ({ ...state,
+  currentCharacter: {
+    ...state.currentCharacter,
+    name: action.payload,
+  } });

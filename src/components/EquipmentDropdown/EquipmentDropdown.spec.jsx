@@ -1,5 +1,6 @@
 import { mountAppWithStore, storeWithCreateCharacterView } from '../../helpers/testHelpers';
 
+// mptodo - fix shitty tests
 describe('the equipment list', () => {
   let wrapper;
   const addEquipment = () => {
@@ -7,22 +8,26 @@ describe('the equipment list', () => {
     const requiredEquipment = wrapper.find('.equipmentListBody').at(0).childAt(0).childAt(0);
     requiredEquipment.simulate('click');
   };
+
   beforeEach(() => {
     wrapper = mountAppWithStore(storeWithCreateCharacterView());
     addEquipment();
   });
+
   it('should add selected equipment to character equipmentTable', () => {
     const name = 'Baseball Bat';
     const weight = '2.2';
     const qty = '1';
     expect(wrapper.find('.BaseballBatRow').text()).toContain(`${name + weight + qty}`);
   });
+
   it('should not be possible to add the same item twice to list', () => {
     wrapper.find('.equipmentListBody').at(0).childAt(0).childAt(0)
       .simulate('click');
     wrapper.find('#closeEquipmentModal').simulate('click');
     expect(wrapper.find('.BaseballBatRow')).toHaveLength(1);
   });
+
   describe('filtering the equipment list', () => {
     it('should display filter tags', () => {
       wrapper = mountAppWithStore();
@@ -31,6 +36,7 @@ describe('the equipment list', () => {
       wrapper.find('#filterEquipmentList').simulate('click');
       expect(wrapper.text()).toContain('ALICE');
     });
+
     it('should filter the list based on slected criteria', () => {
       wrapper = mountAppWithStore();
       wrapper.find('#activateCreateChar').simulate('click');
@@ -42,6 +48,7 @@ describe('the equipment list', () => {
       expect(wrapper.text()).toContain('Boil In The Bag');
       expect(wrapper.text()).not.toContain('Baseball Bat');
     });
+
     it('should change the filterEquipmentList button text when filter modal open', () => {
       wrapper = mountAppWithStore();
       wrapper.find('#activateCreateChar').simulate('click');

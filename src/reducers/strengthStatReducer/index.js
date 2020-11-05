@@ -6,17 +6,18 @@ const {
 } = require('../../helpers/helperFunctions');
 
 export const modifyStrengthValueReducer = (state, action) => {
-  const newBaseSpeed = calcBaseSpeed(action.payload, state.totalWeight);
-  const newMaxSpeed = calcMaxSpeed(state.characterStats.agi, newBaseSpeed);
-  const newDamageBonus = calcDB(newMaxSpeed, state.combatStats.ASF);
-  const newGunCombatActions = calcCombatActions(newMaxSpeed, state.combatStats.ISF);
-  const newMeleeCombatActions = calcCombatActions(newMaxSpeed, state.combatStats.ASF);
+  const newBaseSpeed = calcBaseSpeed(action.payload, state.currentCharacter.totalWeight);
+  const newMaxSpeed = calcMaxSpeed(state.currentCharacter.agi, newBaseSpeed);
+  const newDamageBonus = calcDB(newMaxSpeed, state.currentCharacter.ASF);
+  const newGunCombatActions = calcCombatActions(newMaxSpeed, state.currentCharacter.ISF);
+  const newMeleeCombatActions = calcCombatActions(newMaxSpeed, state.currentCharacter.ASF);
+
   return { ...state,
-    characterStats:
-      { ...state.characterStats, str: action.payload },
-    combatStats: { ...state.combatStats,
+    currentCharacter: { ...state.currentCharacter,
+      str: action.payload,
       baseSpeed: calcBaseSpeed(action.payload, state.totalWeight),
       maxSpeed: newMaxSpeed,
       damageBonus: newDamageBonus,
-      combatActions: [newGunCombatActions, newMeleeCombatActions] } };
+      gunCombatActions: newGunCombatActions,
+      handCombatActions: newMeleeCombatActions } };
 };

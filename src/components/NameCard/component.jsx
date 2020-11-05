@@ -7,7 +7,7 @@ import TextInput from '../widgets/TextInput';
 
 import './NameCard.css';
 
-const NameCard = ({ currentCharacter, changeCharacterName }) => {
+const NameCard = ({ name, changeCharacterName }) => {
   const [textInput, toogleTextInput] = useState(false);
   const [newName, updateNewName] = useState('');
 
@@ -27,10 +27,10 @@ const NameCard = ({ currentCharacter, changeCharacterName }) => {
       <div>Name</div>
       {!textInput && (
       <div
-        className="--selectableRow"
+        className="--selectableRow changeName"
         onClick={() => toogleTextInput(true)}
       >
-        {currentCharacter}
+        {name}
       </div>
       )}
       {textInput && (
@@ -47,12 +47,12 @@ const NameCard = ({ currentCharacter, changeCharacterName }) => {
 };
 
 NameCard.propTypes = {
-  currentCharacter: PropTypes.string,
+  name: PropTypes.string,
   changeCharacterName: PropTypes.func,
 };
 
 NameCard.defaultProps = {
-  currentCharacter: '',
+  name: '',
 };
 
 export default NameCard;

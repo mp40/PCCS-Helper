@@ -3,10 +3,9 @@ import { addEquipment } from '../../actions';
 import EquipmentDropdown from './component';
 import './EquipmentDropdown.css';
 
-
 const mapStateToProps = (state) => ({
   gear: {
-    equipment: state.gear.equipment,
+    equipment: state.currentCharacter.equipment,
   },
 });
 

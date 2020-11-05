@@ -1,24 +1,36 @@
 import { changeHelmetReducer } from './index';
 import { MockState } from '../mockState';
 
-const helmetM1 = () => ({ name: 'M1', pf: 4, weight: 2.5 });
-const helmetOther = () => ({ name: 'Other Helmet', pf: 4, weight: 5 });
-
-const characterWithM1Helmet = new MockState();
-characterWithM1Helmet.gear.helmet = helmetM1();
-characterWithM1Helmet.totalWeight += 2.5;
-
 describe('changeHelmetReducer function', () => {
+  let state = new MockState();
+
   it('should add helmet to character', () => {
-    const action = { payload: helmetM1() };
-    const character = new MockState();
-    const newState = changeHelmetReducer(character, action);
-    expect(newState).toMatchObject(characterWithM1Helmet);
+    const action = { payload: { name: 'M1', pf: 4, weight: 2.5 } };
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: state.currentCharacter.totalWeight + action.payload.weight,
+        helmet: action.payload,
+      } };
+
+    state = changeHelmetReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
+
   it('should change helmet if helmet already present', () => {
-    const action = { payload: helmetOther() };
-    const newState = changeHelmetReducer(characterWithM1Helmet, action);
-    expect(newState.totalWeight).toBe(characterWithM1Helmet.totalWeight - helmetM1().weight + helmetOther().weight);
-    expect(newState.gear.helmet.name).toBe('Other Helmet');
+    const action = { payload: { name: 'Other Helmet', pf: 4, weight: 5 } };
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: 5 + action.payload.weight,
+        helmet: action.payload,
+      } };
+
+    state = changeHelmetReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
 });

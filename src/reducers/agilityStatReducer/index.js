@@ -6,18 +6,18 @@ const {
 } = require('../../helpers/helperFunctions');
 
 export const modifyAgilityValueReducer = (state, action) => {
-  const newMaxSpeed = calcMaxSpeed(action.payload, state.combatStats.baseSpeed);
-  const newAgilitySkillFactor = calcSkillFactor(action.payload, state.combatStats.CE);
+  const newMaxSpeed = calcMaxSpeed(action.payload, state.currentCharacter.baseSpeed);
+  const newAgilitySkillFactor = calcSkillFactor(action.payload, state.currentCharacter.CE);
   const newDamageBonus = calcDB(newMaxSpeed, newAgilitySkillFactor);
-  const newGunCombatActions = calcCombatActions(newMaxSpeed, state.combatStats.ISF);
+  const newGunCombatActions = calcCombatActions(newMaxSpeed, state.currentCharacter.ISF);
   const newMeleeCombatActions = calcCombatActions(newMaxSpeed, newAgilitySkillFactor);
 
   return { ...state,
-    characterStats:
-    { ...state.characterStats, agi: action.payload },
-    combatStats: { ...state.combatStats,
+    currentCharacter: { ...state.currentCharacter,
+      agi: action.payload,
       maxSpeed: newMaxSpeed,
       ASF: newAgilitySkillFactor,
       damageBonus: newDamageBonus,
-      combatActions: [newGunCombatActions, newMeleeCombatActions] } };
+      gunCombatActions: newGunCombatActions,
+      handCombatActions: newMeleeCombatActions } };
 };

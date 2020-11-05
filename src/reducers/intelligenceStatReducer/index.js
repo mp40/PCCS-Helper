@@ -5,13 +5,12 @@ const {
 
 export const modifyIntelligenceValueReducer = (state, action) => {
   const newGunCombatActions = calcCombatActions(
-    state.combatStats.maxSpeed, calcSkillFactor(action.payload, state.combatStats.SAL),
+    state.currentCharacter.maxSpeed, calcSkillFactor(action.payload, state.currentCharacter.SAL),
   );
+
   return { ...state,
-    characterStats:
-      { ...state.characterStats, int: action.payload },
-    combatStats: { ...state.combatStats,
-      ISF: calcSkillFactor(action.payload, state.combatStats.SAL),
-      combatActions:
-          [newGunCombatActions, ...state.combatStats.combatActions.slice(0, 1)] } };
+    currentCharacter: { ...state.currentCharacter,
+      int: action.payload,
+      ISF: calcSkillFactor(action.payload, state.currentCharacter.SAL),
+      gunCombatActions: newGunCombatActions } };
 };

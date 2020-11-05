@@ -38,7 +38,7 @@ export const returnUpdatedUniform = returnUpdatedWeightAndGear('uniform');
 export const returnUpdatedVest = returnUpdatedWeightAndGear('vest');
 export const returnUpdatedHelmet = returnUpdatedWeightAndGear('helmet');
 
-const incrementQuantity = (incrementer) => (array, targetName) => array.map((element) => {
+export const incrementQuantity = (incrementer) => (array, targetName) => array.map((element) => {
   const object = element;
   if (object.name === targetName) {
     object.qty += incrementer;

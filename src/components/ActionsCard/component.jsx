@@ -5,7 +5,8 @@ import { combatStatsShape } from '../../helpers/proptypeShapes';
 const ActionsCard = ({ combatStats }) => (
   <div className="--card combatDataContainer">
     <ActionTable
-      combatActions={combatStats.combatActions}
+      gunCombatActions={combatStats.gunCombatActions}
+      handCombatActions={combatStats.handCombatActions}
     />
     <div className="additionalCombatData">
       {[`BS ${combatStats.baseSpeed}`, `MS ${combatStats.maxSpeed}`, `DB ${combatStats.damageBonus}`].map((value) => (

@@ -1,8 +1,8 @@
 export class MockState {
   constructor() {
     this.currentView = 'home';
-    this.totalWeight = 5;
-    this.characterStats = {
+    this.currentCharacter = {
+      name: '',
       str: 10,
       int: 10,
       hlt: 10,
@@ -10,8 +10,7 @@ export class MockState {
       agi: 10,
       gunLevel: 0,
       handLevel: 0,
-    };
-    this.combatStats = {
+      totalWeight: 5,
       baseSpeed: 3,
       maxSpeed: 6,
       SAL: 0,
@@ -20,14 +19,16 @@ export class MockState {
       ASF: 10,
       knockoutValue: 5,
       damageBonus: 1,
-      combatActions: [4, 4],
-    };
-    this.gear = {
+      gunCombatActions: 4,
+      handCombatActions: 4,
       uniform: 'Normal',
       equipment: [],
       firearms: [],
       grenades: [],
       launchers: [],
+      helmet: undefined,
+      vest: undefined,
     };
+    this.savedCharactes = [];
   }
 }

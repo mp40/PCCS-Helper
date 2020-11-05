@@ -1,21 +1,64 @@
 import { decreaseEquipmentReducer } from './index';
-import {
-  EquipmentQtyTwo,
-  AddedEquipment,
-  IncreasedEquipment,
-  IncreasedFirstEquipmentItem,
-  AddedEquipmentAgain,
-} from '../testResouces';
+import { MockState } from '../mockState';
+
+const addedEquipment = (qty) => (
+  { name: 'testEquipment',
+    weight: 1.53,
+    qty }
+);
+
+const otherAddedEquipment = {
+  name: 'otherEquipment',
+  weight: 2.47,
+  qty: 1,
+};
 
 describe('decreaseEquipmentReducer function', () => {
   it('should decrease quantity of the equipment by one', () => {
-    const action = { payload: new EquipmentQtyTwo() };
-    const newState = decreaseEquipmentReducer(new IncreasedEquipment(), action);
-    expect(newState).toMatchObject(new AddedEquipment());
+    let state = new MockState();
+
+    state = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: state.currentCharacter.totalWeight + (addedEquipment(1).weight * 2),
+        equipment: [addedEquipment(2)],
+      } };
+
+    const action = { payload: addedEquipment(2) };
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: state.currentCharacter.totalWeight - action.payload.weight,
+        equipment: [addedEquipment(1)],
+      } };
+
+    state = decreaseEquipmentReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
+
   it('should decrease quantity of the correct equipment if more than one in list', () => {
-    const action = { payload: new EquipmentQtyTwo() };
-    const newState = decreaseEquipmentReducer(new IncreasedFirstEquipmentItem(), action);
-    expect(newState).toMatchObject(new AddedEquipmentAgain());
+    let state = new MockState();
+
+    state = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: state.currentCharacter.totalWeight + (addedEquipment(2).weight * 2) + otherAddedEquipment.weight,
+        equipment: [addedEquipment(2), otherAddedEquipment],
+      } };
+
+    const action = { payload: addedEquipment(2) };
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: state.currentCharacter.totalWeight - action.payload.weight,
+        equipment: [addedEquipment(1), otherAddedEquipment],
+      } };
+
+    state = decreaseEquipmentReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
 });

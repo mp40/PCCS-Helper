@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { gearShape } from '../../helpers/proptypeShapes';
 import { findUniformWeight } from '../../helpers/actionHelpers';
 
 import './ClothingCard.css';
@@ -31,7 +30,7 @@ class ClothingCard extends Component {
       this.setState({ showUniformSelect: false });
     }
 
-    renderUniformCard = (currentUniform, currentUniformWeight) => (
+    renderUniformCard = (uniform, currentUniformWeight) => (
       <table className="--tableContainer --card">
         <thead>
           {renderTableHeading()}
@@ -39,7 +38,7 @@ class ClothingCard extends Component {
             className="--selectableRow uniformStats"
             onClick={this.toggleSelectUniform}
           >
-            <td className="currentUniform">{currentUniform}</td>
+            <td className="currentUniform">{uniform}</td>
             <td className="uniformWeight">{currentUniformWeight}</td>
           </tr>
         </thead>
@@ -64,14 +63,13 @@ class ClothingCard extends Component {
     )
 
     render() {
-      const { gear } = this.props;
+      const { uniform } = this.props;
       const { showUniformSelect } = this.state;
-      const currentUniform = gear.uniform;
-      const currentUniformWeight = findUniformWeight(currentUniform);
+      const currentUniformWeight = findUniformWeight(uniform);
 
       if (!showUniformSelect) {
         return (
-          this.renderUniformCard(currentUniform, currentUniformWeight)
+          this.renderUniformCard(uniform, currentUniformWeight)
         );
       }
       return (
@@ -82,7 +80,7 @@ class ClothingCard extends Component {
 
 ClothingCard.propTypes = {
   changeUniform: PropTypes.func,
-  gear: gearShape,
+  uniform: PropTypes.string.isRequired,
 };
 
 export default ClothingCard;
