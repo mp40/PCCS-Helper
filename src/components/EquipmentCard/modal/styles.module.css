@@ -1,0 +1,103 @@
+.modal {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: #000000;
+  opacity: 50%;
+  z-index: 100;
+}
+
+.card {
+  position: fixed;
+  top: 10rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60rem;
+  padding: 0.5rem 2rem 2rem;
+  margin-top: 2rem;
+  margin-left: 2rem;
+  z-index: 101;
+}
+
+.header {
+  margin-bottom: 0.5rem;
+  background-color: var(--panzer-grey);
+  color: whitesmoke;
+  display: flex;
+  padding: 0.25rem;
+  justify-content: space-between;
+}
+
+.header > div {
+  display: flex;
+  align-items: center;
+}
+
+.header > div > span {
+  margin: 0 1rem 0 0.5rem;
+  font-weight: 600;
+}
+
+.header > div > button {
+  background-color: var(--panzer-grey);
+  border: none;
+  color: whitesmoke;
+}
+
+.header > div > button:first-of-type {
+  margin-right: 0.5rem;
+}
+
+.header > div > button:hover {
+  border-radius: 3px;
+  box-shadow: 0px 0px 1.25px 1.25px whitesmoke;
+}
+
+.header > div > button:active {
+  border-radius: 3px;
+  box-shadow: 0px 0px 1px 1px whitesmoke;
+  opacity: 0.9;
+}
+
+.listWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 0.5rem;
+}
+
+.listWrapper > div {
+  width: calc((100% - 30px) / 3);
+  font-size: small;
+  display: flex;
+  justify-content: space-between;
+}
+
+.listWrapper > div:nth-of-type(3n + 2) {
+  margin: 0 15px;
+}
+
+.close {
+  border: none;
+  border-radius: 3px;
+  background-color: transparent;
+  float: right;
+}
+
+.close:hover {
+  box-shadow: 0px 0px 1.25px 1.25px whitesmoke;
+}
+
+.close:active {
+  box-shadow: 0px 0px 1px 1px whitesmoke;
+  opacity: 0.9;
+}
+
+.close:before {
+  content: "\f00d";
+  font-family: FontAwesome;
+  text-decoration: inherit;
+  color: whitesmoke;
+  font-size: 1rem;
+}

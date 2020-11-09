@@ -1,4 +1,4 @@
-import { filterEquipment, createFilterSet, toggleTagsInList } from './equipmentListFunctions';
+import { filterEquipment, toggleTagsInList } from './equipmentListFunctions';
 import * as equipmentModule from '../data/equipmentList';
 
 const equipmentDouble = [
@@ -35,36 +35,6 @@ describe('filtering the equipment list', () => {
   });
   it('should not filter if parameter is empty array', () => {
     expect(filterEquipment([]).length).toBe(equipmentDouble.length);
-  });
-});
-
-describe('making a set of equipment tags', () => {
-  const smallList = [
-    {
-      name: 'Baseball Bat',
-      weight: 2.2,
-      qty: 1,
-      tags: ['Melee'],
-    },
-    {
-      name: 'Bayonet',
-      weight: 1,
-      qty: 1,
-      tags: ['Melee'],
-    },
-  ];
-  it('should return a set of individual tags', () => {
-    const tags = createFilterSet(smallList);
-    expect(tags.length).toBe(1);
-  });
-  it('should add multiple tags from single target array', () => {
-    const list = [...smallList,
-      { name: 'Basic Pouch',
-        weight: 0.4,
-        tags: ['Load Bearing', 'ALICE'] },
-    ];
-    const tags = createFilterSet(list);
-    expect(tags.length).toBe(3);
   });
 });
 
