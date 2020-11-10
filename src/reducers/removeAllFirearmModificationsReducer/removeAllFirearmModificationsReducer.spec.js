@@ -1,55 +1,133 @@
+import { MockState } from '../mockState';
 import { removeAllFirearmModificationsReducer, removeModificationWeight } from './index';
-import { AddedM1911A1AndM16, AddedTwoM1911A1, AddedM1911A1 } from '../testResouces';
-import { testM1911A1, testM16 } from '../../helpers/testHelpers';
+import { correctFloatingPoint } from '../reducerHelpers';
 
-class CharacterWithM1911A1AndModdedM16 extends AddedM1911A1AndM16 {
-  constructor() {
-    super();
-    this.totalWeight += 1;
-    this.gear.firearms[1].weight += 1;
-    this.gear.firearms[1].modNotes = [{ note: 'test', weightMod: 1 }];
-    this.gear.firearms[1].mag = [...this.gear.firearms[1].mag, { type: 'test', weight: 0.5, cap: 10, qty: 0, custom: true }];
-  }
-}
+const mockM1911A1 = () => ({
+  name: 'M1911A1',
+  qty: 1,
+  weight: 3,
+  mag: [{ type: 'Mag', weight: 0.7, cap: 7, qty: 0 }],
+});
 
-class CharacterWithTwoModdedM1911A1 extends AddedTwoM1911A1 {
-  constructor() {
-    super();
-    this.totalWeight += 0.5 + 1.4;
-    this.gear.firearms[0].mag = [{ type: 'test', weight: 0.5, cap: 10, qty: 1, custom: true }, { type: 'Mag', weight: 0.7, cap: 7, qty: 2 }];
-    this.gear.firearms[0].weight = 2.8;
-  }
-}
+const mockM16 = (mag1, mag2) => ({
+  name: 'M16',
+  qty: 1,
+  weight: 8.7,
+  mag: [
+    { type: 'Mag', weight: 0.7, cap: 20, qty: mag1 },
+    { type: 'Mag', weight: 1, cap: 30, qty: mag2 },
+  ],
+});
+
+const moddedM16 = (mag1, mag2) => {
+  const m16 = mockM16(mag1, mag2);
+  m16.weight += 1;
+  m16.modNotes = [{ note: 'test', weightMod: 1 }];
+  m16.mag = [...m16.mag, { type: 'test', weight: 0.5, cap: 10, qty: 0, custom: true }];
+
+  return m16;
+};
 
 describe('removeAllFirearmModificationsReducer', () => {
+  let state = new MockState();
+
   it('should return clean copy of the correct firearm', () => {
+    state = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: state.currentCharacter.totalWeight + mockM1911A1().weight + moddedM16(0, 0).weight,
+        baseSpeed: 2,
+        maxSpeed: 4,
+        gunCombatActions: 3,
+        handCombatActions: 3,
+        firearms: [mockM1911A1(), moddedM16(0, 0)],
+      } };
+
     const action = { payload: 'M16' };
-    const newState = removeAllFirearmModificationsReducer(new CharacterWithM1911A1AndModdedM16(), action);
-    expect(newState).toMatchObject(new AddedM1911A1AndM16());
-    expect(newState.gear.firearms[1].modNotes).toBe(undefined);
-    expect(newState.gear.firearms[1].mag.length).toBe(2);
-    expect(newState.totalWeight).toBe(5 + testM1911A1().weight + testM16().weight);
-    expect(newState.gear.firearms[1].weight).toBe(testM16().weight);
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: 5 + mockM1911A1().weight + mockM16(0, 0).weight,
+        firearms: [mockM1911A1(), mockM16(0, 0)],
+      } };
+
+    state = removeAllFirearmModificationsReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
+
   it('should retain the same firearm and standard magazine qty values', () => {
-    const action = { payload: 'M1911A1' };
-    const characterWithTwoGunsAndSpareMags = new AddedTwoM1911A1();
-    characterWithTwoGunsAndSpareMags.totalWeight += 1.4;
-    characterWithTwoGunsAndSpareMags.gear.firearms[0].mag[0].qty = 2;
-    const newState = removeAllFirearmModificationsReducer(new CharacterWithTwoModdedM1911A1(), action);
-    expect(newState).toMatchObject(characterWithTwoGunsAndSpareMags);
+    const m16 = moddedM16(2, 1);
+    m16.mag[2].qty = 1;
+
+    const ammoWeight = (m16.mag[0].qty * m16.mag[0].weight)
+    + (m16.mag[1].qty * m16.mag[1].weight)
+    + (m16.mag[2].qty * m16.mag[2].weight);
+
+    state = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: 5 + m16.weight + ammoWeight,
+        baseSpeed: 2,
+        maxSpeed: 4,
+        gunCombatActions: 3,
+        handCombatActions: 3,
+        firearms: [m16],
+      } };
+
+    const action = { payload: 'M16' };
+
+    const pureM16 = mockM16(2, 1);
+    const pureAmmoWeight = (m16.mag[0].qty * m16.mag[0].weight)
+    + (m16.mag[1].qty * m16.mag[1].weight);
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: correctFloatingPoint(5 + pureM16.weight + pureAmmoWeight),
+        baseSpeed: 2,
+        maxSpeed: 4,
+        gunCombatActions: 3,
+        handCombatActions: 3,
+        firearms: [pureM16],
+      } };
+
+    state = removeAllFirearmModificationsReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
+
   it('should remove weight of custom magazine if it was set as primary', () => {
-    const m1911A1 = testM1911A1();
-    m1911A1.mag.unshift({ type: 'test', weight: 1, cap: 10, qty: 1, custom: true });
-    m1911A1.weight += 0.3;
-    const characterWithExtendedMags = new AddedM1911A1();
-    characterWithExtendedMags.totalWeight += 1.3;
-    characterWithExtendedMags.gear.firearms = [m1911A1];
-    const action = { payload: 'M1911A1' };
-    const newState = removeAllFirearmModificationsReducer(characterWithExtendedMags, action);
-    expect(newState.totalWeight).toBe(5 + testM1911A1().weight);
-    expect(newState.gear.firearms[0].weight).toBe(3);
+    const m16 = moddedM16(0, 0);
+    m16.mag.unshift({ type: 'test', weight: 1, cap: 10, qty: 1, custom: true });
+    m16.weight += 0.3;
+
+    state = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: 5 + m16.weight + m16.mag[0].weight,
+        baseSpeed: 2,
+        maxSpeed: 4,
+        gunCombatActions: 3,
+        handCombatActions: 3,
+        firearms: [m16],
+      } };
+
+    const action = { payload: 'M16' };
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: 5 + mockM16().weight,
+        baseSpeed: 2.5,
+        maxSpeed: 5,
+        firearms: [mockM16(0, 0)],
+      } };
+
+    state = removeAllFirearmModificationsReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
 });
 
@@ -58,6 +136,7 @@ describe('removeModificationWeight helper function', () => {
     expect(removeModificationWeight(5, undefined)).toBe(5);
     expect(removeModificationWeight(5, null)).toBe(5);
   });
+
   it('should remove the weightMod value from the gun weight', () => {
     const modNotes = [{ note: 'test', weightMod: 1 }];
     expect(removeModificationWeight(5, modNotes)).toBe(4);

@@ -1,61 +1,108 @@
 import { modifyFirearmReducer } from './index';
-import { testM1911A1, testM16 } from '../../helpers/testHelpers';
-import { AddedM1911A1, AddedM1911A1AndM16 } from '../testResouces';
+import { MockState } from '../mockState';
 
-const moddedM1911A1 = (weightChange) => {
-  const newM1911A1 = testM1911A1();
-  newM1911A1.weight = testM1911A1().weight + weightChange;
-  newM1911A1.modNotes = [{ note: 'test', weightMod: weightChange }];
-  return newM1911A1;
-};
+const mockM1911A1 = () => ({
+  name: 'M1911A1',
+  qty: 1,
+  weight: 3,
+  mag: [{ type: 'Mag', weight: 0.7, cap: 7, qty: 0 }],
+});
 
-const moddedM1911A1ExtraWeight = (() => moddedM1911A1(1));
-
-const moddedM1911A1LessWeight = (() => moddedM1911A1(-0.5));
-
-class CharacterWithModifiedM1911A1 extends AddedM1911A1 {
-  constructor(newM1911A1) {
-    super(newM1911A1);
-    this.totalWeight += newM1911A1.modNotes[0].weightMod;
-    this.gear.firearms = [newM1911A1];
-  }
-}
-
-const characterWithM16AndModdedM1911A1 = () => {
-  const character = new CharacterWithModifiedM1911A1(moddedM1911A1(1));
-  character.totalWeight += testM16().weight;
-  character.combatStats = {
-    ASF: 10,
-    CE: 0,
-    ISF: 10,
-    SAL: 0,
-    baseSpeed: 2,
-    combatActions: [3, 3],
-    damageBonus: 1,
-    knockoutValue: 5,
-    maxSpeed: 4,
-  };
-  character.gear.firearms = [moddedM1911A1(1), testM16()];
-  return character;
-};
+const mockM16 = () => ({
+  name: 'M16',
+  qty: 1,
+  weight: 8.7,
+  mag: [
+    { type: 'Mag', weight: 0.7, cap: 20, qty: 0 },
+    { type: 'Mag', weight: 1, cap: 30, qty: 0 },
+  ],
+});
 
 describe('addFirearmReducer function', () => {
+  let state = new MockState();
+
   it('should modify the weapon correctly with additional weight', () => {
+    state = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: state.currentCharacter.totalWeight + mockM1911A1().weight,
+        firearms: [mockM1911A1()],
+      } };
+
     const modNote = { note: 'test', weightMod: 1 };
+    const m1911WithMod = mockM1911A1();
+    m1911WithMod.modNotes = [modNote];
+    m1911WithMod.weight += modNote.weightMod;
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: state.currentCharacter.totalWeight + modNote.weightMod,
+        firearms: [m1911WithMod],
+      } };
+
     const action = { payload: { firearm: 'M1911A1', modNote } };
-    const newState = modifyFirearmReducer(new AddedM1911A1(), action);
-    expect(newState).toMatchObject(new CharacterWithModifiedM1911A1(moddedM1911A1ExtraWeight()));
+
+    state = modifyFirearmReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
+
   it('should modify the weapon correctly with less weight', () => {
-    const modNote = { note: 'test', weightMod: -0.5 };
+    state = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: 5 + mockM1911A1().weight,
+        firearms: [mockM1911A1()],
+      } };
+
+    const modNote = { note: 'test', weightMod: -1 };
+    const m1911WithMod = mockM1911A1();
+    m1911WithMod.modNotes = [modNote];
+    m1911WithMod.weight += modNote.weightMod;
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: state.currentCharacter.totalWeight + modNote.weightMod,
+        firearms: [m1911WithMod],
+      } };
+
     const action = { payload: { firearm: 'M1911A1', modNote } };
-    const newState = modifyFirearmReducer(new AddedM1911A1(), action);
-    expect(newState.gear).toMatchObject(new CharacterWithModifiedM1911A1(moddedM1911A1LessWeight()).gear);
+
+    state = modifyFirearmReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
+
   it('should modify the correct weapon', () => {
+    state = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: 5 + mockM1911A1().weight + mockM16().weight,
+        baseSpeed: 2,
+        maxSpeed: 4,
+        gunCombatActions: 3,
+        handCombatActions: 3,
+        firearms: [mockM16(), mockM1911A1()],
+      } };
+
     const modNote = { note: 'test', weightMod: 1 };
+    const m1911WithMod = mockM1911A1();
+    m1911WithMod.modNotes = [modNote];
+    m1911WithMod.weight += modNote.weightMod;
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        totalWeight: state.currentCharacter.totalWeight + modNote.weightMod,
+        firearms: [mockM16(), m1911WithMod],
+      } };
+
     const action = { payload: { firearm: 'M1911A1', modNote } };
-    const newState = modifyFirearmReducer(new AddedM1911A1AndM16(), action);
-    expect(newState).toMatchObject(characterWithM16AndModdedM1911A1());
+
+    state = modifyFirearmReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
 });
