@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import EquipmentModal from './component';
+import SelectEquipment from './component';
 
 const mockBasicPouch = {
   name: 'Basic Pouch',
@@ -16,7 +16,7 @@ describe('the equipment list', () => {
   const closeShowEquipment = jest.fn();
   const handleRemoveAllTags = jest.fn();
 
-  const createWrapper = (equipment, filteredTags) => shallow(<EquipmentModal
+  const createWrapper = (equipment, filteredTags) => shallow(<SelectEquipment
     addEquipment={addEquipment}
     toggleFilters={toggleFilters}
     closeShowEquipment={closeShowEquipment}

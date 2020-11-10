@@ -8,7 +8,7 @@ import { isNotValidObjectToAdd } from '../../../helpers/gaurds';
 
 import styles from './styles.module.css';
 
-const EquipmentModal = ({
+const SelectEquipment = ({
   addEquipment,
   toggleFilters,
   handleRemoveAllTags,
@@ -83,7 +83,7 @@ const EquipmentModal = ({
   );
 };
 
-EquipmentModal.propTypes = {
+SelectEquipment.propTypes = {
   addEquipment: PropTypes.func.isRequired,
   toggleFilters: PropTypes.func.isRequired,
   handleRemoveAllTags: PropTypes.func.isRequired,
@@ -92,4 +92,4 @@ EquipmentModal.propTypes = {
   filteredTags: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
-export default EquipmentModal;
+export default SelectEquipment;

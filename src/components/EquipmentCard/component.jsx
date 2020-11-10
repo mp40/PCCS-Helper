@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
+import SelectEquipment from './select';
+import EquipmentFilter from './filter';
+import CustomEquipment from './custom';
+
 import GearCard from '../GearCard';
 import GearTable from '../GearTable';
 import GearRow from '../GearRow';
-import EquipmentModal from './modal';
-import EquipmentFilter from './filter';
 
-import CustomEquipmentModal from '../CustomEquipmentModal';
 import { findEquipmentWeight } from '../../helpers/actionHelpers';
 import { toggleTagsInList } from '../../helpers/equipmentListFunctions';
 
@@ -58,7 +60,7 @@ class EquipmentCard extends Component {
 
     return showEquipment
     && (
-    <EquipmentModal
+    <SelectEquipment
       equipment={equipment}
       closeShowEquipment={this.closeShowEquipment}
       toggleFilters={this.toggleFilters}
@@ -69,10 +71,13 @@ class EquipmentCard extends Component {
   }
 
   renderCustomEquipmentModal = () => {
+    const { equipment } = this.props;
     const { showCustomInput } = this.state;
+
     return showCustomInput
       && (
-        <CustomEquipmentModal
+        <CustomEquipment
+          equipment={equipment}
           toggleOffEquipmentCardViews={this.toggleOffEquipmentCardViews}
         />
       );
