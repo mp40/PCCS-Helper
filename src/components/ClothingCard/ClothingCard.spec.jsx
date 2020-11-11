@@ -42,7 +42,6 @@ describe('the Clothing Card', () => {
 //   const selectUniform = (value) => wrapper.find('.uniformDropdownSelector').simulate('change', { target: { value } });
 
 //   beforeEach(() => {
-//     wrapper = mountAppWithStore(storeWithCreateCharacterView());
 //   });
 //   it('should render', () => {
 //     expect(wrapper.text()).toContain('Uniform');

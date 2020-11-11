@@ -1,6 +1,7 @@
 export const m203 = {
   name: 'M203',
   list: 'launchers',
+  calibre: '40mm',
   length: 39,
   weight: 11.6,
   rt: 12,
@@ -53,6 +54,7 @@ export const m203 = {
 export const gp25 = {
   name: 'GP-25',
   list: 'launchers',
+  calibre: '30mm',
   length: 37,
   weight: 10.1,
   rt: 12,

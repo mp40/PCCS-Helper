@@ -35,14 +35,17 @@ export const mountAppWithStore = (mockStore = initialStore) => {
   );
 };
 
-class StoreWithCharacterView extends MockState {
-  constructor(gun) {
-    super(gun);
-    this.totalWeight += gun === undefined ? 0 : gun.weight;
-    this.currentView = 'createChar';
-    this.gear.firearms = gun === undefined ? [] : [gun];
-  }
-}
+// mptodo
+// class StoreWithCharacterView extends MockState {
+//   constructor(gun) {
+//     super(gun);
+//     this.currentCharacter.totalWeight += gun === undefined ? 0 : gun.weight;
+//     this.currentView = 'createChar';
+//     this.currentCharacter.firearms = gun === undefined ? [] : [gun];
+//   }
+// }
+
+// mptodo - replace this shit
 export const storeWithCreateCharacterView = (gun) => new StoreWithCharacterView(gun);
 
 export const findFirearmByName = (list, gunName) => list.find((object) => object.name === gunName);

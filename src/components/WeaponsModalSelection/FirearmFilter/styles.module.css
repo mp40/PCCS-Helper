@@ -1,0 +1,114 @@
+.card {
+  position: fixed;
+  padding: 0.55rem 2rem 0.75rem;
+  z-index: 101;
+  background-color: whitesmoke;
+  border-radius: 3px;
+  position: fixed;
+  z-index: 100;
+  top: -2px;
+  right: 2px;
+}
+
+.header {
+  margin-bottom: 0.25rem;
+  background-color: var(--panzer-grey);
+  color: whitesmoke;
+  display: flex;
+  padding: 0.25rem;
+  justify-content: space-between;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.close:before {
+  content: "\f00d";
+  font-family: FontAwesome;
+  text-decoration: inherit;
+  color: whitesmoke;
+  font-size: 1rem;
+}
+
+.close {
+  border: none;
+  border-radius: 3px;
+  background-color: transparent;
+  float: right;
+}
+
+.close:hover {
+  box-shadow: 0px 0px 1.25px 1.25px whitesmoke;
+}
+
+.close:active {
+  box-shadow: 0px 0px 1px 1px whitesmoke;
+  opacity: 0.9;
+}
+
+.body {
+  display: flex;
+}
+
+.body > div {
+  font-size: medium;
+  text-align: center;
+}
+
+.body > div:nth-of-type(2) {
+  margin-left: 1.25rem;
+}
+
+.body > div > div > div {
+  display: flex;
+  justify-content: space-between;
+  font-size: small;
+  margin-top: 0.2rem;
+}
+
+.radioButton {
+  background-color: whitesmoke;
+  border: none;
+  padding: 0;
+  height: 1rem;
+}
+
+.outerCircle {
+  height: 0.9rem;
+  width: 0.9rem;
+  background-color: #fff;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  margin-left: 0.2rem;
+  -webkit-box-shadow: inset 0px 0px 3px 0px rgba(0, 0, 0, 0.8);
+  -moz-box-shadow: inset 0px 0px 3px 0px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0px 0px 3px 0px rgba(0, 0, 0, 0.8);
+}
+
+.radioButton.checked > .outerCircle > .inner {
+  height: 0.89rem;
+  width: 0.89rem;
+  border-radius: 50%;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgb(190, 210, 100);
+  background: -moz-radial-gradient(
+    circle,
+    rgba(190, 210, 100, 1) 0%,
+    rgba(85, 103, 63, 1) 100%
+  );
+  background: -webkit-radial-gradient(
+    circle,
+    rgba(190, 210, 100, 1) 0%,
+    rgba(85, 103, 63, 1) 100%
+  );
+  background: radial-gradient(
+    circle,
+    rgba(190, 210, 100, 1) 0%,
+    rgba(85, 103, 63, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#bed264",endColorstr="#55673f",GradientType=1);
+}

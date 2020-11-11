@@ -4,7 +4,7 @@ import { act } from 'react-dom/test-utils';
 import { mount, shallow } from 'enzyme';
 // import { Provider } from 'react-redux';
 import WeaponsCard, { getSelectedWeapons } from './component';
-import { mountAppWithStore, storeWithCreateCharacterView, getStore } from '../../helpers/testHelpers';
+import { getStore } from '../../helpers/testHelpers';
 
 import ConnectedWeaponsCard from '.';
 
@@ -178,7 +178,6 @@ describe('The Weapons Card', () => {
 //   const navBarWeight = (wrapper) => wrapper.find('.navEquipWeight');
 
 //   describe('Firearms', () => {
-//     const wrapper = mountAppWithStore(storeWithCreateCharacterView());
 
 //     it('should be possible to open a list of selectable weapons', () => {
 //       wrapper.find('#addFirearm').simulate('click');
@@ -245,7 +244,6 @@ describe('The Weapons Card', () => {
 //   describe('firearms edge cases', () => {
 //     let wrapper;
 //     beforeEach(() => {
-//       wrapper = mountAppWithStore(storeWithCreateCharacterView());
 //       wrapper.find('#addFirearm').simulate('click');
 //     });
 //     it('should increment only the intended mag when weapons have multiple mag types', () => {
@@ -281,7 +279,6 @@ describe('The Weapons Card', () => {
 //     });
 //   });
 //   describe('firearms features', () => {
-//     const wrapper = mountAppWithStore(storeWithCreateCharacterView());
 //     wrapper.find('#addFirearm').simulate('click');
 //     gunList(wrapper).find('#M1911A1').simulate('click');
 //     it('should be possible to view firearms stats', () => {
@@ -297,7 +294,6 @@ describe('The Weapons Card', () => {
 //     });
 //   });
 //   describe('grenades', () => {
-//     const wrapper = mountAppWithStore(storeWithCreateCharacterView());
 //     it('should be possible to open a list of selectable grenades', () => {
 //       wrapper.find('#addGrenade').simulate('click');
 //       expect(wrapper.text()).toContain('L2 A2');
@@ -335,7 +331,6 @@ describe('The Weapons Card', () => {
 //     });
 //   });
 //   describe('launchers intergration', () => {
-//     const wrapper = mountAppWithStore(storeWithCreateCharacterView());
 //     it('should be possible to select a launcher', () => {
 //       wrapper.find('#addLauncher').simulate('click');
 //       wrapper.find('#M79').simulate('click');

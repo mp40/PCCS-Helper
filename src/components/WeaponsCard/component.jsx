@@ -12,6 +12,8 @@ import SelectLauncherModal from '../SelectLauncherModal';
 import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 import { calculateWeaponArrayWeight } from '../../helpers/actionHelpers';
 
+import WeaponsModalSelection from '../WeaponsModalSelection';
+
 import GearModal from '../GearModal';
 
 import './WeaponsCard.css';
@@ -45,7 +47,7 @@ class WeaponsCard extends Component {
   }
 
   renderWeaponSelect = () => (
-    <WeaponsCardSelectModal
+    <WeaponsModalSelection
       toggleOffWeaponCardViews={this.toggleOffWeaponCardViews}
     />
   )

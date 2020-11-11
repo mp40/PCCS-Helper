@@ -1,9 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import HeaderProfile from "../profile";
+import HeaderProfile from '../profile';
 
-import styles from "./styles.module.css";
+import styles from './styles.module.css';
 
 const HeaderButtons = ({
   handleShowSignUp,
@@ -19,8 +19,9 @@ const HeaderButtons = ({
     <div className={styles.buttons}>
       {width < breakpoint && (
         <button
+          aria-label="burger"
           className={styles.burger}
-          type='button'
+          type="button"
           onClick={() => handleShowDropdown()}
         />
       )}

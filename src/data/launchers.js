@@ -2,6 +2,7 @@ export const launchers = () => [
   {
     name: 'Armbrust',
     list: 'launchers',
+    calibre: '67mm',
     qty: 1,
     length: 34,
     weight: 16,
@@ -53,6 +54,7 @@ export const launchers = () => [
   {
     name: 'Armscor 6',
     list: 'launchers',
+    calibre: '40mm',
     qty: 1,
     length: '22/31',
     weight: 15,
@@ -104,6 +106,7 @@ export const launchers = () => [
   {
     name: 'HK 69A1',
     list: 'launchers',
+    calibre: '40mm',
     qty: 1,
     length: '18/27',
     weight: 4.1,
@@ -155,6 +158,7 @@ export const launchers = () => [
   {
     name: 'M79',
     list: 'launchers',
+    calibre: '40mm',
     qty: 1,
     length: 29,
     weight: 6.5,
@@ -206,6 +210,7 @@ export const launchers = () => [
   {
     name: 'M72 A2 LAW',
     list: 'launchers',
+    calibre: '66mm',
     qty: 1,
     length: '26/35',
     weight: 5.2,
@@ -243,6 +248,7 @@ export const launchers = () => [
   {
     name: 'LAW 80',
     list: 'launchers',
+    calibre: '94mm',
     qty: 1,
     length: '39/59',
     weight: 21.2,
@@ -280,6 +286,7 @@ export const launchers = () => [
   {
     name: 'PZF 44 2A1 Lanze',
     list: 'launchers',
+    calibre: '66mm',
     qty: 1,
     length: '35/46',
     weight: 22.7,
@@ -331,6 +338,7 @@ export const launchers = () => [
   {
     name: 'RPG 7V',
     list: 'launchers',
+    calibre: '85mm',
     qty: 1,
     length: '39/54',
     weight: 20.4,
@@ -382,6 +390,7 @@ export const launchers = () => [
   {
     name: 'RPG 18',
     list: 'launchers',
+    calibre: '64mm',
     qty: 1,
     length: '28/39',
     weight: 14.3,

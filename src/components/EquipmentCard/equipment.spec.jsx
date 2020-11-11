@@ -69,7 +69,6 @@ describe('the equipment list', () => {
 //     requiredEquipment.simulate('click');
 //   };
 //   beforeEach(() => {
-//     wrapper = mountAppWithStore(storeWithCreateCharacterView());
 //   });
 //   describe('equipment headings', () => {
 //     it('should render', () => {

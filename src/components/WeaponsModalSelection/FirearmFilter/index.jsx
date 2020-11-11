@@ -7,8 +7,9 @@ import RadioButton from './RadioButton';
 import { types, calibres } from './data';
 
 import './FirearmFilter.css';
+import styles from './styles.module.css';
 
-const FirearmFilter = ({ handleSetFilterByType }) => {
+const FirearmFilter = ({ handleSetFilterByType, setShowFilters }) => {
   const [filterByType, setTypeFilter] = useState('All');
   const [filterByCaliber, setCaliberFilter] = useState('All');
 
@@ -36,20 +37,34 @@ const FirearmFilter = ({ handleSetFilterByType }) => {
   );
 
   return (
-    <div className="filterCard">
-      <FilterForm heading="Filter By Type">
-        {renderButtons(types, filterByType, handleUpdateTypeFilter)}
-      </FilterForm>
-      <FilterForm heading="Filter By Calibre">
-        {renderButtons(calibres, filterByCaliber, handleUpdateCaliberFilter)}
-      </FilterForm>
+    <div className={styles.card}>
+
+      <div className={styles.header}>
+        <span>Filters</span>
+        <button
+          aria-label="close"
+          className={styles.close}
+          type="button"
+          onClick={() => setShowFilters()}
+        />
+      </div>
+
+      <div className={styles.body}>
+        <FilterForm heading="Filter By Type">
+          {renderButtons(types, filterByType, handleUpdateTypeFilter)}
+        </FilterForm>
+        <FilterForm heading="Filter By Calibre">
+          {renderButtons(calibres, filterByCaliber, handleUpdateCaliberFilter)}
+        </FilterForm>
+      </div>
+
     </div>
   );
 };
 
 FirearmFilter.propTypes = {
-  handleSetFilterByType: PropTypes.func,
+  handleSetFilterByType: PropTypes.func.isRequired,
+  setShowFilters: PropTypes.func.isRequired,
 };
-
 
 export default FirearmFilter;

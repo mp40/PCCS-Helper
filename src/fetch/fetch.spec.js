@@ -1,25 +1,22 @@
-import { fetchSignup, fetchSignin, fetchSignedIn, fetchSignOut } from "./index";
+import { fetchSignup, fetchSignin, fetchSignedIn, fetchSignOut } from './index';
 
-describe("Calling the Server", () => {
+describe('Calling the Server', () => {
   afterEach(() => {
     global.fetch.mockClear();
   });
 
-  it("should post new user to /signup", async () => {
-    global.fetch = jest.fn().mockImplementation(() => {
-      return Promise.resolve({
-        text: () =>
-          JSON.stringify({
-            id: "1",
-            email: "testSan@gmail.com",
-            password: "hashed_password",
-          }),
-      });
-    });
+  it('should post new user to /signup', async () => {
+    global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+      text: () => JSON.stringify({
+        id: '1',
+        email: 'testSan@gmail.com',
+        password: 'hashed_password',
+      }),
+    }));
 
     const user = {
-      email: "testSan@gmail.com",
-      password: "password",
+      email: 'testSan@gmail.com',
+      password: 'password',
     };
 
     const res = await fetchSignup(user);
@@ -27,39 +24,35 @@ describe("Calling the Server", () => {
     expect(fetch).toHaveBeenCalled();
 
     expect(res).toEqual({
-      id: "1",
-      email: "testSan@gmail.com",
-      password: "hashed_password",
+      id: '1',
+      email: 'testSan@gmail.com',
+      password: 'hashed_password',
     });
   });
 
-  it("should return error message on post /signup failure", async () => {
-    global.fetch = jest.fn().mockImplementation(() => {
-      return Promise.reject("error");
-    });
+  it('should return error message on post /signup failure', async () => {
+    global.fetch = jest.fn().mockImplementation(() => Promise.reject('error'));
 
     const user = {
-      email: "testSan@gmail.com",
-      password: "password",
+      email: 'testSan@gmail.com',
+      password: 'password',
     };
 
     const res = await fetchSignup(user);
 
     expect(fetch).toHaveBeenCalled();
 
-    expect(res).toEqual({ error: "error", message: "Signup Error" });
+    expect(res).toEqual({ error: 'error', message: 'Signup Error' });
   });
 
-  it("should post new user to /signin", async () => {
-    global.fetch = jest.fn().mockImplementation(() => {
-      return Promise.resolve({
-        text: () => JSON.stringify({ message: "Signed In" }),
-      });
-    });
+  it('should post new user to /signin', async () => {
+    global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+      text: () => JSON.stringify({ message: 'Signed In' }),
+    }));
 
     const user = {
-      email: "testSan@gmail.com",
-      password: "password",
+      email: 'testSan@gmail.com',
+      password: 'password',
     };
 
     const res = await fetchSignin(user);
@@ -67,86 +60,76 @@ describe("Calling the Server", () => {
     expect(fetch).toHaveBeenCalled();
 
     expect(res).toEqual({
-      message: "Signed In",
+      message: 'Signed In',
     });
   });
 
-  it("should return error message on post /sign failure", async () => {
-    global.fetch = jest.fn().mockImplementation(() => {
-      return Promise.reject("error");
-    });
+  it('should return error message on post /sign failure', async () => {
+    global.fetch = jest.fn().mockImplementation(() => Promise.reject('error'));
 
     const user = {
-      email: "testSan@gmail.com",
-      password: "password",
+      email: 'testSan@gmail.com',
+      password: 'password',
     };
 
     const res = await fetchSignin(user);
 
     expect(fetch).toHaveBeenCalled();
 
-    expect(res).toEqual({ error: "error", message: "Signin Error" });
+    expect(res).toEqual({ error: 'error', message: 'Signin Error' });
   });
 
-  it("should get /signedIn", async () => {
-    global.fetch = jest.fn().mockImplementation(() => {
-      return Promise.resolve({
-        text: () => JSON.stringify({ message: "Signed In" }),
-      });
-    });
+  it('should get /signedIn', async () => {
+    global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+      text: () => JSON.stringify({ message: 'Signed In' }),
+    }));
 
     const res = await fetchSignedIn();
 
     expect(fetch).toHaveBeenCalled();
 
     expect(res).toEqual({
-      message: "Signed In",
+      message: 'Signed In',
     });
   });
 
-  it("should return error on get /signedIn failure", async () => {
-    global.fetch = jest.fn().mockImplementation(() => {
-      return Promise.reject("error");
-    });
+  it('should return error on get /signedIn failure', async () => {
+    global.fetch = jest.fn().mockImplementation(() => Promise.reject('error'));
 
     const res = await fetchSignedIn();
 
     expect(fetch).toHaveBeenCalled();
 
     expect(res).toEqual({
-      error: "error",
-      message: "SignedIn Error",
+      error: 'error',
+      message: 'SignedIn Error',
     });
   });
 
-  it("should get /signOut", async () => {
-    global.fetch = jest.fn().mockImplementation(() => {
-      return Promise.resolve({
-        text: () => JSON.stringify({ message: "Cookie Cleared" }),
-      });
-    });
+  it('should get /signOut', async () => {
+    global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+      text: () => JSON.stringify({ message: 'Cookie Cleared' }),
+    }));
 
     const res = await fetchSignOut();
 
     expect(fetch).toHaveBeenCalled();
 
     expect(res).toEqual({
-      message: "Cookie Cleared",
+      message: 'Cookie Cleared',
     });
   });
 
-  it("should return error on /signOut failure", async () => {
-    global.fetch = jest.fn().mockImplementation(() => {
-      return Promise.reject("error");
-    });
+  it('should return error on /signOut failure', async () => {
+    global.fetch = jest.fn().mockImplementation(() => Promise.reject('error'));
 
     const res = await fetchSignOut();
 
     expect(fetch).toHaveBeenCalled();
 
     expect(res).toEqual({
-      error: "error",
-      message: "Sign Out Error",
+      error: 'error',
+      message: 'Sign Out Error',
     });
   });
 });

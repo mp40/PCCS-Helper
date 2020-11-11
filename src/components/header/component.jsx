@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
-import HeaderCreateCharacter from "./create_character";
-import HeaderButtons from "./buttons";
-import HeaderModal from "./modal";
-import HeaderDropdown from "./dropdown";
+import HeaderCreateCharacter from './create_character';
+import HeaderButtons from './buttons';
+import HeaderModal from './modal';
+import HeaderDropdown from './dropdown';
 
-import Print from "../Print";
+import Print from './print';
 
-import { fetchSignup, fetchSignin, fetchSignOut } from "../../fetch";
+import { fetchSignup, fetchSignin, fetchSignOut } from '../../fetch';
 
-import "./header.css";
+import './header.css';
 
-const Header = ({ currentView, totalWeight, signedIn, handleSetSignedIn }) => {
+const Header = ({ currentView, totalWeight, signedIn, handleSetSignedIn, selectCurrentView }) => {
   const [showSignUp, setShowSignUp] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -20,9 +20,9 @@ const Header = ({ currentView, totalWeight, signedIn, handleSetSignedIn }) => {
 
   useEffect(() => {
     const handleWindowResize = () => setWidth(window.innerWidth);
-    window.addEventListener("resize", handleWindowResize);
+    window.addEventListener('resize', handleWindowResize);
 
-    return () => window.removeEventListener("resize", handleWindowResize);
+    return () => window.removeEventListener('resize', handleWindowResize);
   }, []);
 
   const handleShowSignUp = () => {
@@ -64,18 +64,18 @@ const Header = ({ currentView, totalWeight, signedIn, handleSetSignedIn }) => {
   const handleSignOut = async () => {
     const res = await fetchSignOut();
 
-    if(res.message === "Cookie Cleared") {
+    if (res.message === 'Cookie Cleared') {
       handleSetSignedIn();
     }
   };
 
   return (
-    <div className='menuBar'>
+    <div className="menuBar">
       <div>PCCS</div>
-      {currentView === "createChar" && (
-        <div className='wrapper'>
+      {currentView === 'createChar' && (
+        <div className="wrapper">
           <HeaderCreateCharacter totalWeight={totalWeight} />
-          <Print />
+          <Print selectCurrentView={selectCurrentView} />
         </div>
       )}
 
@@ -99,7 +99,7 @@ const Header = ({ currentView, totalWeight, signedIn, handleSetSignedIn }) => {
 
       {showSignUp && (
         <HeaderModal
-          type='signup'
+          type="signup"
           handleShowModal={handleShowSignUp}
           handleSwitchModal={handleShowSignIn}
           handleSubmitUser={handleSignupUser}
@@ -107,7 +107,7 @@ const Header = ({ currentView, totalWeight, signedIn, handleSetSignedIn }) => {
       )}
       {showSignIn && (
         <HeaderModal
-          type='signin'
+          type="signin"
           handleShowModal={handleShowSignIn}
           handleSwitchModal={handleShowSignUp}
           handleSubmitUser={handleSigninUser}
@@ -122,6 +122,7 @@ Header.propTypes = {
   currentView: PropTypes.string,
   signedIn: PropTypes.bool.isRequired,
   handleSetSignedIn: PropTypes.func.isRequired,
+  selectCurrentView: PropTypes.func.isRequired,
 };
 
 export default Header;

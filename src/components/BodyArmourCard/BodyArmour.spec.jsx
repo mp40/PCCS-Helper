@@ -3,7 +3,7 @@ import { mount, shallow } from 'enzyme';
 
 // mptodo - clean up
 import { Provider } from 'react-redux';
-import { getStore, mountAppWithStore, storeWithCreateCharacterView } from '../../helpers/testHelpers';
+import { getStore } from '../../helpers/testHelpers';
 
 import BodyArmourCard from './component';
 import ConnectedBodyArmourCard from '.';

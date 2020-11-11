@@ -1,33 +1,29 @@
 .firearm-notes {
-    /* font-size: 12pt; */
-    text-align: left;
-    /* width: 4cm; */
-    /* margin-left: 0.5cm;
+  /* font-size: 12pt; */
+  text-align: left;
+  /* width: 4cm; */
+  /* margin-left: 0.5cm;
     padding: 0.1cm 0.2cm 0.2cm; */
 }
 
 .firearm-notes-heading {
-    font-weight: bold;
-    margin-bottom: 0.1cm;
+  font-weight: bold;
+  margin-bottom: 0.1cm;
 }
 
 .firearm-notes-a4-wrapper {
-    margin-top: 1cm;
+  margin-top: 1cm;
 }
 
 .firearm-notes-a4-wrapper .firearm-notes {
-    margin-left: 0.5cm;
-    padding: 0.1cm 0.2cm 0.2cm;
-    font-size: 12pt;
-    width: 4cm;
-    height: 6cm;
-    border: 1px solid rgb(85, 83, 83);
-}
-
-.firearm-notes-wrapper {
-    margin-top: 1.7rem;
+  margin-left: 0.5cm;
+  padding: 0.1cm 0.2cm 0.2cm;
+  font-size: 12pt;
+  width: 4cm;
+  height: 6cm;
+  border: 1px solid rgb(85, 83, 83);
 }
 
 .firearm-notes-wrapper .firearm-notes {
-    margin-left: 1rem;
+  margin-left: 1rem;
 }

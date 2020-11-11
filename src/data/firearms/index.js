@@ -2,13 +2,14 @@ import { averageRifle11Aims, belowAverageverageRifle11Aims, aboveAverageRifle11A
 import { averageRifle762FMJ, averageRifle762x39FMJ, averageRifle556FMJ, averageRifle556JHP, averageRifle556AP, averageRifle30CarbineFMJ, averageSMG9mmParabellumFMJ, belowAverageSMG9mmParabellumFMJ, averageSMG45AcpFMJ, averageSMG762TokarevFMJ, averagePistol9mmParabellumFMJ, averageOther762FMJ } from './projectiles';
 import { m203, gp25 } from './launchers';
 
-export const filterableCalibers = () => [
-  '7.62 x 39mm',
-  '5.45 x 39.5mm',
-  '5.56mm NATO',
-  '7.62mm NATO',
-  '9mm Parabellum',
-];
+// mptodo
+// export const filterableCalibers = () => [
+//   '7.62 x 39mm',
+//   '5.45 x 39.5mm',
+//   '5.56mm NATO',
+//   '7.62mm NATO',
+//   '9mm Parabellum',
+// ];
 
 export const rifles = () => [
   {

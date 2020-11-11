@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
-import styles from "./styles.module.css";
+import styles from './styles.module.css';
 
-import text from "./data";
+import text from './data';
 
 const HeaderModal = ({
   type,
@@ -12,8 +12,8 @@ const HeaderModal = ({
   handleSwitchModal,
 }) => {
   const [userDetails, setUserDetails] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
   const [errors, setErrors] = useState({
@@ -33,8 +33,8 @@ const HeaderModal = ({
     event.preventDefault();
 
     if (
-      userDetails.email.trim().length === 0 ||
-      !userDetails.email.includes("@")
+      userDetails.email.trim().length === 0
+      || !userDetails.email.includes('@')
     ) {
       setErrors({ ...errors, ...{ email: true } });
       return;
@@ -53,14 +53,15 @@ const HeaderModal = ({
       <div className={styles.modal} />
       <div className={styles.card}>
         <button
+          aria-label="close"
           className={styles.close}
-          type='button'
+          type="button"
           onClick={() => handleShowModal()}
         />
         <div>{text[type].title}</div>
         <form className={styles.form} onSubmit={(event) => handleSubmit(event)}>
           <label>
-            <span className={errors.email ? styles.error : ""}>
+            <span className={errors.email ? styles.error : ''}>
               {text.label.email}
             </span>
             {errors.email && (
@@ -73,7 +74,7 @@ const HeaderModal = ({
           />
 
           <label>
-            <span className={errors.password ? styles.error : ""}>
+            <span className={errors.password ? styles.error : ''}>
               {text.label.password}
             </span>
             <span>
@@ -86,11 +87,11 @@ const HeaderModal = ({
             value={userDetails.password}
             onChange={(event) => setUserPassword(event.target.value)}
           />
-          <input type='submit' value={text[type].title} />
+          <input type="submit" value={text[type].title} />
         </form>
         <button
           className={styles.switchModal}
-          type='button'
+          type="button"
           onClick={() => {
             handleSwitchModal();
           }}

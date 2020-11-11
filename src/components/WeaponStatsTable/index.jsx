@@ -28,7 +28,7 @@ const getFirearmNameAndRecoil = (weapon, skillLevel) => {
   return `${weapon.name} - recoil recovery: ${getRecoilRecoveryValue(weapon.kd, skillLevel)}`;
 };
 
-const WeaponStatsTable = ({ weapon, sal, size }) => {
+const WeaponStatsTable = ({ weapon, sal, size, showName }) => {
   const dataTemplate = getTemplate(weapon.list, weapon.trb, weapon.projectiles.length);
   const emptyRow = getEmptyRow(weapon.list);
 
@@ -78,7 +78,10 @@ const WeaponStatsTable = ({ weapon, sal, size }) => {
 
   return (
     <div className={`WeaponStatsContainer ${size} ${weapon.list}`}>
-      <div>{`${getFirearmNameAndRecoil(weapon, findSkillLevelFromSAL(sal))}`}</div>
+      <div>
+        {showName
+        && `${getFirearmNameAndRecoil(weapon, findSkillLevelFromSAL(sal))}`}
+      </div>
       <div>
         <table className={size ? `${size}WeaponStatTable` : 'WeaponStatTable'}>
           <TableHead weaponList={weapon.list} />
@@ -98,6 +101,7 @@ const WeaponStatsTable = ({ weapon, sal, size }) => {
 };
 
 WeaponStatsTable.propTypes = {
+  showName: PropTypes.bool.isRequired,
   size: PropTypes.string,
   weapon: PropTypes.oneOfType([gunObjShape, launcherShape]),
   sal: PropTypes.number,

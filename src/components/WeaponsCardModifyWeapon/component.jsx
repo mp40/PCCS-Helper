@@ -42,7 +42,6 @@ const WeaponsCardModifyWeapon = ({
     toggleModifyFirearmWeight(false);
   };
 
-
   const handleMagazineExistence = (payload) => (
     payload.magazine.removed ? replaceMagazine(payload) : removeMagazine(payload)
   );
