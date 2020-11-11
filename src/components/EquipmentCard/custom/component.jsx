@@ -15,7 +15,7 @@ export const createValidEqipmentObject = (name, weight) => ({
   tags: ['Custom'],
 });
 
-const CustomEquipment = ({ equipment, addEquipment, toggleOffEquipmentCardViews }) => {
+const CustomEquipment = ({ equipment, addEquipment, handleSetShowCustomInput }) => {
   const [equipmentName, setEquipmentName] = useState('');
   const [equipmentWeight, setEquipmentWeight] = useState('');
   const [errorMsgInvalidEntry, setErrorMsgInvalidEntry] = useState(false);
@@ -44,7 +44,7 @@ const CustomEquipment = ({ equipment, addEquipment, toggleOffEquipmentCardViews 
     }
 
     addEquipment(createValidEqipmentObject(name, weight));
-    toggleOffEquipmentCardViews('showCustomInput');
+    handleSetShowCustomInput();
   };
 
   const renderHeading = () => (
@@ -64,7 +64,7 @@ const CustomEquipment = ({ equipment, addEquipment, toggleOffEquipmentCardViews 
         aria-label="close"
         className={styles.close}
         type="button"
-        onClick={() => toggleOffEquipmentCardViews('showCustomInput')}
+        onClick={() => handleSetShowCustomInput()}
       />
     </div>
   );
@@ -102,7 +102,7 @@ const CustomEquipment = ({ equipment, addEquipment, toggleOffEquipmentCardViews 
 CustomEquipment.propTypes = {
   addEquipment: PropTypes.func.isRequired,
   equipment: PropTypes.arrayOf(PropTypes.object).isRequired,
-  toggleOffEquipmentCardViews: PropTypes.func.isRequired,
+  handleSetShowCustomInput: PropTypes.func.isRequired,
 
 };
 

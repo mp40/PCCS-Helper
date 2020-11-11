@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
@@ -10,9 +11,9 @@ import styles from './styles.module.css';
 
 const SelectEquipment = ({
   addEquipment,
-  toggleFilters,
+  handleSetShowFilters,
   handleRemoveAllTags,
-  closeShowEquipment,
+  handleSetShowEquipment,
   equipment,
   filteredTags,
 }) => {
@@ -54,7 +55,7 @@ const SelectEquipment = ({
 
             <button
               type="button"
-              onClick={() => toggleFilters()}
+              onClick={() => handleSetShowFilters()}
             >
               Filter List
             </button>
@@ -73,7 +74,7 @@ const SelectEquipment = ({
             aria-label="close"
             className={styles.close}
             type="button"
-            onClick={() => closeShowEquipment()}
+            onClick={() => handleSetShowEquipment()}
           />
         </div>
 
@@ -85,9 +86,9 @@ const SelectEquipment = ({
 
 SelectEquipment.propTypes = {
   addEquipment: PropTypes.func.isRequired,
-  toggleFilters: PropTypes.func.isRequired,
+  handleSetShowFilters: PropTypes.func.isRequired,
   handleRemoveAllTags: PropTypes.func.isRequired,
-  closeShowEquipment: PropTypes.func.isRequired,
+  handleSetShowEquipment: PropTypes.func.isRequired,
   equipment: PropTypes.arrayOf(PropTypes.object).isRequired,
   filteredTags: PropTypes.arrayOf(PropTypes.string).isRequired,
 };

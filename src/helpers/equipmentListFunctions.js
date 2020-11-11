@@ -11,10 +11,3 @@ export const filterEquipment = (findType) => {
 
   return equipmentList.filter((equipmentObject) => equipmentObject.tags.some(findTag));
 };
-
-export const toggleTagsInList = ((list, tag) => {
-  if (list.includes(tag)) {
-    return list.filter((element) => element !== tag);
-  }
-  return [...list, tag];
-});

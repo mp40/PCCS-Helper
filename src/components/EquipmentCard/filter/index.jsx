@@ -8,7 +8,7 @@ import filters from './data';
 
 import styles from './styles.module.css';
 
-const EquipmentFilter = ({ filteredTags, handleTags, toggleFilters }) => (
+const EquipmentFilter = ({ filteredTags, handleTags, handleSetShowFilters }) => (
   <>
     <div className={`--modal ${styles.modal}`} />
     <div className={styles.card}>
@@ -18,7 +18,7 @@ const EquipmentFilter = ({ filteredTags, handleTags, toggleFilters }) => (
           aria-label="close"
           className={styles.close}
           type="button"
-          onClick={() => toggleFilters()}
+          onClick={() => handleSetShowFilters()}
         />
       </div>
 
@@ -38,7 +38,7 @@ const EquipmentFilter = ({ filteredTags, handleTags, toggleFilters }) => (
 );
 
 EquipmentFilter.propTypes = {
-  toggleFilters: PropTypes.func.isRequired,
+  handleSetShowFilters: PropTypes.func.isRequired,
   handleTags: PropTypes.func.isRequired,
   filteredTags: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
