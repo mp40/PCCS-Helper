@@ -21,7 +21,7 @@ describe('Firearms selection', () => {
     });
 
     it('should render an unfiltered list by defult', () => {
-      console.log(wrapper.debug());
+      // console.log(wrapper.debug());
       expect(wrapper.find('.firearmSelectModal').find('.gearModalContents').children().length).toBe(fullFirearmsList().length);
     });
 

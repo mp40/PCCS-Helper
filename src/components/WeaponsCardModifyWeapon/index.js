@@ -9,12 +9,11 @@ import { removeFirearmModification,
   replaceMagazine,
   removeAllModificationsFromFirearm } from '../../actions';
 
-// mptodo - check this shit
-// const mapStateToProps = (state) => ({
-//   gear: state.gear,
-// });
+const mapStateToProps = (state) => ({
+  firearms: state.currentCharacter.firearms,
+});
 
-export default connect(null, {
+export default connect(mapStateToProps, {
   removeFirearmModification,
   modifyFirearm,
   setPrimaryMagazine,

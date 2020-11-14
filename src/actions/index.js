@@ -5,29 +5,32 @@ export const selectCurrentView = (view) => ({
   payload: view,
 });
 
-export const updateCombatStats = (attributeObj, weight) => {
-  const newCombatData = calculateStateObject(attributeObj, weight);
-  return {
-    type: 'UPDATE_ALL_COMBAT_STATS',
-    payload: newCombatData,
-  };
-};
+// mptodo - delete?
+// export const updateCombatStats = (attributeObj, weight) => {
+//   const newCombatData = calculateStateObject(attributeObj, weight);
+//   return {
+//     type: 'UPDATE_ALL_COMBAT_STATS',
+//     payload: newCombatData,
+//   };
+// };
 
-export const updateWeight = (newWeight, attributeObj) => (dispatch) => {
-  dispatch({
-    type: 'TOTAL_WEIGHT',
-    payload: newWeight,
-  });
-  dispatch(updateCombatStats(attributeObj, newWeight));
-};
+// mptodo - delete?
+// export const updateWeight = (newWeight, attributeObj) => (dispatch) => {
+//   dispatch({
+//     type: 'TOTAL_WEIGHT',
+//     payload: newWeight,
+//   });
+//   dispatch(updateCombatStats(attributeObj, newWeight));
+// };
 
-export const updateAttributes = (attributeObj, weight) => (dispatch) => {
-  dispatch({
-    type: 'UPDATE_ATTRIBUTES',
-    payload: attributeObj,
-  });
-  dispatch(updateCombatStats(attributeObj, weight));
-};
+// mptodo - delete?
+// export const updateAttributes = (attributeObj, weight) => (dispatch) => {
+//   dispatch({
+//     type: 'UPDATE_ATTRIBUTES',
+//     payload: attributeObj,
+//   });
+//   dispatch(updateCombatStats(attributeObj, weight));
+// };
 
 export const modifyGunCombatLevel = (newGunCombatLevel) => ({
   type: 'GUN_COMBAT_LEVEL_UPDATED',

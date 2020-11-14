@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { gunObjShape } from '../../helpers/proptypeShapes';
 
@@ -104,7 +104,7 @@ WeaponsCardModifyWeapon.propTypes = {
   setPrimaryMagazine: PropTypes.func,
   removeFirearmModification: PropTypes.func,
   removeAllModificationsFromFirearm: PropTypes.func,
-  gunObj: gunObjShape,
+  gunObj: gunObjShape.isRequired,
 };
 
 export default WeaponsCardModifyWeapon;

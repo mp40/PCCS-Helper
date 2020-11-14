@@ -11,16 +11,21 @@ const Modifications = ({ firearmName, modNotes, removeFirearmModification }) => 
         <span>
           {`${noteObj.weightMod} lbs`}
         </span>
-        <ButtonSlim
+        {/* <ButtonSlim
           name="remove"
           className="removeModification"
           onClick={() => removeFirearmModification({ firearm: firearmName, modNote: noteObj })}
-        />
+        /> */}
+        <button
+          type="button"
+          onClick={() => removeFirearmModification({ firearm: firearmName, modNote: noteObj })}
+        >
+          Remove
+        </button>
       </div>
     ))}
   </>
 );
-
 
 Modifications.propTypes = {
   firearmName: PropTypes.string.isRequired,

@@ -7,9 +7,11 @@ import ClickButton from '../../widgets/buttons/ClickButton';
 
 import { magazineTableHeadings } from '../data';
 
-const Magazines = ({ gunObj, setPrimaryMag, handleMagazineExistence }) => (
+const Magazines = ({ gunObj, setPrimaryMag, handleMagazineExistence, firearmToModify }) => (
   <>
-    <div className="magazinesHeading">Magazines</div>
+    <div className="magazinesHeading">
+      Magazines
+    </div>
     <div className="magazineDetailsHeading">
       {magazineTableHeadings.map((value) => (
         <span key={value}>{value}</span>

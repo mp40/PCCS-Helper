@@ -6,6 +6,7 @@ import TextInput from './textInput';
 
 import { getFormDetails, createModificationObject } from './data';
 
+import styles from './styles.module.css';
 import './FirearmModificationForm.css';
 
 const FirearmModificationForm = ({ formType, handleModification, toggleOffWeaponCardViews }) => {
@@ -31,6 +32,12 @@ const FirearmModificationForm = ({ formType, handleModification, toggleOffWeapon
   return (
     <div className={formDetails.formClassName}>
       <div>{formDetails.title}</div>
+      <button
+        aria-label="close"
+        className={styles.close}
+        type="button"
+        onClick={() => toggleOffWeaponCardViews()}
+      />
       {formDetails.fields.map((field, index) => (
         <TextInput
           key={field.heading}
@@ -45,11 +52,6 @@ const FirearmModificationForm = ({ formType, handleModification, toggleOffWeapon
         className={`submitCustom${formType}`}
         onClick={validateInput}
       />
-      <ButtonStandard
-        name="Back"
-        className="exitModificationForm"
-        onClick={toggleOffWeaponCardViews}
-      />
       {warning
       && <div className="modificationFormWarning">Please Enter Valid Data</div>}
     </div>
@@ -57,7 +59,7 @@ const FirearmModificationForm = ({ formType, handleModification, toggleOffWeapon
 };
 
 FirearmModificationForm.propTypes = {
-  formType: PropTypes.string.isRequired,
+  formType: PropTypes.oneOf(['Magazine', 'Firearm']).isRequired,
   handleModification: PropTypes.func.isRequired,
   toggleOffWeaponCardViews: PropTypes.func.isRequired,
 };
