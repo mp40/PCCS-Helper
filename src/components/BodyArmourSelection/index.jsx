@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ButtonStandard from '../widgets/buttons/ButtonStandard';
 
-import './BodyArmourSelection.css';
 import styles from './styles.module.css';
 
 const renderHeading = (armourType) => (armourType === 'helmet' ? 'Select Helmet' : 'Select Vest');
@@ -21,8 +19,9 @@ const renderBody = (armourList, handleDispatch, type) => armourList.map((armour)
 ));
 
 const BodyArmourSelection = ({ armourType, armourList, handleDispatch }) => (
-  <div className="--modalOverlay selectBodyArmourModal">
-    <div className="--card bodyArmourListCard">
+  <>
+    <div className={styles.modal} />
+    <div className={`--card ${styles.card}`}>
       <div className={styles.header}>
         <div>
           {renderHeading(armourType)}
@@ -40,7 +39,7 @@ const BodyArmourSelection = ({ armourType, armourList, handleDispatch }) => (
           onClick={() => handleDispatch(null)}
         />
       </div>
-      <table className="--collapseBorder bodyArmourTable">
+      <table className={`--collapseBorder ${styles.table}`}>
         <thead>
           <tr>
             {['Name', 'PF', 'BPF', 'AC', 'lbs', 'Notes'].map((value) => (
@@ -53,7 +52,7 @@ const BodyArmourSelection = ({ armourType, armourList, handleDispatch }) => (
         </tbody>
       </table>
     </div>
-  </div>
+  </>
 );
 
 BodyArmourSelection.propTypes = {

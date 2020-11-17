@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import WeaponsCard from './component';
 import { removeAllWeapons } from '../../actions';
-import './WeaponsCard.css';
 
 const mapStateToProps = (state) => ({
   firearms: state.currentCharacter.firearms,

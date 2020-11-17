@@ -5,15 +5,12 @@ import SelectEquipment from './select';
 import EquipmentFilter from './filter';
 import CustomEquipment from './custom';
 
-import GearCard from '../GearCard';
 import GearTable from '../GearTable';
 import GearRow from '../GearRow';
 
 import { findEquipmentWeight } from '../../helpers/actionHelpers';
 
 import { toggleTagsInList } from './data';
-
-import './EquipmentCard.css';
 
 const EquipmentCard = ({
   decreaseEquipmentQty,
@@ -73,20 +70,43 @@ const EquipmentCard = ({
 
   const totalEquipWeight = findEquipmentWeight(equipment);
   return (
-    <GearCard gearType="equipment" hasButtonFunctions buttonFunctions={[() => handleSetShowEquipment(), () => handleSetShowCustomInput(), () => removeAllEquipment([])]}>
+    <div className="--card --gearCard">
+      <div>
+        <button
+          type="button"
+          className="--button"
+          onClick={() => handleSetShowEquipment()}
+        >
+          Add Equipment
+        </button>
+        <button
+          type="button"
+          className="--button"
+          onClick={() => handleSetShowCustomInput()}
+        >
+          Add Custom
+        </button>
+        <button
+          type="button"
+          className="--button"
+          onClick={() => removeAllEquipment([])}
+        >
+          Clear All
+        </button>
+      </div>
       <GearTable gearHeading="Equipment" totalWeight={Math.round(totalEquipWeight * 1000) / 1000}>
         {renderTableBody()}
       </GearTable>
       {renderEquipmentModal()}
       {renderCustomEquipmentModal()}
       {showFilters && (
-        <EquipmentFilter
-          filteredTags={filteredTags}
-          handleTags={handleTags}
-          handleSetShowFilters={handleSetShowFilters}
-        />
+      <EquipmentFilter
+        filteredTags={filteredTags}
+        handleTags={handleTags}
+        handleSetShowFilters={handleSetShowFilters}
+      />
       )}
-    </GearCard>
+    </div>
   );
 };
 

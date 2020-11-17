@@ -1,4 +1,3 @@
-
 const standardRangeBrackets = [10, 20, 40, 70, 100, 200, 300, 400];
 const shotgunRangeBrackets = [1, 2, 4, 6, 8, 10, 15, 20, 30, 40, 80];
 const launcherBalisticRangeBackets = [40, 100, 200, 400, '', 0, 1, 2, 3, 5, 10];
@@ -123,7 +122,6 @@ const launcherCharacteristics = [
   },
 ];
 
-
 export const getWeaponCharacteristics = (list) => {
   if (list === 'launchers') {
     return launcherCharacteristics;
@@ -147,7 +145,6 @@ const projectileBa = { valueKey: 'ba', prefix: ['', 'BA'], suffix: [] };
 const projectileTof = { valueKey: 'tof', prefix: ['', 'TOF'], suffix: [] };
 
 const emptyLine = 'empty';
-
 
 const defaultTemplate = [
   firstProjectilePen,

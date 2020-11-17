@@ -26,7 +26,6 @@ const GearRow = ({ gear }) => {
     />
   );
 
-
   const renderIncrementButtons = (idString, upFn, downFn) => (
     <ButtonIncrementArrows
       idUp={`qtyUp${idString}`}

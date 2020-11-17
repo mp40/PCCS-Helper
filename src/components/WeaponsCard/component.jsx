@@ -14,12 +14,7 @@ import SelectLauncherModal from '../SelectLauncherModal';
 
 import { calculateWeaponArrayWeight } from '../../helpers/actionHelpers';
 
-// mptodo clean this shit up
-import styles from './styles.module.css';
-
-import './WeaponsCard.css';
-
-// export const getSelectedWeapons = (weaponArray) => (weaponArray === undefined ? [] : weaponArray);
+// mptodo clean this shit up, functional component
 
 class WeaponsCard extends Component {
   constructor(props) {
@@ -68,9 +63,6 @@ class WeaponsCard extends Component {
   render() {
     const { firearms, grenades, launchers, removeAllWeapons } = this.props;
     const { showFirearms, modifyFirearm, showGrenades, showLaunchers, firearmToModify } = this.state;
-    // const selectedGuns = getSelectedWeapons(firearms);
-    // const selectedGrenades = getSelectedWeapons(grenades);
-    // const selectedLaunchers = getSelectedWeapons(launchers);
     const firearmsWeight = calculateWeaponArrayWeight(firearms);
     const grenadesWeight = grenades.reduce((acc, obj) => acc + (obj.qty * obj.weight), 0);
     const launchersWeight = calculateWeaponArrayWeight(launchers);
@@ -79,7 +71,7 @@ class WeaponsCard extends Component {
 
     return (
       <div className="--card --gearCard">
-        <div className={styles.header}>
+        <div>
 
           <button
             type="button"
@@ -114,15 +106,17 @@ class WeaponsCard extends Component {
           </button>
 
         </div>
+
         <GearTable gearHeading="Weapons" totalWeight={Math.round((firearmsWeight + grenadesWeight + launchersWeight) * 1000) / 1000}>
           <WeaponsTableBody
-            selectedGuns={firearms}
-            selectedGrenades={grenades}
-            selectedLaunchers={launchers}
+            firearms={firearms}
+            grenades={grenades}
+            launchers={launchers}
             toggleOnWeaponsCardViews={this.toggleOnWeaponsCardViews}
             toggleModifyWeapon={this.toggleModifyWeapon}
           />
         </GearTable>
+
         {showFirearms && this.renderWeaponSelect()}
         {modifyFirearm && (
           <FirearmModifyModal

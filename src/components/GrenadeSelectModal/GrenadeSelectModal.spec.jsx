@@ -67,7 +67,7 @@ describe('GrenadeSelectModal', () => {
     expect(toggleOffWeaponCardViews).toHaveBeenCalledWith('showGrenades');
   });
   it('should have a back button', () => {
-    wrapper.find('.closeModal').simulate('click');
+    wrapper.find('.close').simulate('click');
     expect(toggleOffWeaponCardViews).toHaveBeenCalledWith('showGrenades');
   });
   it('should not be possible to select the same grenade twice', () => {

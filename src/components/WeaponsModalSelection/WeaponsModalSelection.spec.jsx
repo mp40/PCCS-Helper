@@ -1,28 +1,9 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
-import { act } from 'react-dom/test-utils';
-// import WeaponsModalSelection, { filterCalibersFromType } from './index';
-import { mgs } from '../../data/firearms';
-import { isValidToDecreaseMagazine } from '../../helpers/gaurds';
+import { shallow } from 'enzyme';
 
 import WeaponsModalSelection from './component';
 
-// mptodo - clean this shit up
-// import { firearmLists } from './data';
-// import data from '../EquipmentCard/filter/data';
 import * as data from './data';
-
-const waitOneTick = (simulate) => new Promise(((resolve) => {
-  setTimeout(() => {
-    resolve(simulate);
-  }, 0);
-}));
-
-const waitOneSec = (simulate) => new Promise(((resolve) => {
-  setTimeout(() => {
-    resolve(simulate);
-  }, 1001);
-}));
 
 const mockM16 = () => ({
   name: 'M16',
@@ -84,7 +65,6 @@ describe('Firearms selection', () => {
     expect(addFirearm).not.toHaveBeenCalled();
   });
 
-  // mptodo
   it('should be possible to view firearm stats', () => {
     expect(wrapper.find('FirearmInspection').exists()).toBe(false);
     wrapper.find('GearModalContents').find('button').at(0).simulate('click');

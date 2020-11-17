@@ -1,14 +1,16 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+
 import React, { useState } from 'react';
 import { PropTypes } from 'prop-types';
+
 import GrenadeData from '../GrenadeData';
+
 import { grenadeData, specialGrenades } from '../../data/grenades';
 import { grenadeShape } from '../../helpers/proptypeShapes';
-import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 
-import './GrenadeSelectModal.css';
+import styles from './styles.module.css';
 
 const GrenadeSelectModal = ({ toggleOffWeaponCardViews, addGrenade, grenades }) => {
   const [viewGrenade, setGrenadeToView] = useState(null);
@@ -24,12 +26,14 @@ const GrenadeSelectModal = ({ toggleOffWeaponCardViews, addGrenade, grenades }) 
   };
 
   const renderGrenadeHeading = () => (
-    <div className="grenadeListCardHeading">
-      <ButtonDeleteX
-        className="closeModal"
+    <div className={styles.header}>
+      <span>Select Grenade</span>
+      <button
+        aria-label="close"
+        className={styles.close}
+        type="button"
         onClick={() => toggleOffWeaponCardViews('showGrenades')}
       />
-      <span>Select Grenade</span>
     </div>
   );
 
@@ -53,17 +57,18 @@ const GrenadeSelectModal = ({ toggleOffWeaponCardViews, addGrenade, grenades }) 
   );
 
   return (
-    <div className="--modalOverlay">
-      <div className="--card grenadeListCard">
+    <>
+      <div className={styles.modal} />
+      <div className={`--card ${styles.card}`}>
         {renderGrenadeHeading()}
-        <div className="grenadeList">
+        <div className={styles.list}>
           {renderGrenadeList()}
         </div>
         {viewGrenade && (
           <GrenadeData grenade={viewGrenade} />
         )}
       </div>
-    </div>
+    </>
   );
 };
 

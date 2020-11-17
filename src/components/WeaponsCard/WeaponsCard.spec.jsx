@@ -1,18 +1,10 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { act } from 'react-dom/test-utils';
-import { mount, shallow } from 'enzyme';
-// import { Provider } from 'react-redux';
-import WeaponsCard, { getSelectedWeapons } from './component';
+import { mount } from 'enzyme';
+
 import { getStore } from '../../helpers/testHelpers';
 
 import ConnectedWeaponsCard from '.';
-
-const waitOneSec = (simulate) => new Promise(((resolve) => {
-  setTimeout(() => {
-    resolve(simulate);
-  }, 1001);
-}));
 
 describe('The Weapons Card', () => {
   describe('weapons intergration tests', () => {
@@ -281,14 +273,3 @@ describe('The Weapons Card', () => {
     });
   });
 });
-
-// mptodo - check if I need this shit
-// describe('getSelectedWeapons function', () => {
-//   it('should return the firearms list', () => {
-//     const firearms = [{ name: 'M16' }, { name: 'M1911A1' }];
-//     expect(getSelectedWeapons(firearms)).toStrictEqual(firearms);
-//   });
-//   it('should return an empty array if firearms is undefined', () => {
-//     expect(getSelectedWeapons(undefined)).toStrictEqual([]);
-//   });
-// });

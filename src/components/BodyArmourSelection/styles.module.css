@@ -1,3 +1,23 @@
+.modal {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: #000000;
+  opacity: 50%;
+  z-index: 100;
+}
+
+.card {
+  position: fixed;
+  top: 6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.5rem 2rem 1rem;
+  z-index: 101;
+}
+
 .header {
   margin-bottom: 0.75rem;
   background-color: var(--panzer-grey);
@@ -53,4 +73,31 @@
 .close:active {
   box-shadow: 0px 0px 1px 1px whitesmoke;
   opacity: 0.9;
+}
+
+.table {
+  border-collapse: "collapse";
+  border: 1px solid rgb(85, 83, 83);
+  font-size: medium;
+  text-align: center;
+}
+
+.table th,
+.table td {
+  padding-right: 1rem;
+}
+
+.table th:first-child,
+.table td:first-child {
+  padding-left: 0.3rem;
+}
+
+.table > thead > tr > th:first-of-type,
+.table > tbody > tr > td:first-of-type {
+  text-align: left;
+}
+
+.table > thead > tr > th:last-of-type,
+.table > tbody > tr > td:last-of-type {
+  text-align: left;
 }

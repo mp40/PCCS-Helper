@@ -6,7 +6,6 @@ import PhysicalData from './PhysicalData';
 import AimTimes from './AimTimes';
 
 import { gunObjShape, launcherShape } from '../../helpers/proptypeShapes';
-import { getRecoilRecoveryValue } from '../../data/advancedRules/recoilRecovery';
 
 import emptyFirearm from './emptyFirearm';
 import { getEmptyRow, getWeaponCharacteristics, getTemplate, keys } from './data';
@@ -21,15 +20,7 @@ export const findSkillLevelFromSAL = (playerSAL) => {
   return result === -1 ? undefined : result;
 };
 
-// mptodo clean up
-const getFirearmNameAndRecoil = (weapon, skillLevel) => {
-  if (skillLevel === undefined) {
-    return weapon.name;
-  }
-  return `${weapon.name} - recoil recovery: ${getRecoilRecoveryValue(weapon.kd, skillLevel)}`;
-};
-
-const WeaponStatsTable = ({ weapon, sal, size, showName }) => {
+const WeaponStatsTable = ({ weapon, sal, size }) => {
   const dataTemplate = getTemplate(weapon.list, weapon.trb, weapon.projectiles.length);
   const emptyRow = getEmptyRow(weapon.list);
 
@@ -79,11 +70,6 @@ const WeaponStatsTable = ({ weapon, sal, size, showName }) => {
 
   return (
     <div className={`WeaponStatsContainer ${size} ${weapon.list}`}>
-      {/* <div>
-        {showName
-        && `${getFirearmNameAndRecoil(weapon, findSkillLevelFromSAL(sal))}`}
-      </div> */}
-      {/* <div> */}
       <table className={size ? `${size}WeaponStatTable` : 'WeaponStatTable'}>
         <TableHead weaponList={weapon.list} />
         <tbody>
@@ -96,13 +82,11 @@ const WeaponStatsTable = ({ weapon, sal, size, showName }) => {
           ))}
         </tbody>
       </table>
-      {/* </div> */}
     </div>
   );
 };
 
 WeaponStatsTable.propTypes = {
-  // showName: PropTypes.bool.isRequired,
   size: PropTypes.string,
   weapon: PropTypes.oneOfType([gunObjShape, launcherShape]),
   sal: PropTypes.number,

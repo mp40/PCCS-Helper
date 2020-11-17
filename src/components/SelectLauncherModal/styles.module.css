@@ -1,4 +1,4 @@
-/* .modal {
+.modal {
   position: fixed;
   height: 100%;
   width: 100%;
@@ -11,28 +11,31 @@
 
 .card {
   position: fixed;
-  top: 10rem;
+  top: 6rem;
   left: 50%;
   transform: translateX(-50%);
-  width: 60rem;
-  padding: 0.5rem 2rem 2rem;
-  margin-top: 2rem;
-  margin-left: 2rem;
+  width: 55rem;
+  height: 20rem;
+  padding: 0.5rem 2rem 1rem;
   z-index: 101;
 }
 
 .header {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
   background-color: var(--panzer-grey);
   color: whitesmoke;
   display: flex;
   padding: 0.25rem;
   justify-content: space-between;
+  font-weight: 600;
 }
 
-.header > span {
-  margin: 0 1rem 0 0.5rem;
-  font-weight: 600;
+.close:before {
+  content: "\f00d";
+  font-family: FontAwesome;
+  text-decoration: inherit;
+  color: whitesmoke;
+  font-size: 1rem;
 }
 
 .close {
@@ -51,19 +54,25 @@
   opacity: 0.9;
 }
 
-.close:before {
-  content: "\f00d";
-  font-family: FontAwesome;
-  text-decoration: inherit;
-  color: whitesmoke;
-  font-size: 1rem;
-}
-
 .body {
+  width: 100% !important;
   display: flex;
   justify-content: space-between;
 }
 
-.body > div {
-  font-size: 1.15rem;
-} */
+.row {
+  display: flex;
+}
+
+.row > div {
+  margin-left: 3px;
+  width: 11rem;
+}
+
+.row > div > span:nth-of-type(1) {
+  float: left;
+}
+
+.row > div > span:nth-of-type(2) {
+  float: right;
+}

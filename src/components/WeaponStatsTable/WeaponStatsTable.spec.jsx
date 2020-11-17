@@ -371,21 +371,6 @@ describe('<WeaponStatsTable/> component', () => {
       expect(testFAMAS().aim.mod[8]).toBe(expectedAim9 - sal);
     });
   });
-  // mptodo clean this shit up
-  // describe('display recoil recovery', () => {
-  //   const sal = 0;
-  //   it('should display recoil recovey after weapon name', () => {
-  //     let rrWrapper = mount(<WeaponStatsTable weapon={testFAMAS()} sal={sal} />);
-  //     expect(rrWrapper.childAt(0).text()).toContain('FAMAS - recoil recovery: 2');
-  //     rrWrapper = mount(<WeaponStatsTable weapon={testFAMAS()} sal={sal + 10} />);
-  //     expect(rrWrapper.childAt(0).text()).toContain('FAMAS - recoil recovery: 0');
-  //   });
-  //   it('should display not recoil recovey when sal is undefined', () => {
-  //     const rrWrapper = mount(<WeaponStatsTable weapon={testFAMAS()} sal={undefined} />);
-  //     expect(rrWrapper.childAt(0).text()).toContain('FAMAS');
-  //     expect(rrWrapper.childAt(0).text()).not.toContain('recoil recovery');
-  //   });
-  // });
 });
 
 describe('findinging gun combat level from SAL', () => {

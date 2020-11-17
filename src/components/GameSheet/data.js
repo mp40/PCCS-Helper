@@ -5,11 +5,6 @@ export const getFirearmNameAndRecoil = (weapon, skillLevel) => {
     return 'None';
   }
 
-  // mptodo
-  //   if (skillLevel === undefined) {
-  //     return weapon.name;
-  //   }
-
   return `${weapon.name} - recoil recovery: ${getRecoilRecoveryValue(weapon.kd, skillLevel)}`;
 };
 

@@ -1,19 +1,17 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
+
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import GearModal from '../GearModal';
-import GearModalContents from '../GearModalContents';
-import GearCard from '../GearCard';
-import WeaponStatsTable from '../WeaponStatsTable';
 
-import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
+import GearModalContents from '../GearModalContents';
+import WeaponStatsTable from '../WeaponStatsTable';
 
 import { launchers } from '../../data/launchers';
 import { emptyLauncher } from './data';
 
-import './SelectLauncherModal.css';
+import styles from './styles.module.css';
 
 const SelectLauncherModal = ({ toggleOffWeaponCardViews, addLauncher }) => {
   const [launcherToView, setLauncherToView] = useState(emptyLauncher);
@@ -24,18 +22,24 @@ const SelectLauncherModal = ({ toggleOffWeaponCardViews, addLauncher }) => {
   };
 
   return (
-    <GearModal>
-      <GearCard name="modalCard">
+    <>
+      <div className={styles.modal} />
+      <div className={`--card ${styles.card}`}>
+        <div className={styles.header}>
+          <span>Select Grenade / Rocket Launcher</span>
+          <button
+            aria-label="close"
+            className={styles.close}
+            type="button"
+            onClick={() => toggleOffWeaponCardViews('showLaunchers')}
+          />
+        </div>
         <GearModalContents>
-          <div className="launcherContentsContainer">
+          <div className={styles.body}>
             <div className="launcherRowContainer">
-              <ButtonDeleteX
-                id="closeLauncherModal"
-                onClick={() => toggleOffWeaponCardViews('showLaunchers')}
-                className="closeModal"
-              />
+
               {launchers().map((launcher) => (
-                <div key={launcher.name} className="launcherRow">
+                <div key={launcher.name} className={styles.row}>
                   <button
                     type="button"
                     onClick={() => setLauncherToView(launcher)}
@@ -55,8 +59,8 @@ const SelectLauncherModal = ({ toggleOffWeaponCardViews, addLauncher }) => {
             <WeaponStatsTable weapon={launcherToView} />
           </div>
         </GearModalContents>
-      </GearCard>
-    </GearModal>
+      </div>
+    </>
   );
 };
 

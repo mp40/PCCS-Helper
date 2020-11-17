@@ -9,6 +9,7 @@ const GearCard = ({ gearType, name, hasButtonFunctions, buttonFunctions, childre
     if (!hasButtonFunctions) {
       return null;
     }
+
     return (
       <div>
         {buttonData(gearType).map((obj, index) => (
