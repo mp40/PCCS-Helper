@@ -3,7 +3,7 @@ import { shallow, mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 
 import { Provider } from 'react-redux';
-import { getStore, getStoreWithGun } from '../../helpers/testHelpers';
+import { getStoreWithGun } from '../../helpers/testHelpers';
 
 import ConnectedHeader from '.';
 
@@ -341,6 +341,7 @@ describe('The Header', () => {
       wrapper.find('.print-button').simulate('click');
 
       expect(wrapper.find('Header').prop('currentView')).toBe('printRefSheet');
+      wrapper.update();
     });
   });
 });

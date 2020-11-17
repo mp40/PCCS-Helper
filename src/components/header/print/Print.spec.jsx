@@ -1,9 +1,14 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
+import { Provider } from 'react-redux';
 
 import Print from './index';
 
 import Header from '../component';
+
+import App from '../../App';
+
+import { getStoreWithGun, testM1911A1 } from '../../../helpers/testHelpers';
 
 describe('Printing the reference sheet', () => {
   const selectCurrentView = jest.fn();
@@ -29,5 +34,23 @@ describe('Printing the reference sheet', () => {
     const wrapper = shallow(<Header currentView="createChar" selectCurrentView={selectCurrentView} signedIn={false} handleSetSignedIn={() => {}} />);
 
     expect(wrapper.find('Print').exists()).toBe(true);
+  });
+});
+
+describe('Print intergration', () => {
+  global.print = jest.fn();
+  const store = getStoreWithGun(testM1911A1());
+
+  const wrapper = mount(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+  );
+
+  it('should close the game sheet imediately after calling print', () => {
+    wrapper.find('.print-button').simulate('click');
+
+    expect(wrapper.find('GameSheet').exists()).toBe(false);
+    expect(wrapper.find('CharacterGeneration').exists()).toBe(true);
   });
 });
