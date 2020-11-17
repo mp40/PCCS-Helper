@@ -52,7 +52,6 @@ const SelectEquipment = ({
         <div className={styles.header}>
           <div>
             <span>Select Equipment</span>
-
             <button
               type="button"
               onClick={() => handleSetShowFilters()}
@@ -65,11 +64,9 @@ const SelectEquipment = ({
               onClick={() => handleRemoveAllTags()}
             >
               Clear Filters
-
             </button>
             )}
           </div>
-
           <button
             aria-label="close"
             className={styles.close}

@@ -15,6 +15,7 @@ describe('strengthStatReducer function', () => {
         maxSpeed: 5,
         gunCombatActions: 3,
         handCombatActions: 3,
+        damageBonus: 1,
       } };
 
     state = modifyStrengthValueReducer(state, action);
@@ -33,6 +34,7 @@ describe('strengthStatReducer function', () => {
         maxSpeed: 8,
         gunCombatActions: 5,
         handCombatActions: 5,
+        damageBonus: 2,
       } };
 
     state = modifyStrengthValueReducer(state, action);

@@ -9,13 +9,13 @@ const {
   calcDB,
 } = require('../../helpers/helperFunctions');
 
-export const removeAllFirearmsReducer = (state, action) => {
+export const removeAllWeaponsReducer = (state, action) => {
   const updatedWeight = calculateTotalWeight({
     uniform: state.currentCharacter.uniform,
     equipment: state.currentCharacter.equipment,
     firearms: action.payload,
-    launchers: state.currentCharacter.launchers,
-    grenades: state.currentCharacter.grenades,
+    launchers: action.payload,
+    grenades: action.payload,
     helmet: state.currentCharacter.helmet,
     vest: state.currentCharacter.vest,
   });
@@ -32,6 +32,8 @@ export const removeAllFirearmsReducer = (state, action) => {
     currentCharacter: { ...state.currentCharacter,
       totalWeight: newTotalWeight,
       firearms: action.payload,
+      grenades: action.payload,
+      launchers: action.payload,
       baseSpeed: newBaseSpeed,
       maxSpeed: newMaxSpeed,
       damageBonus: newDamageBonus,

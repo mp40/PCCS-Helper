@@ -1,30 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ButtonSlim from '../../widgets/buttons/ButtonSlim';
+
+import styles from './styles.module.css';
 
 const Modifications = ({ firearmName, modNotes, removeFirearmModification }) => (
-  <>
-    <div className="modificationsHeading">Modifications</div>
+  <div className={styles.wrapper}>
+    <div>Modifications</div>
     {modNotes.map((noteObj) => (
-      <div key={`${noteObj.note}${noteObj.weightMod}`}>
+      <div key={`${noteObj.note}${noteObj.weightMod}`} className={styles.entry}>
         <span>{noteObj.note}</span>
         <span>
           {`${noteObj.weightMod} lbs`}
         </span>
-        {/* <ButtonSlim
-          name="remove"
-          className="removeModification"
-          onClick={() => removeFirearmModification({ firearm: firearmName, modNote: noteObj })}
-        /> */}
         <button
+          aria-label="close"
+          className={styles.close}
           type="button"
           onClick={() => removeFirearmModification({ firearm: firearmName, modNote: noteObj })}
-        >
-          Remove
-        </button>
+        />
       </div>
     ))}
-  </>
+  </div>
 );
 
 Modifications.propTypes = {

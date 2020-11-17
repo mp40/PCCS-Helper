@@ -1,5 +1,6 @@
 import { decreaseGrenadeReducer } from './index';
 import { MockState } from '../mockState';
+import { correctFloatingPoint } from '../reducerHelpers';
 
 const lightGrenade = () => ({
   name: 'L2 A2',
@@ -33,7 +34,7 @@ describe('decreaseGrenadeReducer function', () => {
     const updatedState = { ...state,
       currentCharacter: {
         ...state.currentCharacter,
-        totalWeight: state.currentCharacter.totalWeight - heavyGrenade(2).weight,
+        totalWeight: correctFloatingPoint(state.currentCharacter.totalWeight - heavyGrenade(2).weight),
         baseSpeed: 2.5,
         maxSpeed: 5,
         grenades: [heavyGrenade(1)],
@@ -63,7 +64,7 @@ describe('decreaseGrenadeReducer function', () => {
     const updatedState = { ...state,
       currentCharacter: {
         ...state.currentCharacter,
-        totalWeight: state.currentCharacter.totalWeight - heavyGrenade(2).weight,
+        totalWeight: correctFloatingPoint(state.currentCharacter.totalWeight - heavyGrenade(2).weight),
         grenades: [lightGrenade(), heavyGrenade(1)],
       } };
 

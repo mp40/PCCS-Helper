@@ -14,7 +14,7 @@ import { increaseEquipmentReducer } from './increaseEquipmentReducer';
 import { decreaseEquipmentReducer } from './decreaseEquipmentReducer';
 import { addFirearmReducer } from './addFirearmReducer';
 import { removeFirearmReducer } from './removeFirearmReducer';
-import { removeAllFirearmsReducer } from './removeAllFirearmsReducer';
+import { removeAllWeaponsReducer } from './removeAllWeaponsReducer';
 import { increaseFirearmReducer } from './increaseFirearmReducer';
 import { decreaseFirearmReducer } from './decreaseFirearmReducer';
 import { increaseMagazineReducer } from './increaseMagazineReducer';
@@ -76,8 +76,6 @@ function reduceActions(state = initialState, action) {
       return addFirearmReducer(state, action);
     case 'FIREARM_REMOVED':
       return removeFirearmReducer(state, action);
-    case 'ALL_FIREARMS_REMOVED':
-      return removeAllFirearmsReducer(state, action);
     case 'FIREARM_QTY_INCREASED':
       return increaseFirearmReducer(state, action);
     case 'FIREARM_QTY_DECREASED':
@@ -100,10 +98,8 @@ function reduceActions(state = initialState, action) {
       return removeMagazineReducer(state, action);
     case 'MAGAZINE_REPLACED':
       return replaceMagazineReducer(state, action);
-    case 'HELMET_CHANGED':
-      return changeHelmetReducer(state, action);
-    case 'VEST_CHANGED':
-      return changeVestReducer(state, action);
+    case 'ALL_WEAPONS_REMOVED':
+      return removeAllWeaponsReducer(state, action);
     case 'GRENADE_ADDED':
       return addGrenadeReducer(state, action);
     case 'GRENADE_REMOVED':
@@ -126,12 +122,17 @@ function reduceActions(state = initialState, action) {
       return decreaseLauncherAmmoReducer(state, action);
     case 'CHARACTER_NAME_CHANGED':
       return changeNameReducer(state, action);
-    case 'TOTAL_WEIGHT':
-      return { ...state, totalWeight: action.payload };
-    case 'UPDATE_ATTRIBUTES':
-      return { ...state, characterStats: action.payload };
-    case 'UPDATE_ALL_COMBAT_STATS':
-      return { ...state, combatStats: action.payload };
+    case 'HELMET_CHANGED':
+      return changeHelmetReducer(state, action);
+    case 'VEST_CHANGED':
+      return changeVestReducer(state, action);
+      // mptodo - sort this shit out
+    // case 'TOTAL_WEIGHT':
+    //   return { ...state, totalWeight: action.payload };
+    // case 'UPDATE_ATTRIBUTES':
+    //   return { ...state, characterStats: action.payload };
+    // case 'UPDATE_ALL_COMBAT_STATS':
+    //   return { ...state, combatStats: action.payload };
     default: return state;
   }
 }

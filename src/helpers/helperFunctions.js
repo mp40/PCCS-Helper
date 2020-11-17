@@ -60,33 +60,33 @@ const calcDB = (ms, asf) => {
 };
 
 // mpTODO delete this when reducer migration complete...
-const calculateStateObject = (characterStats, weight) => {
-  const bs = calcBaseSpeed(characterStats.str, weight);
-  const ms = calcMaxSpeed(characterStats.agi, bs);
-  const salResult = findSAL(characterStats.gunLevel);
-  const isfResult = calcSkillFactor(characterStats.int, salResult);
-  const gunResults = calcCombatActions(ms, isfResult);
-  const ceResult = findSAL(characterStats.handLevel);
-  const asfResult = calcSkillFactor(characterStats.agi, ceResult);
-  const handResults = calcCombatActions(ms, asfResult);
-  const knockout = calcKV(
-    characterStats.wil,
-    characterStats.gunLevel > characterStats.handLevel ? characterStats.gunLevel : characterStats.handLevel,
-  );
-  const damBonus = calcDB(ms, asfResult);
+// const calculateStateObject = (characterStats, weight) => {
+//   const bs = calcBaseSpeed(characterStats.str, weight);
+//   const ms = calcMaxSpeed(characterStats.agi, bs);
+//   const salResult = findSAL(characterStats.gunLevel);
+//   const isfResult = calcSkillFactor(characterStats.int, salResult);
+//   const gunResults = calcCombatActions(ms, isfResult);
+//   const ceResult = findSAL(characterStats.handLevel);
+//   const asfResult = calcSkillFactor(characterStats.agi, ceResult);
+//   const handResults = calcCombatActions(ms, asfResult);
+//   const knockout = calcKV(
+//     characterStats.wil,
+//     characterStats.gunLevel > characterStats.handLevel ? characterStats.gunLevel : characterStats.handLevel,
+//   );
+//   const damBonus = calcDB(ms, asfResult);
 
-  return {
-    baseSpeed: bs,
-    maxSpeed: ms,
-    SAL: salResult,
-    CE: ceResult,
-    ISF: isfResult,
-    ASF: asfResult,
-    knockoutValue: knockout,
-    damageBonus: damBonus,
-    combatActions: [gunResults, handResults],
-  };
-};
+//   return {
+//     baseSpeed: bs,
+//     maxSpeed: ms,
+//     SAL: salResult,
+//     CE: ceResult,
+//     ISF: isfResult,
+//     ASF: asfResult,
+//     knockoutValue: knockout,
+//     damageBonus: damBonus,
+//     combatActions: [gunResults, handResults],
+//   };
+// };
 
 const actionsPerImpulse = (actions) => {
   let impulse1 = Math.floor(actions / 4);
@@ -119,6 +119,6 @@ module.exports = {
   calcCombatActions,
   calcKV,
   calcDB,
-  calculateStateObject,
+  // calculateStateObject, mptodo
   actionsPerImpulse,
 };

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { PropTypes } from 'prop-types';
+
 import WeaponStatsTable from '../WeaponStatsTable';
 import CombatStatsInfo from './CombatStatsInfo';
 import ActionTable from '../ActionsCard/ActionTable';
@@ -16,51 +17,11 @@ import TargetSizeTable from './subComponents/shootingMods/TargetSizeTable';
 
 import { combatStatsShape, gearShape } from '../../helpers/proptypeShapes';
 
+import { getFirearmNameAndRecoil, prepareHandToHandWeaponList } from './data';
+
 import './GameSheet.css';
 
-const meleeNameList = {
-  pistols: 'Pistol',
-  smgs: 'SMG',
-  light: 'Light Rifle',
-  heavy: 'Heavy Rifle',
-  rifles: true,
-  sniperRifles: true,
-  shotguns: true,
-};
-
-const getRifleWeightClass = (weight) => (weight < 11.2 ? 'light' : 'heavy');
-
-const getFirearmForMeleeList = (firearmsArray) => {
-  const filteredArray = firearmsArray.filter((gun) => meleeNameList[gun.list]);
-  if (filteredArray[0] === undefined) {
-    return [];
-  }
-  if (firearmsArray[0].name === 'Sawed-Off Shotgun') {
-    return ['SMG'];
-  }
-  const tag = filteredArray[0].list === 'rifles' || filteredArray[0].list === 'sniperRifles' || filteredArray[0].list === 'shotguns'
-    ? getRifleWeightClass(filteredArray[0].weight)
-    : filteredArray[0].list;
-
-  return [meleeNameList[tag]];
-};
-
-const getEquipmentForMeleeList = (equipmentArray) => {
-  if (!equipmentArray) {
-    return [];
-  }
-
-  return equipmentArray.reduce((arr, equipObj) => (equipObj.tags.includes('Melee') ? [...arr, ...equipObj.melee] : [...arr]), []);
-};
-
-export const prepareHandToHandWeaponList = (
-  firearmsArray, equipmentArray,
-) => [
-  ...getFirearmForMeleeList(firearmsArray),
-  ...getEquipmentForMeleeList(equipmentArray),
-].slice(0, 4);
-
-const GameSheet = ({ currentCharacter, characterStats, combatStats, gear, selectCurrentView }) => {
+const GameSheet = ({ name, characterStats, combatStats, gear, selectCurrentView }) => {
   useEffect(() => {
     window.print();
     selectCurrentView('createChar');
@@ -72,13 +33,14 @@ const GameSheet = ({ currentCharacter, characterStats, combatStats, gear, select
     <div className="a4GameSheet">
       <div className="a4ContentContainer">
         <div className="main-content-right">
-          {currentCharacter.length > 0 && (
+          {name.length > 0 && (
           <div className="character-name">
-            {`Name: ${currentCharacter}`}
+            {`Name: ${name}`}
           </div>
           )}
           <div style={{ display: 'flex' }}>
             <div>
+              <p className="firearm-name">{getFirearmNameAndRecoil(gear.firearms[0], characterStats.gunLevel)}</p>
               <WeaponStatsTable weapon={gear.firearms[0]} sal={combatStats.SAL} size="a4" />
             </div>
             <div className="firearm-notes-a4-wrapper">
@@ -93,7 +55,11 @@ const GameSheet = ({ currentCharacter, characterStats, combatStats, gear, select
                 handLevel={characterStats.handLevel}
               />
               <div className="ActionTable-a4-container">
-                <ActionTable combatActions={combatStats.combatActions} className="A4" />
+                <ActionTable
+                  gunCombatActions={combatStats.gunCombatActions}
+                  handCombatActions={combatStats.handCombatActions}
+                  className="A4"
+                />
               </div>
               { meleeWeaponList.length > 0 && (
               <HandToHandTable meleeList={meleeWeaponList} meleeLevel={characterStats.handLevel} />
@@ -127,7 +93,7 @@ const GameSheet = ({ currentCharacter, characterStats, combatStats, gear, select
 };
 
 GameSheet.propTypes = {
-  currentCharacter: PropTypes.string,
+  name: PropTypes.string,
   characterStats: PropTypes.objectOf(PropTypes.number),
   combatStats: combatStatsShape,
   gear: gearShape,

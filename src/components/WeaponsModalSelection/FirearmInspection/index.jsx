@@ -9,7 +9,7 @@ import { rifles } from '../../../data/firearms';
 
 import styles from './styles.module.css';
 
-const FirearmInspection = ({ firearmToInspect, setFirearmToInspect, handleCloseStatCard }) => {
+const FirearmInspection = ({ firearmToInspect, setFirearmToInspect }) => {
   const { launcher, rifle } = firearmToInspect;
 
   const buttonText = launcher ? 'View Grenade Data' : 'View Rifle Data';
@@ -47,7 +47,7 @@ const FirearmInspection = ({ firearmToInspect, setFirearmToInspect, handleCloseS
           aria-label="close"
           className={styles.close}
           type="button"
-          onClick={() => handleCloseStatCard()}
+          onClick={() => setFirearmToInspect(null)}
         />
 
       </div>
@@ -69,7 +69,6 @@ const FirearmInspection = ({ firearmToInspect, setFirearmToInspect, handleCloseS
 FirearmInspection.propTypes = {
   firearmToInspect: gunObjShape.isRequired,
   setFirearmToInspect: PropTypes.func.isRequired,
-  handleCloseStatCard: PropTypes.func.isRequired,
 };
 
 export default FirearmInspection;

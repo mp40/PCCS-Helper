@@ -8,13 +8,11 @@ import FirearmInspection from './index';
 describe('inspecting weapon stats', () => {
   const statBoxClassName = 'mptodo get rid of this';
   const setFirearmToInspect = jest.fn();
-  const handleCloseStatCard = jest.fn();
 
   const createWrapper = (firearmToInspect) => shallow(
     <FirearmInspection
       statBoxClassName={statBoxClassName}
       setFirearmToInspect={setFirearmToInspect}
-      handleCloseStatCard={handleCloseStatCard}
       firearmToInspect={firearmToInspect}
     />,
   );
@@ -27,7 +25,7 @@ describe('inspecting weapon stats', () => {
     const wrapper = createWrapper(testM1911A1());
     wrapper.find('.close').simulate('click');
 
-    expect(handleCloseStatCard).toHaveBeenCalled();
+    expect(setFirearmToInspect).toHaveBeenCalledWith(null);
   });
 
   it('should not render view grenade button if weapon does not have an attached grenade launcher', () => {

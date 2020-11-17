@@ -15,7 +15,7 @@ export const modifyStrengthValueReducer = (state, action) => {
   return { ...state,
     currentCharacter: { ...state.currentCharacter,
       str: action.payload,
-      baseSpeed: calcBaseSpeed(action.payload, state.totalWeight),
+      baseSpeed: newBaseSpeed,
       maxSpeed: newMaxSpeed,
       damageBonus: newDamageBonus,
       gunCombatActions: newGunCombatActions,

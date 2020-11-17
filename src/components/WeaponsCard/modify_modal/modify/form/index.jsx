@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import ButtonStandard from '../../widgets/buttons/ButtonStandard';
 import TextInput from './textInput';
 
 import { getFormDetails, createModificationObject } from './data';
@@ -9,7 +8,7 @@ import { getFormDetails, createModificationObject } from './data';
 import styles from './styles.module.css';
 import './FirearmModificationForm.css';
 
-const FirearmModificationForm = ({ formType, handleModification, toggleOffWeaponCardViews }) => {
+const Form = ({ formType, handleModification, toggleOffWeaponCardViews }) => {
   const [modification, updateModification] = useState('');
   const [weight, updateWeight] = useState('');
   const [type, updateType] = useState('');
@@ -31,37 +30,46 @@ const FirearmModificationForm = ({ formType, handleModification, toggleOffWeapon
 
   return (
     <div className={formDetails.formClassName}>
-      <div>{formDetails.title}</div>
-      <button
-        aria-label="close"
-        className={styles.close}
-        type="button"
-        onClick={() => toggleOffWeaponCardViews()}
-      />
-      {formDetails.fields.map((field, index) => (
-        <TextInput
-          key={field.heading}
-          heading={field.heading}
-          idRef={field.idRef}
-          value={values[index]}
-          onChange={(event) => funcs[index](event.target.value)}
+      <div className={styles.header}>
+        <div>
+          <span>{formDetails.title}</span>
+          <button
+            type="button"
+            onClick={() => validateInput()}
+          >
+            Submit
+          </button>
+        </div>
+        <button
+          aria-label="close"
+          className={styles.close}
+          type="button"
+          onClick={() => toggleOffWeaponCardViews()}
         />
-      ))}
-      <ButtonStandard
-        name="Submit"
-        className={`submitCustom${formType}`}
-        onClick={validateInput}
-      />
+      </div>
+
+      <div className={styles.body}>
+        {formDetails.fields.map((field, index) => (
+          <TextInput
+            key={field.heading}
+            heading={field.heading}
+            idRef={field.idRef}
+            value={values[index]}
+            onChange={(event) => funcs[index](event.target.value)}
+          />
+        ))}
+      </div>
+
       {warning
       && <div className="modificationFormWarning">Please Enter Valid Data</div>}
     </div>
   );
 };
 
-FirearmModificationForm.propTypes = {
+Form.propTypes = {
   formType: PropTypes.oneOf(['Magazine', 'Firearm']).isRequired,
   handleModification: PropTypes.func.isRequired,
   toggleOffWeaponCardViews: PropTypes.func.isRequired,
 };
 
-export default FirearmModificationForm;
+export default Form;

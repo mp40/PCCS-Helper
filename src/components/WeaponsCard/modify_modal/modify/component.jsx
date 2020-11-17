@@ -1,18 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { gunObjShape } from '../../helpers/proptypeShapes';
+import { gunObjShape } from '../../../../helpers/proptypeShapes';
 
 import Magazines from './magazines';
 import Modifications from './modifications';
+import Form from './form';
 
-import FirearmModificationForm from './FirearmModificationForm';
-
-import ButtonSlim from '../widgets/buttons/ButtonSlim';
-
-import '../WeaponsCard/WeaponsCard.css';
-import './styles.css';
-
-const WeaponsCardModifyWeapon = ({
+const FirearmModify = ({
   gunObj,
   setPrimaryMagazine,
   removeFirearmModification,
@@ -25,10 +19,7 @@ const WeaponsCardModifyWeapon = ({
   const [createCustomMag, toggleCreateCustomMag] = useState(false);
   const [modifyFirearmWeight, toggleModifyFirearmWeight] = useState(false);
 
-  const setPrimaryMag = (index, removed) => {
-    if (removed) {
-      return;
-    }
+  const setPrimaryMag = (index) => {
     setPrimaryMagazine({ firearm: gunObj.name, magazine: index });
   };
 
@@ -47,25 +38,31 @@ const WeaponsCardModifyWeapon = ({
   );
 
   return (
-    <div className="modifyWeaponPanel">
+    <div>
       {(!createCustomMag && !modifyFirearmWeight)
         && (
           <>
-            <ButtonSlim
-              name="add magazine"
-              id="addCustomMagazine"
+            <button
+              type="button"
+              className="--button"
               onClick={() => toggleCreateCustomMag(true)}
-            />
-            <ButtonSlim
-              name="add modification"
-              id="modifyWeaponWeight"
+            >
+              add magazine
+            </button>
+            <button
+              type="button"
+              className="--button"
               onClick={() => toggleModifyFirearmWeight(true)}
-            />
-            <ButtonSlim
-              name="remove all mods"
-              className="removeAllMods"
+            >
+              add modification
+            </button>
+            <button
+              type="button"
+              className="--button"
               onClick={() => removeAllModificationsFromFirearm(gunObj.name)}
-            />
+            >
+              remove all mods
+            </button>
             <Magazines
               gunObj={gunObj}
               setPrimaryMag={setPrimaryMag}
@@ -79,14 +76,14 @@ const WeaponsCardModifyWeapon = ({
           </>
         )}
       {createCustomMag && (
-        <FirearmModificationForm
+        <Form
           formType="Magazine"
           handleModification={handleAddCustomMag}
           toggleOffWeaponCardViews={() => toggleCreateCustomMag(false)}
         />
       )}
       {modifyFirearmWeight && (
-        <FirearmModificationForm
+        <Form
           formType="Firearm"
           handleModification={handleModifyFirearmWeight}
           toggleOffWeaponCardViews={() => toggleModifyFirearmWeight(false)}
@@ -96,15 +93,15 @@ const WeaponsCardModifyWeapon = ({
   );
 };
 
-WeaponsCardModifyWeapon.propTypes = {
-  replaceMagazine: PropTypes.func,
-  removeMagazine: PropTypes.func,
-  modifyFirearm: PropTypes.func,
-  addCustomMagazine: PropTypes.func,
-  setPrimaryMagazine: PropTypes.func,
-  removeFirearmModification: PropTypes.func,
-  removeAllModificationsFromFirearm: PropTypes.func,
+FirearmModify.propTypes = {
+  replaceMagazine: PropTypes.func.isRequired,
+  removeMagazine: PropTypes.func.isRequired,
+  modifyFirearm: PropTypes.func.isRequired,
+  addCustomMagazine: PropTypes.func.isRequired,
+  setPrimaryMagazine: PropTypes.func.isRequired,
+  removeFirearmModification: PropTypes.func.isRequired,
+  removeAllModificationsFromFirearm: PropTypes.func.isRequired,
   gunObj: gunObjShape.isRequired,
 };
 
-export default WeaponsCardModifyWeapon;
+export default FirearmModify;

@@ -1,18 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { gunObjShape } from '../../../helpers/proptypeShapes';
 
-import CheckBox from '../../widgets/buttons/CheckBox';
-import ClickButton from '../../widgets/buttons/ClickButton';
+import { gunObjShape } from '../../../../../helpers/proptypeShapes';
+
+import CheckBox from '../../../../widgets/buttons/CheckBox';
+import ClickButton from '../../../../widgets/buttons/ClickButton';
 
 import { magazineTableHeadings } from '../data';
 
-const Magazines = ({ gunObj, setPrimaryMag, handleMagazineExistence, firearmToModify }) => (
-  <>
-    <div className="magazinesHeading">
+import styles from './styles.module.css';
+
+const Magazines = ({ gunObj, setPrimaryMag, handleMagazineExistence }) => (
+  <div className={styles.wrapper}>
+    <div className={styles.header}>
       Magazines
     </div>
-    <div className="magazineDetailsHeading">
+    <div className={styles.titles}>
       {magazineTableHeadings.map((value) => (
         <span key={value}>{value}</span>
       ))}
@@ -22,7 +25,7 @@ const Magazines = ({ gunObj, setPrimaryMag, handleMagazineExistence, firearmToMo
         return null;
       }
       return (
-        <div key={magObj.cap} className={`magazineDetailsBody ${gunObj.name}MagAtIndex${index} ${magObj.removed ? 'removedMagazine' : ''}${index === 0 ? 'primaryMagazine' : ''}`}>
+        <div key={magObj.cap} className={`${styles.magazine}  ${magObj.removed ? `${styles.removedMagazine}` : ''}${index === 0 ? `${styles.primaryMagazine}` : ''}`}>
           {['type', 'cap', 'weight'].map((value) => (
             <span key={value}>{magObj[value]}</span>
           ))}
@@ -35,7 +38,7 @@ const Magazines = ({ gunObj, setPrimaryMag, handleMagazineExistence, firearmToMo
         </div>
       );
     })}
-  </>
+  </div>
 );
 
 Magazines.propTypes = {

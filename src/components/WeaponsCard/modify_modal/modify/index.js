@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import WeaponsCardModifyWeapon from './component';
+import FirearmModify from './component';
 
 import { removeFirearmModification,
   modifyFirearm,
@@ -7,7 +7,7 @@ import { removeFirearmModification,
   addCustomMagazine,
   removeMagazine,
   replaceMagazine,
-  removeAllModificationsFromFirearm } from '../../actions';
+  removeAllModificationsFromFirearm } from '../../../../actions';
 
 const mapStateToProps = (state) => ({
   firearms: state.currentCharacter.firearms,
@@ -21,4 +21,4 @@ export default connect(mapStateToProps, {
   removeMagazine,
   replaceMagazine,
   removeAllModificationsFromFirearm,
-})(WeaponsCardModifyWeapon);
+})(FirearmModify);

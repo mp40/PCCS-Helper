@@ -9,7 +9,7 @@ import { types, calibres } from './data';
 import './FirearmFilter.css';
 import styles from './styles.module.css';
 
-const FirearmFilter = ({ handleSetFilterByType, setShowFilters }) => {
+const FirearmFilter = ({ handleSetFilterByType, handleSetShowFilters }) => {
   const [filterByType, setTypeFilter] = useState('All');
   const [filterByCaliber, setCaliberFilter] = useState('All');
 
@@ -45,7 +45,7 @@ const FirearmFilter = ({ handleSetFilterByType, setShowFilters }) => {
           aria-label="close"
           className={styles.close}
           type="button"
-          onClick={() => setShowFilters()}
+          onClick={() => handleSetShowFilters()}
         />
       </div>
 
@@ -64,7 +64,7 @@ const FirearmFilter = ({ handleSetFilterByType, setShowFilters }) => {
 
 FirearmFilter.propTypes = {
   handleSetFilterByType: PropTypes.func.isRequired,
-  setShowFilters: PropTypes.func.isRequired,
+  handleSetShowFilters: PropTypes.func.isRequired,
 };
 
 export default FirearmFilter;

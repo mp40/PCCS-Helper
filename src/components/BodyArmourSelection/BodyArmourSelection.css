@@ -1,49 +1,37 @@
 .bodyArmourListCard {
-    display: inline-block;
-    margin-top: 2rem;
-    height: 40rem;
-    position: relative;
-    top: calc(50% - 20rem);
-    left: calc(50% - 16rem);
-    overflow: auto;
-    z-index: 2;
-}
-
-.bodyArmourListHeading {
-    display: flex;
-    margin-left: 1rem;
-    padding: .3rem 0 .5rem;
-}
-
-.bodyArmourListHeading > div {
-    margin-left: 5px;
+  display: inline-block;
+  margin-top: 2rem;
+  position: relative;
+  top: calc(50% - 20rem);
+  left: calc(50% - 16rem);
+  overflow: auto;
+  z-index: 2;
+  padding: 1rem 1.25rem 1rem;
 }
 
 .bodyArmourTable {
-    margin-left: 1rem;
-    margin-right: 1rem;
-    border-collapse: 'collapse';
-    border: 1px solid rgb(85, 83, 83);
-    font-size: medium;
-    text-align: center;
+  border-collapse: "collapse";
+  border: 1px solid rgb(85, 83, 83);
+  font-size: medium;
+  text-align: center;
 }
 
 .bodyArmourTable th,
 .bodyArmourTable td {
-    padding-right: 1rem;
+  padding-right: 1rem;
 }
 
 .bodyArmourTable th:first-child,
 .bodyArmourTable td:first-child {
-    padding-left: 0.3rem;
+  padding-left: 0.3rem;
 }
 
 .bodyArmourTable > thead > tr > th:first-of-type,
 .bodyArmourTable > tbody > tr > td:first-of-type {
-    text-align: left;
+  text-align: left;
 }
 
 .bodyArmourTable > thead > tr > th:last-of-type,
 .bodyArmourTable > tbody > tr > td:last-of-type {
-    text-align: left;
+  text-align: left;
 }

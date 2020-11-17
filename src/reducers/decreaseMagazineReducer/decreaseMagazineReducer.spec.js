@@ -1,5 +1,6 @@
 import { decreaseMagazineReducer } from './index';
 import { MockState } from '../mockState';
+import { correctFloatingPoint } from '../reducerHelpers';
 
 describe('decreaseMagazineReducer function', () => {
   const mockM1911A1 = (ammo = 0) => ({
@@ -48,7 +49,7 @@ describe('decreaseMagazineReducer function', () => {
     const updatedState = { ...state,
       currentCharacter: {
         ...state.currentCharacter,
-        totalWeight: state.currentCharacter.totalWeight - m1911A1.mag[0].weight,
+        totalWeight: correctFloatingPoint(state.currentCharacter.totalWeight - m1911A1.mag[0].weight),
         firearms: [mockM1911A1(1)],
       } };
 
@@ -79,7 +80,7 @@ describe('decreaseMagazineReducer function', () => {
     const updatedState = { ...state,
       currentCharacter: {
         ...state.currentCharacter,
-        totalWeight: state.currentCharacter.totalWeight - m1911A1.mag[0].weight,
+        totalWeight: correctFloatingPoint(state.currentCharacter.totalWeight - m1911A1.mag[0].weight),
         firearms: [mockM203(), mockM1911A1(1)],
       } };
 
@@ -110,7 +111,7 @@ describe('decreaseMagazineReducer function', () => {
     const updatedState = { ...state,
       currentCharacter: {
         ...state.currentCharacter,
-        totalWeight: state.currentCharacter.totalWeight - m16.mag[1].weight,
+        totalWeight: correctFloatingPoint(state.currentCharacter.totalWeight - m16.mag[1].weight),
         firearms: [mockM16()],
       } };
 
@@ -141,7 +142,7 @@ describe('decreaseMagazineReducer function', () => {
     const updatedState = { ...state,
       currentCharacter: {
         ...state.currentCharacter,
-        totalWeight: state.currentCharacter.totalWeight - m203.mag[2].weight,
+        totalWeight: correctFloatingPoint(state.currentCharacter.totalWeight - m203.mag[2].weight),
         firearms: [mockM203()],
       } };
 

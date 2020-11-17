@@ -26,7 +26,7 @@ describe('The Weapons Card', () => {
       );
 
       it('should be able to select a weapon', () => {
-        wrapper.find('#addFirearm').simulate('click');
+        wrapper.find('button[children="Add Firearm"]').simulate('click');
         wrapper.find('span[children="M1911A1"]').simulate('click');
 
         expect(wrapper.find('tbody').text()).toContain('M1911A1313');
@@ -78,13 +78,10 @@ describe('The Weapons Card', () => {
         </Provider>,
       );
 
-      wrapper.find('#addFirearm').simulate('click');
+      wrapper.find('button[children="Add Firearm"]').simulate('click');
       wrapper.find('span[children="M16"]').simulate('click');
       wrapper.find('.close').simulate('click');
       wrapper.find('span[children="M16"]').simulate('click');
-
-      const note = wrapper.find('TextInput').find('[heading="Note"]');
-      const weight = wrapper.find('TextInput').find('[heading="Weight"]');
 
       it('should be able to add custom magazine', () => {
         wrapper.find('button[children="add magazine"]').simulate('click');
@@ -123,6 +120,9 @@ describe('The Weapons Card', () => {
       it('should be able to add modification to firearm', () => {
         wrapper.find('button[children="add modification"]').simulate('click');
 
+        const note = wrapper.find('TextInput').find('[heading="Note"]');
+        const weight = wrapper.find('TextInput').find('[heading="Weight"]');
+
         note.find('input').simulate('change', { target: { value: 'torch' } });
         weight.find('input').simulate('change', { target: { value: '.5' } });
 
@@ -131,14 +131,17 @@ describe('The Weapons Card', () => {
         expect(wrapper.text()).toContain('torch0.5 lbs');
       });
 
-      it('should be able to remove firearrm modification', () => {
-        wrapper.find('button[children="Remove"]').simulate('click');
+      it('should be able to remove firearm modification', () => {
+        wrapper.find('.entry').find('button').simulate('click');
 
         expect(wrapper.text()).not.toContain('torch0.5 lbs');
       });
 
       it('should be able to remove all modifications and custom mags', () => {
         wrapper.find('button[children="add modification"]').simulate('click');
+
+        const note = wrapper.find('TextInput').find('[heading="Note"]');
+        const weight = wrapper.find('TextInput').find('[heading="Weight"]');
 
         note.find('input').simulate('change', { target: { value: 'torch' } });
         weight.find('input').simulate('change', { target: { value: '.5' } });
@@ -149,6 +152,12 @@ describe('The Weapons Card', () => {
 
         expect(wrapper.text()).not.toContain('torch0.5 lbs');
         expect(wrapper.text()).not.toContain('test180.65');
+      });
+
+      it('should be possible to close modification modal', () => {
+        wrapper.find('.close').simulate('click');
+
+        expect(wrapper.find('FirearmModifyModal').exists()).toBe(false);
       });
     });
 
@@ -162,7 +171,7 @@ describe('The Weapons Card', () => {
       );
 
       it('should be possible to select a grenade', () => {
-        wrapper.find('#addGrenade').simulate('click');
+        wrapper.find('button[children="Add Grenade"]').simulate('click');
         wrapper.find('.selectM2').simulate('click');
 
         expect(wrapper.find('tbody').text()).toContain('M21.311.3');
@@ -201,7 +210,7 @@ describe('The Weapons Card', () => {
       );
 
       it('should be possible to select a launcher', () => {
-        wrapper.find('#addLauncher').simulate('click');
+        wrapper.find('button[children="Add Launcher"]').simulate('click');
         wrapper.find('span[children="M79"]').simulate('click');
 
         expect(wrapper.find('tbody').text()).toContain('M796.516.5');
@@ -240,6 +249,33 @@ describe('The Weapons Card', () => {
         wrapper.find('.removeM79').simulate('click');
 
         expect(wrapper.find('tbody').text()).not.toContain('M79');
+        expect(wrapper.find('thead').text()).toContain('lbs0');
+      });
+    });
+
+    describe('clearing all weapons', () => {
+      const store = getStore();
+
+      const wrapper = mount(
+        <Provider store={store}>
+          <ConnectedWeaponsCard />
+        </Provider>,
+      );
+
+      it('should remove all weapons', () => {
+        wrapper.find('button[children="Add Firearm"]').simulate('click');
+        wrapper.find('span[children="M1911A1"]').simulate('click');
+
+        wrapper.find('button[children="Add Grenade"]').simulate('click');
+        wrapper.find('.selectM2').simulate('click');
+
+        wrapper.find('button[children="Add Launcher"]').simulate('click');
+        wrapper.find('span[children="M79"]').simulate('click');
+
+        expect(wrapper.find('thead').text()).toContain('lbs10.8');
+
+        wrapper.find('button[children="Clear All"]').simulate('click');
+
         expect(wrapper.find('thead').text()).toContain('lbs0');
       });
     });

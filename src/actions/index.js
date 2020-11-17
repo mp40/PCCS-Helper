@@ -107,8 +107,8 @@ export const removeFirearm = (firearm) => ({
   payload: firearm,
 });
 
-export const removeAllFirearms = (emptyArray) => ({
-  type: 'ALL_FIREARMS_REMOVED',
+export const removeAllWeapons = (emptyArray) => ({
+  type: 'ALL_WEAPONS_REMOVED',
   payload: emptyArray,
 });
 

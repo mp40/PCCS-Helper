@@ -18,6 +18,13 @@ const mockM16RemovedMag = () => {
   return gun;
 };
 
+const mockM1911A1 = () => ({
+  name: 'M1911A1',
+  qty: 1,
+  weight: 3,
+  mag: [{ type: 'Mag', weight: 0.7, cap: 7, qty: 0 }],
+});
+
 describe('removeMagazineReducer', () => {
   let state = new MockState();
 
@@ -25,12 +32,12 @@ describe('removeMagazineReducer', () => {
     state = { ...state,
       currentCharacter: {
         ...state.currentCharacter,
-        totalWeight: 5 + mockM16().weight,
-        baseSpeed: 2.5,
-        maxSpeed: 5,
+        totalWeight: 5 + mockM16().weight + mockM1911A1().weight,
+        baseSpeed: 2,
+        maxSpeed: 4,
         gunCombatActions: 3,
         handCombatActions: 3,
-        firearms: [mockM16RemovedMag()],
+        firearms: [mockM1911A1(), mockM16RemovedMag()],
       } };
 
     const action = { payload: {
@@ -41,12 +48,12 @@ describe('removeMagazineReducer', () => {
     const updatedState = { ...state,
       currentCharacter: {
         ...state.currentCharacter,
-        firearms: [mockM16()],
+        firearms: [mockM1911A1(), mockM16()],
       } };
 
     state = replaceMagazineReducer(state, action);
 
     expect(state).toMatchObject(updatedState);
-    expect(state.currentCharacter.firearms[0].mag[1].removed).toBe(false);
+    expect(state.currentCharacter.firearms[1].mag[1].removed).toBe(false);
   });
 });

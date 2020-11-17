@@ -4,7 +4,7 @@ import FirearmFilter from './index';
 
 describe('firearm filter', () => {
   const handleSetFilterByType = jest.fn();
-  const setShowFilters = jest.fn();
+  const handleSetShowFilters = jest.fn();
 
   describe('the modal', () => {
     afterEach(() => {
@@ -14,12 +14,12 @@ describe('firearm filter', () => {
     it('should be possible to close the modal', () => {
       const wrapper = shallow(<FirearmFilter
         handleSetFilterByType={handleSetFilterByType}
-        setShowFilters={setShowFilters}
+        handleSetShowFilters={handleSetShowFilters}
       />);
 
       wrapper.find('button').simulate('click');
 
-      expect(setShowFilters).toHaveBeenCalled();
+      expect(handleSetShowFilters).toHaveBeenCalled();
     });
   });
 
@@ -27,7 +27,7 @@ describe('firearm filter', () => {
     const wrapper = mount(
       <FirearmFilter
         handleSetFilterByType={handleSetFilterByType}
-        setShowFilters={setShowFilters}
+        handleSetShowFilters={handleSetShowFilters}
       />,
     );
 
@@ -75,7 +75,7 @@ describe('firearm filter', () => {
     const wrapper = mount(
       <FirearmFilter
         handleSetFilterByType={handleSetFilterByType}
-        setShowFilters={setShowFilters}
+        handleSetShowFilters={handleSetShowFilters}
       />);
 
     it('should have a default of all calibers', () => {

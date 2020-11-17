@@ -12,15 +12,15 @@ const mockBasicPouch = {
 
 describe('the equipment list', () => {
   const addEquipment = jest.fn();
-  const toggleFilters = jest.fn();
-  const closeShowEquipment = jest.fn();
   const handleRemoveAllTags = jest.fn();
+  const handleSetShowFilters = jest.fn();
+  const handleSetShowEquipment = jest.fn();
 
   const createWrapper = (equipment, filteredTags) => shallow(<SelectEquipment
     addEquipment={addEquipment}
-    toggleFilters={toggleFilters}
-    closeShowEquipment={closeShowEquipment}
     handleRemoveAllTags={handleRemoveAllTags}
+    handleSetShowFilters={handleSetShowFilters}
+    handleSetShowEquipment={handleSetShowEquipment}
     equipment={equipment}
     filteredTags={filteredTags}
   />);
@@ -50,7 +50,7 @@ describe('the equipment list', () => {
 
     wrapper.find('button[children="Filter List"]').simulate('click');
 
-    expect(toggleFilters).toHaveBeenCalled();
+    expect(handleSetShowFilters).toHaveBeenCalled();
   });
 
   it('should filter the list to show selected criteria', () => {
@@ -80,6 +80,6 @@ describe('the equipment list', () => {
 
     wrapper.find('.close').simulate('click');
 
-    expect(closeShowEquipment).toHaveBeenCalled();
+    expect(handleSetShowEquipment).toHaveBeenCalled();
   });
 });

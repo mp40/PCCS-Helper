@@ -12,6 +12,13 @@ const mockM16 = (ammo1, ammo2) => ({
   ],
 });
 
+const mockM1911A1 = () => ({
+  name: 'M1911A1',
+  qty: 1,
+  weight: 3,
+  mag: [{ type: 'Mag', weight: 0.7, cap: 7, qty: 0 }],
+});
+
 describe('removeMagazineReducer', () => {
   let state = new MockState();
 
@@ -22,12 +29,12 @@ describe('removeMagazineReducer', () => {
     state = { ...state,
       currentCharacter: {
         ...state.currentCharacter,
-        totalWeight: 5 + m16.weight + ammoWeight,
+        totalWeight: 5 + m16.weight + ammoWeight + mockM1911A1().weight,
         baseSpeed: 2,
         maxSpeed: 4,
         gunCombatActions: 3,
         handCombatActions: 3,
-        firearms: [mockM16(1, 1)],
+        firearms: [mockM1911A1(), mockM16(1, 1)],
       } };
 
     const action = { payload: { firearm: 'M16', magazine: { type: 'Mag', weight: 1, cap: 30, qty: 2 } } };
@@ -35,18 +42,16 @@ describe('removeMagazineReducer', () => {
     const updatedState = { ...state,
       currentCharacter: {
         ...state.currentCharacter,
-        totalWeight: correctFloatingPoint(5 + m16.weight + m16.mag[0].weight),
-        baseSpeed: 2.5,
-        maxSpeed: 5,
-        firearms: [mockM16(1, 0)],
+        totalWeight: correctFloatingPoint(5 + m16.weight + m16.mag[0].weight + mockM1911A1().weight),
+        firearms: [mockM1911A1(), mockM16(1, 0)],
       } };
 
     state = removeMagazineReducer(state, action);
 
     expect(state).toMatchObject(updatedState);
-    expect(state.currentCharacter.firearms[0].mag[1].qty).toBe(0);
-    expect(state.currentCharacter.firearms[0].mag[1].removed).toBe(true);
-    expect(state.currentCharacter.firearms[0].mag.length).toBe(2);
+    expect(state.currentCharacter.firearms[1].mag[1].qty).toBe(0);
+    expect(state.currentCharacter.firearms[1].mag[1].removed).toBe(true);
+    expect(state.currentCharacter.firearms[1].mag.length).toBe(2);
   });
 
   it('should delete custom magazines from the firearm', () => {

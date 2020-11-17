@@ -7,7 +7,7 @@ const {
   calcCombatActions,
   calcKV,
   calcDB,
-  calculateStateObject,
+  // calculateStateObject, mptodo
   actionsPerImpulse,
 } = require('./helperFunctions');
 
@@ -171,61 +171,62 @@ describe('calculate Damage Bonus', () => {
   });
 });
 
-describe('calculate state object', () => {
-  const str = 14;
-  const int = 10;
-  const wil = 10;
-  const hlt = 10;
-  const agi = 12;
-  const gunLevel = 4;
-  const handLevel = 2;
-  const weight = 25;
+// mptodo
+// describe('calculate state object', () => {
+//   const str = 14;
+//   const int = 10;
+//   const wil = 10;
+//   const hlt = 10;
+//   const agi = 12;
+//   const gunLevel = 4;
+//   const handLevel = 2;
+//   const weight = 25;
 
-  const characterStats = {
-    str,
-    int,
-    wil,
-    hlt,
-    agi,
-    gunLevel,
-    handLevel,
-  };
+//   const characterStats = {
+//     str,
+//     int,
+//     wil,
+//     hlt,
+//     agi,
+//     gunLevel,
+//     handLevel,
+//   };
 
-  const result = calculateStateObject(characterStats, weight);
+//   const result = calculateStateObject(characterStats, weight);
 
-  it('should return an object', () => {
-    expect(typeof {
-      result,
-    }).toBe('object');
-  });
-  it('should have a key and value for baseSpeed', () => {
-    expect(result).toHaveProperty('baseSpeed', 2);
-  });
-  it('should have a key and value for maxSpeed', () => {
-    expect(result).toHaveProperty('maxSpeed', 4);
-  });
-  it('should have a key and value for SAL', () => {
-    expect(result).toHaveProperty('SAL', 10);
-  });
-  it('should have a key and value for ISF', () => {
-    expect(result).toHaveProperty('ISF', 20);
-  });
-  it('should have a key and value CE', () => {
-    expect(result).toHaveProperty('CE', 7);
-  });
-  it('should have a key and value for ASF', () => {
-    expect(result).toHaveProperty('ASF', 19);
-  });
-  it("should have a key combatActions, it's value an array containing Gun and Hand actions", () => {
-    expect(result).toHaveProperty('combatActions', [5, 4]);
-  });
-  it('should have a key and value for knockoutValue based on highest combat skill level', () => {
-    expect(result).toHaveProperty('knockoutValue', 20);
-  });
-  it('should have a key and value for damage bonus', () => {
-    expect(result).toHaveProperty('damageBonus', 1);
-  });
-});
+//   it('should return an object', () => {
+//     expect(typeof {
+//       result,
+//     }).toBe('object');
+//   });
+//   it('should have a key and value for baseSpeed', () => {
+//     expect(result).toHaveProperty('baseSpeed', 2);
+//   });
+//   it('should have a key and value for maxSpeed', () => {
+//     expect(result).toHaveProperty('maxSpeed', 4);
+//   });
+//   it('should have a key and value for SAL', () => {
+//     expect(result).toHaveProperty('SAL', 10);
+//   });
+//   it('should have a key and value for ISF', () => {
+//     expect(result).toHaveProperty('ISF', 20);
+//   });
+//   it('should have a key and value CE', () => {
+//     expect(result).toHaveProperty('CE', 7);
+//   });
+//   it('should have a key and value for ASF', () => {
+//     expect(result).toHaveProperty('ASF', 19);
+//   });
+//   it("should have a key combatActions, it's value an array containing Gun and Hand actions", () => {
+//     expect(result).toHaveProperty('combatActions', [5, 4]);
+//   });
+//   it('should have a key and value for knockoutValue based on highest combat skill level', () => {
+//     expect(result).toHaveProperty('knockoutValue', 20);
+//   });
+//   it('should have a key and value for damage bonus', () => {
+//     expect(result).toHaveProperty('damageBonus', 1);
+//   });
+// });
 
 describe('converting actions per phase to actions per impulse', () => {
   it('should return an array', () => {

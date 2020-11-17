@@ -5,12 +5,12 @@ import EquipmentFilter from './index';
 
 describe('equipment filter modal', () => {
   const handleTags = jest.fn();
-  const toggleFilters = jest.fn();
+  const handleSetShowFilters = jest.fn();
   const filteredTags = ['ALICE'];
 
   const wrapper = shallow(<EquipmentFilter
     handleTags={handleTags}
-    toggleFilters={toggleFilters}
+    handleSetShowFilters={handleSetShowFilters}
     filteredTags={filteredTags}
   />);
 
@@ -31,6 +31,6 @@ describe('equipment filter modal', () => {
   it('should be possible to close modal', () => {
     wrapper.find('button').simulate('click');
 
-    expect(toggleFilters).toHaveBeenCalled();
+    expect(handleSetShowFilters).toHaveBeenCalled();
   });
 });

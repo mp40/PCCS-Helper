@@ -31,7 +31,8 @@ const mapStateToProps = (state) => ({
     ASF: state.currentCharacter.ASF,
     knockoutValue: state.currentCharacter.knockoutValue,
     damageBonus: state.currentCharacter.damageBonus,
-    combatActions: [state.currentCharacter.gunCombatActions, state.currentCharacter.handCombatActions],
+    gunCombatActions: state.currentCharacter.gunCombatActions,
+    handCombatActions: state.currentCharacter.handCombatActions,
   },
   gear: {
     uniform: state.currentCharacter.uniform,

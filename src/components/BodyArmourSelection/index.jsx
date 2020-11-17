@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ButtonStandard from '../widgets/buttons/ButtonStandard';
 
 import './BodyArmourSelection.css';
+import styles from './styles.module.css';
 
 const renderHeading = (armourType) => (armourType === 'helmet' ? 'Select Helmet' : 'Select Vest');
 
@@ -22,20 +23,22 @@ const renderBody = (armourList, handleDispatch, type) => armourList.map((armour)
 const BodyArmourSelection = ({ armourType, armourList, handleDispatch }) => (
   <div className="--modalOverlay selectBodyArmourModal">
     <div className="--card bodyArmourListCard">
-      <div className="bodyArmourListHeading">
-        {renderHeading(armourType)}
+      <div className={styles.header}>
         <div>
-          <ButtonStandard
-            name="Back"
-            onClick={() => handleDispatch(null)}
-            className="exitBodyArmourSlection"
-          />
-          <ButtonStandard
-            name="Remove"
+          {renderHeading(armourType)}
+          <button
+            type="button"
             onClick={() => handleDispatch(armourType, null)}
-            className="removeBodyArmour"
-          />
+          >
+            Remove
+          </button>
         </div>
+        <button
+          aria-label="close"
+          className={styles.close}
+          type="button"
+          onClick={() => handleDispatch(null)}
+        />
       </div>
       <table className="--collapseBorder bodyArmourTable">
         <thead>
@@ -56,7 +59,7 @@ const BodyArmourSelection = ({ armourType, armourList, handleDispatch }) => (
 BodyArmourSelection.propTypes = {
   handleDispatch: PropTypes.func,
   armourList: PropTypes.arrayOf(PropTypes.object),
-  armourType: PropTypes.string,
+  armourType: PropTypes.oneOf(['helmet', 'vest']),
 };
 
 export default BodyArmourSelection;

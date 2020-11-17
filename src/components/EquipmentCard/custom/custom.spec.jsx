@@ -7,13 +7,13 @@ describe('adding custom equipment', () => {
   let wrapper;
 
   const addEquipment = jest.fn();
-  const toggleOffEquipmentCardViews = jest.fn();
+  const handleSetShowCustomInput = jest.fn();
 
   beforeEach(() => {
     wrapper = shallow(<CustomEquipment
       equipment={[{ name: 'added equip' }]}
       addEquipment={addEquipment}
-      toggleOffEquipmentCardViews={toggleOffEquipmentCardViews}
+      handleSetShowCustomInput={handleSetShowCustomInput}
     />);
   });
 
@@ -24,7 +24,7 @@ describe('adding custom equipment', () => {
   it('should be possible to cancel custom input', () => {
     wrapper.find('.close').simulate('click');
 
-    expect(toggleOffEquipmentCardViews).toHaveBeenCalled();
+    expect(handleSetShowCustomInput).toHaveBeenCalled();
   });
 
   it('should be posible to add custom equipment to the list', () => {

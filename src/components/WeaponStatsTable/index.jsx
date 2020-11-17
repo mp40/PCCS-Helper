@@ -21,6 +21,7 @@ export const findSkillLevelFromSAL = (playerSAL) => {
   return result === -1 ? undefined : result;
 };
 
+// mptodo clean up
 const getFirearmNameAndRecoil = (weapon, skillLevel) => {
   if (skillLevel === undefined) {
     return weapon.name;
@@ -78,30 +79,30 @@ const WeaponStatsTable = ({ weapon, sal, size, showName }) => {
 
   return (
     <div className={`WeaponStatsContainer ${size} ${weapon.list}`}>
-      <div>
+      {/* <div>
         {showName
         && `${getFirearmNameAndRecoil(weapon, findSkillLevelFromSAL(sal))}`}
-      </div>
-      <div>
-        <table className={size ? `${size}WeaponStatTable` : 'WeaponStatTable'}>
-          <TableHead weaponList={weapon.list} />
-          <tbody>
-            {getWeaponCharacteristics(weapon.list).map((value, index) => (
-              <tr key={keys[index]} className={`gunTableLine gunTableLine${index + 1}`}>
-                <PhysicalData weapon={weapon} value={value} />
-                <AimTimes aim={weapon.aim} index={index} sal={sal} />
-                {getData(index)}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      </div> */}
+      {/* <div> */}
+      <table className={size ? `${size}WeaponStatTable` : 'WeaponStatTable'}>
+        <TableHead weaponList={weapon.list} />
+        <tbody>
+          {getWeaponCharacteristics(weapon.list).map((value, index) => (
+            <tr key={keys[index]} className={`gunTableLine gunTableLine${index + 1}`}>
+              <PhysicalData weapon={weapon} value={value} />
+              <AimTimes aim={weapon.aim} index={index} sal={sal} />
+              {getData(index)}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {/* </div> */}
     </div>
   );
 };
 
 WeaponStatsTable.propTypes = {
-  showName: PropTypes.bool.isRequired,
+  // showName: PropTypes.bool.isRequired,
   size: PropTypes.string,
   weapon: PropTypes.oneOfType([gunObjShape, launcherShape]),
   sal: PropTypes.number,

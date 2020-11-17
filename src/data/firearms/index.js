@@ -609,6 +609,41 @@ export const rifles = () => [
 
 export const smgs = () => [
   {
+    name: 'AKS-74U',
+    list: 'smgs',
+    calibre: '5.45 x 39.5mm',
+    qty: 1,
+    length: '17/27',
+    weight: 7.3,
+    rt: 8,
+    rof: '*7',
+    mag: [{ type: 'Mag', weight: 1.3, cap: 30, qty: 0 }],
+    kd: 3,
+    sab: 3,
+    aim: averageSMG8Aims,
+    projectiles: [
+      {
+        type: 'JHP',
+        pen: [11, 10, 9.4, 8.1, 7.1, 4.4, 2.7, 1.7],
+        dc: [5, 5, 5, 4, 4, 3, 2, 1],
+      },
+      {
+        type: 'JHP',
+        pen: [10, 9.9, 9, 7.8, 6.8, 4.2, 2.6, 1.6],
+        dc: [7, 7, 6, 6, 6, 4, 3, 2],
+      },
+      {
+        type: 'AP',
+        pen: [15, 15, 13, 11, 10, 6.2, 3.8, 2.4],
+        dc: [5, 5, 4, 4, 4, 3, 2, 1],
+      },
+    ],
+    ma: [0.2, 0.3, 0.6, 1, 2, 3, 5, 7],
+    ba: [60, 52, 43, 35, 31, 21, 15, 12],
+    tof: [0, 0, 1, 2, 3, 6, 9, 13],
+    offical: true,
+  },
+  {
     name: 'Carl Gustaf M45',
     list: 'smgs',
     calibre: '9mm Parabellum',
@@ -735,6 +770,36 @@ export const smgs = () => [
     tof: [1, 1, 3, 5, 8, 18, 30, 44],
     selector: 'Full Auto Only',
     offical: true,
+  },
+  {
+    name: 'MP5 SD3',
+    list: 'smgs',
+    calibre: '9mm Parabellum',
+    qty: 1,
+    length: '24/31',
+    weight: 8.7,
+    rt: 8,
+    rof: '*7',
+    mag: [{ type: 'Mag', weight: 1.2, cap: 30, qty: 0 }],
+    kd: 3,
+    sab: 2,
+    aim: averageSMG8Aims,
+    projectiles: [
+      {
+        type: 'FMJ',
+        pen: [1.7, 1.6, 1.4, 1.1, 0.8, 0.2, 0.1],
+        dc: [2, 2, 1, 1, 1, 1, 1],
+      },
+      {
+        type: 'JHP',
+        pen: [1.6, 1.6, 1.3, 1, 0.8, 0.2, 0.1],
+        dc: [4, 3, 3, 1, 1, 1, 1],
+      },
+    ],
+    ma: [0.3, 0.5, 1, 2, 3, 5, 8],
+    ba: [46, 37, 28, 21, 16, 7, 1],
+    tof: [1, 1, 3, 6, 9, 35, 99],
+    offical: false,
   },
   {
     name: 'PPSh 41',

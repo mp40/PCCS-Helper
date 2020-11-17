@@ -1,5 +1,6 @@
 import { decreaseEquipmentReducer } from './index';
 import { MockState } from '../mockState';
+import { correctFloatingPoint } from '../reducerHelpers';
 
 const addedEquipment = (qty) => (
   { name: 'testEquipment',
@@ -29,7 +30,7 @@ describe('decreaseEquipmentReducer function', () => {
     const updatedState = { ...state,
       currentCharacter: {
         ...state.currentCharacter,
-        totalWeight: state.currentCharacter.totalWeight - action.payload.weight,
+        totalWeight: correctFloatingPoint(state.currentCharacter.totalWeight - action.payload.weight),
         equipment: [addedEquipment(1)],
       } };
 
@@ -53,7 +54,7 @@ describe('decreaseEquipmentReducer function', () => {
     const updatedState = { ...state,
       currentCharacter: {
         ...state.currentCharacter,
-        totalWeight: state.currentCharacter.totalWeight - action.payload.weight,
+        totalWeight: correctFloatingPoint(state.currentCharacter.totalWeight - action.payload.weight),
         equipment: [addedEquipment(1), otherAddedEquipment],
       } };
 

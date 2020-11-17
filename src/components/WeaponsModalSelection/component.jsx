@@ -24,11 +24,12 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, addFirearm, firearms 
     if (isNotValidObjectToAdd(firearms, gunObj)) {
       return;
     }
+
     addFirearm(gunObj);
   };
 
   const handleSetFilterByType = (type, calibre) => setFilteredGunArray(
-    filterCalibersFromType(firearmLists(type), calibre),
+    filterCalibersFromType(type, calibre),
   );
 
   const handleSetShowFilters = () => {
@@ -87,7 +88,7 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, addFirearm, firearms 
         {showFilters && (
         <FirearmFilter
           handleSetFilterByType={handleSetFilterByType}
-          setShowFilters={() => setShowFilters(false)}
+          handleSetShowFilters={handleSetShowFilters}
         />
         )}
 
@@ -95,7 +96,6 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, addFirearm, firearms 
         <FirearmInspection
           firearmToInspect={firearmToInspect}
           setFirearmToInspect={setFirearmToInspect}
-          handleCloseStatCard={() => setFirearmToInspect(null)}
         />
         )}
       </div>

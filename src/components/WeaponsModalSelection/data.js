@@ -34,12 +34,14 @@ export const filterableCalibers = () => [
   '9mm Parabellum',
 ];
 
-export const filterCalibersFromType = (typeArray, caliber) => {
+export const filterCalibersFromType = (type, caliber) => {
   if (caliber === 'All') {
-    return typeArray;
+    return firearmLists(type);
   }
+
   if (caliber === 'Other') {
-    return typeArray.filter((firearm) => !filterableCalibers().includes(firearm.calibre));
+    return firearmLists(type).filter((firearm) => !filterableCalibers().includes(firearm.calibre));
   }
-  return typeArray.filter((firearm) => firearm.calibre === caliber);
+
+  return firearmLists(type).filter((firearm) => firearm.calibre === caliber);
 };

@@ -1,5 +1,6 @@
 import { MockState } from '../mockState';
 import { decreaseLauncherReducer } from './index';
+import { correctFloatingPoint } from '../reducerHelpers';
 
 describe('decreaselauncherReducer', () => {
   const mockM79 = () => ({
@@ -37,7 +38,7 @@ describe('decreaselauncherReducer', () => {
     const updatedState = { ...state,
       currentCharacter: {
         ...state.currentCharacter,
-        totalWeight: state.currentCharacter.totalWeight - m72.weight,
+        totalWeight: correctFloatingPoint(state.currentCharacter.totalWeight - m72.weight),
         baseSpeed: 2.5,
         maxSpeed: 5,
         launchers: [mockM72(1)],
@@ -69,7 +70,7 @@ describe('decreaselauncherReducer', () => {
     const updatedState = { ...state,
       currentCharacter: {
         ...state.currentCharacter,
-        totalWeight: state.currentCharacter.totalWeight - m72.weight,
+        totalWeight: correctFloatingPoint(state.currentCharacter.totalWeight - m72.weight),
         launchers: [mockM72(1), mockM79()],
       } };
 

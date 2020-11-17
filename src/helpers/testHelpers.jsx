@@ -10,20 +10,7 @@ import { MockState } from '../reducers/mockState';
 import { pistols, rifles, shotguns } from '../data/firearms';
 import { launchers } from '../data/launchers';
 
-// mptodo
-
 export const getStore = (mockStore = initialStore) => createStore(reducers, mockStore, applyMiddleware(thunk));
-
-// export const mountComponentWithStore = (component, mockStore = initialStore) => {
-//   const store = createStore(reducers, mockStore, applyMiddleware(thunk));
-
-// mptodo -delete?
-//   return mount(
-//     <Provider store={store}>
-//       <component />
-//     </Provider>,
-//   );
-// };
 
 export const mountAppWithStore = (mockStore = initialStore) => {
   const store = createStore(reducers, mockStore, applyMiddleware(thunk));
@@ -35,20 +22,15 @@ export const mountAppWithStore = (mockStore = initialStore) => {
   );
 };
 
-// mptodo
 class CharacterWithGunStore extends MockState {
   constructor(gun) {
     super(gun);
-    this.currentCharacter.totalWeight += gun === undefined ? 0 : gun.weight;
-    // this.currentView = 'createChar';
-    this.currentCharacter.firearms = gun === undefined ? [] : [gun];
+    this.currentCharacter.totalWeight += gun.weight;
+    this.currentCharacter.firearms = [gun];
   }
 }
 
 export const getStoreWithGun = (gun) => createStore(reducers, new CharacterWithGunStore(gun), applyMiddleware(thunk));
-
-// mptodo - replace this shit
-// export const storeWithCreateCharacterView = (gun) => new StoreWithCharacterView(gun);
 
 export const findFirearmByName = (list, gunName) => list.find((object) => object.name === gunName);
 
