@@ -118,6 +118,7 @@ describe('rendering weapons', () => {
 
   describe('rendering launchers', () => {
     const props = getProps();
+
     props.launchers = [testM79(), testM72(2)];
 
     // mptodo - clean up?

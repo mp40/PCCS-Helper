@@ -3,13 +3,14 @@ import { shallow } from 'enzyme';
 import HomePage from './component';
 
 describe('Home Page', () => {
-  const selectCurrentView = jest.fn();
-  const wrapper = shallow(<HomePage selectCurrentView={selectCurrentView} />);
+  const viewCreateCharacter = jest.fn();
+
+  const wrapper = shallow(<HomePage viewCreateCharacter={viewCreateCharacter} />);
   beforeEach(() => {
-    selectCurrentView.mockClear();
+    viewCreateCharacter.mockClear();
   });
   it('should render the correct page when Create Charcter is clicked', () => {
-    wrapper.find('#activateCreateChar').simulate('click');
-    expect(selectCurrentView).toHaveBeenCalledWith('createChar');
+    wrapper.find('button[children="Create Character"]').simulate('click');
+    expect(viewCreateCharacter).toHaveBeenCalledWith('createChar');
   });
 });

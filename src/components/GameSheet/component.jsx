@@ -101,7 +101,7 @@ GameSheet.propTypes = {
 };
 
 GameSheet.defaultProps = {
-  currentCharacter: '',
+  name: '',
 };
 
 export default GameSheet;

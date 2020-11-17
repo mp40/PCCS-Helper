@@ -1,11 +1,58 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { Provider } from 'react-redux';
 import { getStore } from '../../helpers/testHelpers';
 
 import ConnectedEquipmentCard from '.';
+import EquipmentCard from './component';
 
 describe('the equipment list', () => {
+  describe('equipment modals', () => {
+    const removeEquipment = jest.fn();
+    const removeAllEquipment = jest.fn();
+    const increaseEquipmentQty = jest.fn();
+    const decreaseEquipmentQty = jest.fn();
+
+    const wrapper = shallow(<EquipmentCard
+      removeEquipment={removeEquipment}
+      removeAllEquipment={removeAllEquipment}
+      increaseEquipmentQty={increaseEquipmentQty}
+      decreaseEquipmentQty={decreaseEquipmentQty}
+      equipment={[]}
+    />);
+
+    it('should open add equipment modal', () => {
+      wrapper.find('button[children="Add Equipment"]').simulate('click');
+
+      expect(wrapper.find('Connect(SelectEquipment)').exists()).toBe(true);
+    });
+
+    it('should open custom equipment modal', () => {
+      wrapper.find('button[children="Add Custom"]').simulate('click');
+
+      expect(wrapper.find('Connect(CustomEquipment)').exists()).toBe(true);
+    });
+
+    it('should open equipment filter modal', () => {
+      wrapper.find('Connect(SelectEquipment)').props().handleSetShowFilters();
+
+      expect(wrapper.find('EquipmentFilter').exists()).toBe(true);
+    });
+
+    it('should filter equipment', () => {
+      const filterModal = wrapper.find('EquipmentFilter').dive();
+      filterModal.find('div[children="Combat"]').simulate('click');
+
+      expect(wrapper.find('Connect(SelectEquipment)').prop('filteredTags')).toEqual(['Combat']);
+    });
+
+    it('should clear filters', () => {
+      wrapper.find('Connect(SelectEquipment)').props().handleRemoveAllTags();
+
+      expect(wrapper.find('Connect(SelectEquipment)').prop('filteredTags')).toEqual([]);
+    });
+  });
+
   describe('equipment intergration tests', () => {
     const store = getStore();
 

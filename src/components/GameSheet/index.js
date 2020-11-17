@@ -2,15 +2,6 @@ import { connect } from 'react-redux';
 import GameSheet from './component';
 import { selectCurrentView } from '../../actions';
 
-// const mapStateToProps = (state) => ({
-//   currentCharacter: state.currentCharacter,
-//   characterStats: state.characterStats,
-//   combatStats: state.combatStats,
-//   gear: state.gear,
-
-// });
-// mptodo check this shit and maybe refactor
-
 const mapStateToProps = (state) => ({
   name: state.currentCharacter.name,
   characterStats: {

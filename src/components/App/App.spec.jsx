@@ -75,3 +75,24 @@ describe('handleSetSignIn', () => {
     expect(wrapper.find('Connect(Header)').prop('signedIn')).toBe(true);
   });
 });
+
+describe('App Views', () => {
+  it('should render the home page', () => {
+    const wrapper = shallow(<App currentView="home" />);
+
+    // console.log(wrapper.debug());
+    expect(wrapper.find('Connect(HomePage)').exists()).toBe(true);
+  });
+
+  it('should render the create character page', () => {
+    const wrapper = shallow(<App currentView="createChar" />);
+
+    expect(wrapper.find('CharacterGeneration').exists()).toBe(true);
+  });
+
+  it('should render the print page', () => {
+    const wrapper = shallow(<App currentView="printRefSheet" />);
+
+    expect(wrapper.find('Connect(GameSheet)').exists()).toBe(true);
+  });
+});

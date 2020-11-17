@@ -4,16 +4,15 @@ import BetaTemp from '../BetaTemp'; // mptodo delete this once at MVP
 
 import './Home.css';
 
-const HomePage = ({ selectCurrentView }) => (
+const HomePage = ({ viewCreateCharacter }) => (
   <div style={{ textAlign: 'center' }}>
     <h1>
       Welcome To Phoenix Command Tools
     </h1>
     <button
       type="button"
-      id="activateCreateChar"
       className="buttonStandard"
-      onClick={() => selectCurrentView('createChar')}
+      onClick={() => viewCreateCharacter('createChar')}
     >
       Create Character
     </button>
@@ -22,7 +21,7 @@ const HomePage = ({ selectCurrentView }) => (
 );
 
 HomePage.propTypes = {
-  selectCurrentView: PropTypes.func,
+  viewCreateCharacter: PropTypes.func.isRequired,
 };
 
 export default HomePage;

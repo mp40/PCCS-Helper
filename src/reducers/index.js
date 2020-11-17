@@ -39,6 +39,7 @@ import { increaseLauncherReducer } from './increaseLauncherReducer';
 import { decreaseLauncherReducer } from './decreaseLauncherReducer';
 import { increaseLauncherAmmoReducer } from './increaseLauncherAmmoReducer';
 import { decreaseLauncherAmmoReducer } from './decreaseLauncherAmmoReducer';
+import { viewCreateCharacterReducer } from './viewCreateCharacterReducer';
 
 const initialState = initialStore;
 
@@ -46,6 +47,8 @@ function reduceActions(state = initialState, action) {
   switch (action.type) {
     case 'VIEW_SELECTED':
       return { ...state, currentView: action.payload };
+    case 'CREATE_CHARACTER_VIEWED':
+      return viewCreateCharacterReducer(state, action);
     case 'GUN_COMBAT_LEVEL_UPDATED':
       return modifyGunCombatLevelReducer(state, action);
     case 'MELEE_COMBAT_LEVEL_UPDATED':
@@ -126,13 +129,6 @@ function reduceActions(state = initialState, action) {
       return changeHelmetReducer(state, action);
     case 'VEST_CHANGED':
       return changeVestReducer(state, action);
-      // mptodo - sort this shit out
-    // case 'TOTAL_WEIGHT':
-    //   return { ...state, totalWeight: action.payload };
-    // case 'UPDATE_ATTRIBUTES':
-    //   return { ...state, characterStats: action.payload };
-    // case 'UPDATE_ALL_COMBAT_STATS':
-    //   return { ...state, combatStats: action.payload };
     default: return state;
   }
 }

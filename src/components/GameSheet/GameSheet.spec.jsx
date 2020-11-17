@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 
-import GameSheet from './component';
-
 import { testFAMAS } from '../../helpers/testHelpers';
+
+import GameSheet from './component';
 
 const grenadeDouble = { name: 'The Holy Hand Grenade Of Antioch', qty: 1 };
 
