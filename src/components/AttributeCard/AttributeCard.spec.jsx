@@ -109,13 +109,3 @@ describe('Character Attributes', () => {
     });
   });
 });
-
-// mptodo - maybe i dont need the below test
-//     it('updates actions and other combat stats when attributes change', () => {
-//       const gunActionsTable = wrapper.find('.actionsTable').at(0);
-//       const handActionsTable = wrapper.find('.actionsTable').at(1);
-//       const additionalData = wrapper.find('.additionalCombatData');
-//       expect(gunActionsTable.text()).toEqual('Gun2121');
-//       expect(handActionsTable.text()).toEqual('Hand3222');
-//       expect(additionalData.text()).toEqual('BS 3MS 8DB 3');
-//     });

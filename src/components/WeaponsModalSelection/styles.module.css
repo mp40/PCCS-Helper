@@ -91,6 +91,11 @@
   opacity: 0.9;
 }
 
+.firearmRow {
+  display: flex;
+  width: 30%;
+}
+
 .firearmEntry {
   width: 100%;
   margin-left: 5px;

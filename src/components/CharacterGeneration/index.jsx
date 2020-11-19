@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+
 import AttributeCard from '../AttributeCard';
 import CombatCard from '../CombatCard';
 import ActionsCard from '../ActionsCard';
@@ -11,30 +11,6 @@ import NameCard from '../NameCard';
 
 import './CharacterGeneration.css';
 
-// mpTODO
-// const defaultStats = {
-//   str: 10,
-//   int: 10,
-//   wil: 10,
-//   hlt: 10,
-//   agi: 10,
-//   gunLevel: 0,
-//   handLevel: 0,
-// };
-
-// const CharacterGeneration = ({ updateAttributes, updateWeight }) => {
-// const handleUpdateAttributes = () => {
-//   updateAttributes(defaultStats, 0);
-// };
-
-// const handleUpdateWeight = () => {
-//   updateWeight(5, defaultStats);
-// };
-
-// useEffect(() => {
-//   handleUpdateAttributes();
-//   handleUpdateWeight();
-// });
 const CharacterGeneration = () => (
   <div className="createCharContainer">
     <div>
@@ -49,11 +25,5 @@ const CharacterGeneration = () => (
     <WeaponsCard />
   </div>
 );
-
-// mptodo - clean this shit up
-// CharacterGeneration.propTypes = {
-//   updateWeight: PropTypes.func,
-//   updateAttributes: PropTypes.func,
-// };
 
 export default CharacterGeneration;

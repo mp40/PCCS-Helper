@@ -14,7 +14,7 @@ import SelectLauncherModal from '../SelectLauncherModal';
 
 import { calculateWeaponArrayWeight } from '../../helpers/actionHelpers';
 
-// mptodo clean this shit up, functional component
+// mptodo -> functional component
 
 class WeaponsCard extends Component {
   constructor(props) {

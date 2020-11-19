@@ -121,7 +121,6 @@ describe('rendering weapons', () => {
 
     props.launchers = [testM79(), testM72(2)];
 
-    // mptodo - clean up?
     const wrapper = mount(<WeaponsTableBody {...props} />, {
       attachTo: document.createElement('table'),
     });
@@ -187,7 +186,6 @@ describe('rendering weapons', () => {
       const tempProps = getProps();
       tempProps.launchers = [testM79(1)];
 
-      // mptodo clean up
       const m79Ammo = mount(<WeaponsTableBody {...tempProps} />, {
         attachTo: document.createElement('table'),
       });

@@ -71,6 +71,12 @@ describe('Firearms selection', () => {
 
     expect(wrapper.find('FirearmInspection').exists()).toBe(true);
   });
+
+  it('should be possible to close modal', () => {
+    wrapper.find('.close').simulate('click');
+
+    expect(toggleOffWeaponCardViews).toHaveBeenCalledWith('showFirearms');
+  });
 });
 
 describe('Toggling Filter Modal', () => {
@@ -100,7 +106,17 @@ describe('Toggling Filter Modal', () => {
     expect(wrapper.find('FirearmFilter').exists()).toBe(true);
   });
 
-  it('should open the filter modal when Filters button clicked again', () => {
+  it('should filter the firearms list', () => {
+    data.filterCalibersFromType = jest.fn().mockImplementation(() => ([mockM16()]));
+
+    wrapper.find('button[children="Filters"]').simulate('click');
+    wrapper.find('FirearmFilter').props().handleSetFilterByType('Rifles', 'All');
+
+    expect(wrapper.find('.firearmEntry').length).toBe(1);
+    expect(wrapper.find('.firearmEntry').text()).toBe('M168.7 lbs');
+  });
+
+  it('should close the filter modal when Filters button clicked again', () => {
     wrapper.find('button[children="Filters"]').simulate('click');
 
     wrapper.find('button[children="Filters"]').simulate('click');

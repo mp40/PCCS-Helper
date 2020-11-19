@@ -64,7 +64,7 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, addFirearm, firearms 
         </div>
         <GearModalContents>
           {gunArrayFilteredByType.map((gunObj) => (
-            <div key={gunObj.name} style={{ display: 'flex', width: '30%', paddingLeft: '.2rem', paddingRight: '.2rem' }}>
+            <div key={gunObj.name} className={styles.firearmRow}>
               <button
                 type="button"
                 aria-label="info"

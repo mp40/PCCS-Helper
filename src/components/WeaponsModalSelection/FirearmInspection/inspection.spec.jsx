@@ -6,12 +6,10 @@ import { testM1911A1, testRemington, testM203 } from '../../../helpers/testHelpe
 import FirearmInspection from './index';
 
 describe('inspecting weapon stats', () => {
-  const statBoxClassName = 'mptodo get rid of this';
   const setFirearmToInspect = jest.fn();
 
   const createWrapper = (firearmToInspect) => shallow(
     <FirearmInspection
-      statBoxClassName={statBoxClassName}
       setFirearmToInspect={setFirearmToInspect}
       firearmToInspect={firearmToInspect}
     />,
