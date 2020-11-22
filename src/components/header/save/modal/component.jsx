@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import { currentCharacterShape } from '../../../../helpers/proptypeShapes';
 
-import { parseDate, buildRequestPayload } from './data';
-
 import { fetchPostCharacter, fetchPutCharacter } from '../../../../fetch';
+
+import { parseDate, buildRequestPayload } from './data';
 
 import styles from './styles.module.css';
 

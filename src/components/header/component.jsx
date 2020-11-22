@@ -77,7 +77,7 @@ const Header = ({ currentView, totalWeight, signedIn, handleSetSignedIn, selectC
         <div className="wrapper">
           <HeaderCreateCharacter totalWeight={totalWeight} />
           <Print selectCurrentView={selectCurrentView} />
-          <Save />
+          <Save signedIn={signedIn} />
         </div>
       )}
 

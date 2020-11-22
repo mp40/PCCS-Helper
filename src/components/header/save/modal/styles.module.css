@@ -79,3 +79,9 @@
   box-shadow: 0px 0px 1px 1px var(--golden-olive);
   opacity: 0.9;
 }
+
+.card > p {
+  text-align: center;
+  color: red;
+  font-weight: 600;
+}
