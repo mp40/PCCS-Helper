@@ -1,47 +1,45 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const HeaderProfile = ({
   handleShowSignUp,
   handleShowSignIn,
   handleSignOut,
   signedIn,
-}) => {
-  return (
+}) => (
+  <>
+    {signedIn && (
+    <button
+      type="button"
+      onClick={() => {
+        handleSignOut();
+      }}
+    >
+      Sign Out
+    </button>
+    )}
+    {!signedIn && (
     <>
-      {signedIn && (
-        <button
-          type='button'
-          onClick={() => {
-            handleSignOut();
-          }}
-        >
-          Sign Out
-        </button>
-      )}
-      {!signedIn && (
-        <>
-          <button
-            type='button'
-            onClick={() => {
-              handleShowSignUp();
-            }}
-          >
-            Sign Up
-          </button>
-          <button
-            type='button'
-            onClick={() => {
-              handleShowSignIn();
-            }}
-          >
-            Sign In
-          </button>
-        </>
-      )}
+      <button
+        type="button"
+        onClick={() => {
+          handleShowSignUp();
+        }}
+      >
+        Sign Up
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          handleShowSignIn();
+        }}
+      >
+        Sign In
+      </button>
     </>
-  );
-};
+    )}
+  </>
+);
 
 HeaderProfile.propTypes = {
   handleShowSignUp: PropTypes.func.isRequired,

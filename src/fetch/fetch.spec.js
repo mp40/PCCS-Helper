@@ -1,135 +1,245 @@
-import { fetchSignup, fetchSignin, fetchSignedIn, fetchSignOut } from './index';
+import {
+  fetchSignup,
+  fetchSignin,
+  fetchSignedIn,
+  fetchSignOut,
+  fetchPostCharacter,
+  fetchPutCharacter,
+} from './index';
+
+import { URL_CHARACTERS } from './constants';
 
 describe('Calling the Server', () => {
-  afterEach(() => {
-    global.fetch.mockClear();
-  });
+  describe('Sign Up', () => {
+    afterEach(() => {
+      global.fetch.mockClear();
+    });
 
-  it('should post new user to /signup', async () => {
-    global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-      text: () => JSON.stringify({
+    it('should post new user to /signup', async () => {
+      global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        text: () => JSON.stringify({
+          id: '1',
+          email: 'testSan@gmail.com',
+          password: 'hashed_password',
+        }),
+      }));
+
+      const user = {
+        email: 'testSan@gmail.com',
+        password: 'password',
+      };
+
+      const res = await fetchSignup(user);
+
+      expect(fetch).toHaveBeenCalled();
+
+      expect(res).toEqual({
         id: '1',
         email: 'testSan@gmail.com',
         password: 'hashed_password',
-      }),
-    }));
+      });
+    });
 
-    const user = {
-      email: 'testSan@gmail.com',
-      password: 'password',
-    };
+    it('should return error message on post /signup failure', async () => {
+      global.fetch = jest.fn().mockImplementation(() => Promise.reject('error'));
 
-    const res = await fetchSignup(user);
+      const user = {
+        email: 'testSan@gmail.com',
+        password: 'password',
+      };
 
-    expect(fetch).toHaveBeenCalled();
+      const res = await fetchSignup(user);
 
-    expect(res).toEqual({
-      id: '1',
-      email: 'testSan@gmail.com',
-      password: 'hashed_password',
+      expect(fetch).toHaveBeenCalled();
+
+      expect(res).toEqual({ error: 'error', message: 'Signup Error' });
     });
   });
 
-  it('should return error message on post /signup failure', async () => {
-    global.fetch = jest.fn().mockImplementation(() => Promise.reject('error'));
+  describe('Sign In', () => {
+    afterEach(() => {
+      global.fetch.mockClear();
+    });
 
-    const user = {
-      email: 'testSan@gmail.com',
-      password: 'password',
-    };
+    it('should post new user to /signin', async () => {
+      global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        text: () => JSON.stringify({ message: 'Signed In' }),
+      }));
 
-    const res = await fetchSignup(user);
+      const user = {
+        email: 'testSan@gmail.com',
+        password: 'password',
+      };
 
-    expect(fetch).toHaveBeenCalled();
+      const res = await fetchSignin(user);
 
-    expect(res).toEqual({ error: 'error', message: 'Signup Error' });
-  });
+      expect(fetch).toHaveBeenCalled();
 
-  it('should post new user to /signin', async () => {
-    global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-      text: () => JSON.stringify({ message: 'Signed In' }),
-    }));
+      expect(res).toEqual({
+        message: 'Signed In',
+      });
+    });
 
-    const user = {
-      email: 'testSan@gmail.com',
-      password: 'password',
-    };
+    it('should return error message on post /signin failure', async () => {
+      global.fetch = jest.fn().mockImplementation(() => Promise.reject('error'));
 
-    const res = await fetchSignin(user);
+      const user = {
+        email: 'testSan@gmail.com',
+        password: 'password',
+      };
 
-    expect(fetch).toHaveBeenCalled();
+      const res = await fetchSignin(user);
 
-    expect(res).toEqual({
-      message: 'Signed In',
+      expect(fetch).toHaveBeenCalled();
+
+      expect(res).toEqual({ error: 'error', message: 'Signin Error' });
     });
   });
 
-  it('should return error message on post /sign failure', async () => {
-    global.fetch = jest.fn().mockImplementation(() => Promise.reject('error'));
+  describe('Signed In', () => {
+    afterEach(() => {
+      global.fetch.mockClear();
+    });
 
-    const user = {
-      email: 'testSan@gmail.com',
-      password: 'password',
-    };
+    it('should get /signedIn', async () => {
+      global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        text: () => JSON.stringify({ message: 'Signed In' }),
+      }));
 
-    const res = await fetchSignin(user);
+      const res = await fetchSignedIn();
 
-    expect(fetch).toHaveBeenCalled();
+      expect(fetch).toHaveBeenCalled();
 
-    expect(res).toEqual({ error: 'error', message: 'Signin Error' });
-  });
+      expect(res).toEqual({
+        message: 'Signed In',
+      });
+    });
 
-  it('should get /signedIn', async () => {
-    global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-      text: () => JSON.stringify({ message: 'Signed In' }),
-    }));
+    it('should return error on get /signedIn failure', async () => {
+      global.fetch = jest.fn().mockImplementation(() => Promise.reject('error'));
 
-    const res = await fetchSignedIn();
+      const res = await fetchSignedIn();
 
-    expect(fetch).toHaveBeenCalled();
+      expect(fetch).toHaveBeenCalled();
 
-    expect(res).toEqual({
-      message: 'Signed In',
+      expect(res).toEqual({
+        error: 'error',
+        message: 'SignedIn Error',
+      });
     });
   });
 
-  it('should return error on get /signedIn failure', async () => {
-    global.fetch = jest.fn().mockImplementation(() => Promise.reject('error'));
+  describe('Sign Out', () => {
+    afterEach(() => {
+      global.fetch.mockClear();
+    });
 
-    const res = await fetchSignedIn();
+    it('should get /signOut', async () => {
+      global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        text: () => JSON.stringify({ message: 'Cookie Cleared' }),
+      }));
 
-    expect(fetch).toHaveBeenCalled();
+      const res = await fetchSignOut();
 
-    expect(res).toEqual({
-      error: 'error',
-      message: 'SignedIn Error',
+      expect(fetch).toHaveBeenCalled();
+
+      expect(res).toEqual({
+        message: 'Cookie Cleared',
+      });
+    });
+
+    it('should return error on /signOut failure', async () => {
+      global.fetch = jest.fn().mockImplementation(() => Promise.reject('error'));
+
+      const res = await fetchSignOut();
+
+      expect(fetch).toHaveBeenCalled();
+
+      expect(res).toEqual({
+        error: 'error',
+        message: 'Sign Out Error',
+      });
     });
   });
 
-  it('should get /signOut', async () => {
-    global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-      text: () => JSON.stringify({ message: 'Cookie Cleared' }),
-    }));
+  describe('Save Character', () => {
+    const character = () => ({
+      character_name: 'test name',
+      str: 18,
+      int: 12,
+      wil: 11,
+      hlt: 10,
+      agi: 12,
+    });
 
-    const res = await fetchSignOut();
+    afterEach(() => {
+      global.fetch.mockClear();
+    });
 
-    expect(fetch).toHaveBeenCalled();
+    it('should post new character', async () => {
+      global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        text: () => JSON.stringify(character()),
+      }));
 
-    expect(res).toEqual({
-      message: 'Cookie Cleared',
+      const res = await fetchPostCharacter(character());
+
+      expect(fetch).toHaveBeenCalled();
+
+      expect(res).toEqual(character());
+    });
+
+    it('should return error on post /character failure', async () => {
+      global.fetch = jest.fn().mockImplementation(() => Promise.reject('error'));
+
+      const res = await fetchPostCharacter(character());
+
+      expect(fetch).toHaveBeenCalled();
+
+      expect(res).toEqual({
+        error: 'error',
+        message: 'Save Error',
+      });
     });
   });
 
-  it('should return error on /signOut failure', async () => {
-    global.fetch = jest.fn().mockImplementation(() => Promise.reject('error'));
+  describe('Update Character', () => {
+    const character = () => ({
+      character_id: 69,
+      character_name: 'test name',
+    });
 
-    const res = await fetchSignOut();
+    afterEach(() => {
+      global.fetch.mockClear();
+    });
 
-    expect(fetch).toHaveBeenCalled();
+    it('should put new character', async () => {
+      global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        text: () => JSON.stringify(character()),
+      }));
 
-    expect(res).toEqual({
-      error: 'error',
-      message: 'Sign Out Error',
+      const res = await fetchPutCharacter(character());
+
+      const endpoint = `${URL_CHARACTERS}/${character().character_id}`;
+
+      expect(fetch).toHaveBeenCalledWith(
+        endpoint,
+        expect.anything(),
+      );
+
+      expect(res).toEqual(character());
+    });
+
+    it('should return error on put /character failure', async () => {
+      global.fetch = jest.fn().mockImplementation(() => Promise.reject('error'));
+
+      const res = await fetchPutCharacter(character());
+
+      expect(fetch).toHaveBeenCalled();
+
+      expect(res).toEqual({
+        error: 'error',
+        message: 'Save Error',
+      });
     });
   });
 });

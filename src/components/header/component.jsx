@@ -7,6 +7,7 @@ import HeaderModal from './modal';
 import HeaderDropdown from './dropdown';
 
 import Print from './print';
+import Save from './save';
 
 import { fetchSignup, fetchSignin, fetchSignOut } from '../../fetch';
 
@@ -76,6 +77,7 @@ const Header = ({ currentView, totalWeight, signedIn, handleSetSignedIn, selectC
         <div className="wrapper">
           <HeaderCreateCharacter totalWeight={totalWeight} />
           <Print selectCurrentView={selectCurrentView} />
+          <Save />
         </div>
       )}
 
