@@ -50,6 +50,7 @@ export const launchers = () => [
     aoi: ['', '', '', 1],
     ba: [12, -1, -10, -20],
     tof: [4, 10, 21, 50],
+    offical: true,
   },
   {
     name: 'Armscor 6',
@@ -102,6 +103,7 @@ export const launchers = () => [
     aoi: ['', 1, 4, ''],
     ba: [23, 10, 1, ''],
     tof: [11, 33, 80, ''],
+    offical: true,
   },
   {
     name: 'HK 69A1',
@@ -154,6 +156,7 @@ export const launchers = () => [
     aoi: ['', 1, 4, ''],
     ba: [23, 10, 1, ''],
     tof: [11, 33, 80, ''],
+    offical: true,
   },
   {
     name: 'M79',
@@ -206,6 +209,7 @@ export const launchers = () => [
     aoi: ['', 1, 4, ''],
     ba: [23, 10, 1, ''],
     tof: [11, 33, 80, ''],
+    offical: true,
   },
   {
     name: 'M72 A2 LAW',
@@ -244,6 +248,7 @@ export const launchers = () => [
     aoi: ['', '', 1, 1],
     ba: [11, -1, -11, -20],
     tof: [5, 14, 32, 75],
+    offical: true,
   },
   {
     name: 'LAW 80',
@@ -282,6 +287,7 @@ export const launchers = () => [
     aoi: ['', '', 1, 1],
     ba: [11, -1, -11, -20],
     tof: [5, 14, 32, 75],
+    offical: true,
   },
   {
     name: 'PZF 44 2A1 Lanze',
@@ -334,6 +340,46 @@ export const launchers = () => [
     aoi: ['', '', '', 1],
     ba: [14, 2, -7, -17],
     tof: [4, 9, 20, 45],
+    offical: true,
+  },
+  {
+    name: 'RGM-40',
+    list: 'launchers',
+    calibre: '30mm',
+    qty: 1,
+    length: '14/24',
+    weight: 5.5,
+    rt: 10,
+    rof: '-',
+    mag: [{ type: 'Rnd', class: 'HE', weight: 0.56, cap: 1, qty: 0 }],
+    mr: 200,
+    sab: 11,
+    aim: {
+      ac: [1, 2, 3, 4, 5, 6, 7],
+      mod: [-19, -10, -8, -6, -5, -4, -3],
+    },
+    projectiles: [
+      {
+        type: 'HE',
+        data: 'ballistic',
+        pen: [2.5, 2.5, 2.5, ''],
+        dc: [10, 10, 10, ''],
+      },
+    ],
+    explosive: [
+      {
+        type: 'HE',
+        data: 'explosive',
+        pen: [2.4, 2.2, 1.8, 1.5, 1.0, 0.4],
+        dc: [2, 2, 2, 2, 1, 1],
+        bshc: ['*2', 58, 14, 6, 1, -2],
+        bc: [250, 74, 23, 12, 5, 1],
+      },
+    ],
+    aoi: ['', 1, 4, ''],
+    ba: [23, 5, -4, ''],
+    tof: [11, 35, 81, ''],
+    offical: false,
   },
   {
     name: 'RPG 7V',
@@ -386,6 +432,7 @@ export const launchers = () => [
     aoi: ['', '', '', ''],
     ba: [15, 4, -6, -15],
     tof: [2, 6, 14, 30],
+    offical: true,
   },
   {
     name: 'RPG 18',
@@ -424,5 +471,6 @@ export const launchers = () => [
     aoi: ['', '', 1, 2],
     ba: [16, 5, -5, -14],
     tof: [7, 17, 36, 78],
+    offical: true,
   },
 ];
