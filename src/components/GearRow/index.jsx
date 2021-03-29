@@ -5,7 +5,7 @@ import React, { Fragment } from 'react';
 import { gearRowShape } from '../../helpers/proptypeShapes';
 import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 import ButtonIncrementArrows from '../widgets/buttons/ButtonIncrementArrows';
-import { correctFloatingPoint } from '../../reducers/reducerHelpers';
+import { correctFloatingPoint } from '../../utils';
 
 import keys from './data';
 
