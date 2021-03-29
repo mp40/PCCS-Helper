@@ -40,6 +40,8 @@ import { decreaseLauncherReducer } from './decreaseLauncherReducer';
 import { increaseLauncherAmmoReducer } from './increaseLauncherAmmoReducer';
 import { decreaseLauncherAmmoReducer } from './decreaseLauncherAmmoReducer';
 import { viewCreateCharacterReducer } from './viewCreateCharacterReducer';
+import { updateSavedCharactersReducer } from './updateSavedCharactersReducer';
+import { hydrateCurrentCharacterReducer } from './hydrateCurrentCharacterReducer';
 
 const initialState = initialStore;
 
@@ -129,6 +131,10 @@ function reduceActions(state = initialState, action) {
       return changeHelmetReducer(state, action);
     case 'VEST_CHANGED':
       return changeVestReducer(state, action);
+    case 'CHARACTERS_UPDATED':
+      return updateSavedCharactersReducer(state, action);
+    case 'CURRENT_CHARACTER_HYDRATED':
+      return hydrateCurrentCharacterReducer(state, action);
     default: return state;
   }
 }
