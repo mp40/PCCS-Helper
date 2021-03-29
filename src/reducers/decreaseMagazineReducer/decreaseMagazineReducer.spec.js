@@ -1,6 +1,6 @@
 import { decreaseMagazineReducer } from './index';
 import { MockState } from '../mockState';
-import { correctFloatingPoint } from '../reducerHelpers';
+import { correctFloatingPoint } from '../../utils';
 
 describe('decreaseMagazineReducer function', () => {
   const mockM1911A1 = (ammo = 0) => ({

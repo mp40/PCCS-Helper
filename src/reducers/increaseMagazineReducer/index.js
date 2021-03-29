@@ -1,5 +1,6 @@
 import { modifyObjectQtyInArray } from '../../helpers/actionHelpers';
-import { increaseLauncherAmmo, correctFloatingPoint } from '../reducerHelpers';
+import { increaseLauncherAmmo } from '../reducerHelpers';
+import { correctFloatingPoint } from '../../utils';
 
 const {
   calcBaseSpeed,

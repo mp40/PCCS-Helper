@@ -1,5 +1,5 @@
 import { uniformWeights } from '../../data/uniformAndArmourTypes';
-import { correctFloatingPoint } from '../reducerHelpers';
+import { correctFloatingPoint } from '../../utils';
 
 const {
   calcBaseSpeed,

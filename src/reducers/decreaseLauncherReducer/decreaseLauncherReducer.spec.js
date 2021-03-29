@@ -1,6 +1,6 @@
 import { MockState } from '../mockState';
 import { decreaseLauncherReducer } from './index';
-import { correctFloatingPoint } from '../reducerHelpers';
+import { correctFloatingPoint } from '../../utils';
 
 describe('decreaselauncherReducer', () => {
   const mockM79 = () => ({

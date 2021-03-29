@@ -1,5 +1,5 @@
 /* eslint-disable array-callback-return */
-import { correctFloatingPoint } from '../reducerHelpers';
+import { correctFloatingPoint } from '../../utils';
 import { calculateTotalWeight } from '../../helpers/actionHelpers';
 
 const {

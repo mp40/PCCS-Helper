@@ -1,4 +1,5 @@
-import { incrementQuantity, correctFloatingPoint } from '../reducerHelpers';
+import { incrementQuantity } from '../reducerHelpers';
+import { correctFloatingPoint } from '../../utils';
 
 const {
   calcBaseSpeed,

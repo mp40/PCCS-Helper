@@ -1,6 +1,6 @@
 import { decreaseGrenadeReducer } from './index';
 import { MockState } from '../mockState';
-import { correctFloatingPoint } from '../reducerHelpers';
+import { correctFloatingPoint } from '../../utils';
 
 const lightGrenade = () => ({
   name: 'L2 A2',

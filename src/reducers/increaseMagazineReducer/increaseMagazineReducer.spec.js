@@ -1,7 +1,7 @@
 import { MockState } from '../mockState';
 import { increaseMagazineReducer } from './index';
 import { modifyObjectQtyInArray } from '../../helpers/actionHelpers';
-import { correctFloatingPoint } from '../reducerHelpers';
+import { correctFloatingPoint } from '../../utils';
 
 const mockM1911A1 = (ammo = 0) => ({
   name: 'M1911A1',

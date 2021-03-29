@@ -1,10 +1,10 @@
 import { changeVestReducer } from './index';
 import { MockState } from '../mockState';
 
-describe('changeHelmetReducer function', () => {
+describe('changeVestReducer function', () => {
   let state = new MockState();
 
-  it('should add helmet to character', () => {
+  it('should add vest to character', () => {
     const action = { payload: { name: 'vest one', pf: 4, weight: 5 } };
 
     const updatedState = { ...state,
@@ -19,7 +19,7 @@ describe('changeHelmetReducer function', () => {
     expect(state).toMatchObject(updatedState);
   });
 
-  it('should change helmet if helmet already present', () => {
+  it('should change vest if vest already present', () => {
     const action = { payload: { name: 'Other Vest', pf: 8, weight: 10 } };
 
     const updatedState = { ...state,

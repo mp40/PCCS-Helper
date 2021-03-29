@@ -1,4 +1,4 @@
-import { correctFloatingPoint } from '../reducerHelpers';
+import { correctFloatingPoint } from '../../utils';
 
 const getPrimaryMagazine = (magazineArray, indexOfPrimary) => magazineArray.splice(indexOfPrimary, 1)[0];
 
@@ -13,9 +13,6 @@ export const setPrimaryMagazineReducer = (state, action) => {
     }
     return gun;
   });
-
-  // console.log('state', state.currentCharacter.firearms[0]);
-  // console.log('new', newFirearmsArray[0]);
 
   return { ...state,
     currentCharacter: { ...state.currentCharacter,

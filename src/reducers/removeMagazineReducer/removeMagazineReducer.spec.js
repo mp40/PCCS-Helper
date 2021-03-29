@@ -1,6 +1,6 @@
 import { MockState } from '../mockState';
 import { removeMagazineReducer } from './index';
-import { correctFloatingPoint } from '../reducerHelpers';
+import { correctFloatingPoint } from '../../utils';
 
 const mockM16 = (ammo1, ammo2) => ({
   name: 'M16',

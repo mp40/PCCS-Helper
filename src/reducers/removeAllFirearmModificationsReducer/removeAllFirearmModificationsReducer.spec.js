@@ -1,6 +1,6 @@
 import { MockState } from '../mockState';
 import { removeAllFirearmModificationsReducer, removeModificationWeight } from './index';
-import { correctFloatingPoint } from '../reducerHelpers';
+import { correctFloatingPoint } from '../../utils';
 
 const mockM1911A1 = () => ({
   name: 'M1911A1',

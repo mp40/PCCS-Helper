@@ -1,5 +1,5 @@
 import { removeObjectFromArray } from '../../helpers/actionHelpers';
-import { correctFloatingPoint } from '../reducerHelpers';
+import { correctFloatingPoint } from '../../utils';
 
 const {
   calcBaseSpeed,

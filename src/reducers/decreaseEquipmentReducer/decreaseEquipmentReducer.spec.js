@@ -1,6 +1,6 @@
 import { decreaseEquipmentReducer } from './index';
 import { MockState } from '../mockState';
-import { correctFloatingPoint } from '../reducerHelpers';
+import { correctFloatingPoint } from '../../utils';
 
 const addedEquipment = (qty) => (
   { name: 'testEquipment',
