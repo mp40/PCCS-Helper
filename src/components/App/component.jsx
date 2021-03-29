@@ -35,7 +35,7 @@ const App = ({ currentView, updateSavedCharacters }) => {
     };
 
     checkUserSignedIn();
-  }, []);
+  }, [updateSavedCharacters]);
 
   const handleSetSignedIn = () => {
     setSignedIn(!signedIn);
