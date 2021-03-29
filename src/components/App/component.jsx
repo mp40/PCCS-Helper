@@ -5,13 +5,14 @@ import Header from '../header';
 import HomePage from '../Home';
 import CharacterGeneration from '../CharacterGeneration';
 import GameSheet from '../GameSheet';
+import LoadedCharacter from '../LoadedCharacter';
 
-import { fetchSignedIn } from '../../fetch';
+import { fetchSignedIn, fetchGetCharacters } from '../../fetch';
 
 import '../../stylesheet/styles.css';
 import './App.css';
 
-const App = ({ currentView }) => {
+const App = ({ currentView, updateSavedCharacters }) => {
   const [signedIn, setSignedIn] = useState(false);
 
   React.useEffect(() => {
@@ -20,6 +21,16 @@ const App = ({ currentView }) => {
 
       if (res.message === 'Signed In') {
         setSignedIn(true);
+
+        let savedCharacters = JSON.parse(sessionStorage.getItem('savedCharacters'));
+
+        if (savedCharacters === null) {
+          const getSavedCharactersResponse = await fetchGetCharacters();
+          savedCharacters = getSavedCharactersResponse.characters;
+          sessionStorage.setItem('savedCharacters', JSON.stringify(savedCharacters));
+        }
+
+        updateSavedCharacters(savedCharacters);
       }
     };
 
@@ -42,12 +53,14 @@ const App = ({ currentView }) => {
         )}
       </div>
       {currentView === 'printRefSheet' && <GameSheet />}
+      {currentView === 'playCharacter' && <LoadedCharacter />}
     </div>
   );
 };
 
 App.propTypes = {
   currentView: PropTypes.string,
+  updateSavedCharacters: PropTypes.func.isRequired,
 };
 
 export default App;
