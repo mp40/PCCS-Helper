@@ -20,6 +20,17 @@
   z-index: 101;
 }
 
+.contents {
+  max-height: calc(100% - 2.75rem);
+  overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.contents::-webkit-scrollbar {
+  display: none;
+}
+
 .mask {
   position: fixed;
   top: 6rem;

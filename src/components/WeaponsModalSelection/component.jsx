@@ -4,7 +4,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import GearModalContents from '../GearModalContents';
 import FirearmInspection from './FirearmInspection';
 import FirearmFilter from './FirearmFilter';
 
@@ -62,7 +61,7 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, addFirearm, firearms 
             onClick={() => toggleOffWeaponCardViews('showFirearms')}
           />
         </div>
-        <GearModalContents>
+        <div className={`--weaponSelectCard ${styles.contents}`}>
           {gunArrayFilteredByType.map((gunObj) => (
             <div key={gunObj.name} className={styles.firearmRow}>
               <button
@@ -80,7 +79,7 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, addFirearm, firearms 
               </div>
             </div>
           ))}
-        </GearModalContents>
+        </div>
 
       </div>
       <div className={styles.mask}>

@@ -5,7 +5,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import GearModalContents from '../GearModalContents';
 import WeaponStatsTable from '../WeaponStatsTable';
 
 import { launchers } from '../../data/launchers';
@@ -34,7 +33,7 @@ const SelectLauncherModal = ({ toggleOffWeaponCardViews, addLauncher }) => {
             onClick={() => toggleOffWeaponCardViews('showLaunchers')}
           />
         </div>
-        <GearModalContents>
+        <div className="--weaponSelectCard">
           <div className={styles.body}>
             <div className="launcherRowContainer">
 
@@ -58,7 +57,7 @@ const SelectLauncherModal = ({ toggleOffWeaponCardViews, addLauncher }) => {
             </div>
             <WeaponStatsTable weapon={launcherToView} />
           </div>
-        </GearModalContents>
+        </div>
       </div>
     </>
   );

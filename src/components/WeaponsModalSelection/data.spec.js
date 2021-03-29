@@ -98,7 +98,7 @@ describe('Filtering calibers and weapon types', () => {
   });
 
   describe('filtering by both type and calibre', () => {
-    it('should filter by both type aand calibre', () => {
+    it('should filter by both type and calibre', () => {
       expect(filterCalibersFromType('SMGs', '9mm Parabellum')).toEqual([mockMP5SD()]);
     });
   });

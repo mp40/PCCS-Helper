@@ -67,7 +67,8 @@ describe('Firearms selection', () => {
 
   it('should be possible to view firearm stats', () => {
     expect(wrapper.find('FirearmInspection').exists()).toBe(false);
-    wrapper.find('GearModalContents').find('button').at(0).simulate('click');
+
+    wrapper.find('.contents').find('button').at(0).simulate('click');
 
     expect(wrapper.find('FirearmInspection').exists()).toBe(true);
   });
