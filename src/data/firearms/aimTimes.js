@@ -30,9 +30,15 @@ export const averageRifle9Aims = {
   mod: [-23, -12, -9, -7, -6, -4, -3, -2, -1],
 };
 
+// M4, CAR 16
+export const aboveAverageRifle9Aims = {
+  ac: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  mod: [-22, -11, -9, -7, -5, -4, -3, -2, -1],
+};
+
 // SMGs
 
-// Carl Gustaf M45, Sten Mk2, AKs-74U, MP5 SD3
+// Carl Gustaf M45, Sten Mk2, AKs-74U, MP5 SD3, MAC 10
 export const averageSMG8Aims = {
   ac: [1, 2, 3, 4, 5, 6, 7, 8],
   mod: [-22, -12, -9, -7, -6, -5, -4, -3],
@@ -40,7 +46,7 @@ export const averageSMG8Aims = {
 
 // Pistols
 
-// FN Mk1, Lebel M1892, Tokarev TT33,
+// FN Mk1, Lebel M1892, Tokarev TT33, M92F
 export const averagePistol6Aims = {
   ac: [1, 2, 3, 4, 5, 6],
   mod: [-17, -11, -10, -9, -8, -7],
