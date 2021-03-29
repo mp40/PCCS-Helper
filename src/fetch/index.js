@@ -1,4 +1,4 @@
-import { URL_SIGNUP, URL_SIGNIN, URL_SIGNEDIN, URL_SIGNOUT, URL_CHARACTERS } from './constants';
+import { URL_SIGNUP, URL_SIGNIN, URL_SIGNEDIN, URL_SIGNOUT, URL_CHARACTERS, URL_SAVED_CHARACTERS } from './constants';
 
 export const fetchSignup = async (user) => {
   let res;
@@ -134,6 +134,29 @@ export const fetchPutCharacter = async (character) => {
     })
     .catch((error) => {
       res = { message: 'Save Error', error };
+    });
+
+  return res;
+};
+
+export const fetchGetCharacters = async () => {
+  let res;
+
+  await fetch(URL_SAVED_CHARACTERS, {
+    credentials: 'include',
+    mode: 'cors',
+    method: 'get',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.text())
+    .then((data) => {
+      res = JSON.parse(data);
+    })
+    .catch((error) => {
+      res = { message: 'Get Characters Error', error };
     });
 
   return res;

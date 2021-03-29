@@ -5,9 +5,10 @@ import {
   fetchSignOut,
   fetchPostCharacter,
   fetchPutCharacter,
+  fetchGetCharacters,
 } from './index';
 
-import { URL_CHARACTERS } from './constants';
+import { URL_CHARACTERS, URL_SAVED_CHARACTERS } from './constants';
 
 describe('Calling the Server', () => {
   describe('Sign Up', () => {
@@ -239,6 +240,43 @@ describe('Calling the Server', () => {
       expect(res).toEqual({
         error: 'error',
         message: 'Save Error',
+      });
+    });
+  });
+
+  describe('Fetch Characters', () => {
+    const character = () => ({
+      character_id: 69,
+      character_name: 'test name',
+    });
+
+    it('should get saved characters on get /characters', async () => {
+      global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        text: () => JSON.stringify({ characters: [character()] }),
+      }));
+
+      const res = await fetchGetCharacters();
+
+      const endpoint = URL_SAVED_CHARACTERS;
+
+      expect(fetch).toHaveBeenCalledWith(
+        endpoint,
+        expect.anything(),
+      );
+
+      expect(res).toEqual({ characters: [character()] });
+    });
+
+    it('should return error on get /characters failure', async () => {
+      global.fetch = jest.fn().mockImplementation(() => Promise.reject('error'));
+
+      const res = await fetchGetCharacters();
+
+      expect(fetch).toHaveBeenCalled();
+
+      expect(res).toEqual({
+        error: 'error',
+        message: 'Get Characters Error',
       });
     });
   });
