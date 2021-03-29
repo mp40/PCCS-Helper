@@ -3,7 +3,6 @@ import { launchers } from '../../data/launchers';
 import { grenadeData, specialGrenades } from '../../data/grenades';
 
 import { findObjectByNameInArray } from '../../utils';
-import { dehydrateFirearm } from '../../helpers/scratchPad';
 
 const createFirearmsList = () => [...rifles(), ...pistols(), ...smgs(), ...mgs(), ...shotguns(), ...sniperRifles()];
 
