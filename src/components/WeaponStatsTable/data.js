@@ -211,7 +211,7 @@ export const getTemplate = (list, hasThreeRoundBurst, numberOfProjectileTypes) =
   if (list === 'shotguns') {
     return shotgunTemplate;
   }
-  if (hasThreeRoundBurst && numberOfProjectileTypes > 2) {
+  if (hasThreeRoundBurst) {
     return threeRoundBurstTemplate;
   }
   return defaultTemplate;
