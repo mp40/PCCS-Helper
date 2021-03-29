@@ -1,5 +1,4 @@
 import {
-  findFirearmByName,
   testM1911A1,
   testM1911A1WithMods,
   testRemington,
@@ -7,12 +6,8 @@ import {
   testM16WithoutJhpAp,
   testFAMAS,
 } from './testHelpers';
-import { pistols } from '../data/firearms';
 
 describe('test firearms', () => {
-  it('should be taken directly from firearm list', () => {
-    expect(findFirearmByName(pistols(), 'M1911A1')).toMatchObject({ name: 'M1911A1' });
-  });
   it('should find nad return the M1911A1', () => {
     expect(testM1911A1()).toMatchObject({ name: 'M1911A1', weight: 3 });
   });
