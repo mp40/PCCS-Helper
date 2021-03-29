@@ -29,6 +29,6 @@ export class MockState {
       helmet: undefined,
       vest: undefined,
     };
-    this.savedCharactes = [];
+    this.savedCharacters = [];
   }
 }
