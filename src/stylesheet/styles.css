@@ -72,6 +72,23 @@
   width: 9.5%;
 }
 
+.--weaponSelectCard {
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 0.5rem;
+}
+
+.--weaponSelectCard > div {
+  width: calc((100% - 30px) / 3);
+  font-size: small;
+  display: flex;
+  justify-content: space-between;
+}
+
+.--weaponSelectCard > div:nth-of-type(3n+2) {
+  margin: 0 15px;
+}
+
 .--modalOverlay {
   position: absolute;
   top: 0;
