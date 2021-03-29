@@ -207,3 +207,13 @@ export const decreaseLauncherAmmo = (launcherAndAmmoType) => ({
   type: 'LAUNCHER_AMMO_QTY_DECREASED',
   payload: launcherAndAmmoType,
 });
+
+export const updateSavedCharacters = (characters) => ({
+  type: 'CHARACTERS_UPDATED',
+  payload: characters,
+});
+
+export const hydrateCurrentCharacter = (character) => ({
+  type: 'CURRENT_CHARACTER_HYDRATED',
+  payload: character,
+});
