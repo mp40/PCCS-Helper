@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import TextInput from '../../widgets/TextInput';
 
 import { isNotValidObjectToAdd, isValidCustomEquipmentInput } from '../../../helpers/gaurds';
-import { correctFloatingPoint } from '../../../reducers/reducerHelpers';
+import { correctFloatingPoint } from '../../../utils';
 
 import styles from './styles.module.css';
 
