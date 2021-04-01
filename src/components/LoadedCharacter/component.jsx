@@ -5,6 +5,7 @@ const LoadedCharacter = ({ currentCharacter }) => (
   <div>
     <h1>Loaded Character Placeholder</h1>
     <p>{currentCharacter.name}</p>
+    <p style={{ whiteSpace: 'pre' }}>{JSON.stringify(currentCharacter, null, 2)}</p>
   </div>
 
 );

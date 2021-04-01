@@ -6,13 +6,13 @@ import { Provider } from 'react-redux';
 import { getStore } from '../../helpers/testHelpers';
 
 import LoadCharacterModal from './component';
-import App from '../App'
+import App from '../App';
 
 const waitOneTick = (simulate) => new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(simulate);
-    }, 0);
-  });
+  setTimeout(() => {
+    resolve(simulate);
+  }, 0);
+});
 
 const mrLove = {
   character_id: 69,
@@ -61,7 +61,7 @@ describe('Load Character Modal', () => {
   it('should load saved character when button clicked', () => {
     getWrapper(savedCharacters);
 
-    wrapper.find('button').at(1).simulate('click');
+    wrapper.find('span[children="Mr Love"]').parent().simulate('click');
 
     expect(setShowLoadModal).toHaveBeenCalledWith(false);
     expect(selectCurrentView).toHaveBeenCalledWith('playCharacter');
@@ -107,7 +107,7 @@ describe('Load Character Intergration', () => {
     grenades: [],
     launchers: [],
     notes: {},
-  }
+  };
 
   const stubCharactersFromStorage = () => {
     storage = jest.spyOn(Storage.prototype, 'getItem')
@@ -115,7 +115,7 @@ describe('Load Character Intergration', () => {
         [
           mrLove,
           mrRock,
-          mrLoad
+          mrLoad,
         ],
       ));
   };
@@ -124,13 +124,13 @@ describe('Load Character Intergration', () => {
     jest.clearAllMocks();
   });
 
-  it('should load hydrated character', async ()=>{
+  it('should load hydrated character', async () => {
     global.fetch = jest.fn(() => Promise.resolve({
-        text: () => JSON.stringify({
-          message: 'Signed In',
-        }),
+      text: () => JSON.stringify({
+        message: 'Signed In',
       }),
-      );
+    }),
+    );
 
     stubCharactersFromStorage();
 
@@ -139,7 +139,7 @@ describe('Load Character Intergration', () => {
         <Provider store={getStore()}>
           <App />
         </Provider>,
-        )));
+      )));
     });
 
     wrapper.update();
@@ -148,6 +148,6 @@ describe('Load Character Intergration', () => {
     wrapper.find('button').find('span[children="Mr Load"]').simulate('click');
 
     expect(wrapper.find('LoadedCharacter').exists()).toBe(true);
-    expect(wrapper.text()).toContain("Mr Load");
+    expect(wrapper.text()).toContain('Mr Load');
   });
 });
