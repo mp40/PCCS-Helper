@@ -1,8 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+import { createStore } from 'redux';
 import reducers from '../reducers';
 import App from '../components/App';
 import { initialStore } from './initialStore';
@@ -12,10 +11,16 @@ import { launchers } from '../data/launchers';
 
 import { findObjectByNameInArray } from '../utils';
 
-export const getStore = (mockStore = initialStore) => createStore(reducers, mockStore, applyMiddleware(thunk));
+export const getStore = (mockStore = initialStore) => createStore(
+  reducers,
+  mockStore,
+);
 
 export const mountAppWithStore = (mockStore = initialStore) => {
-  const store = createStore(reducers, mockStore, applyMiddleware(thunk));
+  const store = createStore(
+    reducers,
+    mockStore,
+  );
 
   return mount(
     <Provider store={store}>
@@ -33,7 +38,10 @@ class CharacterWithGunStore extends MockState {
   }
 }
 
-export const getStoreWithGun = (gun) => createStore(reducers, new CharacterWithGunStore(gun), applyMiddleware(thunk));
+export const getStoreWithGun = (gun) => createStore(
+  reducers,
+  new CharacterWithGunStore(gun),
+);
 
 export const testM1911A1 = (qty = 1) => {
   const m1911A1 = findObjectByNameInArray(pistols(), 'M1911A1');
