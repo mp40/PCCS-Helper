@@ -41,6 +41,8 @@ import { increaseLauncherAmmoReducer } from './increaseLauncherAmmoReducer';
 import { decreaseLauncherAmmoReducer } from './decreaseLauncherAmmoReducer';
 import { viewCreateCharacterReducer } from './viewCreateCharacterReducer';
 import { updateSavedCharactersReducer } from './updateSavedCharactersReducer';
+import { addSavedCharacterReducer } from './addSavedCharacterReducer';
+import { updateSavedCharacterReducer } from './updateSavedCharacterReducer';
 import { hydrateCurrentCharacterReducer } from './hydrateCurrentCharacterReducer';
 
 const initialState = initialStore;
@@ -133,6 +135,10 @@ function reduceActions(state = initialState, action) {
       return changeVestReducer(state, action);
     case 'CHARACTERS_UPDATED':
       return updateSavedCharactersReducer(state, action);
+    case 'CHARACTER_ADDED':
+      return addSavedCharacterReducer(state, action);
+    case 'CHARACTER_UPDATED':
+      return updateSavedCharacterReducer(state, action);
     case 'CURRENT_CHARACTER_HYDRATED':
       return hydrateCurrentCharacterReducer(state, action);
     default: return state;
