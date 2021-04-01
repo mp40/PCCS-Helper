@@ -1,7 +1,9 @@
-const prepareFirearm = (firearm) => ({ name: firearm.name,
-  qty: firearm.qty,
-  mag: firearm.mag,
-  modNotes: firearm.modNotes });
+const prepareFirearm = (firearm) => (
+  { name: firearm.name,
+    qty: firearm.qty,
+    mag: firearm.mag,
+    modNotes: firearm.modNotes }
+);
 
 const prepareGrenade = (grenade) => ({
   name: grenade.name,
@@ -24,8 +26,8 @@ export const buildRequestPayload = (currentCharacter) => ({
   gun_level: currentCharacter.gunLevel,
   hand_level: currentCharacter.handLevel,
   uniform: currentCharacter.uniform,
-  helmet: currentCharacter.helmet,
-  vest: currentCharacter.vest,
+  helmet: currentCharacter.helmet?.name || null,
+  vest: currentCharacter.vest?.name || null,
   equipment: currentCharacter.equipment,
   firearms: currentCharacter.firearms.map((firearm) => prepareFirearm(firearm)),
   grenades: currentCharacter.grenades.map((grenade) => prepareGrenade(grenade)),

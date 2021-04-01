@@ -25,13 +25,29 @@ describe('Printing the reference sheet', () => {
   });
 
   it('should not show when not in the create character view', () => {
-    const wrapper = shallow(<Header currentView="home" selectCurrentView={selectCurrentView} signedIn={false} handleSetSignedIn={() => {}} />);
+    const wrapper = shallow(
+      <Header
+        currentView="home"
+        selectCurrentView={selectCurrentView}
+        signedIn={false}
+        handleSetSignedIn={() => {}}
+        updateSavedCharacters={() => {}}
+      />,
+    );
 
     expect(wrapper.find('Print').exists()).toBe(false);
   });
 
   it('should show when in the create character view', () => {
-    const wrapper = shallow(<Header currentView="createChar" selectCurrentView={selectCurrentView} signedIn={false} handleSetSignedIn={() => {}} />);
+    const wrapper = shallow(
+      <Header
+        currentView="createChar"
+        selectCurrentView={selectCurrentView}
+        signedIn={false}
+        handleSetSignedIn={() => {}}
+        updateSavedCharacters={() => {}}
+      />,
+    );
 
     expect(wrapper.find('Print').exists()).toBe(true);
   });

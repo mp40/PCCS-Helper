@@ -9,6 +9,7 @@ describe('Save', () => {
     const wrapper = shallow(
       <Save
         signedIn
+        updateSavedCharacters={() => {}}
       />);
 
     it('should render the save button when signed in', () => {
@@ -32,6 +33,7 @@ describe('Save', () => {
     const wrapper = shallow(
       <Save
         signedIn={false}
+        updateSavedCharacters={() => {}}
       />);
 
     it('should no render the save button when signed out', () => {

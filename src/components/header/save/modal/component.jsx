@@ -9,16 +9,52 @@ import { parseDate, buildRequestPayload } from './data';
 
 import styles from './styles.module.css';
 
-const HeaderSaveModal = ({ characters, currentCharacter, setShowSaveCharacter }) => {
+const HeaderSaveModal = (
+  { characters, currentCharacter, setShowSaveCharacter, addSavedCharacter, updateSavedCharacter },
+) => {
   const [showError, setShowError] = useState(false);
+
+  const storeNewCharacter = (character) => {
+    const storedCharacters = JSON.parse(sessionStorage.getItem('savedCharacters'));
+
+    if (storedCharacters) {
+      sessionStorage.setItem('savedCharacters', JSON.stringify(
+        [
+          ...storedCharacters,
+          character,
+        ],
+      ));
+    }
+
+    addSavedCharacter(character);
+  };
+
+  const updateStoredCharacter = (character) => {
+    const storedCharacters = JSON.parse(sessionStorage.getItem('savedCharacters'));
+
+    if (storedCharacters) {
+      const updatedStorage = storedCharacters.map((storedCharacter) => {
+        if (character.character_id === storedCharacter.character_id) {
+          return character;
+        }
+
+        return storedCharacter;
+      });
+
+      sessionStorage.setItem('savedCharacters', JSON.stringify(updatedStorage));
+    }
+
+    updateSavedCharacter(character);
+  };
 
   const handleSaveCharacter = async () => {
     const res = await fetchPostCharacter(buildRequestPayload(currentCharacter));
-
     if (res.error) {
       setShowError(true);
       return;
     }
+
+    storeNewCharacter(res.character);
 
     setShowSaveCharacter(false);
   };
@@ -30,6 +66,8 @@ const HeaderSaveModal = ({ characters, currentCharacter, setShowSaveCharacter })
       setShowError(true);
       return;
     }
+
+    updateStoredCharacter(res.character);
 
     setShowSaveCharacter(false);
   };
@@ -52,7 +90,7 @@ const HeaderSaveModal = ({ characters, currentCharacter, setShowSaveCharacter })
             onClick={() => handleUpdateCharacter(character.character_id)}
           >
             <span>
-              {character.name}
+              {character.character_name}
             </span>
 
             <span>
@@ -81,6 +119,8 @@ HeaderSaveModal.propTypes = {
   characters: PropTypes.arrayOf(PropTypes.object).isRequired,
   currentCharacter: currentCharacterShape.isRequired,
   setShowSaveCharacter: PropTypes.func.isRequired,
+  addSavedCharacter: PropTypes.func.isRequired,
+  updateSavedCharacter: PropTypes.func.isRequired,
 };
 
 export default HeaderSaveModal;

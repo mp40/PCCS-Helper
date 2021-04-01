@@ -27,6 +27,7 @@ describe('The Header', () => {
           handleSetSignedIn={handleSetSignedIn}
           signedIn={false}
           selectCurrentView={() => {}}
+          updateSavedCharacters={() => {}}
         />,
       );
     });
@@ -131,6 +132,7 @@ describe('The Header', () => {
           handleSetSignedIn={handleSetSignedIn}
           signedIn={false}
           selectCurrentView={() => {}}
+          updateSavedCharacters={() => {}}
         />,
       );
     });
@@ -232,6 +234,7 @@ describe('The Header', () => {
           handleSetSignedIn={handleSetSignedIn}
           signedIn
           selectCurrentView={() => {}}
+          updateSavedCharacters={() => {}}
         />,
       );
     });
@@ -282,6 +285,7 @@ describe('The Header', () => {
           handleSetSignedIn={handleSetSignedIn}
           signedIn={false}
           selectCurrentView={() => {}}
+          updateSavedCharacters={() => {}}
         />,
       );
 
@@ -308,6 +312,7 @@ describe('The Header', () => {
         totalWeight={totalWeight}
         handleSetSignedIn={handleSetSignedIn}
         selectCurrentView={() => {}}
+        updateSavedCharacters={() => {}}
         signedIn={false}
       />,
     );

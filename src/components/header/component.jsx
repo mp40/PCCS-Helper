@@ -13,7 +13,14 @@ import { fetchSignup, fetchSignin, fetchSignOut } from '../../fetch';
 
 import './header.css';
 
-const Header = ({ currentView, totalWeight, signedIn, handleSetSignedIn, selectCurrentView }) => {
+const Header = (
+  { currentView,
+    totalWeight,
+    signedIn,
+    handleSetSignedIn,
+    selectCurrentView,
+    updateSavedCharacters },
+) => {
   const [showSignUp, setShowSignUp] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -57,6 +64,10 @@ const Header = ({ currentView, totalWeight, signedIn, handleSetSignedIn, selectC
       return;
     }
 
+    sessionStorage.setItem('savedCharacters', JSON.stringify(res.characters));
+
+    updateSavedCharacters(res.characters);
+
     setShowDropdown(false);
     setShowSignIn(false);
     handleSetSignedIn();
@@ -77,7 +88,9 @@ const Header = ({ currentView, totalWeight, signedIn, handleSetSignedIn, selectC
         <div className="wrapper">
           <HeaderCreateCharacter totalWeight={totalWeight} />
           <Print selectCurrentView={selectCurrentView} />
-          <Save signedIn={signedIn} />
+          <Save
+            signedIn={signedIn}
+          />
         </div>
       )}
 
@@ -125,6 +138,7 @@ Header.propTypes = {
   signedIn: PropTypes.bool.isRequired,
   handleSetSignedIn: PropTypes.func.isRequired,
   selectCurrentView: PropTypes.func.isRequired,
+  updateSavedCharacters: PropTypes.func.isRequired,
 };
 
 export default Header;
