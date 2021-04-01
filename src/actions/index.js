@@ -213,6 +213,16 @@ export const updateSavedCharacters = (characters) => ({
   payload: characters,
 });
 
+export const addSavedCharacter = (character) => ({
+  type: 'CHARACTER_ADDED',
+  payload: character,
+});
+
+export const updateSavedCharacter = (character) => ({
+  type: 'CHARACTER_UPDATED',
+  payload: character,
+});
+
 export const hydrateCurrentCharacter = (character) => ({
   type: 'CURRENT_CHARACTER_HYDRATED',
   payload: character,
