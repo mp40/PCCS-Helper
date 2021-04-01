@@ -179,14 +179,20 @@ describe('Calling the Server', () => {
 
     it('should post new character', async () => {
       global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-        text: () => JSON.stringify(character()),
+        text: () => JSON.stringify({
+          message: 'saved character',
+          character: character(),
+        }),
       }));
 
       const res = await fetchPostCharacter(character());
 
       expect(fetch).toHaveBeenCalled();
 
-      expect(res).toEqual(character());
+      expect(res).toEqual({
+        message: 'saved character',
+        character: character(),
+      });
     });
 
     it('should return error on post /character failure', async () => {
@@ -215,7 +221,10 @@ describe('Calling the Server', () => {
 
     it('should put new character', async () => {
       global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-        text: () => JSON.stringify(character()),
+        text: () => JSON.stringify({
+          message: 'saved character',
+          character: character(),
+        }),
       }));
 
       const res = await fetchPutCharacter(character());
@@ -227,7 +236,10 @@ describe('Calling the Server', () => {
         expect.anything(),
       );
 
-      expect(res).toEqual(character());
+      expect(res).toEqual({
+        message: 'saved character',
+        character: character(),
+      });
     });
 
     it('should return error on put /character failure', async () => {
