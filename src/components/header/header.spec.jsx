@@ -249,6 +249,8 @@ describe('The Header', () => {
       }),
       );
 
+      const stub = jest.spyOn(Storage.prototype, 'removeItem').mockImplementation(() => {});
+
       await act(async () => {
         await waitOneTick(
           wrapper.find('HeaderButtons').invoke('handleSignOut')(),
@@ -257,6 +259,23 @@ describe('The Header', () => {
 
       expect(fetch).toHaveBeenCalled();
       expect(handleSetSignedIn).toHaveBeenCalled();
+    });
+
+    it('should clear session storage on sign out', async () => {
+      global.fetch = jest.fn(() => Promise.resolve({
+        text: () => JSON.stringify({ message: 'Cookie Cleared' }),
+      }),
+      );
+
+      const spy = jest.spyOn(Storage.prototype, 'removeItem').mockImplementation(() => {});
+
+      await act(async () => {
+        await waitOneTick(
+          wrapper.find('HeaderButtons').invoke('handleSignOut')(),
+        );
+      });
+
+      expect(spy).toHaveBeenCalledWith('savedCharacters');
     });
 
     it('should not sign out if error', async () => {

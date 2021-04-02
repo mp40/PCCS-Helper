@@ -77,6 +77,7 @@ const Header = (
     const res = await fetchSignOut();
 
     if (res.message === 'Cookie Cleared') {
+      sessionStorage.removeItem('savedCharacters');
       handleSetSignedIn();
     }
   };
