@@ -25,6 +25,7 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, addFirearm, firearms 
     }
 
     addFirearm(gunObj);
+    toggleOffWeaponCardViews('showFirearms');
   };
 
   const handleSetFilterByType = (type, calibre) => setFilteredGunArray(

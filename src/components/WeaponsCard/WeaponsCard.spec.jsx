@@ -72,7 +72,6 @@ describe('The Weapons Card', () => {
 
       wrapper.find('button[children="Add Firearm"]').simulate('click');
       wrapper.find('span[children="M16"]').simulate('click');
-      wrapper.find('.close').simulate('click');
       wrapper.find('span[children="M16"]').simulate('click');
 
       it('should be able to add custom magazine', () => {

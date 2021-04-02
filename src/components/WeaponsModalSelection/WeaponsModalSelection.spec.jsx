@@ -59,6 +59,12 @@ describe('Firearms selection', () => {
     expect(addFirearm).toHaveBeenCalledWith(mockM16());
   });
 
+  it('should be close modal when weapon selected', () => {
+    wrapper.find('span[children="M16"]').parent().simulate('click');
+
+    expect(toggleOffWeaponCardViews).toHaveBeenCalledWith('showFirearms');
+  });
+
   it('should not be possible to select weapon if has been previously selected', () => {
     wrapper.find('span[children="RPD"]').parent().simulate('click');
 
