@@ -8,7 +8,7 @@ import {
   fetchGetCharacters,
 } from './index';
 
-import { URL_CHARACTERS, URL_SAVED_CHARACTERS } from './constants';
+import { URL_CHARACTERS } from './constants';
 
 describe('Calling the Server', () => {
   describe('Sign Up', () => {
@@ -227,7 +227,7 @@ describe('Calling the Server', () => {
         }),
       }));
 
-      const res = await fetchPutCharacter(character());
+      const res = await fetchPutCharacter(character(), character().character_id);
 
       const endpoint = `${URL_CHARACTERS}/${character().character_id}`;
 
@@ -269,7 +269,7 @@ describe('Calling the Server', () => {
 
       const res = await fetchGetCharacters();
 
-      const endpoint = URL_SAVED_CHARACTERS;
+      const endpoint = URL_CHARACTERS;
 
       expect(fetch).toHaveBeenCalledWith(
         endpoint,

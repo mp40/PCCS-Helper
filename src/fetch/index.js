@@ -1,4 +1,4 @@
-import { URL_SIGNUP, URL_SIGNIN, URL_SIGNEDIN, URL_SIGNOUT, URL_CHARACTERS, URL_SAVED_CHARACTERS } from './constants';
+import { URL_SIGNUP, URL_SIGNIN, URL_SIGNEDIN, URL_SIGNOUT, URL_CHARACTERS } from './constants';
 
 export const fetchSignup = async (user) => {
   let res;
@@ -116,10 +116,10 @@ export const fetchPostCharacter = async (character) => {
   return res;
 };
 
-export const fetchPutCharacter = async (character) => {
+export const fetchPutCharacter = async (character, characterId) => {
   let res;
 
-  await fetch(`${URL_CHARACTERS}/${character.character_id}`, {
+  await fetch(`${URL_CHARACTERS}/${characterId}`, {
     method: 'put',
     body: JSON.stringify(character),
     headers: {
@@ -142,7 +142,7 @@ export const fetchPutCharacter = async (character) => {
 export const fetchGetCharacters = async () => {
   let res;
 
-  await fetch(URL_SAVED_CHARACTERS, {
+  await fetch(URL_CHARACTERS, {
     credentials: 'include',
     mode: 'cors',
     method: 'get',
