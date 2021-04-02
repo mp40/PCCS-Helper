@@ -32,6 +32,8 @@ const mapStateToProps = (state) => ({
     firearms: state.currentCharacter.firearms,
     grenades: state.currentCharacter.grenades,
     launchers: state.currentCharacter.launchers,
+    helmet: state.currentCharacter.helmet,
+    vest: state.currentCharacter.vest,
   },
 
 });

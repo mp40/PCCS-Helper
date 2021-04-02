@@ -1,11 +1,12 @@
 .a4GameSheet {
   display: none;
 }
+
 @media print {
-  .App-header,
-  .App-body {
+  .App {
     display: none;
   }
+
   .a4GameSheet {
     display: block;
     color-adjust: exact !important;
@@ -27,7 +28,6 @@
 .character-name {
   font-weight: bold;
   margin-top: -0.2cm;
-  /* margin-bottom: -0.3cm; */
   margin-bottom: 0.1cm;
 }
 

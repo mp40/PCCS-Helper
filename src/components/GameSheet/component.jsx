@@ -20,6 +20,7 @@ import { combatStatsShape, gearShape } from '../../helpers/proptypeShapes';
 import { getFirearmNameAndRecoil, prepareHandToHandWeaponList } from './data';
 
 import './GameSheet.css';
+import '../App/App.css';
 
 const GameSheet = ({ name, characterStats, combatStats, gear, selectCurrentView }) => {
   useEffect(() => {
