@@ -3,11 +3,36 @@ import { shallow } from 'enzyme';
 
 import SelectEquipment from './component';
 
+import * as equipmentModule from '../../../data/equipmentList';
+
 const mockBasicPouch = {
   name: 'Basic Pouch',
-  weight: 0.4,
-  qty: 1,
   tags: ['Load Bearing', 'ALICE'],
+};
+
+const mockAKChestRig = {
+  name: 'Type 56 AK Chest Rig',
+  tags: ['Load Bearing', 'Chest Rig', 'Vietnam'],
+};
+
+const mockBat = {
+  name: 'Baseball Bat',
+  tags: ['Melee'],
+};
+
+const mockMRE = {
+  name: 'MRE',
+  tags: ['Rations'],
+};
+
+const mockSKSChestRig = {
+  name: 'Type 56 SKS Chest Rig',
+  tags: ['Load Bearing', 'Chest Rig', 'Vietnam'],
+};
+
+const mockModernChestRig = {
+  name: 'Mock Modern Rig',
+  tags: ['Load Bearing', 'Chest Rig', 'Modern'],
 };
 
 describe('the equipment list', () => {
@@ -15,6 +40,16 @@ describe('the equipment list', () => {
   const handleRemoveAllTags = jest.fn();
   const handleSetShowFilters = jest.fn();
   const handleSetShowEquipment = jest.fn();
+
+  equipmentModule.equipment = jest.fn()
+    .mockImplementation(() => [
+      mockBasicPouch,
+      mockBat,
+      mockAKChestRig,
+      mockMRE,
+      mockSKSChestRig,
+      mockModernChestRig,
+    ]);
 
   const createWrapper = (equipment, filteredTags) => shallow(<SelectEquipment
     addEquipment={addEquipment}
@@ -59,6 +94,17 @@ describe('the equipment list', () => {
     expect(wrapper.find('div[children="Basic Pouch"]').exists()).toBe(true);
     expect(wrapper.find('div[children="Baseball Bat"]').exists()).toBe(false);
     expect(wrapper.find('div[children="MRE"]').exists()).toBe(false);
+  });
+
+  it('should filter by excluding equipment that do not match all filters', () => {
+    const wrapper = createWrapper([], ['Load Bearing', 'Chest Rig', 'Vietnam']);
+
+    expect(wrapper.find('div[children="Basic Pouch"]').exists()).toBe(false);
+    expect(wrapper.find('div[children="MRE"]').exists()).toBe(false);
+    expect(wrapper.find('div[children="Type 65 Canteen"]').exists()).toBe(false);
+    expect(wrapper.find('div[children="Mock Modern Rig"]').exists()).toBe(false);
+    expect(wrapper.find('div[children="Type 56 AK Chest Rig"]').exists()).toBe(true);
+    expect(wrapper.find('div[children="Type 56 SKS Chest Rig"]').exists()).toBe(true);
   });
 
   it('should not render the clear filters button if no filters', () => {

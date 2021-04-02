@@ -4,8 +4,9 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
-import { filterEquipment } from '../../../helpers/equipmentListFunctions';
 import { isNotValidObjectToAdd } from '../../../helpers/gaurds';
+
+import { filterEquipment } from './data';
 
 import styles from './styles.module.css';
 
