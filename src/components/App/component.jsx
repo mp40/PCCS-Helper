@@ -24,7 +24,7 @@ const App = ({ currentView, updateSavedCharacters }) => {
 
         let savedCharacters = JSON.parse(sessionStorage.getItem('savedCharacters'));
 
-        if (savedCharacters === null) {
+        if (!savedCharacters) {
           const getSavedCharactersResponse = await fetchGetCharacters();
           savedCharacters = getSavedCharactersResponse.characters;
           sessionStorage.setItem('savedCharacters', JSON.stringify(savedCharacters));
@@ -42,19 +42,21 @@ const App = ({ currentView, updateSavedCharacters }) => {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <Header signedIn={signedIn} handleSetSignedIn={handleSetSignedIn} />
-      </header>
-      <div className="App-body">
-        {currentView === 'home' && <HomePage />}
-        {(currentView === 'createChar' || currentView === 'printRefSheet') && (
+    <>
+      <div className="App">
+        <header className="App-header">
+          <Header signedIn={signedIn} handleSetSignedIn={handleSetSignedIn} />
+        </header>
+        <div className="App-body">
+          {currentView === 'home' && <HomePage />}
+          {(currentView === 'createChar' || currentView === 'printRefSheet') && (
           <CharacterGeneration />
-        )}
+          )}
+          {currentView === 'playCharacter' && <LoadedCharacter />}
+        </div>
       </div>
       {currentView === 'printRefSheet' && <GameSheet />}
-      {currentView === 'playCharacter' && <LoadedCharacter />}
-    </div>
+    </>
   );
 };
 
