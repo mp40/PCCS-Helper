@@ -59,8 +59,8 @@ const HeaderSaveModal = (
     setShowSaveCharacter(false);
   };
 
-  const handleUpdateCharacter = async () => {
-    const res = await fetchPutCharacter(buildRequestPayload(currentCharacter));
+  const handleUpdateCharacter = async (characterId) => {
+    const res = await fetchPutCharacter(buildRequestPayload(currentCharacter), characterId);
 
     if (res.error) {
       setShowError(true);

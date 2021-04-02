@@ -8,6 +8,8 @@ import ConnectedHeaderSaveModal from '.';
 
 import { buildRequestPayload } from './data';
 
+import { URL_CHARACTERS } from '../../../../fetch/constants';
+
 import { getStore, testM1911A1WithMods, testM72 } from '../../../../helpers/testHelpers';
 import { NewCharacter } from '../../../../reducers/newCharacter';
 import { MockState } from '../../../../reducers/mockState';
@@ -46,6 +48,7 @@ const character = () => {
   const newCharacter = new NewCharacter();
 
   return { ...newCharacter,
+    character_id: 1,
     equipment: [{ name: 'test eqp', qty: 1 }],
     firearms: [testM1911A1WithMods()],
     grenades: [grenade()],
@@ -268,9 +271,14 @@ describe('Save Character Modal', () => {
           } }),
       }));
 
+      const endpoint = URL_CHARACTERS;
+
       wrapper.find('span[children="Biggles"]').parent().simulate('click');
 
-      expect(fetch).toHaveBeenCalled();
+      expect(fetch).toHaveBeenCalledWith(
+        `${endpoint}/1`,
+        expect.anything(),
+      );
     });
 
     it('should update the character data on frontend when put character', async () => {
