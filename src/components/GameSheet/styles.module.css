@@ -1,0 +1,94 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.7cm 1.5cm 0.5cm;
+  color: black;
+}
+
+.main {
+  margin-right: 0.5cm;
+  flex: 1;
+}
+
+.name {
+  font-weight: bold;
+  margin-top: -0.2cm;
+  margin-bottom: 0.1cm;
+}
+
+.firearm {
+  display: flex;
+}
+
+.firearm > div:first-of-type > p {
+  font-weight: bold;
+  margin: 0 0 0.1cm 0;
+}
+
+.firearm > div:nth-of-type(2) {
+  margin: 0.6cm 0 0 0.5cm;
+  border: 1px solid black;
+  flex-grow: 1;
+  padding: 0.2cm;
+}
+
+.mainLower {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 0.5cm;
+}
+
+.left {
+  width: 100%;
+}
+
+.infoAndActions {
+  width: 100%;
+  display: flex;
+}
+
+.infoAndActions > div {
+  margin-right: 0.2cm;
+  width: 9cm;
+}
+
+.infoAndActions > div > div:nth-of-type(1) {
+  margin-right: 0.2cm;
+}
+
+.infoAndActions > table {
+  flex-grow: 1;
+}
+
+.armourReactionKnockoutRow {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5cm;
+}
+
+.armourReactionKnockoutRow > table {
+  flex-grow: 1;
+}
+
+.armourReactionKnockoutRow > div:nth-of-type(1) {
+  margin: 0 0.2cm;
+  flex-grow: 1;
+  height: fit-content;
+}
+
+.armourReactionKnockoutRow > div:nth-of-type(2) {
+  flex-grow: 1;
+}
+
+.grenades {
+  width: 3.5cm;
+}
+
+.rangeAndOdds {
+  display: flex;
+}
+
+.rangeAndOdds > div:nth-of-type(1) {
+  margin-right: 0.1cm;
+}

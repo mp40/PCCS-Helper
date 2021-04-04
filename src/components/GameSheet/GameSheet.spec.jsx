@@ -1,5 +1,7 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
+
+import { act } from 'react-dom/test-utils';
 
 import { testFAMAS } from '../../helpers/testHelpers';
 
@@ -44,19 +46,42 @@ describe('<GameSheet>', () => {
   const selectCurrentView = jest.fn();
 
   describe('the gamesheet lifecycle', () => {
-    const wrapper = mount(
-      <GameSheet
-        name="Biggles"
-        characterStats={getCharacterStats()}
-        combatStats={getCombatStats()}
-        gear={gearDouble()}
-        selectCurrentView={selectCurrentView}
-      />);
+    let useEffect;
+    let wrapper;
+    let spySelectCurrentView;
 
-    const spySelectCurrentView = jest.spyOn(wrapper.props(), 'selectCurrentView');
+    const waitOneTick = (simulate) => new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(simulate);
+      }, 0);
+    });
 
-    it('should render', () => {
-      expect(wrapper.exists()).toBe(true);
+    const mockUseEffect = () => {
+      useEffect.mockImplementationOnce((f) => f());
+    };
+
+    beforeEach(async () => {
+      useEffect = jest.spyOn(React, 'useEffect');
+
+      mockUseEffect();
+
+      await act(async () => {
+        spySelectCurrentView = jest.fn();
+
+        await waitOneTick((wrapper = await shallow(
+          <GameSheet
+            name="Biggles"
+            characterStats={getCharacterStats()}
+            combatStats={getCombatStats()}
+            gear={gearDouble()}
+            selectCurrentView={spySelectCurrentView}
+          />,
+        )));
+      });
+    });
+
+    afterEach(() => {
+      jest.clearAllMocks();
     });
 
     it('should call window.print after rendering', () => {
@@ -64,33 +89,31 @@ describe('<GameSheet>', () => {
     });
 
     it('should call selectCurrentView with "createChar"', () => {
-      expect(spySelectCurrentView).toHaveBeenCalled();
+      expect(spySelectCurrentView).toHaveBeenCalledWith('createChar');
     });
   });
 
   describe('the character name', () => {
-    it('should not render the character name line if name does not exist', () => {
-      const wrapper = shallow(<GameSheet
-        name=""
-        characterStats={getCharacterStats()}
-        combatStats={getCombatStats()}
-        gear={gearDouble()}
-        selectCurrentView={selectCurrentView}
-      />);
+    const getWrapper = (name = '') => shallow(<GameSheet
+      name={name}
+      characterStats={getCharacterStats()}
+      combatStats={getCombatStats()}
+      gear={gearDouble()}
+      selectCurrentView={selectCurrentView}
+    />,
 
-      expect(wrapper.find('.character-name').exists()).toBe(false);
+    );
+
+    it('should not render the character name line if name does not exist', () => {
+      const wrapper = getWrapper();
+
+      expect(wrapper.find('.name').exists()).toBe(false);
     });
 
     it('should render the character name', () => {
-      const wrapper = shallow(<GameSheet
-        name="Biggles"
-        characterStats={getCharacterStats()}
-        combatStats={getCombatStats()}
-        gear={gearDouble()}
-        selectCurrentView={selectCurrentView}
-      />);
+      const wrapper = getWrapper('Biggles');
 
-      expect(wrapper.find('.character-name').text()).toContain('Name: Biggles');
+      expect(wrapper.find('.name').text()).toContain('Name: Biggles');
     });
   });
 
@@ -114,7 +137,7 @@ describe('<GameSheet>', () => {
     });
   });
 
-  describe('combat stats', () => {
+  describe('character combat stats', () => {
     const wrapper = shallow(<GameSheet
       name="Biggles"
       characterStats={getCharacterStats()}
@@ -123,34 +146,8 @@ describe('<GameSheet>', () => {
       selectCurrentView={selectCurrentView}
     />);
 
-    const wrapperCombatStats = wrapper.find('CombatStatsInfo').dive();
-
     it('should render combat stats info box', () => {
-      expect(wrapper.find('CombatStatsInfo').exists()).toBe(true);
-    });
-
-    it('should render base speed', () => {
-      expect(wrapperCombatStats.text()).toContain('Base Speed:2');
-    });
-
-    it('should render max speed', () => {
-      expect(wrapperCombatStats.text()).toContain('Max Speed:6');
-    });
-
-    it('should render knockout value', () => {
-      expect(wrapperCombatStats.text()).toContain('Knockout Val:9');
-    });
-
-    it('should render gun combat level', () => {
-      expect(wrapperCombatStats.text()).toContain('Gun Combat:4');
-    });
-
-    it('should render hand to hand level', () => {
-      expect(wrapperCombatStats.text()).toContain('Melee Combat:1');
-    });
-
-    it('should render damage bonus', () => {
-      expect(wrapperCombatStats.text()).toContain('Damage Bonus:1.5');
+      expect(wrapper.find('Connect(CharacterInfo)').exists()).toBe(true);
     });
   });
 

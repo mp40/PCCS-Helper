@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { PropTypes } from 'prop-types';
 
 import WeaponStatsTable from '../WeaponStatsTable';
-import CombatStatsInfo from './CombatStatsInfo';
-import ActionTable from '../ActionsCard/ActionTable';
+import CharacterInfo from '../CharacterInfo';
+import ActionsTable from '../ActionsTable';
 import HandToHandTable from '../HandToHandTable/HandToHandTable';
 import BodyArmourTable from '../BodyArmourTable';
 import FirearmNotes from '../FirearmNotes';
 import KnockoutTable from '../KnockoutTable';
-import ReactionTable from './subComponents/ReactionTable/ReactionTable';
+import ReactionTable from '../reactionTable';
 import GrenadeList from './subComponents/GrenadeList/GrenadeList';
 import RangeLookUp from './subComponents/rightRangeOddsSideBar/RangeLookUp';
 import HitChanceLookUp from './subComponents/rightRangeOddsSideBar/HitChanceLookUp';
@@ -22,8 +22,10 @@ import { getFirearmNameAndRecoil, prepareHandToHandWeaponList } from './data';
 import './GameSheet.css';
 import '../App/App.css';
 
+import styles from './styles.module.css';
+
 const GameSheet = ({ name, characterStats, combatStats, gear, selectCurrentView }) => {
-  useEffect(() => {
+  React.useEffect(() => {
     window.print();
     selectCurrentView('createChar');
   });
@@ -32,59 +34,55 @@ const GameSheet = ({ name, characterStats, combatStats, gear, selectCurrentView 
 
   return (
     <div className="a4GameSheet">
-      <div className="a4ContentContainer">
-        <div className="main-content-right">
+      <div className={styles.wrapper}>
+        <div className={styles.main}>
           {name.length > 0 && (
-          <div className="character-name">
+          <div className={styles.name}>
             {`Name: ${name}`}
           </div>
           )}
-          <div style={{ display: 'flex' }}>
+          <div className={styles.firearm}>
             <div>
-              <p className="firearm-name">{getFirearmNameAndRecoil(gear.firearms[0], characterStats.gunLevel)}</p>
+              <p>{getFirearmNameAndRecoil(gear.firearms[0], characterStats.gunLevel)}</p>
               <WeaponStatsTable weapon={gear.firearms[0]} sal={combatStats.SAL} size="a4" />
             </div>
-            <div className="firearm-notes-a4-wrapper">
-              <FirearmNotes gunObj={gear.firearms[0]} />
-            </div>
+            <FirearmNotes gunObj={gear.firearms[0]} />
           </div>
-          <div style={{ display: 'flex', marginTop: '.5cm' }}>
-            <div className="game-data-col-a">
-              <CombatStatsInfo
-                combatStats={combatStats}
-                gunLevel={characterStats.gunLevel}
-                handLevel={characterStats.handLevel}
-              />
-              <div className="ActionTable-a4-container">
-                <ActionTable
-                  gunCombatActions={combatStats.gunCombatActions}
-                  handCombatActions={combatStats.handCombatActions}
-                  className="A4"
-                />
+          <div className={styles.mainLower}>
+            <div className={styles.left}>
+
+              <div className={styles.infoAndActions}>
+                <CharacterInfo />
+                <ActionsTable />
               </div>
+
               { meleeWeaponList.length > 0 && (
               <HandToHandTable meleeList={meleeWeaponList} meleeLevel={characterStats.handLevel} />
               )}
-              <BodyArmourTable helmet={gear.helmet} vest={gear.vest} />
-              <div className="reaction-table-a4-wrapper" style={{ marginLeft: '0.2cm' }}>
+
+              <div className={styles.armourReactionKnockoutRow}>
+                <BodyArmourTable helmet={gear.helmet} vest={gear.vest} />
                 <ReactionTable sal={combatStats.SAL} />
-              </div>
-              <div className="knockout-table-a4-wrapper">
                 <KnockoutTable knockoutValue={combatStats.knockoutValue} />
               </div>
+
               {gear.grenades.length > 0 && (
-              <div className="grenade-list-a4-wrapper">
-                <GrenadeList grenades={gear.grenades} />
-              </div>
+                <div className={styles.grenades}>
+                  <GrenadeList grenades={gear.grenades} />
+                </div>
               )}
+
             </div>
-            <div className="alm-mods-col">
+
+            <div className={styles.right}>
               <SituationAndStanceModTable />
               <TargetSizeTable />
             </div>
+
           </div>
         </div>
-        <div className="range-odds-flex-container">
+
+        <div className={styles.rangeAndOdds}>
           <RangeLookUp />
           <HitChanceLookUp />
         </div>
