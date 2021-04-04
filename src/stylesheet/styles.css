@@ -4,23 +4,11 @@
   border-radius: 3px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-}
-
-.--collapseBorder {
-  border-collapse: collapse;
-}
-
-.--tableContainer {
-  display: inline-block;
-  margin-top: 0.5rem;
-  margin-left: 2rem;
   padding: 1rem;
-  width: 80%;
-  border-collapse: collapse;
 }
 
-.--tableContainer:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+.--card > table {
+  border-collapse: collapse;
 }
 
 .--tableHeading {
@@ -46,12 +34,7 @@
 }
 
 .--gearCard {
-  display: inline-block;
-  margin-top: 2rem;
-  margin-left: 3rem;
   padding: 0.25rem 1rem;
-  width: 36%;
-  height: 28.5rem;
   overflow: auto;
 }
 
@@ -85,7 +68,7 @@
   justify-content: space-between;
 }
 
-.--weaponSelectCard > div:nth-of-type(3n+2) {
+.--weaponSelectCard > div:nth-of-type(3n + 2) {
   margin: 0 15px;
 }
 

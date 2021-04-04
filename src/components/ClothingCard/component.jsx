@@ -32,7 +32,7 @@ class ClothingCard extends Component {
 
     renderUniformCard = (uniform, currentUniformWeight) => (
       <div className="--card">
-        <table className="--tableContainer">
+        <table>
           <thead>
             {renderTableHeading()}
             <tr
@@ -48,7 +48,7 @@ class ClothingCard extends Component {
     )
 
     renderUniformSelection = () => (
-      <div className="--tableContainer --card">
+      <div className="--card">
         <table>
           <thead>
             {renderTableHeading()}

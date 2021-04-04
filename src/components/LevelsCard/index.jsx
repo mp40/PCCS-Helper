@@ -6,8 +6,8 @@ import text from './data';
 import './LevelsCard.css';
 
 const LevelsCard = ({ levelType, children }) => (
-  <div className="--tableContainer --card levelsCard">
-    <table className="--collapseBorder">
+  <div className="--card levelsCard">
+    <table>
       <tbody>
         <tr>
           <th className="--tableHeading">{text[levelType].heading}</th>

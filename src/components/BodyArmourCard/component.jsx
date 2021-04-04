@@ -30,7 +30,7 @@ const BodyArmourCard = ({ helmet, vest, changeHelmet, changeVest }) => {
 
   return (
     <div className="--card">
-      <table className="--tableContainer">
+      <table>
         <thead>
           <tr>
             <th className="--tableHeading">Body Armour</th>
