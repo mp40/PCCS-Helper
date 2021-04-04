@@ -29,8 +29,8 @@ const BodyArmourCard = ({ helmet, vest, changeHelmet, changeVest }) => {
   );
 
   return (
-    <>
-      <table className="--tableContainer --card">
+    <div className="--card">
+      <table className="--tableContainer">
         <thead>
           <tr>
             <th className="--tableHeading">Body Armour</th>
@@ -50,7 +50,7 @@ const BodyArmourCard = ({ helmet, vest, changeHelmet, changeVest }) => {
         handleDispatch={handleDispatch}
       />
       )}
-    </>
+    </div>
   );
 };
 

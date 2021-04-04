@@ -1,7 +1,7 @@
 import React from 'react';
 import { armourShape } from '../../helpers/proptypeShapes';
 
-import './BodyArmourTable.css';
+import styles from './styles.module.css';
 
 const getDefaultArmourValues = (name) => ({ name, pf: '0', bpf: '0', ac: '-' });
 
@@ -14,7 +14,7 @@ const renderArmourRow = (armour) => (
 );
 
 const BodyArmourTable = ({ helmet, vest }) => (
-  <table className="BodyArmourTable">
+  <table className={styles.wrapper}>
     <thead>
       <tr>
         {['Body Armour', 'PF', 'BPF', 'AC'].map((value) => (
