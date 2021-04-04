@@ -9,17 +9,18 @@ import WeaponsCard from '../WeaponsCard';
 import BodyArmourCard from '../BodyArmourCard';
 import NameCard from '../NameCard';
 
-import './CharacterGeneration.css';
+import styles from './styles.module.css';
 
 const CharacterGeneration = () => (
-  <div className="createCharContainer">
+  <div className={styles.wrapper}>
     <div>
       <NameCard />
+      <ClothingCard />
+      <BodyArmourCard />
       <AttributeCard />
       <CombatCard />
       <ActionsCard />
-      <ClothingCard />
-      <BodyArmourCard />
+
     </div>
     <EquipmentCard />
     <WeaponsCard />
