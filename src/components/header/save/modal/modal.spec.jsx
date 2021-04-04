@@ -100,6 +100,10 @@ describe('Save Character Modal', () => {
     });
 
     it('should show last update timestamp', () => {
+      jest.spyOn(Date.prototype, 'getFullYear').mockImplementation(() => 2020);
+      jest.spyOn(Date.prototype, 'getMonth').mockImplementation(() => 10);
+      jest.spyOn(Date.prototype, 'getDate').mockImplementation(() => 20);
+
       wrapper = getWrapper([
         mockCharacter1,
       ]);
