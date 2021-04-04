@@ -31,18 +31,20 @@ class ClothingCard extends Component {
     }
 
     renderUniformCard = (uniform, currentUniformWeight) => (
-      <table className="--tableContainer --card">
-        <thead>
-          {renderTableHeading()}
-          <tr
-            className="--selectableRow uniformStats"
-            onClick={this.toggleSelectUniform}
-          >
-            <td className="currentUniform">{uniform}</td>
-            <td className="uniformWeight">{currentUniformWeight}</td>
-          </tr>
-        </thead>
-      </table>
+      <div className="--card">
+        <table className="--tableContainer">
+          <thead>
+            {renderTableHeading()}
+            <tr
+              className="--selectableRow uniformStats"
+              onClick={this.toggleSelectUniform}
+            >
+              <td className="currentUniform">{uniform}</td>
+              <td className="uniformWeight">{currentUniformWeight}</td>
+            </tr>
+          </thead>
+        </table>
+      </div>
     )
 
     renderUniformSelection = () => (
