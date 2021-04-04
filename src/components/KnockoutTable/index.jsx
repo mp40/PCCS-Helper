@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
-import './KnockoutTable.css';
+import styles from './styles.module.css';
 
 const multiplyKV = (multiplier) => (knockoutValue) => knockoutValue * multiplier;
 
@@ -11,20 +11,20 @@ const calculatePD = [multiplyKV(0.1), multiplyKV(0.1), multiplyKV(1), multiplyKV
 const getComparisonSymbol = (index) => (index === 0 ? '<' : '>');
 
 const renderRowValues = (knockoutValue) => knockoutOdds.map((percentage, index) => (
-  <div className="kv-table-row" key={`${knockoutOdds[index]}percent`}>
-    <div>{`${getComparisonSymbol(index)} ${calculatePD[index](knockoutValue)}`}</div>
-    <div>{percentage}</div>
+  <div key={`${knockoutOdds[index]}percent`}>
+    <span>{`${getComparisonSymbol(index)} ${calculatePD[index](knockoutValue)}`}</span>
+    <span>{percentage}</span>
   </div>
 ));
 
 const KnockoutTable = ({ knockoutValue }) => (
-  <div className="kv-table">
-    <div className="kv-table-heading">
-        KV Table
-    </div>
-    <div className="kv-table-row">
-      <div>PD</div>
-      <div>Odds</div>
+  <div className={styles.wrapper}>
+    <span>
+      KV Table
+    </span>
+    <div>
+      <span>PD</span>
+      <span>Odds</span>
     </div>
     {renderRowValues(knockoutValue)}
   </div>

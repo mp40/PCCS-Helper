@@ -1,18 +1,19 @@
 import React from 'react';
-import ActionTable from './ActionTable';
+
+import ActionsTable from '../ActionsTable';
+
 import { combatStatsShape } from '../../helpers/proptypeShapes';
 
+import styles from './styles.module.css';
+
 const ActionsCard = ({ combatStats }) => (
-  <div className="--card combatDataContainer">
-    <ActionTable
-      gunCombatActions={combatStats.gunCombatActions}
-      handCombatActions={combatStats.handCombatActions}
-    />
-    <div className="additionalCombatData">
+  <div className={`--card ${styles.wrapper}`}>
+    <ActionsTable />
+    <div className={styles.movement}>
       {[`BS ${combatStats.baseSpeed}`, `MS ${combatStats.maxSpeed}`, `DB ${combatStats.damageBonus}`].map((value) => (
-        <div key={value}>
+        <span key={value}>
           {value}
-        </div>
+        </span>
       ))}
     </div>
   </div>

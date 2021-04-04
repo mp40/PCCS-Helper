@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import CombatCard from './component';
+import ActionsCard from './component';
 
 describe('rendering combat actions', () => {
   const combatStats = {
@@ -12,18 +12,15 @@ describe('rendering combat actions', () => {
     handCombatActions: 4,
   };
 
-  const wrapper = shallow(<CombatCard combatStats={combatStats} />);
+  const wrapper = shallow(<ActionsCard combatStats={combatStats} />);
 
-  it('should render combat actions', () => {
-    const actionTable = wrapper.find('ActionTable').dive();
-
-    expect(actionTable.text()).toContain('Gun2121');
-    expect(actionTable.text()).toContain('Hand1111');
+  it('should render combat actions table', () => {
+    expect(wrapper.find('Connect(ActionsTable)').exists()).toBe(true);
   });
 
   it('should render movement data and damage bonus', () => {
-    expect(wrapper.find('.additionalCombatData').text()).toContain('BS 2');
-    expect(wrapper.find('.additionalCombatData').text()).toContain('MS 4');
-    expect(wrapper.find('.additionalCombatData').text()).toContain('DB 1.5');
+    expect(wrapper.find('.movement').text()).toContain('BS 2');
+    expect(wrapper.find('.movement').text()).toContain('MS 4');
+    expect(wrapper.find('.movement').text()).toContain('DB 1.5');
   });
 });
