@@ -5,6 +5,12 @@
     text-align: center;
 }
 
+.wrapper > h1 {
+  color: #effdf0;
+  text-shadow: 2px 5px #292b28;
+  margin: 2rem 0;
+}
+
 .wrapper > button {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     border: 1.5px solid var(--usaf-light-grey);
