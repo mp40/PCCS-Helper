@@ -28,31 +28,13 @@
   transition: 0.3s;
 }
 
-.--reverseHeading {
-  background: rgb(85, 83, 83);
-  color: whitesmoke;
-}
-
 .--gearCard {
   padding: 0.25rem 1rem;
   overflow: auto;
 }
 
-.--gearCard:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-}
-
 .--gearCard > div {
   margin-bottom: 0.5rem;
-}
-
-.--gearTable {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.--gearTableHeadingRow > th:nth-of-type(n + 2) {
-  width: 9.5%;
 }
 
 .--weaponSelectCard {
@@ -70,16 +52,6 @@
 
 .--weaponSelectCard > div:nth-of-type(3n + 2) {
   margin: 0 15px;
-}
-
-.--modalOverlay {
-  position: absolute;
-  top: 0;
-  bottom: -0.5rem;
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.3);
-  z-index: 1;
 }
 
 .--button {
