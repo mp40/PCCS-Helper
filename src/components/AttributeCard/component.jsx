@@ -27,7 +27,7 @@ const AttributeCard = ({
   ];
 
   return (
-    <LevelsCard className="attributeLevelCard" levelType="attribute">
+    <LevelsCard levelType="attribute">
       {[str, int, wil, hlt, agi].map((stat, index) => (
         <StatInput
           statLevel={stat}
