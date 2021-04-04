@@ -1,6 +1,7 @@
 .App {
   background-color: #aeb885;
   min-height: 100vh;
+  padding-top: 4rem;
 }
 
 .App-header {
@@ -11,7 +12,9 @@
   font-size: 1.2rem;
 }
 
-button:focus { outline: none; }
+button:focus {
+  outline: none;
+}
 
 @media screen and (max-width: 1024px) {
   .App-header {
