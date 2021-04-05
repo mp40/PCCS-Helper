@@ -1,6 +1,6 @@
 .App {
   background-color: #aeb885;
-  min-height: 100vh;
+  min-height: calc(100vh - 4rem);
   padding-top: 4rem;
 }
 
