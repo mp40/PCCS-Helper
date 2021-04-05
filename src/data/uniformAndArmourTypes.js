@@ -1,8 +1,8 @@
-const uniformWeights = {
+const uniformWeights = Object.freeze({
   Normal: 5,
   Tropical: 4.5,
   Winter: 7,
-};
+});
 
 const helmetStats = () => [
   {
