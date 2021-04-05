@@ -1,84 +1,51 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { findUniformWeight } from '../../helpers/actionHelpers';
 
-import './ClothingCard.css';
+import SelectUniformModal from './modal';
 
-const renderTableHeading = () => (
-  <tr className="uniformTableHeader">
-    <th className="--tableHeading">Uniform</th>
-    <th className="--tableValue">lbs</th>
-  </tr>
-);
+import { uniformWeights } from '../../data/uniformAndArmourTypes';
 
-class ClothingCard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showUniformSelect: false,
-    };
-  }
+import styles from './styles.module.css';
 
-    toggleSelectUniform = () => {
-      this.setState({ showUniformSelect: true });
-    }
+const ClothingCard = ({ uniform, changeUniform }) => {
+  const [showSelectModal, setShowSelectModal] = useState(false);
 
-    handleChangeUniform = (event) => {
-      const { changeUniform } = this.props;
-      const newUniform = event.target.value;
-      changeUniform(newUniform);
-      this.setState({ showUniformSelect: false });
-    }
+  const handleChangeUniform = (newUniform) => {
+    changeUniform(newUniform);
+    setShowSelectModal(false);
+  };
 
-    renderUniformCard = (uniform, currentUniformWeight) => (
-      <div className="--card">
-        <table>
-          <thead>
-            {renderTableHeading()}
-            <tr
-              className="--selectableRow uniformStats"
-              onClick={this.toggleSelectUniform}
-            >
-              <td className="currentUniform">{uniform}</td>
-              <td className="uniformWeight">{currentUniformWeight}</td>
-            </tr>
-          </thead>
-        </table>
-      </div>
-    )
+  return (
+    <div className="--card">
+      <table className={styles.table}>
 
-    renderUniformSelection = () => (
-      <div className="--card">
-        <table>
-          <thead>
-            {renderTableHeading()}
-          </thead>
-        </table>
-        <div>
-          <select className="uniformDropdownSelector" onChange={this.handleChangeUniform}>
-            {['Select Uniform', 'Normal', 'Tropical', 'Winter'].map((value) => (
-              <option key={value}>{value}</option>
-            ))}
-          </select>
-        </div>
-      </div>
-    )
+        <thead>
+          <tr>
+            <th className="--tableHeading">Uniform</th>
+            <th className="--tableValue">lbs</th>
+          </tr>
+        </thead>
 
-    render() {
-      const { uniform } = this.props;
-      const { showUniformSelect } = this.state;
-      const currentUniformWeight = findUniformWeight(uniform);
+        <tbody>
+          <tr
+            className="--selectableRow"
+            onClick={() => setShowSelectModal(true)}
+          >
+            <td>{uniform}</td>
+            <td>{uniformWeights[uniform]}</td>
+          </tr>
+        </tbody>
 
-      if (!showUniformSelect) {
-        return (
-          this.renderUniformCard(uniform, currentUniformWeight)
-        );
-      }
-      return (
-        this.renderUniformSelection()
-      );
-    }
-}
+      </table>
+      {showSelectModal && (
+      <SelectUniformModal
+        handleChangeUniform={handleChangeUniform}
+        setShowSelectModal={setShowSelectModal}
+      />
+      )}
+    </div>
+  );
+};
 
 ClothingCard.propTypes = {
   changeUniform: PropTypes.func,

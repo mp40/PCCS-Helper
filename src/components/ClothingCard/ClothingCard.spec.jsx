@@ -17,12 +17,12 @@ describe('the Clothing Card', () => {
       </Provider>,
     );
 
-    const selectUniform = (value) => wrapper.find('.uniformDropdownSelector').simulate('change', { target: { value } });
-
     it('should be possible to change uniform types', () => {
-      wrapper.find('.uniformStats').simulate('click');
-      selectUniform('Tropical');
-      expect(wrapper.find('.uniformStats').text()).toEqual('Tropical4.5');
+      wrapper.find('tbody').find('tr').simulate('click');
+
+      wrapper.find('.uniforms').find('button').at(1).simulate('click');
+
+      expect(wrapper.find('tbody').find('tr').text()).toBe('Tropical4.5');
     });
   });
 });
