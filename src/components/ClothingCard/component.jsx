@@ -48,7 +48,7 @@ const ClothingCard = ({ uniform, changeUniform }) => {
 };
 
 ClothingCard.propTypes = {
-  changeUniform: PropTypes.func,
+  changeUniform: PropTypes.func.isRequired,
   uniform: PropTypes.string.isRequired,
 };
 
