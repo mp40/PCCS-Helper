@@ -3,9 +3,9 @@ export const selectCurrentView = (view) => ({
   payload: view,
 });
 
-export const viewCreateCharacter = (view) => ({
+export const viewCreateCharacter = () => ({
   type: 'CREATE_CHARACTER_VIEWED',
-  payload: view,
+  payload: 'createChar',
 });
 
 export const modifyGunCombatLevel = (newGunCombatLevel) => ({

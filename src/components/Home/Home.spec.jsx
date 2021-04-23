@@ -16,7 +16,7 @@ describe('Home Page', () => {
   it('should render the correct page when Create Charcter is clicked', () => {
     wrapper.find('button[children="Create Character"]').simulate('click');
 
-    expect(viewCreateCharacter).toHaveBeenCalledWith('createChar');
+    expect(viewCreateCharacter).toHaveBeenCalled();
   });
 
   it('should hide load character modal by default', () => {

@@ -17,7 +17,7 @@ const HomePage = ({ viewCreateCharacter }) => {
       </h1>
       <button
         type="button"
-        onClick={() => viewCreateCharacter('createChar')}
+        onClick={() => viewCreateCharacter()}
       >
         Create Character
       </button>
