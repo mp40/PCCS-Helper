@@ -1,0 +1,44 @@
+.modal {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: #000000;
+  opacity: 50%;
+  z-index: 100;
+}
+
+.card {
+  z-index: 101;
+  position: fixed;
+  top: 4.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 60px);
+}
+
+.checkbox {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.checkbox > span {
+  display: block;
+}
+
+.done {
+  margin: 1.25rem auto 0;
+  display: block;
+  border: none;
+  border-radius: 3px;
+  background-color: var(--usaf-light-grey);
+  color: var(--panzer-grey);
+  width: 6rem;
+  height: 2rem;
+  font-size: 1rem;
+  box-shadow: 0 0 1px 1px var(--london-grey);
+}
