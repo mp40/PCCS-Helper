@@ -77,6 +77,7 @@ export const hydrateCurrentCharacterReducer = (state, action) => {
       knockoutValue: calcKV(dehydratedCharacter.wil, highestCombatSkill),
       gunCombatActions: newGunCombatActions,
       handCombatActions: newMeleeCombatActions,
+      uniform: dehydratedCharacter.uniform,
       helmet,
       vest,
       equipment: dehydratedCharacter.equipment,
