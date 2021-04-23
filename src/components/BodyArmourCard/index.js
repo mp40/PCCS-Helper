@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
-import { changeHelmet, changeVest } from '../../actions';
 import BodyArmourCard from './component';
+
+import { changeHelmet, changeVest } from '../../actions';
 
 const mapStateToProps = (state) => ({
   helmet: state.currentCharacter.helmet || undefined,
