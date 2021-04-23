@@ -1,3 +1,8 @@
+import React from 'react';
+import { mount, shallow } from 'enzyme';
+
+import CharacterGeneration from './component';
+
 import { mountAppWithStore } from '../../helpers/testHelpers';
 
 describe('Selecting Charcter Generation', () => {
@@ -13,5 +18,28 @@ describe('Selecting Charcter Generation', () => {
     expect(wrapper.find('.updateAgility').text()).toBe('10');
     expect(wrapper.find('.updateGun').text()).toBe('0');
     expect(wrapper.find('.updateHand').text()).toBe('0');
+  });
+});
+
+describe('Character Generation', () => {
+  let wrapper;
+
+  const selectCurrentView = jest.fn();
+
+  beforeEach(() => {
+    wrapper = shallow(<CharacterGeneration
+      totalWeight={69}
+      selectCurrentView={selectCurrentView}
+      />);
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('should be possible to change to use characters', () => {
+    wrapper.find('button').simulate('click');
+
+    expect(selectCurrentView).toHaveBeenCalledWith('playCharacter');
   });
 });
