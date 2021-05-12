@@ -1,0 +1,88 @@
+.modal {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: #000000;
+  opacity: 50%;
+  z-index: 100;
+}
+
+.card {
+  z-index: 101;
+  position: fixed;
+  top: 4.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 60px);
+}
+
+.card > .title {
+  font-size: 1.25rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.card > .title:nth-of-type(1) {
+  margin-bottom: 0.33rem;
+}
+
+.card > .title:nth-of-type(3) {
+  margin-top: 1rem;
+}
+
+.lighting {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.lighting > button {
+  border: none;
+  border-radius: 3px;
+  background-color: var(--usaf-light-grey);
+  box-shadow: 0 0 1px 1px var(--london-grey);
+  width: calc(33.33% - 2px);
+  height: 2.5rem;
+  font-size: 1rem;
+  color: var(--panzer-grey);
+}
+
+.lighting > button:nth-of-type(n + 4) {
+  margin-top: 4px;
+}
+
+.lighting > button:nth-of-type(n + 2) {
+  margin-left: 3px;
+}
+
+.selected {
+  box-shadow: 0 0 1px 1px var(--golden-olive) !important;
+  background-color: var(--ivory) !important;
+}
+
+.checkbox {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.checkbox > span {
+  display: block;
+}
+
+.done {
+  margin: 1.25rem auto 0;
+  display: block;
+  border: none;
+  border-radius: 3px;
+  background-color: var(--usaf-light-grey);
+  color: var(--panzer-grey);
+  width: 6rem;
+  height: 2rem;
+  font-size: 1rem;
+  box-shadow: 0 0 1px 1px var(--london-grey);
+}
