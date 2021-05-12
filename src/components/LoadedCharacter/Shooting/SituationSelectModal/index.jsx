@@ -15,6 +15,26 @@ const SituationSelectModal = ({ list, bipod, foldingStock, setModal, weaponBased
     setWeaponBasedALM(updatedObject);
   };
 
+  const applyScreen = (key) => {
+    const bracedAndBipodSituations = ['braced', 'slingSupport', 'bipodBraced', 'bipodNotBraced'];
+    let block = false;
+
+    for (let i = 0; i < bracedAndBipodSituations.length; i += 1) {
+      if (weaponBasedALM[bracedAndBipodSituations[i]]) {
+        block = true;
+        break;
+      }
+    }
+
+    if (block === false) {
+      return false;
+    }
+
+    if (bracedAndBipodSituations.indexOf(key) > -1 && weaponBasedALM[key] === false) {
+      return true;
+    }
+  };
+
   return (
     <>
       <div className={styles.modal} />
@@ -25,6 +45,8 @@ const SituationSelectModal = ({ list, bipod, foldingStock, setModal, weaponBased
             <span>
               <CheckBox onClick={() => handleClick(situation.key)} isActive={weaponBasedALM[situation.key]} />
             </span>
+            {applyScreen(situation.key)
+             && <span className={styles.screen} />}
           </div>
         ))}
         <button type="button" className={styles.done} onClick={() => setModal(false)}>Done</button>

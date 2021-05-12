@@ -147,4 +147,106 @@ describe('Situation Select Modal', () => {
       expect(setModal).toHaveBeenCalledWith(false);
     });
   });
+
+  describe('Bipods And Bracing Options', () => {
+    it('should exclude other bipod and bracing options if bipod brace selected', async () => {
+      const state = { ...weaponBasedALMDouble };
+      state.bipodBraced = true;
+
+      const wrapper = getWrapper('rifles', true, false, state);
+
+      expect(
+        wrapper.find('span[children="Bipod Braced"]').closest('div').find('.screen').exists(),
+      ).toBe(false);
+
+      expect(
+        wrapper.find('span[children="Bipod Not Braced"]').closest('div').find('.screen').exists(),
+      ).toBe(true);
+      expect(
+        wrapper.find('span[children="Braced"]').closest('div').find('.screen').exists(),
+      ).toBe(true);
+      expect(
+        wrapper.find('span[children="Sling for Support"]').closest('div').find('.screen').exists(),
+      ).toBe(true);
+
+      expect(
+        wrapper.find('span[children="Hip Fire"]').closest('div').find('.screen').exists(),
+      ).toBe(false);
+    });
+
+    it('should exclude other bipod and bracing options if bipod not braced selected', async () => {
+      const state = { ...weaponBasedALMDouble };
+      state.bipodNotBraced = true;
+
+      const wrapper = getWrapper('rifles', true, false, state);
+
+      expect(
+        wrapper.find('span[children="Bipod Not Braced"]').closest('div').find('.screen').exists(),
+      ).toBe(false);
+
+      expect(
+        wrapper.find('span[children="Bipod Braced"]').closest('div').find('.screen').exists(),
+      ).toBe(true);
+      expect(
+        wrapper.find('span[children="Braced"]').closest('div').find('.screen').exists(),
+      ).toBe(true);
+      expect(
+        wrapper.find('span[children="Sling for Support"]').closest('div').find('.screen').exists(),
+      ).toBe(true);
+
+      expect(
+        wrapper.find('span[children="Hip Fire"]').closest('div').find('.screen').exists(),
+      ).toBe(false);
+    });
+
+    it('should exclude other bipod and bracing options if braced selected', async () => {
+      const state = { ...weaponBasedALMDouble };
+      state.braced = true;
+
+      const wrapper = getWrapper('rifles', true, false, state);
+
+      expect(
+        wrapper.find('span[children="Braced"]').closest('div').find('.screen').exists(),
+      ).toBe(false);
+
+      expect(
+        wrapper.find('span[children="Bipod Not Braced"]').closest('div').find('.screen').exists(),
+      ).toBe(true);
+      expect(
+        wrapper.find('span[children="Bipod Braced"]').closest('div').find('.screen').exists(),
+      ).toBe(true);
+      expect(
+        wrapper.find('span[children="Sling for Support"]').closest('div').find('.screen').exists(),
+      ).toBe(true);
+
+      expect(
+        wrapper.find('span[children="Hip Fire"]').closest('div').find('.screen').exists(),
+      ).toBe(false);
+    });
+
+    it('should exclude other bipod and bracing options if sling support selected', async () => {
+      const state = { ...weaponBasedALMDouble };
+      state.slingSupport = true;
+
+      const wrapper = getWrapper('rifles', true, false, state);
+
+      expect(
+        wrapper.find('span[children="Sling for Support"]').closest('div').find('.screen').exists(),
+      ).toBe(false);
+
+      expect(
+        wrapper.find('span[children="Bipod Not Braced"]').closest('div').find('.screen').exists(),
+      ).toBe(true);
+      expect(
+        wrapper.find('span[children="Braced"]').closest('div').find('.screen').exists(),
+      ).toBe(true);
+      expect(
+        wrapper.find('span[children="Bipod Braced"]').closest('div').find('.screen').exists(),
+      ).toBe(true);
+
+      expect(
+        wrapper.find('span[children="Hip Fire"]').closest('div').find('.screen').exists(),
+      ).toBe(false);
+    });
+  });
 });
