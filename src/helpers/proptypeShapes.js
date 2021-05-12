@@ -24,7 +24,7 @@ export const gunObjShape = PropTypes.shape({
   length: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   weight: PropTypes.number,
   rt: PropTypes.number,
-  rof: PropTypes.string,
+  rof: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   mag: PropTypes.array,
   kd: PropTypes.number,
   sab: PropTypes.number,
