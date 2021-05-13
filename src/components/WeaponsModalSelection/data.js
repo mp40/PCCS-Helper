@@ -35,7 +35,7 @@ export const filterableCalibers = () => [
 ];
 
 export const filterCalibersFromType = (type, caliber) => {
-  if (caliber === 'All') {
+  if (caliber === 'All Calibres') {
     return firearmLists(type);
   }
 

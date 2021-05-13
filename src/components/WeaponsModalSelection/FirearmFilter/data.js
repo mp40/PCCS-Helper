@@ -1,19 +1,19 @@
 export const types = [
-  { value: 'All', className: 'selectAllFilter', key: 'All' },
-  { value: 'Rifles', className: 'selectRiflesFilter', key: 'Rifles' },
-  { value: 'Pistols', className: 'selectPistolsFilter', key: 'Pistols' },
-  { value: 'SMGs', className: 'selectSMGsFilter', key: 'SMGs' },
-  { value: 'MGs', className: 'selectMGsFilter', key: 'MGs' },
-  { value: 'Shotguns', className: 'selectShotgunsFilter', key: 'Shotguns' },
-  { value: 'Sniper Rifles', className: 'selectSniperRiflesFilter', key: 'SniperRifles' },
+  { value: 'All Firearms', key: 'all Firearms' },
+  { value: 'Rifles', key: 'Rifles' },
+  { value: 'Pistols', key: 'Pistols' },
+  { value: 'SMGs', key: 'SMGs' },
+  { value: 'MGs', key: 'MGs' },
+  { value: 'Shotguns', key: 'Shotguns' },
+  { value: 'Sniper Rifles', key: 'SniperRifles' },
 ];
 
 export const calibres = [
-  { value: 'All', className: 'selectAllCalibersFilter', key: 'All' },
-  { value: '7.62mm NATO', className: 'select762mmNATOFilter', key: '762NATO' },
-  { value: '5.56mm NATO', className: 'select556mmNATOFilter', key: '556NATO' },
-  { value: '7.62 x 39mm', className: 'select762x39mmFilter', key: '762x39' },
-  { value: '5.45 x 39.5mm', className: 'select545x395mmFilter', key: '545x39' },
-  { value: '9mm Parabellum', className: 'select9mmParabellumFilter', key: '9mmParabellum' },
-  { value: 'Other', className: 'selectOtherCaliberFilter', key: 'Other' },
+  { value: 'All Calibres', key: 'allCalibres' },
+  { value: '7.62mm NATO', key: '762NATO' },
+  { value: '5.56mm NATO', key: '556NATO' },
+  { value: '7.62 x 39mm', key: '762x39' },
+  { value: '5.45 x 39.5mm', key: '545x39' },
+  { value: '9mm Parabellum', key: '9mmParabellum' },
+  { value: 'Other', key: 'Other' },
 ];

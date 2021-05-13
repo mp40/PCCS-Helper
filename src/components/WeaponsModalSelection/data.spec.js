@@ -47,27 +47,27 @@ data.sniperRifles = jest.fn().mockImplementation(() => [mockM40()]);
 describe('Filtering calibers and weapon types', () => {
   describe('filter by firearm', () => {
     it('should return the rifle list', () => {
-      expect(filterCalibersFromType('Rifles', 'All')).toEqual([mockM16()]);
+      expect(filterCalibersFromType('Rifles', 'All Calibres')).toEqual([mockM16()]);
     });
 
     it('should return the pistol list', () => {
-      expect(filterCalibersFromType('Pistols', 'All')).toEqual([mockFN()]);
+      expect(filterCalibersFromType('Pistols', 'All Calibres')).toEqual([mockFN()]);
     });
 
     it('should return the smg list', () => {
-      expect(filterCalibersFromType('SMGs', 'All')).toEqual([mockAKS(), mockMP5SD()]);
+      expect(filterCalibersFromType('SMGs', 'All Calibres')).toEqual([mockAKS(), mockMP5SD()]);
     });
 
     it('should return the mg list', () => {
-      expect(filterCalibersFromType('MGs', 'All')).toEqual([mockRPD()]);
+      expect(filterCalibersFromType('MGs', 'All Calibres')).toEqual([mockRPD()]);
     });
 
     it('should return the sniper rifle list', () => {
-      expect(filterCalibersFromType('Sniper Rifles', 'All')).toEqual([mockM40()]);
+      expect(filterCalibersFromType('Sniper Rifles', 'All Calibres')).toEqual([mockM40()]);
     });
 
     it('should return the shotgun list', () => {
-      expect(filterCalibersFromType('Shotguns', 'All')).toEqual([mockIthaca()]);
+      expect(filterCalibersFromType('Shotguns', 'All Calibres')).toEqual([mockIthaca()]);
     });
   });
 
