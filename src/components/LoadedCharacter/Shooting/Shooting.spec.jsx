@@ -324,7 +324,7 @@ describe('Shooting Card', () => {
 
       wrapper.find('span[children="Situation"]').closest('button').simulate('click');
 
-      expect(wrapper.find('SituationSelectModal').props().bipod).toBe(true);
+      expect(wrapper.find('SituationSelectModal').props().bipod).toBe(false);
     });
 
     it('should pass foldingStock prop to Situation Select Modal as true if weapon has folding stock', () => {
