@@ -102,6 +102,51 @@ describe('Shooting Card', () => {
   });
 
   describe('Weapon Data', () => {
+    describe('Minimum Arc by range', () => {
+      it('should not show the MA if Single rof selected', () => {
+        expect(wrapper.text()).not.toContain('MA:');
+      });
+
+      it('should show the MA if in Auto based on default range of 100', () => {
+        wrapper.find('FireSelector').invoke('setRof')('Auto');
+
+        expect(wrapper.text()).toContain('MA: 4');
+      });
+
+      it('should show the MA if in 3RB based on default range of 100', () => {
+        wrapper.find('FireSelector').invoke('setRof')('3RB');
+
+        expect(wrapper.text()).toContain('MA: 4');
+      });
+
+      it('should show the MA if in Auto based on selected range of 85', () => {
+        wrapper.find('span[children="Range"]').closest('button').simulate('click');
+        wrapper.find('RangeSelectModal').invoke('setRange')(85);
+
+        wrapper.find('FireSelector').invoke('setRof')('Auto');
+
+        expect(wrapper.text()).toContain('MA: 4');
+      });
+
+      it('should show the MA if in 3RB based on selected range of 85', () => {
+        wrapper.find('span[children="Range"]').closest('button').simulate('click');
+        wrapper.find('RangeSelectModal').invoke('setRange')(85);
+
+        wrapper.find('FireSelector').invoke('setRof')('3RB');
+
+        expect(wrapper.text()).toContain('MA: 4');
+      });
+
+      it('should show the MA if in Auto based on selected range of 1', () => {
+        wrapper.find('span[children="Range"]').closest('button').simulate('click');
+        wrapper.find('RangeSelectModal').invoke('setRange')(1);
+
+        wrapper.find('FireSelector').invoke('setRof')('Auto');
+
+        expect(wrapper.text()).toContain('MA: 0.4');
+      });
+    });
+
     describe('Selecting available ammo types', () => {
       it('should show ammo type as FMJ if it is the default', () => {
         expect(wrapper.find('.ammoMarker').at(0).props().className).toContain('selected');
@@ -135,22 +180,6 @@ describe('Shooting Card', () => {
         expect(wrapper.text()).toContain('DC: 5');
       });
 
-      it('should show the MA if in Auto based on default range of 100', () => {
-        wrapper.find('FireSelector').invoke('setRof')('Auto');
-
-        expect(wrapper.text()).toContain('MA: 4');
-      });
-
-      it('should show the MA if in 3RB based on default range of 100', () => {
-        wrapper.find('FireSelector').invoke('setRof')('3RB');
-
-        expect(wrapper.text()).toContain('MA: 4');
-      });
-
-      it('should not show the MA if Single rof selected', () => {
-        expect(wrapper.text()).not.toContain('MA:');
-      });
-
       it('should show the PEN based on selected range of 85', () => {
         wrapper.find('span[children="Range"]').closest('button').simulate('click');
         wrapper.find('RangeSelectModal').invoke('setRange')(85);
@@ -163,24 +192,6 @@ describe('Shooting Card', () => {
         wrapper.find('RangeSelectModal').invoke('setRange')(85);
 
         expect(wrapper.text()).toContain('DC: 5');
-      });
-
-      it('should show the MA if in Auto based on selected range of 85', () => {
-        wrapper.find('span[children="Range"]').closest('button').simulate('click');
-        wrapper.find('RangeSelectModal').invoke('setRange')(85);
-
-        wrapper.find('FireSelector').invoke('setRof')('Auto');
-
-        expect(wrapper.text()).toContain('MA: 4');
-      });
-
-      it('should show the MA if in 3RB based on selected range of 85', () => {
-        wrapper.find('span[children="Range"]').closest('button').simulate('click');
-        wrapper.find('RangeSelectModal').invoke('setRange')(85);
-
-        wrapper.find('FireSelector').invoke('setRof')('3RB');
-
-        expect(wrapper.text()).toContain('MA: 4');
       });
 
       it('should show the PEN based on selected range of 75', () => {
@@ -223,15 +234,6 @@ describe('Shooting Card', () => {
         wrapper.find('RangeSelectModal').invoke('setRange')(1);
 
         expect(wrapper.text()).toContain('DC: 6');
-      });
-
-      it('should show the MA if in Auto based on selected range of 1', () => {
-        wrapper.find('span[children="Range"]').closest('button').simulate('click');
-        wrapper.find('RangeSelectModal').invoke('setRange')(1);
-
-        wrapper.find('FireSelector').invoke('setRof')('Auto');
-
-        expect(wrapper.text()).toContain('MA: 0.4');
       });
 
       it('should show the PEN based on selected range of 350', () => {
