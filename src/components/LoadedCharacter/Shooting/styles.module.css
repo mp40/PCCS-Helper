@@ -173,7 +173,8 @@
   color: darkorange;
 }
 
-.emptyMag {
+.emptyMag,
+.baReached {
   font-weight: bold;
   color: red;
 }

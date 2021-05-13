@@ -3,7 +3,7 @@ import { shallow, mount } from 'enzyme';
 
 import Shooting from './index';
 
-import { testFAMAS, testM16 } from '../../../helpers/testHelpers';
+import { testFAMAS, testM16, testM1911A1 } from '../../../helpers/testHelpers';
 
 describe('Shooting Card', () => {
   let wrapper;
@@ -415,6 +415,52 @@ describe('Shooting Card', () => {
   });
 
   describe('Firing the firearm', () => {
+    it('should use firearm ballistic accuracy instead of ALM if it is less', () => {
+      wrapper = shallow(<Shooting sal={21} level={15} firearm={testM1911A1()} setFirearm={setFirearm} />);
+
+      wrapper.find('span[children="Shooter Stance"]').closest('button').simulate('click');
+      wrapper.find('StanceSelectModal').invoke('setStance')('Prone');
+
+      wrapper.find('Aiming').invoke('setAims')(6);
+
+      expect(wrapper.find('.data').text()).toContain('ALM: 15');
+      expect(wrapper.find('.firing').text()).toContain('Hit Chance: 80%');
+    });
+
+    it('should not use firearm ballistic accuracy if it is greater than ALM', () => {
+      wrapper = shallow(<Shooting sal={10} level={4} firearm={testM1911A1()} setFirearm={setFirearm} />);
+
+      wrapper.find('span[children="Shooter Stance"]').closest('button').simulate('click');
+      wrapper.find('StanceSelectModal').invoke('setStance')('Prone');
+
+      wrapper.find('Aiming').invoke('setAims')(6);
+
+      expect(wrapper.find('.data').text()).toContain('ALM: 9');
+      expect(wrapper.find('.firing').text()).toContain('Hit Chance: 39%');
+    });
+
+    it('should provide visual feed back if ALM equals weapon BA', () => {
+      wrapper = shallow(<Shooting sal={21} level={15} firearm={testM1911A1()} setFirearm={setFirearm} />);
+
+      wrapper.find('span[children="Shooter Stance"]').closest('button').simulate('click');
+      wrapper.find('StanceSelectModal').invoke('setStance')('Prone');
+
+      wrapper.find('Aiming').invoke('setAims')(6);
+
+      expect(wrapper.find('.data').find('.baReached').exists()).toBe(true);
+    });
+
+    it('should not show the visual feed back if ALM is greater than BA', () => {
+      wrapper = shallow(<Shooting sal={10} level={4} firearm={testM1911A1()} setFirearm={setFirearm} />);
+
+      wrapper.find('span[children="Shooter Stance"]').closest('button').simulate('click');
+      wrapper.find('StanceSelectModal').invoke('setStance')('Prone');
+
+      wrapper.find('Aiming').invoke('setAims')(6);
+
+      expect(wrapper.find('.data').find('.baReached').exists()).toBe(false);
+    });
+
     describe('Firing interface', () => {
       it('should not render Sustained Fire button if Weapon is set to Single', () => {
         expect(wrapper.find('button[children="Sustained Fire"]').exists()).toBe(false);

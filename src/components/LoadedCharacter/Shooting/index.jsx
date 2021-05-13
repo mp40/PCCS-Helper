@@ -59,9 +59,11 @@ const LoadedCharacterShooting = ({
   }, [firearm]);
 
   const movementModInfo = findSpeedMods(movement.shooter + movement.target, range);
+  const rangeIndex = getWeaponRangeIndex(firearm.list, range);
 
   const calculateALM = () => {
     let result = sal - sab;
+    const ba = firearm.ba[rangeIndex];
 
     result += getAimTimeMod(firearm.aim, aims);
     result += rangeMods[range];
@@ -70,7 +72,7 @@ const LoadedCharacterShooting = ({
     result += getVisibilityALM(visibility);
     result += getSituationALM(weaponBasedALM, stance, aims);
 
-    return result;
+    return result < ba ? result : ba;
   };
 
   const getTargetSizeMod = () => {
@@ -194,14 +196,14 @@ const LoadedCharacterShooting = ({
 
       <div className={styles.data}>
         <div>
-          <span>{`ALM: ${alm}`}</span>
+          <span className={`${alm === firearm.ba[rangeIndex] ? styles.baReached : ''}`}>{`ALM: ${alm}`}</span>
           <span>{`EAL: ${alm + targetSizeMod}`}</span>
         </div>
         <div>
-          <span>{`PEN: ${firearm.projectiles[ammoType].pen[getWeaponRangeIndex(firearm.list, range)]}`}</span>
-          <span>{`DC: ${firearm.projectiles[ammoType].dc[getWeaponRangeIndex(firearm.list, range)]}`}</span>
+          <span>{`PEN: ${firearm.projectiles[ammoType].pen[rangeIndex]}`}</span>
+          <span>{`DC: ${firearm.projectiles[ammoType].dc[rangeIndex]}`}</span>
           {rof !== 'Single'
-            && <span>{`MA: ${firearm.ma[getWeaponRangeIndex(firearm.list, range)]}`}</span>}
+            && <span>{`MA: ${firearm.ma[rangeIndex]}`}</span>}
         </div>
         <span>{`Recoil Recovery: ${getRecoilRecoveryValue(firearm.kd, level)}`}</span>
       </div>
