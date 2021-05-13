@@ -19,20 +19,18 @@ const SituationSelectModal = ({ list, bipod, foldingStock, setModal, weaponBased
     const bracedAndBipodSituations = ['braced', 'slingSupport', 'bipodBraced', 'bipodNotBraced'];
     let block = false;
 
+    if (bracedAndBipodSituations.includes(key) === false) {
+      return block;
+    }
+
     for (let i = 0; i < bracedAndBipodSituations.length; i += 1) {
-      if (weaponBasedALM[bracedAndBipodSituations[i]]) {
+      if (weaponBasedALM[bracedAndBipodSituations[i]] === true && bracedAndBipodSituations[i] !== key) {
         block = true;
         break;
       }
     }
 
-    if (block === false) {
-      return false;
-    }
-
-    if (bracedAndBipodSituations.indexOf(key) > -1 && weaponBasedALM[key] === false) {
-      return true;
-    }
+    return block;
   };
 
   return (

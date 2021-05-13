@@ -190,7 +190,7 @@ const launcherTemplate = [
   { valueKey: 'tof', prefix: ['', 'TOF'], suffix: ['', '', '', '', '', '', ''] },
 ];
 
-export const getTemplate = (list, hasThreeRoundBurst, numberOfProjectileTypes) => {
+export const getTemplate = (list, hasThreeRoundBurst) => {
   if (list === 'launchers') {
     return launcherTemplate;
   }

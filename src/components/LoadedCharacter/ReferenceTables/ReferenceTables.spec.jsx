@@ -1,8 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { NewCharacter } from '../../../reducers/newCharacter';
-
 import LoadedCharacterReferenceTables from './index';
 
 describe('Loaded Character Reference Card', () => {

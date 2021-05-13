@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import styles from './styles.module.css';
 
 const AimsSelectModal = ({ aims, maxAims, setAims, setModal }) => {
-  const handleClick = (aims) => {
-    setAims(aims);
+  const handleClick = (newAims) => {
+    setAims(newAims);
     setModal(false);
   };
 
