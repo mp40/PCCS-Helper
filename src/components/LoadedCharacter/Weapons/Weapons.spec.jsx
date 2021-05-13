@@ -36,12 +36,14 @@ const mockGrenade = { name: 'The Holy Hand Grenade Of Antioch', qty: 1 };
 
 describe('Loaded Character Reference Card', () => {
   let wrapper;
+  const setFirearm = jest.fn();
 
   beforeEach(() => {
     wrapper = shallow(
       <LoadedCharacterWeapons
         firearms={[mockRifle, mockPistol, mockShotgun, mockSingleShotGun, mockRifleWithUnderslung]}
         grenades={[mockGrenade]}
+        setFirearm={setFirearm}
       />,
     );
   });
@@ -90,5 +92,11 @@ describe('Loaded Character Reference Card', () => {
 
   it('should render characters grenades', () => {
     expect(wrapper.text()).toContain('The Holy Hand Grenade Of Antioch');
+  });
+
+  it('should set firearm to use when firearm button clicked', () => {
+    wrapper.find('.firearm').at(0).simulate('click');
+
+    expect(setFirearm).toHaveBeenCalledWith(mockRifle);
   });
 });

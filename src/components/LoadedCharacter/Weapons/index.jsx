@@ -5,7 +5,7 @@ import { gunObjShape, grenadeShape } from '../../../helpers/proptypeShapes';
 
 import styles from './styles.module.css';
 
-const LoadedCharacterWeapons = ({ firearms, grenades }) => {
+const LoadedCharacterWeapons = ({ firearms, grenades, setFirearm }) => {
   const getSpareAmmoNotes = (magazines) => {
     const text = [];
 
@@ -31,7 +31,7 @@ const LoadedCharacterWeapons = ({ firearms, grenades }) => {
       <h2>Weapons</h2>
       <h3>Firearms</h3>
       {firearms.map((firearm) => (
-        <button type="button" key={firearm.name} className={styles.firearm}>
+        <button type="button" key={firearm.name} className={styles.firearm} onClick={() => setFirearm(firearm)}>
           <div>
             {firearm.name}
           </div>
@@ -57,6 +57,7 @@ const LoadedCharacterWeapons = ({ firearms, grenades }) => {
 LoadedCharacterWeapons.propTypes = {
   firearms: PropTypes.arrayOf(gunObjShape),
   grenades: PropTypes.arrayOf(grenadeShape),
+  setFirearm: PropTypes.func.isRequired,
 };
 
 export default LoadedCharacterWeapons;
