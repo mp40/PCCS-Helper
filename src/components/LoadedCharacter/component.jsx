@@ -1,33 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
-import CharacterInfo from '../CharacterInfo';
-import ActionsTable from '../ActionsTable';
-import KnockoutTable from '../KnockoutTable';
-import ReactionTable from '../reactionTable';
-import BodyArmourTable from '../BodyArmourTable';
+import LoadedCharacterReferenceTables from './ReferenceTables';
+import LoadedCharacterWeapons from './Weapons';
+import LoadedCharacterShooting from './Shooting';
 
 import { currentCharacterShape } from '../../helpers/proptypeShapes';
 
 import styles from './styles.module.css';
 
-const LoadedCharacter = ({ currentCharacter }) => (
-  <div className={styles.card}>
-    <div className={styles.wrapper}>
-      <h1>{currentCharacter.name}</h1>
-      <CharacterInfo />
-      <div>
-        <ActionsTable />
-        <KnockoutTable knockoutValue={currentCharacter.knockoutValue} />
-        <ReactionTable sal={currentCharacter.SAL} />
-      </div>
-      <BodyArmourTable helmet={currentCharacter.helmet} vest={currentCharacter.vest} />
-    </div>
-  </div>
+const LoadedCharacter = ({ currentCharacter, selectCurrentView }) => {
+  const [firearm, setFirearm] = useState(false);
 
-);
+  return (
+    <div className={styles.wrapper}>
+      {firearm
+      && (
+      <LoadedCharacterShooting
+        firearm={firearm}
+        sal={currentCharacter.SAL}
+        level={currentCharacter.gunLevel}
+        setFirearm={setFirearm}
+      />
+      )}
+
+      <LoadedCharacterReferenceTables
+        name={currentCharacter.name}
+        knockoutValue={currentCharacter.knockoutValue}
+        sal={currentCharacter.SAL}
+        helmet={currentCharacter.helmet}
+        vest={currentCharacter.vest}
+        selectCurrentView={selectCurrentView}
+      />
+      <LoadedCharacterWeapons
+        firearms={currentCharacter.firearms}
+        grenades={currentCharacter.grenades}
+        setFirearm={setFirearm}
+      />
+
+    </div>
+
+  );
+};
 
 LoadedCharacter.propTypes = {
   currentCharacter: currentCharacterShape.isRequired,
+  selectCurrentView: PropTypes.func.isRequired,
 };
 
 export default LoadedCharacter;
