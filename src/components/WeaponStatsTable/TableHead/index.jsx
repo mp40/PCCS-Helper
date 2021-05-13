@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { getRangeBrackets, keys } from '../data';
+import { keys } from '../data';
+import { getRangeBrackets } from '../../../data/firearms/rangeBrackets';
 
 const TableHead = ({ weaponList }) => {
   const rangeBrackets = getRangeBrackets(weaponList);
