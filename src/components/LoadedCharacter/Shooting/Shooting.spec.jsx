@@ -21,25 +21,74 @@ describe('Shooting Card', () => {
     expect(wrapper.find('Aiming').props().maxAims).toBe(9);
   });
 
-  it('should clear aims, sab, situation mods, rounds fired and selected ammo on weapon change', () => {
+  it('should clear aims on weapon change', () => {
     wrapper = mount(<Shooting sal={0} level={0} firearm={testFAMAS()} setFirearm={setFirearm} />);
 
-    wrapper.find('span[children="Situation"]').closest('button').simulate('click');
-    wrapper.find('CheckBox').at(0).simulate('click');
-    wrapper.find('SituationSelectModal').invoke('setModal')(false);
     wrapper.find('Aiming').invoke('setAims')(5);
-    wrapper.find('FireSelector').invoke('setRof')('Auto');
-    wrapper.find('button[children="JHP"]').simulate('click');
-    wrapper.find('button[children="Sustained Fire"]').simulate('click');
 
     wrapper.setProps({ sal: 0, level: 0, firearm: testM16(), setFirearm });
     wrapper.update();
 
     expect(wrapper.find('Aiming').props().aims).toBe(1);
-    expect(wrapper.find('.firing').text()).toContain('Rounds Fired: 0');
+  });
+
+  it('should clear situation mods on weapon change', () => {
+    wrapper = mount(<Shooting sal={0} level={0} firearm={testFAMAS()} setFirearm={setFirearm} />);
+
+    wrapper.find('span[children="Situation"]').closest('button').simulate('click');
+    wrapper.find('CheckBox').at(0).simulate('click');
+    wrapper.find('SituationSelectModal').invoke('setModal')(false);
+
+    wrapper.setProps({ sal: 0, level: 0, firearm: testM16(), setFirearm });
+    wrapper.update();
+
     expect(wrapper.find('span[children="Situation"]').closest('button').text()).toBe('SituationALM: 0');
+  });
+
+  it('should clear sab on weapon change', () => {
+    const m16 = testM16();
+    wrapper = mount(<Shooting sal={0} level={0} firearm={testFAMAS()} setFirearm={setFirearm} />);
+
+    wrapper.find('FireSelector').invoke('setRof')('Auto');
+    wrapper.find('button[children="Sustained Fire"]').simulate('click');
+
+    wrapper.setProps({ sal: 0, level: 0, firearm: m16, setFirearm });
+    wrapper.update();
+
+    expect(wrapper.find('.data').text()).toContain(`ALM: ${m16.aim.mod[0]}`);
+  });
+
+  it('should reset fire selector on weapon change', () => {
+    wrapper = mount(<Shooting sal={0} level={0} firearm={testFAMAS()} setFirearm={setFirearm} />);
+
+    wrapper.find('FireSelector').invoke('setRof')('Auto');
+    wrapper.find('button[children="Sustained Fire"]').simulate('click');
+
+    wrapper.setProps({ sal: 0, level: 0, firearm: testM16(), setFirearm });
+    wrapper.update();
+
     expect(wrapper.find('button[children="Cease Fire"]').exists()).toBe(false);
     expect(wrapper.find('button[children="FIRE"]').exists()).toBe(true);
+  });
+
+  it('should clear rounds fired on weapon change', () => {
+    wrapper = mount(<Shooting sal={0} level={0} firearm={testFAMAS()} setFirearm={setFirearm} />);
+
+    wrapper.find('button[children="FIRE"]').simulate('click');
+
+    wrapper.setProps({ sal: 0, level: 0, firearm: testM16(), setFirearm });
+    wrapper.update();
+
+    expect(wrapper.find('.firing').text()).toContain('Rounds Fired: 0');
+  });
+
+  it('should clear selected ammo on weapon change', () => {
+    wrapper = mount(<Shooting sal={0} level={0} firearm={testFAMAS()} setFirearm={setFirearm} />);
+
+    wrapper.find('button[children="JHP"]').simulate('click');
+
+    wrapper.setProps({ sal: 0, level: 0, firearm: testM16(), setFirearm });
+    wrapper.update();
 
     expect(wrapper.find('.ammoMarker').at(0).props().className).toContain('selected');
     expect(wrapper.find('.ammoMarker').at(1).props().className).not.toContain('selected');
