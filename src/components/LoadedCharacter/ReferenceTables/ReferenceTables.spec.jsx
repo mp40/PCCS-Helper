@@ -8,13 +8,16 @@ import LoadedCharacterReferenceTables from './index';
 describe('Loaded Character Reference Card', () => {
   let wrapper;
 
-  const currentCharacter = new NewCharacter();
   const selectCurrentView = jest.fn();
 
   beforeEach(() => {
     wrapper = shallow(
       <LoadedCharacterReferenceTables
-        currentCharacter={currentCharacter}
+        name="Mr Test"
+        knockoutValue={10}
+        sal={10}
+        helmet={null}
+        vest={null}
         selectCurrentView={selectCurrentView}
       />,
     );
