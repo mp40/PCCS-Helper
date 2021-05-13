@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { act } from 'react-dom/test-utils';
+
 import App from './component';
 
 const mrLove = {
@@ -194,7 +195,7 @@ describe('App Views', () => {
   it('should render the create character page', () => {
     const wrapper = shallow(<App currentView="createChar" updateSavedCharacters={() => {}} />);
 
-    expect(wrapper.find('CharacterGeneration').exists()).toBe(true);
+    expect(wrapper.find('Connect(CharacterGeneration)').exists()).toBe(true);
   });
 
   it('should render the print page', () => {

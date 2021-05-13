@@ -16,8 +16,7 @@ const prepareLauncher = (launcher) => ({
   mag: launcher.mag,
 });
 
-export const buildRequestPayload = (currentCharacter) => ({
-  character_name: currentCharacter.name,
+export const buildRequestPayload = (currentCharacter) => ({ character_name: currentCharacter.name,
   str: currentCharacter.str,
   int: currentCharacter.int,
   hlt: currentCharacter.hlt,
@@ -32,8 +31,7 @@ export const buildRequestPayload = (currentCharacter) => ({
   firearms: currentCharacter.firearms.map((firearm) => prepareFirearm(firearm)),
   grenades: currentCharacter.grenades.map((grenade) => prepareGrenade(grenade)),
   launchers: currentCharacter.launchers.map((launcher) => prepareLauncher(launcher)),
-  notes: {},
-});
+  notes: {} });
 
 export const parseDate = (date) => {
   const year = date.getFullYear();
