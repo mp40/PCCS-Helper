@@ -107,7 +107,15 @@ class WeaponsCard extends Component {
 
         </div>
 
-        <GearTable gearHeading="Weapons" totalWeight={Math.round((firearmsWeight + grenadesWeight + launchersWeight) * 1000) / 1000}>
+        <WeaponsTableBody
+          firearms={firearms}
+          grenades={grenades}
+          launchers={launchers}
+          toggleOnWeaponsCardViews={this.toggleOnWeaponsCardViews}
+          toggleModifyWeapon={this.toggleModifyWeapon}
+        />
+
+        {/* <GearTable gearHeading="Weapons" totalWeight={Math.round((firearmsWeight + grenadesWeight + launchersWeight) * 1000) / 1000}>
           <WeaponsTableBody
             firearms={firearms}
             grenades={grenades}
@@ -115,7 +123,7 @@ class WeaponsCard extends Component {
             toggleOnWeaponsCardViews={this.toggleOnWeaponsCardViews}
             toggleModifyWeapon={this.toggleModifyWeapon}
           />
-        </GearTable>
+        </GearTable> */}
 
         {showFirearms && this.renderWeaponSelect()}
         {modifyFirearm && (

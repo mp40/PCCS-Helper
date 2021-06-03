@@ -5,25 +5,29 @@ import FirearmNotes from '../../FirearmNotes';
 
 import { gunObjShape } from '../../../helpers/proptypeShapes';
 
-import { rifles } from '../../../data/firearms';
+import { riflesList, firearms, getFullFirearmSystemWeightByName } from '../../../data/firearms';
 
 import styles from './styles.module.css';
 
 const FirearmInspection = ({ firearmToInspect, setFirearmToInspect }) => {
-  const { launcher, rifle } = firearmToInspect;
+  // mptodo - attached launchers
+  // const { launcher, rifle } = firearmToInspect;
 
-  const buttonText = launcher ? 'View Grenade Data' : 'View Rifle Data';
+  // const buttonText = launcher ? 'View Grenade Data' : 'View Rifle Data';
 
-  const handleSetFirearmToInspect = () => {
-    if (launcher) {
-      setFirearmToInspect(launcher);
-    }
+  // const handleSetFirearmToInspect = () => {
+  //   if (launcher) {
+  //     setFirearmToInspect(launcher);
+  //   }
 
-    if (rifle) {
-      const gunObj = rifles().filter((gun) => gun.name === rifle)[0];
-      setFirearmToInspect(gunObj);
-    }
-  };
+  //   if (rifle) {
+  //     const gunObj = riflesList().filter((gun) => gun.name === rifle)[0];
+  //     setFirearmToInspect(gunObj);
+  //   }
+  // };
+
+  const gunObj = firearms[firearmToInspect];
+  gunObj.weight = getFullFirearmSystemWeightByName(firearmToInspect);
 
   return (
     <div className={styles.card}>
@@ -31,16 +35,16 @@ const FirearmInspection = ({ firearmToInspect, setFirearmToInspect }) => {
 
         <div>
           <span>
-            {`${firearmToInspect.name} - ${firearmToInspect.calibre}`}
+            {`${gunObj.name} - ${gunObj.calibre}`}
           </span>
-          {(launcher || rifle) && (
+          {/* {(launcher || rifle) && (
           <button
             type="button"
             onClick={() => handleSetFirearmToInspect()}
           >
             {buttonText}
           </button>
-          )}
+          )} */}
         </div>
 
         <button
@@ -53,11 +57,11 @@ const FirearmInspection = ({ firearmToInspect, setFirearmToInspect }) => {
       </div>
 
       <div className={styles.body}>
-        <WeaponStatsTable weapon={firearmToInspect} showName={false} />
+        <WeaponStatsTable weapon={gunObj} showName={false} />
         { firearmToInspect.list !== 'shotguns'
           && (
           <div className="firearm-notes-wrapper">
-            <FirearmNotes gunObj={firearmToInspect} viewSpareAmmo={false} />
+            <FirearmNotes gunObj={gunObj} viewSpareAmmo={false} />
           </div>
           )}
       </div>

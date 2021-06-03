@@ -24,6 +24,59 @@ const m2Grenade = {
   heading: 'standard',
 };
 
+const increaseFirearmQty = jest.fn();
+const decreaseFirearmQty = jest.fn();
+
+const m1911Qty1 = {
+  name: 'M1911A1',
+  qty: 1,
+  mag: [{ type: 'Mag', weight: 0.7, cap: 7, qty: 0 }],
+  modNotes: [],
+};
+
+const m1911Qty2 = {
+  ...m1911Qty1,
+  qty: 2,
+};
+
+describe.only('Selected Firearms Table', () => {
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = shallow(
+      <WeaponsTableBody
+        firearms={[]}
+        increaseFirearmQty={increaseFirearmQty}
+        decreaseFirearmQty={decreaseFirearmQty}
+      />);
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('should be possible to increase qty of firearm', () => {
+    wrapper.setProps({ firearms: [m1911Qty1] });
+    wrapper.find('.button--up').simulate('click');
+
+    expect(increaseFirearmQty).toHaveBeenCalledWith(m1911Qty1.name);
+  });
+
+  it('should be possible to decrease qty of firearm', () => {
+    wrapper.setProps({ firearms: [m1911Qty2] });
+    wrapper.find('.button--up').simulate('click');
+
+    expect(increaseFirearmQty).toHaveBeenCalledWith(m1911Qty2.name);
+  });
+
+  it('should not be possible to decrease qty of firearm below 1', () => {
+    wrapper.setProps({ firearms: [m1911Qty1] });
+    wrapper.find('.button--up').simulate('click');
+
+    expect(increaseFirearmQty).not.toHaveBeenCalledWith();
+  });
+});
+
 describe('rendering the correct information', () => {
   it('should return "Single Rounds" if type is "Rnd"', () => {
     const magObj = { type: 'Rnd', cap: '7' };

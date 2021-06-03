@@ -34,6 +34,8 @@ const updateIfMatchesByCapacity = (
   capacity,
   modifier,
 ) => (element.cap && element.cap === capacity ? modifier : 0);
+
+// mptodo - refactor this dog shit out
 export const modifyObjectQtyInArray = (array, obj, modifier = 0) => array.map((element) => {
   let newElement = element;
   newElement = updateIfMatchesByName(newElement, obj);

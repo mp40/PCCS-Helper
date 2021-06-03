@@ -94,6 +94,100 @@
   content: "?";
 }
 
+.button--standard {
+  border: none;
+  border-radius: 3px;
+  background-color: transparent;
+  height: fit-content;
+  padding: 2px 10px;
+}
+
+.button--standard:hover {
+  box-shadow: 0px 0px 1.25px 1.25px var(--golden-olive);
+}
+
+.button--standard:active {
+  box-shadow: 0px 0px 1px 1px var(--golden-olive);
+  opacity: 0.9;
+}
+
+.button--close,
+.button--up,
+.button--down {
+  height: 1rem;
+  width: 1rem;
+  padding: 0;
+  position: relative;
+}
+
+.button--close:before,
+.button--up:before,
+.button--down:before {
+  font-family: FontAwesome;
+  text-decoration: inherit;
+  color: var(--golden-olive);
+  font-size: 0.8rem;
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+}
+
+.button--close:before {
+  content: "\f00d";
+}
+
+.button--up:before {
+  content: "\f077";
+}
+
+.button--down:before {
+  content: "\f078";
+}
+
+.weapon-table-header--container,
+.weapon-table-row--container {
+  display: flex;
+  width: 100%;
+}
+
+.weapon-table-header--container > span:nth-of-type(1),
+.weapon-table-row--container > span:nth-of-type(1) {
+  width: calc(100% - (9.5% * 4));
+}
+
+.weapon-table-header--container > span:nth-of-type(n + 2),
+.weapon-table-row--container > span:nth-of-type(n + 2) {
+  width: 9.5%;
+}
+
+.weapon-table-header--container {
+  background-color: var(--panzer-grey);
+  color: whitesmoke;
+  font-weight: bold;
+  text-align: center;
+}
+
+.weapon-table-row--container {
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.weapon-table-row--container > span  {
+  padding: 1.25px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.weapon-table-row--container > span:first-of-type {
+  justify-content: left;
+}
+
+.weapon-table-row--container > span:last-of-type > button:first-of-type {
+  margin-right: 10px;
+}
+
 @media screen and (max-width: 1024px) {
 }
 

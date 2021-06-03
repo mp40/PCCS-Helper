@@ -11,6 +11,8 @@ import keys from './data';
 
 import './GearRow.css';
 
+// mptodo - refactor this dog shit component away
+
 export const renderCorrectAmmoTitle = (mag) => {
   if (mag?.class) {
     return mag.class;

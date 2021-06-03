@@ -12,6 +12,8 @@ import { gunObjShape } from '../../helpers/proptypeShapes';
 import { isNotValidObjectToAdd } from '../../helpers/gaurds';
 import { firearmLists, filterCalibersFromType } from './data';
 
+import { getFullFirearmSystemWeightByName } from '../../data/firearms';
+
 import styles from './styles.module.css';
 
 const WeaponsModalSelection = ({ toggleOffWeaponCardViews, addFirearm, firearms }) => {
@@ -36,8 +38,8 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, addFirearm, firearms 
     setShowFilters(!showFilters);
   };
 
-  const handleShowStatCard = (gunObj) => {
-    setFirearmToInspect(gunObj);
+  const handleShowStatCard = (firearm) => {
+    setFirearmToInspect(firearm);
   };
 
   return (
@@ -63,20 +65,20 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, addFirearm, firearms 
           />
         </div>
         <div className={`--weaponSelectCard ${styles.contents}`}>
-          {gunArrayFilteredByType.map((gunObj) => (
-            <div key={gunObj.name} className={styles.firearmRow}>
+          {gunArrayFilteredByType.map((firearm) => (
+            <div key={firearm} className={styles.firearmRow}>
               <button
                 type="button"
                 aria-label="info"
-                className={`--infoButton --button view${gunObj.name.replace(/\s+/g, '')}`}
-                onClick={() => handleShowStatCard(gunObj)}
+                className="--infoButton --button "
+                onClick={() => handleShowStatCard(firearm)}
               />
               <div
                 className={styles.firearmEntry}
-                onClick={() => handleAddFirearm(gunObj)}
+                onClick={() => handleAddFirearm(firearm)}
               >
-                <span>{gunObj.name}</span>
-                <span>{`${gunObj.weight} lbs`}</span>
+                <span>{firearm}</span>
+                <span>{`${getFullFirearmSystemWeightByName(firearm)} lbs`}</span>
               </div>
             </div>
           ))}

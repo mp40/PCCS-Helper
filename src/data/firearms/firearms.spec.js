@@ -1,6 +1,13 @@
-import { rifles, pistols, smgs, mgs, shotguns, sniperRifles } from '.';
+import { riflesList, pistolsList, smgsList, mgsList, shotgunsList, sniperRiflesList, getFullFirearmSystemWeightByName, getFullFirearmSystemWeightByObject } from '.';
 
-const allGuns = () => [...rifles(), ...pistols(), ...smgs(), ...mgs(), ...sniperRifles(), ...shotguns()];
+const allGuns = () => [
+  ...riflesList(),
+  ...pistolsList(),
+  ...smgsList(),
+  ...mgsList(),
+  ...sniperRiflesList(),
+  ...shotgunsList(),
+];
 
 const firearmObjectKeys = [
   'name',
@@ -38,37 +45,37 @@ describe('Check weapon data shape', () => {
     }
   });
   it('should have a value of rifles if in the rifle list/array', () => {
-    const rifleArray = rifles();
+    const rifleArray = riflesList();
     for (let i = 0; i < rifleArray.length; i += 1) {
       expect(rifleArray[i].list).toBe('rifles');
     }
   });
   it('should have a value of smgs if in the smgs list/array', () => {
-    const smgArray = smgs();
+    const smgArray = smgsList();
     for (let i = 0; i < smgArray.length; i += 1) {
       expect(smgArray[i].list).toBe('smgs');
     }
   });
   it('should have a value of mgs if in the mgs list/array', () => {
-    const mgArray = mgs();
+    const mgArray = mgsList();
     for (let i = 0; i < mgArray.length; i += 1) {
       expect(mgArray[i].list).toBe('mgs');
     }
   });
   it('should have a value of pistols if in the pistols list/array', () => {
-    const pistolArray = pistols();
+    const pistolArray = pistolsList();
     for (let i = 0; i < pistolArray.length; i += 1) {
       expect(pistolArray[i].list).toBe('pistols');
     }
   });
   it('should have a value of shotguns if in the shotguns list/array', () => {
-    const shotgunArray = shotguns();
+    const shotgunArray = shotgunsList();
     for (let i = 0; i < shotgunArray.length; i += 1) {
       expect(shotgunArray[i].list).toBe('shotguns');
     }
   });
   it('should have a value of sniperRifles if in the sniperRifles list/array', () => {
-    const sniperArray = sniperRifles();
+    const sniperArray = sniperRiflesList();
     for (let i = 0; i < sniperArray.length; i += 1) {
       expect(sniperArray[i].list).toBe('sniperRifles');
     }
@@ -126,5 +133,33 @@ describe('Check weapon data shape', () => {
     for (let i = 0; i < gunArray.length; i += 1) {
       expect(gunArray[i].aim.ac.length).toBe(gunArray[i].aim.mod.length);
     }
+  });
+});
+
+describe.only('Firearm data helpers', () => {
+  describe('calculating weight of firearm weapon system by name', () => {
+    it('should calculate weight of fully loaded firearm', () => {
+      const firearm = 'M16';
+
+      expect(getFullFirearmSystemWeightByName(firearm)).toBe(8.7);
+    });
+
+    it('should calculate weight of fully loaded firearm that uses single rounds', () => {
+      const firearm = 'Remington M870';
+
+      expect(getFullFirearmSystemWeightByName(firearm)).toBe(8.8);
+    });
+  });
+  describe('calculating weight of firearm weapon system by onject', () => {
+    it('should calculate weight of fully loaded weapon', () => {
+      const firearm = {
+        name: 'M16',
+        qty: 1,
+        mag: [{ type: 'Mag', weight: 1, cap: 30, qty: 0 }, { type: 'Mag', weight: 0.7, cap: 20, qty: 0 }],
+        modNotes: [],
+      };
+
+      expect(getFullFirearmSystemWeightByObject(firearm)).toBe(9);
+    });
   });
 });

@@ -1,10 +1,10 @@
-import { rifles, pistols, smgs, mgs, shotguns, sniperRifles } from '../../data/firearms';
+import { riflesList, pistolsList, smgsList, mgsList, shotgunsList, sniperRiflesList } from '../../data/firearms';
 import { launchers } from '../../data/launchers';
 import { grenadeData, specialGrenades } from '../../data/grenades';
 
 import { findObjectByNameInArray } from '../../utils';
 
-const createFirearmsList = () => [...rifles(), ...pistols(), ...smgs(), ...mgs(), ...shotguns(), ...sniperRifles()];
+const createFirearmsList = () => [...riflesList(), ...pistolsList(), ...smgsList(), ...mgsList(), ...shotgunsList(), ...sniperRiflesList()];
 
 export const hydrateFirearm = (dyhydratedFirearm) => {
   const firearm = findObjectByNameInArray(createFirearmsList(), dyhydratedFirearm.name);

@@ -1,28 +1,11 @@
-import { correctFloatingPoint } from '../../utils';
-
-const {
-  calcBaseSpeed,
-  calcMaxSpeed,
-  calcCombatActions,
-  calcDB,
-} = require('../../helpers/helperFunctions');
+import { hydrateFirearmByName } from '../../data/firearms/hydrate';
 
 export const addFirearmReducer = (state, action) => {
-  const newTotalWeight = correctFloatingPoint(state.currentCharacter.totalWeight + action.payload.weight);
-
-  const newBaseSpeed = calcBaseSpeed(state.currentCharacter.str, newTotalWeight);
-  const newMaxSpeed = calcMaxSpeed(state.currentCharacter.agi, newBaseSpeed);
-  const newDamageBonus = calcDB(newMaxSpeed, state.currentCharacter.ASF);
-  const newGunCombatActions = calcCombatActions(newMaxSpeed, state.currentCharacter.ISF);
-  const newMeleeCombatActions = calcCombatActions(newMaxSpeed, state.currentCharacter.ASF);
+  const firearm = hydrateFirearmByName(action.payload);
+  firearm.qty = 1;
+  firearm.modNotes = [];
 
   return { ...state,
     currentCharacter: { ...state.currentCharacter,
-      totalWeight: newTotalWeight,
-      firearms: [...state.currentCharacter.firearms, action.payload],
-      baseSpeed: newBaseSpeed,
-      maxSpeed: newMaxSpeed,
-      damageBonus: newDamageBonus,
-      gunCombatActions: newGunCombatActions,
-      handCombatActions: newMeleeCombatActions } };
+      firearms: [...state.currentCharacter.firearms, firearm] } };
 };

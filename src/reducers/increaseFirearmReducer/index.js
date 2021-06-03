@@ -1,30 +1,15 @@
-import { incrementQuantity } from '../reducerHelpers';
-import { correctFloatingPoint } from '../../utils';
-
-const {
-  calcBaseSpeed,
-  calcMaxSpeed,
-  calcCombatActions,
-  calcDB,
-} = require('../../helpers/helperFunctions');
-
 export const increaseFirearmReducer = (state, action) => {
-  const newTotalWeight = correctFloatingPoint(state.currentCharacter.totalWeight + action.payload.weight);
-  const newFirearms = incrementQuantity(1)(state.currentCharacter.firearms, action.payload.name);
+  const firearmToUpdate = action.payload;
 
-  const newBaseSpeed = calcBaseSpeed(state.currentCharacter.str, newTotalWeight);
-  const newMaxSpeed = calcMaxSpeed(state.currentCharacter.agi, newBaseSpeed);
-  const newDamageBonus = calcDB(newMaxSpeed, state.currentCharacter.ASF);
-  const newGunCombatActions = calcCombatActions(newMaxSpeed, state.currentCharacter.ISF);
-  const newMeleeCombatActions = calcCombatActions(newMaxSpeed, state.currentCharacter.ASF);
+  const updatedFirearms = state.currentCharacter.firearms.map((gun) => {
+    if (gun.name === firearmToUpdate) {
+      return { ...gun, qty: gun.qty + 1 };
+    }
+
+    return gun;
+  });
 
   return { ...state,
     currentCharacter: { ...state.currentCharacter,
-      totalWeight: newTotalWeight,
-      firearms: newFirearms,
-      baseSpeed: newBaseSpeed,
-      maxSpeed: newMaxSpeed,
-      damageBonus: newDamageBonus,
-      gunCombatActions: newGunCombatActions,
-      handCombatActions: newMeleeCombatActions } };
+      firearms: updatedFirearms } };
 };
