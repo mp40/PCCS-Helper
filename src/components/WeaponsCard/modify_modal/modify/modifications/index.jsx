@@ -6,7 +6,7 @@ import styles from './styles.module.css';
 const Modifications = ({ firearmName, modNotes, removeFirearmModification }) => (
   <div className={styles.wrapper}>
     <div>Modifications</div>
-    {modNotes.map((noteObj) => (
+    {modNotes.map((noteObj, index) => (
       <div key={`${noteObj.note}${noteObj.weightMod}`} className={styles.entry}>
         <span>{noteObj.note}</span>
         <span>
@@ -16,7 +16,7 @@ const Modifications = ({ firearmName, modNotes, removeFirearmModification }) => 
           aria-label="close"
           className={styles.close}
           type="button"
-          onClick={() => removeFirearmModification({ firearm: firearmName, modNote: noteObj })}
+          onClick={() => removeFirearmModification({ firearmToUpdate: firearmName, modIndex: index })}
         />
       </div>
     ))}

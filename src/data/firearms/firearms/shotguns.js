@@ -75,7 +75,7 @@ export const shotguns = Object.freeze({
     calibre: '12 Gauge',
     qty: 1,
     length: 20,
-    weight: 6.54,
+    baseWeight: 6.54,
     rt: 16,
     rof: '*',
     mag: [{ type: 'Rnd', weight: 0.13, cap: 2, qty: 0 }],

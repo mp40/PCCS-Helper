@@ -15,5 +15,5 @@ export const calibres = [
   { value: '7.62 x 39mm', key: '762x39' },
   { value: '5.45 x 39.5mm', key: '545x39' },
   { value: '9mm Parabellum', key: '9mmParabellum' },
-  { value: 'Other', key: 'other' },
+  { value: 'other', key: 'other' },
 ];

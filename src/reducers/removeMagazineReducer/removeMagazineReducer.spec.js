@@ -1,89 +1,74 @@
 import { MockState } from '../mockState';
 import { removeMagazineReducer } from './index';
-import { correctFloatingPoint } from '../../utils';
 
-const mockM16 = (ammo1, ammo2) => ({
-  name: 'M16',
-  qty: 1,
-  weight: 8.7,
-  mag: [
-    { type: 'Mag', weight: 0.7, cap: 20, qty: ammo1 },
-    { type: 'Mag', weight: 1, cap: 30, qty: ammo2 },
-  ],
-});
-
-const mockM1911A1 = () => ({
+const m1911 = {
   name: 'M1911A1',
   qty: 1,
-  weight: 3,
   mag: [{ type: 'Mag', weight: 0.7, cap: 7, qty: 0 }],
-});
+};
+
+const m1911WithCustomMag = {
+  name: 'M1911A1',
+  qty: 1,
+  mag: [{ type: 'Mag', weight: 0.7, cap: 7, qty: 0 }, { type: 'Mag', weight: 1, cap: 10, qty: 0, custom: true }],
+};
+
+const m16WithSpareMags = {
+  name: 'M16',
+  qty: 1,
+  mag: [{ type: 'Mag', weight: 0.7, cap: 20, qty: 1 }, { type: 'Mag', weight: 1, cap: 30, qty: 2 }],
+};
+
+const m16WithRemovedMag = {
+  name: 'M16',
+  qty: 1,
+  mag: [{ type: 'Mag', weight: 0.7, cap: 20, qty: 1 }, { type: 'Mag', weight: 1, cap: 30, qty: 0, removed: true }],
+};
 
 describe('removeMagazineReducer', () => {
-  let state = new MockState();
-
-  it('should set selected magazine for selected firearm to 0 and mark as removed', () => {
-    const m16 = mockM16(1, 2);
-    const ammoWeight = (m16.mag[0].qty * m16.mag[0].weight) + (m16.mag[1].qty * m16.mag[1].weight);
+  it('should set standard magazine for selected firearm to 0 and mark as removed', () => {
+    let state = new MockState();
 
     state = { ...state,
       currentCharacter: {
         ...state.currentCharacter,
-        totalWeight: 5 + m16.weight + ammoWeight + mockM1911A1().weight,
-        baseSpeed: 2,
-        maxSpeed: 4,
-        gunCombatActions: 3,
-        handCombatActions: 3,
-        firearms: [mockM1911A1(), mockM16(1, 1)],
+        firearms: [m1911, m16WithSpareMags],
       } };
 
-    const action = { payload: { firearm: 'M16', magazine: { type: 'Mag', weight: 1, cap: 30, qty: 2 } } };
+    const action = { payload: { firearmToUpdate: 'M16', magazineIndex: 1 } };
 
     const updatedState = { ...state,
       currentCharacter: {
         ...state.currentCharacter,
-        totalWeight: correctFloatingPoint(5 + m16.weight + m16.mag[0].weight + mockM1911A1().weight),
-        firearms: [mockM1911A1(), mockM16(1, 0)],
+        firearms: [m1911, m16WithRemovedMag],
       } };
 
     state = removeMagazineReducer(state, action);
 
     expect(state).toMatchObject(updatedState);
-    expect(state.currentCharacter.firearms[1].mag[1].qty).toBe(0);
     expect(state.currentCharacter.firearms[1].mag[1].removed).toBe(true);
-    expect(state.currentCharacter.firearms[1].mag.length).toBe(2);
   });
 
   it('should delete custom magazines from the firearm', () => {
-    const m16 = mockM16(1, 0);
-    m16.mag.push({ type: 'Mag', weight: 1.1, cap: 40, qty: 2, custom: true });
-    const ammoWeight = (m16.mag[0].qty * m16.mag[0].weight) + (m16.mag[2].qty * m16.mag[2].weight);
+    let state = new MockState();
 
     state = { ...state,
       currentCharacter: {
         ...state.currentCharacter,
-        totalWeight: 5 + m16.weight + ammoWeight,
-        baseSpeed: 2,
-        maxSpeed: 4,
-        gunCombatActions: 3,
-        handCombatActions: 3,
-        firearms: [m16],
+        firearms: [m1911WithCustomMag, m16WithSpareMags],
       } };
 
-    const action = { payload: { firearm: 'M16', magazine: { type: 'Mag', weight: 1.1, cap: 40, qty: 2, custom: true } } };
+    const action = { payload: { firearmToUpdate: 'M1911A1', magazineIndex: 1 } };
 
     const updatedState = { ...state,
       currentCharacter: {
         ...state.currentCharacter,
-        totalWeight: correctFloatingPoint(5 + m16.weight + m16.mag[0].weight),
-        baseSpeed: 2.5,
-        maxSpeed: 5,
-        firearms: [mockM16(1, 0)],
+        firearms: [m1911, m16WithSpareMags],
       } };
 
     state = removeMagazineReducer(state, action);
 
     expect(state).toMatchObject(updatedState);
-    expect(state.currentCharacter.firearms[0].mag.length).toBe(2);
+    expect(state.currentCharacter.firearms[0].mag.length).toBe(1);
   });
 });

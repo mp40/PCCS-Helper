@@ -26,6 +26,10 @@ const m2Grenade = {
 
 const increaseFirearmQty = jest.fn();
 const decreaseFirearmQty = jest.fn();
+const toggleModifyWeapon = jest.fn();
+const removeFirearm = jest.fn();
+const increaseMagazineQty = jest.fn();
+const decreaseMagazineQty = jest.fn();
 
 const m1911Qty1 = {
   name: 'M1911A1',
@@ -39,6 +43,16 @@ const m1911Qty2 = {
   qty: 2,
 };
 
+const m1911WithSpareMag = {
+  ...m1911Qty1,
+  mag: [{ type: 'Mag', weight: 0.7, cap: 7, qty: 1 }],
+};
+
+const pistolSingleRounds = {
+  ...m1911Qty1,
+  mag: [{ type: 'Rnd', weight: 0.7, cap: 7, qty: 1 }],
+};
+
 describe.only('Selected Firearms Table', () => {
   let wrapper;
 
@@ -48,6 +62,10 @@ describe.only('Selected Firearms Table', () => {
         firearms={[]}
         increaseFirearmQty={increaseFirearmQty}
         decreaseFirearmQty={decreaseFirearmQty}
+        toggleModifyWeapon={toggleModifyWeapon}
+        removeFirearm={removeFirearm}
+        increaseMagazineQty={increaseMagazineQty}
+        decreaseMagazineQty={decreaseMagazineQty}
       />);
   });
 
@@ -57,23 +75,72 @@ describe.only('Selected Firearms Table', () => {
 
   it('should be possible to increase qty of firearm', () => {
     wrapper.setProps({ firearms: [m1911Qty1] });
-    wrapper.find('.button--up').simulate('click');
+    wrapper.find('button[children="M1911A1"]').closest('div').find('.button--up').simulate('click');
 
     expect(increaseFirearmQty).toHaveBeenCalledWith(m1911Qty1.name);
   });
 
   it('should be possible to decrease qty of firearm', () => {
     wrapper.setProps({ firearms: [m1911Qty2] });
-    wrapper.find('.button--up').simulate('click');
+    wrapper.find('button[children="M1911A1"]').closest('div').find('.button--down').simulate('click');
 
-    expect(increaseFirearmQty).toHaveBeenCalledWith(m1911Qty2.name);
+    expect(decreaseFirearmQty).toHaveBeenCalledWith(m1911Qty2.name);
   });
 
   it('should not be possible to decrease qty of firearm below 1', () => {
     wrapper.setProps({ firearms: [m1911Qty1] });
-    wrapper.find('.button--up').simulate('click');
+    wrapper.find('button[children="M1911A1"]').closest('div').find('.button--down').simulate('click');
 
-    expect(increaseFirearmQty).not.toHaveBeenCalledWith();
+    expect(increaseFirearmQty).not.toHaveBeenCalled();
+  });
+
+  it('should be possible to modify firearm', () => {
+    wrapper.setProps({ firearms: [m1911Qty1] });
+    wrapper.find('button[children="M1911A1"]').simulate('click');
+
+    expect(toggleModifyWeapon).toHaveBeenCalledWith(m1911Qty1.name);
+  });
+
+  it('should be possible to remove firearm', () => {
+    wrapper.setProps({ firearms: [m1911Qty1] });
+    wrapper.find('.button--close').simulate('click');
+
+    expect(removeFirearm).toHaveBeenCalledWith(m1911Qty1.name);
+  });
+
+  it('should be possible to increase magazine', () => {
+    wrapper.setProps({ firearms: [m1911Qty1] });
+    wrapper.find('.magazineRow').find('.button--up').simulate('click');
+
+    expect(increaseMagazineQty).toHaveBeenCalledWith({ firearmToModify: 'M1911A1', magazineIndex: 0 });
+  });
+
+  it('should be possible to decrease magazine', () => {
+    wrapper.setProps({ firearms: [m1911WithSpareMag] });
+    wrapper.find('.magazineRow').find('.button--down').simulate('click');
+
+    expect(decreaseMagazineQty).toHaveBeenCalledWith({ firearmToModify: 'M1911A1', magazineIndex: 0 });
+  });
+
+  it('should not be possible to decrease magazine below 0', () => {
+    wrapper.setProps({ firearms: [m1911Qty1] });
+    wrapper.find('.magazineRow').find('.button--down').simulate('click');
+
+    expect(decreaseMagazineQty).not.toHaveBeenCalled();
+  });
+
+  describe('rendering the correct information', () => {
+    it('should return "Single Rounds" if type is "Rnd"', () => {
+      wrapper.setProps({ firearms: [pistolSingleRounds] });
+
+      expect(wrapper.text()).toContain('Single Round');
+    });
+
+    it('should return "Single Rounds" if type is "Rnd"', () => {
+      wrapper.setProps({ firearms: [m1911Qty1] });
+
+      expect(wrapper.text()).toContain('7 round Mag');
+    });
   });
 });
 

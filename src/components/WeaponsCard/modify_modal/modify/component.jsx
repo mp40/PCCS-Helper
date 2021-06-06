@@ -24,7 +24,7 @@ const FirearmModify = ({
   };
 
   const handleAddCustomMag = (newCustomMagazine) => {
-    addCustomMagazine({ firearm: gunObj.name, magazine: newCustomMagazine });
+    addCustomMagazine({ firearmToUpdate: gunObj.name, magazine: newCustomMagazine });
     toggleCreateCustomMag(false);
   };
 
@@ -33,8 +33,8 @@ const FirearmModify = ({
     toggleModifyFirearmWeight(false);
   };
 
-  const handleMagazineExistence = (payload) => (
-    payload.magazine.removed ? replaceMagazine(payload) : removeMagazine(payload)
+  const handleMagazineExistence = (payload, isRemoved) => (
+    isRemoved ? replaceMagazine(payload) : removeMagazine(payload)
   );
 
   return (

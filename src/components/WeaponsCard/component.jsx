@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { gunObjShape, grenadeShape } from '../../helpers/proptypeShapes';
 
+// mptodo refactor GearTable away
 import GearTable from '../GearTable';
 
 import WeaponsTableBody from '../WeaponsTableBody';
@@ -12,7 +13,10 @@ import FirearmModifyModal from './modify_modal';
 import GrenadeSelectModal from '../GrenadeSelectModal';
 import SelectLauncherModal from '../SelectLauncherModal';
 
+import { hydrateFirearmByObject } from '../../data/firearms/hydrate';
+
 import { calculateWeaponArrayWeight } from '../../helpers/actionHelpers';
+// import { firearms } from '../../data/firearms';
 
 // mptodo -> functional component
 
@@ -36,9 +40,9 @@ class WeaponsCard extends Component {
     this.setState({ [viewToToggle]: true });
   }
 
-  toggleModifyWeapon = (gunObj) => {
+  toggleModifyWeapon = (firearm) => {
     const { modifyFirearm } = this.state;
-    this.setState({ firearmToModify: gunObj.name });
+    this.setState({ firearmToModify: firearm });
     this.setState({ modifyFirearm: !modifyFirearm });
   }
 
@@ -128,7 +132,7 @@ class WeaponsCard extends Component {
         {showFirearms && this.renderWeaponSelect()}
         {modifyFirearm && (
           <FirearmModifyModal
-            gunToModify={gunToModify}
+            gunToModify={hydrateFirearmByObject(gunToModify)}
             toggleOffWeaponCardViews={this.toggleOffWeaponCardViews}
           />
         )}

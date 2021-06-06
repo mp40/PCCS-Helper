@@ -22,6 +22,7 @@ const Magazines = ({ gunObj, setPrimaryMag, handleMagazineExistence }) => (
     </div>
     {gunObj.mag.map((magObj, index) => {
       if (magObj.class) {
+        // mptodo - this is for 40mm, refactor out...?
         return null;
       }
       return (
@@ -33,7 +34,7 @@ const Magazines = ({ gunObj, setPrimaryMag, handleMagazineExistence }) => (
             <ClickButton name={`index${index} selectPrimaryButton`} preventDefault={index === 0} onClick={() => setPrimaryMag(index, magObj.removed)} />
           </span>
           <span>
-            <CheckBox name={`index${index} removeMagazineButton`} onClick={() => handleMagazineExistence({ firearm: gunObj.name, magazine: magObj })} />
+            <CheckBox name={`index${index} removeMagazineButton`} onClick={() => handleMagazineExistence({ firearmToUpdate: gunObj.name, magazineIndex: index }, magObj.removed)} />
           </span>
         </div>
       );

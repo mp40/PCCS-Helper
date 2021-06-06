@@ -227,7 +227,7 @@ export const rifles = Object.freeze({
     calibre: '7.62mm NATO',
     qty: 1,
     length: 43,
-    weight: 9.4,
+    baseWeight: 9.4,
     rt: 8,
     rof: '*6',
     mag: [{ type: 'Mag', weight: 1.4, cap: 20, qty: 0 }],

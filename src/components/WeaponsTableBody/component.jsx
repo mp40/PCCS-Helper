@@ -5,9 +5,12 @@ import GearRow from '../GearRow';
 import { getFullFirearmSystemWeightByName, getFullFirearmSystemWeightByObject } from '../../data/firearms';
 import { correctFloatingPoint } from '../../utils';
 
+import { hydrateFirearmByObject } from '../../data/firearms/hydrate';
+
 import { gunObjShape, grenadeShape, launcherShape } from '../../helpers/proptypeShapes';
 
 import styles from './styles.module.css';
+// hydrateFirearmByObject
 
 // mptodo recieve dehydrtaed guns from store
 
@@ -38,6 +41,21 @@ const WeaponsTableBody = ({
     decreaseFirearmQty(firearm.name);
   };
 
+  const handleDecreaseMagazine = (firearmToModify, magazineIndex, qty) => {
+    if (qty === 0) {
+      return;
+    }
+
+    decreaseMagazineQty({ firearmToModify, magazineIndex });
+  };
+
+  const getMagazineText = (type, cap) => {
+    if (type === 'Rnd') {
+      return 'Single Round';
+    }
+    return `${cap} round ${type}`;
+  };
+
   return (
     <div>
       <div className="weapon-table-header--container">
@@ -49,20 +67,34 @@ const WeaponsTableBody = ({
       </div>
 
       {firearms.map((firearm) => (
-        <div key={firearm.name} className="weapon-table-row--container">
+        <>
+          <div key={firearm.name} className="weapon-table-row--container">
 
-          <span>
-            <button aria-label="remove" type="button" className="button--standard button--close" />
-            <button type="button" className="button--standard">{firearm.name}</button>
-          </span>
-          <span>{getFullFirearmSystemWeightByObject(firearm)}</span>
-          <span>{firearm.qty}</span>
-          <span>{correctFloatingPoint(getFullFirearmSystemWeightByObject(firearm) * firearm.qty)}</span>
-          <span>
-            <button aria-label="up" type="button" className="button--standard button--up" onClick={() => increaseFirearmQty(firearm.name)} />
-            <button aria-label="down" type="button" className="button--standard button--down" onClick={() => handleDecreaseFirearm(firearm)} />
-          </span>
-        </div>
+            <span>
+              <button aria-label="remove" type="button" className="button--standard button--close" onClick={() => removeFirearm(firearm.name)} />
+              <button type="button" className="button--standard" onClick={() => toggleModifyWeapon(firearm.name)}>{firearm.name}</button>
+            </span>
+            <span>{getFullFirearmSystemWeightByObject(firearm)}</span>
+            <span>{firearm.qty}</span>
+            <span>{correctFloatingPoint(getFullFirearmSystemWeightByObject(firearm) * firearm.qty)}</span>
+            <span>
+              <button aria-label="up" type="button" className="button--standard button--up" onClick={() => increaseFirearmQty(firearm.name)} />
+              <button aria-label="down" type="button" className="button--standard button--down" onClick={() => handleDecreaseFirearm(firearm)} />
+            </span>
+          </div>
+          {firearm.mag.map((m, i) => (
+            <div key={`${m.type}${m.cap}${m.weight}`} className={`weapon-table-row--container ${styles.magazineRow}`}>
+              <span>{getMagazineText(m.type, m.cap)}</span>
+              <span>{m.weight}</span>
+              <span>{m.qty}</span>
+              <span>{correctFloatingPoint(m.qty * m.weight)}</span>
+              <span>
+                <button aria-label="up" type="button" className="button--standard button--up" onClick={() => increaseMagazineQty({ firearmToModify: firearm.name, magazineIndex: i })} />
+                <button aria-label="down" type="button" className="button--standard button--down" onClick={() => handleDecreaseMagazine(firearm.name, i, m.qty)} />
+              </span>
+            </div>
+          ))}
+        </>
       ))}
 
       {/* <GearRow

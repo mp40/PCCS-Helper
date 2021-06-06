@@ -1,5 +1,7 @@
 import { uniformWeights } from '../data/uniformAndArmourTypes';
 
+// mptodo - a lot of this needs to go
+
 export const calculateAmmoWeight = (weapon) => {
   if (weapon.mag[0].weight === '-') {
     return 0;
@@ -8,6 +10,7 @@ export const calculateAmmoWeight = (weapon) => {
   return Math.round(ammoWeight * 1000) / 1000;
 };
 
+// mptodo refactor away
 export const calculateWeaponAndAmmoWeight = (weapon) => {
   const ammoWeight = calculateAmmoWeight(weapon);
   const weaponWeight = weapon.weight * weapon.qty;
@@ -43,6 +46,7 @@ export const modifyObjectQtyInArray = (array, obj, modifier = 0) => array.map((e
   return newElement;
 });
 
+// mptodo get rid off this
 export const removeObjectFromArray = (array, obj) => array.filter(
   (element) => element.name && element.name !== obj.name);
 

@@ -1,0 +1,8 @@
+.magazineRow {
+    background-color: var(--light-grey);
+}
+
+.magazineRow > span:first-of-type {
+    margin-left: 1.75rem;
+    margin-right: -1.75rem;
+}
