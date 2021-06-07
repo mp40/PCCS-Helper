@@ -6,6 +6,7 @@ import { mgs } from './firearms/mgs';
 import { shotguns } from './firearms/shotguns';
 
 import { correctFloatingPoint } from '../../utils';
+import { getScopeByName } from './optics';
 
 export const firearms = Object.freeze({
   ...rifles,
@@ -129,7 +130,13 @@ export const getFullFirearmSystemWeightByName = (firearm) => {
   const { baseWeight, mag } = firearms[firearm];
   const ammoWeight = getAmmoWeight(mag[0]);
 
-  return correctFloatingPoint(baseWeight + ammoWeight);
+  let opticWeight = 0;
+
+  if (firearms[firearm]?.optics?.attached) {
+    opticWeight = getScopeByName(firearms[firearm].optics.attached).weight;
+  }
+
+  return correctFloatingPoint(baseWeight + ammoWeight + opticWeight);
 };
 
 export const getFullFirearmSystemWeightByObject = (firearm) => {
@@ -138,7 +145,22 @@ export const getFullFirearmSystemWeightByObject = (firearm) => {
 
   const ammoWeight = getAmmoWeight(mag[0]);
 
-  return correctFloatingPoint(baseWeight + ammoWeight);
+  let modWeight = 0;
+  let opticWeight = 0;
+
+  if (firearm.modNotes) {
+    modWeight = firearm.modNotes.reduce((acc, mod) => acc + mod.weightMod, 0);
+  }
+
+  if (firearm?.optics?.attached) {
+    opticWeight = getScopeByName(firearm.optics.attached).weight;
+  }
+
+  if (firearm?.attachedOptic) {
+    opticWeight = getScopeByName(firearm?.attachedOptic).weight;
+  }
+
+  return correctFloatingPoint(baseWeight + ammoWeight + modWeight + opticWeight);
 };
 
 // export const getTotalWeightOfFirearmSystemAndAmmo = (firearm) => {

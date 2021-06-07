@@ -1,4 +1,5 @@
 import { averageOther762FMJ } from '../projectiles';
+import {} from '../optics';
 
 export const sniperRifles = Object.freeze({
   'Dragunov SVD': {
@@ -7,7 +8,7 @@ export const sniperRifles = Object.freeze({
     calibre: '7.62 x 54mm',
     qty: 1,
     length: 48,
-    baseWeight: 9.52,
+    baseWeight: 8.2,
     rt: 8,
     rof: '*',
     mag: [{ type: 'Mag', weight: 0.68, cap: 10, qty: 0 }],
@@ -37,7 +38,10 @@ export const sniperRifles = Object.freeze({
     ba: [69, 62, 53, 46, 41, 32, 26, 22],
     tof: [0, 0, 1, 2, 2, 5, 8, 11],
     offical: true,
-    optics: true,
+    optics: {
+      ableToAttach: ['PSO - 1'],
+      attached: 'PSO - 1',
+    },
   },
   M40A1: {
     name: 'M40A1',
@@ -45,7 +49,7 @@ export const sniperRifles = Object.freeze({
     calibre: '7.62mm NATO',
     qty: 1,
     length: 44,
-    baseWeight: 14.5,
+    baseWeight: 12.32,
     rt: 16,
     rof: '3',
     mag: [{ type: 'Rnd', weight: 0.06, cap: 5, qty: 0 }],
@@ -71,7 +75,10 @@ export const sniperRifles = Object.freeze({
     ba: [68, 59, 50, 43, 38, 28, 22, 18],
     tof: [0, 0, 1, 2, 2, 5, 8, 11],
     offical: true,
-    optics: true,
+    optics: {
+      ableToAttach: ['Unertl x10'],
+      attached: 'Unertl x10',
+    },
   },
   'M1903 A4': {
     name: 'M1903 A4',
@@ -79,7 +86,7 @@ export const sniperRifles = Object.freeze({
     calibre: '30-06',
     qty: 1,
     length: 43,
-    baseWeight: 9.35,
+    baseWeight: 8.05,
     rt: 16,
     rof: '3',
     mag: [{ type: 'Rnd', weight: 0.07, cap: 5, qty: 0 }],
@@ -109,6 +116,9 @@ export const sniperRifles = Object.freeze({
     ba: [69, 61, 52, 45, 40, 30, 24, 20],
     tof: [0, 0, 1, 2, 2, 5, 8, 11],
     offical: true,
-    optics: true,
+    optics: {
+      restrictedTo: ['M73'],
+      attached: 'M73',
+    },
   },
 });

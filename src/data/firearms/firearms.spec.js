@@ -149,17 +149,46 @@ describe.only('Firearm data helpers', () => {
 
       expect(getFullFirearmSystemWeightByName(firearm)).toBe(8.8);
     });
+
+    it.only('should calculate weight of fully loaded firearm with optic', () => {
+      const firearm = 'M40A1';
+
+      expect(getFullFirearmSystemWeightByName(firearm)).toBe(14.8);
+    });
   });
-  describe('calculating weight of firearm weapon system by onject', () => {
+
+  describe('calculating weight of firearm weapon system by object', () => {
     it('should calculate weight of fully loaded weapon', () => {
       const firearm = {
         name: 'M16',
         qty: 1,
         mag: [{ type: 'Mag', weight: 1, cap: 30, qty: 0 }, { type: 'Mag', weight: 0.7, cap: 20, qty: 0 }],
-        modNotes: [],
       };
 
       expect(getFullFirearmSystemWeightByObject(firearm)).toBe(9);
+    });
+
+    it('should calculate weight of fully loaded weapon and modifications', () => {
+      const firearm = {
+        name: 'M16',
+        qty: 1,
+        mag: [{ type: 'Mag', weight: 1, cap: 30, qty: 0 }, { type: 'Mag', weight: 0.7, cap: 20, qty: 0 }],
+        modNotes: [{ weightMod: 0.5 }, { weightMod: 1 }],
+      };
+
+      expect(getFullFirearmSystemWeightByObject(firearm)).toBe(10.5);
+    });
+
+    it('should calculate weight of fully loaded weapon and scope', () => {
+      const firearm = {
+        name: 'Dragunov SVD',
+        qty: 1,
+        mag: [{ type: 'Mag', weight: 0.68, cap: 10, qty: 0 }],
+        modNotes: [],
+        optics: { attached: 'PSO - 1' },
+      };
+
+      expect(getFullFirearmSystemWeightByObject(firearm)).toBe(10.2);
     });
   });
 });

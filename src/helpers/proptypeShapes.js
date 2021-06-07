@@ -128,3 +128,9 @@ export const currentCharacterShape = PropTypes.shape({
   helmet: armourShape,
   vest: armourShape,
 });
+
+export const opticsShape = PropTypes.shape({
+  restrictedTo: PropTypes.arrayOf(PropTypes.string),
+  ableToAttach: PropTypes.arrayOf(PropTypes.string),
+  attached: PropTypes.string,
+});

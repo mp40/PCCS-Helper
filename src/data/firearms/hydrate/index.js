@@ -6,11 +6,19 @@ import { firearms } from '../index';
 //     mag: firearm.mag,
 //     modNotes: firearm.modNotes }
 
-export const hydrateFirearmByName = (name) => ({
-  name,
-  list: firearms[name].list,
-  mag: firearms[name].mag,
-});
+export const hydrateFirearmByName = (name) => {
+  const gun = {
+    name,
+    list: firearms[name].list,
+    mag: firearms[name].mag,
+  };
+
+  if (firearms[name]?.optics?.attached) {
+    gun.attachedOptic = firearms[name].optics.attached;
+  }
+
+  return gun;
+};
 
 export const hydrateFirearmByObject = (firearm) => {
   const { name, mag, qty } = firearm;
@@ -34,6 +42,13 @@ export const hydrateFirearmByObject = (firearm) => {
     selector,
   } = firearms[name];
 
+  let optics = null;
+
+  if (firearm.attachedOptic || firearms[name].optics) {
+    optics = { ...firearms[name].optics };
+    optics.attached = firearm.attachedOptic;
+  }
+
   return {
     name,
     qty,
@@ -55,5 +70,6 @@ export const hydrateFirearmByObject = (firearm) => {
     bipod,
     selector,
     modNotes: firearm.modNotes || [],
+    optics,
   };
 };

@@ -6,6 +6,8 @@ import { gunObjShape } from '../../../helpers/proptypeShapes';
 import WeaponStatsTable from '../../WeaponStatsTable';
 import FirearmModify from './modify';
 
+import { getFullFirearmSystemWeightByObject } from '../../../data/firearms';
+
 import styles from './styles.module.css';
 
 // mptodo modify gun modal
@@ -25,7 +27,7 @@ const FirearmModifyModal = ({ gunToModify, toggleOffWeaponCardViews }) => (
 
       <div className={styles.body}>
         <WeaponStatsTable
-          weapon={gunToModify}
+          weapon={{ ...gunToModify, weight: getFullFirearmSystemWeightByObject(gunToModify) }}
         />
         <FirearmModify
           gunObj={gunToModify}

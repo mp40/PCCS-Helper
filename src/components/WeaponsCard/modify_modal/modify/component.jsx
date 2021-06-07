@@ -4,6 +4,8 @@ import { gunObjShape } from '../../../../helpers/proptypeShapes';
 
 import Magazines from './magazines';
 import Modifications from './modifications';
+import Optics from './optics';
+
 import Form from './form';
 
 const FirearmModify = ({
@@ -73,6 +75,7 @@ const FirearmModify = ({
               modNotes={gunObj.modNotes}
               removeFirearmModification={removeFirearmModification}
             />
+            <Optics optics={gunObj.optics} />
           </>
         )}
       {createCustomMag && (
