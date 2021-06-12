@@ -5,8 +5,11 @@ import { gunObjShape } from '../../../../helpers/proptypeShapes';
 import Magazines from './magazines';
 import Modifications from './modifications';
 import Optics from './optics';
+import Launchers from './launchers';
 
 import Form from './form';
+
+import styles from './styles.module.css';
 
 const FirearmModify = ({
   gunObj,
@@ -40,7 +43,7 @@ const FirearmModify = ({
   );
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       {(!createCustomMag && !modifyFirearmWeight)
         && (
           <>
@@ -75,7 +78,15 @@ const FirearmModify = ({
               modNotes={gunObj.modNotes}
               removeFirearmModification={removeFirearmModification}
             />
-            <Optics optics={gunObj.optics} />
+            <Optics firearm={gunObj.name} optics={gunObj.optics} />
+
+            {gunObj?.launcher?.ableToAttach && (
+            <Launchers
+              firearm={gunObj.name}
+              ableToAttach={gunObj.launcher.ableToAttach}
+              attachedLauncher={gunObj.launcher.attached}
+            />
+          )}
           </>
         )}
       {createCustomMag && (

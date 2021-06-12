@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import GearRow from '../GearRow';
 
 import { getFullFirearmSystemWeightByName, getFullFirearmSystemWeightByObject } from '../../data/firearms';
+import { getLauncherByName } from '../../data/firearms/launchers';
+
 import { correctFloatingPoint } from '../../utils';
 
 import { hydrateFirearmByObject } from '../../data/firearms/hydrate';
@@ -15,6 +17,7 @@ import styles from './styles.module.css';
 // mptodo recieve dehydrtaed guns from store
 
 const WeaponsTableBody = ({
+  totalFirearmWeight,
   toggleModifyWeapon,
   firearms,
   grenades,
@@ -32,6 +35,8 @@ const WeaponsTableBody = ({
   removeLauncher,
   increaseLauncherAmmo,
   decreaseLauncherAmmo,
+  increaseUnderslungLauncherAmmo,
+  decreaseUnderslungLauncherAmmo,
 }) => {
   const handleDecreaseFirearm = (firearm) => {
     if (firearm.qty <= 1) {
@@ -41,12 +46,21 @@ const WeaponsTableBody = ({
     decreaseFirearmQty(firearm.name);
   };
 
-  const handleDecreaseMagazine = (firearmToModify, magazineIndex, qty) => {
+  // const handleDecreaseMagazine = (firearmToModify, magazineIndex, qty) => {
+  //   if (qty === 0) {
+  //     return;
+  //   }
+
+  //   decreaseMagazineQty({ firearmToModify, magazineIndex });
+  // };
+
+  const handleDecreaseAmmo = (fn, payload, qty) => {
+    console.log('handle', fn, payload, qty);
     if (qty === 0) {
       return;
     }
 
-    decreaseMagazineQty({ firearmToModify, magazineIndex });
+    fn(payload);
   };
 
   const getMagazineText = (type, cap) => {
@@ -63,7 +77,7 @@ const WeaponsTableBody = ({
         <span>Weight</span>
         <span>Qty</span>
         <span>Lbs</span>
-        <span>x=?</span>
+        <span>{totalFirearmWeight}</span>
       </div>
 
       {firearms.map((firearm) => (
@@ -72,7 +86,7 @@ const WeaponsTableBody = ({
 
             <span>
               <button aria-label="remove" type="button" className="button--standard button--close" onClick={() => removeFirearm(firearm.name)} />
-              <button type="button" className="button--standard" onClick={() => toggleModifyWeapon(firearm.name)}>{firearm.name}</button>
+              <button type="button" className="button--standard" onClick={() => toggleModifyWeapon(firearm.name)}>{`${firearm.name}${firearm?.launcher ? ` - ${firearm.launcher.attached}` : ''}`}</button>
             </span>
             <span>{getFullFirearmSystemWeightByObject(firearm)}</span>
             <span>{firearm.qty}</span>
@@ -90,10 +104,25 @@ const WeaponsTableBody = ({
               <span>{correctFloatingPoint(m.qty * m.weight)}</span>
               <span>
                 <button aria-label="up" type="button" className="button--standard button--up" onClick={() => increaseMagazineQty({ firearmToModify: firearm.name, magazineIndex: i })} />
-                <button aria-label="down" type="button" className="button--standard button--down" onClick={() => handleDecreaseMagazine(firearm.name, i, m.qty)} />
+                <button aria-label="down" type="button" className="button--standard button--down" onClick={() => handleDecreaseAmmo(decreaseMagazineQty, { firearmToModify: firearm.name, magazineIndex: i }, m.qty)} />
               </span>
             </div>
           ))}
+          {firearm?.launcher && firearm.launcher.mag.map((m, i) => {
+            const launcher = getLauncherByName(firearm.launcher.attached);
+            return (
+              <div key={`${launcher.mag[i].class}`} className={`weapon-table-row--container ${styles.magazineRow}`}>
+                <span>{`${launcher.mag[i].class} Rnd`}</span>
+                <span>{launcher.mag[i].weight}</span>
+                <span>{m.qty}</span>
+                <span>{correctFloatingPoint(m.qty * launcher.mag[i].weight)}</span>
+                <span>
+                  <button aria-label="up" type="button" className="button--standard button--up" onClick={() => increaseUnderslungLauncherAmmo({ firearmToModify: firearm.name, magazineIndex: i })} />
+                  <button aria-label="down" type="button" className="button--standard button--down" onClick={() => handleDecreaseAmmo(decreaseUnderslungLauncherAmmo, { firearmToModify: firearm.name, magazineIndex: i }, m.qty)} />
+                </span>
+              </div>
+            );
+          })}
         </>
       ))}
 
@@ -111,6 +140,7 @@ const WeaponsTableBody = ({
 };
 
 WeaponsTableBody.propTypes = {
+  totalFirearmWeight: PropTypes.number.isRequired,
   increaseMagazineQty: PropTypes.func,
   decreaseMagazineQty: PropTypes.func,
   removeFirearm: PropTypes.func,
@@ -124,6 +154,8 @@ WeaponsTableBody.propTypes = {
   removeLauncher: PropTypes.func,
   increaseLauncherAmmo: PropTypes.func,
   decreaseLauncherAmmo: PropTypes.func,
+  increaseUnderslungLauncherAmmo: PropTypes.func.isRequired,
+  decreaseUnderslungLauncherAmmo: PropTypes.func.isRequired,
   toggleModifyWeapon: PropTypes.func,
   firearms: PropTypes.arrayOf(gunObjShape),
   grenades: PropTypes.arrayOf(grenadeShape),

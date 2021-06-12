@@ -43,10 +43,17 @@ export const hydrateFirearmByObject = (firearm) => {
   } = firearms[name];
 
   let optics = null;
+  let launcher = null;
 
   if (firearm.attachedOptic || firearms[name].optics) {
     optics = { ...firearms[name].optics };
     optics.attached = firearm.attachedOptic;
+  }
+
+  if (firearms[name].launcher) {
+    launcher = { ...firearms[name].launcher };
+    launcher.attached = firearm?.launcher?.attached || null;
+    launcher.mag = firearm?.launcher?.mag || null;
   }
 
   return {
@@ -71,5 +78,6 @@ export const hydrateFirearmByObject = (firearm) => {
     selector,
     modNotes: firearm.modNotes || [],
     optics,
+    launcher,
   };
 };

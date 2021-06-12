@@ -1,5 +1,4 @@
 import { averageOther762FMJ } from '../projectiles';
-import {} from '../optics';
 
 export const sniperRifles = Object.freeze({
   'Dragunov SVD': {
@@ -16,7 +15,7 @@ export const sniperRifles = Object.freeze({
     sab: 6,
     aim: {
       ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-      mod: [-22, -12, -7, -5, -4, -2, 0, 1, 2, 3, 4],
+      mod: [-23, -13, -5, -7, -6, -4, -3, -2, -1, 0, 1],
     },
     projectiles: [
       {
@@ -57,7 +56,7 @@ export const sniperRifles = Object.freeze({
     sab: 5,
     aim: {
       ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12],
-      mod: [-25, -15, -8, -6, -4, -3, -1, 1, 2, 3, 4],
+      mod: [-24, -14, -9, -7, -6, -5, -4, -3, -2, -1, 0],
     },
     projectiles: [
       averageOther762FMJ,
@@ -94,7 +93,7 @@ export const sniperRifles = Object.freeze({
     sab: 7,
     aim: {
       ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-      mod: [-22, -11, -7, -5, -4, -2, 0, 1, 2, 3, 4],
+      mod: [-23, -12, -9, -7, -6, -4, -2, -1, 0, 1, 2],
     },
     projectiles: [
       {

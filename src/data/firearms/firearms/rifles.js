@@ -147,6 +147,9 @@ export const rifles = Object.freeze({
     ba: [60, 52, 43, 36, 31, 21, 16, 12],
     tof: [0, 0, 1, 2, 2, 5, 8, 12],
     offical: true,
+    launcher: {
+      ableToAttach: ['GP-25'],
+    },
   },
   'CAR 16': {
     name: 'CAR 16',
@@ -350,6 +353,9 @@ export const rifles = Object.freeze({
     ba: [60, 51, 42, 35, 30, 20, 15, 11],
     tof: [0, 0, 1, 1, 2, 5, 8, 12],
     offical: false,
+    launcher: {
+      ableToAttach: ['M203'],
+    },
   },
   M14: {
     name: 'M14',
@@ -397,6 +403,9 @@ export const rifles = Object.freeze({
     ba: [60, 51, 42, 35, 30, 20, 15, 11],
     tof: [0, 0, 1, 1, 2, 4, 7, 10],
     offical: true,
+    launcher: {
+      ableToAttach: ['M203'],
+    },
   },
   M16A1: {
     name: 'M16A1',
@@ -421,6 +430,9 @@ export const rifles = Object.freeze({
     ba: [60, 51, 42, 35, 30, 20, 15, 11],
     tof: [0, 0, 1, 1, 2, 4, 7, 10],
     offical: true,
+    launcher: {
+      ableToAttach: ['M203'],
+    },
   },
   'M1 Garand': {
     name: 'M1 Garand',

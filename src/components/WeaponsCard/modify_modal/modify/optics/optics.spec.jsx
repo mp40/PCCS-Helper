@@ -1,7 +1,7 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 
-import Optics from './index';
+import Optics from './component';
 
 describe('Modify Firearm Optics', () => {
   let wrapper;

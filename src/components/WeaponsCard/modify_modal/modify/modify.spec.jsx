@@ -3,7 +3,13 @@ import { shallow, mount } from 'enzyme';
 
 import FirearmModify from './component';
 
-import { testM1911A1, testM16, testM16WithoutJhpAp, testFAMAS, testRemington } from '../../../../helpers/testHelpers';
+// import { testM1911A1, testM16, testM16WithoutJhpAp, testFAMAS, testRemington } from '../../../../helpers/testHelpers';
+
+const m16 = {
+  name: 'M16',
+  qty: 1,
+  mag: [{ type: 'Mag', weight: 0.7, cap: 20, qty: 0 }, { type: 'Mag', weight: 1, cap: 30, qty: 0 }],
+};
 
 describe(' Modify Firearm', () => {
   const replaceMagazine = jest.fn();
@@ -13,7 +19,7 @@ describe(' Modify Firearm', () => {
   const setPrimaryMagazine = jest.fn();
   const removeFirearmModification = jest.fn();
   const removeAllModificationsFromFirearm = jest.fn();
-  const gunObj = testM16();
+  const gunObj = m16;
 
   const wrapper = shallow(<FirearmModify
     replaceMagazine={replaceMagazine}

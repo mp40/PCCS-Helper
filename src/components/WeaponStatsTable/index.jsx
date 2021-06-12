@@ -74,9 +74,15 @@ const WeaponStatsTable = ({ weapon, sal, size }) => {
         <TableHead weaponList={weapon.list} />
         <tbody>
           {getWeaponCharacteristics(weapon.list).map((value, index) => (
-            <tr key={keys[index]} className={`gunTableLine gunTableLine${index + 1}`}>
+            <tr key={keys[index]} className="gunTableLine">
               <PhysicalData weapon={weapon} value={value} />
-              <AimTimes aim={weapon.aim} index={index} sal={sal} />
+              <AimTimes
+                aim={weapon.aim}
+                index={index}
+                sal={sal}
+                optic={weapon?.optics?.attached}
+                launcher={weapon?.launcher?.attached}
+              />
               {getData(index)}
             </tr>
           ))}

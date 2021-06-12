@@ -7,6 +7,8 @@ import { shotguns } from './firearms/shotguns';
 
 import { correctFloatingPoint } from '../../utils';
 import { getScopeByName } from './optics';
+import { getLauncherByName } from './launchers';
+import launchers from '../../components/WeaponsCard/modify_modal/modify/launchers';
 
 export const firearms = Object.freeze({
   ...rifles,
@@ -147,6 +149,7 @@ export const getFullFirearmSystemWeightByObject = (firearm) => {
 
   let modWeight = 0;
   let opticWeight = 0;
+  let launcherWeight = 0;
 
   if (firearm.modNotes) {
     modWeight = firearm.modNotes.reduce((acc, mod) => acc + mod.weightMod, 0);
@@ -160,18 +163,11 @@ export const getFullFirearmSystemWeightByObject = (firearm) => {
     opticWeight = getScopeByName(firearm?.attachedOptic).weight;
   }
 
-  return correctFloatingPoint(baseWeight + ammoWeight + modWeight + opticWeight);
+  if (firearm?.launcher?.attached) {
+    const launcher = getLauncherByName(firearm.launcher.attached);
+    launcherWeight += launcher.weight;
+    launcherWeight += launcher.mag[0].weight;
+  }
+
+  return correctFloatingPoint(baseWeight + ammoWeight + modWeight + opticWeight + launcherWeight);
 };
-
-// export const getTotalWeightOfFirearmSystemAndAmmo = (firearm) => {
-//   const { baseWeight } = firearms[firearm.name];
-//   const { mag } = firearm;
-
-//   const ammoWeight = 0;
-
-//   for (let i = 0; i < mag.length; i += 1) {
-//     //
-//   }
-
-//   return correctFloatingPoint(baseWeight + ammoWeight);
-// };

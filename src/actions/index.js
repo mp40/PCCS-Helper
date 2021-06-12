@@ -208,6 +208,36 @@ export const decreaseLauncherAmmo = (launcherAndAmmoType) => ({
   payload: launcherAndAmmoType,
 });
 
+export const updateOptic = (firearmAndOptic) => ({
+  type: 'OPTIC_UPDATED',
+  payload: firearmAndOptic,
+});
+
+export const removeOptic = (firearm) => ({
+  type: 'OPTIC_REMOVED',
+  payload: firearm,
+});
+
+export const updateUnderslungLauncher = (firearmAndLauncher) => ({
+  type: 'UNDERSLUNG_LAUNCHER_UPDATED',
+  payload: firearmAndLauncher,
+});
+
+export const removeUnderslungLauncher = (firearm) => ({
+  type: 'UNDERSLUNG_LAUNCHER_REMOVED',
+  payload: firearm,
+});
+
+export const increaseUnderslungLauncherAmmo = (launcherAndAmmoIndex) => ({
+  type: 'UNDERSLUNG_LAUNCHER_AMMO_QTY_INCREASED',
+  payload: launcherAndAmmoIndex,
+});
+
+export const decreaseUnderslungLauncherAmmo = (launcherAndAmmoIndex) => ({
+  type: 'UNDERSLUNG_LAUNCHER_AMMO_QTY_DECREASED',
+  payload: launcherAndAmmoIndex,
+});
+
 export const updateSavedCharacters = (characters) => ({
   type: 'CHARACTERS_UPDATED',
   payload: characters,

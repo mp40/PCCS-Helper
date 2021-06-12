@@ -1,9 +1,7 @@
-export const m203 = {
+const m203 = {
   name: 'M203',
-  list: 'launchers',
   calibre: '40mm',
-  length: 39,
-  weight: 11.6,
+  weight: 3,
   rt: 12,
   rof: '-',
   mag: [{ type: 'Rnd', class: 'HEAT', weight: 0.51, cap: 1, qty: 0 }, { type: 'Rnd', class: 'HE', weight: 0.51, cap: 1, qty: 0 }],
@@ -48,15 +46,12 @@ export const m203 = {
   aoi: ['', 1, 4, ''],
   ba: [23, 10, 1, ''],
   tof: [11, 33, 80, ''],
-  rifle: 'M203',
 };
 
-export const gp25 = {
+const gp25 = {
   name: 'GP-25',
-  list: 'launchers',
   calibre: '30mm',
-  length: 37,
-  weight: 10.1,
+  weight: 3.3,
   rt: 12,
   rof: '-',
   mag: [{ type: 'Rnd', class: 'HE', weight: 0.56, cap: 1, qty: 0 }],
@@ -87,5 +82,11 @@ export const gp25 = {
   aoi: ['', 1, 4, ''],
   ba: [23, 5, -4, ''],
   tof: [11, 35, 81, ''],
-  rifle: 'AK 74 GP-25',
 };
+
+const launchers = {
+  M203: m203,
+  'GP-25': gp25,
+};
+
+export const getLauncherByName = (name) => launchers[name];

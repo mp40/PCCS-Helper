@@ -136,7 +136,7 @@ describe('Check weapon data shape', () => {
   });
 });
 
-describe.only('Firearm data helpers', () => {
+describe('Firearm data helpers', () => {
   describe('calculating weight of firearm weapon system by name', () => {
     it('should calculate weight of fully loaded firearm', () => {
       const firearm = 'M16';
@@ -150,7 +150,7 @@ describe.only('Firearm data helpers', () => {
       expect(getFullFirearmSystemWeightByName(firearm)).toBe(8.8);
     });
 
-    it.only('should calculate weight of fully loaded firearm with optic', () => {
+    it('should calculate weight of fully loaded firearm with optic', () => {
       const firearm = 'M40A1';
 
       expect(getFullFirearmSystemWeightByName(firearm)).toBe(14.8);
@@ -189,6 +189,22 @@ describe.only('Firearm data helpers', () => {
       };
 
       expect(getFullFirearmSystemWeightByObject(firearm)).toBe(10.2);
+    });
+
+    it('should calculate weight of fully loaded weapon and launcher', () => {
+      const m203 = {
+        attached: 'M203',
+        mag: [{ qty: 0 }, { qty: 0 }],
+      };
+
+      const firearm = {
+        name: 'M16',
+        qty: 1,
+        mag: [{ type: 'Mag', weight: 1, cap: 30, qty: 0 }, { type: 'Mag', weight: 0.7, cap: 20, qty: 0 }],
+        launcher: m203,
+      };
+
+      expect(getFullFirearmSystemWeightByObject(firearm)).toBe(12.51);
     });
   });
 });

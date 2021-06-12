@@ -44,6 +44,12 @@ import { updateSavedCharactersReducer } from './updateSavedCharactersReducer';
 import { addSavedCharacterReducer } from './addSavedCharacterReducer';
 import { updateSavedCharacterReducer } from './updateSavedCharacterReducer';
 import { hydrateCurrentCharacterReducer } from './hydrateCurrentCharacterReducer';
+import { updateOpticReducer } from './updateOpticReducer';
+import { removeOpticReducer } from './removeOpticReducer';
+import { updateUnderslungLauncherReducer } from './updateUnderslungLauncherReducer';
+import { removeUnderslungLauncherReducer } from './removeUnderslungLauncherReducer';
+import { decreaseUnderslungLauncherAmmoReducer } from './decreaseUnderslungLauncherAmmoReducer';
+import { increaseUnderslungLauncherAmmoReducer } from './increaseUnderslungLauncherAmmoReducer';
 
 const initialState = initialStore;
 
@@ -105,6 +111,18 @@ function reduceActions(state = initialState, action) {
       return removeMagazineReducer(state, action);
     case 'MAGAZINE_REPLACED':
       return replaceMagazineReducer(state, action);
+    case 'OPTIC_UPDATED':
+      return updateOpticReducer(state, action);
+    case 'OPTIC_REMOVED':
+      return removeOpticReducer(state, action);
+    case 'UNDERSLUNG_LAUNCHER_UPDATED':
+      return updateUnderslungLauncherReducer(state, action);
+    case 'UNDERSLUNG_LAUNCHER_REMOVED':
+      return removeUnderslungLauncherReducer(state, action);
+    case 'UNDERSLUNG_LAUNCHER_AMMO_QTY_DECREASED':
+      return decreaseUnderslungLauncherAmmoReducer(state, action);
+    case 'UNDERSLUNG_LAUNCHER_AMMO_QTY_INCREASED':
+      return increaseUnderslungLauncherAmmoReducer(state, action);
     case 'ALL_WEAPONS_REMOVED':
       return removeAllWeaponsReducer(state, action);
     case 'GRENADE_ADDED':

@@ -7,7 +7,8 @@ const HeaderCreateCharacter = ({ totalWeight }) => {
   return (
     <div className="navCreateCharacterContainer">
       <div>Create Character</div>
-      <div className="navEquipWeight">{`total lbs ${characterWeight}`}</div>
+      <div className="navEquipWeight">total lbs ???</div>
+      {/* <div className="navEquipWeight">{`total lbs ${characterWeight}`}</div> */}
     </div>
   );
 };

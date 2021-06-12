@@ -74,6 +74,7 @@ const scopes = Object.freeze({
   'Low Power Scope': lowPowerScope,
   'Medium Power Scope': mediumPowerScope,
   'High Power Scope': highPowerScope,
+  AAS: aas,
   'PSO - 1': pso1,
   M73: m73,
   'Unertl x10': unertlTenPower,
