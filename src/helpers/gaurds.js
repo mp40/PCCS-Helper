@@ -2,6 +2,7 @@ export const isValidCombatLevel = (payload) => payload >= 0 && payload <= 20;
 
 export const isValidAttributeStat = (payload) => payload >= 3 && payload <= 19;
 
+// mptodo do I need?
 export const isNotValidObjectToAdd = (list, object) => list.filter((obj) => obj.name === object.name).length;
 
 export const isValidCustomEquipmentInput = (name, weight) => {

@@ -58,7 +58,7 @@ describe('Filtering calibers and weapon types', () => {
     });
 
     it('should return other calibre weapons', () => {
-      expect(filterCalibersFromType('All', 'Other')).toEqual(['Ithaca LAPD']);
+      expect(filterCalibersFromType('All', 'other')).toEqual(['Ithaca LAPD']);
     });
   });
 

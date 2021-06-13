@@ -71,7 +71,7 @@ const FirearmInspection = ({ firearmToInspect, setFirearmToInspect }) => {
 };
 
 FirearmInspection.propTypes = {
-  firearmToInspect: gunObjShape.isRequired,
+  firearmToInspect: PropTypes.string.isRequired,
   setFirearmToInspect: PropTypes.func.isRequired,
 };
 

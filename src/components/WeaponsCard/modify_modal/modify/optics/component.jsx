@@ -61,7 +61,7 @@ const Optics = ({ firearm, optics, updateOptic, removeOptic }) => {
         <div>Select Optic</div>
         <div>
           {getScopes().map((optic) => (
-            <button type="button" className={styles.opticButton} onClick={() => handleUpdateOptic({ firearmToUpdate: firearm, optic })}>{optic}</button>
+            <button key={optic} type="button" className={styles.opticButton} onClick={() => handleUpdateOptic({ firearmToUpdate: firearm, optic })}>{optic}</button>
           ))}
         </div>
       </div>

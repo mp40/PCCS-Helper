@@ -3,7 +3,11 @@ import { shallow, mount } from 'enzyme';
 
 import Shooting from './index';
 
-import { testFAMAS, testM16, testM1911A1 } from '../../../helpers/testHelpers';
+import { firearms } from '../../../data/firearms';
+
+const testFAMAS = () => ({ ...firearms.FAMAS });
+const testM16 = () => ({ ...firearms.M16 });
+const testM1911A1 = () => ({ ...firearms.M1911A1 });
 
 describe('Shooting Card', () => {
   let wrapper;

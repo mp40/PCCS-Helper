@@ -16,6 +16,3 @@ const updateLauncherAmmo = (adjustment) => (arr, ammoClass) => arr.map((mag) => 
   }
   return mag;
 });
-
-export const increaseLauncherAmmo = updateLauncherAmmo(1);
-export const decreaseLauncherAmmo = updateLauncherAmmo(-1);

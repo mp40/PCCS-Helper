@@ -21,7 +21,7 @@ describe('the form', () => {
     wrapper.find('button').simulate('click');
 
     expect(removeFirearmModification).toHaveBeenCalledWith(
-      { firearm: 'M16', modNote: { note: 'test', weightMod: 2 } },
+      { firearmToUpdate: 'M16', modIndex: 0 },
     );
   });
 });

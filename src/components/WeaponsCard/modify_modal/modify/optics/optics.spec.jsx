@@ -6,8 +6,13 @@ import Optics from './component';
 describe('Modify Firearm Optics', () => {
   let wrapper;
 
+  const firearm = 'M16';
+  const optics = null;
+  const updateOptic = jest.fn();
+  const removeOptic = jest.fn();
+
   beforeEach(() => {
-    wrapper = shallow(<Optics />);
+    wrapper = shallow(<Optics firearm={firearm} optics={optics} updateOptic={updateOptic} removeOptic={removeOptic} />);
   });
 
   it('should be possible to open modal to select optic', () => {
@@ -18,5 +23,7 @@ describe('Modify Firearm Optics', () => {
 
   it('should be possible to remove optic', () => {
     wrapper.find('button[children="Remove Optic"]').simulate('click');
+
+    expect(removeOptic).toHaveBeenCalledWith('M16');
   });
 });

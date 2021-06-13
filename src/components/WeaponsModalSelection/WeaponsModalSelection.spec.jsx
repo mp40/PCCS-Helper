@@ -5,22 +5,7 @@ import WeaponsModalSelection from './component';
 
 import * as data from './data';
 
-const mockM16 = () => ({
-  name: 'M16',
-  weight: 8.7,
-});
-
-const mockRPD = () => ({
-  name: 'RPD',
-  weight: 22,
-});
-
-const mockFN = () => ({
-  name: 'FN Mk 1',
-  weight: 2.3,
-});
-
-data.firearmLists = jest.fn().mockImplementation(() => ([mockM16(), mockFN(), mockRPD()]));
+data.firearmLists = jest.fn().mockImplementation(() => (['M16', 'FN Mk 1', 'RPD']));
 
 describe('Firearms selection', () => {
   let wrapper;
@@ -28,7 +13,7 @@ describe('Firearms selection', () => {
   const addFirearm = jest.fn();
   const toggleOffWeaponCardViews = jest.fn();
 
-  const firearms = [mockRPD()];
+  const firearms = [{ name: 'RPD' }];
 
   beforeEach(() => {
     wrapper = shallow(
@@ -56,7 +41,7 @@ describe('Firearms selection', () => {
   it('should be possible to select weapon', () => {
     wrapper.find('span[children="M16"]').parent().simulate('click');
 
-    expect(addFirearm).toHaveBeenCalledWith(mockM16());
+    expect(addFirearm).toHaveBeenCalledWith('M16');
   });
 
   it('should be close modal when weapon selected', () => {
@@ -92,7 +77,7 @@ describe('Toggling Filter Modal', () => {
   const addFirearm = jest.fn();
   const toggleOffWeaponCardViews = jest.fn();
 
-  const firearms = [mockRPD()];
+  const firearms = [{ name: 'RPD' }];
 
   beforeEach(() => {
     wrapper = shallow(
@@ -114,7 +99,7 @@ describe('Toggling Filter Modal', () => {
   });
 
   it('should filter the firearms list', () => {
-    data.filterCalibersFromType = jest.fn().mockImplementation(() => ([mockM16()]));
+    data.filterCalibersFromType = jest.fn().mockImplementation(() => (['M16']));
 
     wrapper.find('button[children="Filters"]').simulate('click');
     wrapper.find('FirearmFilter').props().handleSetFilterByType('Rifles', 'All');

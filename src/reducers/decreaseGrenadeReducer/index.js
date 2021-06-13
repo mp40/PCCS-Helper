@@ -1,30 +1,15 @@
-import { incrementQuantity } from '../reducerHelpers';
-import { correctFloatingPoint } from '../../utils';
-
-const {
-  calcBaseSpeed,
-  calcMaxSpeed,
-  calcCombatActions,
-  calcDB,
-} = require('../../helpers/helperFunctions');
-
 export const decreaseGrenadeReducer = (state, action) => {
-  const newTotalWeight = correctFloatingPoint(state.currentCharacter.totalWeight - action.payload.weight);
-  const newGrenades = incrementQuantity(-1)(state.currentCharacter.grenades, action.payload.name);
+  const grenadeToUpdate = action.payload;
 
-  const newBaseSpeed = calcBaseSpeed(state.currentCharacter.str, newTotalWeight);
-  const newMaxSpeed = calcMaxSpeed(state.currentCharacter.agi, newBaseSpeed);
-  const newDamageBonus = calcDB(newMaxSpeed, state.currentCharacter.ASF);
-  const newGunCombatActions = calcCombatActions(newMaxSpeed, state.currentCharacter.ISF);
-  const newMeleeCombatActions = calcCombatActions(newMaxSpeed, state.currentCharacter.ASF);
+  const newGrenades = state.currentCharacter.grenades.map((grenade) => {
+    if (grenade.name === grenadeToUpdate) {
+      return { ...grenade, qty: grenade.qty - 1 };
+    }
+
+    return grenade;
+  });
 
   return { ...state,
     currentCharacter: { ...state.currentCharacter,
-      totalWeight: newTotalWeight,
-      grenades: newGrenades,
-      baseSpeed: newBaseSpeed,
-      maxSpeed: newMaxSpeed,
-      damageBonus: newDamageBonus,
-      gunCombatActions: newGunCombatActions,
-      handCombatActions: newMeleeCombatActions } };
+      grenades: newGrenades } };
 };

@@ -1,6 +1,5 @@
 import { decreaseGrenadeReducer } from './index';
 import { MockState } from '../mockState';
-import { correctFloatingPoint } from '../../utils';
 
 const lightGrenade = () => ({
   name: 'L2 A2',
@@ -21,51 +20,15 @@ describe('decreaseGrenadeReducer function', () => {
     state = { ...state,
       currentCharacter: {
         ...state.currentCharacter,
-        totalWeight: state.currentCharacter.totalWeight + (heavyGrenade(2).weight * 2),
-        baseSpeed: 2,
-        maxSpeed: 4,
-        gunCombatActions: 3,
-        handCombatActions: 3,
-        grenades: [heavyGrenade(2)],
+        grenades: [heavyGrenade(2), lightGrenade()],
       } };
 
-    const action = { payload: heavyGrenade(2) };
+    const action = { payload: 'TNT' };
 
     const updatedState = { ...state,
       currentCharacter: {
         ...state.currentCharacter,
-        totalWeight: correctFloatingPoint(state.currentCharacter.totalWeight - heavyGrenade(2).weight),
-        baseSpeed: 2.5,
-        maxSpeed: 5,
-        grenades: [heavyGrenade(1)],
-      } };
-
-    state = decreaseGrenadeReducer(state, action);
-
-    expect(state).toMatchObject(updatedState);
-  });
-
-  it('should increase quantity of the target grenade in array with more than item', () => {
-    let state = new MockState();
-
-    state = { ...state,
-      currentCharacter: {
-        ...state.currentCharacter,
-        totalWeight: state.currentCharacter.totalWeight + (heavyGrenade(2).weight * 2) + lightGrenade().weight,
-        baseSpeed: 2,
-        maxSpeed: 4,
-        gunCombatActions: 3,
-        handCombatActions: 3,
-        grenades: [lightGrenade(), heavyGrenade(2)],
-      } };
-
-    const action = { payload: heavyGrenade(2) };
-
-    const updatedState = { ...state,
-      currentCharacter: {
-        ...state.currentCharacter,
-        totalWeight: correctFloatingPoint(state.currentCharacter.totalWeight - heavyGrenade(2).weight),
-        grenades: [lightGrenade(), heavyGrenade(1)],
+        grenades: [heavyGrenade(1), lightGrenade()],
       } };
 
     state = decreaseGrenadeReducer(state, action);

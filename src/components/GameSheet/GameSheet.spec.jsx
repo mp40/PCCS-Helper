@@ -3,9 +3,11 @@ import { shallow } from 'enzyme';
 
 import { act } from 'react-dom/test-utils';
 
-import { testFAMAS } from '../../helpers/testHelpers';
+import { firearms } from '../../data/firearms';
 
 import GameSheet from './component';
+
+const testFAMAS = () => ({ ...firearms.FAMAS });
 
 const grenadeDouble = { name: 'The Holy Hand Grenade Of Antioch', qty: 1 };
 

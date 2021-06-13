@@ -9,7 +9,6 @@ import FirearmFilter from './FirearmFilter';
 
 import { gunObjShape } from '../../helpers/proptypeShapes';
 
-import { isNotValidObjectToAdd } from '../../helpers/gaurds';
 import { firearmLists, filterCalibersFromType } from './data';
 
 import { getFullFirearmSystemWeightByName } from '../../data/firearms';
@@ -21,12 +20,12 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, addFirearm, firearms 
   const [showFilters, setShowFilters] = useState(false);
   const [gunArrayFilteredByType, setFilteredGunArray] = useState(firearmLists('All'));
 
-  const handleAddFirearm = (gunObj) => {
-    if (isNotValidObjectToAdd(firearms, gunObj)) {
+  const handleAddFirearm = (firearm) => {
+    if (firearms.filter((gun) => gun.name === firearm).length) {
       return;
     }
 
-    addFirearm(gunObj);
+    addFirearm(firearm);
     toggleOffWeaponCardViews('showFirearms');
   };
 
@@ -108,7 +107,8 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, addFirearm, firearms 
 WeaponsModalSelection.propTypes = {
   toggleOffWeaponCardViews: PropTypes.func.isRequired,
   addFirearm: PropTypes.func.isRequired,
-  firearms: PropTypes.arrayOf(gunObjShape).isRequired,
+  // firearms: PropTypes.arrayOf(gunObjShape).isRequired,
+  firearms: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default WeaponsModalSelection;

@@ -145,9 +145,9 @@ describe('firearm filter', () => {
     });
 
     it('should select other non-specified calibers when appropraite button clicked', () => {
-      wrapper.find('span[children="Other"]').closest('div').find('RadioButton').simulate('click');
+      wrapper.find('span[children="other"]').closest('div').find('RadioButton').simulate('click');
 
-      expect(wrapper.find('span[children="Other"]').closest('div').find('RadioButton').props().checked).toBe(true);
+      expect(wrapper.find('span[children="other"]').closest('div').find('RadioButton').props().checked).toBe(true);
     });
 
     it('should select all calibers when appropraite button clicked', () => {
