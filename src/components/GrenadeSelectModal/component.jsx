@@ -7,7 +7,7 @@ import { PropTypes } from 'prop-types';
 
 import GrenadeData from '../GrenadeData';
 
-import { grenadeData, specialGrenades } from '../../data/grenades';
+import { grenadeList } from '../../data/grenades';
 import { grenadeShape } from '../../helpers/proptypeShapes';
 
 import styles from './styles.module.css';
@@ -21,7 +21,7 @@ const GrenadeSelectModal = ({ toggleOffWeaponCardViews, addGrenade, grenades }) 
     if (checkGrenadeInList(grenade)) {
       return;
     }
-    addGrenade(grenade);
+    addGrenade(grenade.name);
     toggleOffWeaponCardViews('showGrenades');
   };
 
@@ -38,22 +38,25 @@ const GrenadeSelectModal = ({ toggleOffWeaponCardViews, addGrenade, grenades }) 
   );
 
   const renderGrenadeList = () => (
-    [...grenadeData(), ...specialGrenades()].map((grenade) => (
-      <div key={grenade.name}>
-        <button
-          type="button"
-          className={`--infoButton --button view${grenade.name}Stats`}
-          onClick={() => setGrenadeToView(grenade)}
-        />
-        <div
-          className={`--selectableRow select${grenade.name}`}
-          onClick={() => handleSelection(grenade)}
-        >
-          <div>{grenade.name}</div>
-          <div>{grenade.weight}</div>
+    Object.keys(grenadeList).map((name) => {
+      const grenade = grenadeList[name];
+      return (
+        <div key={grenade.name}>
+          <button
+            type="button"
+            className={`--infoButton --button view${grenade.name}Stats`}
+            onClick={() => setGrenadeToView(grenade)}
+          />
+          <div
+            className={`--selectableRow select${grenade.name}`}
+            onClick={() => handleSelection(grenade)}
+          >
+            <div>{grenade.name}</div>
+            <div>{grenade.weight}</div>
+          </div>
         </div>
-      </div>
-    ))
+      );
+    })
   );
 
   return (

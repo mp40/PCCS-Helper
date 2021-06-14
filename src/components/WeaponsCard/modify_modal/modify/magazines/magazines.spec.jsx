@@ -3,10 +3,12 @@ import { mount } from 'enzyme';
 
 import Magazines from './index';
 
-import { testM203 } from '../../../../../helpers/testHelpers';
+import { firearms } from '../../../../../data/firearms';
+
+const testM16 = () => ({ ...firearms.M16 });
 
 describe('<Magazines> buttons', () => {
-  const gunObj = testM203();
+  const gunObj = testM16();
   const setPrimaryMag = jest.fn();
   const handleMagazineExistence = jest.fn();
 
@@ -31,7 +33,7 @@ describe('<Magazines> buttons', () => {
   it('should remove magazine', () => {
     wrapper.find('.magazine').at(1).find('.removeMagazineButton').simulate('click');
 
-    expect(handleMagazineExistence).toHaveBeenCalledWith({ firearm: 'M203', magazine: { cap: 20, qty: 0, type: 'Mag', weight: 0.7 } });
+    expect(handleMagazineExistence).toHaveBeenCalledWith({ firearmToUpdate: 'M16', magazineIndex: 1 }, undefined);
   });
 
   it('should not render 40mm grenade ammo', () => {

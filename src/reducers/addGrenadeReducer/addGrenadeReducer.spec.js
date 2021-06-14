@@ -1,18 +1,6 @@
 import { addGrenadeReducer } from './index';
 import { MockState } from '../mockState';
 
-const lightGrenade = {
-  name: 'L2 A2',
-  qty: 1,
-  weight: 0.9,
-};
-
-const heavyGrenade = {
-  name: 'TNT',
-  qty: 1,
-  weight: 10,
-};
-
 describe('addGreandeReducer function', () => {
   let state = new MockState();
 
@@ -20,15 +8,15 @@ describe('addGreandeReducer function', () => {
     state = { ...state,
       currentCharacter: {
         ...state.currentCharacter,
-        grenades: [lightGrenade],
+        grenades: [{ name: 'L2 A2', qty: 1 }],
       } };
 
-    const action = { payload: heavyGrenade };
+    const action = { payload: 'TNT' };
 
     const updatedState = { ...state,
       currentCharacter: {
         ...state.currentCharacter,
-        grenades: [lightGrenade, heavyGrenade],
+        grenades: [{ name: 'L2 A2', qty: 1 }, { name: 'TNT', qty: 1 }],
       } };
 
     state = addGrenadeReducer(state, action);

@@ -7,6 +7,8 @@ import LoadedCharacterShooting from './Shooting';
 
 import { currentCharacterShape } from '../../helpers/proptypeShapes';
 
+import { hydrateFirearmByObject } from '../../data/firearms/hydrate';
+
 import styles from './styles.module.css';
 
 const LoadedCharacter = ({ currentCharacter, selectCurrentView }) => {
@@ -17,7 +19,7 @@ const LoadedCharacter = ({ currentCharacter, selectCurrentView }) => {
       {firearm
       && (
       <LoadedCharacterShooting
-        firearm={firearm}
+        firearm={hydrateFirearmByObject(firearm)}
         sal={currentCharacter.SAL}
         level={currentCharacter.gunLevel}
         setFirearm={setFirearm}

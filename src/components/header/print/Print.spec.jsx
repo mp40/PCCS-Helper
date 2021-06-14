@@ -8,7 +8,11 @@ import Header from '../component';
 
 import App from '../../App';
 
-import { getStoreWithGun, testM1911A1 } from '../../../helpers/testHelpers';
+import { getStoreWithGun } from '../../../helpers/testHelpers';
+
+import { firearms } from '../../../data/firearms';
+
+const testM1911A1 = () => ({ ...firearms.M1911A1 });
 
 describe('Printing the reference sheet', () => {
   const selectCurrentView = jest.fn();

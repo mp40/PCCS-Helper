@@ -38,7 +38,7 @@ const Optics = ({ firearm, optics, updateOptic, removeOptic }) => {
     <>
       <div className={styles.wrapper}>
         <span className={styles.scopeDetails}>
-          <span>Optics</span>
+          <h4>Optics</h4>
           {optics?.attached && (
           <>
             <span>{optics.attached}</span>

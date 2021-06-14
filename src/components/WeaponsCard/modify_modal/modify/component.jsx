@@ -47,27 +47,29 @@ const FirearmModify = ({
       {(!createCustomMag && !modifyFirearmWeight)
         && (
           <>
-            <button
-              type="button"
-              className="--button"
-              onClick={() => toggleCreateCustomMag(true)}
-            >
-              add magazine
-            </button>
-            <button
-              type="button"
-              className="--button"
-              onClick={() => toggleModifyFirearmWeight(true)}
-            >
-              add modification
-            </button>
-            <button
-              type="button"
-              className="--button"
-              onClick={() => removeAllModificationsFromFirearm(gunObj.name)}
-            >
-              remove all mods
-            </button>
+            <div className={styles.header}>
+              <button
+                type="button"
+                // className="--button"
+                onClick={() => toggleCreateCustomMag(true)}
+              >
+                add magazine
+              </button>
+              <button
+                type="button"
+                // className="--button"
+                onClick={() => toggleModifyFirearmWeight(true)}
+              >
+                add modification
+              </button>
+              <button
+                type="button"
+                // className="--button"
+                onClick={() => removeAllModificationsFromFirearm(gunObj.name)}
+              >
+                remove all mods
+              </button>
+            </div>
             <Magazines
               gunObj={gunObj}
               setPrimaryMag={setPrimaryMag}
@@ -78,6 +80,7 @@ const FirearmModify = ({
               modNotes={gunObj.modNotes}
               removeFirearmModification={removeFirearmModification}
             />
+
             <Optics firearm={gunObj.name} optics={gunObj.optics} />
 
             {gunObj?.launcher?.ableToAttach && (

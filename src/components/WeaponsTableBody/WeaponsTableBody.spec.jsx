@@ -3,9 +3,16 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import WeaponsTableBody from './component';
 
-import { testFAMAS, testM1911A1, testM79, testM72 } from '../../helpers/testHelpers';
+import { testM79, testM72 } from '../../helpers/testHelpers';
 
 import { renderCorrectAmmoTitle } from '../GearRow';
+
+import { firearms } from '../../data/firearms';
+
+// mptodo
+const testFAMAS = () => ({ ...firearms.FAMAS });
+const testM16 = () => ({ ...firearms.M16 });
+const testM1911A1 = () => ({ ...firearms.M1911A1 });
 
 const m2Grenade = {
   name: 'M2',
@@ -53,7 +60,7 @@ const pistolSingleRounds = {
   mag: [{ type: 'Rnd', weight: 0.7, cap: 7, qty: 1 }],
 };
 
-describe.only('Selected Firearms Table', () => {
+describe('Selected Firearms Table', () => {
   let wrapper;
 
   beforeEach(() => {

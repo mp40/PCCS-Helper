@@ -1,8 +1,6 @@
 import { hydrateCurrentCharacterReducer } from './index';
 import { MockState } from '../mockState';
 
-import { testM1911A1 } from '../../helpers/testHelpers';
-
 describe('Hydrate Current Character', () => {
   const equipment = [
     { name: 'Belt', weight: 0.7, qty: 1 },
@@ -16,17 +14,22 @@ describe('Hydrate Current Character', () => {
       name: 'M16',
       qty: 1,
       mag: [{ type: 'Mag', weight: 1, cap: 30, qty: 4 }, { type: 'Mag', weight: 0.7, cap: 20, qty: 1 }],
-      modNotes: [{ weightMod: 0.5 }],
+      attachedOptic: 'Low Power Scope',
     },
     {
       name: 'M1911A1',
       qty: 2,
       mag: [{ weight: 0.7, qty: 0 }],
+      modNotes: [{ weightMod: 0.5 }],
     },
     {
-      name: 'AK 74 GP-25',
+      name: 'AK 74',
       qty: 1,
       mag: [{ weight: 1.1, qty: 0 }, { weight: 0.56, qty: 1 }],
+      launcher: {
+        attached: 'GP-25',
+        mag: [{ qty: 2 }],
+      },
     },
   ];
 
@@ -98,20 +101,9 @@ describe('Hydrate Current Character', () => {
     agi: simpleCharacter.agi,
     gunLevel: simpleCharacter.gun_level,
     handLevel: simpleCharacter.hand_level,
-    totalWeight: 12.1,
-    baseSpeed: 2.5,
-    maxSpeed: 5,
-    SAL: 10,
-    CE: 7,
-    ISF: 20,
-    ASF: 19,
-    knockoutValue: 20,
-    damageBonus: 1.5,
-    gunCombatActions: 6,
-    handCombatActions: 5,
     uniform: 'Normal',
     equipment,
-    firearms: [testM1911A1()],
+    firearms: [{ name: 'M1911A1', qty: 1, mag: [{ type: 'Mag', weight: 0.7, cap: 7, qty: 0 }] }],
     grenades: [],
     launchers: [],
     helmet: undefined,
@@ -135,15 +127,9 @@ describe('Hydrate Current Character', () => {
 
     expect(state.currentCharacter.characterId).toBe(666);
     expect(state.currentCharacter.name).toBe('Grimes');
-    expect(state.currentCharacter.totalWeight).toBe(75.1);
 
-    expect(state.currentCharacter.SAL).toBe(10);
-    expect(state.currentCharacter.CE).toBe(10);
-    expect(state.currentCharacter.ISF).toBe(23);
-    expect(state.currentCharacter.ASF).toBe(25);
-    expect(state.currentCharacter.knockoutValue).toBe(32);
-    expect(state.currentCharacter.damageBonus).toBe(1);
-    expect(state.currentCharacter.gunCombatActions).toBe(4);
-    expect(state.currentCharacter.handCombatActions).toBe(4);
+    expect(state.currentCharacter.firearms).toStrictEqual(firearms);
+    // mptodo
+    // expect(state.currentCharacter.).toStrictEqual(hydratedSimpleCharacter);
   });
 });

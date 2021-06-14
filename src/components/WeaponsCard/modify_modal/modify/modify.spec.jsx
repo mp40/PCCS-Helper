@@ -1,9 +1,7 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import FirearmModify from './component';
-
-// import { testM1911A1, testM16, testM16WithoutJhpAp, testFAMAS, testRemington } from '../../../../helpers/testHelpers';
 
 const m16 = {
   name: 'M16',

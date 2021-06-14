@@ -1,5 +1,6 @@
-.wrapper > div {
-    font-weight: bold;
+.wrapper {
+    display: flex;
+    justify-content: space-between;
 }
 
 .wrapper > span {
@@ -8,21 +9,15 @@
 
 .scopeDetails {
     width: 49%;
-    float: left;
     font-size: 1rem;
 } 
 
 .scopeDetails > span {
    display: block;
+   font-size: 0.8rem;
 } 
 
-.scopeDetails > span:first-of-type {
-   font-weight: bold;
-   font-size: 1.15rem;
- } 
-
 .scopeButtons {
-    float: right;
     width: 49%;
 }
 

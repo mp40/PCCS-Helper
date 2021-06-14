@@ -13,15 +13,18 @@ const Launchers = ({ firearm, ableToAttach, attachedLauncher, updateUnderslungLa
 
   return (
     <>
-      <div>
-        {
-        attachedLauncher && <button type="button" onClick={() => removeUnderslungLauncher(firearm)}>Remove Launcher</button>
-      }
 
-        <button type="button" onClick={() => setShowModal(true)}>Update Launcher</button>
-        <span>Launcher</span>
-        <span>{attachedLauncher || 'None'}</span>
+      <div className={styles.wrapper}>
+        <div>
+          <h4>Launcher</h4>
+          <span>{attachedLauncher || 'None'}</span>
+        </div>
+        <div>
+          { attachedLauncher && <button type="button" onClick={() => removeUnderslungLauncher(firearm)}>Remove Launcher</button>}
+          <button type="button" onClick={() => setShowModal(true)}>Update Launcher</button>
+        </div>
       </div>
+
       {showModal
       && (
       <div className={styles.launcherModal}>
@@ -33,6 +36,7 @@ const Launchers = ({ firearm, ableToAttach, attachedLauncher, updateUnderslungLa
         </div>
       </div>
       )}
+
     </>
   );
 };

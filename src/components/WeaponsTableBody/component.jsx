@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import GearRow from '../GearRow';
 
 import { getFullFirearmSystemWeightByName, getFullFirearmSystemWeightByObject } from '../../data/firearms';
+import { getGrenadeWeightByName } from '../../data/grenades';
 import { getLauncherByName } from '../../data/firearms/launchers';
 
 import { correctFloatingPoint } from '../../utils';
@@ -126,7 +127,7 @@ const WeaponsTableBody = ({
           </span>
           <span>{grenade.weight}</span>
           <span>{grenade.qty}</span>
-          <span>{correctFloatingPoint(grenade.weight * grenade.qty)}</span>
+          <span>{correctFloatingPoint(getGrenadeWeightByName(grenade.name) * grenade.qty)}</span>
           <span>
             <button aria-label="up" type="button" className="button--standard button--up" onClick={() => increaseGrenadeQty(grenade.name)} />
             <button aria-label="down" type="button" className="button--standard button--down" onClick={() => handleDecreaseWeapon(decreaseGrenadeQty, grenade.name, grenade.qty)} />

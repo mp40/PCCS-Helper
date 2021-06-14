@@ -12,33 +12,27 @@ import styles from './styles.module.css';
 
 const Magazines = ({ gunObj, setPrimaryMag, handleMagazineExistence }) => (
   <div className={styles.wrapper}>
-    <div className={styles.header}>
+    <h4>
       Magazines
-    </div>
+    </h4>
     <div className={styles.titles}>
       {magazineTableHeadings.map((value) => (
         <span key={value}>{value}</span>
       ))}
     </div>
-    {gunObj.mag.map((magObj, index) => {
-      if (magObj.class) {
-        // mptodo - this is for 40mm, refactor out...?
-        return null;
-      }
-      return (
-        <div key={magObj.cap} className={`${styles.magazine}  ${magObj.removed ? `${styles.removedMagazine}` : ''}${index === 0 ? `${styles.primaryMagazine}` : ''}`}>
-          {['type', 'cap', 'weight'].map((value) => (
-            <span key={value}>{magObj[value]}</span>
-          ))}
-          <span>
-            <ClickButton name={`index${index} selectPrimaryButton`} preventDefault={index === 0} onClick={() => setPrimaryMag(index, magObj.removed)} />
-          </span>
-          <span>
-            <CheckBox name={`index${index} removeMagazineButton`} onClick={() => handleMagazineExistence({ firearmToUpdate: gunObj.name, magazineIndex: index }, magObj.removed)} />
-          </span>
-        </div>
-      );
-    })}
+    {gunObj.mag.map((magObj, index) => (
+      <div key={magObj.cap} className={`${styles.magazine}  ${magObj.removed ? `${styles.removedMagazine}` : ''}${index === 0 ? `${styles.primaryMagazine}` : ''}`}>
+        {['type', 'cap', 'weight'].map((value) => (
+          <span key={value}>{magObj[value]}</span>
+        ))}
+        <span>
+          <ClickButton name={`index${index} selectPrimaryButton`} preventDefault={index === 0} onClick={() => setPrimaryMag(index, magObj.removed)} />
+        </span>
+        <span>
+          <CheckBox name={`index${index} removeMagazineButton`} onClick={() => handleMagazineExistence({ firearmToUpdate: gunObj.name, magazineIndex: index }, magObj.removed)} />
+        </span>
+      </div>
+    ))}
   </div>
 );
 

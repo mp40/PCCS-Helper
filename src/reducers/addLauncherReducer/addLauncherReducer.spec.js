@@ -3,14 +3,12 @@ import { MockState } from '../mockState';
 
 const m79 = {
   name: 'M79',
-  weight: 6.5,
   qty: 1,
   mag: [{ weight: 0.51, qty: 0 }, { weight: 0.51, qty: 0 }],
 };
 
 const m72 = {
-  name: 'M72',
-  weight: 5.2,
+  name: 'M72 A2 LAW',
   qty: 2,
   mag: [{ weight: '-' }],
 };
@@ -19,7 +17,7 @@ describe('addlauncherReducer function', () => {
   let state = new MockState();
 
   it('should add launcher to list', () => {
-    const action = { payload: m79 };
+    const action = { payload: 'M79' };
 
     state = { ...state,
       currentCharacter: {

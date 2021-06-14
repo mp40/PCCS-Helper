@@ -1,9 +1,25 @@
-const prepareFirearm = (firearm) => (
-  { name: firearm.name,
+// mptodo store stuff in store with the below shape
+const prepareFirearm = (firearm) => {
+  const payload = {
+    name: firearm.name,
     qty: firearm.qty,
     mag: firearm.mag,
-    modNotes: firearm.modNotes }
-);
+  };
+
+  if (firearm.modNotes) {
+    payload.modNotes = firearm.modNotes;
+  }
+
+  if (firearm.attachedOptic) {
+    payload.attachedOptic = firearm.attachedOptic;
+  }
+
+  if (firearm.launcher) {
+    payload.launcher = firearm.launcher;
+  }
+
+  return payload;
+};
 
 const prepareGrenade = (grenade) => ({
   name: grenade.name,

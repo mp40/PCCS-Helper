@@ -1,7 +1,15 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import WeaponStatsTable, { findSkillLevelFromSAL } from './index';
-import { testM1911A1, testM16WithoutJhpAp, testFAMAS, testRemington } from '../../helpers/testHelpers';
+// import { testM1911A1, testM16WithoutJhpAp, testFAMAS, testRemington } from '../../helpers/testHelpers';
+// mptodo
+
+import { firearms } from '../../data/firearms';
+
+const testFAMAS = () => ({ ...firearms.FAMAS });
+const testM16 = () => ({ ...firearms.M16 });
+const testM1911A1 = () => ({ ...firearms.M1911A1 });
+const testRemington = () => ({ ...firearms['Remington M870'] });
 
 describe('<WeaponStatsTable/> component', () => {
   const lineOne = (wrapper) => wrapper.find('.gunTableLine1');

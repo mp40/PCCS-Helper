@@ -10,9 +10,16 @@ import { buildRequestPayload } from './data';
 
 import { URL_CHARACTERS } from '../../../../fetch/constants';
 
-import { getStore, testM1911A1WithMods, testM72 } from '../../../../helpers/testHelpers';
+import { getStore, testM72 } from '../../../../helpers/testHelpers';
 import { NewCharacter } from '../../../../reducers/newCharacter';
 import { MockState } from '../../../../reducers/mockState';
+
+const testM1911A1WithMods = () => ({
+  name: 'M1911A1',
+  qty: 1,
+  mag: [{ type: 'Mag', weight: 0.7, cap: 7, qty: 0 }],
+  modNotes: [{ note: 'test', weightMod: 1 }],
+});
 
 const waitOneTick = (simulate) => new Promise((resolve) => {
   setTimeout(() => {
@@ -44,7 +51,7 @@ const grenade = () => ({
   heading: 'standard',
 });
 
-const character = () => {
+const getCharacter = () => {
   const newCharacter = new NewCharacter();
 
   return { ...newCharacter,
@@ -65,7 +72,7 @@ describe('Save Character Modal', () => {
   const getWrapper = (characters) => shallow(
     <HeaderSaveModal
       characters={characters}
-      currentCharacter={character()}
+      currentCharacter={getCharacter()}
       setShowSaveCharacter={setShowSaveCharacter}
       addSavedCharacter={addSavedCharacter}
       updateSavedCharacter={updateSavedCharacter}
@@ -431,7 +438,7 @@ describe('Save Character Modal', () => {
 
 describe('building request payload', () => {
   it('should only send the required stats', () => {
-    const payload = buildRequestPayload(character());
+    const payload = buildRequestPayload(getCharacter());
 
     const requiredKeys = [
       'character_name',
@@ -456,7 +463,7 @@ describe('building request payload', () => {
   });
 
   it('should remove unneeded firearms information', () => {
-    const payload = buildRequestPayload(character());
+    const payload = buildRequestPayload(getCharacter());
 
     expect(payload.firearms).toEqual([
       {
@@ -468,8 +475,61 @@ describe('building request payload', () => {
     ]);
   });
 
+  it('should store optic if attached', () => {
+    const m16WithScope = {
+      name: 'M16',
+      qty: 1,
+      mag: [{ type: 'Mag', weight: 0.7, cap: 20, qty: 1 }, { type: 'Mag', weight: 1, cap: 30, qty: 0 }],
+      attachedOptic: 'Low Power Scope',
+    };
+
+    const character = getCharacter();
+    character.firearms = [{ ...m16WithScope }];
+
+    const payload = buildRequestPayload(character);
+
+    expect(payload.firearms).toEqual([
+      {
+        name: m16WithScope.name,
+        qty: m16WithScope.qty,
+        mag: m16WithScope.mag,
+        modNotes: m16WithScope.modNotes,
+        attachedOptic: m16WithScope.attachedOptic,
+      },
+    ]);
+  });
+
+  it('should store underslung launcher if attached', () => {
+    const m203 = {
+      attached: 'M203',
+      mag: [{ qty: 0 }, { qty: 2 }],
+    };
+
+    const m16WithM203 = {
+      name: 'M16',
+      qty: 1,
+      mag: [{ type: 'Mag', weight: 0.7, cap: 20, qty: 0 }, { type: 'Mag', weight: 1, cap: 30, qty: 0 }],
+      launcher: m203,
+    };
+
+    const character = getCharacter();
+    character.firearms = [{ ...m16WithM203 }];
+
+    const payload = buildRequestPayload(character);
+
+    expect(payload.firearms).toEqual([
+      {
+        name: m16WithM203.name,
+        qty: m16WithM203.qty,
+        mag: m16WithM203.mag,
+        modNotes: m16WithM203.modNotes,
+        launcher: m16WithM203.launcher,
+      },
+    ]);
+  });
+
   it('should remove unneeded grenade information', () => {
-    const payload = buildRequestPayload(character());
+    const payload = buildRequestPayload(getCharacter());
 
     expect(payload.grenades).toEqual([
       {
@@ -480,7 +540,7 @@ describe('building request payload', () => {
   });
 
   it('should remove unneeded launchers information', () => {
-    const payload = buildRequestPayload(character());
+    const payload = buildRequestPayload(getCharacter());
 
     expect(payload.launchers).toEqual([
       {
