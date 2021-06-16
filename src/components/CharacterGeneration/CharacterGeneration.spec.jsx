@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import CharacterGeneration from './component';
 
@@ -10,7 +10,7 @@ describe('Selecting Charcter Generation', () => {
     const wrapper = mountAppWithStore();
     wrapper.find('button[children="Create Character"]').simulate('click');
 
-    expect(wrapper.find('.navEquipWeight').text()).toContain(5);
+    expect(wrapper.find('.topCard').text()).toContain('Total Lbs: 5');
     expect(wrapper.find('.updateStrength').text()).toBe('10');
     expect(wrapper.find('.updateIntelligence').text()).toBe('10');
     expect(wrapper.find('.updateWillpower').text()).toBe('10');
@@ -30,7 +30,7 @@ describe('Character Generation', () => {
     wrapper = shallow(<CharacterGeneration
       totalWeight={69}
       selectCurrentView={selectCurrentView}
-      />);
+    />);
   });
 
   afterEach(() => {

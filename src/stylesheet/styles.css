@@ -145,46 +145,46 @@
   content: "\f078";
 }
 
-.weapon-table-header--container,
-.weapon-table-row--container {
+.gear-table-header--container,
+.gear-table-row--container {
   display: flex;
   width: 100%;
 }
 
-.weapon-table-header--container > span:nth-of-type(1),
-.weapon-table-row--container > span:nth-of-type(1) {
+.gear-table-header--container > span:nth-of-type(1),
+.gear-table-row--container > span:nth-of-type(1) {
   width: calc(100% - (9.5% * 4));
 }
 
-.weapon-table-header--container > span:nth-of-type(n + 2),
-.weapon-table-row--container > span:nth-of-type(n + 2) {
+.gear-table-header--container > span:nth-of-type(n + 2),
+.gear-table-row--container > span:nth-of-type(n + 2) {
   width: 9.5%;
 }
 
-.weapon-table-header--container {
+.gear-table-header--container {
   background-color: var(--panzer-grey);
   color: whitesmoke;
   font-weight: bold;
   text-align: center;
 }
 
-.weapon-table-row--container {
+.gear-table-row--container {
   font-size: 0.8rem;
   text-align: center;
 }
 
-.weapon-table-row--container > span  {
+.gear-table-row--container > span  {
   padding: 1.25px 0;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.weapon-table-row--container > span:first-of-type {
+.gear-table-row--container > span:first-of-type {
   justify-content: left;
 }
 
-.weapon-table-row--container > span:last-of-type > button:first-of-type {
+.gear-table-row--container > span:last-of-type > button:first-of-type {
   margin-right: 10px;
 }
 

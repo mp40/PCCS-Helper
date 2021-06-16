@@ -11,7 +11,6 @@ describe('willpowerStatReducer function', () => {
       currentCharacter: {
         ...state.currentCharacter,
         wil: action.payload,
-        knockoutValue: 1,
       } };
 
     state = modifyWillpowerValueReducer(state, action);
@@ -26,7 +25,6 @@ describe('willpowerStatReducer function', () => {
       currentCharacter: {
         ...state.currentCharacter,
         wil: action.payload,
-        knockoutValue: 9,
       } };
 
     state = modifyWillpowerValueReducer(state, action);

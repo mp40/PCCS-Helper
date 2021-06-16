@@ -28,7 +28,6 @@ describe('removeGrenadeReducer function', () => {
     const updatedState = { ...state,
       currentCharacter: {
         ...state.currentCharacter,
-        totalWeight: 5,
         grenades: [mockHeavyGrenade(2)],
       } };
 

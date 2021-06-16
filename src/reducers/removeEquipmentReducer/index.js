@@ -1,32 +1,9 @@
-import { removeObjectFromArray } from '../../helpers/actionHelpers';
-import { correctFloatingPoint } from '../../utils';
-
-const {
-  calcBaseSpeed,
-  calcMaxSpeed,
-  calcCombatActions,
-  calcDB,
-} = require('../../helpers/helperFunctions');
-
 export const removeEquipmentReducer = (state, action) => {
-  const newTotalWeight = correctFloatingPoint(
-    state.currentCharacter.totalWeight - (action.payload.qty * action.payload.weight),
-  );
-  const newEquipment = removeObjectFromArray(state.currentCharacter.equipment, action.payload);
+  const equipmentToRemove = action.payload;
 
-  const newBaseSpeed = calcBaseSpeed(state.currentCharacter.str, newTotalWeight);
-  const newMaxSpeed = calcMaxSpeed(state.currentCharacter.agi, newBaseSpeed);
-  const newDamageBonus = calcDB(newMaxSpeed, state.currentCharacter.ASF);
-  const newGunCombatActions = calcCombatActions(newMaxSpeed, state.currentCharacter.ISF);
-  const newMeleeCombatActions = calcCombatActions(newMaxSpeed, state.currentCharacter.ASF);
+  const newEquipment = state.currentCharacter.equipment.filter((item) => item.name !== equipmentToRemove);
 
   return { ...state,
     currentCharacter: { ...state.currentCharacter,
-      totalWeight: newTotalWeight,
-      equipment: newEquipment,
-      baseSpeed: newBaseSpeed,
-      maxSpeed: newMaxSpeed,
-      damageBonus: newDamageBonus,
-      gunCombatActions: newGunCombatActions,
-      handCombatActions: newMeleeCombatActions } };
+      equipment: newEquipment } };
 };

@@ -11,10 +11,6 @@ describe('meleeCombatLevelReducer function', () => {
       currentCharacter: {
         ...state.currentCharacter,
         handLevel: action.payload,
-        handCombatActions: 5,
-        CE: 5,
-        ASF: 15,
-        damageBonus: 1.5,
       } };
 
     state = modifyMeleeCombatLevelReducer(state, action);
@@ -29,11 +25,6 @@ describe('meleeCombatLevelReducer function', () => {
       currentCharacter: {
         ...state.currentCharacter,
         handLevel: action.payload,
-        handCombatActions: 8,
-        CE: 16,
-        ASF: 26,
-        knockoutValue: 50,
-        damageBonus: 2.5,
       } };
 
     state = modifyMeleeCombatLevelReducer(state, action);

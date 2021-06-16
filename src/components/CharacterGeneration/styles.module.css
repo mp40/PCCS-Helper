@@ -5,7 +5,8 @@
 }
 
 .topCard {
-  margin: 0 0 15px;
+  width: calc(1024px - 4rem);
+  margin: 0 auto 1rem;
 }
 
 .topCard > h1 {
@@ -60,8 +61,13 @@
     margin: 30px 30px 0;
   }
 
+  .topCard {
+    width: unset;
+    margin: 0 0 1rem;
+  }
+
   .wrapper > div:nth-of-type(2) {
-    width: calc(760px - 60px);
+    width: 100%;
     max-height: 17rem;
   }
 
@@ -98,6 +104,11 @@
 @media screen and (max-width: 700px) {
   .wrapper {
     margin: 15px 15px 0;
+  }
+
+  .topCard {
+    margin: 0 0 15px;
+    width: unset;
   }
 
   .wrapper > div:nth-of-type(2) {

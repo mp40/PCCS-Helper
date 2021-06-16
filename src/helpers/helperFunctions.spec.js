@@ -17,6 +17,8 @@ const {
   table1dDamageBonus,
 } = require('../data/tablesCreateCharacter');
 
+// mptodo - get rid of this filth and associated fns and tables
+
 describe('calculate SAL', () => {
   it('should return the correct SAL based on skill level', () => {
     expect(findSAL(0)).toEqual(0);

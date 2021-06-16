@@ -3,8 +3,27 @@ import { shallow } from 'enzyme';
 
 import BodyArmourSelection from './index';
 
-const getHelmets = () => [
-  {
+// const getHelmets = () => [
+//   {
+//     name: 'M1',
+//     pf: 4,
+//     bpf: 4,
+//     ac: 'I',
+//     weight: 2.5,
+//     tags: ['USA', 'WW2', 'Cold War'],
+//   },
+//   {
+//     name: 'Mk 1',
+//     pf: 4,
+//     bpf: 4,
+//     ac: 'I',
+//     weight: 2.2,
+//     tags: ['British', 'WW1', 'WW2'],
+//   },
+// ];
+
+const helmets = Object.freeze({
+  M1: {
     name: 'M1',
     pf: 4,
     bpf: 4,
@@ -12,7 +31,7 @@ const getHelmets = () => [
     weight: 2.5,
     tags: ['USA', 'WW2', 'Cold War'],
   },
-  {
+  'Mk 1': {
     name: 'Mk 1',
     pf: 4,
     bpf: 4,
@@ -20,13 +39,13 @@ const getHelmets = () => [
     weight: 2.2,
     tags: ['British', 'WW1', 'WW2'],
   },
-];
+});
 
 describe('Body Armour Selection', () => {
   let wrapper;
 
   const armourType = 'helmet';
-  const armourList = getHelmets();
+  const armourList = helmets;
   const handleDispatch = jest.fn();
 
   beforeEach(() => {
@@ -42,8 +61,8 @@ describe('Body Armour Selection', () => {
     jest.clearAllMocks();
   });
 
-  const m1Helmet = getHelmets()[0];
-  const mk1Helmet = getHelmets()[1];
+  const m1Helmet = helmets.M1;
+  const mk1Helmet = helmets['Mk 1'];
 
   it('should render helmet details', () => {
     const m1String = `${m1Helmet.name}${m1Helmet.pf}${m1Helmet.bpf}${m1Helmet.ac}${m1Helmet.weight}`;
@@ -56,7 +75,7 @@ describe('Body Armour Selection', () => {
   it('should be possible to select helmet', () => {
     wrapper.find('td[children="M1"]').parent().simulate('click');
 
-    expect(handleDispatch).toHaveBeenCalledWith('helmet', m1Helmet);
+    expect(handleDispatch).toHaveBeenCalledWith('helmet', 'M1');
   });
 
   it('should be possible to remove helmet', () => {

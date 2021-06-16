@@ -11,9 +11,6 @@ describe('intelligenceStatReducer function', () => {
       currentCharacter: {
         ...state.currentCharacter,
         int: action.payload,
-        ISF: 3,
-        gunCombatActions: 3,
-        handCombatActions: 4,
       } };
 
     state = modifyIntelligenceValueReducer(state, action);
@@ -28,9 +25,6 @@ describe('intelligenceStatReducer function', () => {
       currentCharacter: {
         ...state.currentCharacter,
         int: action.payload,
-        ISF: 18,
-        gunCombatActions: 6,
-        handCombatActions: 4,
       } };
 
     state = modifyIntelligenceValueReducer(state, action);

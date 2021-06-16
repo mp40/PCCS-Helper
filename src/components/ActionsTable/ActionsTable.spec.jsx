@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import ActionsTable from './component';
+import ActionsTable from './index';
 
 describe('rendering combat actions', () => {
   const wrapper = shallow(<ActionsTable

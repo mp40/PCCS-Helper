@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 import WeaponStatsTable from '../WeaponStatsTable';
 
-import { launchers } from '../../data/launchers';
+import { launcherList } from '../../data/launchers';
 import { emptyLauncher } from './data';
 
 import styles from './styles.module.css';
@@ -37,23 +37,26 @@ const SelectLauncherModal = ({ toggleOffWeaponCardViews, addLauncher }) => {
           <div className={styles.body}>
             <div className="launcherRowContainer">
 
-              {launchers().map((launcher) => (
-                <div key={launcher.name} className={styles.row}>
-                  <button
-                    type="button"
-                    onClick={() => setLauncherToView(launcher)}
-                    className={`--infoButton --button view${launcher.name.replace(/\s+/g, '')}`}
-                  />
-                  <div
-                    className="--selectableRow launcherEntry"
-                    id={launcher.name}
-                    onClick={() => handleAddLauncher(launcher)}
-                  >
-                    <span>{launcher.name}</span>
-                    <span>{`${launcher.weight} lbs`}</span>
+              {Object.keys(launcherList).map((name) => {
+                const launcher = launcherList[name];
+                return (
+                  <div key={launcher.name} className={styles.row}>
+                    <button
+                      type="button"
+                      onClick={() => setLauncherToView(launcher)}
+                      className="--infoButton --button "
+                    />
+                    <div
+                      className="--selectableRow launcherEntry"
+                      id={launcher.name}
+                      onClick={() => handleAddLauncher(launcher.name)}
+                    >
+                      <span>{launcher.name}</span>
+                      <span>{`${launcher.weight} lbs`}</span>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
             <WeaponStatsTable weapon={launcherToView} />
           </div>

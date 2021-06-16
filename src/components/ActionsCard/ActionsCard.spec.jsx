@@ -15,7 +15,7 @@ describe('rendering combat actions', () => {
   const wrapper = shallow(<ActionsCard combatStats={combatStats} />);
 
   it('should render combat actions table', () => {
-    expect(wrapper.find('Connect(ActionsTable)').exists()).toBe(true);
+    expect(wrapper.find('ActionsTable').exists()).toBe(true);
   });
 
   it('should render movement data and damage bonus', () => {

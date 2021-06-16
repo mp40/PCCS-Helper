@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './styles.module.css';
+import { actionsPerImpulseTable } from '../../core/tables';
 
-const { actionsPerImpulse } = require('../../helpers/helperFunctions');
+import styles from './styles.module.css';
 
 const headings = ['Imp', '1', '2', '3', '4'];
 
@@ -31,8 +31,8 @@ const ActionsTable = (
         </tr>
       </thead>
       <tbody>
-        {actionsRow('Gun', actionsPerImpulse(gunCombatActions))}
-        {actionsRow('Hand', actionsPerImpulse(handCombatActions))}
+        {actionsRow('Gun', actionsPerImpulseTable[gunCombatActions])}
+        {actionsRow('Hand', actionsPerImpulseTable[handCombatActions])}
       </tbody>
     </table>
 );

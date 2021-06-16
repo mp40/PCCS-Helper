@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
+import EquipmentCardTable from './table';
+
 import SelectEquipment from './select';
 import EquipmentFilter from './filter';
 import CustomEquipment from './custom';
@@ -94,9 +96,11 @@ const EquipmentCard = ({
           Clear All
         </button>
       </div>
-      <GearTable gearHeading="Equipment" totalWeight={Math.round(totalEquipWeight * 1000) / 1000}>
+      <EquipmentCardTable equipment={equipment} />
+      {/* mptodo */}
+      {/* <GearTable gearHeading="Equipment" totalWeight={Math.round(totalEquipWeight * 1000) / 1000}>
         {renderTableBody()}
-      </GearTable>
+      </GearTable> */}
       {renderEquipmentModal()}
       {renderCustomEquipmentModal()}
       {showFilters && (

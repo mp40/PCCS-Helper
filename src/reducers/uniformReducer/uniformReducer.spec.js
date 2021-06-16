@@ -4,13 +4,12 @@ import { MockState } from '../mockState';
 describe('changeUniformReducer function', () => {
   let state = new MockState();
 
-  it('should return correct values when change from Normal to Tropical unifrom', () => {
+  it('should update to Tropical uniform', () => {
     const action = { payload: 'Tropical' };
 
     const updatedState = { ...state,
       currentCharacter: {
         ...state.currentCharacter,
-        totalWeight: 4.5,
         uniform: 'Tropical',
       } };
 
@@ -19,13 +18,12 @@ describe('changeUniformReducer function', () => {
     expect(state).toMatchObject(updatedState);
   });
 
-  it('should return correct values when changing unifrom triggers combat action changes', () => {
+  it('should update to Winter uniform', () => {
     const action = { payload: 'Winter' };
 
     const updatedState = { ...state,
       currentCharacter: {
         ...state.currentCharacter,
-        totalWeight: 7,
         uniform: 'Winter',
       } };
 

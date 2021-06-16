@@ -118,7 +118,7 @@ class WeaponsCard extends Component {
           toggleOnWeaponsCardViews={this.toggleOnWeaponsCardViews}
           toggleModifyWeapon={this.toggleModifyWeapon}
         />
-
+        {/* mptodo */}
         {/* <GearTable gearHeading="Weapons" totalWeight={Math.round((firearmsWeight + grenadesWeight + launchersWeight) * 1000) / 1000}>
           <WeaponsTableBody
             firearms={firearms}

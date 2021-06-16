@@ -11,9 +11,7 @@ describe('gunCombatLevelReducer function', () => {
       currentCharacter: {
         ...state.currentCharacter,
         gunLevel: action.payload,
-        gunCombatActions: 5,
-        SAL: 5,
-        ISF: 15,
+
       } };
 
     state = modifyGunCombatLevelReducer(state, action);
@@ -28,10 +26,7 @@ describe('gunCombatLevelReducer function', () => {
       currentCharacter: {
         ...state.currentCharacter,
         gunLevel: action.payload,
-        gunCombatActions: 8,
-        SAL: 16,
-        ISF: 26,
-        knockoutValue: 50,
+
       } };
 
     state = modifyGunCombatLevelReducer(state, action);

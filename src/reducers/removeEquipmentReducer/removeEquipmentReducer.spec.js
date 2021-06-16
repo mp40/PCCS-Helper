@@ -20,18 +20,16 @@ describe('removeEquipmentReducer function', () => {
     state = { ...state,
       currentCharacter: {
         ...state.currentCharacter,
-        totalWeight: state.currentCharacter.totalWeight + mockEquipment.weight,
         equipment: [mockEquipment],
       } };
 
     const updatedState = { ...state,
       currentCharacter: {
         ...state.currentCharacter,
-        totalWeight: 5,
         equipment: [],
       } };
 
-    const action = { payload: mockEquipment };
+    const action = { payload: 'testEquipment' };
 
     state = removeEquipmentReducer(state, action);
 
@@ -42,18 +40,16 @@ describe('removeEquipmentReducer function', () => {
     state = { ...state,
       currentCharacter: {
         ...state.currentCharacter,
-        totalWeight: state.currentCharacter.totalWeight + mockEquipment.weight + mockOtherEquipment.weight,
         equipment: [mockEquipment, mockOtherEquipment],
       } };
 
     const updatedState = { ...state,
       currentCharacter: {
         ...state.currentCharacter,
-        totalWeight: 5 + mockEquipment.weight,
         equipment: [mockEquipment],
       } };
 
-    const action = { payload: mockOtherEquipment };
+    const action = { payload: 'otherEquipment' };
 
     state = removeEquipmentReducer(state, action);
 

@@ -5,15 +5,18 @@ import styles from './styles.module.css';
 
 const renderHeading = (armourType) => (armourType === 'helmet' ? 'Select Helmet' : 'Select Vest');
 
-const renderBody = (armourList, handleDispatch, type) => armourList.map((armour) => (
-  <React.Fragment key={armour.name}>
+const renderBody = (armourList, handleDispatch, type) => Object.keys(armourList).map((name) => (
+  <React.Fragment key={name}>
     <tr
-      className={`${armour.name}Row --selectableRow`}
-      onClick={() => handleDispatch(type, armour)}
+      className="--selectableRow"
+      onClick={() => handleDispatch(type, name)}
     >
-      {['name', 'pf', 'bpf', 'ac', 'weight', 'tags'].map((value) => (
-        <td key={value}>{Array.isArray(armour[value]) ? armour[value].join(', ') : armour[value]}</td>
-      ))}
+      {['name', 'pf', 'bpf', 'ac', 'weight', 'tags'].map((value) => {
+        const armour = armourList[name];
+        return (
+          <td key={value}>{Array.isArray(armour[value]) ? armour[value].join(', ') : armour[value]}</td>
+        );
+      })}
     </tr>
   </React.Fragment>
 ));
@@ -56,9 +59,9 @@ const BodyArmourSelection = ({ armourType, armourList, handleDispatch }) => (
 );
 
 BodyArmourSelection.propTypes = {
-  handleDispatch: PropTypes.func,
-  armourList: PropTypes.arrayOf(PropTypes.object),
-  armourType: PropTypes.oneOf(['helmet', 'vest']),
+  handleDispatch: PropTypes.func.isRequired,
+  armourList: PropTypes.objectOf(PropTypes.object).isRequired,
+  armourType: PropTypes.oneOf(['helmet', 'vest']).isRequired,
 };
 
 export default BodyArmourSelection;

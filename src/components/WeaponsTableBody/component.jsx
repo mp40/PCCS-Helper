@@ -5,6 +5,7 @@ import GearRow from '../GearRow';
 import { getFullFirearmSystemWeightByName, getFullFirearmSystemWeightByObject } from '../../data/firearms';
 import { getGrenadeWeightByName } from '../../data/grenades';
 import { getLauncherByName } from '../../data/firearms/launchers';
+import { getLauncherWeightByName } from '../../data/launchers';
 
 import { correctFloatingPoint } from '../../utils';
 
@@ -65,7 +66,7 @@ const WeaponsTableBody = ({
 
   return (
     <div>
-      <div className="weapon-table-header--container">
+      <div className="gear-table-header--container">
         <span>Weapon</span>
         <span>Weight</span>
         <span>Qty</span>
@@ -75,7 +76,7 @@ const WeaponsTableBody = ({
 
       {firearms.map((firearm) => (
         <>
-          <div key={firearm.name} className="weapon-table-row--container">
+          <div key={firearm.name} className="gear-table-row--container">
 
             <span>
               <button aria-label="remove" type="button" className="button--standard button--close" onClick={() => removeFirearm(firearm.name)} />
@@ -90,7 +91,7 @@ const WeaponsTableBody = ({
             </span>
           </div>
           {firearm.mag.map((m, i) => (
-            <div key={`${m.type}${m.cap}${m.weight}`} className={`weapon-table-row--container ${styles.magazineRow}`}>
+            <div key={`${m.type}${m.cap}${m.weight}`} className={`gear-table-row--container ${styles.magazineRow}`}>
               <span>{getMagazineText(m.type, m.cap)}</span>
               <span>{m.weight}</span>
               <span>{m.qty}</span>
@@ -104,7 +105,7 @@ const WeaponsTableBody = ({
           {firearm?.launcher && firearm.launcher.mag.map((m, i) => {
             const launcher = getLauncherByName(firearm.launcher.attached);
             return (
-              <div key={`${launcher.mag[i].class}`} className={`weapon-table-row--container ${styles.magazineRow}`}>
+              <div key={`${launcher.mag[i].class}`} className={`gear-table-row--container ${styles.magazineRow}`}>
                 <span>{`${launcher.mag[i].class} Rnd`}</span>
                 <span>{launcher.mag[i].weight}</span>
                 <span>{m.qty}</span>
@@ -120,7 +121,7 @@ const WeaponsTableBody = ({
       ))}
 
       {grenades.map((grenade) => (
-        <div key={grenade.name} className="weapon-table-row--container">
+        <div key={grenade.name} className="gear-table-row--container">
           <span>
             <button aria-label="remove" type="button" className="button--standard button--close" onClick={() => removeGrenade(grenade.name)} />
             <span>{grenade.name}</span>
@@ -135,35 +136,45 @@ const WeaponsTableBody = ({
         </div>
       ))}
 
-      {launchers.map((launcher) => (
-        <>
-          <div key={launcher.name} className="weapon-table-row--container">
-            <span>
-              <button aria-label="remove" type="button" className="button--standard button--close" onClick={() => removeLauncher(launcher.name)} />
-              <span>{launcher.name}</span>
-            </span>
-            <span>{launcher.weight}</span>
-            <span>{launcher.qty}</span>
-            <span>{correctFloatingPoint(launcher.weight * launcher.qty)}</span>
-            <span>
-              <button aria-label="up" type="button" className="button--standard button--up" onClick={() => increaseLauncherQty(launcher.name)} />
-              <button aria-label="down" type="button" className="button--standard button--down" onClick={() => handleDecreaseWeapon(decreaseLauncherQty, launcher.name, launcher.qty)} />
-            </span>
-          </div>
-          {launcher.mag.map((m, i) => (
-            <div key={m.class} className={`weapon-table-row--container ${styles.magazineRow}`}>
-              <span>{`${m.class} Rnd`}</span>
-              <span>{m.weight}</span>
-              <span>{m.qty}</span>
-              <span>{correctFloatingPoint(m.qty * m.weight)}</span>
+      {launchers.map((launcher) => {
+        const weight = getLauncherWeightByName(launcher.name);
+
+        return (
+          <>
+            <div key={launcher.name} className="gear-table-row--container">
               <span>
-                <button aria-label="up" type="button" className="button--standard button--up" onClick={() => increaseLauncherAmmo({ launcherToModify: launcher.name, magazineIndex: i })} />
-                <button aria-label="down" type="button" className="button--standard button--down" onClick={() => handleDecreaseAmmo(decreaseLauncherAmmo, { launcherToModify: launcher.name, magazineIndex: i }, m.qty)} />
+                <button aria-label="remove" type="button" className="button--standard button--close" onClick={() => removeLauncher(launcher.name)} />
+                <span>{launcher.name}</span>
+              </span>
+              <span>{weight}</span>
+              <span>{launcher.qty}</span>
+              <span>{correctFloatingPoint(weight * launcher.qty)}</span>
+              <span>
+                <button aria-label="up" type="button" className="button--standard button--up" onClick={() => increaseLauncherQty(launcher.name)} />
+                <button aria-label="down" type="button" className="button--standard button--down" onClick={() => handleDecreaseWeapon(decreaseLauncherQty, launcher.name, launcher.qty)} />
               </span>
             </div>
-          )) }
-        </>
-      ))}
+            {launcher.mag.map((m, i) => {
+              if (!m.class) {
+                return null;
+              }
+
+              return (
+                <div key={m.class} className={`gear-table-row--container ${styles.magazineRow}`}>
+                  <span>{`${m.class} Rnd`}</span>
+                  <span>{m.weight}</span>
+                  <span>{m.qty}</span>
+                  <span>{correctFloatingPoint(m.qty * m.weight)}</span>
+                  <span>
+                    <button aria-label="up" type="button" className="button--standard button--up" onClick={() => increaseLauncherAmmo({ launcherToModify: launcher.name, magazineIndex: i })} />
+                    <button aria-label="down" type="button" className="button--standard button--down" onClick={() => handleDecreaseAmmo(decreaseLauncherAmmo, { launcherToModify: launcher.name, magazineIndex: i }, m.qty)} />
+                  </span>
+                </div>
+              );
+            }) }
+          </>
+        );
+      })}
 
     </div>
   );

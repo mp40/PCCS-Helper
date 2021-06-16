@@ -1,14 +1,10 @@
 import { connect } from 'react-redux';
 import ActionsCard from './component';
 
+import { selectCombatStats } from '../../selectors';
+
 const mapStateToProps = (state) => ({
-  combatStats: {
-    baseSpeed: state.currentCharacter.baseSpeed,
-    maxSpeed: state.currentCharacter.maxSpeed,
-    damageBonus: state.currentCharacter.damageBonus,
-    gunCombatActions: state.currentCharacter.gunCombatActions,
-    handCombatActions: state.currentCharacter.handCombatActions,
-  },
+  combatStats: selectCombatStats(state),
 });
 
 export default connect(mapStateToProps)(ActionsCard);
