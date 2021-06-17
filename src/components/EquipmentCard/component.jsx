@@ -63,11 +63,6 @@ const EquipmentCard = ({
           handleSetShowCustomInput={handleSetShowCustomInput}
         />
       );
-  const renderTableBody = () => (
-    <tbody>
-      <GearRow gear={{ type: 'Equipment', remove: removeEquipment, up: increaseEquipmentQty, down: decreaseEquipmentQty, array: equipment }} />
-    </tbody>
-  );
 
   const totalEquipWeight = findEquipmentWeight(equipment);
   return (
