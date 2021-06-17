@@ -18,12 +18,14 @@ const LoadedCharacterReferenceTables = ({
   helmet,
   vest,
   selectCurrentView,
+  gunCombatActions,
+  handCombatActions,
 }) => (
   <div className={`${styles.card} --card`}>
     <h1>{name}</h1>
     <CharacterInfo />
     <div>
-      <ActionsTable />
+      <ActionsTable gunCombatActions={gunCombatActions} handCombatActions={handCombatActions} />
       <KnockoutTable knockoutValue={knockoutValue} />
       <ReactionTable sal={sal} />
     </div>
@@ -44,6 +46,8 @@ LoadedCharacterReferenceTables.propTypes = {
   sal: PropTypes.number.isRequired,
   helmet: armourShape,
   vest: armourShape,
+  gunCombatActions: PropTypes.number.isRequired,
+  handCombatActions: PropTypes.number.isRequired,
   selectCurrentView: PropTypes.func.isRequired,
 };
 

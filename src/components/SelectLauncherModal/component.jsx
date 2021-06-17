@@ -44,11 +44,10 @@ const SelectLauncherModal = ({ toggleOffWeaponCardViews, addLauncher }) => {
                     <button
                       type="button"
                       onClick={() => setLauncherToView(launcher)}
-                      className="--infoButton --button "
+                      className="button--standard button--question"
                     />
                     <div
                       className="--selectableRow launcherEntry"
-                      id={launcher.name}
                       onClick={() => handleAddLauncher(launcher.name)}
                     >
                       <span>{launcher.name}</span>

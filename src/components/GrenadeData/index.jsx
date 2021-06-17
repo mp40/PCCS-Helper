@@ -15,11 +15,9 @@ const renderHeading = (grenade, isWilliePete) => (
   </thead>
 );
 
-const renderEffectData = (length, array = new Array(length).fill(' ')) => {
-  return array.map((value, index) => (
-    <td key={keys[index]}>{value}</td>
-  ));
-};
+const renderEffectData = (length, array = new Array(length).fill(' ')) => array.map((value, index) => (
+  <td key={keys[index]}>{value}</td>
+));
 
 const GrenadeData = ({ grenade }) => {
   const isWilliePete = grenade.name === 'M15 WP';

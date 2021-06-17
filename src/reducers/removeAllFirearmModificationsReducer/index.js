@@ -1,68 +1,19 @@
-import { correctFloatingPoint } from '../../utils';
-import { calculateTotalWeight } from '../../helpers/actionHelpers';
-
-const {
-  calcBaseSpeed,
-  calcMaxSpeed,
-  calcCombatActions,
-  calcDB,
-} = require('../../helpers/helperFunctions');
-
-const removeKeyFromFirearm = (firearm) => Object.keys(firearm).reduce((object, key) => {
-  const objectToReturn = object;
-  if (key !== 'modNotes') {
-    objectToReturn[key] = firearm[key];
-  }
-  return objectToReturn;
-}, {});
-
-export const removeCustomMagazines = (magazineArray) => magazineArray.filter((element) => element.custom === undefined);
-
-export const removeModificationWeight = (gunWeight, modifications) => {
-  if (modifications === undefined || modifications === null) {
-    return gunWeight;
-  }
-  return modifications.reduce((accumulator, mod) => accumulator - mod.weightMod, gunWeight);
-};
-
 export const removeAllFirearmModificationsReducer = (state, action) => {
-  const newFirearmsArray = state.currentCharacter.firearms.map((element) => {
-    let gun = element;
-    if (gun.name === action.payload) {
-      gun.weight = removeModificationWeight(gun.weight, gun.modNotes);
-      gun.weight -= gun.mag[0].weight;
-      gun = removeKeyFromFirearm(gun);
-      gun.mag = removeCustomMagazines(gun.mag);
-      gun.weight = correctFloatingPoint(gun.weight + gun.mag[0].weight);
+  const firearmToUpdate = action.payload;
+
+  const newFirearmsArray = state.currentCharacter.firearms.map((gun) => {
+    if (gun.name === firearmToUpdate) {
+      const updatedGun = { ...gun };
+      delete updatedGun.modNotes;
+
+      return { ...updatedGun,
+        mag: updatedGun.mag.filter((m) => m.custom === undefined) };
     }
+
     return gun;
   });
 
-  const updatedWeight = calculateTotalWeight({
-    uniform: state.currentCharacter.uniform,
-    equipment: state.currentCharacter.equipment,
-    firearms: newFirearmsArray,
-    launchers: state.currentCharacter.launchers,
-    grenades: state.currentCharacter.grenades,
-    helmet: state.currentCharacter.helmet,
-    vest: state.currentCharacter.vest,
-  });
-
-  const newTotalWeight = correctFloatingPoint(updatedWeight);
-
-  const newBaseSpeed = calcBaseSpeed(state.currentCharacter.str, newTotalWeight);
-  const newMaxSpeed = calcMaxSpeed(state.currentCharacter.agi, newBaseSpeed);
-  const newDamageBonus = calcDB(newMaxSpeed, state.currentCharacter.ASF);
-  const newGunCombatActions = calcCombatActions(newMaxSpeed, state.currentCharacter.ISF);
-  const newMeleeCombatActions = calcCombatActions(newMaxSpeed, state.currentCharacter.ASF);
-
   return { ...state,
     currentCharacter: { ...state.currentCharacter,
-      totalWeight: newTotalWeight,
-      firearms: newFirearmsArray,
-      baseSpeed: newBaseSpeed,
-      maxSpeed: newMaxSpeed,
-      damageBonus: newDamageBonus,
-      gunCombatActions: newGunCombatActions,
-      handCombatActions: newMeleeCombatActions } };
+      firearms: newFirearmsArray } };
 };

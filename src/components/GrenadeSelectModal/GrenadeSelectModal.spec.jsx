@@ -5,23 +5,6 @@ import GrenadeSelectModal from './component';
 const addGrenade = jest.fn();
 const toggleOffWeaponCardViews = jest.fn();
 
-const dataM61Grenade = {
-  name: 'M61',
-  qty: 1,
-  length: 3.8,
-  weight: 1,
-  at: 3,
-  fl: 2,
-  r: 15,
-  data: {
-    pen: ['PEN', 3.4, 2.4, 2.2, 1.8, 1.5, '1.0', 0.4],
-    dc: ['DC', 10, 2, 2, 2, 2, 1, 1],
-    bshc: ['BSHC', '*2h', '*3', 84, 20, 8, 2, -1],
-    bc: ['BC', '13k', 704, 176, 52, 27, 12, 4],
-  },
-  heading: 'standard',
-};
-
 const doubleM2 = {
   name: 'M2',
   qty: 1,
@@ -60,7 +43,7 @@ describe('GrenadeSelectModal', () => {
   });
   it('should be possible to select a greande', () => {
     wrapper.find('.selectM61').simulate('click');
-    expect(addGrenade).toHaveBeenCalledWith(dataM61Grenade);
+    expect(addGrenade).toHaveBeenCalledWith('M61');
   });
   it('should close the modal when a grenade is selected', () => {
     wrapper.find('.selectM61').simulate('click');

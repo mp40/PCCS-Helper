@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { arrayOf } from 'prop-types';
 
 import { gunObjShape, grenadeShape } from '../../helpers/proptypeShapes';
 
@@ -144,9 +144,9 @@ class WeaponsCard extends Component {
 }
 
 WeaponsCard.propTypes = {
-  firearms: PropTypes.arrayOf(gunObjShape),
-  grenades: PropTypes.arrayOf(grenadeShape),
-  launchers: PropTypes.arrayOf(PropTypes.object),
+  firearms: PropTypes.arrayOf(gunObjShape).isRequired,
+  grenades: PropTypes.arrayOf(PropTypes.object).isRequired,
+  launchers: PropTypes.arrayOf(PropTypes.object).isRequired,
   removeAllWeapons: PropTypes.func.isRequired,
 };
 

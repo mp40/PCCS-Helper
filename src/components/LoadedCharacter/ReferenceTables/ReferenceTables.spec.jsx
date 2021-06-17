@@ -12,6 +12,8 @@ describe('Loaded Character Reference Card', () => {
     wrapper = shallow(
       <LoadedCharacterReferenceTables
         name="Mr Test"
+        gunCombatActions={4}
+        handCombatActions={4}
         knockoutValue={10}
         sal={10}
         helmet={null}

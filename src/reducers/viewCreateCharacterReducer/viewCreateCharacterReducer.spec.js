@@ -39,24 +39,15 @@ describe('view Character Reducer', () => {
     let state = new MockState();
 
     const m16 = mockM16(2, 1);
-    const ammoWeight = (m16.mag[0].qty + m16.mag[0].weight) + (m16.mag[1].qty + m16.mag[1].weight);
-    const gunWeight = m16.weight + ammoWeight;
 
     const lightGrenades = mockLightGrenade(2);
-    const grenadeWeight = lightGrenades.qty * lightGrenades.weight;
 
     const m72 = mockM72(2);
-    const launchersWeight = m72.weight * m72.qty;
 
     state = { ...state,
       currentCharacter: {
         ...state.currentCharacter,
         name: 'Biggles',
-        totalWeight: 5 + gunWeight + grenadeWeight + launchersWeight,
-        baseSpeed: 1.5,
-        maxSpeed: 3,
-        gunCombatActions: 2,
-        handCombatActions: 2,
         firearms: [m16],
         grenades: [lightGrenades],
         launchers: [m72],
@@ -67,11 +58,6 @@ describe('view Character Reducer', () => {
       currentCharacter: {
         ...state.currentCharacter,
         name: '',
-        totalWeight: 5,
-        baseSpeed: 3,
-        maxSpeed: 6,
-        gunCombatActions: 4,
-        handCombatActions: 4,
         firearms: [],
         grenades: [],
         launchers: [],

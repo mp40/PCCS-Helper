@@ -19,6 +19,8 @@ import { combatStatsShape, gearShape } from '../../helpers/proptypeShapes';
 
 import { getFirearmNameAndRecoil, prepareHandToHandWeaponList } from './data';
 
+import { salAndCeTable } from '../../core/tables';
+
 import './GameSheet.css';
 import '../App/App.css';
 
@@ -30,7 +32,13 @@ const GameSheet = ({ name, characterStats, combatStats, gear, selectCurrentView 
     selectCurrentView('createChar');
   });
 
+  // mptodo - this seems to be importing unsed props
   const meleeWeaponList = prepareHandToHandWeaponList(gear.firearms, gear.equipment);
+
+  const sal = salAndCeTable[characterStats.gunLevel];
+  const ce = salAndCeTable[characterStats.handLevel];
+  const isf = sal + characterStats.int;
+  const asf = ce + characterStats.agi;
 
   return (
     <div className="a4GameSheet">
@@ -44,7 +52,7 @@ const GameSheet = ({ name, characterStats, combatStats, gear, selectCurrentView 
           <div className={styles.firearm}>
             <div>
               <p>{getFirearmNameAndRecoil(gear.firearms[0], characterStats.gunLevel)}</p>
-              <WeaponStatsTable weapon={gear.firearms[0]} sal={combatStats.SAL} size="a4" />
+              <WeaponStatsTable weapon={gear.firearms[0]} sal={sal} size="a4" />
             </div>
             <FirearmNotes gunObj={gear.firearms[0]} />
           </div>
@@ -53,7 +61,7 @@ const GameSheet = ({ name, characterStats, combatStats, gear, selectCurrentView 
 
               <div className={styles.infoAndActions}>
                 <CharacterInfo />
-                <ActionsTable />
+                <ActionsTable gunCombatActions={combatStats.gunCombatActions} handCombatActions={combatStats.handCombatActions} />
               </div>
 
               { meleeWeaponList.length > 0 && (
@@ -62,7 +70,7 @@ const GameSheet = ({ name, characterStats, combatStats, gear, selectCurrentView 
 
               <div className={styles.armourReactionKnockoutRow}>
                 <BodyArmourTable helmet={gear.helmet} vest={gear.vest} />
-                <ReactionTable sal={combatStats.SAL} />
+                <ReactionTable sal={sal} />
                 <KnockoutTable knockoutValue={combatStats.knockoutValue} />
               </div>
 

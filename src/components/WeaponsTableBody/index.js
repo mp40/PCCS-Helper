@@ -18,7 +18,7 @@ import {
   decreaseUnderslungLauncherAmmo,
 } from '../../actions';
 
-import { selectTotalWeightOfFirearms } from '../../selectors';
+import { selectTotalWeightOfFirearms, selectTotalWeightOfAllWeapons } from '../../selectors';
 
 import WeaponsTableBody from './component';
 // const mapStateToProps = (state) => ({
@@ -36,7 +36,7 @@ import WeaponsTableBody from './component';
 // });
 
 const mapStateToProps = (state) => ({
-  totalFirearmWeight: selectTotalWeightOfFirearms(state),
+  totalWeaponWeight: selectTotalWeightOfAllWeapons(state),
 });
 
 export default connect(mapStateToProps, {

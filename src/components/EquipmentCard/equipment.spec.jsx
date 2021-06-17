@@ -66,29 +66,29 @@ describe('the equipment list', () => {
       wrapper.find('button[children="Add Equipment"]').simulate('click');
       wrapper.find('div[children="Baseball Bat"]').simulate('click');
 
-      expect(wrapper.find('thead').text()).toContain('2.2');
-      expect(wrapper.find('tbody').find('tr').text()).toContain('Baseball Bat2.212.2');
+      expect(wrapper.find('.gear-table-header--container').text()).toContain('2.2');
+      expect(wrapper.find('.gear-table-row--container').text()).toContain('Baseball Bat2.212.2');
     });
 
     it('should be possible increment qty up', () => {
-      wrapper.find('#qtyUpEquipment').simulate('click');
+      wrapper.find('.button--up').simulate('click');
 
-      expect(wrapper.find('tbody').find('tr').text()).toContain('Baseball Bat2.224.4');
-      expect(wrapper.find('thead').text()).toContain('4.4');
+      expect(wrapper.find('.gear-table-header--container').text()).toContain('4.4');
+      expect(wrapper.find('.gear-table-row--container').text()).toContain('Baseball Bat2.224.4');
     });
 
     it('should be possible increment qty down', () => {
-      wrapper.find('#qtyDownEquipment').simulate('click');
+      wrapper.find('.button--down').simulate('click');
 
-      expect(wrapper.find('tbody').find('tr').text()).toContain('Baseball Bat2.212.2');
-      expect(wrapper.find('thead').text()).toContain('2.2');
+      expect(wrapper.find('.gear-table-header--container').text()).toContain('2.2');
+      expect(wrapper.find('.gear-table-row--container').text()).toContain('Baseball Bat2.212.2');
     });
 
     it('should be possible to remove equipment from list', () => {
-      wrapper.find('.removeBaseballBat').simulate('click');
+      wrapper.find('.button--close').simulate('click');
 
-      expect(wrapper.find('tbody').text()).not.toContain('Baseball Bat');
-      expect(wrapper.find('thead').text()).toContain('lbs0');
+      expect(wrapper.find('.gear-table-header--container').text()).not.toContain('2.2');
+      expect(wrapper.find('.gear-table-row--container').exists()).toBe(false)
     });
 
     it('should clear all equipment from list', () => {
@@ -98,10 +98,8 @@ describe('the equipment list', () => {
 
       wrapper.find('button[children="Clear All"]').simulate('click');
 
-      expect(wrapper.find('tbody').text()).not.toContain('Bayonet');
-      expect(wrapper.find('tbody').text()).not.toContain('Basic Pouch');
-      expect(wrapper.find('tbody').text()).not.toContain('Baseball Bat');
-      expect(wrapper.find('thead').text()).toContain('lbs0');
+      expect(wrapper.find('.gear-table-header--container').text()).toContain('Lbs0');
+      expect(wrapper.find('.gear-table-row--container').exists()).toBe(false)
     });
   });
 });

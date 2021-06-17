@@ -59,6 +59,14 @@ export const selectTotalWeightOfLaunchers = (state) => {
   return correctFloatingPoint(weight);
 };
 
+export const selectTotalWeightOfAllWeapons = (state) => {
+  const weight = selectTotalWeightOfFirearms(state)
+  + selectTotalWeightOfGrenades(state)
+  + selectTotalWeightOfLaunchers(state);
+
+  return correctFloatingPoint(weight);
+};
+
 export const selectTotalWeightOfEquipment = (state) => {
   const equipment = [...state.currentCharacter.equipment];
 
@@ -115,13 +123,13 @@ const selectCe = (state) => {
   return salAndCeTable[handLevel];
 };
 
-const selectGunCombatActions = (state) => {
+export const selectGunCombatActions = (state) => {
   const isf = selectSal(state) + state.currentCharacter.int;
 
   return getCombatActions(selectMaxSpeed(state), isf);
 };
 
-const selectHandCombatActions = (state) => {
+export const selectHandCombatActions = (state) => {
   const asf = selectCe(state) + state.currentCharacter.agi;
 
   return getCombatActions(selectMaxSpeed(state), asf);
@@ -131,6 +139,16 @@ const selectDamageBonus = (state) => {
   const asf = selectSal(state) + state.currentCharacter.agi;
 
   return getDamageBonus(selectMaxSpeed(state), asf);
+};
+
+export const selectCombatActions = (state) => {
+  const gunCombatActions = selectGunCombatActions(state);
+  const handCombatActions = selectHandCombatActions(state);
+
+  return {
+    gunCombatActions,
+    handCombatActions,
+  };
 };
 
 export const selectCombatStats = (state) => {
@@ -147,4 +165,32 @@ export const selectCombatStats = (state) => {
     handCombatActions,
     damageBonus,
   };
+};
+
+export const selectMovementAndDamageBonus = (state) => {
+  const baseSpeed = selectBaseSpeed(state);
+  const maxSpeed = selectMaxSpeed(state);
+  const damageBonus = selectDamageBonus(state);
+
+  return {
+    baseSpeed,
+    maxSpeed,
+    damageBonus,
+  };
+};
+
+export const selectKnockoutValue = (state) => {
+  const { agi, gunLevel, handLevel } = state.currentCharacter;
+
+  let highestLevel = 1;
+
+  if (gunLevel > 1 && gunLevel >= handLevel) {
+    highestLevel = gunLevel;
+  }
+
+  if (handLevel > gunLevel) {
+    highestLevel = handLevel;
+  }
+
+  return Math.floor((agi * 0.5) * highestLevel);
 };

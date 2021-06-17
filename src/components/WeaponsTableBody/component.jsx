@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import GearRow from '../GearRow';
 
@@ -20,7 +20,7 @@ import { decreaseFirearmReducer } from '../../reducers/decreaseFirearmReducer';
 // mptodo recieve dehydrtaed guns from store
 
 const WeaponsTableBody = ({
-  totalFirearmWeight,
+  totalWeaponWeight,
   toggleModifyWeapon,
   firearms,
   grenades,
@@ -71,11 +71,11 @@ const WeaponsTableBody = ({
         <span>Weight</span>
         <span>Qty</span>
         <span>Lbs</span>
-        <span>{totalFirearmWeight}</span>
+        <span>{totalWeaponWeight}</span>
       </div>
 
       {firearms.map((firearm) => (
-        <>
+        <Fragment key={firearm.name}>
           <div key={firearm.name} className="gear-table-row--container">
 
             <span>
@@ -90,18 +90,23 @@ const WeaponsTableBody = ({
               <button aria-label="down" type="button" className="button--standard button--down" onClick={() => handleDecreaseWeapon(decreaseFirearmQty, firearm.name, firearm.qty)} />
             </span>
           </div>
-          {firearm.mag.map((m, i) => (
-            <div key={`${m.type}${m.cap}${m.weight}`} className={`gear-table-row--container ${styles.magazineRow}`}>
-              <span>{getMagazineText(m.type, m.cap)}</span>
-              <span>{m.weight}</span>
-              <span>{m.qty}</span>
-              <span>{correctFloatingPoint(m.qty * m.weight)}</span>
-              <span>
-                <button aria-label="up" type="button" className="button--standard button--up" onClick={() => increaseMagazineQty({ firearmToModify: firearm.name, magazineIndex: i })} />
-                <button aria-label="down" type="button" className="button--standard button--down" onClick={() => handleDecreaseAmmo(decreaseMagazineQty, { firearmToModify: firearm.name, magazineIndex: i }, m.qty)} />
-              </span>
-            </div>
-          ))}
+          {firearm.mag.map((m, i) => {
+            if (m.removed) {
+              return null;
+            }
+            return (
+              <div key={`${m.type}${m.cap}${m.weight}`} className={`gear-table-row--container ${styles.magazineRow}`}>
+                <span>{getMagazineText(m.type, m.cap)}</span>
+                <span>{m.weight}</span>
+                <span>{m.qty}</span>
+                <span>{correctFloatingPoint(m.qty * m.weight)}</span>
+                <span>
+                  <button aria-label="up" type="button" className="button--standard button--up" onClick={() => increaseMagazineQty({ firearmToModify: firearm.name, magazineIndex: i })} />
+                  <button aria-label="down" type="button" className="button--standard button--down" onClick={() => handleDecreaseAmmo(decreaseMagazineQty, { firearmToModify: firearm.name, magazineIndex: i }, m.qty)} />
+                </span>
+              </div>
+            );
+          })}
           {firearm?.launcher && firearm.launcher.mag.map((m, i) => {
             const launcher = getLauncherByName(firearm.launcher.attached);
             return (
@@ -117,7 +122,7 @@ const WeaponsTableBody = ({
               </div>
             );
           })}
-        </>
+        </Fragment>
       ))}
 
       {grenades.map((grenade) => (
@@ -140,8 +145,8 @@ const WeaponsTableBody = ({
         const weight = getLauncherWeightByName(launcher.name);
 
         return (
-          <>
-            <div key={launcher.name} className="gear-table-row--container">
+          <Fragment key={launcher.name}>
+            <div className="gear-table-row--container">
               <span>
                 <button aria-label="remove" type="button" className="button--standard button--close" onClick={() => removeLauncher(launcher.name)} />
                 <span>{launcher.name}</span>
@@ -172,7 +177,7 @@ const WeaponsTableBody = ({
                 </div>
               );
             }) }
-          </>
+          </Fragment>
         );
       })}
 
@@ -181,26 +186,26 @@ const WeaponsTableBody = ({
 };
 
 WeaponsTableBody.propTypes = {
-  totalFirearmWeight: PropTypes.number.isRequired,
-  increaseMagazineQty: PropTypes.func,
-  decreaseMagazineQty: PropTypes.func,
-  removeFirearm: PropTypes.func,
-  increaseFirearmQty: PropTypes.func,
-  decreaseFirearmQty: PropTypes.func,
-  increaseGrenadeQty: PropTypes.func,
-  decreaseGrenadeQty: PropTypes.func,
-  removeGrenade: PropTypes.func,
-  increaseLauncherQty: PropTypes.func,
-  decreaseLauncherQty: PropTypes.func,
-  removeLauncher: PropTypes.func,
-  increaseLauncherAmmo: PropTypes.func,
-  decreaseLauncherAmmo: PropTypes.func,
+  totalWeaponWeight: PropTypes.number.isRequired,
+  increaseMagazineQty: PropTypes.func.isRequired,
+  decreaseMagazineQty: PropTypes.func.isRequired,
+  removeFirearm: PropTypes.func.isRequired,
+  increaseFirearmQty: PropTypes.func.isRequired,
+  decreaseFirearmQty: PropTypes.func.isRequired,
+  increaseGrenadeQty: PropTypes.func.isRequired,
+  decreaseGrenadeQty: PropTypes.func.isRequired,
+  removeGrenade: PropTypes.func.isRequired,
+  increaseLauncherQty: PropTypes.func.isRequired,
+  decreaseLauncherQty: PropTypes.func.isRequired,
+  removeLauncher: PropTypes.func.isRequired,
+  increaseLauncherAmmo: PropTypes.func.isRequired,
+  decreaseLauncherAmmo: PropTypes.func.isRequired,
   increaseUnderslungLauncherAmmo: PropTypes.func.isRequired,
   decreaseUnderslungLauncherAmmo: PropTypes.func.isRequired,
-  toggleModifyWeapon: PropTypes.func,
-  firearms: PropTypes.arrayOf(gunObjShape),
-  grenades: PropTypes.arrayOf(grenadeShape),
-  launchers: PropTypes.arrayOf(launcherShape),
+  toggleModifyWeapon: PropTypes.func.isRequired,
+  firearms: PropTypes.arrayOf(gunObjShape).isRequired,
+  grenades: PropTypes.arrayOf(PropTypes.object).isRequired,
+  launchers: PropTypes.arrayOf(launcherShape).isRequired,
 };
 
 export default WeaponsTableBody;

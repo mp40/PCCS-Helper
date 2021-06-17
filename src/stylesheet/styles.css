@@ -113,7 +113,8 @@
 
 .button--close,
 .button--up,
-.button--down {
+.button--down,
+.button--question {
   height: 1rem;
   width: 1rem;
   padding: 0;
@@ -122,7 +123,8 @@
 
 .button--close:before,
 .button--up:before,
-.button--down:before {
+.button--down:before,
+.button--question:before {
   font-family: FontAwesome;
   text-decoration: inherit;
   color: var(--golden-olive);
@@ -143,6 +145,10 @@
 
 .button--down:before {
   content: "\f078";
+}
+
+.button--question:before {
+  content: "\f128";
 }
 
 .gear-table-header--container,

@@ -42,14 +42,3 @@ export const getStoreWithGun = (gun) => createStore(
   new CharacterWithGunStore(gun),
 );
 
-export const testM79 = (ammo = 0) => {
-  const m79 = findObjectByNameInArray(launchers(), 'M79');
-  m79.mag[0].qty = ammo;
-  return m79;
-};
-
-export const testM72 = (qty) => {
-  const m72 = findObjectByNameInArray(launchers(), 'M72 A2 LAW');
-  m72.qty = qty;
-  return m72;
-};

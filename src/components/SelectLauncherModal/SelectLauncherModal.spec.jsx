@@ -23,21 +23,19 @@ describe('the select grenade/rocket launcher modal', () => {
     });
 
     it('should be possible to see launcher stats', () => {
-      wrapper.find('.viewM79').simulate('click');
+      wrapper.find('.button--question').at(0).simulate('click');
 
       expect(wrapper.find('WeaponStatsTable').exists()).toBe(true);
     });
 
     it('should be possible select a launcher', () => {
-      wrapper.find('#M79').simulate('click');
+      wrapper.find('span[children="M79"]').closest('div').simulate('click');
 
-      expect(addLauncher).toHaveBeenCalledWith(
-        expect.objectContaining({ name: 'M79' }),
-      );
+      expect(addLauncher).toHaveBeenCalledWith('M79');
     });
 
     it('should close the modal when selection made', () => {
-      wrapper.find('#M79').simulate('click');
+      wrapper.find('span[children="M79"]').closest('div').simulate('click');
 
       expect(toggleOffWeaponCardViews).toHaveBeenCalledWith('showLaunchers');
     });
@@ -54,7 +52,7 @@ describe('the select grenade/rocket launcher modal', () => {
 
     beforeEach(() => {
       wrapper = mount(<SelectLauncherModal />);
-      wrapper.find('.viewM79').simulate('click');
+      wrapper.find('span[children="M79"]').closest('.row').find('button').simulate('click');
     });
 
     it('should render the correct ballistic ranges', () => {
@@ -64,80 +62,81 @@ describe('the select grenade/rocket launcher modal', () => {
     });
 
     it('should contain the correct data on line one of the table', () => {
-      const lineOne = wrapper.find('.gunTableLine1');
+      const line = wrapper.find('.gunTableLine').at(0);
 
-      expect(lineOne.text()).toBe('L291-21HEATPEN288288288PEN1.61.410.70.4');
+      expect(line.text()).toBe('L291-21HEATPEN288288288PEN1.61.410.70.4');
     });
 
     it('should contain the correct data on line two of the table', () => {
-      const lineOne = wrapper.find('.gunTableLine2');
-      expect(lineOne.text()).toBe('W6.52-11DC101010DC11111');
+      const line = wrapper.find('.gunTableLine').at(1);
+
+      expect(line.text()).toBe('W6.52-11DC101010DC11111');
     });
 
     it('should contain the correct data on line three of the table', () => {
-      const lineOne = wrapper.find('.gunTableLine3');
+      const line = wrapper.find('.gunTableLine').at(2);
 
-      expect(lineOne.text()).toBe('3-8BSHC*2471141');
+      expect(line.text()).toBe('3-8BSHC*2471141');
     });
 
     it('should contain the correct data on line four of the table', () => {
-      const lineOne = wrapper.find('.gunTableLine4');
+      const line = wrapper.find('.gunTableLine').at(3);
 
-      expect(lineOne.text()).toBe('RT104-7BC24171231251');
+      expect(line.text()).toBe('RT104-7BC24171231251');
     });
 
     it('should contain the correct data on line five of the table', () => {
-      const lineOne = wrapper.find('.gunTableLine5');
+      const line = wrapper.find('.gunTableLine').at(4);
 
-      expect(lineOne.text()).toBe('ROF-5-5');
+      expect(line.text()).toBe('ROF-5-5');
     });
 
     it('should contain the correct data on line six of the table', () => {
-      const lineOne = wrapper.find('.gunTableLine6');
+      const line = wrapper.find('.gunTableLine').at(5);
 
-      expect(lineOne.text()).toBe('6-4HEPEN2.12.12.1PEN1.61.410.70.4');
+      expect(line.text()).toBe('6-4HEPEN2.12.12.1PEN1.61.410.70.4');
     });
 
     it('should contain the correct data on line seven of the table', () => {
-      const lineOne = wrapper.find('.gunTableLine7');
+      const line = wrapper.find('.gunTableLine').at(6);
 
-      expect(lineOne.text()).toBe('Cap17-3DC101010DC11111');
+      expect(line.text()).toBe('Cap17-3DC101010DC11111');
     });
 
     it('should contain the correct data on line eight of the table', () => {
-      const lineOne = wrapper.find('.gunTableLine8');
+      const line = wrapper.find('.gunTableLine').at(7);
 
-      expect(lineOne.text()).toBe('AW0.51BSHC*3621562');
+      expect(line.text()).toBe('AW0.51BSHC*3621562');
     });
 
     it('should contain the correct data on line nine of the table', () => {
-      const lineOne = wrapper.find('.gunTableLine9');
+      const line = wrapper.find('.gunTableLine').at(8);
 
-      expect(lineOne.text()).toBe('RndBC27380251361');
+      expect(line.text()).toBe('RndBC27380251361');
     });
 
     it('should contain the correct data on line ten of the table', () => {
-      const lineOne = wrapper.find('.gunTableLine10');
+      const line = wrapper.find('.gunTableLine').at(9);
 
-      expect(lineOne.text()).toBe('');
+      expect(line.text()).toBe('');
     });
 
     it('should contain the correct data on line eleven of the table', () => {
-      const lineOne = wrapper.find('.gunTableLine11');
+      const line = wrapper.find('.gunTableLine').at(10);
 
-      expect(lineOne.text()).toBe('MR200AOI14');
+      expect(line.text()).toBe('MR200AOI14');
     });
 
     it('should contain the correct data on line twelve of the table', () => {
-      const lineOne = wrapper.find('.gunTableLine12');
+      const line = wrapper.find('.gunTableLine').at(11);
 
-      expect(lineOne.text()).toBe('BA23101');
+      expect(line.text()).toBe('BA23101');
     });
 
     it('should contain the correct data on line thirteen of the table', () => {
-      const lineOne = wrapper.find('.gunTableLine13');
+      const line = wrapper.find('.gunTableLine').at(12);
 
-      expect(lineOne.text()).toBe('SAB11TOF113380');
+      expect(line.text()).toBe('SAB11TOF113380');
     });
   });
 
@@ -146,85 +145,85 @@ describe('the select grenade/rocket launcher modal', () => {
 
     beforeEach(() => {
       wrapper = mount(<SelectLauncherModal />);
-      wrapper.find('.viewM72A2LAW').simulate('click');
+      wrapper.find('span[children="M72 A2 LAW"]').closest('.row').find('button').simulate('click');
     });
 
     it('should contain the correct data on line one of the table', () => {
-      const lineOne = wrapper.find('.gunTableLine1');
+      const line = wrapper.find('.gunTableLine').at(0);
 
-      expect(lineOne.text()).toBe('L26/351-20HEATPEN68h68h68h68hPEN54.94.74.54.13.3');
+      expect(line.text()).toBe('L26/351-20HEATPEN68h68h68h68hPEN54.94.74.54.13.3');
     });
 
     it('should contain the correct data on line two of the table', () => {
-      const lineOne = wrapper.find('.gunTableLine2');
+      const line = wrapper.find('.gunTableLine').at(1);
 
-      expect(lineOne.text()).toBe('W5.22-11DC10101010DC777765');
+      expect(line.text()).toBe('W5.22-11DC10101010DC777765');
     });
 
     it('should contain the correct data on line three of the table', () => {
-      const lineOne = wrapper.find('.gunTableLine3');
+      const line = wrapper.find('.gunTableLine').at(2);
 
-      expect(lineOne.text()).toBe('3-8BSHC1530-3-7-12');
+      expect(line.text()).toBe('3-8BSHC1530-3-7-12');
     });
 
     it('should contain the correct data on line four of the table', () => {
-      const lineOne = wrapper.find('.gunTableLine4');
+      const line = wrapper.find('.gunTableLine').at(3);
 
-      expect(lineOne.text()).toBe('RT144-6BC11h2457036155');
+      expect(line.text()).toBe('RT144-6BC11h2457036155');
     });
 
     it('should contain the correct data on line five of the table', () => {
-      const lineOne = wrapper.find('.gunTableLine5');
+      const line = wrapper.find('.gunTableLine').at(4);
 
-      expect(lineOne.text()).toBe('ROF-5-5');
+      expect(line.text()).toBe('ROF-5-5');
     });
 
     it('should contain the correct data on line six of the table', () => {
-      const lineOne = wrapper.find('.gunTableLine6');
+      const line = wrapper.find('.gunTableLine').at(5);
 
-      expect(lineOne.text()).toBe('6-4');
+      expect(line.text()).toBe('6-4');
     });
 
     it('should contain the correct data on line seven of the table', () => {
-      const lineOne = wrapper.find('.gunTableLine7');
+      const line = wrapper.find('.gunTableLine').at(6);
 
-      expect(lineOne.text()).toBe('Cap17-3');
+      expect(line.text()).toBe('Cap17-3');
     });
 
     it('should contain the correct data on line eight of the table', () => {
-      const lineOne = wrapper.find('.gunTableLine8');
+      const line = wrapper.find('.gunTableLine').at(7);
 
-      expect(lineOne.text()).toBe('AW-8-2');
+      expect(line.text()).toBe('AW-8-2');
     });
 
     it('should contain the correct data on line nine of the table', () => {
-      const lineOne = wrapper.find('.gunTableLine9');
+      const line = wrapper.find('.gunTableLine').at(8);
 
-      expect(lineOne.text()).toBe('');
+      expect(line.text()).toBe('');
     });
 
     it('should contain the correct data on line ten of the table', () => {
-      const lineOne = wrapper.find('.gunTableLine10');
+      const line = wrapper.find('.gunTableLine').at(9);
 
-      expect(lineOne.text()).toBe('');
+      expect(line.text()).toBe('');
     });
 
     it('should contain the correct data on line eleven of the table', () => {
-      const lineOne = wrapper.find('.gunTableLine11');
+      const line = wrapper.find('.gunTableLine').at(10);
 
-      expect(lineOne.text()).toBe('MR650AOI11');
+      expect(line.text()).toBe('MR650AOI11');
     });
 
     it('should contain the correct data on line twelve of the table', () => {
-      const lineOne = wrapper.find('.gunTableLine12');
+      const line = wrapper.find('.gunTableLine').at(11);
 
-      expect(lineOne.text()).toBe('BA11-1-11-20');
+      expect(line.text()).toBe('BA11-1-11-20');
     });
 
     it('should contain the correct data on line thirteen of the table', () => {
-      const lineOne = wrapper.find('.gunTableLine13');
+      const line = wrapper.find('.gunTableLine').at(12);
 
-      expect(lineOne.text()).toBe('SABTOF5143275');
+      expect(line.text()).toBe('SABTOF5143275');
     });
   });
 });

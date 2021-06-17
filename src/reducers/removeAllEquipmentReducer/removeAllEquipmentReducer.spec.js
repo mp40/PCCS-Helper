@@ -19,7 +19,6 @@ describe('removeEquipmentReducer function', () => {
   state = { ...state,
     currentCharacter: {
       ...state.currentCharacter,
-      totalWeight: state.currentCharacter.totalWeight + mockEquipment.weight + mockOtherEquipment.weight,
       equipment: [mockEquipment, mockOtherEquipment],
     } };
 
@@ -29,7 +28,6 @@ describe('removeEquipmentReducer function', () => {
     const updatedState = { ...state,
       currentCharacter: {
         ...state.currentCharacter,
-        totalWeight: 5,
         equipment: [],
       } };
 

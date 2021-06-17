@@ -129,7 +129,5 @@ describe('Hydrate Current Character', () => {
     expect(state.currentCharacter.name).toBe('Grimes');
 
     expect(state.currentCharacter.firearms).toStrictEqual(firearms);
-    // mptodo
-    // expect(state.currentCharacter.).toStrictEqual(hydratedSimpleCharacter);
   });
 });

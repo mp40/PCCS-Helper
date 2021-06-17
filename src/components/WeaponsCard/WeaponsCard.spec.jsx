@@ -21,43 +21,43 @@ describe('The Weapons Card', () => {
         wrapper.find('button[children="Add Firearm"]').simulate('click');
         wrapper.find('span[children="M1911A1"]').simulate('click');
 
-        expect(wrapper.find('tbody').text()).toContain('M1911A1313');
-        expect(wrapper.find('thead').text()).toContain('lbs3');
+        expect(wrapper.find('.gear-table-header--container').text()).toContain('Lbs3');
+        expect(wrapper.text()).toContain('M1911A1313');
       });
 
       it('should be possible to increase qty of a gun', () => {
-        wrapper.find('#qtyUpFirearm').simulate('click');
+        wrapper.find('.gear-table-row--container').at(0).find('.button--up').simulate('click');
 
-        expect(wrapper.find('tbody').text()).toContain('M1911A1326');
-        expect(wrapper.find('thead').text()).toContain('lbs6');
+        expect(wrapper.find('.gear-table-header--container').text()).toContain('Lbs6');
+        expect(wrapper.find('.gear-table-row--container').at(0).text()).toContain('M1911A1326');
       });
 
       it('should be possible to decrease qty of a gun', () => {
-        wrapper.find('#qtyDownFirearm').simulate('click');
+        wrapper.find('.gear-table-row--container').at(0).find('.button--down').simulate('click');
 
-        expect(wrapper.find('tbody').text()).toContain('M1911A1313');
-        expect(wrapper.find('thead').text()).toContain('lbs3');
+        expect(wrapper.find('.gear-table-header--container').text()).toContain('Lbs3');
+        expect(wrapper.find('.gear-table-row--container').at(0).text()).toContain('M1911A1313');
       });
 
       it('should be possible to increase spare ammo', () => {
-        wrapper.find('#qtyUpMagType1').simulate('click');
+        wrapper.find('.magazineRow').find('.button--up').simulate('click');
 
-        expect(wrapper.find('.spareMagRow').text()).toContain('1 x 7 round Mag');
-        expect(wrapper.find('thead').text()).toContain('lbs3.7');
+        expect(wrapper.find('.magazineRow').text()).toContain('7 round Mag0.710.7');
+        expect(wrapper.find('.gear-table-header--container').text()).toContain('Lbs3.7');
       });
 
       it('should be possible to decrease spare ammo', () => {
-        wrapper.find('#qtyDownMagType1').simulate('click');
+        wrapper.find('.magazineRow').find('.button--down').simulate('click');
 
-        expect(wrapper.find('.spareMagRow').text()).toContain('0 x 7 round Mag');
-        expect(wrapper.find('thead').text()).toContain('lbs3');
+        expect(wrapper.find('.magazineRow').text()).toContain('7 round Mag0.700');
+        expect(wrapper.find('.gear-table-header--container').text()).toContain('Lbs3');
       });
 
       it('should be possible to delete a gun', () => {
-        wrapper.find('.removeM1911A1').simulate('click');
+        wrapper.find('.gear-table-row--container').at(0).find('.button--close').simulate('click');
 
-        expect(wrapper.find('tbody').text()).not.toContain('M1911A1313');
-        expect(wrapper.find('thead').text()).toContain('lbs0');
+        expect(wrapper.text()).not.toContain('M1911A1');
+        expect(wrapper.find('.gear-table-header--container').text()).toContain('Lbs0');
       });
     });
 
@@ -72,7 +72,7 @@ describe('The Weapons Card', () => {
 
       wrapper.find('button[children="Add Firearm"]').simulate('click');
       wrapper.find('span[children="M16"]').simulate('click');
-      wrapper.find('span[children="M16"]').simulate('click');
+      wrapper.find('button[children="M16"]').simulate('click');
 
       it('should be able to add custom magazine', () => {
         wrapper.find('button[children="add magazine"]').simulate('click');
@@ -99,13 +99,13 @@ describe('The Weapons Card', () => {
       it('should be able to remove magazine', () => {
         wrapper.find('CheckBox').at(1).simulate('click');
 
-        expect(wrapper.find('WeaponsCard').text()).not.toContain('0 x 20 round Mag');
+        expect(wrapper.find('WeaponsCard').text()).not.toContain('20 round Mag');
       });
 
       it('should be able to replace magazine', () => {
         wrapper.find('CheckBox').at(1).simulate('click');
 
-        expect(wrapper.find('WeaponsCard').text()).toContain('0 x 20 round Mag');
+        expect(wrapper.find('WeaponsCard').text()).toContain('20 round Mag');
       });
 
       it('should be able to add modification to firearm', () => {
@@ -163,31 +163,31 @@ describe('The Weapons Card', () => {
 
       it('should be possible to select a grenade', () => {
         wrapper.find('button[children="Add Grenade"]').simulate('click');
-        wrapper.find('.selectM2').simulate('click');
-
-        expect(wrapper.find('tbody').text()).toContain('M21.311.3');
-        expect(wrapper.find('thead').text()).toContain('lbs1.3');
+        wrapper.find('div[children="M2"]').simulate('click');
+      
+        expect(wrapper.find('.gear-table-header--container').text()).toContain('Lbs1.3');
+        expect(wrapper.text()).toContain('M2');
       });
 
       it('should be possible to increment grenade qty up', () => {
-        wrapper.find('.M2Row').find('#qtyUpGrenade').simulate('click');
+        wrapper.find('.gear-table-row--container').find('.button--up').simulate('click');
 
-        expect(wrapper.find('tbody').text()).toContain('M21.322.6');
-        expect(wrapper.find('thead').text()).toContain('lbs2.6');
+        expect(wrapper.find('.gear-table-header--container').text()).toContain('Lbs2.6');
+        expect(wrapper.find('.gear-table-row--container').text()).toContain('M222.6');
       });
 
       it('should be possible to increment grenade qty down', () => {
-        wrapper.find('.M2Row').find('#qtyDownGrenade').simulate('click');
+        wrapper.find('.gear-table-row--container').find('.button--down').simulate('click');
 
-        expect(wrapper.find('tbody').text()).toContain('M21.311.3');
-        expect(wrapper.find('thead').text()).toContain('lbs1.3');
+        expect(wrapper.find('.gear-table-header--container').text()).toContain('Lbs1.3');
+        expect(wrapper.find('.gear-table-row--container').text()).toContain('M211.3');
       });
 
       it('should be possible to remove grenade', () => {
-        wrapper.find('.removeM2').simulate('click');
+        wrapper.find('.gear-table-row--container').find('.button--close').simulate('click');
 
-        expect(wrapper.find('tbody').text()).not.toContain('M2');
-        expect(wrapper.find('thead').text()).toContain('lbs0');
+        expect(wrapper.find('.gear-table-header--container').text()).toContain('Lbs0');
+        expect(wrapper.find('.gear-table-row--container').exists()).toBe(false);
       });
     });
 
@@ -204,43 +204,43 @@ describe('The Weapons Card', () => {
         wrapper.find('button[children="Add Launcher"]').simulate('click');
         wrapper.find('span[children="M79"]').simulate('click');
 
-        expect(wrapper.find('tbody').text()).toContain('M796.516.5');
-        expect(wrapper.find('thead').text()).toContain('lbs6.5');
+        expect(wrapper.find('.gear-table-header--container').text()).toContain('Lbs6.5');
+        expect(wrapper.text()).toContain('M79');
       });
 
       it('should be possible to increment launcher qty', () => {
-        wrapper.find('#qtyUpLauncher').simulate('click');
+        wrapper.find('.gear-table-row--container').at(0).find('.button--up').simulate('click');
 
-        expect(wrapper.find('tbody').text()).toContain('M796.5213');
-        expect(wrapper.find('thead').text()).toContain('lbs13');
+        expect(wrapper.find('.gear-table-row--container').at(0).text()).toContain('M796.5213');
+        expect(wrapper.find('.gear-table-header--container').text()).toContain('Lbs13');
       });
 
       it('should be possible to decrement launcher qty', () => {
-        wrapper.find('#qtyDownLauncher').simulate('click');
+        wrapper.find('.gear-table-row--container').at(0).find('.button--down').simulate('click');
 
-        expect(wrapper.find('tbody').text()).toContain('M796.516.5');
-        expect(wrapper.find('thead').text()).toContain('lbs6.5');
+        expect(wrapper.find('.gear-table-row--container').at(0).text()).toContain('M796.516.5');
+        expect(wrapper.find('.gear-table-header--container').text()).toContain('Lbs6.5');
       });
 
       it('should be possible to increment launcher ammo', () => {
-        wrapper.find('#qtyUpMagType1').simulate('click');
+        wrapper.find('.magazineRow').at(0).find('.button--up').simulate('click');
 
-        expect(wrapper.find('.spareMagRow').at(0).text()).toContain('1 x HEAT');
-        expect(wrapper.find('thead').text()).toContain('lbs7.01');
+        expect(wrapper.find('.magazineRow').at(0).text()).toContain('HEAT Rnd0.5110.51');
+        expect(wrapper.find('.gear-table-header--container').text()).toContain('Lbs7.01');
       });
 
       it('should be possible to decrement launcher ammo', () => {
-        wrapper.find('#qtyDownMagType1').simulate('click');
+        wrapper.find('.magazineRow').at(0).find('.button--down').simulate('click');
 
-        expect(wrapper.find('.spareMagRow').at(0).text()).toContain('0 x HEAT');
-        expect(wrapper.find('thead').text()).toContain('lbs6.5');
+        expect(wrapper.find('.magazineRow').at(0).text()).toContain('HEAT Rnd0.5100');
+        expect(wrapper.find('.gear-table-header--container').text()).toContain('Lbs6.5');
       });
 
       it('should be possible to remove launcher', () => {
-        wrapper.find('.removeM79').simulate('click');
+        wrapper.find('.gear-table-row--container').find('.button--close').simulate('click');
 
-        expect(wrapper.find('tbody').text()).not.toContain('M79');
-        expect(wrapper.find('thead').text()).toContain('lbs0');
+        expect(wrapper.find('.gear-table-header--container').text()).toContain('Lbs0');
+        expect(wrapper.find('.gear-table-row--container').exists()).toBe(false);
       });
     });
 
@@ -263,11 +263,11 @@ describe('The Weapons Card', () => {
         wrapper.find('button[children="Add Launcher"]').simulate('click');
         wrapper.find('span[children="M79"]').simulate('click');
 
-        expect(wrapper.find('thead').text()).toContain('lbs10.8');
+        expect(wrapper.find('.gear-table-header--container').text()).toContain('Lbs10.8');
 
         wrapper.find('button[children="Clear All"]').simulate('click');
 
-        expect(wrapper.find('thead').text()).toContain('lbs0');
+        expect(wrapper.find('.gear-table-header--container').text()).toContain('Lbs0');
       });
     });
   });
