@@ -13,7 +13,6 @@ import { toggleTagsInList } from './data';
 
 const EquipmentCard = ({
   removeAllEquipment,
-  removeEquipment,
   equipment,
 }) => {
   const [showEquipment, setShowEquipment] = useState(false);
