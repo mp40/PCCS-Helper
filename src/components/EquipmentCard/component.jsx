@@ -7,7 +7,6 @@ import SelectEquipment from './select';
 import EquipmentFilter from './filter';
 import CustomEquipment from './custom';
 
-import GearTable from '../GearTable';
 import GearRow from '../GearRow';
 
 import { findEquipmentWeight } from '../../helpers/actionHelpers';
