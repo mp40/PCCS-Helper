@@ -89,10 +89,6 @@ const EquipmentCard = ({
         </button>
       </div>
       <EquipmentCardTable equipment={equipment} />
-      {/* mptodo */}
-      {/* <GearTable gearHeading="Equipment" totalWeight={Math.round(totalEquipWeight * 1000) / 1000}>
-        {renderTableBody()}
-      </GearTable> */}
       {renderEquipmentModal()}
       {renderCustomEquipmentModal()}
       {showFilters && (
