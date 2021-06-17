@@ -12,7 +12,6 @@ import { findEquipmentWeight } from '../../helpers/actionHelpers';
 import { toggleTagsInList } from './data';
 
 const EquipmentCard = ({
-  decreaseEquipmentQty,
   increaseEquipmentQty,
   removeAllEquipment,
   removeEquipment,
