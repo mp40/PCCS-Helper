@@ -59,7 +59,6 @@ const EquipmentCard = ({
         />
       );
 
-  const totalEquipWeight = findEquipmentWeight(equipment);
   return (
     <div className="--card --gearCard">
       <div>
