@@ -99,10 +99,7 @@ const EquipmentCard = ({
 };
 
 EquipmentCard.propTypes = {
-  decreaseEquipmentQty: PropTypes.func,
-  increaseEquipmentQty: PropTypes.func,
   removeAllEquipment: PropTypes.func,
-  removeEquipment: PropTypes.func,
   equipment: PropTypes.arrayOf(PropTypes.object),
 };
 
