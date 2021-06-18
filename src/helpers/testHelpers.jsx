@@ -6,9 +6,6 @@ import reducers from '../reducers';
 import App from '../components/App';
 import { initialStore } from './initialStore';
 import { MockState } from '../reducers/mockState';
-import { launchers } from '../data/launchers';
-
-import { findObjectByNameInArray } from '../utils';
 
 export const getStore = (mockStore = initialStore) => createStore(
   reducers,
@@ -41,4 +38,3 @@ export const getStoreWithGun = (gun) => createStore(
   reducers,
   new CharacterWithGunStore(gun),
 );
-

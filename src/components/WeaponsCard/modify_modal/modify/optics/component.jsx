@@ -32,8 +32,6 @@ const Optics = ({ firearm, optics, updateOptic, removeOptic }) => {
 
   const scope = getScopeByName(optics?.attached);
 
-  const nfi = 'NFI'; // mptodo
-
   return (
     <>
       <div className={styles.wrapper}>
@@ -46,7 +44,7 @@ const Optics = ({ firearm, optics, updateOptic, removeOptic }) => {
               {`FOV:${scope.fov}`}
               &#176;
             </span>
-            <span>{`Min Rng: ${nfi}`}</span>
+            <span>{`Min Rng: ${scope.minimumRange}`}</span>
           </>
         )}
         </span>

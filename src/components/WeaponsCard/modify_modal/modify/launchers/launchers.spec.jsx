@@ -1,15 +1,13 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import Launchers from './component';
-
-// firearm, ableToAttach, attachedLauncher, updateUnderslungLauncher, removeUnderslungLauncher
 
 describe('Modify Firearm With Grenade Launcher', () => {
   let wrapper;
 
   const firearm = 'M16';
-  const ableToAttach = [];
+  const ableToAttach = ['M203'];
   const attachedLauncher = undefined;
   const updateUnderslungLauncher = jest.fn();
   const removeUnderslungLauncher = jest.fn();
@@ -28,5 +26,15 @@ describe('Modify Firearm With Grenade Launcher', () => {
 
   it('should not render remove launcher button if no launcher attached', () => {
     expect(wrapper.find('button[children="Remove Launcher"]').exists()).toBe(false);
+  });
+
+  it('should to attach underslung launcher', () => {
+    wrapper.find('button[children="Update Launcher"]').simulate('click');
+
+    wrapper.find('button[children="M203"]').simulate('click');
+
+    const expectedActionPayload = { firearmToUpdate: 'M16', launcher: 'M203' };
+
+    expect(updateUnderslungLauncher).toHaveBeenCalledWith(expectedActionPayload);
   });
 });

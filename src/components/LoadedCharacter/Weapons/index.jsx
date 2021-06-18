@@ -55,8 +55,8 @@ const LoadedCharacterWeapons = ({ firearms, grenades, setFirearm }) => {
 };
 
 LoadedCharacterWeapons.propTypes = {
-  firearms: PropTypes.arrayOf(gunObjShape),
-  grenades: PropTypes.arrayOf(grenadeShape),
+  firearms: PropTypes.arrayOf(gunObjShape).isRequired,
+  grenades: PropTypes.arrayOf(PropTypes.object).isRequired,
   setFirearm: PropTypes.func.isRequired,
 };
 

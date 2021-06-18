@@ -8,7 +8,6 @@ import { shotguns } from './firearms/shotguns';
 import { correctFloatingPoint } from '../../utils';
 import { getScopeByName } from './optics';
 import { getLauncherByName } from './launchers';
-import launchers from '../../components/WeaponsCard/modify_modal/modify/launchers';
 
 export const firearms = Object.freeze({
   ...rifles,

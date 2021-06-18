@@ -8,7 +8,6 @@ import { PropTypes } from 'prop-types';
 import GrenadeData from '../GrenadeData';
 
 import { grenadeList } from '../../data/grenades';
-import { grenadeShape } from '../../helpers/proptypeShapes';
 
 import styles from './styles.module.css';
 
@@ -41,18 +40,18 @@ const GrenadeSelectModal = ({ toggleOffWeaponCardViews, addGrenade, grenades }) 
     Object.keys(grenadeList).map((name) => {
       const grenade = grenadeList[name];
       return (
-        <div key={grenade.name}>
+        <div key={grenade.name} className={styles.row}>
           <button
             type="button"
-            className={`--infoButton --button view${grenade.name}Stats`}
+            className="button--standard button--question"
             onClick={() => setGrenadeToView(grenade)}
           />
           <div
-            className={`--selectableRow select${grenade.name}`}
+            className="--selectableRow "
             onClick={() => handleSelection(grenade)}
           >
-            <div>{grenade.name}</div>
-            <div>{grenade.weight}</div>
+            <span>{grenade.name}</span>
+            <span>{grenade.weight}</span>
           </div>
         </div>
       );
@@ -78,7 +77,7 @@ const GrenadeSelectModal = ({ toggleOffWeaponCardViews, addGrenade, grenades }) 
 GrenadeSelectModal.propTypes = {
   addGrenade: PropTypes.func,
   toggleOffWeaponCardViews: PropTypes.func,
-  grenades: PropTypes.arrayOf(grenadeShape),
+  grenades: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default GrenadeSelectModal;

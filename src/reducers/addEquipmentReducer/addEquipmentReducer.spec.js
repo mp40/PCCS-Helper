@@ -14,7 +14,6 @@ describe('addEquipmentReducer function', () => {
     const updatedState = { ...state,
       currentCharacter: {
         ...state.currentCharacter,
-        totalWeight: state.currentCharacter.totalWeight + action.payload.weight,
         equipment: [...state.currentCharacter.equipment, action.payload],
       } };
 
@@ -33,7 +32,6 @@ describe('addEquipmentReducer function', () => {
     const updatedState = { ...state,
       currentCharacter: {
         ...state.currentCharacter,
-        totalWeight: state.currentCharacter.totalWeight + action.payload.weight,
         equipment: [...state.currentCharacter.equipment, action.payload],
       } };
 

@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import PropTypes, { arrayOf } from 'prop-types';
+import PropTypes from 'prop-types';
 
-import { gunObjShape, grenadeShape } from '../../helpers/proptypeShapes';
-
-// mptodo refactor GearTable away
-import GearTable from '../GearTable';
+import { gunObjShape } from '../../helpers/proptypeShapes';
 
 import WeaponsTableBody from '../WeaponsTableBody';
 import WeaponsModalSelection from '../WeaponsModalSelection';
@@ -14,9 +11,6 @@ import GrenadeSelectModal from '../GrenadeSelectModal';
 import SelectLauncherModal from '../SelectLauncherModal';
 
 import { hydrateFirearmByObject } from '../../data/firearms/hydrate';
-
-import { calculateWeaponArrayWeight } from '../../helpers/actionHelpers';
-// import { firearms } from '../../data/firearms';
 
 // mptodo -> functional component
 
@@ -67,9 +61,6 @@ class WeaponsCard extends Component {
   render() {
     const { firearms, grenades, launchers, removeAllWeapons } = this.props;
     const { showFirearms, modifyFirearm, showGrenades, showLaunchers, firearmToModify } = this.state;
-    const firearmsWeight = calculateWeaponArrayWeight(firearms);
-    const grenadesWeight = grenades.reduce((acc, obj) => acc + (obj.qty * obj.weight), 0);
-    const launchersWeight = calculateWeaponArrayWeight(launchers);
 
     const gunToModify = firearms.filter((gunObj) => gunObj.name === firearmToModify)[0];
 
@@ -118,16 +109,6 @@ class WeaponsCard extends Component {
           toggleOnWeaponsCardViews={this.toggleOnWeaponsCardViews}
           toggleModifyWeapon={this.toggleModifyWeapon}
         />
-        {/* mptodo */}
-        {/* <GearTable gearHeading="Weapons" totalWeight={Math.round((firearmsWeight + grenadesWeight + launchersWeight) * 1000) / 1000}>
-          <WeaponsTableBody
-            firearms={firearms}
-            grenades={grenades}
-            launchers={launchers}
-            toggleOnWeaponsCardViews={this.toggleOnWeaponsCardViews}
-            toggleModifyWeapon={this.toggleModifyWeapon}
-          />
-        </GearTable> */}
 
         {showFirearms && this.renderWeaponSelect()}
         {modifyFirearm && (

@@ -3,16 +3,10 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import WeaponsTableBody from './component';
 
-import { testM79, testM72 } from '../../helpers/testHelpers';
-
-import { renderCorrectAmmoTitle } from '../GearRow';
-
 import { firearms } from '../../data/firearms';
-import { decreaseUnderslungLauncherAmmoReducer } from '../../reducers/decreaseUnderslungLauncherAmmoReducer';
 
 // mptodo - this file seems to have a few repeated tests that are in WeaponsCard intergration tests...
 const testFAMAS = () => ({ ...firearms.FAMAS });
-const testM16 = () => ({ ...firearms.M16 });
 const testM1911A1 = () => ({ ...firearms.M1911A1 });
 
 const m2Grenade = {
@@ -40,6 +34,14 @@ const increaseMagazineQty = jest.fn();
 const decreaseMagazineQty = jest.fn();
 const increaseUnderslungLauncherAmmo = jest.fn();
 const decreaseUnderslungLauncherAmmo = jest.fn();
+const increaseLauncherQty = jest.fn();
+const decreaseLauncherQty = jest.fn();
+const increaseLauncherAmmo = jest.fn();
+const decreaseLauncherAmmo = jest.fn();
+const removeLauncher = jest.fn();
+const removeGrenade = jest.fn();
+const increaseGrenadeQty = jest.fn();
+const decreaseGrenadeQty = jest.fn();
 
 const m1911Qty1 = {
   name: 'M1911A1',
@@ -80,7 +82,15 @@ describe('Selected Firearms Table', () => {
         decreaseMagazineQty={decreaseMagazineQty}
         increaseUnderslungLauncherAmmo={increaseUnderslungLauncherAmmo}
         decreaseUnderslungLauncherAmmo={decreaseUnderslungLauncherAmmo}
-        totalFirearmWeight={1337}
+        increaseLauncherQty={increaseLauncherQty}
+        decreaseLauncherQty={decreaseLauncherQty}
+        increaseLauncherAmmo={increaseLauncherAmmo}
+        decreaseLauncherAmmo={decreaseLauncherAmmo}
+        removeLauncher={removeLauncher}
+        removeGrenade={removeGrenade}
+        increaseGrenadeQty={increaseGrenadeQty}
+        decreaseGrenadeQty={decreaseGrenadeQty}
+        totalWeaponWeight={1337}
       />);
   });
 
@@ -159,46 +169,12 @@ describe('Selected Firearms Table', () => {
   });
 });
 
-describe('rendering the correct information', () => {
-  it('should return "Single Rounds" if type is "Rnd"', () => {
-    const magObj = { type: 'Rnd', cap: '7' };
-    expect(renderCorrectAmmoTitle(magObj)).toBe('Single Rounds');
-  });
-
-  it('should return "Single Rounds" if type is "Rnd"', () => {
-    const magObj = { type: 'Mag', cap: '30' };
-    expect(renderCorrectAmmoTitle(magObj)).toBe('30 round Mag');
-  });
-});
-
 describe('rendering weapons', () => {
-  const toggleModifyWeapon = jest.fn();
-  const firearms = [];
-  const grenades = [];
-  const launchers = [];
-  const removeGrenade = jest.fn();
-  const increaseGrenadeQty = jest.fn();
-  const decreaseGrenadeQty = jest.fn();
-  const removeFirearm = jest.fn();
-  const increaseFirearmQty = jest.fn();
-  const decreaseFirearmQty = jest.fn();
-  const increaseMagazineQty = jest.fn();
-  const decreaseMagazineQty = jest.fn();
-  const increaseLauncherQty = jest.fn();
-  const decreaseLauncherQty = jest.fn();
-  const removeLauncher = jest.fn();
-  const increaseLauncherAmmo = jest.fn();
-  const decreaseLauncherAmmo = jest.fn();
-  const increaseUnderslungLauncherAmmo = jest.fn();
-  const decreaseUnderslungLauncherAmmo = jest.fn();
-  
-
-
   const getProps = () => ({
     toggleModifyWeapon,
-    firearms,
-    grenades,
-    launchers,
+    firearms: [],
+    grenades: [],
+    launchers: [],
     removeGrenade,
     increaseGrenadeQty,
     decreaseGrenadeQty,
@@ -214,7 +190,7 @@ describe('rendering weapons', () => {
     decreaseLauncherAmmo,
     increaseUnderslungLauncherAmmo,
     decreaseUnderslungLauncherAmmo,
-    totalFirearmWeight: 1337
+    totalWeaponWeight: 1337,
   });
 
   describe('default render', () => {
@@ -253,17 +229,17 @@ describe('rendering weapons', () => {
   describe('rendering launchers', () => {
     const props = getProps();
 
-    const m72={
+    const m72 = {
       name: 'M72 A2 LAW',
       qty: 1,
       mag: [{ weight: '-' }],
-    }
+    };
 
-    const m79={
+    const m79 = {
       name: 'M79',
       qty: 1,
       mag: [{ class: 'HEAT', weight: 0.51, qty: 0 }, { class: 'HE', weight: 0.51, qty: 0 }],
-    }
+    };
 
     props.launchers = [m79, m72];
 
@@ -279,65 +255,65 @@ describe('rendering weapons', () => {
     });
 
     // mptodo, below tests... also this whole file..
-  //   it('should be possible to increment launcher', () => {
-  //     const m79Row = wrapper.find('.M79Row');
-  //     m79Row.find('#qtyUpLauncher').simulate('click');
+    //   it('should be possible to increment launcher', () => {
+    //     const m79Row = wrapper.find('.M79Row');
+    //     m79Row.find('#qtyUpLauncher').simulate('click');
 
-  //     expect(increaseLauncherQty).toHaveBeenCalledWith(testM79());
-  //   });
+    //     expect(increaseLauncherQty).toHaveBeenCalledWith(testM79());
+    //   });
 
-  //   it('should be possible to decrement launcher if qty more than 1', () => {
-  //     const m72Row = wrapper.find('.M72A2LAWRow');
-  //     m72Row.find('#qtyDownLauncher').simulate('click');
+    //   it('should be possible to decrement launcher if qty more than 1', () => {
+    //     const m72Row = wrapper.find('.M72A2LAWRow');
+    //     m72Row.find('#qtyDownLauncher').simulate('click');
 
-  //     expect(decreaseLauncherQty).toHaveBeenCalledWith(testM72(2));
-  //   });
+    //     expect(decreaseLauncherQty).toHaveBeenCalledWith(testM72(2));
+    //   });
 
-  //   it('should not be possible to decrement launcher if qty is 1', () => {
-  //     const m79Row = wrapper.find('.M79Row');
-  //     m79Row.find('#qtyDownLauncher').simulate('click');
+    //   it('should not be possible to decrement launcher if qty is 1', () => {
+    //     const m79Row = wrapper.find('.M79Row');
+    //     m79Row.find('#qtyDownLauncher').simulate('click');
 
-  //     expect(decreaseLauncherQty).not.toHaveBeenCalled();
-  //   });
+    //     expect(decreaseLauncherQty).not.toHaveBeenCalled();
+    //   });
 
-  //   it('should be possible to remove launcher', () => {
-  //     const m72Row = wrapper.find('.M72A2LAWRow');
-  //     m72Row.find('.removeM72A2LAW').simulate('click');
+    //   it('should be possible to remove launcher', () => {
+    //     const m72Row = wrapper.find('.M72A2LAWRow');
+    //     m72Row.find('.removeM72A2LAW').simulate('click');
 
-  //     expect(removeLauncher).toHaveBeenCalledWith(testM72(2));
-  //   });
+    //     expect(removeLauncher).toHaveBeenCalledWith(testM72(2));
+    //   });
 
-  //   it('should display types of spare rounds to increment', () => {
-  //     const m79HeatAmmo = wrapper.find('.spareMagRow').at(0);
-  //     const m79HeAmmo = wrapper.find('.spareMagRow').at(1);
+    //   it('should display types of spare rounds to increment', () => {
+    //     const m79HeatAmmo = wrapper.find('.spareMagRow').at(0);
+    //     const m79HeAmmo = wrapper.find('.spareMagRow').at(1);
 
-  //     expect(m79HeatAmmo.text()).toContain('0 x HEAT');
-  //     expect(m79HeAmmo.text()).toContain('0 x HE');
-  //   });
+    //     expect(m79HeatAmmo.text()).toContain('0 x HEAT');
+    //     expect(m79HeAmmo.text()).toContain('0 x HE');
+    //   });
 
-  //   it('should not display spare rounds for disposable weapons', () => {
-  //     const m72Ammo = wrapper.find('.spareMagRow').at(2);
-  //     expect(m72Ammo.exists()).toBe(false);
-  //   });
+    //   it('should not display spare rounds for disposable weapons', () => {
+    //     const m72Ammo = wrapper.find('.spareMagRow').at(2);
+    //     expect(m72Ammo.exists()).toBe(false);
+    //   });
 
-  //   it('should possible to increment launcher ammo up', () => {
-  //     const m79Ammo = wrapper.find('.spareMagRow').at(0);
-  //     m79Ammo.find('#qtyUpMagType1').simulate('click');
+    //   it('should possible to increment launcher ammo up', () => {
+    //     const m79Ammo = wrapper.find('.spareMagRow').at(0);
+    //     m79Ammo.find('#qtyUpMagType1').simulate('click');
 
-  //     expect(increaseLauncherAmmo).toHaveBeenCalledWith({ weapon: testM79(), magazine: testM79().mag[0] });
-  //   });
+    //     expect(increaseLauncherAmmo).toHaveBeenCalledWith({ weapon: testM79(), magazine: testM79().mag[0] });
+    //   });
 
-  //   it('should possible to increment launcher ammo down', () => {
-  //     const tempProps = getProps();
-  //     tempProps.launchers = [testM79(1)];
+    //   it('should possible to increment launcher ammo down', () => {
+    //     const tempProps = getProps();
+    //     tempProps.launchers = [testM79(1)];
 
-  //     const m79Ammo = mount(<WeaponsTableBody {...tempProps} />, {
-  //       attachTo: document.createElement('table'),
-  //     });
-  //     m79Ammo.find('#qtyDownMagType1').simulate('click');
+    //     const m79Ammo = mount(<WeaponsTableBody {...tempProps} />, {
+    //       attachTo: document.createElement('table'),
+    //     });
+    //     m79Ammo.find('#qtyDownMagType1').simulate('click');
 
-  //     expect(decreaseLauncherAmmo).toHaveBeenCalledWith({ weapon: testM79(1), magazine: testM79(1).mag[0] });
-  //   });
+    //     expect(decreaseLauncherAmmo).toHaveBeenCalledWith({ weapon: testM79(1), magazine: testM79(1).mag[0] });
+    //   });
 
   //   it('should not be possible to decrement ammo if it is 0', () => {
   //     const m79Ammo = wrapper.find('.spareMagRow').at(0);

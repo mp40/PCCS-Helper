@@ -1,23 +1,16 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import GearRow from '../GearRow';
 
-import { getFullFirearmSystemWeightByName, getFullFirearmSystemWeightByObject } from '../../data/firearms';
+import { getFullFirearmSystemWeightByObject } from '../../data/firearms';
 import { getGrenadeWeightByName } from '../../data/grenades';
 import { getLauncherByName } from '../../data/firearms/launchers';
 import { getLauncherWeightByName } from '../../data/launchers';
 
 import { correctFloatingPoint } from '../../utils';
 
-import { hydrateFirearmByObject } from '../../data/firearms/hydrate';
-
-import { gunObjShape, grenadeShape, launcherShape } from '../../helpers/proptypeShapes';
+import { gunObjShape, launcherShape } from '../../helpers/proptypeShapes';
 
 import styles from './styles.module.css';
-import { decreaseFirearmReducer } from '../../reducers/decreaseFirearmReducer';
-// hydrateFirearmByObject
-
-// mptodo recieve dehydrtaed guns from store
 
 const WeaponsTableBody = ({
   totalWeaponWeight,
@@ -73,6 +66,8 @@ const WeaponsTableBody = ({
         <span>Lbs</span>
         <span>{totalWeaponWeight}</span>
       </div>
+
+      {/* mptodo the below and equipment has v simalr patterns - refactor plz */}
 
       {firearms.map((firearm) => (
         <Fragment key={firearm.name}>

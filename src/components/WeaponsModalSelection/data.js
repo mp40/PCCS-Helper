@@ -1,4 +1,4 @@
-import { riflesList, pistolsList, smgsList, mgsList, sniperRiflesList, shotgunsList, firearmsByCalibreList, firearms } from '../../data/firearms';
+import { riflesList, pistolsList, smgsList, mgsList, sniperRiflesList, shotgunsList, firearmsByCalibreList } from '../../data/firearms';
 
 export const firearmLists = (filter) => {
   switch (filter) {

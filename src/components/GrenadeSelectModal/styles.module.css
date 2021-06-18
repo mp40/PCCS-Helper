@@ -60,18 +60,18 @@
   margin-bottom: 0.5rem;
 }
 
-.list > div {
+.row {
   display: flex;
   line-height: 100%;
   flex-basis: 33%;
   flex-basis: calc((100% - 30px) / 3);
 }
 
-.list > div:nth-child(3n + 2) {
+.list > .row:nth-child(3n + 2) {
   margin: 0 15px;
 }
 
-.list > div > div {
+.row > div {
   margin-left: 3px;
   width: 100%;
   display: flex;

@@ -38,7 +38,7 @@ export const gunObjShape = PropTypes.shape({
 
 export const grenadeShape = PropTypes.shape({
   name: PropTypes.string.isRequired,
-  qty: PropTypes.number.isRequired,
+  qty: PropTypes.number,
   length: PropTypes.number.isRequired,
   weight: PropTypes.number.isRequired,
   at: PropTypes.oneOfType([
@@ -87,17 +87,6 @@ export const armourShape = PropTypes.shape({
   ac: PropTypes.string,
   weight: PropTypes.number,
   tags: PropTypes.arrayOf(PropTypes.string),
-});
-
-export const gearRowShape = PropTypes.shape({
-  type: PropTypes.string.isRequired,
-  remove: PropTypes.func.isRequired,
-  up: PropTypes.func.isRequired,
-  down: PropTypes.func.isRequired,
-  modify: PropTypes.func,
-  magUp: PropTypes.func,
-  magDown: PropTypes.func,
-  array: PropTypes.arrayOf(PropTypes.object).isRequired,
 });
 
 export const currentCharacterShape = PropTypes.shape({

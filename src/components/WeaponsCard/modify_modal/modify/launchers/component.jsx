@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './styles.module.css';
-
+// 10,11,23,24,34 <- mptodo code coverage on these lines plz
 const Launchers = ({ firearm, ableToAttach, attachedLauncher, updateUnderslungLauncher, removeUnderslungLauncher }) => {
   const [showModal, setShowModal] = useState(false);
 
@@ -31,7 +31,7 @@ const Launchers = ({ firearm, ableToAttach, attachedLauncher, updateUnderslungLa
         <div>Select Launcher</div>
         <div>
           {ableToAttach.map((launcher) => (
-            <button type="button" className={styles.launcherButton} onClick={() => handleUpdate({ firearmToUpdate: firearm, launcher })}>{launcher}</button>
+            <button key={launcher} type="button" className={styles.launcherButton} onClick={() => handleUpdate({ firearmToUpdate: firearm, launcher })}>{launcher}</button>
           ))}
         </div>
       </div>

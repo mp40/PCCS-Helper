@@ -1,6 +1,3 @@
-// import { correctFloatingPoint } from '../../utils';
-// import { calculateTotalWeight } from '../../helpers/actionHelpers';
-
 export const removeMagazineReducer = (state, action) => {
   const { firearmToUpdate, magazineIndex } = action.payload;
 

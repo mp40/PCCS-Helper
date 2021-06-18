@@ -182,7 +182,7 @@ export const grenadeList = Object.freeze({
   },
   'RKG 3M': {
     name: 'RKG 3M',
-    length: '14.3',
+    length: 14.3,
     weight: 5,
     at: 3,
     fl: 'I',

@@ -1,18 +1,3 @@
-.standardButton {
-  padding: 0.25em 0.5em;
-}
-
-.slimButton {
-  padding-left: 3px;
-  padding-right: 3px;
-}
-
-.select {
-  background: grey;
-  border: solid 1px red;
-  font-size: small;
-}
-
 .-checkBoxContainer,
 .-clickButtonContainer,
 .-radioButtonContainer {

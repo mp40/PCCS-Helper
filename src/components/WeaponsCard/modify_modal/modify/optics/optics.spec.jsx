@@ -15,10 +15,60 @@ describe('Modify Firearm Optics', () => {
     wrapper = shallow(<Optics firearm={firearm} optics={optics} updateOptic={updateOptic} removeOptic={removeOptic} />);
   });
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('should be possible to open modal to select optic', () => {
     wrapper.find('button[children="Update Optic"]').simulate('click');
 
     expect(wrapper.text()).toContain('Select Optic');
+  });
+
+  it('should only show the restricted scopes if the weapon has scope restrictions', () => {
+    wrapper.setProps({ optics: { restrictedTo: ['M73', 'mock optic'] } });
+
+    wrapper.find('button[children="Update Optic"]').simulate('click');
+
+    expect(wrapper.find('.opticModal').text()).toContain('M73');
+    expect(wrapper.find('.opticModal').text()).toContain('mock optic');
+
+    expect(wrapper.find('.opticModal').text()).not.toContain('Low Power Scope');
+    expect(wrapper.find('.opticModal').text()).not.toContain('Medium Power Scope');
+    expect(wrapper.find('.opticModal').text()).not.toContain('High Power Scope');
+    expect(wrapper.find('.opticModal').text()).not.toContain('AAS');
+  });
+
+  it('should add additional scopes if the weapon is compatible', () => {
+    wrapper.setProps({ optics: { ableToAttach: ['M73', 'mock optic'] } });
+
+    wrapper.find('button[children="Update Optic"]').simulate('click');
+
+    expect(wrapper.find('.opticModal').text()).toContain('M73');
+    expect(wrapper.find('.opticModal').text()).toContain('mock optic');
+
+    expect(wrapper.find('.opticModal').text()).toContain('Low Power Scope');
+    expect(wrapper.find('.opticModal').text()).toContain('Medium Power Scope');
+    expect(wrapper.find('.opticModal').text()).toContain('High Power Scope');
+    expect(wrapper.find('.opticModal').text()).toContain('AAS');
+  });
+
+  it('should be possible to select optic', () => {
+    wrapper.find('button[children="Update Optic"]').simulate('click');
+
+    wrapper.find('button[children="AAS"]').simulate('click');
+
+    const expectedActionPayload = { firearmToUpdate: 'M16', optic: 'AAS' };
+
+    expect(updateOptic).toHaveBeenCalledWith(expectedActionPayload);
+  });
+
+  it('should close modal after selecting optic', () => {
+    wrapper.find('button[children="Update Optic"]').simulate('click');
+
+    wrapper.find('button[children="AAS"]').simulate('click');
+
+    expect(wrapper.text()).not.toContain('Select Optic');
   });
 
   it('should be possible to remove optic', () => {
