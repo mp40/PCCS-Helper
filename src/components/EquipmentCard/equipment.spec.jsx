@@ -41,7 +41,7 @@ describe('the equipment list', () => {
 
     it('should filter equipment', () => {
       const filterModal = wrapper.find('EquipmentFilter').dive();
-      filterModal.find('div[children="Combat"]').simulate('click');
+      filterModal.find('button[children="Combat"]').simulate('click');
 
       expect(wrapper.find('Connect(SelectEquipment)').prop('filteredTags')).toEqual(['Combat']);
     });
@@ -88,7 +88,7 @@ describe('the equipment list', () => {
       wrapper.find('.button--close').simulate('click');
 
       expect(wrapper.find('.gear-table-header--container').text()).not.toContain('2.2');
-      expect(wrapper.find('.gear-table-row--container').exists()).toBe(false)
+      expect(wrapper.find('.gear-table-row--container').exists()).toBe(false);
     });
 
     it('should clear all equipment from list', () => {
@@ -99,7 +99,7 @@ describe('the equipment list', () => {
       wrapper.find('button[children="Clear All"]').simulate('click');
 
       expect(wrapper.find('.gear-table-header--container').text()).toContain('Lbs0');
-      expect(wrapper.find('.gear-table-row--container').exists()).toBe(false)
+      expect(wrapper.find('.gear-table-row--container').exists()).toBe(false);
     });
   });
 });

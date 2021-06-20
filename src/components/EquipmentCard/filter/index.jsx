@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
@@ -24,13 +21,14 @@ const EquipmentFilter = ({ filteredTags, handleTags, handleSetShowFilters }) => 
 
       <div className={styles.tagContainer}>
         {filters.map((tag) => (
-          <div
-            className={`--selectableRow  ${filteredTags.includes(tag) ? styles.selected : ''}`}
+          <button
+            type="button"
+            className={`button-clickable-item-row  ${filteredTags.includes(tag) ? styles.selected : ''}`}
             onClick={() => handleTags(tag)}
             key={tag}
           >
             {tag}
-          </div>
+          </button>
         ))}
       </div>
     </div>

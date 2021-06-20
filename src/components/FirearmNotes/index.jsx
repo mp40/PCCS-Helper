@@ -38,7 +38,7 @@ const FirearmNotes = ({ gunObj, viewSpareAmmo }) => (
       <>
         <div>{gunObj.launcher.attached}</div>
         {getLauncherByName(gunObj.launcher.attached).mag.map((m, i) => (
-          <div>{`${m.class} x ${gunObj.launcher.mag[i].qty}`}</div>
+          <div key={m.class}>{`${m.class} x ${gunObj.launcher.mag[i].qty}`}</div>
         ))}
       </>
 )}

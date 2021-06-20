@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import HeaderCreateCharacter from './create_character';
 import HeaderButtons from './buttons';
 import HeaderModal from './modal';
 import HeaderDropdown from './dropdown';
@@ -87,7 +86,6 @@ const Header = (
       <div>PCCS</div>
       {currentView === 'createChar' && (
         <div className="wrapper">
-          <HeaderCreateCharacter totalWeight={totalWeight} />
           <Print selectCurrentView={selectCurrentView} />
           <Save
             signedIn={signedIn}

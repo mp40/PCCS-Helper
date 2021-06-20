@@ -65,7 +65,7 @@ class WeaponsCard extends Component {
     const gunToModify = firearms.filter((gunObj) => gunObj.name === firearmToModify)[0];
 
     return (
-      <div className="--card --gearCard">
+      <div className="--card gear-card">
         <div>
 
           <button

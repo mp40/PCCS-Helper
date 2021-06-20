@@ -1,12 +1,5 @@
 .modal {
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  background-color: #000000;
-  opacity: 50%;
-  z-index: 105;
+  z-index: 105  !important;
 }
 
 .card {
@@ -16,8 +9,6 @@
   transform: translateX(-50%);
   width: 36rem;
   padding: 0.5rem 2rem 2rem;
-  margin-top: 2rem;
-  margin-left: 2rem;
   z-index: 106;
   background-color: whitesmoke;
   border-radius: 3px;
@@ -70,7 +61,49 @@
   flex-wrap: wrap;
 }
 
-.tagContainer > div {
+.tagContainer > button {
   width: 33.33%;
   text-align: center;
 }
+
+@media screen and (max-width: 1024px) {
+  .card {
+    top: 30px;
+    width: calc(100% - 120px);
+    padding: 15px 30px;
+  } 
+
+  .tagContainer > button {
+    width: calc(33.33% - 4px);
+    margin-bottom: 5px;
+    padding: 5px;
+  }
+
+  .tagContainer > button:nth-last-of-type(3n + 1) {
+    margin: 0 6px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .card {
+    top: 15px;
+    width: calc(100% - 60px);
+    padding: 15px;
+  } 
+
+  .tagContainer {
+    justify-content: space-between;
+    padding: 5px;
+  }
+
+  .tagContainer > button {
+    width: calc(50% - 2px);
+    margin-bottom: 5px;
+  }
+
+  .tagContainer > button:nth-last-of-type(3n + 1) {
+    margin: 0 0 5px 0;
+  }
+}
+
+

@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
@@ -29,8 +26,9 @@ const SelectEquipment = ({
   const renderEquipment = () => (
     <div className={styles.listWrapper}>
       {filterEquipment(filteredTags).map((equipObj) => (
-        <div
-          className="--selectableRow equipmentEntry"
+        <button
+          type="button"
+          className="button-clickable-item-row"
           key={equipObj.name}
           onClick={() => handleAddEquipment(equipObj)}
         >
@@ -40,15 +38,15 @@ const SelectEquipment = ({
           <div>
             {`${equipObj.weight} lbs`}
           </div>
-        </div>
+        </button>
       ))}
     </div>
   );
 
   return (
     <>
-      <div className={styles.modal} />
-      <div className={`--card ${styles.card}`}>
+      <div className="modal-background" />
+      <div className="card-standard card-select-gear-modal">
 
         <div className={styles.header}>
           <div>

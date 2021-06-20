@@ -321,34 +321,6 @@ describe('The Header', () => {
     });
   });
 
-  describe('Create Character Header', () => {
-    const currentView = 'createChar';
-    const totalWeight = 6.66;
-
-    const wrapper = shallow(
-      <Header
-        currentView={currentView}
-        totalWeight={totalWeight}
-        handleSetSignedIn={handleSetSignedIn}
-        selectCurrentView={() => {}}
-        updateSavedCharacters={() => {}}
-        signedIn={false}
-      />,
-    );
-
-    it('should render the title', () => {
-      expect(wrapper.find('HeaderCreateCharacter').dive().text()).toContain(
-        'Create Character',
-      );
-    });
-
-    it('should render the total weight', () => {
-      expect(wrapper.find('HeaderCreateCharacter').dive().text()).toContain(
-        '6.66',
-      );
-    });
-  });
-
   describe('Header Print intergration test', () => {
     const store = getStoreWithGun({ weight: 1 });
 

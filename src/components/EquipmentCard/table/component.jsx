@@ -29,23 +29,24 @@ const EquipmentCardTable = (
         <span>{totalEquipmentWeight}</span>
       </div>
 
-      {equipment.map((item) => (
-        <div key={item.name} className="gear-table-row--container">
+      <div className="gear-card-body">
+        {equipment.map((item) => (
+          <div key={item.name} className="gear-table-row--container">
 
-          <span>
-            <button aria-label="remove" type="button" className="button--standard button--close" onClick={() => removeEquipment(item.name)} />
-            <span>{item.name}</span>
-          </span>
-          <span>{item.weight}</span>
-          <span>{item.qty}</span>
-          <span>{correctFloatingPoint(item.qty * item.weight)}</span>
-          <span>
-            <button aria-label="up" type="button" className="button--standard button--up" onClick={() => increaseEquipmentQty(item.name)} />
-            <button aria-label="down" type="button" className="button--standard button--down" onClick={() => handleDecreaseQty(item.name, item.qty)} />
-          </span>
-        </div>
-      ))}
-
+            <span>
+              <button aria-label="remove" type="button" className="button--standard button--close" onClick={() => removeEquipment(item.name)} />
+              <span>{item.name}</span>
+            </span>
+            <span>{item.weight}</span>
+            <span>{item.qty}</span>
+            <span>{correctFloatingPoint(item.qty * item.weight)}</span>
+            <span>
+              <button aria-label="up" type="button" className="button--standard button--up" onClick={() => increaseEquipmentQty(item.name)} />
+              <button aria-label="down" type="button" className="button--standard button--down" onClick={() => handleDecreaseQty(item.name, item.qty)} />
+            </span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

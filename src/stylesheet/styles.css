@@ -1,3 +1,4 @@
+/* mptodo replace with the better named version below */
 .--modal {
   position: fixed;
   height: 100%;
@@ -9,6 +10,7 @@
   z-index: 100;
 }
 
+/* mptodo replace with standard-card below */
 .--card {
   color: var(--panzer-grey);
   background-color: whitesmoke;
@@ -39,12 +41,19 @@
   transition: 0.3s;
 }
 
-.--gearCard {
+.gear-card {
   padding: 0.25rem 1rem;
-  overflow: auto;
 }
 
-.--gearCard > div {
+.gear-card-body {
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  min-height: 2.5rem;
+  max-height: 10rem;
+}
+
+.gear-card > div {
   margin-bottom: 0.5rem;
 }
 
@@ -92,6 +101,53 @@
 
 .--infoButton:after {
   content: "?";
+}
+
+.button-clickable-item-row {
+  background-color: transparent;
+  border: none;
+  color: var(--panzer-grey);
+}
+
+.button-clickable-item-row:hover {
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
+.button-clickable-item-row:active {
+  box-shadow: inset 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
+.modal-background {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: #000000;
+  opacity: 50%;
+  z-index: 100;
+}
+
+.card-standard {
+  color: var(--panzer-grey);
+  background-color: whitesmoke;
+  border-radius: 3px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  padding: 1rem;
+}
+
+.card-select-gear-modal {
+  position: fixed;
+  top: 10rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60rem;
+  padding: 0.5rem 2rem 2rem;
+  z-index: 101;
 }
 
 .button--standard {
@@ -195,10 +251,59 @@
 }
 
 @media screen and (max-width: 1024px) {
+  /* .button-clickable-item-row:hover {
+    background-color: transparent;
+    box-shadow: none;
+    transition: none;
+  } */
+
+  .card-select-gear-modal {
+    width: calc(100% - 60px);
+    padding: 15px;
+    top: 15px;
+    height: calc(100vh - 60px);
+    overflow: scroll;
+  }
+
+  .button-clickable-item-row {
+    box-shadow: 0 0 1px 1px var(--usaf-light-grey);
+    border-radius: 3px;
+  }
+
+  .button-clickable-item-row:hover { 
+    background-color: transparent;
+    box-shadow: 0 0 1px 1px var(--usaf-light-grey);
+    transition: none;
+  }
 }
 
 @media screen and (max-width: 700px) {
   .--card {
     padding: 15px;
   }
+
+  .gear-table-header--container {
+    font-size: 0.5rem;
+  }
+
+  .button-clickable-item-row {
+    box-shadow: 0 0 1px 1px var(--usaf-light-grey);
+    border-radius: 3px;
+  }
+
+  .button-clickable-item-row:hover { 
+    background-color: transparent;
+    box-shadow: 0 0 1px 1px var(--usaf-light-grey);
+    transition: none;
+  }
+
 }
+
+/* @media (hover: hover) {
+  .button-clickable-item-row:hover { 
+    background-color: inherit;
+    transition: none;
+    box-shadow: inherit;
+    border: inherit;
+  }
+} */

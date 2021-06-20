@@ -19,17 +19,17 @@ describe('equipment filter modal', () => {
   });
 
   it('should make selected filters bold', () => {
-    expect(wrapper.find('div[children="ALICE"]').hasClass('selected')).toBe(true);
+    expect(wrapper.find('button[children="ALICE"]').hasClass('selected')).toBe(true);
   });
 
   it('should be possible to select filter', () => {
-    wrapper.find('div[children="Tools"]').simulate('click');
+    wrapper.find('button[children="Tools"]').simulate('click');
 
     expect(handleTags).toHaveBeenCalledWith('Tools');
   });
 
   it('should be possible to close modal', () => {
-    wrapper.find('button').simulate('click');
+    wrapper.find('.close').simulate('click');
 
     expect(handleSetShowFilters).toHaveBeenCalled();
   });
