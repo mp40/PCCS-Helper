@@ -10,7 +10,7 @@ const SelectUniformModal = ({ handleChangeUniform, setShowSelectModal }) => {
 
   return (
     <>
-      <div className={styles.modal} />
+      <div className="modal-background" />
       <div className={`--card ${styles.card}`}>
 
         <div className={styles.header}>
@@ -31,7 +31,7 @@ const SelectUniformModal = ({ handleChangeUniform, setShowSelectModal }) => {
               key={uniform}
               type="button"
               onClick={() => handleChangeUniform(uniform)}
-              className="--selectableRow"
+              className="button-clickable-item-row"
             >
               <span>
                 {uniform}

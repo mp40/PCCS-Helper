@@ -1,7 +1,3 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-
 import React, { useState } from 'react';
 import { PropTypes } from 'prop-types';
 
@@ -20,6 +16,7 @@ const GrenadeSelectModal = ({ toggleOffWeaponCardViews, addGrenade, grenades }) 
     if (checkGrenadeInList(grenade)) {
       return;
     }
+
     addGrenade(grenade.name);
     toggleOffWeaponCardViews('showGrenades');
   };
@@ -42,17 +39,19 @@ const GrenadeSelectModal = ({ toggleOffWeaponCardViews, addGrenade, grenades }) 
       return (
         <div key={grenade.name} className={styles.row}>
           <button
+            aria-label="info"
             type="button"
             className="button--standard button--question"
             onClick={() => setGrenadeToView(grenade)}
           />
-          <div
-            className="--selectableRow "
+          <button
+            type="button"
+            className="button-clickable-item-row"
             onClick={() => handleSelection(grenade)}
           >
             <span>{grenade.name}</span>
             <span>{grenade.weight}</span>
-          </div>
+          </button>
         </div>
       );
     })
@@ -60,8 +59,8 @@ const GrenadeSelectModal = ({ toggleOffWeaponCardViews, addGrenade, grenades }) 
 
   return (
     <>
-      <div className={styles.modal} />
-      <div className={`--card ${styles.card}`}>
+      <div className="modal-background" />
+      <div className={`card-standard card-select-gear-modal ${styles.wrapper}`}>
         {renderGrenadeHeading()}
         <div className={styles.list}>
           {renderGrenadeList()}

@@ -50,7 +50,7 @@ const HeaderModal = ({
 
   return (
     <>
-      <div className={styles.modal} />
+      <div className="modal-background" />
       <div className={styles.card}>
         <button
           aria-label="close"
@@ -60,6 +60,7 @@ const HeaderModal = ({
         />
         <div>{text[type].title}</div>
         <form className={styles.form} onSubmit={(event) => handleSubmit(event)}>
+          {/* mptodo */}
           <label>
             <span className={errors.email ? styles.error : ''}>
               {text.label.email}

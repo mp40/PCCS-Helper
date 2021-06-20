@@ -41,8 +41,9 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, addFirearm, firearms 
 
   return (
     <>
-      <div className={styles.modal} />
-      <div className={`--card ${styles.card}`}>
+      <div className="modal-background" />
+      <div className={`card-standard card-select-gear-modal ${styles.wrapper}`}>
+
         <div className={styles.header}>
           <div>
             <span>Select Firearms</span>
@@ -61,22 +62,23 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, addFirearm, firearms 
             onClick={() => toggleOffWeaponCardViews('showFirearms')}
           />
         </div>
-        <div className={`--weaponSelectCard ${styles.contents}`}>
+        <div className={`select-weapon-body-wrapper ${styles.contents}`}>
           {gunArrayFilteredByType.map((firearm) => (
             <div key={firearm} className={styles.firearmRow}>
               <button
                 type="button"
                 aria-label="info"
-                className="--infoButton --button "
+                className="button--standard button--question"
                 onClick={() => handleShowStatCard(firearm)}
               />
-              <div
-                className={styles.firearmEntry}
+              <button
+                type="button"
+                className={`button-clickable-item-row ${styles.firearmEntry}`}
                 onClick={() => handleAddFirearm(firearm)}
               >
                 <span>{firearm}</span>
                 <span>{`${getFullFirearmSystemWeightByName(firearm)} lbs`}</span>
-              </div>
+              </button>
             </div>
           ))}
         </div>
@@ -105,7 +107,6 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, addFirearm, firearms 
 WeaponsModalSelection.propTypes = {
   toggleOffWeaponCardViews: PropTypes.func.isRequired,
   addFirearm: PropTypes.func.isRequired,
-  // firearms: PropTypes.arrayOf(gunObjShape).isRequired,
   firearms: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 

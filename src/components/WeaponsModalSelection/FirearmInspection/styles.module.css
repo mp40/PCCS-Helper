@@ -76,3 +76,31 @@
 .body {
   display: flex;
 }
+
+@media screen and (max-width: 1024px) {
+  .card {
+    bottom: 0 !important;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    padding: 0.25rem;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .card {
+    padding: 2px;
+    left: unset;
+    left: 0;
+    transform: translate(0,-100%);
+    min-width: unset;
+    min-height: unset;
+    width: calc(100vw - 4px);
+    height: fit-content;
+    font-size: .61rem;
+    margin-top: 13px;
+  }
+
+  .body > div:nth-of-type(2) {
+    display: none;
+  }
+}

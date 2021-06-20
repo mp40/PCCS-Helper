@@ -12,7 +12,7 @@ import styles from './styles.module.css';
 
 const FirearmModifyModal = ({ gunToModify, toggleOffWeaponCardViews }) => (
   <>
-    <div className={styles.modal} />
+    <div className="modal-background" />
     <div className={`--card ${styles.card}`}>
       <div className={styles.header}>
         <span>{gunToModify.name}</span>

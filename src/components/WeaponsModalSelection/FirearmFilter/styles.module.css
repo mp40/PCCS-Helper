@@ -68,3 +68,34 @@
 .body > div:last-of-type > div:last-of-type > span::first-letter {
   text-transform: capitalize;
 }
+
+
+@media screen and (max-width: 1024px) {
+  .card {
+    bottom: 0 !important;
+    left: unset;
+    right:0;
+    transform: translate(-14px, -100%);
+    height: fit-content;
+    z-index: 111;
+    padding: 0.25rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .card {
+    padding: 2px;
+    left: unset;
+    left: 0;
+    transform: translate(0,-100%);
+    min-width: unset;
+    min-height: unset;
+    width: fit-content;
+    /* height: fit-content; */
+    font-size: .61rem;
+    margin-top: 13px;
+    /* z-index: 111; */
+  }
+
+}

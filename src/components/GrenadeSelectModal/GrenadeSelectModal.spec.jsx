@@ -35,13 +35,13 @@ describe('GrenadeSelectModal', () => {
   });
 
   it('should be possible to select a greande', () => {
-    wrapper.find('span[children="M61"]').closest('div').simulate('click');
+    wrapper.find('span[children="M61"]').closest('button').simulate('click');
 
     expect(addGrenade).toHaveBeenCalledWith('M61');
   });
 
   it('should close the modal when a grenade is selected', () => {
-    wrapper.find('span[children="M61"]').closest('div').simulate('click');
+    wrapper.find('span[children="M61"]').closest('button').simulate('click');
 
     expect(toggleOffWeaponCardViews).toHaveBeenCalledWith('showGrenades');
   });
@@ -53,7 +53,7 @@ describe('GrenadeSelectModal', () => {
   });
 
   it('should not be possible to select the same grenade twice', () => {
-    wrapper.find('span[children="M2"]').closest('div').simulate('click');
+    wrapper.find('span[children="M2"]').closest('button').simulate('click');
 
     expect(addGrenade).not.toHaveBeenCalled();
     expect(toggleOffWeaponCardViews).not.toHaveBeenCalled();

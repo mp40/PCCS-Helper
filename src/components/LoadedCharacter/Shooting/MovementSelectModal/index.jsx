@@ -29,7 +29,7 @@ const MovementSelectModal = ({ setMovement, setModal, movement }) => {
 
   return (
     <>
-      <div className={styles.modal} />
+      <div className="modal-background" />
       <div className={`--card ${styles.card}`}>
 
         <div className={styles.heading}>Shooter, Hex Per Imp</div>

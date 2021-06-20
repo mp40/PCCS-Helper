@@ -32,7 +32,7 @@ const VisibilitySelectModal = ({ visibility, setModal, setVisibility, optics }) 
 
   return (
     <>
-      <div className={styles.modal} />
+      <div className="modal-background" />
       <div className={`--card ${styles.card}`}>
 
         <div className={styles.title}>Lighting</div>

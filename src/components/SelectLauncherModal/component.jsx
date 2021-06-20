@@ -22,7 +22,7 @@ const SelectLauncherModal = ({ toggleOffWeaponCardViews, addLauncher }) => {
 
   return (
     <>
-      <div className={styles.modal} />
+      <div className="modal-background" />
       <div className={`--card ${styles.card}`}>
         <div className={styles.header}>
           <span>Select Grenade / Rocket Launcher</span>

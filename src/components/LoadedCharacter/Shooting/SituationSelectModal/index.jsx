@@ -35,7 +35,7 @@ const SituationSelectModal = ({ list, bipod, foldingStock, setModal, weaponBased
 
   return (
     <>
-      <div className={styles.modal} />
+      <div className="modal-background" />
       <div className={`--card ${styles.card}`}>
         {getModifierList(list, bipod, foldingStock).map((situation) => (
           <div key={situation.key} className={styles.checkbox}>

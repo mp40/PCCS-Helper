@@ -203,7 +203,7 @@ describe('The Weapons Card', () => {
 
       it('should be possible to select a grenade', () => {
         wrapper.find('button[children="Add Grenade"]').simulate('click');
-        wrapper.find('span[children="M2"]').closest('div').simulate('click');
+        wrapper.find('span[children="M2"]').closest('button').simulate('click');
 
         expect(wrapper.find('.gear-table-header--container').text()).toContain('Lbs1.3');
         expect(wrapper.text()).toContain('M2');
@@ -298,7 +298,7 @@ describe('The Weapons Card', () => {
         wrapper.find('span[children="M1911A1"]').simulate('click');
 
         wrapper.find('button[children="Add Grenade"]').simulate('click');
-        wrapper.find('span[children="M2"]').closest('div').simulate('click');
+        wrapper.find('span[children="M2"]').closest('button').simulate('click');
 
         wrapper.find('button[children="Add Launcher"]').simulate('click');
         wrapper.find('span[children="M79"]').simulate('click');

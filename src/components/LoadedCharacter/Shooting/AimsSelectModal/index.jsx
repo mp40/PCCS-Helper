@@ -11,7 +11,7 @@ const AimsSelectModal = ({ aims, maxAims, setAims, setModal }) => {
 
   return (
     <>
-      <div className="--modal" />
+      <div className="modal-background" />
       <div className={`--card ${styles.card}`}>
         {[...Array(maxAims).keys()].map((key) => (
           <button className={aims === key + 1 ? styles.selected : ''} type="button" key={key} onClick={() => handleClick(key + 1)}>

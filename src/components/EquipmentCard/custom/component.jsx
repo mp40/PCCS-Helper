@@ -80,7 +80,7 @@ const CustomEquipment = ({ equipment, addEquipment, handleSetShowCustomInput }) 
 
   return (
     <>
-      <div className={styles.modal} />
+      <div className="modal-background" />
       <div className={styles.card}>
 
         {renderHeading()}

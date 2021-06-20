@@ -13,7 +13,7 @@ const RangeSelectModal = ({ setRange, setModal }) => {
 
   return (
     <>
-      <div className={styles.modal} />
+      <div className="modal-background" />
       <div className={`--card ${styles.card}`}>
         {Object.keys(rangeMods).map((rng) => (
           <button type="button" key={rng} onClick={() => handleClick(rng)}>

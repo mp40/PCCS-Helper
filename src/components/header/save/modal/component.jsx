@@ -74,7 +74,7 @@ const HeaderSaveModal = (
 
   return (
     <>
-      <div className={styles.modal} />
+      <div className="modal-background" />
       <div className={styles.card}>
         <button
           aria-label="close"

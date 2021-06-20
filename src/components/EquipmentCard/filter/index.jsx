@@ -7,7 +7,7 @@ import styles from './styles.module.css';
 
 const EquipmentFilter = ({ filteredTags, handleTags, handleSetShowFilters }) => (
   <>
-    <div className={`--modal ${styles.modal}`} />
+    <div className={`modal-background ${styles.modal}`} />
     <div className={styles.card}>
       <div className={styles.header}>
         <span>Select Filters</span>
