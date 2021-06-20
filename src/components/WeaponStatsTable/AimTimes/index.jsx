@@ -34,7 +34,7 @@ AimTimes.propTypes = {
   index: PropTypes.number.isRequired,
   sal: PropTypes.number,
   optic: PropTypes.string,
-  launcher: PropTypes.bool,
+  launcher: PropTypes.bool.isRequired,
 };
 
 AimTimes.defaultProps = {

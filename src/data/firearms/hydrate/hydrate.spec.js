@@ -1,44 +1,9 @@
 import { hydrateFirearmByObject } from './index';
 
-const mockM1911 = {
-  name: 'M1911A1',
-  qty: 1,
-  mag: [{ type: 'Mag', weight: 0.7, cap: 7, qty: 0 }],
-};
-
-const mockM16 = {
-  name: 'M16',
-  qty: 1,
-  mag: [{ type: 'Mag', weight: 0.7, cap: 20, qty: 0 }, { type: 'Mag', weight: 1, cap: 30, qty: 0 }],
-};
-
-const mockSvd = {
-  name: 'Dragunov SVD',
-  qty: 1,
-  mag: [{ type: 'Mag', weight: 0.68, cap: 10, qty: 0 }],
-  attachedOptic: 'PSO - 1',
-};
-
-//   const m16WithLauncher = {
-//     name: 'M16',
-//     qty: 1,
-//     mag: [{ type: 'Mag', weight: 0.7, cap: 20, qty: 1 }, { type: 'Mag', weight: 1, cap: 30, qty: 0 }],
-//     launcher: {
-//       attached: 'M203',
-//       mag: [{ qty: 0 }, { qty: 0 }],
-//     },
-//   };
-
 const m16 = {
   name: 'M16',
   qty: 1,
   mag: [{ type: 'Mag', weight: 0.7, cap: 20, qty: 1 }, { type: 'Mag', weight: 1, cap: 30, qty: 0 }],
-};
-
-const m1911 = {
-  name: 'M1911A1',
-  qty: 1,
-  mag: [{ type: 'Mag', weight: 0.7, cap: 7, qty: 0 }],
 };
 
 const m16WithScope = {

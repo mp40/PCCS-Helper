@@ -141,16 +141,6 @@ const selectDamageBonus = (state) => {
   return getDamageBonus(selectMaxSpeed(state), asf);
 };
 
-export const selectCombatActions = (state) => {
-  const gunCombatActions = selectGunCombatActions(state);
-  const handCombatActions = selectHandCombatActions(state);
-
-  return {
-    gunCombatActions,
-    handCombatActions,
-  };
-};
-
 export const selectCombatStats = (state) => {
   const baseSpeed = selectBaseSpeed(state);
   const maxSpeed = selectMaxSpeed(state);

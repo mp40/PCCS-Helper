@@ -10,7 +10,6 @@ import { getFullFirearmSystemWeightByObject } from '../../../data/firearms';
 
 import styles from './styles.module.css';
 
-// mptodo modify gun modal
 const FirearmModifyModal = ({ gunToModify, toggleOffWeaponCardViews }) => (
   <>
     <div className={styles.modal} />

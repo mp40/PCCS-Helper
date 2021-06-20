@@ -75,6 +75,13 @@ describe('Core Stat Calculations', () => {
   });
 
   describe('Calculating Action Points', () => {
+    it('should return 0 actions if max speed is 0', () => {
+      const maxSpeed = 0;
+      const skillFactor = 7;
+
+      expect(getCombatActions(maxSpeed, skillFactor)).toBe(0);
+    });
+
     it('should return 1 for max speed 1 and skill factor 7', () => {
       const maxSpeed = 1;
       const skillFactor = 7;
@@ -112,6 +119,13 @@ describe('Core Stat Calculations', () => {
   });
 
   describe('Calculating Damage Bonus', () => {
+    it('should return 0.5 for max speed 0 and skill factor 7', () => {
+      const maxSpeed = 0;
+      const skillFactor = 7;
+
+      expect(getDamageBonus(maxSpeed, skillFactor)).toBe(0);
+    });
+
     it('should return 0.5 for max speed 1 and skill factor 7', () => {
       const maxSpeed = 1;
       const skillFactor = 7;

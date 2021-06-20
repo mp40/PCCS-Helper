@@ -145,6 +145,46 @@ describe('The Weapons Card', () => {
         expect(wrapper.text()).not.toContain('test180.65');
       });
 
+      it('should be possible to add underslung grenade launcher', () => {
+        wrapper.find('button[children="Update Launcher"]').simulate('click');
+
+        wrapper.find('button[children="M203"]').simulate('click');
+
+        expect(wrapper.text()).toContain('HE Rnd');
+      });
+
+      it('should be possible to increase underslung grenade ammo', () => {
+        wrapper.find('span[children="HEAT Rnd"]').closest('.magazineRow').find('.button--up').simulate('click');
+
+        expect(wrapper.text()).toContain('HEAT Rnd0.5110.51');
+      });
+
+      it('should be possible to decrease underslung grenade ammo', () => {
+        wrapper.find('span[children="HEAT Rnd"]').closest('.magazineRow').find('.button--down').simulate('click');
+
+        expect(wrapper.text()).toContain('HEAT Rnd0.5100');
+      });
+
+      it('should be possible to remove underslung grenade launcher', () => {
+        wrapper.find('button[children="Remove Launcher"]').simulate('click');
+
+        expect(wrapper.text()).not.toContain('HE Rnd');
+      });
+
+      it('should be possible to add optics', () => {
+        wrapper.find('button[children="Update Optic"]').simulate('click');
+
+        wrapper.find('button[children="AAS"]').simulate('click');
+
+        expect(wrapper.text()).toContain('FOV: 10');
+      });
+
+      it('should be possible to remove optics', () => {
+        wrapper.find('button[children="Remove Optic"]').simulate('click');
+
+        expect(wrapper.text()).not.toContain('FOV: 10');
+      });
+
       it('should be possible to close modification modal', () => {
         wrapper.find('.close').simulate('click');
 

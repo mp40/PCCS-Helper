@@ -19,6 +19,17 @@ describe('Modify Firearm Optics', () => {
     jest.clearAllMocks();
   });
 
+  it('should show optic data if optic attached', () => {
+    wrapper.setProps({ optics: { attached: 'M73' } });
+
+    expect(wrapper.text()).toContain('M73');
+    expect(wrapper.text()).toContain('FOV');
+  });
+
+  it('should not show optic data if no optic attached', () => {
+    expect(wrapper.text()).not.toContain('FOV');
+  });
+
   it('should be possible to open modal to select optic', () => {
     wrapper.find('button[children="Update Optic"]').simulate('click');
 

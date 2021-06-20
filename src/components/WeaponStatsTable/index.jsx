@@ -21,7 +21,7 @@ export const findSkillLevelFromSAL = (playerSAL) => {
 };
 
 const WeaponStatsTable = ({ weapon, sal, size }) => {
-  const dataTemplate = getTemplate(weapon.list, weapon.trb, weapon.projectiles.length);
+  const dataTemplate = getTemplate(weapon.list, weapon.trb);
   const emptyRow = getEmptyRow(weapon.list);
 
   const renderData = (arr) => arr.map((value, dex) => (
@@ -81,7 +81,7 @@ const WeaponStatsTable = ({ weapon, sal, size }) => {
                 index={index}
                 sal={sal}
                 optic={weapon?.optics?.attached}
-                launcher={weapon?.launcher?.attached}
+                launcher={!!weapon?.launcher?.attached}
               />
               {getData(index)}
             </tr>

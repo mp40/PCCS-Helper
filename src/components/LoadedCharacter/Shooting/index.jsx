@@ -246,7 +246,7 @@ const LoadedCharacterShooting = ({
       {modal === 'target' && <TargetSizeSelectModal setSize={setSize} setModal={setModal} />}
       {modal === 'movement' && <MovementSelectModal setMovement={setMovement} setModal={setModal} movement={movement} />}
       {modal === 'situation' && <SituationSelectModal list="rifles" bipod={firearm.bipod || false} foldingStock={String(firearm.length).includes('/')} setModal={setModal} weaponBasedALM={weaponBasedALM} setWeaponBasedALM={setWeaponBasedALM} />}
-      {modal === 'visibility' && <VisibilitySelectModal setModal={setModal} visibility={visibility} setVisibility={setVisibility} />}
+      {modal === 'visibility' && <VisibilitySelectModal setModal={setModal} visibility={visibility} setVisibility={setVisibility} optics={firearm?.optics?.attached} />}
       {modal === 'aims' && <AimsSelectModal aims={aims} maxAims={maxAims} setAims={setAims} setModal={setModal} />}
     </div>
 

@@ -26,14 +26,6 @@ export const firearmLists = (filter) => {
   }
 };
 
-export const filterableCalibers = () => [
-  '7.62 x 39mm',
-  '5.45 x 39.5mm',
-  '5.56mm NATO',
-  '7.62mm NATO',
-  '9mm Parabellum',
-];
-
 export const filterCalibersFromType = (type, calibre) => {
   if (calibre === 'All Calibres') {
     return firearmLists(type);

@@ -18,84 +18,17 @@ export const firearms = Object.freeze({
   ...shotguns,
 });
 
-export const riflesList = () => [
-  'Kar 98k',
-  'Karabin M1938',
-  'MAS 36',
-  'AK47',
-  'AKM',
-  'AK 74',
-  'CAR 16',
-  'FAMAS',
-  'FN FAL',
-  'HK G3',
-  'L1A1',
-  'L1A1 F1',
-  'M4',
-  'M14',
-  'M16',
-  'M16A1',
-  'M1 Garand',
-  'M1 Carbine',
-  'M2 Carbine',
-  'M1949-56',
-  'SKS',
-  'SVT 40',
-];
+export const riflesList = () => Object.keys(rifles);
 
-export const smgsList = () => [
-  'AKS-74U',
-  'Carl Gustaf M45',
-  'F1',
-  'MAC 10 (45 ACP)',
-  'MAT 49',
-  'Owen Mk1',
-  'M3A1',
-  'MP5 SD3',
-  'PPSh 41',
-  'PPS 43',
-  'Sten Mk2',
-  'Thompson M1A1',
-];
+export const smgsList = () => Object.keys(smgs);
 
-export const pistolsList = () => [
-  'Colt Python (8")',
-  'FN Mk 1',
-  'Glock Model 17',
-  'M1911A1',
-  'M92F',
-  'MAB PA15',
-  'Makarov PM',
-  'Lebel M1892',
-  'Tokarev TT33',
-];
+export const pistolsList = () => Object.keys(pistols);
 
-export const sniperRiflesList = () => [
-  'Dragunov SVD',
-  'M40A1',
-  'M1903 A4',
-];
+export const sniperRiflesList = () => Object.keys(sniperRifles);
 
-export const mgsList = () => [
-  'BAR A2',
-  'M1919 A6',
-  'M1924/29',
-  'M60',
-  'M249',
-  'RPD',
-  'RPK',
-  'RPK 74',
-  'PKM',
-  'DP',
-];
+export const mgsList = () => Object.keys(mgs);
 
-export const shotgunsList = () => [
-  'Remington M870',
-  'Ithaca LAPD',
-  'Sawed-Off Shotgun',
-];
-
-export const getFirearmByName = (name) => firearms[name];
+export const shotgunsList = () => Object.keys(shotguns);
 
 export const firearmsByCalibreList = (list) => {
   const map = {
@@ -158,7 +91,7 @@ export const getFullFirearmSystemWeightByObject = (firearm) => {
     opticWeight = getScopeByName(firearm.optics.attached).weight;
   }
 
-  if (firearm?.attachedOptic) {
+  if (firearm.attachedOptic) {
     opticWeight = getScopeByName(firearm?.attachedOptic).weight;
   }
 

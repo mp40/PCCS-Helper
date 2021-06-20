@@ -41,7 +41,7 @@ const Optics = ({ firearm, optics, updateOptic, removeOptic }) => {
           <>
             <span>{optics.attached}</span>
             <span>
-              {`FOV:${scope.fov}`}
+              {`FOV: ${scope.fov}`}
               &#176;
             </span>
             <span>{`Min Rng: ${scope.minimumRange}`}</span>

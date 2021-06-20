@@ -80,7 +80,7 @@ function reduceActions(state = initialState, action) {
     case 'EQUIPMENT_REMOVED':
       return removeEquipmentReducer(state, action);
     case 'ALL_EQUIPMENT_REMOVED':
-      return removeAllEquipmentReducer(state, action);
+      return removeAllEquipmentReducer(state);
     case 'EQUIPMENT_QTY_INCREASED':
       return increaseEquipmentReducer(state, action);
     case 'EQUIPMENT_QTY_DECREASED':

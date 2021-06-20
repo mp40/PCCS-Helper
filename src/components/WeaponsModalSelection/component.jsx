@@ -7,8 +7,6 @@ import PropTypes from 'prop-types';
 import FirearmInspection from './FirearmInspection';
 import FirearmFilter from './FirearmFilter';
 
-import { gunObjShape } from '../../helpers/proptypeShapes';
-
 import { firearmLists, filterCalibersFromType } from './data';
 
 import { getFullFirearmSystemWeightByName } from '../../data/firearms';

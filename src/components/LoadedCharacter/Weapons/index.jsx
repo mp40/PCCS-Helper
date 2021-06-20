@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { gunObjShape, grenadeShape } from '../../../helpers/proptypeShapes';
+import { gunObjShape } from '../../../helpers/proptypeShapes';
 
 import styles from './styles.module.css';
 

@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { lightingOptions, other } from './data';
+import { lightingOptions, getOthers } from './data';
 
 import CheckBox from '../../../widgets/buttons/CheckBox';
 
 import styles from './styles.module.css';
 
-const VisibilitySelectModal = ({ visibility, setModal, setVisibility }) => {
+const VisibilitySelectModal = ({ visibility, setModal, setVisibility, optics }) => {
   const handleUpdateLighting = (type) => {
     const updatedVisibility = { ...visibility };
     updatedVisibility.lighting = type;
@@ -45,9 +45,9 @@ const VisibilitySelectModal = ({ visibility, setModal, setVisibility }) => {
         </div>
 
         <div className={styles.title}>Other</div>
-        {Object.keys(other).map((key) => (
+        {Object.keys(getOthers(optics)).map((key) => (
           <div key={key} className={styles.checkbox}>
-            <span>{other[key]}</span>
+            <span>{getOthers(optics)[key]}</span>
             <span><CheckBox onClick={() => handleUpdateOther(key)} isActive={visibility[key]} /></span>
           </div>
         ))}

@@ -50,21 +50,18 @@ const FirearmModify = ({
             <div className={styles.header}>
               <button
                 type="button"
-                // className="--button"
                 onClick={() => toggleCreateCustomMag(true)}
               >
                 add magazine
               </button>
               <button
                 type="button"
-                // className="--button"
                 onClick={() => toggleModifyFirearmWeight(true)}
               >
                 add modification
               </button>
               <button
                 type="button"
-                // className="--button"
                 onClick={() => removeAllModificationsFromFirearm(gunObj.name)}
               >
                 remove all mods

@@ -28,6 +28,12 @@ describe('Modify Firearm With Grenade Launcher', () => {
     expect(wrapper.find('button[children="Remove Launcher"]').exists()).toBe(false);
   });
 
+  it('should render remove launcher button if launcher attached', () => {
+    wrapper.setProps({ attachedLauncher: 'M203' });
+
+    expect(wrapper.find('button[children="Remove Launcher"]').exists()).toBe(true);
+  });
+
   it('should to attach underslung launcher', () => {
     wrapper.find('button[children="Update Launcher"]').simulate('click');
 

@@ -15,11 +15,13 @@ import HitChanceLookUp from './subComponents/rightRangeOddsSideBar/HitChanceLook
 import SituationAndStanceModTable from './subComponents/shootingMods/SituationAndStanceModTable';
 import TargetSizeTable from './subComponents/shootingMods/TargetSizeTable';
 
-import { combatStatsShape, gearShape } from '../../helpers/proptypeShapes';
+import { hydrateFirearmByObject } from '../../data/firearms/hydrate';
 
 import { getFirearmNameAndRecoil, prepareHandToHandWeaponList } from './data';
 
 import { salAndCeTable } from '../../core/tables';
+
+import { combatStatsShape, gearShape } from '../../helpers/proptypeShapes';
 
 import './GameSheet.css';
 import '../App/App.css';
@@ -52,7 +54,7 @@ const GameSheet = ({ name, characterStats, combatStats, gear, selectCurrentView 
           <div className={styles.firearm}>
             <div>
               <p>{getFirearmNameAndRecoil(gear.firearms[0], characterStats.gunLevel)}</p>
-              <WeaponStatsTable weapon={gear.firearms[0]} sal={sal} size="a4" />
+              <WeaponStatsTable weapon={hydrateFirearmByObject(gear.firearms[0])} sal={sal} size="a4" />
             </div>
             <FirearmNotes gunObj={gear.firearms[0]} />
           </div>
@@ -61,7 +63,10 @@ const GameSheet = ({ name, characterStats, combatStats, gear, selectCurrentView 
 
               <div className={styles.infoAndActions}>
                 <CharacterInfo />
-                <ActionsTable gunCombatActions={combatStats.gunCombatActions} handCombatActions={combatStats.handCombatActions} />
+                <ActionsTable
+                  gunCombatActions={combatStats.gunCombatActions}
+                  handCombatActions={combatStats.handCombatActions}
+                />
               </div>
 
               { meleeWeaponList.length > 0 && (

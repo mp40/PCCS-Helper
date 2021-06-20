@@ -58,7 +58,7 @@ describe('Visibility Select Modal', () => {
     expect(setVisibility).toHaveBeenCalledWith(updatedVisibility);
   });
 
-  it('should show previously selected selected options with as selected', () => {
+  it('should show previously selected options with as selected', () => {
     const preCheckedVisibility = { ...visibility };
     preCheckedVisibility.lookingIntoLight = true;
 
@@ -73,6 +73,25 @@ describe('Visibility Select Modal', () => {
       .closest('div').find('CheckBox');
 
     expect(checkBox.props().isActive).toBe(true);
+  });
+
+  it('should not show optics options if no optics attached', () => {
+    expect(wrapper.text()).not.toContain('Optics Broken');
+    expect(wrapper.text()).not.toContain('AAS Broken');
+  });
+
+  it('should show broken optics if optics attached', () => {
+    wrapper.setProps({ optics: 'Medium Scope' });
+
+    expect(wrapper.text()).toContain('Optics Broken');
+    expect(wrapper.text()).not.toContain('AAS Broken');
+  });
+
+  it('should show broken aas optics options if aas attached', () => {
+    wrapper.setProps({ optics: 'AAS' });
+
+    expect(wrapper.text()).not.toContain('Optics Broken');
+    expect(wrapper.text()).toContain('AAS Broken');
   });
 
   it('should close the modal when Done button clicked', () => {

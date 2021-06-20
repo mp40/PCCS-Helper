@@ -1,3 +1,3 @@
-export const removeAllEquipmentReducer = (state, action) => ({ ...state,
+export const removeAllEquipmentReducer = (state) => ({ ...state,
   currentCharacter: { ...state.currentCharacter,
     equipment: [] } });

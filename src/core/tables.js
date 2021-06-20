@@ -91,6 +91,7 @@ export const combatActionsTable = Object.freeze({
 
 export const damageBonusTable = Object.freeze({
   skillFactor: [7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39],
+  0: [],
   1: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5],
   2: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1],
   3: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -105,6 +106,7 @@ export const damageBonusTable = Object.freeze({
 });
 
 export const actionsPerImpulseTable = Object.freeze({
+  0: [0, 0, 0, 0],
   1: [1, 0, 0, 0],
   2: [1, 0, 1, 0],
   3: [1, 0, 1, 1],

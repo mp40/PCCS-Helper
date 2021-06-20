@@ -18,22 +18,9 @@ import {
   decreaseUnderslungLauncherAmmo,
 } from '../../actions';
 
-import { selectTotalWeightOfFirearms, selectTotalWeightOfAllWeapons } from '../../selectors';
+import { selectTotalWeightOfAllWeapons } from '../../selectors';
 
 import WeaponsTableBody from './component';
-// const mapStateToProps = (state) => ({
-//   firearms: state.currentCharacter.firearms,
-// });
-
-// export const increaseUnderslungLauncherAmmo = (launcherAndAmmoType) => ({
-//   type: 'UNDERSLUNG_LAUNCHER_AMMO_QTY_INCREASED',
-//   payload: launcherAndAmmoType,
-// });
-
-// export const decreaseUnderslungLauncherAmmo = (launcherAndAmmoType) => ({
-//   type: 'UNDERSLUNG_LAUNCHER_AMMO_QTY_DECREASED',
-//   payload: launcherAndAmmoType,
-// });
 
 const mapStateToProps = (state) => ({
   totalWeaponWeight: selectTotalWeightOfAllWeapons(state),

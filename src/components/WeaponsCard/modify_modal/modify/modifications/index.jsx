@@ -8,10 +8,12 @@ const Modifications = ({ firearmName, modNotes, removeFirearmModification }) => 
     <h4>Modifications</h4>
     {modNotes.map((noteObj, index) => (
       <div key={`${noteObj.note}${noteObj.weightMod}`} className={styles.entry}>
-        <span>{noteObj.note}</span>
-        <span>
-          {`${noteObj.weightMod} lbs`}
-        </span>
+        <div>
+          <span>{noteObj.note}</span>
+          <span>
+            {`${noteObj.weightMod} lbs`}
+          </span>
+        </div>
         <button
           aria-label="close"
           className={styles.close}

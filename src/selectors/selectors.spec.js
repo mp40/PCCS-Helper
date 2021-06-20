@@ -6,13 +6,12 @@ import {
   selectTotalWeightOfClothingAndBodyArmour,
   selectTotalWeightOfAllGearAndWeapons,
   selectCombatStats,
+  selectKnockoutValue,
 } from './index';
 
 import { MockState } from '../reducers/mockState';
 
 import { correctFloatingPoint } from '../utils';
-// import Launchers from '../components/WeaponsCard/modify_modal/modify/launchers/component';
-// import { equipment } from '../data/equipmentList';
 
 const m16Qty2 = {
   name: 'M16',
@@ -424,6 +423,20 @@ describe('Selectors', () => {
       };
 
       expect(selectCombatStats(state)).toEqual(expected);
+    });
+
+    it('should use gun combat level if it is greater than hand level when selecting knockout value', () => {
+      state.currentCharacter.gunLevel = 10;
+      const expected = 50;
+
+      expect(selectKnockoutValue(state)).toBe(expected);
+    });
+
+    it('should use hand combat if it is greater than gun level level when selecting knockout value', () => {
+      state.currentCharacter.handLevel = 5;
+      const expected = 25;
+
+      expect(selectKnockoutValue(state)).toBe(expected);
     });
   });
 });

@@ -65,8 +65,8 @@ describe('<FirearmNotes/>', () => {
     });
     it('should render if grenade launcher present', () => {
       expect(wrapper.text()).not.toContain('Grenade Launcher');
-      wrapper.setProps({ gunObj: { mag: [], launcher: true } });
-      expect(wrapper.text()).toContain('Grenade Launcher');
+      wrapper.setProps({ gunObj: { mag: [], launcher: { attached: 'M203', mag: [{ qty: 1 }, { qty: 2 }] } } });
+      expect(wrapper.text()).toContain('M203');
     });
   });
   describe('conditional rendering', () => {

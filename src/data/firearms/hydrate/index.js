@@ -1,11 +1,5 @@
 import { firearms } from '../index';
 
-// mptodo
-// { name: firearm.name,
-//     qty: firearm.qty,
-//     mag: firearm.mag,
-//     modNotes: firearm.modNotes }
-
 export const hydrateFirearmByName = (name) => {
   const gun = {
     name,
@@ -21,6 +15,10 @@ export const hydrateFirearmByName = (name) => {
 };
 
 export const hydrateFirearmByObject = (firearm) => {
+  if (!firearm) {
+    return undefined;
+  }
+
   const { name, mag, qty } = firearm;
 
   const {

@@ -34,6 +34,10 @@ export const getMaxSpeed = (agi, baseSpeed) => {
 };
 
 export const getCombatActions = (maxSpeed, skillFactor) => {
+  if (maxSpeed === 0) {
+    return 0;
+  }
+
   let index;
 
   const skillRange = combatActionsTable.skillFactor;
@@ -62,5 +66,5 @@ export const getDamageBonus = (maxSpeed, skillFactor) => {
     }
   }
 
-  return damageBonusTable[maxSpeed][index];
+  return damageBonusTable[maxSpeed][index] || 0;
 };

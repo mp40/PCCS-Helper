@@ -3,7 +3,7 @@ import LoadedCharacter from './component';
 
 import { selectCurrentView } from '../../actions';
 
-import { selectKnockoutValue, selectCombatActions, selectGunCombatActions, selectHandCombatActions } from '../../selectors';
+import { selectKnockoutValue, selectGunCombatActions, selectHandCombatActions } from '../../selectors';
 
 const mapStateToProps = (state) => ({
   name: state.currentCharacter.name,

@@ -16,7 +16,7 @@ const mediumPowerScope = Object.freeze({
 
 const highPowerScope = Object.freeze({
   name: 'High Power Scope',
-  weight: 3.2, // <- mptodo ???
+  weight: 3.2,
   fov: 2,
   minimumRange: 10,
   bonus: [1, 1, 2, 2, 2, 3, 4, 4, 4, 4, 4, 4],
@@ -49,7 +49,7 @@ const m73 = Object.freeze({
 const unertlTenPower = Object.freeze({
   name: 'Unertl x10',
   weight: 2.18,
-  fov: 2, // <- mptodo ???
+  fov: 2,
   minimumRange: 10,
   bonus: highPowerScope.bonus,
 });

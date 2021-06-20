@@ -3,14 +3,6 @@ import { shallow } from 'enzyme';
 
 import AimTimes from './index';
 
-// const AimTimes = ({ aim, index, sal, optic })
-
-const waitOneTick = (simulate) => new Promise((resolve) => {
-  setTimeout(() => {
-    resolve(simulate);
-  }, 0);
-});
-
 describe('Aim Times', () => {
   let wrapper;
 

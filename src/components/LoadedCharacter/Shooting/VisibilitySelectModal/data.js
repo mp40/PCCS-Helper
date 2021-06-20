@@ -11,7 +11,7 @@ export const generic = [
   'notLooking',
 ];
 
-export const other = {
+const other = {
   muzzleFlash: 'Firing at Muzzle Flash',
   smokeFogHaze: 'Smoke, Haze, Fog',
   lookingIntoLight: 'Looking into Light',
@@ -20,5 +20,17 @@ export const other = {
   notLooking: 'Shooter Not Looking',
 };
 
-// mptodo - add for firearms with optics
-const optics = ['opticalUnder8', 'opticsBroken', 'aasBroken'];
+// mptodo - add for firearms with optics, do min under x automatically
+// const optics = ['opticalUnder8', 'opticsBroken', 'aasBroken'];
+
+export const getOthers = (optic) => {
+  if (!optic) {
+    return other;
+  }
+
+  if (optic === 'AAS') {
+    return { ...other, aasBroken: 'AAS Broken' };
+  }
+
+  return { ...other, opticsBroken: 'Optics Broken' };
+};
