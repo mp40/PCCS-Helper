@@ -84,7 +84,7 @@ describe('Load Character Modal', () => {
   });
 });
 
-describe('Load Character Intergration', () => {
+describe.skip('Load Character Intergration', () => {
   let wrapper;
   let storage;
 
