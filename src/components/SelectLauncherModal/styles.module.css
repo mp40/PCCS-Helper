@@ -1,4 +1,4 @@
-.card {
+/* .card {
   position: fixed;
   top: 6rem;
   left: 50%;
@@ -7,6 +7,10 @@
   height: 20rem;
   padding: 0.5rem 2rem 1rem;
   z-index: 101;
+} */
+
+.wrapper {
+
 }
 
 .header {
@@ -53,15 +57,70 @@
   display: flex;
 }
 
-.row > div {
+.row > button:nth-of-type(2) {
   margin-left: 3px;
   width: 11rem;
 }
 
-.row > div > span:nth-of-type(1) {
+.row > button:nth-of-type(2) > span:nth-of-type(1) {
   float: left;
 }
 
-.row > div > span:nth-of-type(2) {
+.row > button:nth-of-type(2) > span:nth-of-type(2) {
   float: right;
+}
+
+@media screen and (max-width: 1024px) {
+  .body {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .body > div:nth-of-type(1) {
+    margin-bottom: 1rem;
+    /* background-color: khaki; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .row {
+    /* background-color: greenyellow; */
+    /* margin-bottom: 6px; */
+    /* width: calc(50% - 30px); */
+    width: fit-content;
+    margin: 0 4px 6px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .row > button:nth-of-type(2) {
+    width: 7rem;
+    font-size: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .row > button:nth-of-type(2) > span:nth-of-type(1){
+    white-space: nowrap;
+  }
+
+  .body > div:nth-of-type(2) {
+    width: calc(100vw - 30px);
+    font-size: 0.6rem;
+  }
+
+  .body > div:nth-of-type(2) * tbody {
+    font-size: 0.54rem;
+  }
+
+  .body > div:nth-of-type(2) * tbody > tr > td:nth-of-type(-n+2) > span {
+    margin: 1px;
+  }
+
+  .body > div:nth-of-type(2) * tbody > tr > td:nth-of-type(n+3) {
+    padding: 1px;
+  }
 }

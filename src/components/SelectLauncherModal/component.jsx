@@ -1,7 +1,3 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
@@ -23,7 +19,7 @@ const SelectLauncherModal = ({ toggleOffWeaponCardViews, addLauncher }) => {
   return (
     <>
       <div className="modal-background" />
-      <div className={`--card ${styles.card}`}>
+      <div className={`card-standard card-select-gear-modal ${styles.wrapper}`}>
         <div className={styles.header}>
           <span>Select Grenade / Rocket Launcher</span>
           <button
@@ -33,26 +29,28 @@ const SelectLauncherModal = ({ toggleOffWeaponCardViews, addLauncher }) => {
             onClick={() => toggleOffWeaponCardViews('showLaunchers')}
           />
         </div>
-        <div className="--weaponSelectCard">
+        <div className="select-weapon-body-wrapper">
           <div className={styles.body}>
-            <div className="launcherRowContainer">
+            <div>
 
               {Object.keys(launcherList).map((name) => {
                 const launcher = launcherList[name];
                 return (
                   <div key={launcher.name} className={styles.row}>
                     <button
+                      aria-label="info"
                       type="button"
                       onClick={() => setLauncherToView(launcher)}
                       className="button--standard button--question"
                     />
-                    <div
-                      className="--selectableRow launcherEntry"
+                    <button
+                      type="button"
+                      className="button-clickable-item-row"
                       onClick={() => handleAddLauncher(launcher.name)}
                     >
                       <span>{launcher.name}</span>
                       <span>{`${launcher.weight} lbs`}</span>
-                    </div>
+                    </button>
                   </div>
                 );
               })}

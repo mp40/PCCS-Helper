@@ -29,13 +29,13 @@ describe('the select grenade/rocket launcher modal', () => {
     });
 
     it('should be possible select a launcher', () => {
-      wrapper.find('span[children="M79"]').closest('div').simulate('click');
+      wrapper.find('span[children="M79"]').closest('button').simulate('click');
 
       expect(addLauncher).toHaveBeenCalledWith('M79');
     });
 
     it('should close the modal when selection made', () => {
-      wrapper.find('span[children="M79"]').closest('div').simulate('click');
+      wrapper.find('span[children="M79"]').closest('button').simulate('click');
 
       expect(toggleOffWeaponCardViews).toHaveBeenCalledWith('showLaunchers');
     });
@@ -52,7 +52,7 @@ describe('the select grenade/rocket launcher modal', () => {
 
     beforeEach(() => {
       wrapper = mount(<SelectLauncherModal />);
-      wrapper.find('span[children="M79"]').closest('.row').find('button').simulate('click');
+      wrapper.find('span[children="M79"]').closest('.row').find('.button--question').simulate('click');
     });
 
     it('should render the correct ballistic ranges', () => {
@@ -145,7 +145,7 @@ describe('the select grenade/rocket launcher modal', () => {
 
     beforeEach(() => {
       wrapper = mount(<SelectLauncherModal />);
-      wrapper.find('span[children="M72 A2 LAW"]').closest('.row').find('button').simulate('click');
+      wrapper.find('span[children="M72 A2 LAW"]').closest('.row').find('.button--question').simulate('click');
     });
 
     it('should contain the correct data on line one of the table', () => {
