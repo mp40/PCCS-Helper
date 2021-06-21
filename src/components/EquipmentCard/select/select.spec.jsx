@@ -67,7 +67,7 @@ describe('the equipment list', () => {
   it('should add selected equipment to character equipmentTable', () => {
     const wrapper = createWrapper([], []);
 
-    wrapper.find('div[children="Basic Pouch"]').parent().simulate('click');
+    wrapper.find('span[children="Basic Pouch"]').parent().simulate('click');
 
     expect(addEquipment).toHaveBeenCalledWith(mockBasicPouch);
   });
@@ -75,7 +75,7 @@ describe('the equipment list', () => {
   it('should not be possible to add the same item twice to list', () => {
     const wrapper = createWrapper([mockBasicPouch], []);
 
-    wrapper.find('div[children="Basic Pouch"]').parent().simulate('click');
+    wrapper.find('span[children="Basic Pouch"]').parent().simulate('click');
 
     expect(addEquipment).not.toHaveBeenCalled();
   });
@@ -91,20 +91,20 @@ describe('the equipment list', () => {
   it('should filter the list to show selected criteria', () => {
     const wrapper = createWrapper([], ['ALICE']);
 
-    expect(wrapper.find('div[children="Basic Pouch"]').exists()).toBe(true);
-    expect(wrapper.find('div[children="Baseball Bat"]').exists()).toBe(false);
-    expect(wrapper.find('div[children="MRE"]').exists()).toBe(false);
+    expect(wrapper.find('span[children="Basic Pouch"]').exists()).toBe(true);
+    expect(wrapper.find('span[children="Baseball Bat"]').exists()).toBe(false);
+    expect(wrapper.find('span[children="MRE"]').exists()).toBe(false);
   });
 
   it('should filter by excluding equipment that do not match all filters', () => {
     const wrapper = createWrapper([], ['Load Bearing', 'Chest Rig', 'Vietnam']);
 
-    expect(wrapper.find('div[children="Basic Pouch"]').exists()).toBe(false);
-    expect(wrapper.find('div[children="MRE"]').exists()).toBe(false);
-    expect(wrapper.find('div[children="Type 65 Canteen"]').exists()).toBe(false);
-    expect(wrapper.find('div[children="Mock Modern Rig"]').exists()).toBe(false);
-    expect(wrapper.find('div[children="Type 56 AK Chest Rig"]').exists()).toBe(true);
-    expect(wrapper.find('div[children="Type 56 SKS Chest Rig"]').exists()).toBe(true);
+    expect(wrapper.find('span[children="Basic Pouch"]').exists()).toBe(false);
+    expect(wrapper.find('span[children="MRE"]').exists()).toBe(false);
+    expect(wrapper.find('span[children="Type 65 Canteen"]').exists()).toBe(false);
+    expect(wrapper.find('span[children="Mock Modern Rig"]').exists()).toBe(false);
+    expect(wrapper.find('span[children="Type 56 AK Chest Rig"]').exists()).toBe(true);
+    expect(wrapper.find('span[children="Type 56 SKS Chest Rig"]').exists()).toBe(true);
   });
 
   it('should not render the clear filters button if no filters', () => {

@@ -64,7 +64,7 @@ describe('the equipment list', () => {
 
     it('should be possible to add equipment', () => {
       wrapper.find('button[children="Add Equipment"]').simulate('click');
-      wrapper.find('div[children="Baseball Bat"]').simulate('click');
+      wrapper.find('span[children="Baseball Bat"]').closest('button').simulate('click');
 
       expect(wrapper.find('.gear-table-header--container').text()).toContain('2.2');
       expect(wrapper.find('.gear-table-row--container').text()).toContain('Baseball Bat2.212.2');
@@ -92,9 +92,9 @@ describe('the equipment list', () => {
     });
 
     it('should clear all equipment from list', () => {
-      wrapper.find('div[children="Baseball Bat"]').simulate('click');
-      wrapper.find('div[children="Basic Pouch"]').simulate('click');
-      wrapper.find('div[children="Bayonet"]').simulate('click');
+      wrapper.find('span[children="Baseball Bat"]').closest('button').simulate('click');
+      wrapper.find('span[children="Basic Pouch"]').closest('button').simulate('click');
+      wrapper.find('span[children="Bayonet"]').closest('button').simulate('click');
 
       wrapper.find('button[children="Clear All"]').simulate('click');
 
