@@ -1,21 +1,44 @@
 import { decreaseEquipmentReducer } from './index';
-import {
-  EquipmentQtyTwo,
-  AddedEquipment,
-  IncreasedEquipment,
-  IncreasedFirstEquipmentItem,
-  AddedEquipmentAgain,
-} from '../testResouces';
+import { MockState } from '../mockState';
+
+const targetEquipment = {
+  name: 'targetEquipment',
+  weight: 1.53,
+  qty: 2,
+};
+
+const updatedEquipment = {
+  name: 'targetEquipment',
+  weight: 1.53,
+  qty: 1,
+};
+
+const otherEquipment = {
+  name: 'otherEquipment',
+  weight: 2.47,
+  qty: 2,
+};
 
 describe('decreaseEquipmentReducer function', () => {
-  it('should decrease quantity of the equipment by one', () => {
-    const action = { payload: new EquipmentQtyTwo() };
-    const newState = decreaseEquipmentReducer(new IncreasedEquipment(), action);
-    expect(newState).toMatchObject(new AddedEquipment());
-  });
-  it('should decrease quantity of the correct equipment if more than one in list', () => {
-    const action = { payload: new EquipmentQtyTwo() };
-    const newState = decreaseEquipmentReducer(new IncreasedFirstEquipmentItem(), action);
-    expect(newState).toMatchObject(new AddedEquipmentAgain());
+  it('should decrease quantity of the target equipment by one', () => {
+    let state = new MockState();
+
+    state = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        equipment: [otherEquipment, targetEquipment],
+      } };
+
+    const action = { payload: 'targetEquipment' };
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        equipment: [otherEquipment, updatedEquipment],
+      } };
+
+    state = decreaseEquipmentReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
 });

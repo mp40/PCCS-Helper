@@ -1,16 +1,34 @@
 import { modifyAgilityValueReducer } from './index';
 import { MockState } from '../mockState';
-import { AgilityThree, AgilityEighteen } from './testResources';
 
 describe('agilityStatlReducer function', () => {
-  it('should return correct values when agility changes to 3', () => {
+  let state = new MockState();
+
+  it('should update agility to 3 when payload is 3', () => {
     const action = { payload: 3 };
-    const newState = modifyAgilityValueReducer(new MockState(), action);
-    expect(newState).toMatchObject(new AgilityThree());
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        agi: action.payload,
+      } };
+
+    state = modifyAgilityValueReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
-  it('should return correct values when agility changes to 18', () => {
+
+  it('should update agility to 18 when payload is 18', () => {
     const action = { payload: 18 };
-    const newState = modifyAgilityValueReducer(new MockState(), action);
-    expect(newState).toMatchObject(new AgilityEighteen());
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        agi: action.payload,
+      } };
+
+    state = modifyAgilityValueReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
 });

@@ -1,13 +1,14 @@
 export const addCustomMagazineReducer = (state, action) => {
-  const updatedFirearmsArray = state.gear.firearms.map((element) => {
-    const gun = element;
-    if (gun.name === action.payload.firearm) {
-      gun.mag = [...gun.mag, action.payload.magazine];
+  const { firearmToUpdate, magazine } = action.payload;
+
+  const updatedFirearmsArray = state.currentCharacter.firearms.map((gun) => {
+    if (gun.name === firearmToUpdate) {
+      return { ...gun, mag: [...gun.mag, { ...magazine }] };
     }
     return gun;
   });
 
   return { ...state,
-    gear: { ...state.gear,
+    currentCharacter: { ...state.currentCharacter,
       firearms: updatedFirearmsArray } };
 };

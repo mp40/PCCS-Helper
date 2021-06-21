@@ -1,5 +1,3 @@
-import { returnUpdatedWeightAndGrenades } from '../reducerHelpers';
-
-export const addGrenadeReducer = (
-  state, action,
-) => returnUpdatedWeightAndGrenades(state, [...state.gear.grenades, action.payload]);
+export const addGrenadeReducer = (state, action) => ({ ...state,
+  currentCharacter: { ...state.currentCharacter,
+    grenades: [...state.currentCharacter.grenades, { name: action.payload, qty: 1 }] } });

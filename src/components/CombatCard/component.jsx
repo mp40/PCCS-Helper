@@ -13,20 +13,18 @@ const renderStatInput = (level, statName, action) => (
   />
 );
 
-const CombatCard = (props) => {
-  const { characterStats, modifyGunCombatLevel, modifyMeleeCombatLevel } = props;
-  return (
-    <LevelsCard className="combatLevelCard" levelType="combat">
-      {renderStatInput(characterStats.gunLevel, 'Gun', modifyGunCombatLevel)}
-      {renderStatInput(characterStats.handLevel, 'Hand', modifyMeleeCombatLevel)}
-    </LevelsCard>
-  );
-};
+const CombatCard = ({ gunLevel, handLevel, modifyGunCombatLevel, modifyMeleeCombatLevel }) => (
+  <LevelsCard className="combatLevelCard" levelType="combat">
+    {renderStatInput(gunLevel, 'Gun', modifyGunCombatLevel)}
+    {renderStatInput(handLevel, 'Hand', modifyMeleeCombatLevel)}
+  </LevelsCard>
+);
 
 CombatCard.propTypes = {
+  gunLevel: PropTypes.number,
+  handLevel: PropTypes.number,
   modifyGunCombatLevel: PropTypes.func,
   modifyMeleeCombatLevel: PropTypes.func,
-  characterStats: PropTypes.objectOf(PropTypes.number),
 };
 
 export default CombatCard;

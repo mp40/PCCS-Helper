@@ -1,43 +1,48 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ButtonStandard from '../widgets/buttons/ButtonStandard';
 
-import './BodyArmourSelection.css';
+import styles from './styles.module.css';
 
 const renderHeading = (armourType) => (armourType === 'helmet' ? 'Select Helmet' : 'Select Vest');
 
-const renderBody = (armourList, handleDispatch, type) => armourList.map((armour) => (
-  <React.Fragment key={armour.name}>
+const renderBody = (armourList, handleDispatch, type) => Object.keys(armourList).map((name) => (
+  <React.Fragment key={name}>
     <tr
-      className={`${armour.name}Row --selectableRow`}
-      onClick={() => handleDispatch(type, armour)}
+      className="--selectableRow"
+      onClick={() => handleDispatch(type, name)}
     >
-      {['name', 'pf', 'bpf', 'ac', 'weight', 'tags'].map((value) => (
-        <td key={value}>{Array.isArray(armour[value]) ? armour[value].join(', ') : armour[value]}</td>
-      ))}
+      {['name', 'pf', 'bpf', 'ac', 'weight', 'tags'].map((value) => {
+        const armour = armourList[name];
+        return (
+          <td key={value}>{Array.isArray(armour[value]) ? armour[value].join(', ') : armour[value]}</td>
+        );
+      })}
     </tr>
   </React.Fragment>
 ));
 
 const BodyArmourSelection = ({ armourType, armourList, handleDispatch }) => (
-  <div className="--modalOverlay selectBodyArmourModal">
-    <div className="--card bodyArmourListCard">
-      <div className="bodyArmourListHeading">
-        {renderHeading(armourType)}
+  <>
+    <div className="modal-background" />
+    <div className={`--card ${styles.card}`}>
+      <div className={styles.header}>
         <div>
-          <ButtonStandard
-            name="Back"
-            onClick={() => handleDispatch(null)}
-            className="exitBodyArmourSlection"
-          />
-          <ButtonStandard
-            name="Remove"
+          {renderHeading(armourType)}
+          <button
+            type="button"
             onClick={() => handleDispatch(armourType, null)}
-            className="removeBodyArmour"
-          />
+          >
+            Remove
+          </button>
         </div>
+        <button
+          aria-label="close"
+          className={styles.close}
+          type="button"
+          onClick={() => handleDispatch(null)}
+        />
       </div>
-      <table className="--collapseBorder bodyArmourTable">
+      <table className={styles.table}>
         <thead>
           <tr>
             {['Name', 'PF', 'BPF', 'AC', 'lbs', 'Notes'].map((value) => (
@@ -50,13 +55,13 @@ const BodyArmourSelection = ({ armourType, armourList, handleDispatch }) => (
         </tbody>
       </table>
     </div>
-  </div>
+  </>
 );
 
 BodyArmourSelection.propTypes = {
-  handleDispatch: PropTypes.func,
-  armourList: PropTypes.arrayOf(PropTypes.object),
-  armourType: PropTypes.string,
+  handleDispatch: PropTypes.func.isRequired,
+  armourList: PropTypes.objectOf(PropTypes.object).isRequired,
+  armourType: PropTypes.oneOf(['helmet', 'vest']).isRequired,
 };
 
 export default BodyArmourSelection;

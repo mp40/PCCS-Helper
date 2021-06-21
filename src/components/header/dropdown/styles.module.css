@@ -1,0 +1,30 @@
+.wrapper {
+  position: absolute;
+  bottom: 0;
+  transform: translateY(calc(100% + 0.25px));
+  background-color: #49531f;
+  width: 100vw;
+  height: 4.5rem;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  justify-content: center;
+}
+
+.wrapper > button {
+  height: 2rem;
+  border-radius: 5px;
+  background-color: transparent;
+  border: none;
+  color: whitesmoke;
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-right: 30px;
+}
+
+.wrapper > button:active {
+  border: 1px solid whitesmoke;
+  opacity: 0.75;
+}

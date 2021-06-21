@@ -1,7 +1,11 @@
 import { connect } from 'react-redux';
-import { updateWeight, updateAttributes } from '../../actions';
+import { selectCurrentView } from '../../actions';
+import { selectTotalWeightOfAllGearAndWeapons } from '../../selectors';
+
 import CharacterGeneration from './component';
 
-import './CharacterGeneration.css';
+const mapStateToProps = (state) => ({
+  totalWeight: selectTotalWeightOfAllGearAndWeapons(state),
+});
 
-export default connect(null, { updateWeight, updateAttributes })(CharacterGeneration);
+export default connect(mapStateToProps, { selectCurrentView })(CharacterGeneration);

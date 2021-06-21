@@ -1,3 +1,13 @@
-import { returnUpdatedWeightAndArray } from '../reducerHelpers';
+export const decreaseEquipmentReducer = (state, action) => {
+  const newEquipment = state.currentCharacter.equipment.map((item) => {
+    if (item.name === action.payload) {
+      return { ...item, qty: item.qty - 1 };
+    }
+    return item;
+  });
 
-export const decreaseEquipmentReducer = (state, action) => returnUpdatedWeightAndArray(state, action.payload, -1, 'equipment');
+  return { ...state,
+    currentCharacter: { ...state.currentCharacter,
+
+      equipment: newEquipment } };
+};

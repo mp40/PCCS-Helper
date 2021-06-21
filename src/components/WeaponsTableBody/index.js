@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+
 import {
   removeGrenade,
   increaseGrenadeQty,
@@ -13,10 +14,19 @@ import {
   removeLauncher,
   increaseLauncherAmmo,
   decreaseLauncherAmmo,
+  increaseUnderslungLauncherAmmo,
+  decreaseUnderslungLauncherAmmo,
 } from '../../actions';
+
+import { selectTotalWeightOfAllWeapons } from '../../selectors';
+
 import WeaponsTableBody from './component';
 
-export default connect(null, {
+const mapStateToProps = (state) => ({
+  totalWeaponWeight: selectTotalWeightOfAllWeapons(state),
+});
+
+export default connect(mapStateToProps, {
   removeGrenade,
   increaseGrenadeQty,
   decreaseGrenadeQty,
@@ -30,4 +40,6 @@ export default connect(null, {
   removeLauncher,
   increaseLauncherAmmo,
   decreaseLauncherAmmo,
+  increaseUnderslungLauncherAmmo,
+  decreaseUnderslungLauncherAmmo,
 })(WeaponsTableBody);

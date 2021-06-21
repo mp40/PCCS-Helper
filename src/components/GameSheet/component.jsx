@@ -1,123 +1,101 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { PropTypes } from 'prop-types';
+
 import WeaponStatsTable from '../WeaponStatsTable';
-import CombatStatsInfo from './CombatStatsInfo';
-import ActionTable from '../ActionsCard/ActionTable';
+import CharacterInfo from '../CharacterInfo';
+import ActionsTable from '../ActionsTable';
 import HandToHandTable from '../HandToHandTable/HandToHandTable';
 import BodyArmourTable from '../BodyArmourTable';
 import FirearmNotes from '../FirearmNotes';
 import KnockoutTable from '../KnockoutTable';
-import ReactionTable from './subComponents/ReactionTable/ReactionTable';
+import ReactionTable from '../reactionTable';
 import GrenadeList from './subComponents/GrenadeList/GrenadeList';
 import RangeLookUp from './subComponents/rightRangeOddsSideBar/RangeLookUp';
 import HitChanceLookUp from './subComponents/rightRangeOddsSideBar/HitChanceLookUp';
 import SituationAndStanceModTable from './subComponents/shootingMods/SituationAndStanceModTable';
 import TargetSizeTable from './subComponents/shootingMods/TargetSizeTable';
 
+import { hydrateFirearmByObject } from '../../data/firearms/hydrate';
+
+import { getFirearmNameAndRecoil, prepareHandToHandWeaponList } from './data';
+
+import { salAndCeTable } from '../../core/tables';
+
 import { combatStatsShape, gearShape } from '../../helpers/proptypeShapes';
 
 import './GameSheet.css';
+import '../App/App.css';
 
-const meleeNameList = {
-  pistols: 'Pistol',
-  smgs: 'SMG',
-  light: 'Light Rifle',
-  heavy: 'Heavy Rifle',
-  rifles: true,
-  sniperRifles: true,
-  shotguns: true,
-};
+import styles from './styles.module.css';
 
-const getRifleWeightClass = (weight) => (weight < 11.2 ? 'light' : 'heavy');
-
-const getFirearmForMeleeList = (firearmsArray) => {
-  const filteredArray = firearmsArray.filter((gun) => meleeNameList[gun.list]);
-  if (filteredArray[0] === undefined) {
-    return [];
-  }
-  if (firearmsArray[0].name === 'Sawed-Off Shotgun') {
-    return ['SMG'];
-  }
-  const tag = filteredArray[0].list === 'rifles' || filteredArray[0].list === 'sniperRifles' || filteredArray[0].list === 'shotguns'
-    ? getRifleWeightClass(filteredArray[0].weight)
-    : filteredArray[0].list;
-
-  return [meleeNameList[tag]];
-};
-
-const getEquipmentForMeleeList = (equipmentArray) => {
-  if (!equipmentArray) {
-    return [];
-  }
-
-  return equipmentArray.reduce((arr, equipObj) => (equipObj.tags.includes('Melee') ? [...arr, ...equipObj.melee] : [...arr]), []);
-};
-
-export const prepareHandToHandWeaponList = (
-  firearmsArray, equipmentArray,
-) => [
-  ...getFirearmForMeleeList(firearmsArray),
-  ...getEquipmentForMeleeList(equipmentArray),
-].slice(0, 4);
-
-const GameSheet = ({ currentCharacter, characterStats, combatStats, gear, selectCurrentView }) => {
-  useEffect(() => {
+const GameSheet = ({ name, characterStats, combatStats, gear, selectCurrentView }) => {
+  React.useEffect(() => {
     window.print();
     selectCurrentView('createChar');
   });
 
+  // mptodo - this seems to be importing unsed props
   const meleeWeaponList = prepareHandToHandWeaponList(gear.firearms, gear.equipment);
+
+  const sal = salAndCeTable[characterStats.gunLevel];
+  const ce = salAndCeTable[characterStats.handLevel];
+  const isf = sal + characterStats.int;
+  const asf = ce + characterStats.agi;
 
   return (
     <div className="a4GameSheet">
-      <div className="a4ContentContainer">
-        <div className="main-content-right">
-          {currentCharacter.length > 0 && (
-          <div className="character-name">
-            {`Name: ${currentCharacter}`}
+      <div className={styles.wrapper}>
+        <div className={styles.main}>
+          {name.length > 0 && (
+          <div className={styles.name}>
+            {`Name: ${name}`}
           </div>
           )}
-          <div style={{ display: 'flex' }}>
+          <div className={styles.firearm}>
             <div>
-              <WeaponStatsTable weapon={gear.firearms[0]} sal={combatStats.SAL} size="a4" />
+              <p>{getFirearmNameAndRecoil(gear.firearms[0], characterStats.gunLevel)}</p>
+              <WeaponStatsTable weapon={hydrateFirearmByObject(gear.firearms[0])} sal={sal} size="a4" />
             </div>
-            <div className="firearm-notes-a4-wrapper">
-              <FirearmNotes gunObj={gear.firearms[0]} />
-            </div>
+            <FirearmNotes gunObj={gear.firearms[0]} />
           </div>
-          <div style={{ display: 'flex', marginTop: '.5cm' }}>
-            <div className="game-data-col-a">
-              <CombatStatsInfo
-                combatStats={combatStats}
-                gunLevel={characterStats.gunLevel}
-                handLevel={characterStats.handLevel}
-              />
-              <div className="ActionTable-a4-container">
-                <ActionTable combatActions={combatStats.combatActions} className="A4" />
+          <div className={styles.mainLower}>
+            <div className={styles.left}>
+
+              <div className={styles.infoAndActions}>
+                <CharacterInfo />
+                <ActionsTable
+                  gunCombatActions={combatStats.gunCombatActions}
+                  handCombatActions={combatStats.handCombatActions}
+                />
               </div>
+
               { meleeWeaponList.length > 0 && (
               <HandToHandTable meleeList={meleeWeaponList} meleeLevel={characterStats.handLevel} />
               )}
-              <BodyArmourTable helmet={gear.helmet} vest={gear.vest} />
-              <div className="reaction-table-a4-wrapper" style={{ marginLeft: '0.2cm' }}>
-                <ReactionTable sal={combatStats.SAL} />
-              </div>
-              <div className="knockout-table-a4-wrapper">
+
+              <div className={styles.armourReactionKnockoutRow}>
+                <BodyArmourTable helmet={gear.helmet} vest={gear.vest} />
+                <ReactionTable sal={sal} />
                 <KnockoutTable knockoutValue={combatStats.knockoutValue} />
               </div>
+
               {gear.grenades.length > 0 && (
-              <div className="grenade-list-a4-wrapper">
-                <GrenadeList grenades={gear.grenades} />
-              </div>
+                <div className={styles.grenades}>
+                  <GrenadeList grenades={gear.grenades} />
+                </div>
               )}
+
             </div>
-            <div className="alm-mods-col">
+
+            <div className={styles.right}>
               <SituationAndStanceModTable />
               <TargetSizeTable />
             </div>
+
           </div>
         </div>
-        <div className="range-odds-flex-container">
+
+        <div className={styles.rangeAndOdds}>
           <RangeLookUp />
           <HitChanceLookUp />
         </div>
@@ -127,7 +105,7 @@ const GameSheet = ({ currentCharacter, characterStats, combatStats, gear, select
 };
 
 GameSheet.propTypes = {
-  currentCharacter: PropTypes.string,
+  name: PropTypes.string,
   characterStats: PropTypes.objectOf(PropTypes.number),
   combatStats: combatStatsShape,
   gear: gearShape,
@@ -135,7 +113,7 @@ GameSheet.propTypes = {
 };
 
 GameSheet.defaultProps = {
-  currentCharacter: '',
+  name: '',
 };
 
 export default GameSheet;

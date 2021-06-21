@@ -1,0 +1,44 @@
+.titles > span:nth-of-type(1),
+.magazine > span:nth-of-type(1) {
+  padding-right: 3px;
+  display: inline-block;
+  width: 3.5ch;
+}
+
+.titles > span:nth-of-type(n + 2),
+.magazine > span:nth-of-type(n + 2) {
+  text-align: center;
+  display: inline-block;
+  padding: 0 3px;
+  width: 3.5ch;
+}
+
+.titles > span:nth-of-type(n + 4) {
+  font-size: small;
+  width: 3.5rem;
+}
+
+.magazine > span:nth-of-type(n + 4) {
+  width: 3.5rem;
+}
+
+.primaryMagazine > span:nth-of-type(n + 4) > button {
+  display: none;
+}
+
+.primaryMagazine > span:nth-of-type(4):after {
+  content: " \2714";
+}
+
+.primaryMagazine > span:nth-of-type(5):after {
+  content: "\2718";
+}
+
+.removedMagazine > span:nth-of-type(-n + 3) {
+  opacity: 0.4;
+}
+
+.removedMagazine > span:nth-of-type(4) {
+  opacity: 0;
+  pointer-events: none;
+}

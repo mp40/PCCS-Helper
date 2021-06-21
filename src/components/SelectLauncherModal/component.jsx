@@ -1,19 +1,12 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import GearModal from '../GearModal';
-import GearModalContents from '../GearModalContents';
-import GearCard from '../GearCard';
+
 import WeaponStatsTable from '../WeaponStatsTable';
 
-import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
-
-import { launchers } from '../../data/launchers';
+import { launcherList } from '../../data/launchers';
 import { emptyLauncher } from './data';
 
-import './SelectLauncherModal.css';
+import styles from './styles.module.css';
 
 const SelectLauncherModal = ({ toggleOffWeaponCardViews, addLauncher }) => {
   const [launcherToView, setLauncherToView] = useState(emptyLauncher);
@@ -24,39 +17,49 @@ const SelectLauncherModal = ({ toggleOffWeaponCardViews, addLauncher }) => {
   };
 
   return (
-    <GearModal>
-      <GearCard name="modalCard">
-        <GearModalContents>
-          <div className="launcherContentsContainer">
-            <div className="launcherRowContainer">
-              <ButtonDeleteX
-                id="closeLauncherModal"
-                onClick={() => toggleOffWeaponCardViews('showLaunchers')}
-                className="closeModal"
-              />
-              {launchers().map((launcher) => (
-                <div key={launcher.name} className="launcherRow">
-                  <button
-                    type="button"
-                    onClick={() => setLauncherToView(launcher)}
-                    className={`--infoButton --button view${launcher.name.replace(/\s+/g, '')}`}
-                  />
-                  <div
-                    className="--selectableRow launcherEntry"
-                    id={launcher.name}
-                    onClick={() => handleAddLauncher(launcher)}
-                  >
-                    <span>{launcher.name}</span>
-                    <span>{`${launcher.weight} lbs`}</span>
+    <>
+      <div className="modal-background" />
+      <div className={`card-standard card-select-gear-modal ${styles.wrapper}`}>
+        <div className={styles.header}>
+          <span>Select Grenade / Rocket Launcher</span>
+          <button
+            aria-label="close"
+            className={styles.close}
+            type="button"
+            onClick={() => toggleOffWeaponCardViews('showLaunchers')}
+          />
+        </div>
+        <div className="select-weapon-body-wrapper">
+          <div className={styles.body}>
+            <div>
+
+              {Object.keys(launcherList).map((name) => {
+                const launcher = launcherList[name];
+                return (
+                  <div key={launcher.name} className={styles.row}>
+                    <button
+                      aria-label="info"
+                      type="button"
+                      onClick={() => setLauncherToView(launcher)}
+                      className="button--standard button--question"
+                    />
+                    <button
+                      type="button"
+                      className="button-clickable-item-row"
+                      onClick={() => handleAddLauncher(launcher.name)}
+                    >
+                      <span>{launcher.name}</span>
+                      <span>{`${launcher.weight} lbs`}</span>
+                    </button>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
             <WeaponStatsTable weapon={launcherToView} />
           </div>
-        </GearModalContents>
-      </GearCard>
-    </GearModal>
+        </div>
+      </div>
+    </>
   );
 };
 

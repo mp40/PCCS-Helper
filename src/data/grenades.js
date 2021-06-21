@@ -1,7 +1,6 @@
-export const grenadeData = () => [
-  {
+export const grenadeList = Object.freeze({
+  'L2 A2': {
     name: 'L2 A2',
-    qty: 1,
     length: 3.3,
     weight: 0.9,
     at: 3,
@@ -15,9 +14,8 @@ export const grenadeData = () => [
     },
     heading: 'standard',
   },
-  {
+  '#36M': {
     name: '#36M',
-    qty: 1,
     length: 3.5,
     weight: 1.7,
     at: 3,
@@ -32,9 +30,8 @@ export const grenadeData = () => [
     heading: 'standard',
   },
 
-  {
+  'DF 37': {
     name: 'DF 37',
-    qty: 1,
     length: 3.9,
     weight: 1.2,
     at: 3,
@@ -48,9 +45,8 @@ export const grenadeData = () => [
     },
     heading: 'standard',
   },
-  {
+  'Gr 24': {
     name: 'Gr 24',
-    qty: 1,
     length: 14,
     weight: 1.3,
     at: 4,
@@ -64,9 +60,8 @@ export const grenadeData = () => [
     },
     heading: 'standard',
   },
-  {
+  M2: {
     name: 'M2',
-    qty: 1,
     length: 4.5,
     weight: 1.3,
     at: 3,
@@ -80,9 +75,8 @@ export const grenadeData = () => [
     },
     heading: 'standard',
   },
-  {
+  'M26 A2': {
     name: 'M26 A2',
-    qty: 1,
     length: 3.9,
     weight: 1,
     at: 3,
@@ -96,9 +90,8 @@ export const grenadeData = () => [
     },
     heading: 'standard',
   },
-  {
+  M61: {
     name: 'M61',
-    qty: 1,
     length: 3.8,
     weight: 1,
     at: 3,
@@ -112,9 +105,8 @@ export const grenadeData = () => [
     },
     heading: 'standard',
   },
-  {
+  'MDN 21': {
     name: 'MDN 21',
-    qty: 1,
     length: 3.3,
     weight: 0.5,
     at: 3,
@@ -128,9 +120,8 @@ export const grenadeData = () => [
     },
     heading: 'standard',
   },
-  {
+  'Mk A3': {
     name: 'Mk A3',
-    qty: 1,
     length: 5.3,
     weight: 1,
     at: 3,
@@ -144,9 +135,8 @@ export const grenadeData = () => [
     },
     heading: 'standard',
   },
-  {
+  'NR 423': {
     name: 'NR 423',
-    qty: 1,
     length: 3.2,
     weight: 0.5,
     at: 3,
@@ -160,9 +150,8 @@ export const grenadeData = () => [
     },
     heading: 'standard',
   },
-  {
+  'RDG 33': {
     name: 'RDG 33',
-    qty: 1,
     length: 11,
     weight: 1.6,
     at: 4,
@@ -176,9 +165,8 @@ export const grenadeData = () => [
     },
     heading: 'standard',
   },
-  {
+  'RGD 5': {
     name: 'RGD 5',
-    qty: 1,
     length: 4.5,
     weight: 0.7,
     at: 3,
@@ -192,10 +180,9 @@ export const grenadeData = () => [
     },
     heading: 'standard',
   },
-  {
+  'RKG 3M': {
     name: 'RKG 3M',
-    qty: 1,
-    length: '14.3',
+    length: 14.3,
     weight: 5,
     at: 3,
     fl: 'I',
@@ -208,9 +195,8 @@ export const grenadeData = () => [
     },
     heading: 'standard',
   },
-  {
+  'RPG 40': {
     name: 'RPG 40',
-    qty: 1,
     length: 6.5,
     weight: 2.4,
     at: 4,
@@ -224,9 +210,8 @@ export const grenadeData = () => [
     },
     heading: 'standard',
   },
-  {
+  '10lb TNT': {
     name: '10lb TNT',
-    qty: 1,
     length: 6.5,
     weight: 10,
     at: 'V',
@@ -240,9 +225,8 @@ export const grenadeData = () => [
     },
     heading: 'standard',
   },
-  {
+  '2lb TNT': {
     name: '2lb TNT',
-    qty: 1,
     length: 3.8,
     weight: 2,
     at: 'V',
@@ -256,9 +240,8 @@ export const grenadeData = () => [
     },
     heading: 'standard',
   },
-  {
+  'M112 block': {
     name: 'M112 block',
-    qty: 1,
     length: 11,
     weight: 1.25,
     at: 'V',
@@ -272,12 +255,8 @@ export const grenadeData = () => [
     },
     heading: 'standard',
   },
-];
-
-export const specialGrenades = () => [
-  {
+  'M15 WP': {
     name: 'M15 WP',
-    qty: 1,
     length: 6,
     weight: 1.9,
     at: 4,
@@ -295,9 +274,8 @@ export const specialGrenades = () => [
     },
     heading: 'williePete',
   },
-  {
+  Smoke: {
     name: 'Smoke',
-    qty: 1,
     length: 5.7,
     weight: 1.5,
     at: 4,
@@ -308,9 +286,8 @@ export const specialGrenades = () => [
     data: {},
     heading: 'seeRuleBook',
   },
-  {
+  'Tear Gas': {
     name: 'Tear Gas',
-    qty: 1,
     length: 5.7,
     weight: 1.2,
     at: 4,
@@ -322,9 +299,8 @@ export const specialGrenades = () => [
     data: {},
     heading: 'seeRuleBook',
   },
-  {
+  'Flash Bang': {
     name: 'Flash Bang',
-    qty: 1,
     length: 5,
     weight: 0.6,
     at: 3,
@@ -333,4 +309,6 @@ export const specialGrenades = () => [
     data: {},
     heading: 'seeRuleBook',
   },
-];
+});
+
+export const getGrenadeWeightByName = (name) => grenadeList[name].weight;

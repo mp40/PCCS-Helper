@@ -1,3 +1,3 @@
-import { returnUpdatedUniform } from '../reducerHelpers';
-
-export const changeUniformReducer = (state, action) => returnUpdatedUniform(state, action.payload);
+export const changeUniformReducer = (state, action) => ({ ...state,
+  currentCharacter: { ...state.currentCharacter,
+    uniform: action.payload } });

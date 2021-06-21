@@ -3,8 +3,12 @@ import { modifyStrengthValue, modifyIntelligenceValue, modifyHealthValue, modify
 
 import AttributeCard from './component';
 
-const mapStateToProps = state => ({
-  characterStats: state.characterStats,
+const mapStateToProps = (state) => ({
+  str: state.currentCharacter.str,
+  int: state.currentCharacter.int,
+  hlt: state.currentCharacter.hlt,
+  wil: state.currentCharacter.wil,
+  agi: state.currentCharacter.agi,
 });
 
 export default connect(mapStateToProps,

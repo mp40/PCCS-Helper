@@ -2,61 +2,51 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import WeaponStatsTable from '../../WeaponStatsTable';
 import FirearmNotes from '../../FirearmNotes';
-import ButtonDeleteX from '../../widgets/buttons/ButtonDeleteX';
 
-import { gunObjShape } from '../../../helpers/proptypeShapes';
+import { firearms, getFullFirearmSystemWeightByName } from '../../../data/firearms';
 
-import { rifles } from '../../../data/firearms';
+import styles from './styles.module.css';
 
-const FirearmInspection = ({ firearmToInspect, statBoxClassName, setFirearmToInspect, handleCloseStatCard }) => {
-  const { launcher, rifle } = firearmToInspect;
-  const buttonText = launcher ? 'View Grenade Data' : 'View Rifle Date';
-  const handleSetFirearmToInspect = () => {
-    if (launcher) {
-      setFirearmToInspect(launcher);
-    }
-    if (rifle) {
-      const gunObj = rifles().filter((gun) => gun.name === rifle)[0];
-      setFirearmToInspect(gunObj);
-    }
-  };
+const FirearmInspection = ({ firearmToInspect, setFirearmToInspect }) => {
+  const gunObj = firearms[firearmToInspect];
+  gunObj.weight = getFullFirearmSystemWeightByName(firearmToInspect);
+
   return (
-    <div className={statBoxClassName} style={{ fontSize: 'medium' }}>
-      <div>
-        <ButtonDeleteX
-          id="closeGunStatView"
-          onClick={() => handleCloseStatCard()}
-        />
-        {(launcher || rifle) && (
-        <button
-          type="button"
-          className="--button toggleViewGrenadeLauncher"
-          onClick={() => handleSetFirearmToInspect()}
-        >
-          {buttonText}
-        </button>
-        )}
-      </div>
-      <div style={{ display: 'flex' }}>
+    <div className={styles.card}>
+      <div className={styles.header}>
+
         <div>
-          <WeaponStatsTable weapon={firearmToInspect} />
+          <span>
+            {`${gunObj.name} - ${gunObj.calibre}`}
+          </span>
         </div>
-        { firearmToInspect.list !== 'shotguns'
+
+        <button
+          aria-label="close"
+          className={styles.close}
+          type="button"
+          onClick={() => setFirearmToInspect(null)}
+        />
+
+      </div>
+
+      <div className={styles.body}>
+        <WeaponStatsTable weapon={gunObj} showName={false} />
+        { gunObj.list !== 'shotguns'
           && (
           <div className="firearm-notes-wrapper">
-            <FirearmNotes gunObj={firearmToInspect} viewSpareAmmo={false} />
+            <FirearmNotes gunObj={gunObj} viewSpareAmmo={false} />
           </div>
           )}
       </div>
+
     </div>
   );
 };
 
 FirearmInspection.propTypes = {
-  firearmToInspect: gunObjShape.isRequired,
-  statBoxClassName: PropTypes.string.isRequired,
+  firearmToInspect: PropTypes.string.isRequired,
   setFirearmToInspect: PropTypes.func.isRequired,
-  handleCloseStatCard: PropTypes.func.isRequired,
 };
 
 export default FirearmInspection;

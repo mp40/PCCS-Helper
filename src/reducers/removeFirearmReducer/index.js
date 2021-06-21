@@ -1,7 +1,8 @@
-import { removeObjectFromArray } from '../../helpers/actionHelpers';
-import { returnUpdatedWeightAndFirearms } from '../reducerHelpers';
+export const removeFirearmReducer = (state, action) => {
+  const newFirearms = state.currentCharacter.firearms.filter((gun) => gun.name !== action.payload,
+  );
 
-export const removeFirearmReducer = (state, action) => returnUpdatedWeightAndFirearms(
-  state,
-  removeObjectFromArray(state.gear.firearms, action.payload),
-);
+  return { ...state,
+    currentCharacter: { ...state.currentCharacter,
+      firearms: newFirearms } };
+};

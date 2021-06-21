@@ -1,18 +1,3 @@
-
-const standardRangeBrackets = [10, 20, 40, 70, 100, 200, 300, 400];
-const shotgunRangeBrackets = [1, 2, 4, 6, 8, 10, 15, 20, 30, 40, 80];
-const launcherBalisticRangeBackets = [40, 100, 200, 400, '', 0, 1, 2, 3, 5, 10];
-
-export const getRangeBrackets = (list) => {
-  if (list === 'shotguns') {
-    return shotgunRangeBrackets;
-  }
-  if (list === 'launchers') {
-    return launcherBalisticRangeBackets;
-  }
-  return standardRangeBrackets;
-};
-
 export const keys = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o'];
 
 const firearmCharacteristics = [
@@ -123,7 +108,6 @@ const launcherCharacteristics = [
   },
 ];
 
-
 export const getWeaponCharacteristics = (list) => {
   if (list === 'launchers') {
     return launcherCharacteristics;
@@ -147,7 +131,6 @@ const projectileBa = { valueKey: 'ba', prefix: ['', 'BA'], suffix: [] };
 const projectileTof = { valueKey: 'tof', prefix: ['', 'TOF'], suffix: [] };
 
 const emptyLine = 'empty';
-
 
 const defaultTemplate = [
   firstProjectilePen,
@@ -207,14 +190,14 @@ const launcherTemplate = [
   { valueKey: 'tof', prefix: ['', 'TOF'], suffix: ['', '', '', '', '', '', ''] },
 ];
 
-export const getTemplate = (list, hasThreeRoundBurst, numberOfProjectileTypes) => {
+export const getTemplate = (list, hasThreeRoundBurst) => {
   if (list === 'launchers') {
     return launcherTemplate;
   }
   if (list === 'shotguns') {
     return shotgunTemplate;
   }
-  if (hasThreeRoundBurst && numberOfProjectileTypes > 2) {
+  if (hasThreeRoundBurst) {
     return threeRoundBurstTemplate;
   }
   return defaultTemplate;

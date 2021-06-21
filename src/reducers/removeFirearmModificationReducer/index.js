@@ -1,23 +1,17 @@
-/* eslint-disable array-callback-return */
-import { returnUpdatedWeightAndFirearms } from '../reducerHelpers';
-
-const filterNotes = (notes, payloadNote) => notes.filter((currentNote) => {
-  const thisNote = currentNote;
-  if (thisNote.note !== payloadNote) {
-    return thisNote;
-  }
-});
-
 export const removeFirearmModificationReducer = (state, action) => {
-  const newFirearmArray = state.gear.firearms.map((element) => {
-    const firearm = element;
-    if (firearm.name === action.payload.firearm) {
-      const newNotes = filterNotes(firearm.modNotes, action.payload.modNote.note);
-      firearm.modNotes = newNotes;
-      firearm.weight -= action.payload.modNote.weightMod;
+  const { firearmToUpdate, modIndex } = action.payload;
+
+  const newFirearmsArray = state.currentCharacter.firearms.map((gun) => {
+    if (gun.name === firearmToUpdate) {
+      const updatedMods = gun.modNotes.filter((m, i) => i !== modIndex);
+
+      return { ...gun, modNotes: updatedMods };
     }
-    return firearm;
+
+    return gun;
   });
 
-  return returnUpdatedWeightAndFirearms(state, newFirearmArray);
+  return { ...state,
+    currentCharacter: { ...state.currentCharacter,
+      firearms: newFirearmsArray } };
 };

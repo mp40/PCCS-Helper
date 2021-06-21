@@ -1,4 +1,4 @@
 export const modifyHealthValueReducer = (state, action) => (
   { ...state,
-    characterStats:
-        { ...state.characterStats, hlt: action.payload } });
+    currentCharacter: { ...state.currentCharacter,
+      hlt: action.payload } });

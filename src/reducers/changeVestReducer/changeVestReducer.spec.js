@@ -1,24 +1,34 @@
 import { changeVestReducer } from './index';
 import { MockState } from '../mockState';
 
-const testVest = () => ({ name: 'vest one', pf: 4, weight: 5 });
-const vestOther = () => ({ name: 'Other Vest', pf: 8, weight: 10 });
+describe('changeVestReducer function', () => {
+  let state = new MockState();
 
-const characterWithVest = new MockState();
-characterWithVest.gear.vest = testVest();
-characterWithVest.totalWeight += 5;
+  it('should add vest to character', () => {
+    const action = { payload: 'vest one' };
 
-describe('changeHelmetReducer function', () => {
-  it('should add helmet to character', () => {
-    const action = { payload: testVest() };
-    const character = new MockState();
-    const newState = changeVestReducer(character, action);
-    expect(newState).toMatchObject(characterWithVest);
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        vest: action.payload,
+      } };
+
+    state = changeVestReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
-  it('should change helmet if helmet already present', () => {
-    const action = { payload: vestOther() };
-    const newState = changeVestReducer(characterWithVest, action);
-    expect(newState.totalWeight).toBe(characterWithVest.totalWeight - testVest().weight + vestOther().weight);
-    expect(newState.gear.vest.name).toBe('Other Vest');
+
+  it('should change vest if vest already present', () => {
+    const action = { payload: 'Other Vest' };
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        vest: action.payload,
+      } };
+
+    state = changeVestReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
 });

@@ -1,3 +1,15 @@
-import { returnUpdatedWeightAndArray } from '../reducerHelpers';
+export const decreaseGrenadeReducer = (state, action) => {
+  const grenadeToUpdate = action.payload;
 
-export const decreaseGrenadeReducer = (state, action) => returnUpdatedWeightAndArray(state, action.payload, -1, 'grenades');
+  const newGrenades = state.currentCharacter.grenades.map((grenade) => {
+    if (grenade.name === grenadeToUpdate) {
+      return { ...grenade, qty: grenade.qty - 1 };
+    }
+
+    return grenade;
+  });
+
+  return { ...state,
+    currentCharacter: { ...state.currentCharacter,
+      grenades: newGrenades } };
+};

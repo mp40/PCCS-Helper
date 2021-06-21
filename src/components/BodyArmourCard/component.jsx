@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import BodyArmourSelection from '../BodyArmourSelection';
-import { helmetStats, bodyArmorStats } from '../../data/uniformAndArmourTypes';
-import { armourShape } from '../../helpers/proptypeShapes';
+
+import { helmets, vests } from '../../data/uniformAndArmourTypes';
 
 import './BodyArmour.css';
 
-export const selectArmourList = (armourType) => (armourType === 'helmet' ? helmetStats() : bodyArmorStats());
-
 const BodyArmourCard = ({ helmet, vest, changeHelmet, changeVest }) => {
   const [showBodyArmour, toggleBodyArmourSelect] = useState(false);
+
+  const selectArmourList = (armourType) => (armourType === 'helmet' ? helmets : vests);
 
   const handleDispatch = (type, payload) => {
     if (type === 'helmet') {
@@ -21,16 +21,16 @@ const BodyArmourCard = ({ helmet, vest, changeHelmet, changeVest }) => {
     toggleBodyArmourSelect(false);
   };
 
-  const renderArmourRow = (type, obj) => (
-    <tr className={`--selectableRow ${type}BodyArmour`} onClick={() => toggleBodyArmourSelect(type)}>
-      <td>{obj.name}</td>
-      <td>{obj.weight}</td>
+  const renderArmourRow = (type, name) => (
+    <tr className="--selectableRow " onClick={() => toggleBodyArmourSelect(type)}>
+      <td>{name}</td>
+      <td>{selectArmourList(type)[name]?.weight || 0}</td>
     </tr>
   );
 
   return (
-    <>
-      <table className="--tableContainer --card">
+    <div className="--card">
+      <table>
         <thead>
           <tr>
             <th className="--tableHeading">Body Armour</th>
@@ -50,20 +50,20 @@ const BodyArmourCard = ({ helmet, vest, changeHelmet, changeVest }) => {
         handleDispatch={handleDispatch}
       />
       )}
-    </>
+    </div>
   );
 };
 
 BodyArmourCard.propTypes = {
-  helmet: armourShape,
-  vest: armourShape,
+  helmet: PropTypes.string,
+  vest: PropTypes.string,
   changeHelmet: PropTypes.func,
   changeVest: PropTypes.func,
 };
 
 BodyArmourCard.defaultProps = {
-  helmet: { name: 'No Helmet', weight: 0 },
-  vest: { name: 'No Vest', weight: 0 },
+  helmet: 'No Helmet',
+  vest: 'No Vest',
 };
 
 export default BodyArmourCard;

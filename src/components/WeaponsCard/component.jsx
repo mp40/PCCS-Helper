@@ -1,22 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { gunObjShape, grenadeShape } from '../../helpers/proptypeShapes';
-import GearCard from '../GearCard';
-import GearTable from '../GearTable';
+
+import { gunObjShape } from '../../helpers/proptypeShapes';
+
 import WeaponsTableBody from '../WeaponsTableBody';
-import WeaponStatsTable from '../WeaponStatsTable';
-import WeaponsCardSelectModal from '../WeaponsCardSelectModal';
-import WeaponsCardModifyWeapon from '../WeaponsCardModifyWeapon';
+import WeaponsModalSelection from '../WeaponsModalSelection';
+import FirearmModifyModal from './modify_modal';
+
 import GrenadeSelectModal from '../GrenadeSelectModal';
 import SelectLauncherModal from '../SelectLauncherModal';
-import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
-import { calculateWeaponArrayWeight } from '../../helpers/actionHelpers';
 
-import GearModal from '../GearModal';
+import { hydrateFirearmByObject } from '../../data/firearms/hydrate';
 
-import './WeaponsCard.css';
-
-export const getSelectedWeapons = (weaponArray) => (weaponArray === undefined ? [] : weaponArray);
+// mptodo -> functional component
 
 class WeaponsCard extends Component {
   constructor(props) {
@@ -38,14 +34,14 @@ class WeaponsCard extends Component {
     this.setState({ [viewToToggle]: true });
   }
 
-  toggleModifyWeapon = (gunObj) => {
+  toggleModifyWeapon = (firearm) => {
     const { modifyFirearm } = this.state;
-    this.setState({ firearmToModify: gunObj.name });
+    this.setState({ firearmToModify: firearm });
     this.setState({ modifyFirearm: !modifyFirearm });
   }
 
   renderWeaponSelect = () => (
-    <WeaponsCardSelectModal
+    <WeaponsModalSelection
       toggleOffWeaponCardViews={this.toggleOffWeaponCardViews}
     />
   )
@@ -62,65 +58,77 @@ class WeaponsCard extends Component {
     />
   )
 
-  renderModifyFirearm = () => {
-    const { firearms } = this.props;
-    const { firearmToModify } = this.state;
-    const selectedGuns = getSelectedWeapons(firearms);
-    const gunToModify = selectedGuns.filter((gunObj) => gunObj.name === firearmToModify)[0];
-
-    return (
-      <GearModal>
-        <GearCard name="modalCard ModifyWeaponStatTableContainer">
-          <ButtonDeleteX
-            id="closeGunStatView"
-            onClick={() => this.toggleOffWeaponCardViews('modifyFirearm')}
-          />
-          <div>
-            <WeaponStatsTable
-              weapon={gunToModify}
-            />
-            <WeaponsCardModifyWeapon
-              gunObj={gunToModify}
-            />
-          </div>
-        </GearCard>
-      </GearModal>
-    );
-  }
-
   render() {
-    const { firearms, grenades, launchers, removeAllFirearms } = this.props;
-    const { showFirearms, modifyFirearm, showGrenades, showLaunchers } = this.state;
-    const selectedGuns = getSelectedWeapons(firearms);
-    const selectedGrenades = getSelectedWeapons(grenades);
-    const selectedLaunchers = getSelectedWeapons(launchers);
-    const firearmsWeight = calculateWeaponArrayWeight(selectedGuns);
+    const { firearms, grenades, launchers, removeAllWeapons } = this.props;
+    const { showFirearms, modifyFirearm, showGrenades, showLaunchers, firearmToModify } = this.state;
+
+    const gunToModify = firearms.filter((gunObj) => gunObj.name === firearmToModify)[0];
 
     return (
-      <GearCard gearType="weapons" hasButtonFunctions buttonFunctions={[() => this.toggleOnWeaponsCardViews('showFirearms'), () => removeAllFirearms([]), () => this.toggleOnWeaponsCardViews('showGrenades'), () => this.toggleOnWeaponsCardViews('showLaunchers')]}>
-        <GearTable gearHeading="Weapons" totalWeight={Math.round(firearmsWeight * 1000) / 1000}>
-          <WeaponsTableBody
-            selectedGuns={selectedGuns}
-            selectedGrenades={selectedGrenades}
-            selectedLaunchers={selectedLaunchers}
-            toggleOnWeaponsCardViews={this.toggleOnWeaponsCardViews}
-            toggleModifyWeapon={this.toggleModifyWeapon}
-          />
-        </GearTable>
+      <div className="card-standard gear-card">
+        <div>
+
+          <button
+            type="button"
+            className="button--standard"
+            onClick={() => this.toggleOnWeaponsCardViews('showFirearms')}
+          >
+            Add Firearm
+          </button>
+
+          <button
+            type="button"
+            className="button--standard"
+            onClick={() => this.toggleOnWeaponsCardViews('showGrenades')}
+          >
+            Add Grenade
+          </button>
+
+          <button
+            type="button"
+            className="button--standard"
+            onClick={() => this.toggleOnWeaponsCardViews('showLaunchers')}
+          >
+            Add Launcher
+          </button>
+
+          <button
+            type="button"
+            className="button--standard"
+            onClick={() => removeAllWeapons([])}
+          >
+            Clear All
+          </button>
+
+        </div>
+
+        <WeaponsTableBody
+          firearms={firearms}
+          grenades={grenades}
+          launchers={launchers}
+          toggleOnWeaponsCardViews={this.toggleOnWeaponsCardViews}
+          toggleModifyWeapon={this.toggleModifyWeapon}
+        />
+
         {showFirearms && this.renderWeaponSelect()}
-        {modifyFirearm && this.renderModifyFirearm()}
+        {modifyFirearm && (
+          <FirearmModifyModal
+            gunToModify={hydrateFirearmByObject(gunToModify)}
+            toggleOffWeaponCardViews={this.toggleOffWeaponCardViews}
+          />
+        )}
         {showGrenades && this.renderGrenadeSelect()}
         {showLaunchers && this.renderLauncherSelect()}
-      </GearCard>
+      </div>
     );
   }
 }
 
 WeaponsCard.propTypes = {
-  firearms: PropTypes.arrayOf(gunObjShape),
-  grenades: PropTypes.arrayOf(grenadeShape),
-  launchers: PropTypes.arrayOf(PropTypes.object),
-  removeAllFirearms: PropTypes.func.isRequired,
+  firearms: PropTypes.arrayOf(gunObjShape).isRequired,
+  grenades: PropTypes.arrayOf(PropTypes.object).isRequired,
+  launchers: PropTypes.arrayOf(PropTypes.object).isRequired,
+  removeAllWeapons: PropTypes.func.isRequired,
 };
 
 export default WeaponsCard;

@@ -4,6 +4,8 @@ import { gunObjShape } from '../../helpers/proptypeShapes';
 
 import emptyFirearm from '../WeaponStatsTable/emptyFirearm';
 
+import { getLauncherByName } from '../../data/firearms/launchers';
+
 import './FirearmNotes.css';
 
 const renderSpareAmmoNote = (magazine) => {
@@ -31,7 +33,15 @@ const FirearmNotes = ({ gunObj, viewSpareAmmo }) => (
     <div style={{ marginBottom: '0.1cm' }}>
       {gunObj.bipod && <div>Bipod</div>}
       {gunObj.optics && <div>Optics</div>}
-      {gunObj.launcher && <div>Grenade Launcher</div>}
+      {gunObj?.launcher?.attached
+      && (
+      <>
+        <div>{gunObj.launcher.attached}</div>
+        {getLauncherByName(gunObj.launcher.attached).mag.map((m, i) => (
+          <div key={m.class}>{`${m.class} x ${gunObj.launcher.mag[i].qty}`}</div>
+        ))}
+      </>
+)}
       {gunObj.selector && <div>{gunObj.selector}</div>}
     </div>
     {gunObj.modNotes && gunObj.modNotes.map((modification) => renderModificationNotes(modification))}

@@ -1,7 +1,11 @@
-import { returnUpdatedWeightAndFirearms } from '../reducerHelpers';
+import { hydrateFirearmByName } from '../../data/firearms/hydrate';
 
 export const addFirearmReducer = (state, action) => {
-  const newFirearmArray = [...state.gear.firearms, action.payload];
+  const firearm = hydrateFirearmByName(action.payload);
+  firearm.qty = 1;
+  firearm.modNotes = [];
 
-  return returnUpdatedWeightAndFirearms(state, newFirearmArray);
+  return { ...state,
+    currentCharacter: { ...state.currentCharacter,
+      firearms: [...state.currentCharacter.firearms, firearm] } };
 };

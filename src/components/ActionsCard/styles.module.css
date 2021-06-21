@@ -1,0 +1,23 @@
+.wrapper > table {
+  width: 100%;
+}
+
+.movement {
+  font-size: 0.75rem;
+  margin: 0.1rem auto 0;
+}
+
+.movement > span {
+  margin: 0 15px;
+  display: inline-block;
+}
+
+@media screen and (max-width: 800px) {
+  .movement {
+    font-size: 12px;
+  }
+
+  .movement > span {
+    margin: 0 5px;
+  }
+}

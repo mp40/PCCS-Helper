@@ -1,3 +1,3 @@
-import { returnUpdatedHelmet } from '../reducerHelpers';
-
-export const changeHelmetReducer = (state, action) => returnUpdatedHelmet(state, action.payload);
+export const changeHelmetReducer = (state, action) => ({ ...state,
+  currentCharacter: { ...state.currentCharacter,
+    helmet: action.payload } });

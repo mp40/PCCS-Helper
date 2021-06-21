@@ -1,33 +1,12 @@
-const { calculateStateObject } = require('../helpers/helperFunctions');
-
 export const selectCurrentView = (view) => ({
   type: 'VIEW_SELECTED',
   payload: view,
 });
 
-export const updateCombatStats = (attributeObj, weight) => {
-  const newCombatData = calculateStateObject(attributeObj, weight);
-  return {
-    type: 'UPDATE_ALL_COMBAT_STATS',
-    payload: newCombatData,
-  };
-};
-
-export const updateWeight = (newWeight, attributeObj) => (dispatch) => {
-  dispatch({
-    type: 'TOTAL_WEIGHT',
-    payload: newWeight,
-  });
-  dispatch(updateCombatStats(attributeObj, newWeight));
-};
-
-export const updateAttributes = (attributeObj, weight) => (dispatch) => {
-  dispatch({
-    type: 'UPDATE_ATTRIBUTES',
-    payload: attributeObj,
-  });
-  dispatch(updateCombatStats(attributeObj, weight));
-};
+export const viewCreateCharacter = () => ({
+  type: 'CREATE_CHARACTER_VIEWED',
+  payload: 'createChar',
+});
 
 export const modifyGunCombatLevel = (newGunCombatLevel) => ({
   type: 'GUN_COMBAT_LEVEL_UPDATED',
@@ -104,8 +83,8 @@ export const removeFirearm = (firearm) => ({
   payload: firearm,
 });
 
-export const removeAllFirearms = (emptyArray) => ({
-  type: 'ALL_FIREARMS_REMOVED',
+export const removeAllWeapons = (emptyArray) => ({
+  type: 'ALL_WEAPONS_REMOVED',
   payload: emptyArray,
 });
 
@@ -227,4 +206,54 @@ export const increaseLauncherAmmo = (launcherAndAmmoType) => ({
 export const decreaseLauncherAmmo = (launcherAndAmmoType) => ({
   type: 'LAUNCHER_AMMO_QTY_DECREASED',
   payload: launcherAndAmmoType,
+});
+
+export const updateOptic = (firearmAndOptic) => ({
+  type: 'OPTIC_UPDATED',
+  payload: firearmAndOptic,
+});
+
+export const removeOptic = (firearm) => ({
+  type: 'OPTIC_REMOVED',
+  payload: firearm,
+});
+
+export const updateUnderslungLauncher = (firearmAndLauncher) => ({
+  type: 'UNDERSLUNG_LAUNCHER_UPDATED',
+  payload: firearmAndLauncher,
+});
+
+export const removeUnderslungLauncher = (firearm) => ({
+  type: 'UNDERSLUNG_LAUNCHER_REMOVED',
+  payload: firearm,
+});
+
+export const increaseUnderslungLauncherAmmo = (launcherAndAmmoIndex) => ({
+  type: 'UNDERSLUNG_LAUNCHER_AMMO_QTY_INCREASED',
+  payload: launcherAndAmmoIndex,
+});
+
+export const decreaseUnderslungLauncherAmmo = (launcherAndAmmoIndex) => ({
+  type: 'UNDERSLUNG_LAUNCHER_AMMO_QTY_DECREASED',
+  payload: launcherAndAmmoIndex,
+});
+
+export const updateSavedCharacters = (characters) => ({
+  type: 'CHARACTERS_UPDATED',
+  payload: characters,
+});
+
+export const addSavedCharacter = (character) => ({
+  type: 'CHARACTER_ADDED',
+  payload: character,
+});
+
+export const updateSavedCharacter = (character) => ({
+  type: 'CHARACTER_UPDATED',
+  payload: character,
+});
+
+export const hydrateCurrentCharacter = (character) => ({
+  type: 'CURRENT_CHARACTER_HYDRATED',
+  payload: character,
 });

@@ -1,7 +1,9 @@
-import { removeObjectFromArray } from '../../helpers/actionHelpers';
-import { returnUpdatedWeightAndGrenades } from '../reducerHelpers';
+export const removeGrenadeReducer = (state, action) => {
+  const grenadeToRemove = action.payload;
 
-export const removeGrenadeReducer = (state, action) => returnUpdatedWeightAndGrenades(
-  state,
-  removeObjectFromArray(state.gear.grenades, action.payload),
-);
+  const newGrenades = state.currentCharacter.grenades.filter((grenade) => grenade.name !== grenadeToRemove);
+
+  return { ...state,
+    currentCharacter: { ...state.currentCharacter,
+      grenades: newGrenades } };
+};

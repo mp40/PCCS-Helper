@@ -6,9 +6,8 @@ import { removeEquipment,
   decreaseEquipmentQty } from '../../actions';
 
 const mapStateToProps = (state) => ({
-  equipment: state.gear.equipment,
+  equipment: state.currentCharacter.equipment,
 });
-
 
 export default connect(mapStateToProps, {
   removeEquipment,

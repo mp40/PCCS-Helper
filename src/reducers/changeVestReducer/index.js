@@ -1,3 +1,3 @@
-import { returnUpdatedVest } from '../reducerHelpers';
-
-export const changeVestReducer = (state, action) => returnUpdatedVest(state, action.payload);
+export const changeVestReducer = (state, action) => ({ ...state,
+  currentCharacter: { ...state.currentCharacter,
+    vest: action.payload } });

@@ -1,3 +1,29 @@
+:root {
+  --panzer-grey: #383e42;
+  --usaf-light-grey: #c6c5ca;
+  --light-grey: #edf2f8;
+  --insignia-white: #f8f9f3;
+  --golden-olive: #78923b;
+  --white-grey: #eef1ec;
+  --ivory: #eff1d9;
+  --offwhite: #efeee2;
+  --morrow-white: #fefbfd;
+  --luftwaffe-green: #596b3f;
+  --scorpion-green: #48b851;
+  --fluorescent-green: #b6d81a;
+  --german-yellow: #e8e589;
+  --iraqi-sand: #b89972;
+  --khaki: #969163;
+  --green-ochre: #a98969;
+  --khaki-grey: #8b7f5d;
+  --london-grey: #4a555e;
+  --medium-sea-grey: #869393;
+  --basalt-grey: #576860;
+  --silver-grey: #d8dfd5;
+  --stone-grey: #959980;
+  --olive-grey: #39584f;
+}
+
 body {
   margin: 0;
   padding: 0;

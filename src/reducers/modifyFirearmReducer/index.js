@@ -1,17 +1,17 @@
-import { returnUpdatedWeightAndFirearms } from '../reducerHelpers';
-
-const insertNewModification = (modificationArray = [], note) => [...modificationArray, note];
-
 export const modifyFirearmReducer = (state, action) => {
-  const newFirearmArray = state.gear.firearms.map((element) => {
-    if (element.name === action.payload.firearm) {
-      const modifiedFirearm = element;
-      modifiedFirearm.weight += action.payload.modNote.weightMod;
-      modifiedFirearm.modNotes = insertNewModification(modifiedFirearm.modNotes, action.payload.modNote);
-      return modifiedFirearm;
+  const { firearm, modNote } = action.payload;
+
+  const newFirearmsArray = state.currentCharacter.firearms.map((gun) => {
+    if (gun.name === firearm) {
+      let updatedMods = gun.modNotes || [];
+      updatedMods = [...updatedMods, modNote];
+
+      return { ...gun, modNotes: updatedMods };
     }
-    return element;
+    return gun;
   });
 
-  return returnUpdatedWeightAndFirearms(state, newFirearmArray);
+  return { ...state,
+    currentCharacter: { ...state.currentCharacter,
+      firearms: newFirearmsArray } };
 };

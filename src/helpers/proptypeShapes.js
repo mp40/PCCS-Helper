@@ -24,7 +24,7 @@ export const gunObjShape = PropTypes.shape({
   length: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   weight: PropTypes.number,
   rt: PropTypes.number,
-  rof: PropTypes.string,
+  rof: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   mag: PropTypes.array,
   kd: PropTypes.number,
   sab: PropTypes.number,
@@ -38,7 +38,7 @@ export const gunObjShape = PropTypes.shape({
 
 export const grenadeShape = PropTypes.shape({
   name: PropTypes.string.isRequired,
-  qty: PropTypes.number.isRequired,
+  qty: PropTypes.number,
   length: PropTypes.number.isRequired,
   weight: PropTypes.number.isRequired,
   at: PropTypes.oneOfType([
@@ -89,13 +89,26 @@ export const armourShape = PropTypes.shape({
   tags: PropTypes.arrayOf(PropTypes.string),
 });
 
-export const gearRowShape = PropTypes.shape({
-  type: PropTypes.string.isRequired,
-  remove: PropTypes.func.isRequired,
-  up: PropTypes.func.isRequired,
-  down: PropTypes.func.isRequired,
-  modify: PropTypes.func,
-  magUp: PropTypes.func,
-  magDown: PropTypes.func,
-  array: PropTypes.arrayOf(PropTypes.object).isRequired,
+export const currentCharacterShape = PropTypes.shape({
+  name: PropTypes.string.isRequired,
+  str: PropTypes.number.isRequired,
+  int: PropTypes.number.isRequired,
+  hlt: PropTypes.number.isRequired,
+  wil: PropTypes.number.isRequired,
+  agi: PropTypes.number.isRequired,
+  gunLevel: PropTypes.number.isRequired,
+  handLevel: PropTypes.number.isRequired,
+  uniform: PropTypes.string.isRequired,
+  equipment: PropTypes.arrayOf(PropTypes.object),
+  firearms: PropTypes.arrayOf(gunObjShape),
+  grenades: PropTypes.arrayOf(PropTypes.object),
+  launchers: PropTypes.arrayOf(launcherShape),
+  helmet: armourShape,
+  vest: armourShape,
+});
+
+export const opticsShape = PropTypes.shape({
+  restrictedTo: PropTypes.arrayOf(PropTypes.string),
+  ableToAttach: PropTypes.arrayOf(PropTypes.string),
+  attached: PropTypes.string,
 });

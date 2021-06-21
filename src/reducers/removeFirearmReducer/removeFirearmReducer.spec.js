@@ -1,21 +1,38 @@
 import { removeFirearmReducer } from './index';
 import { MockState } from '../mockState';
-import { AddedTwoM1911A1AndOneM16, AddedM16 } from '../testResouces';
-import { testM1911A1, testM16 } from '../../helpers/testHelpers';
+
+const m1911 = {
+  name: 'M1911A1',
+  qty: 1,
+  mag: [{ type: 'Mag', weight: 0.7, cap: 7, qty: 0 }],
+};
+
+const m16 = {
+  name: 'M16',
+  qty: 1,
+  mag: [{ type: 'Mag', weight: 0.7, cap: 20, qty: 0 }, { type: 'Mag', weight: 1, cap: 30, qty: 0 }],
+};
 
 describe('removeFirearmReducer function', () => {
-  const characterWithM16 = new AddedM16();
-  characterWithM16.currentView = 'crateChar';
-  const characterwithTwoM1911A1andOneM16 = new AddedTwoM1911A1AndOneM16();
-  characterwithTwoM1911A1andOneM16.currentView = 'createChar';
+  let state = new MockState();
+
   it('should return correct values when a gun removed from list', () => {
-    const action = { payload: testM16() };
-    const newState = removeFirearmReducer(characterWithM16, action);
-    expect(newState.gear).toMatchObject(new MockState().gear);
-  });
-  it('should return correct values when firearm removed from list with more than one type of gun', () => {
-    const action = { payload: testM1911A1() };
-    const newState = removeFirearmReducer(characterwithTwoM1911A1andOneM16, action);
-    expect(newState).toMatchObject(new AddedM16());
+    state = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        firearms: [m1911, m16],
+      } };
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        firearms: [m1911],
+      } };
+
+    const action = { payload: 'M16' };
+
+    state = removeFirearmReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
 });

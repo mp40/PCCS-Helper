@@ -1,0 +1,35 @@
+.card {
+  z-index: 101;
+  position: fixed;
+  top: 4.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 60px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card > button {
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 0 1px 1px var(--london-grey);
+  width: calc(33% - 4px);
+  height: 2.25rem;
+  font-size: 1rem;
+  color: var(--panzer-grey);
+  background-color: var(--light-grey);
+}
+
+.card > button:nth-of-type(3n + 2) {
+  margin: 0 4px;
+}
+
+.card > button:nth-of-type(n + 4) {
+  margin-top: 4px;
+}
+
+.selected {
+  box-shadow: 0 0 1px 1px var(--golden-olive) !important;
+  background-color: var(--ivory) !important;
+}

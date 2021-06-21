@@ -1,22 +1,18 @@
 export const replaceMagazineReducer = (state, action) => {
-  const updatedFirearmsArray = state.gear.firearms.map((element) => {
-    const gun = element;
-    if (gun.name === action.payload.firearm) {
-      gun.mag.map((ele) => {
-        const mag = ele;
-        if (
-          mag.removed === true
-        && mag.cap === action.payload.magazine.cap
-        && mag.weight === action.payload.magazine.weight
-        ) {
-          mag.removed = false;
-        }
-        return mag;
-      });
+  const { firearmToUpdate, magazineIndex } = action.payload;
+
+  const newFirearmsArray = state.currentCharacter.firearms.map((gun) => {
+    if (gun.name === firearmToUpdate) {
+      const updatedMag = [...gun.mag];
+      delete updatedMag[magazineIndex].removed;
+
+      return { ...gun, mag: updatedMag };
     }
+
     return gun;
   });
+
   return { ...state,
-    gear: { ...state.gear,
-      firearms: updatedFirearmsArray } };
+    currentCharacter: { ...state.currentCharacter,
+      firearms: newFirearmsArray } };
 };

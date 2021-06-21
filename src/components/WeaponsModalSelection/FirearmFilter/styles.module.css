@@ -1,0 +1,99 @@
+.card {
+  position: fixed;
+  padding: 0.55rem 2rem 0.75rem;
+  z-index: 101;
+  background-color: whitesmoke;
+  border-radius: 3px;
+  position: fixed;
+  z-index: 100;
+  top: -2px;
+  right: 2px;
+}
+
+.header {
+  margin-bottom: 0.25rem;
+  background-color: var(--panzer-grey);
+  color: whitesmoke;
+  display: flex;
+  padding: 0.25rem;
+  justify-content: space-between;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.close:before {
+  content: "\f00d";
+  font-family: FontAwesome;
+  text-decoration: inherit;
+  color: whitesmoke;
+  font-size: 1rem;
+}
+
+.close {
+  border: none;
+  border-radius: 3px;
+  background-color: transparent;
+  float: right;
+}
+
+.close:hover {
+  box-shadow: 0px 0px 1.25px 1.25px whitesmoke;
+}
+
+.close:active {
+  box-shadow: 0px 0px 1px 1px whitesmoke;
+  opacity: 0.9;
+}
+
+.body {
+  display: flex;
+}
+
+.body > div {
+  font-size: medium;
+  text-align: center;
+}
+
+.body > div:nth-of-type(2) {
+  margin-left: 1.25rem;
+}
+
+.body > div > div:nth-of-type(n + 2) {
+  display: flex;
+  justify-content: space-between;
+  font-size: small;
+  margin-top: 0.2rem;
+}
+
+.body > div:last-of-type > div:last-of-type > span::first-letter {
+  text-transform: capitalize;
+}
+
+
+@media screen and (max-width: 1024px) {
+  .card {
+    bottom: 0 !important;
+    left: unset;
+    right:0;
+    transform: translate(-14px, -100%);
+    height: fit-content;
+    z-index: 111;
+    padding: 0.25rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .card {
+    padding: 2px;
+    left: unset;
+    left: 0;
+    transform: translate(0,-100%);
+    min-width: unset;
+    min-height: unset;
+    width: fit-content;
+    font-size: .61rem;
+    margin-top: 13px;
+  }
+
+}

@@ -1,0 +1,39 @@
+.wrapper > div:first-of-type {
+  font-weight: 600;
+}
+
+.close:before {
+  content: "\f00d";
+  font-family: FontAwesome;
+  text-decoration: inherit;
+  color: var(--panzer-grey);
+  font-size: 1rem;
+}
+
+.close {
+  border: none;
+  border-radius: 3px;
+  background-color: transparent;
+  /* float: right; */
+}
+
+.close:hover {
+  box-shadow: 0px 0px 1.25px 1.25px var(--panzer-grey);
+}
+
+.close:active {
+  box-shadow: 0px 0px 1px 1px var(--panzer-grey);
+  opacity: 0.9;
+}
+
+.entry {
+  display: flex;
+  justify-content: space-between;
+}
+
+.entry > div {
+display: flex;
+justify-content: space-between;
+width: calc(100% - 1.75rem);
+font-weight: 400;
+}

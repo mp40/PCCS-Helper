@@ -1,16 +1,34 @@
 import { changeUniformReducer } from './index';
 import { MockState } from '../mockState';
-import { TropicalUniform, NormalUniformAndGear, WinterUniform } from './testResources';
 
 describe('changeUniformReducer function', () => {
-  it('should return correct values when change from Normal to Tropical unifrom', () => {
+  let state = new MockState();
+
+  it('should update to Tropical uniform', () => {
     const action = { payload: 'Tropical' };
-    const newState = changeUniformReducer(new MockState(), action);
-    expect(newState).toMatchObject(new TropicalUniform());
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        uniform: 'Tropical',
+      } };
+
+    state = changeUniformReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
-  it('should return correct values when changing unifrom triggers combat action changes', () => {
+
+  it('should update to Winter uniform', () => {
     const action = { payload: 'Winter' };
-    const newState = changeUniformReducer(new NormalUniformAndGear(), action);
-    expect(newState).toMatchObject(new WinterUniform());
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        uniform: 'Winter',
+      } };
+
+    state = changeUniformReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
 });

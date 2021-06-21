@@ -1,70 +1,63 @@
-.WeaponStatsContainer > div:first-of-type {
-    padding-top: 1rem;
-    margin-top: 1rem;
-    font-weight: bold;
-    text-align: left;
-}
-
 .WeaponStatTable {
-    border: 1px solid rgb(85, 83, 83);
-    border-collapse: collapse;
+  border: 1px solid rgb(85, 83, 83);
+  border-collapse: collapse;
 }
 
 .WeaponStatHeader {
-    border-bottom: 1px solid rgb(85, 83, 83);
+  border-bottom: 1px solid rgb(85, 83, 83);
 }
 
 .WeaponStatHeader > th:nth-of-type(-n + 2) {
-    width: 5rem;
+  width: 5rem;
 }
 
 .WeaponStatHeader > th:nth-of-type(3),
 .WeaponStatHeader > th:nth-of-type(4) {
-    width: 2.5rem;
+  width: 2.5rem;
 }
 
 .WeaponStatHeader > th:nth-of-type(n + 5) {
-    width: 2rem;
+  width: 2rem;
 }
 
 .gunTableLine > td:first-of-type > span:first-of-type {
-    margin-left: .4rem;
+  margin-left: 0.4rem;
 }
 
 .gunTableLine > td:first-of-type > span:last-of-type {
-    margin-right: .4rem;
-    float: right;
+  margin-right: 0.4rem;
+  float: right;
 }
 
 .gunTableLine > td:nth-of-type(2) {
-    border-left: 1px solid rgb(85, 83, 83);
-    border-right: 1px solid rgb(85, 83, 83);
+  border-left: 1px solid rgb(85, 83, 83);
+  border-right: 1px solid rgb(85, 83, 83);
 }
 
 .gunTableLine > td:nth-of-type(2) > span:first-of-type {
-    margin-left: .9rem;
+  margin-left: 0.9rem;
 }
 
 .gunTableLine > td:nth-of-type(2) > span:last-of-type {
-    margin-right: .9rem;
-    float: right;
+  margin-right: 0.9rem;
+  float: right;
 }
 
 .gunTableLine > td:nth-of-type(3),
 .gunTableLine > td:nth-of-type(4) {
-    padding-left: .2rem;
+  padding-left: 0.2rem;
 }
 
-.gunTableLine > td:nth-of-type(n+5) {
-    text-align: center;
+.gunTableLine > td:nth-of-type(n + 5) {
+  text-align: center;
 }
 
 .launchers * tbody {
-    font-size: 0.8rem;
+  font-size: 0.8rem;
 }
 
-.launchers * tbody > tr > td:nth-of-type(9){
-    text-align: left;
-    padding-left: 3px;
-    border-left: 1px solid rgb(85, 83, 83);
+.launchers * tbody > tr > td:nth-of-type(9) {
+  text-align: left;
+  padding-left: 3px;
+  border-left: 1px solid rgb(85, 83, 83);
 }

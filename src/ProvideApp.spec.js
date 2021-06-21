@@ -1,11 +1,10 @@
 import ReactDOM from 'react-dom';
-import thunk from 'redux-thunk';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore } from 'redux';
 import ProvideApp from './ProvideApp';
 import reducers from './reducers';
 import { initialStore } from './helpers/initialStore';
 
-const store = createStore(reducers, initialStore, applyMiddleware(thunk));
+const store = createStore(reducers, initialStore);
 
 describe('Provide App', () => {
   it('should render App with a Provider', () => {

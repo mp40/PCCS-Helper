@@ -1,104 +1,103 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import GearCard from '../GearCard';
-import GearTable from '../GearTable';
-import GearRow from '../GearRow';
-import EquipmentDropdown from '../EquipmentDropdown';
-import CustomEquipmentModal from '../CustomEquipmentModal';
-import { findEquipmentWeight } from '../../helpers/actionHelpers';
-import { toggleTagsInList } from '../../helpers/equipmentListFunctions';
 
-import './EquipmentCard.css';
+import EquipmentCardTable from './table';
 
-class EquipmentCard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showEquipment: false,
-      showCustomInput: false,
-      showFilters: false,
-      filteredTags: [],
-    };
-  }
+import SelectEquipment from './select';
+import EquipmentFilter from './filter';
+import CustomEquipment from './custom';
 
-  toggleOffEquipmentCardViews = (viewToToggle) => {
-    this.setState({ [viewToToggle]: false });
-  }
+import { toggleTagsInList } from './data';
 
-  toggleOnEquipmentCardViews = (viewToToggle) => {
-    this.setState({ [viewToToggle]: true });
-  }
+const EquipmentCard = ({
+  removeAllEquipment,
+  equipment,
+}) => {
+  const [showEquipment, setShowEquipment] = useState(false);
+  const [showCustomInput, setShowCustomInput] = useState(false);
+  const [showFilters, setShowFilters] = useState(false);
+  const [filteredTags, setFilteredTags] = useState([]);
 
-  toggleFilters = () => {
-    const { showFilters } = this.state;
-    this.setState({ showFilters: !showFilters });
-  }
+  const handleSetShowEquipment = () => {
+    setShowEquipment(!showEquipment);
+  };
 
-  closeShowEquipment = () => {
-    this.setState({
-      showEquipment: false,
-      showFilters: false,
-    });
-  }
+  const handleSetShowCustomInput = () => {
+    setShowCustomInput(!showCustomInput);
+  };
 
-  handleTags = (tag) => {
-    const { filteredTags } = this.state;
-    this.setState({ filteredTags: toggleTagsInList(filteredTags, tag) });
-  }
+  const handleSetShowFilters = () => {
+    setShowFilters(!showFilters);
+  };
 
-  renderEquipmentDropdown = () => {
-    const { showEquipment, showFilters, filteredTags } = this.state;
-    return showEquipment
+  const handleTags = (tag) => {
+    setFilteredTags(toggleTagsInList(filteredTags, tag));
+  };
+
+  const handleRemoveAllTags = () => {
+    setFilteredTags([]);
+  };
+
+  const renderEquipmentModal = () => showEquipment
     && (
-    <EquipmentDropdown
-      closeShowEquipment={this.closeShowEquipment}
-      toggleFilters={this.toggleFilters}
-      handleTags={this.handleTags}
-      showFilters={showFilters}
+    <SelectEquipment
+      equipment={equipment}
+      handleSetShowEquipment={handleSetShowEquipment}
+      handleSetShowFilters={handleSetShowFilters}
+      handleRemoveAllTags={handleRemoveAllTags}
       filteredTags={filteredTags}
     />
     );
-  }
 
-  renderCustomEquipmentModal = () => {
-    const { showCustomInput } = this.state;
-    return showCustomInput
+  const renderCustomEquipmentModal = () => showCustomInput
       && (
-        <CustomEquipmentModal
-          toggleOffEquipmentCardViews={this.toggleOffEquipmentCardViews}
+        <CustomEquipment
+          equipment={equipment}
+          handleSetShowCustomInput={handleSetShowCustomInput}
         />
       );
-  }
 
-  renderTableBody = () => {
-    const { equipment, removeEquipment, increaseEquipmentQty, decreaseEquipmentQty } = this.props;
-    return (
-      <tbody>
-        <GearRow gear={{ type: 'Equipment', remove: removeEquipment, up: increaseEquipmentQty, down: decreaseEquipmentQty, array: equipment }} />
-      </tbody>
-    );
-  }
-
-  render() {
-    const { equipment, removeAllEquipment } = this.props;
-    const totalEquipWeight = findEquipmentWeight(equipment);
-    return (
-      <GearCard gearType="equipment" hasButtonFunctions buttonFunctions={[() => this.toggleOnEquipmentCardViews('showEquipment'), () => this.toggleOnEquipmentCardViews('showCustomInput'), () => removeAllEquipment([])]}>
-        <GearTable gearHeading="Equipment" totalWeight={Math.round(totalEquipWeight * 1000) / 1000}>
-          {this.renderTableBody()}
-        </GearTable>
-        {this.renderEquipmentDropdown()}
-        {this.renderCustomEquipmentModal()}
-      </GearCard>
-    );
-  }
-}
+  return (
+    <div className="--card gear-card">
+      <div>
+        <button
+          type="button"
+          className="--button"
+          onClick={() => handleSetShowEquipment()}
+        >
+          Add Equipment
+        </button>
+        <button
+          type="button"
+          className="--button"
+          onClick={() => handleSetShowCustomInput()}
+        >
+          Add Custom
+        </button>
+        <button
+          type="button"
+          className="--button"
+          onClick={() => removeAllEquipment([])}
+        >
+          Clear All
+        </button>
+      </div>
+      <EquipmentCardTable equipment={equipment} />
+      {renderEquipmentModal()}
+      {renderCustomEquipmentModal()}
+      {showFilters && (
+      <EquipmentFilter
+        filteredTags={filteredTags}
+        handleTags={handleTags}
+        handleSetShowFilters={handleSetShowFilters}
+      />
+      )}
+    </div>
+  );
+};
 
 EquipmentCard.propTypes = {
-  decreaseEquipmentQty: PropTypes.func,
-  increaseEquipmentQty: PropTypes.func,
   removeAllEquipment: PropTypes.func,
-  removeEquipment: PropTypes.func,
   equipment: PropTypes.arrayOf(PropTypes.object),
 };
 

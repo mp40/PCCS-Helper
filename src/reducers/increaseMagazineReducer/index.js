@@ -1,14 +1,18 @@
-import { modifyObjectQtyInArray } from '../../helpers/actionHelpers';
-import { returnUpdatedWeightAndFirearms, increaseLauncherAmmo } from '../reducerHelpers';
-
 export const increaseMagazineReducer = (state, action) => {
-  const newGunObj = action.payload.weapon;
+  const { firearmToModify, magazineIndex } = action.payload;
 
-  newGunObj.mag = action.payload.magazine.class
-    ? increaseLauncherAmmo(newGunObj.mag, action.payload.magazine.class)
-    : modifyObjectQtyInArray(newGunObj.mag, action.payload.magazine, 1);
+  const newFirearms = state.currentCharacter.firearms.map((gun) => {
+    if (firearmToModify === gun.name) {
+      const updatedMag = [...gun.mag];
+      updatedMag[magazineIndex].qty += 1;
 
-  const newFirearmArray = modifyObjectQtyInArray(state.gear.firearms, newGunObj);
+      return { ...gun, mag: updatedMag };
+    }
 
-  return returnUpdatedWeightAndFirearms(state, newFirearmArray);
+    return gun;
+  });
+
+  return { ...state,
+    currentCharacter: { ...state.currentCharacter,
+      firearms: newFirearms } };
 };

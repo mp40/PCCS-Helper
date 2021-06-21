@@ -1,33 +1,74 @@
-import { removeMagazineReducer, filterOutCustom } from './index';
-import { AddedM1911A1AndM16 } from '../testResouces';
-import { testM16, testM1911A1 } from '../../helpers/testHelpers';
+import { MockState } from '../mockState';
+import { removeMagazineReducer } from './index';
 
-const characterWithM1911AndM16WithSpareMags = () => {
-  const character = new AddedM1911A1AndM16();
-  character.gear.firearms[1].mag[1].qty = 2;
-  character.totalWeight += 2;
-  return character;
+const m1911 = {
+  name: 'M1911A1',
+  qty: 1,
+  mag: [{ type: 'Mag', weight: 0.7, cap: 7, qty: 0 }],
 };
 
-const characterWithM1911AndM16WithCustomMags = () => {
-  const character = characterWithM1911AndM16WithSpareMags();
-  character.gear.firearms[1].mag[1].custom = true;
-  return character;
+const m1911WithCustomMag = {
+  name: 'M1911A1',
+  qty: 1,
+  mag: [{ type: 'Mag', weight: 0.7, cap: 7, qty: 0 }, { type: 'Mag', weight: 1, cap: 10, qty: 0, custom: true }],
+};
+
+const m16WithSpareMags = {
+  name: 'M16',
+  qty: 1,
+  mag: [{ type: 'Mag', weight: 0.7, cap: 20, qty: 1 }, { type: 'Mag', weight: 1, cap: 30, qty: 2 }],
+};
+
+const m16WithRemovedMag = {
+  name: 'M16',
+  qty: 1,
+  mag: [{ type: 'Mag', weight: 0.7, cap: 20, qty: 1 }, { type: 'Mag', weight: 1, cap: 30, qty: 0, removed: true }],
 };
 
 describe('removeMagazineReducer', () => {
-  it('should set selected magazine for selected firearm to 0 and mark as removed', () => {
-    const action = { payload: { firearm: 'M16', magazine: { type: 'Mag', weight: 1, cap: 30, qty: 2 } } };
-    const newState = removeMagazineReducer(characterWithM1911AndM16WithSpareMags(), action);
-    expect(newState).toMatchObject(new AddedM1911A1AndM16());
-    expect(newState.totalWeight).toBe(5 + testM1911A1().weight + testM16().weight);
-    expect(newState.gear.firearms[1].mag[1].qty).toBe(0);
-    expect(newState.gear.firearms[1].mag[1].removed).toBe(true);
-    expect(newState.gear.firearms[1].mag.length).toBe(2);
+  it('should set standard magazine for selected firearm to 0 and mark as removed', () => {
+    let state = new MockState();
+
+    state = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        firearms: [m1911, m16WithSpareMags],
+      } };
+
+    const action = { payload: { firearmToUpdate: 'M16', magazineIndex: 1 } };
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        firearms: [m1911, m16WithRemovedMag],
+      } };
+
+    state = removeMagazineReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
+    expect(state.currentCharacter.firearms[1].mag[1].removed).toBe(true);
   });
+
   it('should delete custom magazines from the firearm', () => {
-    const action = { payload: { firearm: 'M16', magazine: { type: 'Mag', weight: 1, cap: 30, qty: 2, custom: true } } };
-    const newState = removeMagazineReducer(characterWithM1911AndM16WithCustomMags(), action);
-    expect(newState.gear.firearms[1].mag.length).toBe(1);
+    let state = new MockState();
+
+    state = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        firearms: [m1911WithCustomMag, m16WithSpareMags],
+      } };
+
+    const action = { payload: { firearmToUpdate: 'M1911A1', magazineIndex: 1 } };
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        firearms: [m1911, m16WithSpareMags],
+      } };
+
+    state = removeMagazineReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
+    expect(state.currentCharacter.firearms[0].mag.length).toBe(1);
   });
 });

@@ -1,16 +1,58 @@
 import { removeEquipmentReducer } from './index';
 import { MockState } from '../mockState';
-import { AddedEquipment, AddedEquipmentAgain, Equipment, OtherEquipment } from '../testResouces';
+
+const mockEquipment = {
+  name: 'testEquipment',
+  weight: 1.53,
+  qty: 1,
+};
+
+const mockOtherEquipment = {
+  name: 'otherEquipment',
+  weight: 2.47,
+  qty: 1,
+};
 
 describe('removeEquipmentReducer function', () => {
+  let state = new MockState();
+
   it('should return correct values when equipment removed from list', () => {
-    const action = { payload: new Equipment() };
-    const newState = removeEquipmentReducer(new AddedEquipment(), action);
-    expect(newState).toMatchObject(new MockState());
+    state = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        equipment: [mockEquipment],
+      } };
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        equipment: [],
+      } };
+
+    const action = { payload: 'testEquipment' };
+
+    state = removeEquipmentReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
+
   it('should return correct values when equipment removed from list with more than one equipment type', () => {
-    const action = { payload: new OtherEquipment() };
-    const newState = removeEquipmentReducer(new AddedEquipmentAgain(), action);
-    expect(newState).toMatchObject(new AddedEquipment());
+    state = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        equipment: [mockEquipment, mockOtherEquipment],
+      } };
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        equipment: [mockEquipment],
+      } };
+
+    const action = { payload: 'otherEquipment' };
+
+    state = removeEquipmentReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
 });

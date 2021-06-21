@@ -1,7 +1,8 @@
-export const launchers = () => [
-  {
+export const launcherList = Object.freeze({
+  Armbrust: {
     name: 'Armbrust',
     list: 'launchers',
+    calibre: '67mm',
     qty: 1,
     length: 34,
     weight: 16,
@@ -49,10 +50,12 @@ export const launchers = () => [
     aoi: ['', '', '', 1],
     ba: [12, -1, -10, -20],
     tof: [4, 10, 21, 50],
+    offical: true,
   },
-  {
+  'Armscor 6': {
     name: 'Armscor 6',
     list: 'launchers',
+    calibre: '40mm',
     qty: 1,
     length: '22/31',
     weight: 15,
@@ -100,10 +103,12 @@ export const launchers = () => [
     aoi: ['', 1, 4, ''],
     ba: [23, 10, 1, ''],
     tof: [11, 33, 80, ''],
+    offical: true,
   },
-  {
+  'HK 69A1': {
     name: 'HK 69A1',
     list: 'launchers',
+    calibre: '40mm',
     qty: 1,
     length: '18/27',
     weight: 4.1,
@@ -151,10 +156,12 @@ export const launchers = () => [
     aoi: ['', 1, 4, ''],
     ba: [23, 10, 1, ''],
     tof: [11, 33, 80, ''],
+    offical: true,
   },
-  {
+  M79: {
     name: 'M79',
     list: 'launchers',
+    calibre: '40mm',
     qty: 1,
     length: 29,
     weight: 6.5,
@@ -202,10 +209,12 @@ export const launchers = () => [
     aoi: ['', 1, 4, ''],
     ba: [23, 10, 1, ''],
     tof: [11, 33, 80, ''],
+    offical: true,
   },
-  {
+  'M72 A2 LAW': {
     name: 'M72 A2 LAW',
     list: 'launchers',
+    calibre: '66mm',
     qty: 1,
     length: '26/35',
     weight: 5.2,
@@ -239,10 +248,12 @@ export const launchers = () => [
     aoi: ['', '', 1, 1],
     ba: [11, -1, -11, -20],
     tof: [5, 14, 32, 75],
+    offical: true,
   },
-  {
+  'LAW 80': {
     name: 'LAW 80',
     list: 'launchers',
+    calibre: '94mm',
     qty: 1,
     length: '39/59',
     weight: 21.2,
@@ -276,10 +287,12 @@ export const launchers = () => [
     aoi: ['', '', 1, 1],
     ba: [11, -1, -11, -20],
     tof: [5, 14, 32, 75],
+    offical: true,
   },
-  {
+  'PZF 44 2A1 Lanze': {
     name: 'PZF 44 2A1 Lanze',
     list: 'launchers',
+    calibre: '66mm',
     qty: 1,
     length: '35/46',
     weight: 22.7,
@@ -327,10 +340,51 @@ export const launchers = () => [
     aoi: ['', '', '', 1],
     ba: [14, 2, -7, -17],
     tof: [4, 9, 20, 45],
+    offical: true,
   },
-  {
+  'RGM-40': {
+    name: 'RGM-40',
+    list: 'launchers',
+    calibre: '30mm',
+    qty: 1,
+    length: '14/24',
+    weight: 5.5,
+    rt: 10,
+    rof: '-',
+    mag: [{ type: 'Rnd', class: 'HE', weight: 0.56, cap: 1, qty: 0 }],
+    mr: 200,
+    sab: 11,
+    aim: {
+      ac: [1, 2, 3, 4, 5, 6, 7],
+      mod: [-19, -10, -8, -6, -5, -4, -3],
+    },
+    projectiles: [
+      {
+        type: 'HE',
+        data: 'ballistic',
+        pen: [2.5, 2.5, 2.5, ''],
+        dc: [10, 10, 10, ''],
+      },
+    ],
+    explosive: [
+      {
+        type: 'HE',
+        data: 'explosive',
+        pen: [2.4, 2.2, 1.8, 1.5, 1.0, 0.4],
+        dc: [2, 2, 2, 2, 1, 1],
+        bshc: ['*2', 58, 14, 6, 1, -2],
+        bc: [250, 74, 23, 12, 5, 1],
+      },
+    ],
+    aoi: ['', 1, 4, ''],
+    ba: [23, 5, -4, ''],
+    tof: [11, 35, 81, ''],
+    offical: false,
+  },
+  'RPG 7V': {
     name: 'RPG 7V',
     list: 'launchers',
+    calibre: '85mm',
     qty: 1,
     length: '39/54',
     weight: 20.4,
@@ -378,10 +432,12 @@ export const launchers = () => [
     aoi: ['', '', '', ''],
     ba: [15, 4, -6, -15],
     tof: [2, 6, 14, 30],
+    offical: true,
   },
-  {
+  'RPG 18': {
     name: 'RPG 18',
     list: 'launchers',
+    calibre: '64mm',
     qty: 1,
     length: '28/39',
     weight: 14.3,
@@ -415,5 +471,10 @@ export const launchers = () => [
     aoi: ['', '', 1, 2],
     ba: [16, 5, -5, -14],
     tof: [7, 17, 36, 78],
+    offical: true,
   },
-];
+});
+
+export const getLauncherWeightByName = (name) => launcherList[name].weight;
+
+export const getLauncherMagByName = (name) => [...launcherList[name].mag];

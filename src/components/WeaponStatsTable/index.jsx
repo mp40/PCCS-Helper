@@ -6,7 +6,6 @@ import PhysicalData from './PhysicalData';
 import AimTimes from './AimTimes';
 
 import { gunObjShape, launcherShape } from '../../helpers/proptypeShapes';
-import { getRecoilRecoveryValue } from '../../data/advancedRules/recoilRecovery';
 
 import emptyFirearm from './emptyFirearm';
 import { getEmptyRow, getWeaponCharacteristics, getTemplate, keys } from './data';
@@ -21,15 +20,8 @@ export const findSkillLevelFromSAL = (playerSAL) => {
   return result === -1 ? undefined : result;
 };
 
-const getFirearmNameAndRecoil = (weapon, skillLevel) => {
-  if (skillLevel === undefined) {
-    return weapon.name;
-  }
-  return `${weapon.name} - recoil recovery: ${getRecoilRecoveryValue(weapon.kd, skillLevel)}`;
-};
-
 const WeaponStatsTable = ({ weapon, sal, size }) => {
-  const dataTemplate = getTemplate(weapon.list, weapon.trb, weapon.projectiles.length);
+  const dataTemplate = getTemplate(weapon.list, weapon.trb);
   const emptyRow = getEmptyRow(weapon.list);
 
   const renderData = (arr) => arr.map((value, dex) => (
@@ -78,21 +70,24 @@ const WeaponStatsTable = ({ weapon, sal, size }) => {
 
   return (
     <div className={`WeaponStatsContainer ${size} ${weapon.list}`}>
-      <div>{`${getFirearmNameAndRecoil(weapon, findSkillLevelFromSAL(sal))}`}</div>
-      <div>
-        <table className={size ? `${size}WeaponStatTable` : 'WeaponStatTable'}>
-          <TableHead weaponList={weapon.list} />
-          <tbody>
-            {getWeaponCharacteristics(weapon.list).map((value, index) => (
-              <tr key={keys[index]} className={`gunTableLine gunTableLine${index + 1}`}>
-                <PhysicalData weapon={weapon} value={value} />
-                <AimTimes aim={weapon.aim} index={index} sal={sal} />
-                {getData(index)}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <table className={size ? `${size}WeaponStatTable` : 'WeaponStatTable'}>
+        <TableHead weaponList={weapon.list} />
+        <tbody>
+          {getWeaponCharacteristics(weapon.list).map((value, index) => (
+            <tr key={keys[index]} className="gunTableLine">
+              <PhysicalData weapon={weapon} value={value} />
+              <AimTimes
+                aim={weapon.aim}
+                index={index}
+                sal={sal}
+                optic={weapon?.optics?.attached}
+                launcher={!!weapon?.launcher?.attached}
+              />
+              {getData(index)}
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

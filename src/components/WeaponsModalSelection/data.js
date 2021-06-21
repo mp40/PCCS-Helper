@@ -1,16 +1,37 @@
-import { rifles, pistols, smgs, mgs, sniperRifles, shotguns } from '../../data/firearms';
+import { riflesList, pistolsList, smgsList, mgsList, sniperRiflesList, shotgunsList, firearmsByCalibreList } from '../../data/firearms';
 
-export const firearmLists = {
-  Rifles: rifles(),
-  Pistols: pistols(),
-  SMGs: smgs(),
-  MGs: mgs(),
-  'Sniper Rifles': sniperRifles(),
-  Shotguns: shotguns(),
-  All: [...rifles(),
-    ...pistols(),
-    ...smgs(),
-    ...mgs(),
-    ...sniperRifles(),
-    ...shotguns()],
+export const firearmLists = (filter) => {
+  switch (filter) {
+    case 'Rifles':
+      return riflesList();
+    case 'Pistols':
+      return pistolsList();
+    case 'SMGs':
+      return smgsList();
+    case 'MGs':
+      return mgsList();
+    case 'Sniper Rifles':
+      return sniperRiflesList();
+    case 'Shotguns':
+      return shotgunsList();
+
+    default: return [
+      ...riflesList(),
+      ...pistolsList(),
+      ...smgsList(),
+      ...mgsList(),
+      ...sniperRiflesList(),
+      ...shotgunsList(),
+    ];
+  }
+};
+
+export const filterCalibersFromType = (type, calibre) => {
+  if (calibre === 'All Calibres') {
+    return firearmLists(type);
+  }
+
+  const calibreMap = firearmsByCalibreList(firearmLists(type));
+
+  return calibreMap[calibre];
 };

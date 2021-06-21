@@ -14,7 +14,7 @@ import { increaseEquipmentReducer } from './increaseEquipmentReducer';
 import { decreaseEquipmentReducer } from './decreaseEquipmentReducer';
 import { addFirearmReducer } from './addFirearmReducer';
 import { removeFirearmReducer } from './removeFirearmReducer';
-import { removeAllFirearmsReducer } from './removeAllFirearmsReducer';
+import { removeAllWeaponsReducer } from './removeAllWeaponsReducer';
 import { increaseFirearmReducer } from './increaseFirearmReducer';
 import { decreaseFirearmReducer } from './decreaseFirearmReducer';
 import { increaseMagazineReducer } from './increaseMagazineReducer';
@@ -39,6 +39,17 @@ import { increaseLauncherReducer } from './increaseLauncherReducer';
 import { decreaseLauncherReducer } from './decreaseLauncherReducer';
 import { increaseLauncherAmmoReducer } from './increaseLauncherAmmoReducer';
 import { decreaseLauncherAmmoReducer } from './decreaseLauncherAmmoReducer';
+import { viewCreateCharacterReducer } from './viewCreateCharacterReducer';
+import { updateSavedCharactersReducer } from './updateSavedCharactersReducer';
+import { addSavedCharacterReducer } from './addSavedCharacterReducer';
+import { updateSavedCharacterReducer } from './updateSavedCharacterReducer';
+import { hydrateCurrentCharacterReducer } from './hydrateCurrentCharacterReducer';
+import { updateOpticReducer } from './updateOpticReducer';
+import { removeOpticReducer } from './removeOpticReducer';
+import { updateUnderslungLauncherReducer } from './updateUnderslungLauncherReducer';
+import { removeUnderslungLauncherReducer } from './removeUnderslungLauncherReducer';
+import { decreaseUnderslungLauncherAmmoReducer } from './decreaseUnderslungLauncherAmmoReducer';
+import { increaseUnderslungLauncherAmmoReducer } from './increaseUnderslungLauncherAmmoReducer';
 
 const initialState = initialStore;
 
@@ -46,6 +57,8 @@ function reduceActions(state = initialState, action) {
   switch (action.type) {
     case 'VIEW_SELECTED':
       return { ...state, currentView: action.payload };
+    case 'CREATE_CHARACTER_VIEWED':
+      return viewCreateCharacterReducer(state, action);
     case 'GUN_COMBAT_LEVEL_UPDATED':
       return modifyGunCombatLevelReducer(state, action);
     case 'MELEE_COMBAT_LEVEL_UPDATED':
@@ -67,7 +80,7 @@ function reduceActions(state = initialState, action) {
     case 'EQUIPMENT_REMOVED':
       return removeEquipmentReducer(state, action);
     case 'ALL_EQUIPMENT_REMOVED':
-      return removeAllEquipmentReducer(state, action);
+      return removeAllEquipmentReducer(state);
     case 'EQUIPMENT_QTY_INCREASED':
       return increaseEquipmentReducer(state, action);
     case 'EQUIPMENT_QTY_DECREASED':
@@ -76,8 +89,6 @@ function reduceActions(state = initialState, action) {
       return addFirearmReducer(state, action);
     case 'FIREARM_REMOVED':
       return removeFirearmReducer(state, action);
-    case 'ALL_FIREARMS_REMOVED':
-      return removeAllFirearmsReducer(state, action);
     case 'FIREARM_QTY_INCREASED':
       return increaseFirearmReducer(state, action);
     case 'FIREARM_QTY_DECREASED':
@@ -100,10 +111,20 @@ function reduceActions(state = initialState, action) {
       return removeMagazineReducer(state, action);
     case 'MAGAZINE_REPLACED':
       return replaceMagazineReducer(state, action);
-    case 'HELMET_CHANGED':
-      return changeHelmetReducer(state, action);
-    case 'VEST_CHANGED':
-      return changeVestReducer(state, action);
+    case 'OPTIC_UPDATED':
+      return updateOpticReducer(state, action);
+    case 'OPTIC_REMOVED':
+      return removeOpticReducer(state, action);
+    case 'UNDERSLUNG_LAUNCHER_UPDATED':
+      return updateUnderslungLauncherReducer(state, action);
+    case 'UNDERSLUNG_LAUNCHER_REMOVED':
+      return removeUnderslungLauncherReducer(state, action);
+    case 'UNDERSLUNG_LAUNCHER_AMMO_QTY_DECREASED':
+      return decreaseUnderslungLauncherAmmoReducer(state, action);
+    case 'UNDERSLUNG_LAUNCHER_AMMO_QTY_INCREASED':
+      return increaseUnderslungLauncherAmmoReducer(state, action);
+    case 'ALL_WEAPONS_REMOVED':
+      return removeAllWeaponsReducer(state, action);
     case 'GRENADE_ADDED':
       return addGrenadeReducer(state, action);
     case 'GRENADE_REMOVED':
@@ -126,12 +147,18 @@ function reduceActions(state = initialState, action) {
       return decreaseLauncherAmmoReducer(state, action);
     case 'CHARACTER_NAME_CHANGED':
       return changeNameReducer(state, action);
-    case 'TOTAL_WEIGHT':
-      return { ...state, totalWeight: action.payload };
-    case 'UPDATE_ATTRIBUTES':
-      return { ...state, characterStats: action.payload };
-    case 'UPDATE_ALL_COMBAT_STATS':
-      return { ...state, combatStats: action.payload };
+    case 'HELMET_CHANGED':
+      return changeHelmetReducer(state, action);
+    case 'VEST_CHANGED':
+      return changeVestReducer(state, action);
+    case 'CHARACTERS_UPDATED':
+      return updateSavedCharactersReducer(state, action);
+    case 'CHARACTER_ADDED':
+      return addSavedCharacterReducer(state, action);
+    case 'CHARACTER_UPDATED':
+      return updateSavedCharacterReducer(state, action);
+    case 'CURRENT_CHARACTER_HYDRATED':
+      return hydrateCurrentCharacterReducer(state, action);
     default: return state;
   }
 }

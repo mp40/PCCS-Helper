@@ -1,0 +1,37 @@
+.App {
+  background-color: #aeb885;
+  min-height: calc(100vh - 4rem);
+  padding-top: 4rem;
+}
+
+.App-header {
+  font-size: 1.4rem;
+}
+
+.App-body {
+  font-size: 1.2rem;
+}
+
+button:focus {
+  outline: none;
+}
+
+@media screen and (max-width: 1024px) {
+  .App-header {
+    font-size: 1.25rem;
+  }
+
+  .App-body {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .App-header {
+    font-size: 0.9rem;
+  }
+
+  .App-body {
+    font-size: 0.9rem;
+  }
+}

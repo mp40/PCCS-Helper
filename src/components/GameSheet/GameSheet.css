@@ -1,73 +1,21 @@
 .a4GameSheet {
-    display: none;
+  display: none;
 }
+
 @media print {
-    .App-header, .App-body {
-        display: none;
-    }
-    .a4GameSheet {
-        display: block;
-        color-adjust: exact !important;
-        -webkit-print-color-adjust: exact !important;
-    }
+  .App {
+    display: none;
+  }
+
+  .a4GameSheet {
+    display: block;
+    color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+  }
 }
 
 .a4GameSheet {
-    background-color: white;
-    width: 29.7cm;
-    height: 21cm;
-}
-
-.a4ContentContainer {
-    padding: .7cm 1.5cm .5cm;
-    display: flex;
-}
-
-.character-name {
-    font-weight: bold;
-    margin-top: -0.2cm;
-    margin-bottom: -0.3cm;
-}
-
-.combatStatsInfo {
-    font-size: 14pt;
-    display: flex;
-    justify-content: space-between;
-    border: 1px solid rgb(85, 83, 83);
-    width: 8.3cm;
-    padding: .1cm .2cm .3cm;
-    height: 1.5cm;
-}
-
-.combatStatColA {
-    width: 3.8cm;
-}
-
-.combatStatColB {
-    width: 4.2cm;
-}
-
-.range-odds-flex-container {
-    display: flex;
-}
-
-.range-odds-flex-container .range-look-up-table {
-    margin-left: .5cm;
-    margin-right: .1cm;
-}
-
-.alm-mods-col {
-    display: flex;
-    flex-direction: column;
-}
-
-.game-data-col-a {
-    display: flex;
-    flex-wrap: wrap;
-    width: 13.6cm;
-    align-content: flex-start;
-}
-
-.ActionTable-a4-container {
-   margin-left: .2cm;
+  background-color: white;
+  width: 29.7cm;
+  height: 21cm;
 }

@@ -1,7 +1,9 @@
-import { removeObjectFromArray } from '../../helpers/actionHelpers';
-import { returnUpdatedWeightAndEquipment } from '../reducerHelpers';
+export const removeEquipmentReducer = (state, action) => {
+  const equipmentToRemove = action.payload;
 
-export const removeEquipmentReducer = (state, action) => returnUpdatedWeightAndEquipment(
-  state,
-  removeObjectFromArray(state.gear.equipment, action.payload),
-);
+  const newEquipment = state.currentCharacter.equipment.filter((item) => item.name !== equipmentToRemove);
+
+  return { ...state,
+    currentCharacter: { ...state.currentCharacter,
+      equipment: newEquipment } };
+};

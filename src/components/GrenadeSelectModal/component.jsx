@@ -1,14 +1,11 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
 import { PropTypes } from 'prop-types';
-import GrenadeData from '../GrenadeData';
-import { grenadeData, specialGrenades } from '../../data/grenades';
-import { grenadeShape } from '../../helpers/proptypeShapes';
-import ButtonDeleteX from '../widgets/buttons/ButtonDeleteX';
 
-import './GrenadeSelectModal.css';
+import GrenadeData from '../GrenadeData';
+
+import { grenadeList } from '../../data/grenades';
+
+import styles from './styles.module.css';
 
 const GrenadeSelectModal = ({ toggleOffWeaponCardViews, addGrenade, grenades }) => {
   const [viewGrenade, setGrenadeToView] = useState(null);
@@ -19,58 +16,67 @@ const GrenadeSelectModal = ({ toggleOffWeaponCardViews, addGrenade, grenades }) 
     if (checkGrenadeInList(grenade)) {
       return;
     }
-    addGrenade(grenade);
+
+    addGrenade(grenade.name);
     toggleOffWeaponCardViews('showGrenades');
   };
 
   const renderGrenadeHeading = () => (
-    <div className="grenadeListCardHeading">
-      <ButtonDeleteX
-        className="closeModal"
+    <div className={styles.header}>
+      <span>Select Grenade</span>
+      <button
+        aria-label="close"
+        className={styles.close}
+        type="button"
         onClick={() => toggleOffWeaponCardViews('showGrenades')}
       />
-      <span>Select Grenade</span>
     </div>
   );
 
   const renderGrenadeList = () => (
-    [...grenadeData(), ...specialGrenades()].map((grenade) => (
-      <div key={grenade.name}>
-        <button
-          type="button"
-          className={`--infoButton --button view${grenade.name}Stats`}
-          onClick={() => setGrenadeToView(grenade)}
-        />
-        <div
-          className={`--selectableRow select${grenade.name}`}
-          onClick={() => handleSelection(grenade)}
-        >
-          <div>{grenade.name}</div>
-          <div>{grenade.weight}</div>
+    Object.keys(grenadeList).map((name) => {
+      const grenade = grenadeList[name];
+      return (
+        <div key={grenade.name} className={styles.row}>
+          <button
+            aria-label="info"
+            type="button"
+            className="button--standard button--question"
+            onClick={() => setGrenadeToView(grenade)}
+          />
+          <button
+            type="button"
+            className="button-clickable-item-row"
+            onClick={() => handleSelection(grenade)}
+          >
+            <span>{grenade.name}</span>
+            <span>{grenade.weight}</span>
+          </button>
         </div>
-      </div>
-    ))
+      );
+    })
   );
 
   return (
-    <div className="--modalOverlay">
-      <div className="--card grenadeListCard">
+    <>
+      <div className="modal-background" />
+      <div className={`card-standard card-select-gear-modal ${styles.wrapper}`}>
         {renderGrenadeHeading()}
-        <div className="grenadeList">
+        <div className={styles.list}>
           {renderGrenadeList()}
         </div>
         {viewGrenade && (
           <GrenadeData grenade={viewGrenade} />
         )}
       </div>
-    </div>
+    </>
   );
 };
 
 GrenadeSelectModal.propTypes = {
   addGrenade: PropTypes.func,
   toggleOffWeaponCardViews: PropTypes.func,
-  grenades: PropTypes.arrayOf(grenadeShape),
+  grenades: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default GrenadeSelectModal;

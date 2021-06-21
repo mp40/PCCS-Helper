@@ -1,0 +1,101 @@
+/* mptodo - fancy pants scroll without scrollbar */
+.contents {
+  max-height: calc(100% - 2.75rem);
+  overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.contents::-webkit-scrollbar {
+  display: none;
+}
+
+.header {
+  margin-bottom: 0.5rem;
+  background-color: var(--panzer-grey);
+  color: whitesmoke;
+  display: flex;
+  padding: 0.25rem;
+  justify-content: space-between;
+}
+
+.header > div {
+  display: flex;
+  align-items: center;
+}
+
+.header > div > span {
+  margin: 0 1rem 0 0.5rem;
+  font-weight: 600;
+}
+
+.header > div > button {
+  background-color: var(--panzer-grey);
+  border: none;
+  color: whitesmoke;
+}
+
+.header > div > button:first-of-type {
+  margin-right: 0.5rem;
+}
+
+.header > div > button:hover {
+  border-radius: 3px;
+  box-shadow: 0px 0px 1.25px 1.25px whitesmoke;
+}
+
+.header > div > button:active {
+  border-radius: 3px;
+  box-shadow: 0px 0px 1px 1px whitesmoke;
+  opacity: 0.9;
+}
+
+.contents > button {
+  width: calc(100% / 3);
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+.close {
+  border: none;
+  border-radius: 3px;
+  background-color: transparent;
+  float: right;
+}
+
+.close:hover {
+  box-shadow: 0px 0px 1.25px 1.25px whitesmoke;
+}
+
+.close:active {
+  box-shadow: 0px 0px 1px 1px whitesmoke;
+  opacity: 0.9;
+}
+
+.close:before {
+  content: "\f00d";
+  font-family: FontAwesome;
+  text-decoration: inherit;
+  color: whitesmoke;
+  font-size: 1rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .contents > button {
+    width: calc((100% / 2) - 4px);
+    display: inline-flex;
+    justify-content: space-between;
+    margin: 2px 2px 3px;
+    padding: 8px 5px;
+  }
+}
+
+@media screen and (max-width: 700px){
+  .contents > button {
+    font-size: 0.75rem;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    height: 3.5rem;
+  }
+}

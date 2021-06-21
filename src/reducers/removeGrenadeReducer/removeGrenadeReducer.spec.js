@@ -1,44 +1,38 @@
 import { removeGrenadeReducer } from './index';
 import { MockState } from '../mockState';
 
-const getGrenadeData = () => ({
+const mockLightGrenade = (qty = 0) => ({
   name: 'L2 A2',
-  qty: 1,
+  qty,
   weight: 0.9,
 });
 
-const getHeavyGrenadeData = () => ({
+const mockHeavyGrenade = (qty = 0) => ({
   name: 'TNT',
-  qty: 1,
+  qty,
   weight: 10,
 });
 
-const characterWithTNT = () => {
-  const character = new MockState();
-  character.totalWeight += 10;
-  character.gear.grenades = [getHeavyGrenadeData()];
-  character.combatStats.baseSpeed = 2.5;
-  character.combatStats.maxSpeed = 5;
-  character.combatStats.combatActions = [3, 3];
-  return character;
-};
-
-const characterWithGrenadeAndTNT = () => {
-  const character = characterWithTNT();
-  character.totalWeight += 0.9;
-  character.gear.grenades = [...character.gear.grenades, getGrenadeData()];
-  return character;
-};
-
 describe('removeGrenadeReducer function', () => {
+  let state = new MockState();
+
   it('should return correct values when grenade removed from list', () => {
-    const action = { payload: getHeavyGrenadeData() };
-    const newState = removeGrenadeReducer(characterWithTNT(), action);
-    expect(newState).toMatchObject(new MockState());
-  });
-  it('should return correct values when grenade removed from list with more than one grenade type', () => {
-    const action = { payload: getGrenadeData() };
-    const newState = removeGrenadeReducer(characterWithGrenadeAndTNT(), action);
-    expect(newState).toMatchObject(characterWithTNT());
+    state = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        grenades: [mockLightGrenade(2), mockHeavyGrenade(2)],
+      } };
+
+    const action = { payload: 'L2 A2' };
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        grenades: [mockHeavyGrenade(2)],
+      } };
+
+    state = removeGrenadeReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
 });

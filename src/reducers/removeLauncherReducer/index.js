@@ -1,7 +1,7 @@
-import { removeObjectFromArray } from '../../helpers/actionHelpers';
-import { returnUpdatedWeightAndLaunchers } from '../reducerHelpers';
+export const removeLauncherReducer = (state, action) => {
+  const newLaunchers = state.currentCharacter.launchers.filter((launcher) => launcher.name !== action.payload);
 
-export const removeLauncherReducer = (state, action) => returnUpdatedWeightAndLaunchers(
-  state,
-  removeObjectFromArray(state.gear.launchers, action.payload),
-);
+  return { ...state,
+    currentCharacter: { ...state.currentCharacter,
+      launchers: newLaunchers } };
+};

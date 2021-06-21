@@ -1,55 +1,40 @@
-import { increaseLauncherReducer } from './index';
 import { MockState } from '../mockState';
-import { testM79, testM72 } from '../../helpers/testHelpers';
+import { increaseLauncherReducer } from './index';
 
-const characterWithM72 = () => {
-  const m72 = testM72();
-  const character = new MockState();
-  character.totalWeight += (m72.weight * 2);
-  character.gear.launchers = [m72];
-  return character;
-};
+const mockM79 = () => ({
+  name: 'M79',
+  weight: 6.5,
+  qty: 1,
+  mag: [{ class: 'HEAT', weight: 0.51, qty: 0 }, { class: 'HE', weight: 0.51, qty: 0 }],
+});
 
-const characterWithTwoM72 = () => {
-  const m72 = testM72(2);
-  const character = new MockState();
-  character.totalWeight += (m72.weight * 2);
-  character.gear.launchers = [m72];
-  character.combatStats.baseSpeed = 2;
-  character.combatStats.maxSpeed = 4;
-  character.combatStats.combatActions = [3, 3];
-  return character;
-};
-
-const characterWithM79AndM72 = () => {
-  const m72 = testM72();
-  const m79 = testM79();
-  const character = new MockState();
-  character.gear.launchers = [m72, m79];
-  return character;
-};
-
-const characterWithMulipleLaunchers = () => {
-  const m72 = testM72(2);
-  const m79 = testM79();
-  const character = new MockState();
-  character.totalWeight += (m72.weight * 2) + m79.weight;
-  character.gear.launchers = [m72, m79];
-  character.combatStats.baseSpeed = 2;
-  character.combatStats.maxSpeed = 4;
-  character.combatStats.combatActions = [3, 3];
-  return character;
-};
+const mockM72 = (qty = 1) => ({
+  name: 'M72',
+  weight: 5.2,
+  qty,
+  mag: [{ weight: '-' }],
+});
 
 describe('increaseLauncherReducer', () => {
+  let state = new MockState();
+
+  state = { ...state,
+    currentCharacter: {
+      ...state.currentCharacter,
+      launchers: [mockM72(1), mockM79()],
+    } };
+
   it('should increase quantity of the launcher by one', () => {
-    const action = { payload: testM72() };
-    const newState = increaseLauncherReducer(characterWithM72(), action);
-    expect(newState).toMatchObject(characterWithTwoM72());
-  });
-  it('should increase quantity of the target launcher in array with more than item', () => {
-    const action = { payload: testM72() };
-    const newState = increaseLauncherReducer(characterWithM79AndM72(), action);
-    expect(newState).toMatchObject(characterWithMulipleLaunchers());
+    const action = { payload: 'M72' };
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        launchers: [mockM72(2), mockM79()],
+      } };
+
+    state = increaseLauncherReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
 });

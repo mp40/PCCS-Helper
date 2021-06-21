@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+
 import AttributeCard from '../AttributeCard';
 import CombatCard from '../CombatCard';
 import ActionsCard from '../ActionsCard';
@@ -9,51 +10,42 @@ import WeaponsCard from '../WeaponsCard';
 import BodyArmourCard from '../BodyArmourCard';
 import NameCard from '../NameCard';
 
-import './CharacterGeneration.css';
+import styles from './styles.module.css';
 
-const defaultStats = {
-  str: 10,
-  int: 10,
-  wil: 10,
-  hlt: 10,
-  agi: 10,
-  gunLevel: 0,
-  handLevel: 0,
-};
+const CharacterGeneration = ({ totalWeight, selectCurrentView }) => (
+  <div className={styles.wrapper}>
 
-const CharacterGeneration = ({ updateAttributes, updateWeight }) => {
-  const handleUpdateAttributes = () => {
-    updateAttributes(defaultStats, 0);
-  };
-
-  const handleUpdateWeight = () => {
-    updateWeight(5, defaultStats);
-  };
-
-  useEffect(() => {
-    handleUpdateAttributes();
-    handleUpdateWeight();
-  });
-
-  return (
-    <div className="createCharContainer">
-      <div>
-        <NameCard />
-        <AttributeCard />
-        <CombatCard />
-        <ActionsCard />
-        <ClothingCard />
-        <BodyArmourCard />
-      </div>
-      <EquipmentCard />
-      <WeaponsCard />
+    <div className={`${styles.topCard} --card`}>
+      <h1>Edit Character</h1>
+      <h2>
+        {`Total Lbs: ${totalWeight}`}
+      </h2>
+      <button
+        type="button"
+        onClick={() => selectCurrentView('playCharacter')}
+      >
+        Use Character
+      </button>
     </div>
-  );
-};
+
+    <div>
+
+      <NameCard />
+      <ClothingCard />
+      <BodyArmourCard />
+      <AttributeCard />
+      <CombatCard />
+      <ActionsCard />
+
+    </div>
+    <EquipmentCard />
+    <WeaponsCard />
+  </div>
+);
 
 CharacterGeneration.propTypes = {
-  updateWeight: PropTypes.func,
-  updateAttributes: PropTypes.func,
+  totalWeight: PropTypes.number.isRequired,
+  selectCurrentView: PropTypes.func.isRequired,
 };
 
 export default CharacterGeneration;

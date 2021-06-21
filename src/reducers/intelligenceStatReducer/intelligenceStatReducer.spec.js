@@ -1,16 +1,34 @@
 import { modifyIntelligenceValueReducer } from './index';
 import { MockState } from '../mockState';
-import { IntelligenceThree, IntelligenceEighteen } from './testResources';
 
 describe('intelligenceStatReducer function', () => {
+  let state = new MockState();
+
   it('should return correct values when intelligence changes to 3', () => {
     const action = { payload: 3 };
-    const newState = modifyIntelligenceValueReducer(new MockState(), action);
-    expect(newState).toMatchObject(new IntelligenceThree());
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        int: action.payload,
+      } };
+
+    state = modifyIntelligenceValueReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
+
   it('should return correct values when intelligence changes to 18', () => {
     const action = { payload: 18 };
-    const newState = modifyIntelligenceValueReducer(new MockState(), action);
-    expect(newState).toMatchObject(new IntelligenceEighteen());
+
+    const updatedState = { ...state,
+      currentCharacter: {
+        ...state.currentCharacter,
+        int: action.payload,
+      } };
+
+    state = modifyIntelligenceValueReducer(state, action);
+
+    expect(state).toMatchObject(updatedState);
   });
 });

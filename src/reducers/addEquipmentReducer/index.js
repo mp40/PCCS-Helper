@@ -1,5 +1,3 @@
-import { returnUpdatedWeightAndEquipment } from '../reducerHelpers';
-
-export const addEquipmentReducer = (
-  state, action,
-) => returnUpdatedWeightAndEquipment(state, [...state.gear.equipment, action.payload]);
+export const addEquipmentReducer = (state, action) => ({ ...state,
+  currentCharacter: { ...state.currentCharacter,
+    equipment: [...state.currentCharacter.equipment, action.payload] } });
