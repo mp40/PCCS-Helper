@@ -92,10 +92,8 @@
     min-width: unset;
     min-height: unset;
     width: fit-content;
-    /* height: fit-content; */
     font-size: .61rem;
     margin-top: 13px;
-    /* z-index: 111; */
   }
 
 }

@@ -27,7 +27,7 @@ const LoadedCharacterWeapons = ({ firearms, grenades, setFirearm }) => {
   };
 
   return (
-    <div className={`--card ${styles.card}`}>
+    <div className={`card-standard ${styles.card}`}>
       <h2>Weapons</h2>
       <h3>Firearms</h3>
       {firearms.map((firearm) => (

@@ -65,12 +65,12 @@ class WeaponsCard extends Component {
     const gunToModify = firearms.filter((gunObj) => gunObj.name === firearmToModify)[0];
 
     return (
-      <div className="--card gear-card">
+      <div className="card-standard gear-card">
         <div>
 
           <button
             type="button"
-            className="--button"
+            className="button--standard"
             onClick={() => this.toggleOnWeaponsCardViews('showFirearms')}
           >
             Add Firearm
@@ -78,7 +78,7 @@ class WeaponsCard extends Component {
 
           <button
             type="button"
-            className="--button"
+            className="button--standard"
             onClick={() => this.toggleOnWeaponsCardViews('showGrenades')}
           >
             Add Grenade
@@ -86,7 +86,7 @@ class WeaponsCard extends Component {
 
           <button
             type="button"
-            className="--button"
+            className="button--standard"
             onClick={() => this.toggleOnWeaponsCardViews('showLaunchers')}
           >
             Add Launcher
@@ -94,7 +94,7 @@ class WeaponsCard extends Component {
 
           <button
             type="button"
-            className="--button"
+            className="button--standard"
             onClick={() => removeAllWeapons([])}
           >
             Clear All

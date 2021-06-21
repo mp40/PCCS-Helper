@@ -14,7 +14,6 @@ import './header.css';
 
 const Header = (
   { currentView,
-    totalWeight,
     signedIn,
     handleSetSignedIn,
     selectCurrentView,

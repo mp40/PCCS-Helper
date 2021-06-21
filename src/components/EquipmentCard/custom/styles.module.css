@@ -85,3 +85,11 @@
 .error {
   color: red;
 }
+
+@media screen and (max-width: 700px) {
+  .card {
+    width: calc(100vw - 50px);
+    padding: 10px 10px 30px;
+    margin: 0;
+  }
+}

@@ -144,6 +144,9 @@
   background-color: transparent;
   height: fit-content;
   padding: 2px 10px;
+  color: var(--panzer-grey);
+  box-shadow: 0 0 1px 1px var(--golden-olive);
+  margin: 1.5px;
 }
 
 .button--standard:hover {
@@ -163,6 +166,7 @@
   width: 1rem;
   padding: 0;
   position: relative;
+  box-shadow: unset;
 }
 
 .button--close:before,
@@ -243,15 +247,15 @@
   .button--up,
   .button--down,
   .button--question {
-    height: 2rem;
-    width: 2rem;
+    height: 1.25rem;
+    width: 1.25rem;
   }
 
   .button--close:before,
   .button--up:before,
   .button--down:before,
   .button--question:before {
-    font-size: 1.75rem;
+    font-size: 1rem;
   }
 
   .card-select-gear-modal {

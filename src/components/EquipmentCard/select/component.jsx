@@ -24,7 +24,8 @@ const SelectEquipment = ({
   };
 
   const renderEquipment = () => (
-    <div className={styles.listWrapper}>
+    // <div className={styles.listWrapper}>
+    <div className={`${styles.contents}`}>
       {filterEquipment(filteredTags).map((equipObj) => (
         <button
           type="button"
@@ -32,12 +33,12 @@ const SelectEquipment = ({
           key={equipObj.name}
           onClick={() => handleAddEquipment(equipObj)}
         >
-          <div>
+          <span>
             {equipObj.name}
-          </div>
-          <div>
+          </span>
+          <span>
             {`${equipObj.weight} lbs`}
-          </div>
+          </span>
         </button>
       ))}
     </div>

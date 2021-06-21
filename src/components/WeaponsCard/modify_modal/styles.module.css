@@ -1,15 +1,3 @@
-.card {
-  position: fixed;
-  top: 10rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60rem;
-  padding: 0.5rem 2rem 2rem;
-  margin-top: 2rem;
-  margin-left: 2rem;
-  z-index: 101;
-}
-
 .header {
   margin-bottom: 0.5rem;
   background-color: var(--panzer-grey);
@@ -55,4 +43,47 @@
 
 .body > div {
   font-size: 1.15rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .card {
+    width: calc(100% - 30px);
+  }
+
+  .body{
+    flex-direction: column;
+  }
+
+  .body > div:first-of-type {
+    margin-bottom: 1rem;
+  }
+
+  .body > div:first-of-type >table {
+    width:100%;
+  }
+
+  .body > div:last-of-type {
+    max-width: 25rem;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .body > div:first-of-type > table {
+    font-size: 0.55rem;
+  }
+
+  .body > div:first-of-type > table > tbody > tr > td:nth-of-type(-n + 2) > span {
+    margin: 0 1px;
+  }
+
+  .body > div:first-of-type > table > tbody > tr > td:nth-of-type(n + 3)  {
+    padding: 1px;
+  }
+
+  .body > div:last-of-type {
+    margin-left: unset;
+    transform: unset;
+  }
 }

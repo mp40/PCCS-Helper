@@ -75,7 +75,7 @@ const WeaponsTableBody = ({
 
               <span>
                 <button aria-label="remove" type="button" className="button--standard button--close" onClick={() => removeFirearm(firearm.name)} />
-                <button type="button" className="button--standard" onClick={() => toggleModifyWeapon(firearm.name)}>{`${firearm.name}${firearm?.launcher ? ` - ${firearm.launcher.attached}` : ''}`}</button>
+                <button type="button" className="button-clickable-item-row" onClick={() => toggleModifyWeapon(firearm.name)}>{`${firearm.name}${firearm?.launcher ? ` - ${firearm.launcher.attached}` : ''}`}</button>
               </span>
               <span>{getFullFirearmSystemWeightByObject(firearm)}</span>
               <span>{firearm.qty}</span>
