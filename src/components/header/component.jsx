@@ -86,12 +86,14 @@ const Header = (
       {currentView === 'createChar' && (
         <div className="wrapper">
           <Print selectCurrentView={selectCurrentView} />
+          {/* mptodo unhide and sort out code
           <Save
             signedIn={signedIn}
-          />
+          /> */}
         </div>
       )}
 
+      {/* mptodo unhide and sort out code
       <HeaderButtons
         handleShowSignUp={handleShowSignUp}
         handleShowSignIn={handleShowSignIn}
@@ -99,7 +101,7 @@ const Header = (
         handleSignOut={handleSignOut}
         width={width}
         signedIn={signedIn}
-      />
+      /> */}
 
       {showDropdown && (
         <HeaderDropdown

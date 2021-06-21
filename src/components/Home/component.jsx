@@ -22,12 +22,13 @@ const HomePage = ({ viewCreateCharacter }) => {
         Create Character
       </button>
 
+      {/* mptodo - unhide this and sort out related code
       <button
         type="button"
         onClick={() => setShowLoadModal(!showLoadModal)}
       >
         Load Character
-      </button>
+      </button> */}
 
       {showLoadModal && (
         <LoadCharacterModal setShowLoadModal={setShowLoadModal} />
