@@ -91,8 +91,8 @@ export const currentCharacterShape = PropTypes.shape({
   firearms: PropTypes.arrayOf(gunObjShape),
   grenades: PropTypes.arrayOf(PropTypes.object),
   launchers: PropTypes.arrayOf(launcherShape),
-  helmet: armourShape,
-  vest: armourShape,
+  helmet: PropTypes.string,
+  vest: PropTypes.string,
 });
 
 export const opticsShape = PropTypes.shape({

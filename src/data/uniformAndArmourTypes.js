@@ -10,6 +10,7 @@ export const helmets = Object.freeze({
     pf: '0',
     bpf: '0',
     ac: '-',
+    weight: 0,
   },
   M1: {
     name: 'M1',
@@ -147,6 +148,7 @@ export const vests = Object.freeze({
     pf: '0',
     bpf: '0',
     ac: '-',
+    weight: 0,
   },
   M1951: {
     name: 'M1951',

@@ -5,21 +5,26 @@ import styles from './styles.module.css';
 
 const renderHeading = (armourType) => (armourType === 'helmet' ? 'Select Helmet' : 'Select Vest');
 
-const renderBody = (armourList, handleDispatch, type) => Object.keys(armourList).map((name) => (
-  <React.Fragment key={name}>
-    <tr
-      className="--selectableRow"
-      onClick={() => handleDispatch(type, name)}
-    >
-      {['name', 'pf', 'bpf', 'ac', 'weight', 'tags'].map((value) => {
-        const armour = armourList[name];
-        return (
-          <td key={value}>{Array.isArray(armour[value]) ? armour[value].join(', ') : armour[value]}</td>
-        );
-      })}
-    </tr>
-  </React.Fragment>
-));
+const renderBody = (armourList, handleDispatch, type) => Object.keys(armourList).map((name) => {
+  if (name === 'No Helmet' || name === 'No Vest') {
+    return null;
+  }
+  return (
+    <React.Fragment key={name}>
+      <tr
+        className="--selectableRow"
+        onClick={() => handleDispatch(type, name)}
+      >
+        {['name', 'pf', 'bpf', 'ac', 'weight', 'tags'].map((value) => {
+          const armour = armourList[name];
+          return (
+            <td key={value}>{Array.isArray(armour[value]) ? armour[value].join(', ') : armour[value]}</td>
+          );
+        })}
+      </tr>
+    </React.Fragment>
+  );
+});
 
 const BodyArmourSelection = ({ armourType, armourList, handleDispatch }) => (
   <>
@@ -30,7 +35,7 @@ const BodyArmourSelection = ({ armourType, armourList, handleDispatch }) => (
           {renderHeading(armourType)}
           <button
             type="button"
-            onClick={() => handleDispatch(armourType, null)}
+            onClick={() => handleDispatch(armourType, undefined)}
           >
             Remove
           </button>

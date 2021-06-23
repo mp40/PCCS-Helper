@@ -24,7 +24,7 @@ const BodyArmourCard = ({ helmet, vest, changeHelmet, changeVest }) => {
   const renderArmourRow = (type, name) => (
     <tr className="--selectableRow " onClick={() => toggleBodyArmourSelect(type)}>
       <td>{name}</td>
-      <td>{selectArmourList(type)[name]?.weight || 0}</td>
+      <td>{selectArmourList(type)[name].weight}</td>
     </tr>
   );
 

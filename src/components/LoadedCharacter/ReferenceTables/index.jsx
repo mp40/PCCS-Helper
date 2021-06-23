@@ -7,8 +7,6 @@ import KnockoutTable from '../../KnockoutTable';
 import ReactionTable from '../../reactionTable';
 import BodyArmourTable from '../../BodyArmourTable';
 
-import { armourShape } from '../../../helpers/proptypeShapes';
-
 import styles from './styles.module.css';
 
 const LoadedCharacterReferenceTables = ({
@@ -44,8 +42,8 @@ LoadedCharacterReferenceTables.propTypes = {
   name: PropTypes.string.isRequired,
   knockoutValue: PropTypes.number.isRequired,
   sal: PropTypes.number.isRequired,
-  helmet: armourShape,
-  vest: armourShape,
+  helmet: PropTypes.string,
+  vest: PropTypes.string,
   gunCombatActions: PropTypes.number.isRequired,
   handCombatActions: PropTypes.number.isRequired,
   selectCurrentView: PropTypes.func.isRequired,
