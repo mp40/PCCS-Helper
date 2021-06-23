@@ -2,7 +2,6 @@ const emptyFirearm = () => ({
   name: 'None',
   list: '',
   calibre: '',
-  qty: 1,
   length: 0,
   weight: 0,
   rt: 0,

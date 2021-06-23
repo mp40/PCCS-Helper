@@ -5,6 +5,12 @@ export const uniformWeights = Object.freeze({
 });
 
 export const helmets = Object.freeze({
+  'No Helmet': {
+    name: 'No Helmet',
+    pf: '0',
+    bpf: '0',
+    ac: '-',
+  },
   M1: {
     name: 'M1',
     pf: 4,
@@ -136,6 +142,12 @@ export const helmets = Object.freeze({
 });
 
 export const vests = Object.freeze({
+  'No Vest': {
+    name: 'No Vest',
+    pf: '0',
+    bpf: '0',
+    ac: '-',
+  },
   M1951: {
     name: 'M1951',
     pf: 4,

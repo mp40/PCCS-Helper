@@ -20,9 +20,6 @@ const other = {
   notLooking: 'Shooter Not Looking',
 };
 
-// mptodo - add for firearms with optics, do min under x automatically
-// const optics = ['opticalUnder8', 'opticsBroken', 'aasBroken'];
-
 export const getOthers = (optic) => {
   if (!optic) {
     return other;

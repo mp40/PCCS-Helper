@@ -1,9 +1,9 @@
 import React from 'react';
-import { armourShape } from '../../helpers/proptypeShapes';
+import PropTypes from 'prop-types';
+
+import { helmets, vests } from '../../data/uniformAndArmourTypes';
 
 import styles from './styles.module.css';
-
-const getDefaultArmourValues = (name) => ({ name, pf: '0', bpf: '0', ac: '-' });
 
 const renderArmourRow = (armour) => (
   <tr className="armour-row-values">
@@ -23,20 +23,20 @@ const BodyArmourTable = ({ helmet, vest }) => (
       </tr>
     </thead>
     <tbody>
-      {renderArmourRow(helmet)}
-      {renderArmourRow(vest)}
+      {renderArmourRow(helmets[helmet])}
+      {renderArmourRow(vests[vest])}
     </tbody>
   </table>
 );
 
 BodyArmourTable.propTypes = {
-  helmet: armourShape,
-  vest: armourShape,
+  helmet: PropTypes.string,
+  vest: PropTypes.string,
 };
 
 BodyArmourTable.defaultProps = {
-  helmet: getDefaultArmourValues('No Helmet'),
-  vest: getDefaultArmourValues('No Vest'),
+  helmet: 'No Helmet',
+  vest: 'No Vest',
 };
 
 export default BodyArmourTable;

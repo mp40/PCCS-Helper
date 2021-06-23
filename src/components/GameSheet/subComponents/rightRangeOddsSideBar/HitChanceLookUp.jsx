@@ -11,7 +11,7 @@ const HitChanceLookUp = () => (
       <div>SS</div>
       <div>Auto</div>
     </div>
-    {Object.keys(oddsOfHittingTable).sort((a, b) => b - a).map(eal => (
+    {Object.keys(oddsOfHittingTable).sort((a, b) => b - a).map((eal) => (
       <div className="odds-look-up-row" key={eal}>
         <div>{eal}</div>
         <div>{oddsOfHittingTable[eal][0]}</div>

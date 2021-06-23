@@ -1,4 +1,4 @@
-export const removeAllWeaponsReducer = (state, action) => ({ ...state,
+export const removeAllWeaponsReducer = (state) => ({ ...state,
   currentCharacter: { ...state.currentCharacter,
     firearms: [],
     grenades: [],

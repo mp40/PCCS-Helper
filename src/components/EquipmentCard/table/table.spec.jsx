@@ -36,8 +36,8 @@ describe('the equipment list table', () => {
     const gear = { name: 'gear', qty: 1 };
     wrapper.setProps({ equipment: [{ ...gear }] });
 
-    wrapper.find('.button--down').simulate('click');
+    wrapper.find('.button--up').simulate('click');
 
-    expect(decreaseEquipmentQty).toHaveBeenCalledWith(gear.name);
+    expect(increaseEquipmentQty).toHaveBeenCalledWith(gear.name);
   });
 });

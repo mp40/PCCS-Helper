@@ -1,28 +1,48 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+
 import BodyArmourTable from './index';
 
-const helmet = {
-  name: 'M1x',
-  pf: 5,
-  bpf: 4,
-  ac: 'I',
-  weight: 2.5,
-};
+jest.mock('../../data/uniformAndArmourTypes', () => ({
+  __esModule: true,
+  helmets: { 'No Helmet': {
+    name: 'No Helmet',
+    pf: '0',
+    bpf: '0',
+    ac: '-',
+  },
+  M1x: {
+    name: 'M1x',
+    pf: 5,
+    bpf: 4,
+    ac: 'I',
+    weight: 2.5,
+  } },
+  vests: { 'No Vest': {
+    name: 'No Vest',
+    pf: '0',
+    bpf: '0',
+    ac: '-',
+  },
+  M69x: {
+    name: 'M69x',
+    pf: 6,
+    bpf: 2,
+    ac: 'Ix',
+    weight: 8.5,
+  } },
+}));
 
-const vest = {
-  name: 'M69x',
-  pf: 6,
-  bpf: 2,
-  ac: 'Ix',
-  weight: 8.5,
-};
+const helmet = 'M1x';
+const vest = 'M69x';
 
 describe('BodyArmourTable', () => {
   describe('defaults', () => {
     const wrapper = shallow(<BodyArmourTable helmet={undefined} vest={undefined} />);
+
     const helmetRow = wrapper.find('tbody').childAt(0);
     const vestRow = wrapper.find('tbody').childAt(1);
+
     it('should render "No Helmet" data if helmet is not defined', () => {
       expect(helmetRow.find('.name').text()).toContain('No Helmet');
       expect(helmetRow.find('.pf').text()).toContain('0');

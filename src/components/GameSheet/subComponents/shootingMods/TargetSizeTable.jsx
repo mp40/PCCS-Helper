@@ -15,7 +15,7 @@ const TargetSizeTable = () => (
         <div>Width</div>
       </div>
     </div>
-    {Object.keys(targetSizeMods).map(target => (
+    {Object.keys(targetSizeMods).map((target) => (
       <div className="target-mod-row" key={target}>
         <div>{target}</div>
         <div className="target-mod-values">

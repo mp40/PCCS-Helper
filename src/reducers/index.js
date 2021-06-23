@@ -124,7 +124,7 @@ function reduceActions(state = initialState, action) {
     case 'UNDERSLUNG_LAUNCHER_AMMO_QTY_INCREASED':
       return increaseUnderslungLauncherAmmoReducer(state, action);
     case 'ALL_WEAPONS_REMOVED':
-      return removeAllWeaponsReducer(state, action);
+      return removeAllWeaponsReducer(state);
     case 'GRENADE_ADDED':
       return addGrenadeReducer(state, action);
     case 'GRENADE_REMOVED':

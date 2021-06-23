@@ -6,14 +6,6 @@ import { combatStatsShape } from '../../helpers/proptypeShapes';
 
 import styles from './styles.module.css';
 
-// combatStats: {
-//   baseSpeed: state.currentCharacter.baseSpeed,
-//   maxSpeed: state.currentCharacter.maxSpeed,
-//   damageBonus: state.currentCharacter.damageBonus,
-//   gunCombatActions: state.currentCharacter.gunCombatActions,
-//   handCombatActions: state.currentCharacter.handCombatActions,
-// },
-
 const ActionsCard = ({ combatStats }) => (
   <div className={`--card ${styles.wrapper}`}>
     <ActionsTable gunCombatActions={combatStats.gunCombatActions} handCombatActions={combatStats.handCombatActions} />

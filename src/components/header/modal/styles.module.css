@@ -29,9 +29,10 @@
   font-weight: 500;
   display: flex;
   align-items: center;
+  flex-direction: column;
 }
 
-.form > input:not(:last-of-type) {
+.form > label > input {
   margin: 0.5em 0 1em;
   background-color: #fff;
   height: 2em;
@@ -40,6 +41,7 @@
   font-weight: 600;
   font-size: 1em;
   color: var(--panzer-grey);
+  width: 100%;
 }
 
 .form > input:last-of-type {

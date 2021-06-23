@@ -23,7 +23,7 @@ describe('Home Page', () => {
     expect(wrapper.find('LoadCharacterModal').exists()).toBe(false);
   });
 
-  it.skip('should open load character modal when Load Character button clicked', () => {
+  it('should open load character modal when Load Character button clicked', () => {
     wrapper.find('button[children="Load Character"]').simulate('click');
 
     expect(wrapper.find('Connect(LoadCharacterModal)').exists()).toBe(true);
