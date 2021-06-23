@@ -66,6 +66,7 @@ VisibilitySelectModal.propTypes = {
   ])).isRequired,
   setModal: PropTypes.func.isRequired,
   setVisibility: PropTypes.func.isRequired,
+  optics: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default VisibilitySelectModal;

@@ -29,7 +29,6 @@ class CharacterWithGunStore extends MockState {
   constructor(gun) {
     super(gun);
     this.currentView = 'createChar';
-    this.currentCharacter.totalWeight += gun.weight;
     this.currentCharacter.firearms = [gun];
   }
 }

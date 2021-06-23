@@ -12,27 +12,22 @@ export const combatStatsShape = PropTypes.shape({
   maxSpeed: PropTypes.number,
 });
 
-export const gearShape = PropTypes.shape({
-  uniform: PropTypes.string,
-  equipment: PropTypes.arrayOf(PropTypes.object),
-  firearms: PropTypes.arrayOf(PropTypes.object),
-});
-
 export const gunObjShape = PropTypes.shape({
   name: PropTypes.string,
   list: PropTypes.string,
+  calibre: PropTypes.string,
   length: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   weight: PropTypes.number,
   rt: PropTypes.number,
   rof: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  mag: PropTypes.array,
+  mag: PropTypes.arrayOf(PropTypes.object),
   kd: PropTypes.number,
   sab: PropTypes.number,
-  aim: PropTypes.object,
-  projectiles: PropTypes.array,
-  ma: PropTypes.array,
-  ba: PropTypes.array,
-  tof: PropTypes.array,
+  aim: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.number)),
+  projectiles: PropTypes.arrayOf(PropTypes.object),
+  ma: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+  ba: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+  tof: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
   offical: PropTypes.bool,
 });
 
@@ -52,7 +47,7 @@ export const grenadeShape = PropTypes.shape({
   r: PropTypes.number.isRequired,
   smk: PropTypes.number,
   dur: PropTypes.number,
-  data: PropTypes.object.isRequired,
+  data: PropTypes.objectOf(PropTypes.array).isRequired,
   heading: PropTypes.string.isRequired,
 });
 
@@ -63,21 +58,14 @@ export const launcherShape = PropTypes.shape({
   weight: PropTypes.number,
   rt: PropTypes.number,
   rof: PropTypes.string,
-  mag: PropTypes.array,
+  mag: PropTypes.arrayOf(PropTypes.object),
   mr: PropTypes.number,
   sab: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  aim: PropTypes.object,
-  projectiles: PropTypes.array,
-  moi: PropTypes.array,
-  ba: PropTypes.array,
-  tof: PropTypes.array,
-});
-
-export const tableLineShape = PropTypes.shape({
-  dataType: PropTypes.object,
-  aim: PropTypes.array,
-  tag: PropTypes.array,
-  array: PropTypes.array,
+  aim: PropTypes.objectOf(PropTypes.array),
+  projectiles: PropTypes.arrayOf(PropTypes.object),
+  aoi: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+  ba: PropTypes.arrayOf(PropTypes.number),
+  tof: PropTypes.arrayOf(PropTypes.number),
 });
 
 export const armourShape = PropTypes.shape({

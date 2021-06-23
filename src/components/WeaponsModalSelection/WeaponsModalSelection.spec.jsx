@@ -5,8 +5,6 @@ import WeaponsModalSelection from './component';
 
 import * as data from './data';
 
-data.firearmLists = jest.fn().mockImplementation(() => (['M16', 'FN Mk 1', 'RPD']));
-
 describe('Firearms selection', () => {
   let wrapper;
 
@@ -16,6 +14,8 @@ describe('Firearms selection', () => {
   const firearms = [{ name: 'RPD' }];
 
   beforeEach(() => {
+    data.firearmLists = jest.fn().mockImplementation(() => (['M16', 'FN Mk 1', 'RPD']));
+
     wrapper = shallow(
       <WeaponsModalSelection
         firearms={firearms}
@@ -80,6 +80,8 @@ describe('Toggling Filter Modal', () => {
   const firearms = [{ name: 'RPD' }];
 
   beforeEach(() => {
+    data.firearmLists = jest.fn().mockImplementation(() => (['M16', 'FN Mk 1', 'RPD']));
+
     wrapper = shallow(
       <WeaponsModalSelection
         firearms={firearms}

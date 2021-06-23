@@ -2,15 +2,21 @@ import { filterCalibersFromType } from './data';
 
 import * as data from '../../data/firearms';
 
-data.riflesList = jest.fn().mockImplementation(() => ['M16']);
-data.pistolsList = jest.fn().mockImplementation(() => ['FN Mk 1']);
-data.smgsList = jest.fn().mockImplementation(() => ['AKS-74U', 'MP5 SD3']);
-data.mgsList = jest.fn().mockImplementation(() => ['RPD']);
-data.shotgunsList = jest.fn().mockImplementation(() => ['Ithaca LAPD']);
-data.sniperRiflesList = jest.fn().mockImplementation(() => ['M40A1']);
+const mockDataModuleMethods = () => {
+  data.riflesList = jest.fn().mockImplementation(() => ['M16']);
+  data.pistolsList = jest.fn().mockImplementation(() => ['FN Mk 1']);
+  data.smgsList = jest.fn().mockImplementation(() => ['AKS-74U', 'MP5 SD3']);
+  data.mgsList = jest.fn().mockImplementation(() => ['RPD']);
+  data.shotgunsList = jest.fn().mockImplementation(() => ['Ithaca LAPD']);
+  data.sniperRiflesList = jest.fn().mockImplementation(() => ['M40A1']);
+};
 
 describe('Filtering calibers and weapon types', () => {
   describe('filter by firearm', () => {
+    beforeEach(() => {
+      mockDataModuleMethods();
+    });
+
     it('should return the rifle list', () => {
       expect(filterCalibersFromType('Rifles', 'All Calibres')).toEqual(['M16']);
     });
@@ -37,6 +43,10 @@ describe('Filtering calibers and weapon types', () => {
   });
 
   describe('filtering by calibre', () => {
+    beforeEach(() => {
+      mockDataModuleMethods();
+    });
+
     it('should return the 7.62 NATO weapons', () => {
       expect(filterCalibersFromType('All', '7.62mm NATO')).toEqual(['M40A1']);
     });
@@ -63,6 +73,10 @@ describe('Filtering calibers and weapon types', () => {
   });
 
   describe('filtering by both type and calibre', () => {
+    beforeEach(() => {
+      mockDataModuleMethods();
+    });
+
     it('should filter by both type and calibre', () => {
       expect(filterCalibersFromType('SMGs', '9mm Parabellum')).toEqual(['MP5 SD3']);
     });

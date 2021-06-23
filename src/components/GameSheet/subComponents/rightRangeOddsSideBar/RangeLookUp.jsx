@@ -8,13 +8,13 @@ const RangeLookUp = () => (
   <div className="range-look-up-table">
     <div className="range-look-up-header">
       <div>
-          Rng
+        Rng
       </div>
       <div>
-          ALM
+        ALM
       </div>
     </div>
-    {Object.keys(rangeTable).map(range => (
+    {Object.keys(rangeTable).map((range) => (
       <div className="range-look-up-row" key={range}>
         <div>
           {range}

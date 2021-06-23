@@ -18,7 +18,7 @@ const waitOneTick = (simulate) => new Promise((resolve) => {
 describe('The Header', () => {
   const handleSetSignedIn = jest.fn();
 
-  describe.skip('sign up modal', () => {
+  describe('sign up modal', () => {
     let wrapper;
 
     beforeEach(() => {
@@ -123,7 +123,7 @@ describe('The Header', () => {
     });
   });
 
-  describe.skip('sign in modal', () => {
+  describe('sign in modal', () => {
     let wrapper;
 
     beforeEach(() => {
@@ -225,7 +225,7 @@ describe('The Header', () => {
     });
   });
 
-  describe.skip('Signing Out', () => {
+  describe('Signing Out', () => {
     let wrapper;
 
     beforeEach(() => {
@@ -295,7 +295,7 @@ describe('The Header', () => {
     });
   });
 
-  describe.skip('burger button in mobile', () => {
+  describe('burger button in mobile', () => {
     let wrapper;
 
     beforeEach(() => {

@@ -1,3 +1,5 @@
+// mptodo update below to object based system like firearms?
+
 export const meleeData = () => [
   {
     Name: 'Baseball Bat (1 hand)',

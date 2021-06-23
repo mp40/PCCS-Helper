@@ -60,21 +60,22 @@ const HeaderModal = ({
         />
         <div>{text[type].title}</div>
         <form className={styles.form} onSubmit={(event) => handleSubmit(event)}>
-          {/* mptodo */}
-          <label>
+          <label htmlFor="email">
             <span className={errors.email ? styles.error : ''}>
               {text.label.email}
             </span>
             {errors.email && (
               <p className={styles.errorMessage}>{text.errors.email}</p>
             )}
+            <input
+              id="email"
+              type="email"
+              value={userDetails.email}
+              onChange={(event) => setUserEmail(event.target.value)}
+            />
           </label>
-          <input
-            value={userDetails.email}
-            onChange={(event) => setUserEmail(event.target.value)}
-          />
 
-          <label>
+          <label htmlFor="password">
             <span className={errors.password ? styles.error : ''}>
               {text.label.password}
             </span>
@@ -83,11 +84,14 @@ const HeaderModal = ({
                 <p className={styles.errorMessage}>{text.errors.password}</p>
               )}
             </span>
+            <input
+              id="password"
+              type="password"
+              value={userDetails.password}
+              onChange={(event) => setUserPassword(event.target.value)}
+            />
           </label>
-          <input
-            value={userDetails.password}
-            onChange={(event) => setUserPassword(event.target.value)}
-          />
+
           <input type="submit" value={text[type].title} />
         </form>
         <button

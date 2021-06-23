@@ -30,6 +30,7 @@ const checkMeleeData = () => {
   return result;
 };
 
+// mptodo - delete these?
 describe('validate melee data', () => {
   it('should have a name key with string value', () => {
     expect(checkMeleeData()).toBe('matches basic spec');

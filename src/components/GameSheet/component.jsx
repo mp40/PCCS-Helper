@@ -21,26 +21,35 @@ import { getFirearmNameAndRecoil, prepareHandToHandWeaponList } from './data';
 
 import { salAndCeTable } from '../../core/tables';
 
-import { combatStatsShape, gearShape } from '../../helpers/proptypeShapes';
+import { grenadeShape, gunObjShape } from '../../helpers/proptypeShapes';
 
 import './GameSheet.css';
 import '../App/App.css';
 
 import styles from './styles.module.css';
 
-const GameSheet = ({ name, characterStats, combatStats, gear, selectCurrentView }) => {
+const GameSheet = (
+  { name,
+    gunLevel,
+    handLevel,
+    gunCombatActions,
+    handCombatActions,
+    knockoutValue,
+    equipment,
+    firearms,
+    grenades,
+    helmet,
+    vest,
+    selectCurrentView },
+) => {
   React.useEffect(() => {
     window.print();
     selectCurrentView('createChar');
   });
 
-  // mptodo - this seems to be importing unsed props
-  const meleeWeaponList = prepareHandToHandWeaponList(gear.firearms, gear.equipment);
+  const meleeWeaponList = prepareHandToHandWeaponList(firearms, equipment);
 
-  const sal = salAndCeTable[characterStats.gunLevel];
-  const ce = salAndCeTable[characterStats.handLevel];
-  const isf = sal + characterStats.int;
-  const asf = ce + characterStats.agi;
+  const sal = salAndCeTable[gunLevel];
 
   return (
     <div className="a4GameSheet">
@@ -53,10 +62,10 @@ const GameSheet = ({ name, characterStats, combatStats, gear, selectCurrentView 
           )}
           <div className={styles.firearm}>
             <div>
-              <p>{getFirearmNameAndRecoil(gear.firearms[0], characterStats.gunLevel)}</p>
-              <WeaponStatsTable weapon={hydrateFirearmByObject(gear.firearms[0])} sal={sal} size="a4" />
+              <p>{getFirearmNameAndRecoil(firearms[0], gunLevel)}</p>
+              <WeaponStatsTable weapon={hydrateFirearmByObject(firearms[0])} sal={sal} size="a4" />
             </div>
-            <FirearmNotes gunObj={gear.firearms[0]} />
+            <FirearmNotes gunObj={firearms[0]} />
           </div>
           <div className={styles.mainLower}>
             <div className={styles.left}>
@@ -64,24 +73,24 @@ const GameSheet = ({ name, characterStats, combatStats, gear, selectCurrentView 
               <div className={styles.infoAndActions}>
                 <CharacterInfo />
                 <ActionsTable
-                  gunCombatActions={combatStats.gunCombatActions}
-                  handCombatActions={combatStats.handCombatActions}
+                  gunCombatActions={gunCombatActions}
+                  handCombatActions={handCombatActions}
                 />
               </div>
 
               { meleeWeaponList.length > 0 && (
-              <HandToHandTable meleeList={meleeWeaponList} meleeLevel={characterStats.handLevel} />
+              <HandToHandTable meleeList={meleeWeaponList} meleeLevel={handLevel} />
               )}
 
               <div className={styles.armourReactionKnockoutRow}>
-                <BodyArmourTable helmet={gear.helmet} vest={gear.vest} />
+                <BodyArmourTable helmet={helmet} vest={vest} />
                 <ReactionTable sal={sal} />
-                <KnockoutTable knockoutValue={combatStats.knockoutValue} />
+                <KnockoutTable knockoutValue={knockoutValue} />
               </div>
 
-              {gear.grenades.length > 0 && (
+              {grenades.length > 0 && (
                 <div className={styles.grenades}>
-                  <GrenadeList grenades={gear.grenades} />
+                  <GrenadeList grenades={grenades} />
                 </div>
               )}
 
@@ -106,9 +115,16 @@ const GameSheet = ({ name, characterStats, combatStats, gear, selectCurrentView 
 
 GameSheet.propTypes = {
   name: PropTypes.string,
-  characterStats: PropTypes.objectOf(PropTypes.number),
-  combatStats: combatStatsShape,
-  gear: gearShape,
+  gunLevel: PropTypes.number.isRequired,
+  handLevel: PropTypes.number.isRequired,
+  gunCombatActions: PropTypes.number,
+  handCombatActions: PropTypes.number,
+  knockoutValue: PropTypes.number.isRequired,
+  equipment: PropTypes.arrayOf(PropTypes.object),
+  firearms: PropTypes.arrayOf(gunObjShape),
+  grenades: PropTypes.arrayOf(grenadeShape),
+  helmet: PropTypes.string,
+  vest: PropTypes.string,
   selectCurrentView: PropTypes.func,
 };
 

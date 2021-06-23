@@ -141,6 +141,7 @@ const selectDamageBonus = (state) => {
   return getDamageBonus(selectMaxSpeed(state), asf);
 };
 
+// mptodo check if used
 export const selectCombatStats = (state) => {
   const baseSpeed = selectBaseSpeed(state);
   const maxSpeed = selectMaxSpeed(state);
