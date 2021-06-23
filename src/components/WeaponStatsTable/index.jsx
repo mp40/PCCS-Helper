@@ -21,7 +21,6 @@ export const findSkillLevelFromSAL = (playerSAL) => {
 };
 
 const WeaponStatsTable = ({ weapon, sal, size }) => {
-  // console.log('??', 'wep', weapon, 'sal', sal, 'size', size);
   const dataTemplate = getTemplate(weapon.list, weapon.trb);
   const emptyRow = getEmptyRow(weapon.list);
 
