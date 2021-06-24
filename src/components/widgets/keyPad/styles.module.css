@@ -1,0 +1,22 @@
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .buttons > button {
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0 0 1px 1px var(--london-grey);
+    width: calc(25% - 4px);
+    margin: 2px;
+    height: 2.25rem;
+    font-size: 1rem;
+    color: var(--panzer-grey);
+    background-color: var(--light-grey);
+  }
+  
+  .selected {
+    box-shadow: 0 0 1px 1px var(--golden-olive) !important;
+    background-color: var(--ivory) !important;
+  }

@@ -81,7 +81,7 @@ describe('Body Armour Selection', () => {
   it('should be possible to remove helmet', () => {
     wrapper.find('button[children="Remove"]').simulate('click');
 
-    expect(handleDispatch).toHaveBeenCalledWith(armourType, null);
+    expect(handleDispatch).toHaveBeenCalledWith(armourType, undefined);
   });
 
   it('should be possible to close modal', () => {

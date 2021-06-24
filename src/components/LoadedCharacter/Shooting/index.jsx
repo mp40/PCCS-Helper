@@ -27,6 +27,7 @@ import {
   defaultSituationState,
   defaultVisibilityState,
   getWeaponRangeIndex,
+  getWeaponMaxRange,
 } from './data';
 
 import styles from './styles.module.css';
@@ -43,7 +44,7 @@ const LoadedCharacterShooting = ({
   const [ammoType, setAmmoType] = useState(0);
   const [aims, setAims] = useState(1);
   const [stance, setStance] = useState('Standing');
-  const [range, setRange] = useState(100);
+  const [range, setRange] = useState(50);
   const [size, setSize] = useState('Standing Exposed');
   const [movement, setMovement] = useState({ shooter: 0, target: 0 });
   const [visibility, setVisibility] = useState(defaultVisibilityState);
@@ -241,7 +242,7 @@ const LoadedCharacterShooting = ({
 
       </div>
 
-      {modal === 'range' && <RangeSelectModal setRange={setRange} setModal={setModal} />}
+      {modal === 'range' && <RangeSelectModal range={range} maxRange={getWeaponMaxRange(firearm.list)} setRange={setRange} setModal={setModal} />}
       {modal === 'stance' && <StanceSelectModal setStance={setStance} setModal={setModal} />}
       {modal === 'target' && <TargetSizeSelectModal setSize={setSize} setModal={setModal} />}
       {modal === 'movement' && <MovementSelectModal setMovement={setMovement} setModal={setModal} movement={movement} />}

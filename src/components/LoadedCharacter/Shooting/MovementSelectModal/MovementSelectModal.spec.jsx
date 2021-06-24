@@ -22,25 +22,27 @@ describe('Movement Select Modal', () => {
   });
 
   it('should render modal showing current movment for shooter', () => {
-    const shooterCurrentMovement = wrapper.find('button[children=0]').at(0);
+    const shooterKeyPad = wrapper.find('KeyPad').at(0).dive();
 
-    expect(shooterCurrentMovement.props().className).toBe('selected');
+    expect(shooterKeyPad.find('button[children=0]').props().className).toBe('selected');
   });
 
   it('should render modal showing current movment for target', () => {
-    const targetCurrentMovement = wrapper.find('button[children=0]').at(1);
+    const targetKeyPad = wrapper.find('KeyPad').at(1).dive();
 
-    expect(targetCurrentMovement.props().className).toBe('selected');
+    expect(targetKeyPad.find('button[children=0]').props().className).toBe('selected');
   });
 
   it('should be possible to select shooter speed', () => {
-    wrapper.find('button[children=1]').at(0).simulate('click');
+    wrapper.find('KeyPad').at(0).dive().find('button[children=1]')
+      .simulate('click');
 
     expect(setMovement).toHaveBeenCalledWith({ shooter: 1, target: 0 });
   });
 
   it('should be possible to select target speed', () => {
-    wrapper.find('button[children=2]').at(1).simulate('click');
+    wrapper.find('KeyPad').at(1).dive().find('button[children=2]')
+      .simulate('click');
 
     expect(setMovement).toHaveBeenCalledWith({ shooter: 0, target: 2 });
   });

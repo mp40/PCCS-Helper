@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+
+import KeyPad from '../../../widgets/keyPad';
 
 import styles from './styles.module.css';
 
@@ -19,36 +21,21 @@ const MovementSelectModal = ({ setMovement, setModal, movement }) => {
     setMovement(updatedMovement);
   };
 
-  const getClassName = (value, person) => {
-    if (movement[person] === value) {
-      return styles.selected;
-    }
-
-    return '';
-  };
-
   return (
     <>
       <div className="modal-background" />
-      <div className={`--card ${styles.card}`}>
+      <div className={`card-standard ${styles.card}`}>
 
-        <div className={styles.heading}>Shooter, Hex Per Imp</div>
-        <div className={styles.buttons}>
-          {speeds.map((speed) => (
-            <button type="button" className={getClassName(speed, 'shooter')} key={speed} onClick={() => handleClick(speed, 'shooter')}>
-              {speed}
-            </button>
-          ))}
-        </div>
-
-        <div className={styles.heading}>Target, Hex Per Imp</div>
-        <div className={styles.buttons}>
-          {speeds.map((speed) => (
-            <button type="button" className={getClassName(speed, 'target')} key={speed} onClick={() => handleClick(speed, 'target')}>
-              {speed}
-            </button>
-          ))}
-        </div>
+        {['shooter', 'target'].map((person) => (
+          <Fragment key={person}>
+            <div className={styles.heading}>{`${person}, Hex Per Imp`}</div>
+            <KeyPad
+              handleClick={(value) => handleClick(value, person)}
+              values={speeds}
+              selected={movement[person]}
+            />
+          </Fragment>
+        ))}
 
         <button type="button" className={styles.done} onClick={() => setModal(false)}>Done</button>
 
