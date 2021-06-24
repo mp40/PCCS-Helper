@@ -17,6 +17,8 @@ describe('Aim Select Modal', () => {
   });
 
   it('should render a button for each aim option', () => {
+    wrapper = wrapper.dive();
+
     expect(wrapper.find('button').find({ children: 1 }).exists()).toBe(true);
     expect(wrapper.find('button').find({ children: 2 }).exists()).toBe(true);
     expect(wrapper.find('button').find({ children: 3 }).exists()).toBe(true);
@@ -26,20 +28,25 @@ describe('Aim Select Modal', () => {
   });
 
   it('should not render a button for non aim options', () => {
+    wrapper = wrapper.dive();
+
     expect(wrapper.find('button').find({ children: 0 }).exists()).toBe(false);
     expect(wrapper.find('button').find({ children: 7 }).exists()).toBe(false);
   });
 
-  it('should add show the current selected aim', () => {
-    const selectedAim = wrapper.find('button').find({ children: 1 });
+  it('should set the aim value  when button clicked', () => {
+    wrapper = wrapper.dive();
 
-    expect(selectedAim.props().className).toBe('selected');
-  });
-
-  it('should set the aim value and close the modal when button clicked', () => {
     wrapper.find('button').find({ children: 1 }).simulate('click');
 
     expect(setAims).toHaveBeenCalledWith(1);
+  });
+
+  it('should close the modal when button clicked', () => {
+    wrapper = wrapper.dive();
+
+    wrapper.find('button').find({ children: 1 }).simulate('click');
+
     expect(setModal).toHaveBeenCalledWith(false);
   });
 });

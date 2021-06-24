@@ -11,6 +11,8 @@ describe('Range Select Modal', () => {
   beforeEach(() => {
     wrapper = shallow(
       <RangeSelectModal
+        range={10}
+        maxRange={80}
         setRange={setRange}
         setModal={setModal}
       />);
@@ -20,20 +22,14 @@ describe('Range Select Modal', () => {
     jest.clearAllMocks();
   });
 
-  it('should be possible to select lowest range', () => {
-    wrapper.find('button[children="1"]').simulate('click');
+  it('should update range when value is selected', () => {
+    wrapper.dive().find('button[children="1"]').simulate('click');
 
     expect(setRange).toHaveBeenCalledWith('1');
   });
 
-  it('should be possible to select highest range', () => {
-    wrapper.find('button[children="300"]').simulate('click');
-
-    expect(setRange).toHaveBeenCalledWith('300');
-  });
-
   it('should close the modal when range is selected', () => {
-    wrapper.find('button[children="1"]').simulate('click');
+    wrapper.dive().find('button[children="1"]').simulate('click');
 
     expect(setModal).toHaveBeenCalledWith(false);
   });

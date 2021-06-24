@@ -1,6 +1,8 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
+import { correctFloatingPoint } from '../../utils';
+
 import styles from './styles.module.css';
 
 const multiplyKV = (multiplier) => (knockoutValue) => knockoutValue * multiplier;
@@ -12,7 +14,7 @@ const getComparisonSymbol = (index) => (index === 0 ? '<' : '>');
 
 const renderRowValues = (knockoutValue) => knockoutOdds.map((percentage, index) => (
   <div key={`${knockoutOdds[index]}percent`}>
-    <span>{`${getComparisonSymbol(index)} ${calculatePD[index](knockoutValue)}`}</span>
+    <span>{`${getComparisonSymbol(index)} ${correctFloatingPoint(calculatePD[index](knockoutValue))}`}</span>
     <span>{percentage}</span>
   </div>
 ));

@@ -53,6 +53,9 @@ describe('Shooting Card', () => {
     const m16 = testM16();
     wrapper = mount(<Shooting sal={0} level={0} firearm={testFAMAS()} setFirearm={setFirearm} />);
 
+    wrapper.find('span[children="Range"]').closest('button').simulate('click');
+    wrapper.find('RangeSelectModal').invoke('setRange')(100);
+
     wrapper.find('FireSelector').invoke('setRof')('Auto');
     wrapper.find('button[children="Sustained Fire"]').simulate('click');
 
@@ -111,18 +114,6 @@ describe('Shooting Card', () => {
         expect(wrapper.text()).not.toContain('MA:');
       });
 
-      it('should show the MA if in Auto based on default range of 100', () => {
-        wrapper.find('FireSelector').invoke('setRof')('Auto');
-
-        expect(wrapper.text()).toContain('MA: 4');
-      });
-
-      it('should show the MA if in 3RB based on default range of 100', () => {
-        wrapper.find('FireSelector').invoke('setRof')('3RB');
-
-        expect(wrapper.text()).toContain('MA: 4');
-      });
-
       it('should show the MA if in Auto based on selected range of 85', () => {
         wrapper.find('span[children="Range"]').closest('button').simulate('click');
         wrapper.find('RangeSelectModal').invoke('setRange')(85);
@@ -176,11 +167,17 @@ describe('Shooting Card', () => {
     });
 
     describe('Default FMJ ammo stats', () => {
-      it('should show the PEN based on default range of 100', () => {
+      it('should show the PEN based on range of 100', () => {
+        wrapper.find('span[children="Range"]').closest('button').simulate('click');
+        wrapper.find('RangeSelectModal').invoke('setRange')(100);
+
         expect(wrapper.text()).toContain('PEN: 10');
       });
 
-      it('should show the DC based on default range of 100', () => {
+      it('should show the DC based on range of 100', () => {
+        wrapper.find('span[children="Range"]').closest('button').simulate('click');
+        wrapper.find('RangeSelectModal').invoke('setRange')(100);
+
         expect(wrapper.text()).toContain('DC: 5');
       });
 
@@ -423,6 +420,8 @@ describe('Shooting Card', () => {
   describe('Firing the firearm', () => {
     it('should use firearm ballistic accuracy instead of ALM if it is less', () => {
       wrapper = shallow(<Shooting sal={21} level={15} firearm={testM1911A1()} setFirearm={setFirearm} />);
+      wrapper.find('span[children="Range"]').closest('button').simulate('click');
+      wrapper.find('RangeSelectModal').invoke('setRange')(100);
 
       wrapper.find('span[children="Shooter Stance"]').closest('button').simulate('click');
       wrapper.find('StanceSelectModal').invoke('setStance')('Prone');
@@ -436,6 +435,9 @@ describe('Shooting Card', () => {
     it('should not use firearm ballistic accuracy if it is greater than ALM', () => {
       wrapper = shallow(<Shooting sal={10} level={4} firearm={testM1911A1()} setFirearm={setFirearm} />);
 
+      wrapper.find('span[children="Range"]').closest('button').simulate('click');
+      wrapper.find('RangeSelectModal').invoke('setRange')(100);
+
       wrapper.find('span[children="Shooter Stance"]').closest('button').simulate('click');
       wrapper.find('StanceSelectModal').invoke('setStance')('Prone');
 
@@ -448,6 +450,9 @@ describe('Shooting Card', () => {
     it('should provide visual feed back if ALM equals weapon BA', () => {
       wrapper = shallow(<Shooting sal={21} level={15} firearm={testM1911A1()} setFirearm={setFirearm} />);
 
+      wrapper.find('span[children="Range"]').closest('button').simulate('click');
+      wrapper.find('RangeSelectModal').invoke('setRange')(100);
+
       wrapper.find('span[children="Shooter Stance"]').closest('button').simulate('click');
       wrapper.find('StanceSelectModal').invoke('setStance')('Prone');
 
@@ -458,6 +463,9 @@ describe('Shooting Card', () => {
 
     it('should not show the visual feed back if ALM is greater than BA', () => {
       wrapper = shallow(<Shooting sal={10} level={4} firearm={testM1911A1()} setFirearm={setFirearm} />);
+
+      wrapper.find('span[children="Range"]').closest('button').simulate('click');
+      wrapper.find('RangeSelectModal').invoke('setRange')(100);
 
       wrapper.find('span[children="Shooter Stance"]').closest('button').simulate('click');
       wrapper.find('StanceSelectModal').invoke('setStance')('Prone');
@@ -731,6 +739,9 @@ describe('Shooting Card', () => {
       beforeEach(() => {
         wrapper = shallow(<Shooting sal={10} level={4} firearm={testFAMAS()} setFirearm={setFirearm} />);
 
+        wrapper.find('span[children="Range"]').closest('button').simulate('click');
+        wrapper.find('RangeSelectModal').invoke('setRange')(100);
+
         wrapper.find('span[children="Shooter Stance"]').closest('button').simulate('click');
         wrapper.find('StanceSelectModal').invoke('setStance')('Kneeling');
 
@@ -874,6 +885,9 @@ describe('Shooting Card', () => {
       });
 
       it('should reset sab and aims reload button clicked', () => {
+        wrapper.find('span[children="Range"]').closest('button').simulate('click');
+        wrapper.find('RangeSelectModal').invoke('setRange')(100);
+
         wrapper.find('FireSelector').invoke('setRof')('Auto');
         wrapper.find('button[children="Sustained Fire"]').simulate('click');
         wrapper.find('button[children="Sustained Fire"]').simulate('click');

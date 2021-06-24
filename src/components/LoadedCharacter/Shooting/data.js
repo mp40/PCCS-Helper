@@ -463,3 +463,9 @@ export const getWeaponRangeIndex = (list, range) => {
 
   return index;
 };
+
+export const getWeaponMaxRange = (list) => {
+  const rangeBrackets = getRangeBrackets(list);
+
+  return rangeBrackets[rangeBrackets.length - 1];
+};
