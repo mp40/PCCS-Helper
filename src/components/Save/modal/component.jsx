@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { currentCharacterShape } from '../../../../helpers/proptypeShapes';
+import { currentCharacterShape } from '../../../helpers/proptypeShapes';
 
-import { fetchPostCharacter, fetchPutCharacter } from '../../../../fetch';
+import { fetchPostCharacter, fetchPutCharacter } from '../../../fetch';
 
 import { parseDate, buildRequestPayload } from './data';
 
 import styles from './styles.module.css';
 
-const HeaderSaveModal = (
+const SaveModal = (
   { characters, currentCharacter, setShowSaveCharacter, addSavedCharacter, updateSavedCharacter },
 ) => {
   const [showError, setShowError] = useState(false);
@@ -115,7 +115,7 @@ const HeaderSaveModal = (
   );
 };
 
-HeaderSaveModal.propTypes = {
+SaveModal.propTypes = {
   characters: PropTypes.arrayOf(PropTypes.object).isRequired,
   currentCharacter: currentCharacterShape.isRequired,
   setShowSaveCharacter: PropTypes.func.isRequired,
@@ -123,4 +123,4 @@ HeaderSaveModal.propTypes = {
   updateSavedCharacter: PropTypes.func.isRequired,
 };
 
-export default HeaderSaveModal;
+export default SaveModal;

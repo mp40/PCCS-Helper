@@ -10,22 +10,35 @@ import WeaponsCard from '../WeaponsCard';
 import BodyArmourCard from '../BodyArmourCard';
 import NameCard from '../NameCard';
 
+import Print from '../Print';
+import Save from '../Save';
+
 import styles from './styles.module.css';
 
-const CharacterGeneration = ({ totalWeight, selectCurrentView }) => (
+const CharacterGeneration = ({ totalWeight, selectCurrentView, signedIn }) => (
   <div className={styles.wrapper}>
 
     <div className={`${styles.topCard} --card`}>
-      <h1>Edit Character</h1>
-      <h2>
-        {`Total Lbs: ${totalWeight}`}
-      </h2>
-      <button
-        type="button"
-        onClick={() => selectCurrentView('playCharacter')}
-      >
-        Use Character
-      </button>
+      <div>
+        <h1>Edit Character</h1>
+        <h2>
+          {`Total Lbs: ${totalWeight}`}
+        </h2>
+        <button
+          type="button"
+          onClick={() => selectCurrentView('playCharacter')}
+        >
+          Use Character
+        </button>
+      </div>
+
+      <div>
+        <Print />
+        {signedIn && (
+        <Save />
+        )}
+      </div>
+
     </div>
 
     <div>
@@ -46,6 +59,7 @@ const CharacterGeneration = ({ totalWeight, selectCurrentView }) => (
 CharacterGeneration.propTypes = {
   totalWeight: PropTypes.number.isRequired,
   selectCurrentView: PropTypes.func.isRequired,
+  signedIn: PropTypes.bool.isRequired,
 };
 
 export default CharacterGeneration;

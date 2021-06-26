@@ -8,11 +8,11 @@ import ConnectedHeaderSaveModal from '.';
 
 import { buildRequestPayload } from './data';
 
-import { URL_CHARACTERS } from '../../../../fetch/constants';
+import { URL_CHARACTERS } from '../../../fetch/constants';
 
-import { getStore } from '../../../../helpers/testHelpers';
-import { NewCharacter } from '../../../../reducers/newCharacter';
-import { MockState } from '../../../../reducers/mockState';
+import { getStore } from '../../../helpers/testHelpers';
+import { NewCharacter } from '../../../reducers/newCharacter';
+import { MockState } from ' ../../../reducers/mockState';
 
 const m79 = {
   name: 'M79',
@@ -26,11 +26,11 @@ const m72 = {
   mag: [{ weight: '-' }],
 };
 
-const l2 = { name: 'L2 A2', qty: 1 }
+const l2 = { name: 'L2 A2', qty: 1 };
 
-const tnt = { name: 'TNT', qty: 1 }
+const tnt = { name: 'TNT', qty: 1 };
 
-const m1911WithMods =  {
+const m1911WithMods = {
   name: 'M1911A1',
   qty: 1,
   mag: [{ type: 'Mag', weight: 0.7, cap: 7, qty: 0 }],
@@ -61,9 +61,9 @@ const getCharacter = () => {
   return { ...newCharacter,
     character_id: 1,
     equipment: [{ name: 'test eqp', qty: 1 }],
-    firearms: [{...m1911WithMods}],
-    grenades: [{...l2}],
-    launchers: [{...m72}] };
+    firearms: [{ ...m1911WithMods }],
+    grenades: [{ ...l2 }],
+    launchers: [{ ...m72 }] };
 };
 
 describe('Save Character Modal', () => {
@@ -466,7 +466,7 @@ describe('building request payload', () => {
     expect(Object.keys(payload)).toEqual(requiredKeys);
   });
 
-  //mptodo do I need this test
+  // mptodo do I need this test
   // it('should remove unneeded firearms information', () => {
   //   const payload = buildRequestPayload(getCharacter());
 
@@ -533,7 +533,7 @@ describe('building request payload', () => {
     ]);
   });
 
-  //mptodo - do I need these tests and associated code
+  // mptodo - do I need these tests and associated code
   // it('should remove unneeded grenade information', () => {
   //   const payload = buildRequestPayload(getCharacter());
 

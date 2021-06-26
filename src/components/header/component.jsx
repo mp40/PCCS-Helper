@@ -5,18 +5,13 @@ import HeaderButtons from './buttons';
 import HeaderModal from './modal';
 import HeaderDropdown from './dropdown';
 
-import Print from './print';
-import Save from './save';
-
 import { fetchSignup, fetchSignin, fetchSignOut } from '../../fetch';
 
 import './header.css';
 
 const Header = (
-  { currentView,
-    signedIn,
+  { signedIn,
     handleSetSignedIn,
-    selectCurrentView,
     updateSavedCharacters },
 ) => {
   const [showSignUp, setShowSignUp] = useState(false);
@@ -83,14 +78,6 @@ const Header = (
   return (
     <div className="menuBar">
       <div>PCCS</div>
-      {currentView === 'createChar' && (
-        <div className="wrapper">
-          <Print selectCurrentView={selectCurrentView} />
-          <Save
-            signedIn={signedIn}
-          />
-        </div>
-      )}
 
       <HeaderButtons
         handleShowSignUp={handleShowSignUp}
@@ -131,10 +118,8 @@ const Header = (
 };
 
 Header.propTypes = {
-  currentView: PropTypes.string,
   signedIn: PropTypes.bool.isRequired,
   handleSetSignedIn: PropTypes.func.isRequired,
-  selectCurrentView: PropTypes.func.isRequired,
   updateSavedCharacters: PropTypes.func.isRequired,
 };
 
