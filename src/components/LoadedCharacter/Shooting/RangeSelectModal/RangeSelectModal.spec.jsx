@@ -23,13 +23,13 @@ describe('Range Select Modal', () => {
   });
 
   it('should update range when value is selected', () => {
-    wrapper.dive().find('button[children="1"]').simulate('click');
+    wrapper.find('KeyPadModal').invoke('handleClick')('1');
 
     expect(setRange).toHaveBeenCalledWith('1');
   });
 
   it('should close the modal when range is selected', () => {
-    wrapper.dive().find('button[children="1"]').simulate('click');
+    wrapper.find('KeyPadModal').invoke('handleClick')('1');
 
     expect(setModal).toHaveBeenCalledWith(false);
   });

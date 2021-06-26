@@ -50,7 +50,7 @@ const App = ({ currentView, updateSavedCharacters }) => {
         <div className="App-body">
           {currentView === 'home' && <HomePage />}
           {(currentView === 'createChar' || currentView === 'printRefSheet') && (
-          <CharacterGeneration />
+          <CharacterGeneration signedIn={signedIn} />
           )}
           {currentView === 'playCharacter' && <LoadedCharacter />}
         </div>

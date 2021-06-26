@@ -23,4 +23,5 @@ const mapStateToProps = (state) => ({
   handCombatActions: selectHandCombatActions(state),
   knockoutValue: selectKnockoutValue(state),
 });
+
 export default connect(mapStateToProps, { selectCurrentView })(GameSheet);

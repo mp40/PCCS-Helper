@@ -4,7 +4,7 @@
   top: 4.25rem;
   left: 50%;
   transform: translateX(-50%);
-  width: calc(100% - 60px);
+  width: 300px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -21,4 +21,12 @@
 
 .card > button:nth-of-type(2) {
   margin: 10px 0;
+}
+
+
+@media screen and (max-width: 700px) {
+  .card {
+    top: 15px;
+    width: calc(100% - 60px);
+  }
 }

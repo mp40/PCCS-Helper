@@ -2,11 +2,6 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 
-import { Provider } from 'react-redux';
-import { getStoreWithGun } from '../../helpers/testHelpers';
-
-import ConnectedHeader from '.';
-
 import Header from './component';
 
 const waitOneTick = (simulate) => new Promise((resolve) => {
@@ -17,6 +12,44 @@ const waitOneTick = (simulate) => new Promise((resolve) => {
 
 describe('The Header', () => {
   const handleSetSignedIn = jest.fn();
+
+  describe('user button views', () => {
+    let wrapper;
+
+    beforeEach(() => {
+      wrapper = mount(
+        <Header
+          handleSetSignedIn={handleSetSignedIn}
+          signedIn={false}
+          selectCurrentView={() => {}}
+          updateSavedCharacters={() => {}}
+          currentView="createChar"
+        />,
+      );
+    });
+
+    it('should show Sign Up and Sign In buttons if not signed in', () => {
+      expect(wrapper.text()).toContain('Sign Up');
+      expect(wrapper.text()).toContain('Sign In');
+    });
+
+    it('should not show Signed Out button if not signed in', () => {
+      expect(wrapper.text()).not.toContain('Sign Out');
+    });
+
+    it('should not show Sign Up and Sign In buttons if signed in', () => {
+      wrapper.setProps({ signedIn: true });
+
+      expect(wrapper.text()).not.toContain('Sign Up');
+      expect(wrapper.text()).not.toContain('Sign In');
+    });
+
+    it('should show Signed Out button if signed in', () => {
+      wrapper.setProps({ signedIn: true });
+
+      expect(wrapper.text()).toContain('Sign Out');
+    });
+  });
 
   describe('sign up modal', () => {
     let wrapper;
@@ -191,6 +224,35 @@ describe('The Header', () => {
       expect(handleSetSignedIn).toHaveBeenCalled();
     });
 
+    it('should store saved characters from database to session storage', async () => {
+      global.fetch = jest.fn(() => Promise.resolve({
+        text: () => JSON.stringify({ message: 'Signed In' }),
+      }),
+      );
+
+      const spy = jest.spyOn(Storage.prototype, 'setItem');
+
+      wrapper.find('button').at(1).simulate('click');
+
+      wrapper
+        .find('input')
+        .at(0)
+        .simulate('change', { target: { value: 'test@gmail.com' } });
+
+      wrapper
+        .find('input')
+        .at(1)
+        .simulate('change', { target: { value: 'password' } });
+
+      await act(async () => {
+        await waitOneTick(wrapper.find('form').simulate('submit'));
+      });
+
+      wrapper.update();
+
+      expect(spy).toHaveBeenCalledWith('savedCharacters', undefined);
+    });
+
     it('should not close modal on sign up error', async () => {
       global.fetch = jest.fn(() => Promise.resolve({
         text: () => JSON.stringify({
@@ -249,7 +311,7 @@ describe('The Header', () => {
       }),
       );
 
-      const stub = jest.spyOn(Storage.prototype, 'removeItem').mockImplementation(() => {});
+      jest.spyOn(Storage.prototype, 'removeItem').mockImplementation(() => {});
 
       await act(async () => {
         await waitOneTick(
@@ -276,6 +338,25 @@ describe('The Header', () => {
       });
 
       expect(spy).toHaveBeenCalledWith('savedCharacters');
+      expect(handleSetSignedIn).toHaveBeenCalled();
+    });
+
+    it('should not clear session storage if Cookie Cleared msg not recieved', async () => {
+      global.fetch = jest.fn(() => Promise.resolve({
+        text: () => JSON.stringify({ message: 'something else' }),
+      }),
+      );
+
+      const spy = jest.spyOn(Storage.prototype, 'removeItem').mockImplementation(() => {});
+
+      await act(async () => {
+        await waitOneTick(
+          wrapper.find('HeaderButtons').invoke('handleSignOut')(),
+        );
+      });
+
+      expect(spy).not.toHaveBeenCalled();
+      expect(handleSetSignedIn).not.toHaveBeenCalled();
     });
 
     it('should not sign out if error', async () => {
@@ -307,37 +388,40 @@ describe('The Header', () => {
           updateSavedCharacters={() => {}}
         />,
       );
+    });
 
+    it('should not show burger menu on bigger screens', () => {
+      act(() => {
+        window.innerWidth = 1000;
+        window.dispatchEvent(new Event('resize'));
+      });
+
+      wrapper.update();
+
+      expect(wrapper.find('.burger').exists()).toBe(false);
+    });
+
+    it('should show burger menu on small screens', () => {
       act(() => {
         window.innerWidth = 799;
         window.dispatchEvent(new Event('resize'));
       });
+
+      wrapper.update();
+
+      expect(wrapper.find('.burger').exists()).toBe(true);
     });
 
     it('should open dropdown when burger clicked', () => {
+      act(() => {
+        window.innerWidth = 799;
+        window.dispatchEvent(new Event('resize'));
+      });
+
       wrapper.update();
+
       wrapper.find('.burger').simulate('click');
       expect(wrapper.find('HeaderDropdown').exists()).toBe(true);
-    });
-  });
-
-  describe('Header Print intergration test', () => {
-    const store = getStoreWithGun({ weight: 1 });
-
-    const wrapper = mount(
-      <Provider store={store}>
-        <ConnectedHeader
-          signedIn={false}
-          handleSetSignedIn={() => {}}
-        />
-      </Provider>,
-    );
-
-    it('should update view when print is clicked', () => {
-      wrapper.find('.print-button').simulate('click');
-
-      expect(wrapper.find('Header').prop('currentView')).toBe('printRefSheet');
-      wrapper.update();
     });
   });
 });

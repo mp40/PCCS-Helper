@@ -46,7 +46,7 @@ const Optics = ({ firearm, optics, updateOptic, removeOptic }) => {
             </span>
             <span>{`Min Rng: ${scope.minimumRange}`}</span>
           </>
-        )}
+          )}
         </span>
         <span className={styles.scopeButtons}>
           <button type="button" className={styles.opticButton} onClick={() => removeOptic(firearm)}>Remove Optic</button>
