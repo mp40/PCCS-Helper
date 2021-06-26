@@ -1,29 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import KeyPad from '../keyPad';
+
 import styles from './styles.module.css';
 
-const KeyPadModal = ({ keyText, setSelection, selected }) => (
+const KeyPadModal = ({ values, handleClick, selected }) => (
   <>
     <div className="modal-background" />
     <div className={`card-standard ${styles.card}`}>
-      {keyText.map((text) => (
-        <button
-          type="button"
-          key={text}
-          className={text === selected ? styles.selected : ''}
-          onClick={() => setSelection(text)}
-        >
-          {text}
-        </button>
-      ))}
+      <KeyPad values={values} handleClick={handleClick} selected={selected} />
     </div>
   </>
 );
 
 KeyPadModal.propTypes = {
-  keyText: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])).isRequired,
-  setSelection: PropTypes.func.isRequired,
+  values: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])).isRequired,
+  handleClick: PropTypes.func.isRequired,
   selected: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 

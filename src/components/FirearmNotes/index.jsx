@@ -41,7 +41,7 @@ const FirearmNotes = ({ gunObj, viewSpareAmmo }) => (
           <div key={m.class}>{`${m.class} x ${gunObj.launcher.mag[i].qty}`}</div>
         ))}
       </>
-)}
+      )}
       {gunObj.selector && <div>{gunObj.selector}</div>}
     </div>
     {gunObj.modNotes && gunObj.modNotes.map((modification) => renderModificationNotes(modification))}

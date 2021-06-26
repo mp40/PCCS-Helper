@@ -4,7 +4,7 @@
   top: 4.25rem;
   left: 50%;
   transform: translateX(-50%);
-  width: calc(100% - 60px);
+  width: 300px;
 }
 
 .card > .title {
@@ -75,3 +75,19 @@
   font-size: 1rem;
   box-shadow: 0 0 1px 1px var(--london-grey);
 }
+
+@media screen and (max-width: 700px) {
+  .card {
+    width: calc(100% - 60px);
+  }
+
+  .card > .title {
+    font-size: 1rem;
+  }
+  
+  
+  .card > .title:nth-of-type(3) {
+    margin-top: 0.33rem;
+  }
+}
+

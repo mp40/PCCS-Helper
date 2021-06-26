@@ -86,7 +86,7 @@ const FirearmModify = ({
               ableToAttach={gunObj.launcher.ableToAttach}
               attachedLauncher={gunObj.launcher.attached}
             />
-          )}
+            )}
           </>
         )}
       {createCustomMag && (

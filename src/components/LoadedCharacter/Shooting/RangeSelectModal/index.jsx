@@ -13,8 +13,8 @@ const RangeSelectModal = ({ range, maxRange, setRange, setModal }) => {
 
   return (
     <KeyPadModal
-      keyText={Object.keys(rangeMods).filter((n) => n <= maxRange)}
-      setSelection={handleClick}
+      values={Object.keys(rangeMods).filter((n) => n <= maxRange)}
+      handleClick={handleClick}
       selected={range}
     />
   );

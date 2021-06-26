@@ -10,7 +10,7 @@ const AimsSelectModal = ({ aims, maxAims, setAims, setModal }) => {
   };
 
   return (
-    <KeyPadModal keyText={[...Array(maxAims).keys()].map((n) => n + 1)} setSelection={handleClick} selected={aims} />
+    <KeyPadModal values={[...Array(maxAims).keys()].map((n) => n + 1)} handleClick={handleClick} selected={aims} />
   );
 };
 

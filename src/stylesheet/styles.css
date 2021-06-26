@@ -130,7 +130,7 @@
 
 .card-select-gear-modal {
   position: fixed;
-  top: 10rem;
+  top: 4.25rem;
   left: 50%;
   transform: translateX(-50%);
   width: 60rem;

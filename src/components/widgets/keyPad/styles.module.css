@@ -1,7 +1,12 @@
 .buttons {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .buttons::-webkit-scrollbar {
+    display: none;
   }
   
   .buttons > button {
@@ -19,4 +24,17 @@
   .selected {
     box-shadow: 0 0 1px 1px var(--golden-olive) !important;
     background-color: var(--ivory) !important;
+  }
+  
+  @media screen and (max-width: 700px) {
+    .buttons {
+      max-height: calc(100vh - 4.75rem);
+      overflow: scroll;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .buttons::-webkit-scrollbar {
+      display: none;
+    }
   }
