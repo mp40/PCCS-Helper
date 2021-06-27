@@ -6,32 +6,31 @@ import { getStore } from '../../helpers/testHelpers';
 
 import ConnectedCombatCard from '.';
 
-describe('the CombatCard component', () => {
-  describe('combat card intergration tests', () => {
-    const store = getStore();
+describe('Character Combat Skills intergration tests', () => {
+  let wrapper;
+  const store = getStore();
 
-    const wrapper = mount(
+  beforeEach(() => {
+    wrapper = mount(
       <Provider store={store}>
         <ConnectedCombatCard />
       </Provider>,
     );
+  });
 
-    const inputAttribute = (attributeId, newValue) => {
-      wrapper.find(attributeId).simulate('click');
-      wrapper.find(`${attributeId} input`).simulate('keyUp', { target: { value: newValue },
-        key: 'Enter' });
-    };
+  it('should update Gun Level', () => {
+    wrapper.find('span[children="Gun"]').closest('button').simulate('click');
 
-    it('should update gun combat level', () => {
-      inputAttribute('.updateGun', '4');
+    wrapper.find('KeyPad').find('button[children=5]').simulate('click');
 
-      expect(wrapper.find('.updateGun').text()).toContain('4');
-    });
+    expect(wrapper.find('span[children="Gun"]').closest('button').text()).toBe('Gun5');
+  });
 
-    it('should update hand to hand combat level', () => {
-      inputAttribute('.updateHand', '2');
+  it('should update Hand Level', () => {
+    wrapper.find('span[children="Hand"]').closest('button').simulate('click');
 
-      expect(wrapper.find('.updateHand').text()).toContain('2');
-    });
+    wrapper.find('KeyPad').find('button[children=2]').simulate('click');
+
+    expect(wrapper.find('span[children="Hand"]').closest('button').text()).toBe('Hand2');
   });
 });

@@ -9,17 +9,6 @@ describe('Selecting Charcter Generation', () => {
   const wrapper = mountAppWithStore();
   wrapper.find('button[children="Create Character"]').simulate('click');
 
-  it('should generate default stats for character', () => {
-    expect(wrapper.find('.topCard').text()).toContain('Total Lbs: 5');
-    expect(wrapper.find('.updateStrength').text()).toBe('10');
-    expect(wrapper.find('.updateIntelligence').text()).toBe('10');
-    expect(wrapper.find('.updateWillpower').text()).toBe('10');
-    expect(wrapper.find('.updateHealth').text()).toBe('10');
-    expect(wrapper.find('.updateAgility').text()).toBe('10');
-    expect(wrapper.find('.updateGun').text()).toBe('0');
-    expect(wrapper.find('.updateHand').text()).toBe('0');
-  });
-
   it('should be possible to print character', () => {
     const spyGlobalPrint = jest.fn();
 

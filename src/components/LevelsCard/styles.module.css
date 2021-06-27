@@ -1,0 +1,47 @@
+.heading {
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+}
+
+.wrapper > button {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    padding: 1px 0;
+}
+
+.wrapper > div,
+.wrapper > button {
+    border-bottom: 1px solid #ddd;
+}
+
+.wrapper > div > span:nth-of-type(2),
+.wrapper > button > span:nth-of-type(2) {
+    width: 3.6rem;
+    text-align: center;
+}
+
+@media screen and (max-width: 700px) {
+    .heading {
+        font-size: 1rem;
+    }
+
+    .wrapper > button {
+        font-size: 1rem;
+    }
+
+    .wrapper > div,
+    .wrapper > button {
+        border: none;
+    }
+
+    .wrapper > div > span:nth-of-type(2),
+    .wrapper > button > span:nth-of-type(2) {
+        width: 2.75rem;
+    }
+}

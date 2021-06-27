@@ -1,24 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import LevelsCard from '../LevelsCard';
-import StatInput from '../widgets/StatInput';
-import { isValidCombatLevel } from '../../helpers/gaurds';
 
-const renderStatInput = (level, statName, action) => (
-  <StatInput
-    statLevel={level}
-    statName={statName}
-    isValid={isValidCombatLevel}
-    action={action}
-  />
-);
+const CombatCard = ({
+  gunLevel, handLevel, modifyGunCombatLevel, modifyMeleeCombatLevel,
+}) => {
+  const stats = {
+    gun: { text: 'Gun', value: gunLevel, handleClick: modifyGunCombatLevel },
+    hand: { text: 'Hand', value: handLevel, handleClick: modifyMeleeCombatLevel },
+  };
 
-const CombatCard = ({ gunLevel, handLevel, modifyGunCombatLevel, modifyMeleeCombatLevel }) => (
-  <LevelsCard className="combatLevelCard" levelType="combat">
-    {renderStatInput(gunLevel, 'Gun', modifyGunCombatLevel)}
-    {renderStatInput(handLevel, 'Hand', modifyMeleeCombatLevel)}
-  </LevelsCard>
-);
+  return (<LevelsCard heading="Attribute" stats={stats} min={0} length={12} />);
+};
 
 CombatCard.propTypes = {
   gunLevel: PropTypes.number,
