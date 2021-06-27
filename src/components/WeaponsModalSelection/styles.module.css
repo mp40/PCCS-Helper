@@ -12,7 +12,7 @@
 
 .mask {
   position: fixed;
-  top: 6rem;
+  top: 9rem;
   left: 50%;
   transform: translate(-50%, 100%);
   width: 64rem;
@@ -96,7 +96,7 @@
 
 @media screen and (min-width: 1025px) {
   .wrapper {
-    transform: translate(-50%, -9rem) !important;
+    transform: translate(-50%, -3rem) !important;
   }
 }
 

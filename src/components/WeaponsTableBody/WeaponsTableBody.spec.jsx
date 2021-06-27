@@ -1,11 +1,9 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import WeaponsTableBody from './component';
 
 import { firearms } from '../../data/firearms';
 
-// mptodo - this file seems to have a few repeated tests that are in WeaponsCard intergration tests...
 const testFAMAS = () => ({ ...firearms.FAMAS });
 const testM1911A1 = () => ({ ...firearms.M1911A1 });
 
@@ -50,16 +48,6 @@ const m1911Qty1 = {
   modNotes: [],
 };
 
-const m1911Qty2 = {
-  ...m1911Qty1,
-  qty: 2,
-};
-
-const m1911WithSpareMag = {
-  ...m1911Qty1,
-  mag: [{ type: 'Mag', weight: 0.7, cap: 7, qty: 1 }],
-};
-
 const pistolSingleRounds = {
   ...m1911Qty1,
   mag: [{ type: 'Rnd', weight: 0.7, cap: 7, qty: 1 }],
@@ -98,137 +86,52 @@ describe('Selected Firearms Table', () => {
     jest.clearAllMocks();
   });
 
-  it('should be possible to increase qty of firearm', () => {
+  it('should return "Single Rounds" if type is "Rnd"', () => {
+    wrapper.setProps({ firearms: [pistolSingleRounds] });
+
+    expect(wrapper.find('GearTableEntry').at(1).props().text).toBe('Single Round');
+  });
+
+  it('should return "Single Rounds" if type is "Rnd"', () => {
     wrapper.setProps({ firearms: [m1911Qty1] });
-    wrapper.find('button[children="M1911A1"]').closest('div').find('.button--up').simulate('click');
 
-    expect(increaseFirearmQty).toHaveBeenCalledWith(m1911Qty1.name);
+    expect(wrapper.find('GearTableEntry').at(1).props().text).toBe('7 round Mag');
   });
 
-  it('should be possible to decrease qty of firearm', () => {
-    wrapper.setProps({ firearms: [m1911Qty2] });
-    wrapper.find('button[children="M1911A1"]').closest('div').find('.button--down').simulate('click');
-
-    expect(decreaseFirearmQty).toHaveBeenCalledWith(m1911Qty2.name);
+  it('should render no weapons if none provided', () => {
+    expect(wrapper.find('GearTableEntry').exists()).toBe(false);
   });
 
-  it('should not be possible to decrease qty of firearm below 1', () => {
-    wrapper.setProps({ firearms: [m1911Qty1] });
-    wrapper.find('button[children="M1911A1"]').closest('div').find('.button--down').simulate('click');
+  it('should render provided firearms', () => {
+    wrapper.setProps({ firearms: [testFAMAS(), testM1911A1()] });
 
-    expect(increaseFirearmQty).not.toHaveBeenCalled();
+    expect(wrapper.find('GearTableEntry').at(0).props().text).toBe('FAMAS');
+    expect(wrapper.find('GearTableEntry').at(2).props().text).toBe('M1911A1');
   });
 
-  it('should be possible to modify firearm', () => {
-    wrapper.setProps({ firearms: [m1911Qty1] });
-    wrapper.find('button[children="M1911A1"]').simulate('click');
+  it('should not decrease firearm less than one', () => {
+    wrapper.setProps({ firearms: [testFAMAS()] });
 
-    expect(toggleModifyWeapon).toHaveBeenCalledWith(m1911Qty1.name);
+    wrapper.find('GearTableEntry').at(0).invoke('decreaseItem')();
+
+    expect(decreaseFirearmQty).not.toHaveBeenCalled();
   });
 
-  it('should be possible to remove firearm', () => {
-    wrapper.setProps({ firearms: [m1911Qty1] });
-    wrapper.find('.button--close').simulate('click');
+  it('should not decrease magazine less than zero', () => {
+    wrapper.setProps({ firearms: [testFAMAS()] });
 
-    expect(removeFirearm).toHaveBeenCalledWith(m1911Qty1.name);
-  });
-
-  it('should be possible to increase magazine', () => {
-    wrapper.setProps({ firearms: [m1911Qty1] });
-    wrapper.find('.magazineRow').find('.button--up').simulate('click');
-
-    expect(increaseMagazineQty).toHaveBeenCalledWith({ firearmToModify: 'M1911A1', magazineIndex: 0 });
-  });
-
-  it('should be possible to decrease magazine', () => {
-    wrapper.setProps({ firearms: [m1911WithSpareMag] });
-    wrapper.find('.magazineRow').find('.button--down').simulate('click');
-
-    expect(decreaseMagazineQty).toHaveBeenCalledWith({ firearmToModify: 'M1911A1', magazineIndex: 0 });
-  });
-
-  it('should not be possible to decrease magazine below 0', () => {
-    wrapper.setProps({ firearms: [m1911Qty1] });
-    wrapper.find('.magazineRow').find('.button--down').simulate('click');
+    wrapper.find('GearTableEntry').at(1).invoke('decreaseItem')();
 
     expect(decreaseMagazineQty).not.toHaveBeenCalled();
   });
 
-  describe('rendering the correct information', () => {
-    it('should return "Single Rounds" if type is "Rnd"', () => {
-      wrapper.setProps({ firearms: [pistolSingleRounds] });
+  it('should render provided grenades', () => {
+    wrapper.setProps({ grenades: [m2Grenade] });
 
-      expect(wrapper.text()).toContain('Single Round');
-    });
-
-    it('should return "Single Rounds" if type is "Rnd"', () => {
-      wrapper.setProps({ firearms: [m1911Qty1] });
-
-      expect(wrapper.text()).toContain('7 round Mag');
-    });
-  });
-});
-
-describe('rendering weapons', () => {
-  const getProps = () => ({
-    toggleModifyWeapon,
-    firearms: [],
-    grenades: [],
-    launchers: [],
-    removeGrenade,
-    increaseGrenadeQty,
-    decreaseGrenadeQty,
-    removeFirearm,
-    increaseFirearmQty,
-    decreaseFirearmQty,
-    increaseMagazineQty,
-    decreaseMagazineQty,
-    increaseLauncherQty,
-    decreaseLauncherQty,
-    removeLauncher,
-    increaseLauncherAmmo,
-    decreaseLauncherAmmo,
-    increaseUnderslungLauncherAmmo,
-    decreaseUnderslungLauncherAmmo,
-    totalWeaponWeight: 1337,
+    expect(wrapper.find('GearTableEntry').at(0).props().text).toBe('M2');
   });
 
-  describe('default render', () => {
-    const props = getProps();
-
-    const wrapper = shallow(<WeaponsTableBody {...props} />);
-
-    it('should render no weapons if none provided', () => {
-      expect(wrapper.find('.gear-table-row--container').exists()).toBe(false);
-    });
-  });
-
-  describe('rendering firearms', () => {
-    const props = getProps();
-    props.firearms = [testFAMAS(), testM1911A1()];
-
-    const wrapper = shallow(<WeaponsTableBody {...props} />);
-
-    it('should render provided firearms', () => {
-      expect(wrapper.text()).toContain('FAMAS');
-      expect(wrapper.text()).toContain('M1911A1');
-    });
-  });
-
-  describe('rendering grenades', () => {
-    const props = getProps();
-    props.grenades = [m2Grenade];
-
-    const wrapper = shallow(<WeaponsTableBody {...props} />);
-
-    it('should render provided grenades', () => {
-      expect(wrapper.text()).toContain('M2');
-    });
-  });
-
-  describe('rendering launchers', () => {
-    const props = getProps();
-
+  it('should render provided launchers', () => {
     const m72 = {
       name: 'M72 A2 LAW',
       qty: 1,
@@ -241,17 +144,9 @@ describe('rendering weapons', () => {
       mag: [{ class: 'HEAT', weight: 0.51, qty: 0 }, { class: 'HE', weight: 0.51, qty: 0 }],
     };
 
-    props.launchers = [m79, m72];
+    wrapper.setProps({ launchers: [m72, m79] });
 
-    const wrapper = mount(<WeaponsTableBody {...props} />);
-
-    afterEach(() => {
-      jest.clearAllMocks();
-    });
-
-    it('should render provided launchers', () => {
-      expect(wrapper.text()).toContain('M79');
-      expect(wrapper.text()).toContain('M72');
-    });
+    expect(wrapper.find('GearTableEntry').at(0).props().text).toBe('M72 A2 LAW');
+    expect(wrapper.find('GearTableEntry').at(1).props().text).toBe('M79');
   });
 });

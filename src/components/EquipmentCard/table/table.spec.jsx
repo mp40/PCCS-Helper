@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+
 import EquipmentCardTable from './component';
 
 describe('the equipment list table', () => {
@@ -16,28 +17,10 @@ describe('the equipment list table', () => {
   />);
 
   it('should not be possible to decrease equipment less than one', () => {
-    wrapper.setProps({ equipment: [{ name: 'gear', qty: 1 }] });
+    wrapper.setProps({ equipment: [{ name: 'gear', qty: 1, weight: 1 }] });
 
-    wrapper.find('.button--down').simulate('click');
+    wrapper.find('GearTableEntry').invoke('decreaseItem')();
 
     expect(decreaseEquipmentQty).not.toHaveBeenCalled();
-  });
-
-  it('should be possible to decrease equipment', () => {
-    const gear = { name: 'gear', qty: 2 };
-    wrapper.setProps({ equipment: [{ ...gear }] });
-
-    wrapper.find('.button--down').simulate('click');
-
-    expect(decreaseEquipmentQty).toHaveBeenCalledWith(gear.name);
-  });
-
-  it('should be possible to increase equipment', () => {
-    const gear = { name: 'gear', qty: 1 };
-    wrapper.setProps({ equipment: [{ ...gear }] });
-
-    wrapper.find('.button--up').simulate('click');
-
-    expect(increaseEquipmentQty).toHaveBeenCalledWith(gear.name);
   });
 });

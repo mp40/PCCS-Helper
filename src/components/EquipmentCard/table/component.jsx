@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { correctFloatingPoint } from '../../../utils';
+import GearTableEntry from '../../GearTableEntry';
 
 const EquipmentCardTable = (
   { equipment,
@@ -31,20 +31,16 @@ const EquipmentCardTable = (
 
       <div className="gear-card-body">
         {equipment.map((item) => (
-          <div key={item.name} className="gear-table-row--container">
-
-            <span>
-              <button aria-label="remove" type="button" className="button--standard button--close" onClick={() => removeEquipment(item.name)} />
-              <span>{item.name}</span>
-            </span>
-            <span>{item.weight}</span>
-            <span>{item.qty}</span>
-            <span>{correctFloatingPoint(item.qty * item.weight)}</span>
-            <span>
-              <button aria-label="up" type="button" className="button--standard button--up" onClick={() => increaseEquipmentQty(item.name)} />
-              <button aria-label="down" type="button" className="button--standard button--down" onClick={() => handleDecreaseQty(item.name, item.qty)} />
-            </span>
-          </div>
+          <GearTableEntry
+            key={item.name}
+            text={item.name}
+            removeItem={() => removeEquipment(item.name)}
+            modifyItem={false}
+            weight={item.weight}
+            qty={item.qty}
+            increaseItem={() => increaseEquipmentQty(item.name)}
+            decreaseItem={() => handleDecreaseQty(item.name, item.qty)}
+          />
         ))}
       </div>
     </div>
