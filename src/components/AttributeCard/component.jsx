@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import LevelsCard from '../LevelsCard';
-import StatInput from '../widgets/StatInput';
-import { isValidAttributeStat } from '../../helpers/gaurds';
 
-import { statNames } from './data';
+import LevelsCard from '../LevelsCard';
 
 const AttributeCard = ({
   str,
@@ -18,27 +15,15 @@ const AttributeCard = ({
   modifyHealthValue,
   modifyAgilityValue,
 }) => {
-  const actionsArray = [
-    modifyStrengthValue,
-    modifyIntelligenceValue,
-    modifyWillpowerValue,
-    modifyHealthValue,
-    modifyAgilityValue,
-  ];
+  const stats = {
+    str: { text: 'Strength', value: str, handleClick: modifyStrengthValue },
+    int: { text: 'Intelligence', value: int, handleClick: modifyIntelligenceValue },
+    wil: { text: 'Willpower', value: wil, handleClick: modifyWillpowerValue },
+    hlt: { text: 'Health', value: hlt, handleClick: modifyHealthValue },
+    agi: { text: 'Agility', value: agi, handleClick: modifyAgilityValue },
+  };
 
-  return (
-    <LevelsCard levelType="attribute">
-      {[str, int, wil, hlt, agi].map((stat, index) => (
-        <StatInput
-          statLevel={stat}
-          statName={statNames[index]}
-          isValid={isValidAttributeStat}
-          action={actionsArray[index]}
-          key={statNames[index]}
-        />
-      ))}
-    </LevelsCard>
-  );
+  return (<LevelsCard heading="Attribute" stats={stats} min={3} length={17} />);
 };
 
 AttributeCard.propTypes = {

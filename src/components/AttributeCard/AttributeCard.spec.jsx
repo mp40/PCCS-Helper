@@ -1,111 +1,61 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 
 import { Provider } from 'react-redux';
 
 import { getStore } from '../../helpers/testHelpers';
 
-import AttributeCard from './component';
 import ConnectedAttributeCard from '.';
 
-describe('Character Attributes', () => {
-  describe('the attribute card', () => {
-    const modifyStrengthValue = jest.fn();
-    const modifyIntelligenceValue = jest.fn();
-    const modifyWillpowerValue = jest.fn();
-    const modifyHealthValue = jest.fn();
-    const modifyAgilityValue = jest.fn();
+describe('Character Attributes intergration tests', () => {
+  let wrapper;
+  const store = getStore();
 
-    const wrapper = shallow(<AttributeCard
-      str={10}
-      int={10}
-      hlt={10}
-      wil={10}
-      agi={10}
-      modifyStrengthValue={modifyStrengthValue}
-      modifyIntelligenceValue={modifyIntelligenceValue}
-      modifyWillpowerValue={modifyWillpowerValue}
-      modifyHealthValue={modifyHealthValue}
-      modifyAgilityValue={modifyAgilityValue}
-    />);
-
-    afterEach(() => {
-      jest.clearAllMocks();
-    });
-
-    it('should render values', () => {
-      expect(wrapper.find('StatInput')).toHaveLength(5);
-      expect(wrapper.find('[statName="Strength"]').prop('statLevel')).toBe(10);
-      expect(wrapper.find('[statName="Intelligence"]').prop('statLevel')).toBe(10);
-      expect(wrapper.find('[statName="Willpower"]').prop('statLevel')).toBe(10);
-      expect(wrapper.find('[statName="Health"]').prop('statLevel')).toBe(10);
-      expect(wrapper.find('[statName="Agility"]').prop('statLevel')).toBe(10);
-    });
-
-    it('should have a gaurd to prevent changing value less than 3', () => {
-      const input = wrapper.find('[statName="Strength"]').dive(0);
-
-      input.find('.updateStrength').simulate('click');
-      input.find('input').simulate('keyUp', { target: { value: 2 },
-        key: 'Enter' });
-
-      expect(modifyStrengthValue).not.toHaveBeenCalled();
-    });
-
-    it('should have a gaurd to prevent changing value greater than 19', () => {
-      const input = wrapper.find('[statName="Strength"]').dive(0);
-
-      input.find('.updateStrength').simulate('click');
-      input.find('input').simulate('keyUp', { target: { value: 20 },
-        key: 'Enter' });
-
-      expect(modifyStrengthValue).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('attribute card intergration test', () => {
-    const store = getStore();
-
-    const wrapper = mount(
+  beforeEach(() => {
+    wrapper = mount(
       <Provider store={store}>
         <ConnectedAttributeCard />
       </Provider>,
     );
+  });
 
-    const inputAttribute = (attributeId, newValue) => {
-      wrapper.find(attributeId).simulate('click');
-      wrapper.find(`${attributeId} input`).simulate('keyUp', { target: { value: newValue },
-        key: 'Enter' });
-    };
+  it('should update Strength', () => {
+    wrapper.find('span[children="Strength"]').closest('button').simulate('click');
 
-    it('should update strength', () => {
-      inputAttribute('.updateStrength', '11');
+    wrapper.find('KeyPad').find('button[children=18]').simulate('click');
 
-      expect(wrapper.find('.updateStrength').text()).toBe('11');
-    });
+    expect(wrapper.find('span[children="Strength"]').closest('button').text()).toBe('Strength18');
+  });
 
-    it('should update intelligence', () => {
-      inputAttribute('.updateIntelligence', '12');
+  it('should update Intelligence', () => {
+    wrapper.find('span[children="Intelligence"]').closest('button').simulate('click');
 
-      expect(wrapper.find('.updateIntelligence').text()).toBe('12');
-    });
+    wrapper.find('KeyPad').find('button[children=17]').simulate('click');
 
-    it('should update willpower', () => {
-      inputAttribute('.updateWillpower', '17');
+    expect(wrapper.find('span[children="Intelligence"]').closest('button').text()).toBe('Intelligence17');
+  });
 
-      expect(wrapper.find('.updateWillpower').text()).toBe('17');
-    });
+  it('should update Willpower', () => {
+    wrapper.find('span[children="Willpower"]').closest('button').simulate('click');
 
-    it('should update health', () => {
-      inputAttribute('.updateHealth', '14');
+    wrapper.find('KeyPad').find('button[children=16]').simulate('click');
 
-      expect(wrapper.find('.updateHealth').text()).toBe('14');
-    });
+    expect(wrapper.find('span[children="Willpower"]').closest('button').text()).toBe('Willpower16');
+  });
 
-    it('should update agility', () => {
-      inputAttribute('.updateAgility', '18');
+  it('should update Health', () => {
+    wrapper.find('span[children="Health"]').closest('button').simulate('click');
 
-      expect(wrapper.find('.updateAgility').text()).toBe('18');
-    });
+    wrapper.find('KeyPad').find('button[children=15]').simulate('click');
+
+    expect(wrapper.find('span[children="Health"]').closest('button').text()).toBe('Health15');
+  });
+
+  it('should update Agility', () => {
+    wrapper.find('span[children="Agility"]').closest('button').simulate('click');
+
+    wrapper.find('KeyPad').find('button[children=14]').simulate('click');
+
+    expect(wrapper.find('span[children="Agility"]').closest('button').text()).toBe('Agility14');
   });
 });

@@ -213,14 +213,14 @@ describe('The Weapons Card', () => {
         wrapper.find('.gear-table-row--container').find('.button--up').simulate('click');
 
         expect(wrapper.find('.gear-table-header--container').text()).toContain('Lbs2.6');
-        expect(wrapper.find('.gear-table-row--container').text()).toContain('M222.6');
+        expect(wrapper.find('.gear-table-row--container').text()).toContain('M21.322.6');
       });
 
       it('should be possible to increment grenade qty down', () => {
         wrapper.find('.gear-table-row--container').find('.button--down').simulate('click');
 
         expect(wrapper.find('.gear-table-header--container').text()).toContain('Lbs1.3');
-        expect(wrapper.find('.gear-table-row--container').text()).toContain('M211.3');
+        expect(wrapper.find('.gear-table-row--container').text()).toContain('M21.311.3');
       });
 
       it('should be possible to remove grenade', () => {

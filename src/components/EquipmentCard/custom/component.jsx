@@ -73,7 +73,7 @@ const CustomEquipment = ({ equipment, addEquipment, handleSetShowCustomInput }) 
     <TextInput
       heading={heading}
       idRef={idRef}
-      equipmentValue={equipmentValue}
+      value={equipmentValue}
       onChange={onChange}
     />
   );

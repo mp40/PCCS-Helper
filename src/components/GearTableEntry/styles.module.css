@@ -1,0 +1,7 @@
+.magazineRow {
+    background-color: var(--light-grey);
+}
+
+.noButtons {
+    margin: 0 -2rem 0 2rem;
+}
