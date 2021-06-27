@@ -1,15 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const TextInput = ({ heading, idRef, equipmentValue, onChange, onKeyUp }) => (
+const TextInput = ({ heading, value, onChange, onKeyUp }) => (
   <div className="subContainer">
     <div>{heading}</div>
     <input
       type="text"
       autoComplete="off"
-      id={idRef}
       className="textInput"
-      value={equipmentValue}
+      value={value}
       onChange={onChange}
       onKeyUp={onKeyUp}
     />
@@ -19,9 +18,8 @@ const TextInput = ({ heading, idRef, equipmentValue, onChange, onKeyUp }) => (
 TextInput.propTypes = {
   onChange: PropTypes.func,
   onKeyUp: PropTypes.func,
-  equipmentValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   heading: PropTypes.string,
-  idRef: PropTypes.string,
 };
 
 export default TextInput;

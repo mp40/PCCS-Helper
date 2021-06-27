@@ -27,10 +27,7 @@
 }
 
 @media screen and (max-width: 700px) {
-    .heading {
-        font-size: 1rem;
-    }
-
+    .heading,
     .wrapper > button {
         font-size: 1rem;
     }

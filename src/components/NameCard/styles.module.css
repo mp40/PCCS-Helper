@@ -1,0 +1,38 @@
+.wrapper > div:first-of-type {
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.wrapper > button{
+    width: 100%;
+    text-align: left;
+    padding: 0;
+    font-size: 1.2rem;
+}
+
+.inputCard {
+    z-index: 101;
+    position: fixed;
+    top: 4.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    text-align: center;
+}
+
+.empty {
+    opacity: 0.5;
+    font-style: oblique;
+}
+
+.empty::after {
+    content: "Enter Name";
+}
+
+@media screen and (max-width: 700px) {
+    .wrapper > div,
+    .wrapper > button {
+        font-size: 1rem;
+    }
+}
