@@ -19,20 +19,18 @@ const NameCard = ({ name, changeCharacterName }) => {
   };
 
   return (
-    <>
-      <div className={`card-standard ${styles.wrapper}`}>
-        <div>Name</div>
-        <button
-          type="button"
-          className={`button-clickable-item-row ${name.length ? '' : styles.empty}`}
-          onClick={() => toogleTextInput(true)}
-        >
-          {name}
-        </button>
-      </div>
+    <div className={`card-standard ${styles.wrapper}`}>
+      <div>Name</div>
+      <button
+        type="button"
+        className={`button-clickable-item-row ${name.length ? '' : styles.empty}`}
+        onClick={() => toogleTextInput(true)}
+      >
+        {name}
+      </button>
       {textInput
       && (
-        <div>
+        <div className={styles.inputWrapper}>
           <div className={`card-standard ${styles.inputCard}`}>
             <TextInput
               heading="Enter Name"
@@ -44,7 +42,7 @@ const NameCard = ({ name, changeCharacterName }) => {
           <div className="modal-background" />
         </div>
       )}
-    </>
+    </div>
   );
 };
 
