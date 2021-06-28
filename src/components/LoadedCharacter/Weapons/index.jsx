@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { getLauncherByName } from '../../../data/firearms/launchers';
+
 import { gunObjShape, launcherShape } from '../../../helpers/proptypeShapes';
 
 import styles from './styles.module.css';
@@ -26,6 +28,17 @@ const LoadedCharacterWeapons = ({ firearms, grenades, launchers, setFirearm }) =
     return text.length > 0 ? text : ['no spare ammo'];
   };
 
+  let launchersAndUnderslung = [...launchers];
+
+  firearms.forEach((firearm) => {
+    if (firearm?.launcher?.attached) {
+      const underslung = getLauncherByName(firearm.launcher.attached);
+      underslung.qty = 1;
+      underslung.mag = underslung.mag.map((m, i) => ({ ...m, qty: firearm.launcher.mag[i].qty }));
+      launchersAndUnderslung = [...launchersAndUnderslung, underslung];
+    }
+  });
+
   return (
     <div className={`card-standard ${styles.card}`}>
       <h2>Weapons</h2>
@@ -46,7 +59,7 @@ const LoadedCharacterWeapons = ({ firearms, grenades, launchers, setFirearm }) =
           )}
         </button>
       ))}
-      {grenades.length && (
+      {grenades.length > 0 && (
         <>
           <h3>Grenades</h3>
           {grenades.map((grenade) => (
@@ -54,10 +67,10 @@ const LoadedCharacterWeapons = ({ firearms, grenades, launchers, setFirearm }) =
           ))}
         </>
       )}
-      {launchers.length && (
+      {launchersAndUnderslung.length > 0 && (
       <>
         <h3>Launchers</h3>
-        {launchers.map((launcher) => (
+        {launchersAndUnderslung.map((launcher) => (
           <div key={launcher.name} className={styles.launcher}>
             <span>{`${launcher.name} x ${launcher.qty}`}</span>
             {launcher.mag.map((m) => {

@@ -131,6 +131,33 @@ describe('Loaded Character Reference Card', () => {
     expect(wrapper.text()).toContain('HE x 1');
   });
 
+  it('should render underslung launchers in the launcher section', () => {
+    const m203 = {
+      attached: 'M203',
+      mag: [{ qty: 1 }, { qty: 2 }],
+    };
+
+    const rifle = { ...mockRifle };
+    rifle.launcher = m203;
+    wrapper.setProps({ firearms: [rifle], launchers: [] });
+
+    expect(wrapper.find('.launcher').text()).toContain('M203');
+  });
+
+  it('should render underslung launcher ammo', () => {
+    const m203 = {
+      attached: 'M203',
+      mag: [{ qty: 1 }, { qty: 2 }],
+    };
+
+    const rifle = { ...mockRifle };
+    rifle.launcher = m203;
+    wrapper.setProps({ firearms: [rifle], launchers: [] });
+
+    expect(wrapper.text()).toContain('HEAT x 1');
+    expect(wrapper.text()).toContain('HE x 2');
+  });
+
   it('should not render Launchers heading if no launchers', () => {
     wrapper.setProps({ launchers: [] });
 
