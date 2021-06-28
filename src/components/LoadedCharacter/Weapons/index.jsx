@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { gunObjShape } from '../../../helpers/proptypeShapes';
+import { gunObjShape, launcherShape } from '../../../helpers/proptypeShapes';
 
 import styles from './styles.module.css';
 
-const LoadedCharacterWeapons = ({ firearms, grenades, setFirearm }) => {
+const LoadedCharacterWeapons = ({ firearms, grenades, launchers, setFirearm }) => {
   const getSpareAmmoNotes = (magazines) => {
     const text = [];
 
@@ -46,10 +46,33 @@ const LoadedCharacterWeapons = ({ firearms, grenades, setFirearm }) => {
           )}
         </button>
       ))}
-      <h3>Grenades</h3>
-      {grenades.map((grenade) => (
-        <div key={grenade.name}>{`${grenade.name} x ${grenade.qty}`}</div>
-      ))}
+      {grenades.length && (
+        <>
+          <h3>Grenades</h3>
+          {grenades.map((grenade) => (
+            <div key={grenade.name} className={styles.grenade}>{`${grenade.name} x ${grenade.qty}`}</div>
+          ))}
+        </>
+      )}
+      {launchers.length && (
+      <>
+        <h3>Launchers</h3>
+        {launchers.map((launcher) => (
+          <div key={launcher.name} className={styles.launcher}>
+            <span>{`${launcher.name} x ${launcher.qty}`}</span>
+            {launcher.mag.map((m) => {
+              if (m.weight === '-') {
+                return null;
+              }
+              return (
+                <span key={m.class}>{`${m.class} x ${m.qty}`}</span>
+              );
+            })}
+          </div>
+
+        ))}
+      </>
+      )}
     </div>
   );
 };
@@ -57,6 +80,7 @@ const LoadedCharacterWeapons = ({ firearms, grenades, setFirearm }) => {
 LoadedCharacterWeapons.propTypes = {
   firearms: PropTypes.arrayOf(gunObjShape).isRequired,
   grenades: PropTypes.arrayOf(PropTypes.object).isRequired,
+  launchers: PropTypes.arrayOf(launcherShape).isRequired,
   setFirearm: PropTypes.func.isRequired,
 };
 

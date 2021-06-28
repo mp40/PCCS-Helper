@@ -15,6 +15,7 @@ const mapStateToProps = (state) => ({
   vest: state.currentCharacter.vest,
   firearms: state.currentCharacter.firearms,
   grenades: state.currentCharacter.grenades,
+  launchers: state.currentCharacter.launchers,
 });
 
 export default connect(mapStateToProps, { selectCurrentView })(LoadedCharacter);
