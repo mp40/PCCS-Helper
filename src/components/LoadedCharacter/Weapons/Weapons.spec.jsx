@@ -34,6 +34,20 @@ const mockRifleWithUnderslung = {
 
 const mockGrenade = { name: 'The Holy Hand Grenade Of Antioch', qty: 1 };
 
+const mockM79 = {
+  name: 'M79',
+  weight: 6.5,
+  qty: 1,
+  mag: [{ class: 'HEAT', weight: 0.51, qty: 2 }, { class: 'HE', weight: 0.51, qty: 1 }],
+};
+
+const mockM72 = {
+  name: 'M72',
+  weight: 5.2,
+  qty: 1,
+  mag: [{ weight: '-' }],
+};
+
 describe('Loaded Character Reference Card', () => {
   let wrapper;
   const setFirearm = jest.fn();
@@ -43,6 +57,7 @@ describe('Loaded Character Reference Card', () => {
       <LoadedCharacterWeapons
         firearms={[mockRifle, mockPistol, mockShotgun, mockSingleShotGun, mockRifleWithUnderslung]}
         grenades={[mockGrenade]}
+        launchers={[mockM79, mockM72]}
         setFirearm={setFirearm}
       />,
     );
@@ -90,13 +105,62 @@ describe('Loaded Character Reference Card', () => {
     expect(wrapper.find('button').at(4).text()).toContain('4 x HE Rounds');
   });
 
-  it('should render characters grenades', () => {
-    expect(wrapper.text()).toContain('The Holy Hand Grenade Of Antioch');
-  });
-
   it('should set firearm to use when firearm button clicked', () => {
     wrapper.find('.firearm').at(0).simulate('click');
 
     expect(setFirearm).toHaveBeenCalledWith(mockRifle);
+  });
+
+  it('should render characters grenades', () => {
+    expect(wrapper.text()).toContain('The Holy Hand Grenade Of Antioch');
+  });
+
+  it('should not render Grendades heading if no grenades', () => {
+    wrapper.setProps({ grenades: [] });
+
+    expect(wrapper.text()).not.toContain('Grenades');
+  });
+
+  it('should render characters launchers', () => {
+    expect(wrapper.text()).toContain('M79');
+    expect(wrapper.text()).toContain('M72');
+  });
+
+  it('should render launcher spare ammo', () => {
+    expect(wrapper.text()).toContain('HEAT x 2');
+    expect(wrapper.text()).toContain('HE x 1');
+  });
+
+  it('should render underslung launchers in the launcher section', () => {
+    const m203 = {
+      attached: 'M203',
+      mag: [{ qty: 1 }, { qty: 2 }],
+    };
+
+    const rifle = { ...mockRifle };
+    rifle.launcher = m203;
+    wrapper.setProps({ firearms: [rifle], launchers: [] });
+
+    expect(wrapper.find('.launcher').text()).toContain('M203');
+  });
+
+  it('should render underslung launcher ammo', () => {
+    const m203 = {
+      attached: 'M203',
+      mag: [{ qty: 1 }, { qty: 2 }],
+    };
+
+    const rifle = { ...mockRifle };
+    rifle.launcher = m203;
+    wrapper.setProps({ firearms: [rifle], launchers: [] });
+
+    expect(wrapper.text()).toContain('HEAT x 1');
+    expect(wrapper.text()).toContain('HE x 2');
+  });
+
+  it('should not render Launchers heading if no launchers', () => {
+    wrapper.setProps({ launchers: [] });
+
+    expect(wrapper.text()).not.toContain('Launchers');
   });
 });

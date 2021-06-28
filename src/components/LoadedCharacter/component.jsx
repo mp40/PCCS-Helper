@@ -20,6 +20,7 @@ const LoadedCharacter = ({
   vest,
   firearms,
   grenades,
+  launchers,
   gunCombatActions,
   handCombatActions,
 }) => {
@@ -52,6 +53,7 @@ const LoadedCharacter = ({
       <LoadedCharacterWeapons
         firearms={firearms}
         grenades={grenades}
+        launchers={launchers}
         setFirearm={setFirearm}
       />
 
@@ -69,6 +71,7 @@ LoadedCharacter.propTypes = {
   vest: PropTypes.string,
   firearms: PropTypes.arrayOf(PropTypes.object).isRequired,
   grenades: PropTypes.arrayOf(PropTypes.object).isRequired,
+  launchers: PropTypes.arrayOf(PropTypes.object).isRequired,
   gunCombatActions: PropTypes.number.isRequired,
   handCombatActions: PropTypes.number.isRequired,
 };

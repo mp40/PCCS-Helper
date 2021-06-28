@@ -57,6 +57,7 @@ const LoadedCharacterShooting = ({
     setSab(0);
     setWeaponBasedALM(defaultSituationState);
     setAmmoType(0);
+    setRof(!firearm.selector ? 'Single' : 'Auto');
   }, [firearm]);
 
   const movementModInfo = findSpeedMods(movement.shooter + movement.target, range);
