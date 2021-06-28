@@ -8,6 +8,7 @@ import { firearms } from '../../../data/firearms';
 const testFAMAS = () => ({ ...firearms.FAMAS });
 const testM16 = () => ({ ...firearms.M16 });
 const testM1911A1 = () => ({ ...firearms.M1911A1 });
+const testM60 = () => ({ ...firearms.M60 });
 
 describe('Shooting Card', () => {
   let wrapper;
@@ -66,9 +67,8 @@ describe('Shooting Card', () => {
   });
 
   it('should reset fire selector on weapon change', () => {
-    wrapper = mount(<Shooting sal={0} level={0} firearm={testFAMAS()} setFirearm={setFirearm} />);
+    wrapper = mount(<Shooting sal={0} level={0} firearm={testM60()} setFirearm={setFirearm} />);
 
-    wrapper.find('FireSelector').invoke('setRof')('Auto');
     wrapper.find('button[children="Sustained Fire"]').simulate('click');
 
     wrapper.setProps({ sal: 0, level: 0, firearm: testM16(), setFirearm });
@@ -76,6 +76,8 @@ describe('Shooting Card', () => {
 
     expect(wrapper.find('button[children="Cease Fire"]').exists()).toBe(false);
     expect(wrapper.find('button[children="FIRE"]').exists()).toBe(true);
+
+    expect(wrapper.find('FireSelector').props().rof).toBe('Single');
   });
 
   it('should clear rounds fired on weapon change', () => {
