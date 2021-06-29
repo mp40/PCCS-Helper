@@ -150,8 +150,8 @@ export const grenadeList = Object.freeze({
     },
     heading: 'standard',
   },
-  'RDG 33': {
-    name: 'RDG 33',
+  'RGD 33': {
+    name: 'RGD 33',
     length: 11,
     weight: 1.6,
     at: 4,

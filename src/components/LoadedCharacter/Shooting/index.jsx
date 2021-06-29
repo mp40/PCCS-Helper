@@ -11,6 +11,8 @@ import AimsSelectModal from './AimsSelectModal';
 import FireSelector from './FireSelector';
 import Aiming from './Aiming';
 
+import { getScopeByName } from '../../../data/firearms/optics';
+
 import { gunObjShape } from '../../../helpers/proptypeShapes';
 
 import { getRecoilRecoveryValue } from '../../../data/advancedRules/recoilRecovery';
@@ -73,6 +75,17 @@ const LoadedCharacterShooting = ({
     result += movementModInfo.mod;
     result += getVisibilityALM(visibility);
     result += getSituationALM(weaponBasedALM, stance, aims);
+
+    if (firearm?.optics?.attached && weaponBasedALM.hipFire === false) {
+      const optic = getScopeByName(firearm.optics.attached);
+      if (range >= optic.minimumRange) {
+        result += optic.bonus[aims - 1];
+      }
+
+      if (range < optic.minimumRange) {
+        result -= 6;
+      }
+    }
 
     return result < ba ? result : ba;
   };
@@ -204,7 +217,7 @@ const LoadedCharacterShooting = ({
         <div>
           <span>{`PEN: ${firearm.projectiles[ammoType].pen[rangeIndex]}`}</span>
           <span>{`DC: ${firearm.projectiles[ammoType].dc[rangeIndex]}`}</span>
-          {rof !== 'Single'
+          {rof !== 'Single' && firearm?.ma
             && <span>{`MA: ${firearm.ma[rangeIndex]}`}</span>}
         </div>
         <span>{`Recoil Recovery: ${getRecoilRecoveryValue(firearm.kd, level)}`}</span>

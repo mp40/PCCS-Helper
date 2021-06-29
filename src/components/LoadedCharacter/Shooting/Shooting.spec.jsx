@@ -737,6 +737,63 @@ describe('Shooting Card', () => {
       });
     });
 
+    describe('using optics', () => {
+      const firearm = { ...testFAMAS() };
+      firearm.optics = { attached: 'Medium Power Scope' };
+
+      beforeEach(() => {
+        wrapper = shallow(<Shooting sal={10} level={4} firearm={firearm} setFirearm={setFirearm} />);
+
+        wrapper.find('span[children="Range"]').closest('button').simulate('click');
+        wrapper.find('RangeSelectModal').invoke('setRange')(12);
+      });
+
+      it('should add optics bonus for 1 aim at 12 hexes', () => {
+        const firingUI = wrapper.find('.firing');
+
+        expect(firingUI.text()).toContain('Hit Chance: 12%');
+      });
+
+      it('should not add optics bonus if hip firing for 1 aim at 12 hexes', () => {
+        wrapper.find('span[children="Situation"]').closest('button').simulate('click');
+        const { weaponBasedALM } = wrapper.find('SituationSelectModal').props();
+        wrapper.find('SituationSelectModal').invoke('setWeaponBasedALM')({ ...weaponBasedALM, hipFire: true });
+
+        const firingUI = wrapper.find('.firing');
+
+        expect(firingUI.text()).toContain('Hit Chance: 2%');
+      });
+
+      it('should add optics bonus for 3 aims at 12 hexes', () => {
+        wrapper.find('Aiming').invoke('setAims')(3);
+
+        const firingUI = wrapper.find('.firing');
+
+        expect(firingUI.text()).toContain('Hit Chance: 94%');
+      });
+
+      it('should not add optics bonus if hip firing for 3 aims at 12 hexes', () => {
+        wrapper.find('Aiming').invoke('setAims')(3);
+
+        wrapper.find('span[children="Situation"]').closest('button').simulate('click');
+        const { weaponBasedALM } = wrapper.find('SituationSelectModal').props();
+        wrapper.find('SituationSelectModal').invoke('setWeaponBasedALM')({ ...weaponBasedALM, hipFire: true });
+
+        const firingUI = wrapper.find('.firing');
+
+        expect(firingUI.text()).toContain('Hit Chance: 46%');
+      });
+
+      it('should add penality if optics under minimum range bonus', () => {
+        wrapper.find('span[children="Range"]').closest('button').simulate('click');
+        wrapper.find('RangeSelectModal').invoke('setRange')(7);
+
+        const firingUI = wrapper.find('.firing');
+
+        expect(firingUI.text()).toContain('Hit Chance: 6%');
+      });
+    });
+
     describe('Clicking Fire Buttons', () => {
       beforeEach(() => {
         wrapper = shallow(<Shooting sal={10} level={4} firearm={testFAMAS()} setFirearm={setFirearm} />);

@@ -110,7 +110,7 @@ describe('Core Stat Calculations', () => {
       expect(getCombatActions(maxSpeed, skillFactor)).toBe(3);
     });
 
-    it('should round down skill factor 14 to 13 and return 3 for max speed 3', () => {
+    it('should round down skill factor 14 to 13 and return 3 for max speed 2', () => {
       const maxSpeed = 3;
       const skillFactor = 14;
 
