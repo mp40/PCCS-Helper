@@ -25,6 +25,7 @@ describe('Loaded Character', () => {
       vest={undefined}
       firearms={firearms}
       grenades={[]}
+      launchers={[]}
       selectCurrentView={selectCurrentView}
     />);
   });
