@@ -1,4 +1,3 @@
-// mptodo store stuff in store with the below shape
 const prepareFirearm = (firearm) => {
   const payload = {
     name: firearm.name,
@@ -41,8 +40,8 @@ export const buildRequestPayload = (currentCharacter) => ({ character_name: curr
   gun_level: currentCharacter.gunLevel,
   hand_level: currentCharacter.handLevel,
   uniform: currentCharacter.uniform,
-  helmet: currentCharacter.helmet?.name || null,
-  vest: currentCharacter.vest?.name || null,
+  helmet: currentCharacter.helmet,
+  vest: currentCharacter.vest,
   equipment: currentCharacter.equipment,
   firearms: currentCharacter.firearms.map((firearm) => prepareFirearm(firearm)),
   grenades: currentCharacter.grenades.map((grenade) => prepareGrenade(grenade)),

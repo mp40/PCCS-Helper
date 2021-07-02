@@ -8,6 +8,8 @@ import { getStore } from '../../helpers/testHelpers';
 import LoadCharacterModal from './component';
 import App from '../App';
 
+import * as fetchModule from '../../fetch';
+
 const waitOneTick = (simulate) => new Promise((resolve) => {
   setTimeout(() => {
     resolve(simulate);
@@ -86,7 +88,6 @@ describe('Load Character Modal', () => {
 
 describe('Load Character Intergration', () => {
   let wrapper;
-  let storage;
 
   const mrLoad = {
     character_id: 1337,
@@ -109,8 +110,14 @@ describe('Load Character Intergration', () => {
     notes: {},
   };
 
-  const stubCharactersFromStorage = () => {
-    storage = jest.spyOn(Storage.prototype, 'getItem')
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('should load hydrated character', async () => {
+    jest.spyOn(fetchModule, 'fetchSignedIn').mockImplementation(() => ({ message: 'Signed In' }));
+
+    jest.spyOn(Storage.prototype, 'getItem')
       .mockImplementation(() => JSON.stringify(
         [
           mrLove,
@@ -118,21 +125,6 @@ describe('Load Character Intergration', () => {
           mrLoad,
         ],
       ));
-  };
-
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
-
-  it('should load hydrated character', async () => {
-    global.fetch = jest.fn(() => Promise.resolve({
-      text: () => JSON.stringify({
-        message: 'Signed In',
-      }),
-    }),
-    );
-
-    stubCharactersFromStorage();
 
     await act(async () => {
       await waitOneTick((wrapper = await mount(

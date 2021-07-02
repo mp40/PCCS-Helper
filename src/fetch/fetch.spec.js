@@ -10,6 +10,26 @@ import {
 
 import { URL_CHARACTERS } from './constants';
 
+const characterFromDatabase = {
+  character_id: 1,
+  character_name: '',
+  user_id: 1,
+  str: 10,
+  int: 10,
+  hlt: 10,
+  wil: 10,
+  agi: 10,
+  gun_level: 4,
+  hand_level: 2,
+  uniform: 'normal',
+  helmet: undefined,
+  vest: undefined,
+  equipment: [],
+  firearms: [],
+  grenades: [],
+  launchers: [],
+};
+
 describe('Calling the Server', () => {
   describe('Sign Up', () => {
     afterEach(() => {
@@ -18,11 +38,7 @@ describe('Calling the Server', () => {
 
     it('should post new user to /signup', async () => {
       global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-        text: () => JSON.stringify({
-          id: '1',
-          email: 'testSan@gmail.com',
-          password: 'hashed_password',
-        }),
+        json: () => Promise.resolve({ message: 'Signed Up' }),
       }));
 
       const user = {
@@ -35,14 +51,14 @@ describe('Calling the Server', () => {
       expect(fetch).toHaveBeenCalled();
 
       expect(res).toEqual({
-        id: '1',
-        email: 'testSan@gmail.com',
-        password: 'hashed_password',
+        message: 'Signed Up',
       });
     });
 
     it('should return error message on post /signup failure', async () => {
-      global.fetch = jest.fn().mockImplementation(() => Promise.reject('error'));
+      const err = new Error();
+
+      global.fetch = jest.fn().mockImplementation(() => Promise.reject(err));
 
       const user = {
         email: 'testSan@gmail.com',
@@ -53,7 +69,7 @@ describe('Calling the Server', () => {
 
       expect(fetch).toHaveBeenCalled();
 
-      expect(res).toEqual({ error: 'error', message: 'Signup Error' });
+      expect(res).toEqual({ error: err, message: 'Signup Error' });
     });
   });
 
@@ -64,7 +80,7 @@ describe('Calling the Server', () => {
 
     it('should post new user to /signin', async () => {
       global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-        text: () => JSON.stringify({ message: 'Signed In' }),
+        json: () => Promise.resolve({ message: 'Signed In' }),
       }));
 
       const user = {
@@ -82,7 +98,9 @@ describe('Calling the Server', () => {
     });
 
     it('should return error message on post /signin failure', async () => {
-      global.fetch = jest.fn().mockImplementation(() => Promise.reject('error'));
+      const err = new Error();
+
+      global.fetch = jest.fn().mockImplementation(() => Promise.reject(err));
 
       const user = {
         email: 'testSan@gmail.com',
@@ -93,7 +111,7 @@ describe('Calling the Server', () => {
 
       expect(fetch).toHaveBeenCalled();
 
-      expect(res).toEqual({ error: 'error', message: 'Signin Error' });
+      expect(res).toEqual({ error: err, message: 'Signin Error' });
     });
   });
 
@@ -104,7 +122,7 @@ describe('Calling the Server', () => {
 
     it('should get /signedIn', async () => {
       global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-        text: () => JSON.stringify({ message: 'Signed In' }),
+        json: () => Promise.resolve({ message: 'Signed In' }),
       }));
 
       const res = await fetchSignedIn();
@@ -117,14 +135,16 @@ describe('Calling the Server', () => {
     });
 
     it('should return error on get /signedIn failure', async () => {
-      global.fetch = jest.fn().mockImplementation(() => Promise.reject('error'));
+      const err = new Error();
+
+      global.fetch = jest.fn().mockImplementation(() => Promise.reject(err));
 
       const res = await fetchSignedIn();
 
       expect(fetch).toHaveBeenCalled();
 
       expect(res).toEqual({
-        error: 'error',
+        error: err,
         message: 'SignedIn Error',
       });
     });
@@ -137,7 +157,7 @@ describe('Calling the Server', () => {
 
     it('should get /signOut', async () => {
       global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-        text: () => JSON.stringify({ message: 'Cookie Cleared' }),
+        json: () => Promise.resolve({ message: 'Cookie Cleared' }),
       }));
 
       const res = await fetchSignOut();
@@ -150,86 +170,99 @@ describe('Calling the Server', () => {
     });
 
     it('should return error on /signOut failure', async () => {
-      global.fetch = jest.fn().mockImplementation(() => Promise.reject('error'));
+      const err = new Error();
+
+      global.fetch = jest.fn().mockImplementation(() => Promise.reject(err));
 
       const res = await fetchSignOut();
 
       expect(fetch).toHaveBeenCalled();
 
       expect(res).toEqual({
-        error: 'error',
+        error: err,
         message: 'Sign Out Error',
       });
     });
   });
 
   describe('Save Character', () => {
-    const character = () => ({
-      character_name: 'test name',
-      str: 18,
-      int: 12,
-      wil: 11,
-      hlt: 10,
-      agi: 12,
-    });
-
     afterEach(() => {
       global.fetch.mockClear();
     });
 
     it('should post new character', async () => {
       global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-        text: () => JSON.stringify({
+        json: () => Promise.resolve({
           message: 'saved character',
-          character: character(),
+          character: characterFromDatabase,
         }),
       }));
 
-      const res = await fetchPostCharacter(character());
+      const res = await fetchPostCharacter(characterFromDatabase);
 
       expect(fetch).toHaveBeenCalled();
 
       expect(res).toEqual({
         message: 'saved character',
-        character: character(),
+        character: characterFromDatabase,
       });
     });
 
     it('should return error on post /character failure', async () => {
-      global.fetch = jest.fn().mockImplementation(() => Promise.reject('error'));
+      const err = new Error();
 
-      const res = await fetchPostCharacter(character());
+      global.fetch = jest.fn().mockImplementation(() => Promise.reject(err));
+
+      const res = await fetchPostCharacter(characterFromDatabase);
 
       expect(fetch).toHaveBeenCalled();
 
       expect(res).toEqual({
-        error: 'error',
+        error: err,
+        message: 'Save Error',
+      });
+    });
+
+    it('should return error on post /character failure due returned character missing keys', async () => {
+      const err = new Error('save error');
+
+      const characterWithMissingKey = { ...characterFromDatabase };
+      delete characterWithMissingKey.hand_level;
+
+      global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        json: () => Promise.resolve({
+          message: 'saved character',
+          character: characterWithMissingKey,
+        }),
+      }));
+
+      const res = await fetchPostCharacter(characterFromDatabase);
+
+      expect(fetch).toHaveBeenCalled();
+
+      expect(res).toEqual({
+        error: err,
         message: 'Save Error',
       });
     });
   });
 
   describe('Update Character', () => {
-    const character = () => ({
-      character_id: 69,
-      character_name: 'test name',
-    });
-
     afterEach(() => {
       global.fetch.mockClear();
     });
 
     it('should put new character', async () => {
       global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-        text: () => JSON.stringify({
+        json: () => Promise.resolve({
           message: 'saved character',
-          character: character(),
+          character: characterFromDatabase,
         }),
       }));
 
-      const res = await fetchPutCharacter(character(), character().character_id);
+      const res = await fetchPutCharacter(characterFromDatabase, characterFromDatabase.character_id);
 
-      const endpoint = `${URL_CHARACTERS}/${character().character_id}`;
+      const endpoint = `${URL_CHARACTERS}/${characterFromDatabase.character_id}`;
 
       expect(fetch).toHaveBeenCalledWith(
         endpoint,
@@ -238,33 +271,57 @@ describe('Calling the Server', () => {
 
       expect(res).toEqual({
         message: 'saved character',
-        character: character(),
+        character: characterFromDatabase,
       });
     });
 
     it('should return error on put /character failure', async () => {
-      global.fetch = jest.fn().mockImplementation(() => Promise.reject('error'));
+      const err = new Error();
 
-      const res = await fetchPutCharacter(character());
+      global.fetch = jest.fn().mockImplementation(() => Promise.reject(err));
+
+      const res = await fetchPutCharacter(characterFromDatabase);
 
       expect(fetch).toHaveBeenCalled();
 
       expect(res).toEqual({
-        error: 'error',
+        error: err,
+        message: 'Save Error',
+      });
+    });
+
+    it('should return error on put /character failure due returned character missing keys', async () => {
+      const err = new Error('save error');
+
+      const characterWithMissingKey = { ...characterFromDatabase };
+      delete characterWithMissingKey.hand_level;
+
+      global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        json: () => Promise.resolve({
+          message: 'saved character',
+          character: characterWithMissingKey,
+        }),
+      }));
+
+      const res = await fetchPutCharacter(characterFromDatabase, characterFromDatabase.character_id);
+
+      expect(fetch).toHaveBeenCalled();
+
+      expect(res).toEqual({
+        error: err,
         message: 'Save Error',
       });
     });
   });
 
   describe('Fetch Characters', () => {
-    const character = () => ({
-      character_id: 69,
-      character_name: 'test name',
+    afterEach(() => {
+      global.fetch.mockClear();
     });
 
     it('should get saved characters on get /characters', async () => {
       global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-        text: () => JSON.stringify({ characters: [character()] }),
+        json: () => Promise.resolve({ characters: [characterFromDatabase] }),
       }));
 
       const res = await fetchGetCharacters();
@@ -276,18 +333,57 @@ describe('Calling the Server', () => {
         expect.anything(),
       );
 
-      expect(res).toEqual({ characters: [character()] });
+      expect(res).toEqual({ characters: [characterFromDatabase] });
     });
 
     it('should return error on get /characters failure', async () => {
-      global.fetch = jest.fn().mockImplementation(() => Promise.reject('error'));
+      const err = new Error();
+
+      global.fetch = jest.fn().mockImplementation(() => Promise.reject(err));
 
       const res = await fetchGetCharacters();
 
       expect(fetch).toHaveBeenCalled();
 
       expect(res).toEqual({
-        error: 'error',
+        error: err,
+        message: 'Get Characters Error',
+      });
+    });
+
+    it('should return error if response characters not an array', async () => {
+      const err = new Error('get characters error');
+
+      global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        json: () => Promise.resolve({ characters: characterFromDatabase }),
+      }));
+
+      const res = await fetchGetCharacters();
+
+      expect(fetch).toHaveBeenCalled();
+
+      expect(res).toEqual({
+        error: err,
+        message: 'Get Characters Error',
+      });
+    });
+
+    it('should return error if response characters has a character missing key value', async () => {
+      const err = new Error('get characters error');
+
+      const characterWithMissingKey = { ...characterFromDatabase };
+      delete characterWithMissingKey.character_id;
+
+      global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        json: () => Promise.resolve({ characters: [characterFromDatabase, characterWithMissingKey] }),
+      }));
+
+      const res = await fetchGetCharacters();
+
+      expect(fetch).toHaveBeenCalled();
+
+      expect(res).toEqual({
+        error: err,
         message: 'Get Characters Error',
       });
     });
