@@ -71,6 +71,21 @@ describe('Calling the Server', () => {
 
       expect(res).toEqual({ error: err, message: 'Signup Error' });
     });
+
+    it('should return error message on 429 response', async () => {
+      global.fetch = jest.fn().mockImplementation(() => Promise.resolve({ status: 429 }));
+
+      const user = {
+        email: 'testSan@gmail.com',
+        password: 'password',
+      };
+
+      const res = await fetchSignup(user);
+
+      expect(fetch).toHaveBeenCalled();
+
+      expect(res).toEqual({ message: 'Too many sign up attempts', error: new Error('Too many sign up attempts') });
+    });
   });
 
   describe('Sign In', () => {
@@ -112,6 +127,21 @@ describe('Calling the Server', () => {
       expect(fetch).toHaveBeenCalled();
 
       expect(res).toEqual({ error: err, message: 'Signin Error' });
+    });
+
+    it('should return error message on 429 response', async () => {
+      global.fetch = jest.fn().mockImplementation(() => Promise.resolve({ status: 429 }));
+
+      const user = {
+        email: 'testSan@gmail.com',
+        password: 'password',
+      };
+
+      const res = await fetchSignin(user);
+
+      expect(fetch).toHaveBeenCalled();
+
+      expect(res).toEqual({ message: 'Too many sign in attempts', error: new Error('Too many sign in attempts') });
     });
   });
 

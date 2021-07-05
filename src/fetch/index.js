@@ -13,6 +13,10 @@ export const fetchSignup = async (user) => {
       credentials: 'include',
     });
 
+    if (res.status === 429) {
+      return { message: 'Too many sign up attempts', error: new Error('Too many sign up attempts') };
+    }
+
     return await res.json();
   } catch (err) {
     return { message: 'Signup Error', error: err };
@@ -31,6 +35,10 @@ export const fetchSignin = async (user) => {
         'Content-Type': 'application/json',
       },
     });
+
+    if (res.status === 429) {
+      return { message: 'Too many sign in attempts', error: new Error('Too many sign in attempts') };
+    }
 
     return await res.json();
   } catch (err) {

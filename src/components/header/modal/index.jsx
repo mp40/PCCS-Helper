@@ -10,6 +10,7 @@ const HeaderModal = ({
   handleShowModal,
   handleSubmitUser,
   handleSwitchModal,
+  errorMsg,
 }) => {
   const [userDetails, setUserDetails] = useState({
     email: '',
@@ -92,6 +93,10 @@ const HeaderModal = ({
             />
           </label>
 
+          {errorMsg && (
+            <p className={styles.errorMessage}>{errorMsg}</p>
+          )}
+
           <input type="submit" value={text[type].title} />
         </form>
         <button
@@ -113,6 +118,7 @@ HeaderModal.propTypes = {
   handleShowModal: PropTypes.func.isRequired,
   handleSubmitUser: PropTypes.func.isRequired,
   handleSwitchModal: PropTypes.func.isRequired,
+  errorMsg: PropTypes.string,
 };
 
 export default HeaderModal;

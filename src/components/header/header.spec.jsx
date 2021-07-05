@@ -145,6 +145,31 @@ describe('The Header', () => {
       expect(wrapper.text()).toContain('Email');
       expect(wrapper.text()).toContain('Password');
     });
+
+    it('should send error message', async () => {
+      const err = new Error();
+      jest.spyOn(fetchModule, 'fetchSignup').mockImplementation(() => ({ error: err, message: 'Signup Error' }));
+
+      wrapper.find('button').at(0).simulate('click');
+
+      wrapper
+        .find('input')
+        .at(0)
+        .simulate('change', { target: { value: 'test@gmail.com' } });
+
+      wrapper
+        .find('input')
+        .at(1)
+        .simulate('change', { target: { value: 'password' } });
+
+      await act(async () => {
+        await waitOneTick(wrapper.find('form').simulate('submit'));
+      });
+
+      wrapper.update();
+
+      expect(wrapper.text()).toContain('Signup Error');
+    });
   });
 
   describe('sign in modal', () => {

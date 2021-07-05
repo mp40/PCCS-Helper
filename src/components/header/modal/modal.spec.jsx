@@ -16,6 +16,7 @@ describe('Header Modal', () => {
         handleShowModal={handleShowModal}
         handleSubmitUser={handleSubmitUser}
         handleSwitchModal={handleSwitchModal}
+        errorMsg={false}
       />,
     );
 

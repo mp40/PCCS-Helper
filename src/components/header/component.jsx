@@ -18,6 +18,7 @@ const Header = (
   const [showSignIn, setShowSignIn] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
+  const [errorMsg, setErrorMsg] = useState(null);
 
   useEffect(() => {
     const handleWindowResize = () => setWidth(window.innerWidth);
@@ -27,11 +28,13 @@ const Header = (
   }, []);
 
   const handleShowSignUp = () => {
+    setErrorMsg(null);
     setShowSignIn(false);
     setShowSignUp(!showSignUp);
   };
 
   const handleShowSignIn = () => {
+    setErrorMsg(null);
     setShowSignUp(false);
     setShowSignIn(!showSignIn);
   };
@@ -44,6 +47,7 @@ const Header = (
     const res = await fetchSignup(user);
 
     if (res.error) {
+      setErrorMsg(res.message);
       return;
     }
 
@@ -54,6 +58,7 @@ const Header = (
     const res = await fetchSignin(user);
 
     if (res.error) {
+      setErrorMsg(res.message);
       return;
     }
 
@@ -103,6 +108,7 @@ const Header = (
           handleShowModal={handleShowSignUp}
           handleSwitchModal={handleShowSignIn}
           handleSubmitUser={handleSignupUser}
+          errorMsg={errorMsg}
         />
       )}
       {showSignIn && (
@@ -111,6 +117,7 @@ const Header = (
           handleShowModal={handleShowSignIn}
           handleSwitchModal={handleShowSignUp}
           handleSubmitUser={handleSigninUser}
+          errorMsg={errorMsg}
         />
       )}
     </div>
