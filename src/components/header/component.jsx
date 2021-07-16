@@ -96,8 +96,8 @@ const Header = (
 
       {showDropdown && (
         <HeaderDropdown
-          handleShowSignUp={() => handleSwitchModal(SIGNUP)} // <- test coverage
-          handleShowSignIn={() => handleSwitchModal(SIGNIN)} // <- test coverage
+          handleShowSignUp={() => handleSwitchModal(SIGNUP)}
+          handleShowSignIn={() => handleSwitchModal(SIGNIN)}
           handleSignOut={handleSignOut}
           signedIn={signedIn}
         />

@@ -51,9 +51,20 @@ describe('The Header', () => {
 
       expect(wrapper.text()).toContain('Sign Out');
     });
+
+    it('should open open sign up modal when sign up button clicked', () => {
+      wrapper.find('button[children="Sign Up"]').simulate('click');
+
+      expect(wrapper.find('HeaderModal').props().type).toBe('signup');
+    });
+
+    it('should open open sign in modal when sign in button clicked', () => {
+      wrapper.find('button[children="Sign In"]').simulate('click');
+
+      expect(wrapper.find('HeaderModal').props().type).toBe('signin');
+    });
   });
 
-  // mptodo mock fetch module
   describe('sign up modal', () => {
     let wrapper;
 
@@ -290,6 +301,67 @@ describe('The Header', () => {
       expect(wrapper.text()).toContain('Email');
       expect(wrapper.text()).toContain('Password');
     });
+
+    it('should be able to switch to reset password modal on sign in error', async () => {
+      const err = new Error('err');
+      jest.spyOn(fetchModule, 'fetchSignin').mockImplementation(() => ({ message: 'Signin Error', error: err }));
+
+      wrapper.find('button').at(1).simulate('click');
+
+      wrapper
+        .find('input')
+        .at(0)
+        .simulate('change', { target: { value: 'test@gmail.com' } });
+
+      wrapper
+        .find('input')
+        .at(1)
+        .simulate('change', { target: { value: 'password' } });
+
+      await act(async () => {
+        await waitOneTick(wrapper.find('form').simulate('submit'));
+      });
+
+      wrapper.update();
+
+      wrapper.find('button[children="Forgot Password?"]').simulate('click');
+
+      expect(wrapper.text()).toContain('Reset Password');
+    });
+  });
+
+  describe('reset modal', () => {
+    let wrapper;
+
+    beforeEach(() => {
+      wrapper = shallow(
+        <Header
+          handleSetSignedIn={handleSetSignedIn}
+          signedIn={false}
+          selectCurrentView={() => {}}
+          updateSavedCharacters={() => {}}
+        />,
+      );
+
+      wrapper.find('HeaderButtons').invoke('handleShowSignIn')();
+      wrapper.find('HeaderModal').invoke('handleResetPassword')();
+    });
+
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
+    it('should close modal when setShowModal invoked', () => {
+      wrapper.find('HeaderModal').invoke('handleShowModal')();
+
+      expect(wrapper.find('HeaderModal').exists()).toBe(false);
+    });
+
+    it('should switch modal when handleSwitchModal invoked', () => {
+      wrapper.find('HeaderModal').invoke('handleSwitchModal')();
+
+      expect(wrapper.find('HeaderModal').props().type).toBe('signin');
+    });
   });
 
   describe('Signing Out', () => {
@@ -414,6 +486,36 @@ describe('The Header', () => {
 
       wrapper.find('.burger').simulate('click');
       expect(wrapper.find('HeaderDropdown').exists()).toBe(true);
+    });
+
+    it('should open open sign up modal when burger sign up button clicked', () => {
+      act(() => {
+        window.innerWidth = 799;
+        window.dispatchEvent(new Event('resize'));
+      });
+
+      wrapper.update();
+
+      wrapper.find('.burger').simulate('click');
+
+      wrapper.find('button[children="Sign Up"]').simulate('click');
+
+      expect(wrapper.find('HeaderModal').props().type).toBe('signup');
+    });
+
+    it('should open open sign up modal when burger sign up button clicked', () => {
+      act(() => {
+        window.innerWidth = 799;
+        window.dispatchEvent(new Event('resize'));
+      });
+
+      wrapper.update();
+
+      wrapper.find('.burger').simulate('click');
+
+      wrapper.find('button[children="Sign In"]').simulate('click');
+
+      expect(wrapper.find('HeaderModal').props().type).toBe('signin');
     });
   });
 });
