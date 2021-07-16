@@ -43,19 +43,32 @@ const App = ({ currentView, updateSavedCharacters }) => {
 
   return (
     <>
+
       <div className="App">
         <header className="App-header">
           <Header signedIn={signedIn} handleSetSignedIn={handleSetSignedIn} />
         </header>
-        <div className="App-body">
-          {currentView === 'home' && <HomePage />}
-          {(currentView === 'createChar' || currentView === 'printRefSheet') && (
-          <CharacterGeneration signedIn={signedIn} />
-          )}
-          {currentView === 'playCharacter' && <LoadedCharacter />}
-        </div>
+        {window.location.pathname === '/' && (
+          <>
+            <div className="App-body">
+              {currentView === 'home' && <HomePage />}
+              {(currentView === 'createChar' || currentView === 'printRefSheet') && (
+              <CharacterGeneration signedIn={signedIn} />
+              )}
+              {currentView === 'playCharacter' && <LoadedCharacter />}
+            </div>
+
+            {currentView === 'printRefSheet' && <GameSheet />}
+          </>
+        )}
+        {window.location.pathname === '/passwordReset' && (
+          <div>
+            <h2>Password Reset</h2>
+            <p>{window.location.pathname}</p>
+            <p>{window.location.search}</p>
+          </div>
+        )}
       </div>
-      {currentView === 'printRefSheet' && <GameSheet />}
     </>
   );
 };

@@ -5,17 +5,20 @@ import HeaderButtons from './buttons';
 import HeaderModal from './modal';
 import HeaderDropdown from './dropdown';
 
-import { fetchSignup, fetchSignin, fetchSignOut } from '../../fetch';
+import { fetchSignup, fetchSignin, fetchSignOut, fetchResetPassword } from '../../fetch';
 
 import './header.css';
+
+const SIGNUP = 'signup';
+const SIGNIN = 'signin';
+const RESET = 'reset';
 
 const Header = (
   { signedIn,
     handleSetSignedIn,
     updateSavedCharacters },
 ) => {
-  const [showSignUp, setShowSignUp] = useState(false);
-  const [showSignIn, setShowSignIn] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
   const [errorMsg, setErrorMsg] = useState(null);
@@ -27,16 +30,9 @@ const Header = (
     return () => window.removeEventListener('resize', handleWindowResize);
   }, []);
 
-  const handleShowSignUp = () => {
+  const handleSwitchModal = (newModal) => {
     setErrorMsg(null);
-    setShowSignIn(false);
-    setShowSignUp(!showSignUp);
-  };
-
-  const handleShowSignIn = () => {
-    setErrorMsg(null);
-    setShowSignUp(false);
-    setShowSignIn(!showSignIn);
+    setShowModal(newModal);
   };
 
   const handleShowDropdown = () => {
@@ -51,7 +47,7 @@ const Header = (
       return;
     }
 
-    setShowSignUp(false);
+    setShowModal(false);
   };
 
   const handleSigninUser = async (user) => {
@@ -67,7 +63,7 @@ const Header = (
     updateSavedCharacters(res.characters);
 
     setShowDropdown(false);
-    setShowSignIn(false);
+    setShowModal(false);
     handleSetSignedIn();
   };
 
@@ -80,13 +76,18 @@ const Header = (
     }
   };
 
+  const handleResetPassword = async (userEmail) => {
+    // mptodo errors
+    const res = await fetchResetPassword(userEmail); // <- test coverage
+  };
+
   return (
     <div className="menuBar">
       <div>PCCS</div>
 
       <HeaderButtons
-        handleShowSignUp={handleShowSignUp}
-        handleShowSignIn={handleShowSignIn}
+        handleShowSignUp={() => handleSwitchModal(SIGNUP)}
+        handleShowSignIn={() => handleSwitchModal(SIGNIN)}
         handleShowDropdown={handleShowDropdown}
         handleSignOut={handleSignOut}
         width={width}
@@ -95,30 +96,40 @@ const Header = (
 
       {showDropdown && (
         <HeaderDropdown
-          handleShowSignUp={handleShowSignUp}
-          handleShowSignIn={handleShowSignIn}
+          handleShowSignUp={() => handleSwitchModal(SIGNUP)} // <- test coverage
+          handleShowSignIn={() => handleSwitchModal(SIGNIN)} // <- test coverage
           handleSignOut={handleSignOut}
           signedIn={signedIn}
         />
       )}
 
-      {showSignUp && (
+      {showModal === SIGNUP && (
         <HeaderModal
-          type="signup"
-          handleShowModal={handleShowSignUp}
-          handleSwitchModal={handleShowSignIn}
+          type={showModal}
+          handleShowModal={() => setShowModal(false)}
+          handleSwitchModal={() => handleSwitchModal(SIGNIN)}
           handleSubmitUser={handleSignupUser}
           errorMsg={errorMsg}
         />
       )}
-      {showSignIn && (
+      {showModal === SIGNIN && (
         <HeaderModal
-          type="signin"
-          handleShowModal={handleShowSignIn}
-          handleSwitchModal={handleShowSignUp}
+          type={showModal}
+          handleShowModal={() => setShowModal(false)}
+          handleSwitchModal={() => handleSwitchModal(SIGNUP)}
           handleSubmitUser={handleSigninUser}
+          handleResetPassword={() => handleSwitchModal(RESET)}
           errorMsg={errorMsg}
         />
+      )}
+      {showModal === RESET && (
+      <HeaderModal
+        type={showModal}
+        handleShowModal={() => setShowModal(false)}
+        handleSwitchModal={() => handleSwitchModal(SIGNIN)}
+        handleSubmitUser={handleResetPassword}
+        errorMsg={errorMsg}
+      />
       )}
     </div>
   );

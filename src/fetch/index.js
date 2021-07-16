@@ -1,4 +1,4 @@
-import { URL_SIGNUP, URL_SIGNIN, URL_SIGNEDIN, URL_SIGNOUT, URL_CHARACTERS } from './constants';
+import { URL_SIGNUP, URL_SIGNIN, URL_SIGNEDIN, URL_SIGNOUT, URL_CHARACTERS, URL_RESET } from './constants';
 import { validateCharacterFromResponse, validateCharacterArrayFromResponse } from './data';
 
 export const fetchSignup = async (user) => {
@@ -156,5 +156,25 @@ export const fetchGetCharacters = async () => {
     return res;
   } catch (err) {
     return { message: 'Get Characters Error', error: err };
+  }
+};
+
+export const fetchResetPassword = async (email) => {
+  try {
+    let res = await fetch(URL_RESET, {
+      method: 'post',
+      body: JSON.stringify({ email }),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    });
+
+    res = await res.json();
+
+    return res;
+  } catch (err) {
+    return { message: 'Reset Error', error: err };
   }
 };

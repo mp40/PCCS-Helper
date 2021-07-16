@@ -10,6 +10,7 @@ const HeaderModal = ({
   handleShowModal,
   handleSubmitUser,
   handleSwitchModal,
+  handleResetPassword,
   errorMsg,
 }) => {
   const [userDetails, setUserDetails] = useState({
@@ -41,7 +42,13 @@ const HeaderModal = ({
       return;
     }
 
+    if (type === 'reset') {
+      handleSubmitUser(userDetails.email);
+      return;
+    }
+
     if (userDetails.password.trim().length < 6) {
+      // mptodo validate no bad patterns here
       setErrors({ ...errors, ...{ password: true } });
       return;
     }
@@ -52,7 +59,7 @@ const HeaderModal = ({
   return (
     <>
       <div className="modal-background" />
-      <div className={styles.card}>
+      <div className={`${styles.card} ${styles[type]}`}>
         <button
           aria-label="close"
           className={styles.close}
@@ -93,8 +100,20 @@ const HeaderModal = ({
             />
           </label>
 
-          {errorMsg && (
-            <p className={styles.errorMessage}>{errorMsg}</p>
+          {errorMsg
+          && <p className={styles.errorMessage}>{errorMsg}</p>}
+
+          {errorMsg && type === 'signin'
+          && (
+          <button
+            type="button"
+            className={styles.forgotPassword}
+            onClick={() => {
+              handleResetPassword();
+            }}
+          >
+            Forgot Password?
+          </button>
           )}
 
           <input type="submit" value={text[type].title} />
@@ -118,6 +137,7 @@ HeaderModal.propTypes = {
   handleShowModal: PropTypes.func.isRequired,
   handleSubmitUser: PropTypes.func.isRequired,
   handleSwitchModal: PropTypes.func.isRequired,
+  handleResetPassword: PropTypes.func,
   errorMsg: PropTypes.string,
 };
 

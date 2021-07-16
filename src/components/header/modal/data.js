@@ -7,6 +7,10 @@ export default {
     title: 'Sign In',
     button: "Don't have an account? Sign Up Now",
   },
+  reset: {
+    title: 'Reset Password',
+    button: 'Sign in',
+  },
   label: {
     email: 'Email',
     password: 'Password',

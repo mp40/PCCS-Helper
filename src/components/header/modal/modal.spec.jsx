@@ -16,7 +16,7 @@ describe('Header Modal', () => {
         handleShowModal={handleShowModal}
         handleSubmitUser={handleSubmitUser}
         handleSwitchModal={handleSwitchModal}
-        errorMsg={false}
+        errorMsg={null}
       />,
     );
 
@@ -69,6 +69,7 @@ describe('Header Modal', () => {
           handleShowModal={handleShowModal}
           handleSubmitUser={handleSubmitUser}
           handleSwitchModal={handleSwitchModal}
+          errorMsg={null}
         />,
       );
     });
@@ -129,6 +130,56 @@ describe('Header Modal', () => {
 
       expect(handleSubmitUser).not.toHaveBeenCalled();
       expect(wrapper.text()).toContain('Requires minimum six characters');
+    });
+  });
+
+  describe('reset password', () => {
+    let wrapper;
+
+    const handleResetPassword = jest.fn();
+
+    beforeEach(() => {
+      wrapper = shallow(
+        <HeaderModal
+          type="reset"
+          handleShowModal={handleShowModal}
+          handleSubmitUser={handleSubmitUser}
+          handleSwitchModal={handleSwitchModal}
+          handleResetPassword={handleResetPassword}
+          errorMsg={null}
+        />,
+      );
+    });
+
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
+    it('should email with requiring password', () => {
+      wrapper
+        .find('input')
+        .at(0)
+        .simulate('change', { target: { value: 'camel266@gmail.com' } });
+
+      const form = wrapper.find('form');
+      form.simulate('submit', event);
+
+      expect(handleSubmitUser).toHaveBeenCalledWith('camel266@gmail.com');
+      expect(handleSubmitUser).toHaveBeenCalledTimes(1);
+    });
+
+    it('should show Forgot Password button on sign in page and error msg present', () => {
+      wrapper.setProps({ type: 'signin', errorMsg: 'error' });
+
+      expect(wrapper.text()).toContain('Forgot Password?');
+    });
+
+    it('should switch to reset password modal when Forgot Password button clicked', () => {
+      wrapper.setProps({ type: 'signin', errorMsg: 'error' });
+
+      wrapper.find('button[children="Forgot Password?"]').simulate('click');
+
+      expect(handleResetPassword).toHaveBeenCalled();
     });
   });
 });

@@ -6,9 +6,10 @@ import {
   fetchPostCharacter,
   fetchPutCharacter,
   fetchGetCharacters,
+  fetchResetPassword,
 } from './index';
 
-import { URL_CHARACTERS } from './constants';
+import { URL_CHARACTERS, URL_RESET } from './constants';
 
 const characterFromDatabase = {
   character_id: 1,
@@ -416,6 +417,42 @@ describe('Calling the Server', () => {
         error: err,
         message: 'Get Characters Error',
       });
+    });
+  });
+
+  describe('Reset Password', () => {
+    afterEach(() => {
+      global.fetch.mockClear();
+    });
+
+    it('should submit user email on post /reset', async () => {
+      global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        json: () => Promise.resolve({ message: 'Email Sent' }),
+      }));
+
+      await fetchResetPassword('reset@email.com');
+
+      const secondArg = global.fetch.mock.calls[0][1];
+
+      expect(secondArg.body).toBe(JSON.stringify({ email: 'reset@email.com' }));
+    });
+
+    it('should return email sent message on success', async () => {
+      global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        json: () => Promise.resolve({ message: 'Email Sent' }),
+      }));
+
+      const res = await fetchResetPassword('reset@email.com');
+
+      expect(res).toEqual({ message: 'Email Sent' });
+    });
+
+    it('should return error msg if fetch fails', async () => {
+      global.fetch = jest.fn().mockImplementation(() => Promise.reject());
+
+      const res = await fetchResetPassword('reset@email.com');
+
+      expect(res).toEqual({ message: 'Reset Error' });
     });
   });
 });
