@@ -77,8 +77,16 @@ const Header = (
   };
 
   const handleResetPassword = async (userEmail) => {
-    // mptodo errors
-    const res = await fetchResetPassword(userEmail); // <- test coverage
+    const res = await fetchResetPassword(userEmail);
+
+    if (res.message === 'Email Sent') {
+      setErrorMsg(null);
+      setShowModal(false);
+    }
+
+    if (res.message === 'Reset Error') {
+      setErrorMsg('Reset Error');
+    }
   };
 
   return (

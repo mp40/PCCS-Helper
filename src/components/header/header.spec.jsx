@@ -362,6 +362,28 @@ describe('The Header', () => {
 
       expect(wrapper.find('HeaderModal').props().type).toBe('signin');
     });
+
+    it('should close modal on Email Sent fetch post success', async () => {
+      jest.spyOn(fetchModule, 'fetchResetPassword').mockImplementation(() => ({ message: 'Email Sent' }));
+
+      await act(async () => {
+        await waitOneTick(wrapper.find('HeaderModal').invoke('handleSubmitUser')());
+      });
+
+      expect(wrapper.find('HeaderModal').exists()).toBe(false);
+    });
+
+    it('should show error msg on Email Sent fetch post error', async () => {
+      const err = new Error('err');
+      jest.spyOn(fetchModule, 'fetchResetPassword').mockImplementation(() => ({ message: 'Reset Error', error: err }));
+
+      await act(async () => {
+        await waitOneTick(wrapper.find('HeaderModal').invoke('handleSubmitUser')());
+      });
+
+      expect(wrapper.find('HeaderModal').props().type).toBe('reset');
+      expect(wrapper.find('HeaderModal').props().errorMsg).toBe('Reset Error');
+    });
   });
 
   describe('Signing Out', () => {
