@@ -7,6 +7,7 @@ import {
   fetchPutCharacter,
   fetchGetCharacters,
   fetchResetPassword,
+  fetchResettingPassword,
 } from './index';
 
 import { URL_CHARACTERS, URL_RESET } from './constants';
@@ -451,6 +452,60 @@ describe('Calling the Server', () => {
       global.fetch = jest.fn().mockImplementation(() => Promise.reject());
 
       const res = await fetchResetPassword('reset@email.com');
+
+      expect(res).toEqual({ message: 'Reset Error' });
+    });
+  });
+
+  describe('Resetting Password', () => {
+    afterEach(() => {
+      global.fetch.mockClear();
+    });
+
+    it('should submit token as url params on put /reset', async () => {
+      global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        json: () => Promise.resolve({ message: 'Password Updated' }),
+      }));
+
+      await fetchResettingPassword('reset@email.com', 'password', 'token');
+
+      expect(global.fetch).toHaveBeenCalledWith(`${URL_RESET}/token`, expect.anything());
+    });
+
+    it('should submit user email and new password on put /reset', async () => {
+      global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        json: () => Promise.resolve({ message: 'Password Updated' }),
+      }));
+
+      await fetchResettingPassword('reset@email.com', 'password', 'token');
+
+      const secondArg = global.fetch.mock.calls[0][1];
+
+      expect(secondArg.body).toBe(JSON.stringify({ email: 'reset@email.com', password: 'password' }));
+    });
+
+    it('should return password updated message on success', async () => {
+      global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        json: () => Promise.resolve({ message: 'Password Updated' }),
+      }));
+
+      const res = await fetchResettingPassword('reset@email.com', 'password', 'token');
+
+      expect(res).toEqual({ message: 'Password Updated' });
+    });
+
+    it('should return error msg if fetch reset fails', async () => {
+      global.fetch = jest.fn().mockImplementation(() => Promise.reject());
+
+      const res = await fetchResetPassword('reset@email.com');
+
+      expect(res).toEqual({ message: 'Reset Error' });
+    });
+
+    it('should return error msg if fetch resetting fails', async () => {
+      global.fetch = jest.fn().mockImplementation(() => Promise.reject());
+
+      const res = await fetchResettingPassword('reset@email.com', 'password', 'token');
 
       expect(res).toEqual({ message: 'Reset Error' });
     });

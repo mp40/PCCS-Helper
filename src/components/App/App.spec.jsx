@@ -187,3 +187,23 @@ describe('App Views', () => {
     expect(wrapper.find('Connect(LoadedCharacter)').exists()).toBe(true);
   });
 });
+
+describe('Routes', () => {
+  beforeAll(() => {
+    window.history.pushState({}, '', '/passwordReset');
+  });
+
+  afterAll(() => {
+    window.history.pushState({}, '', '/');
+  });
+
+  it('should show Reset component if location pathname equals /passwordReset', () => {
+    const wrapper = shallow(
+      <App
+        currentView="home"
+        updateSavedCharacters={() => {}}
+      />);
+
+    expect(wrapper.find('Reset').exists()).toBe(true);
+  });
+});

@@ -6,6 +6,7 @@ import HomePage from '../Home';
 import CharacterGeneration from '../CharacterGeneration';
 import GameSheet from '../GameSheet';
 import LoadedCharacter from '../LoadedCharacter';
+import Reset from '../Reset';
 
 import { fetchSignedIn, fetchGetCharacters } from '../../fetch';
 
@@ -62,11 +63,7 @@ const App = ({ currentView, updateSavedCharacters }) => {
           </>
         )}
         {window.location.pathname === '/passwordReset' && (
-          <div>
-            <h2>Password Reset</h2>
-            <p>{window.location.pathname}</p>
-            <p>{window.location.search}</p>
-          </div>
+        <Reset />
         )}
       </div>
     </>

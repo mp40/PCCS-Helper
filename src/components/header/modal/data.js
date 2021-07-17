@@ -11,6 +11,10 @@ export default {
     title: 'Reset Password',
     button: 'Sign in',
   },
+  resetting: {
+    title: 'New Password',
+    button: 'Back To Home',
+  },
   label: {
     email: 'Email',
     password: 'Password',

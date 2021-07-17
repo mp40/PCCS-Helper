@@ -43,9 +43,9 @@ describe('Header Modal', () => {
 
     it('should be possible to input password', () => {
       const input = wrapper.find('input').at(1);
-      input.simulate('change', { target: { value: 'password' } });
+      input.simulate('change', { target: { value: 'reallyGoodPW' } });
 
-      expect(wrapper.find('input').at(1).props().value).toBe('password');
+      expect(wrapper.find('input').at(1).props().value).toBe('reallyGoodPW');
     });
 
     it('should be possible to submit details', () => {
@@ -54,7 +54,7 @@ describe('Header Modal', () => {
 
       expect(handleSubmitUser).toHaveBeenCalledWith({
         email: 'test@gmail.com',
-        password: 'password',
+        password: 'reallyGoodPW',
       });
     });
   });
@@ -129,7 +129,25 @@ describe('Header Modal', () => {
       form.simulate('submit', event);
 
       expect(handleSubmitUser).not.toHaveBeenCalled();
-      expect(wrapper.text()).toContain('Requires minimum six characters');
+      expect(wrapper.text()).toContain('PasswordPassword must be at least 8 characters');
+    });
+
+    it('should not submit form if password has bad pattern', () => {
+      wrapper
+        .find('input')
+        .at(0)
+        .simulate('change', { target: { value: 'camel266@gmail.com' } });
+
+      wrapper
+        .find('input')
+        .at(1)
+        .simulate('change', { target: { value: 'password' } });
+
+      const form = wrapper.find('form');
+      form.simulate('submit', event);
+
+      expect(handleSubmitUser).not.toHaveBeenCalled();
+      expect(wrapper.text()).toContain('Password contains prohibited patterns');
     });
   });
 

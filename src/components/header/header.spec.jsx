@@ -119,7 +119,7 @@ describe('The Header', () => {
       wrapper
         .find('input')
         .at(1)
-        .simulate('change', { target: { value: 'password' } });
+        .simulate('change', { target: { value: 'reallyGoodPW' } });
 
       await act(async () => {
         await waitOneTick(wrapper.find('form').simulate('submit'));
@@ -145,7 +145,7 @@ describe('The Header', () => {
       wrapper
         .find('input')
         .at(1)
-        .simulate('change', { target: { value: 'password' } });
+        .simulate('change', { target: { value: 'reallyGoodPW' } });
 
       await act(async () => {
         await waitOneTick(wrapper.find('form').simulate('submit'));
@@ -171,7 +171,7 @@ describe('The Header', () => {
       wrapper
         .find('input')
         .at(1)
-        .simulate('change', { target: { value: 'password' } });
+        .simulate('change', { target: { value: 'reallyGoodPW' } });
 
       await act(async () => {
         await waitOneTick(wrapper.find('form').simulate('submit'));
@@ -237,7 +237,7 @@ describe('The Header', () => {
       wrapper
         .find('input')
         .at(1)
-        .simulate('change', { target: { value: 'password' } });
+        .simulate('change', { target: { value: 'reallyGoodPW' } });
 
       await act(async () => {
         await waitOneTick(wrapper.find('form').simulate('submit'));
@@ -263,7 +263,7 @@ describe('The Header', () => {
       wrapper
         .find('input')
         .at(1)
-        .simulate('change', { target: { value: 'password' } });
+        .simulate('change', { target: { value: 'reallyGoodPW' } });
 
       await act(async () => {
         await waitOneTick(wrapper.find('form').simulate('submit'));
@@ -288,7 +288,7 @@ describe('The Header', () => {
       wrapper
         .find('input')
         .at(1)
-        .simulate('change', { target: { value: 'password' } });
+        .simulate('change', { target: { value: 'reallyGoodPW' } });
 
       await act(async () => {
         await waitOneTick(wrapper.find('form').simulate('submit'));
@@ -316,7 +316,7 @@ describe('The Header', () => {
       wrapper
         .find('input')
         .at(1)
-        .simulate('change', { target: { value: 'password' } });
+        .simulate('change', { target: { value: 'reallyGoodPW' } });
 
       await act(async () => {
         await waitOneTick(wrapper.find('form').simulate('submit'));

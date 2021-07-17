@@ -178,3 +178,23 @@ export const fetchResetPassword = async (email) => {
     return { message: 'Reset Error', error: err };
   }
 };
+
+export const fetchResettingPassword = async (email, password, token) => {
+  try {
+    let res = await fetch(`${URL_RESET}/${token}`, {
+      method: 'put',
+      body: JSON.stringify({ email, password }),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    });
+
+    res = await res.json();
+
+    return res;
+  } catch (err) {
+    return { message: 'Reset Error', error: err };
+  }
+};

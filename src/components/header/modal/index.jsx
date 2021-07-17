@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
+import { checkPasswordHasNoBadPatterns } from '../../../utils';
+import { blacklistedPatterns } from '../../../utils/data';
+
 import styles from './styles.module.css';
 
 import text from './data';
@@ -47,9 +50,15 @@ const HeaderModal = ({
       return;
     }
 
-    if (userDetails.password.trim().length < 6) {
-      // mptodo validate no bad patterns here
-      setErrors({ ...errors, ...{ password: true } });
+    if (type === 'signup' || type === 'resetting') {
+      if (userDetails.password.trim().length < 8 || typeof userDetails.password !== 'string') {
+        setErrors({ ...errors, ...{ password: 'Password must be at least 8 characters' } });
+        return;
+      }
+    }
+
+    if (!checkPasswordHasNoBadPatterns(userDetails.password.trim())) {
+      setErrors({ ...errors, ...{ password: 'Password contains prohibited patterns' } });
       return;
     }
 
@@ -89,7 +98,7 @@ const HeaderModal = ({
             </span>
             <span>
               {errors.password && (
-                <p className={styles.errorMessage}>{text.errors.password}</p>
+                <p className={styles.errorMessage}>{errors.password}</p>
               )}
             </span>
             <input
@@ -99,6 +108,18 @@ const HeaderModal = ({
               onChange={(event) => setUserPassword(event.target.value)}
             />
           </label>
+          {
+            errors.password === 'Password contains prohibited patterns' && (
+              <div className={styles.patterns}>
+                <p>prohibited patterns -</p>
+                <p>must contain at least five different characters</p>
+                <p>cannot contain the following:</p>
+                <div>
+                  {blacklistedPatterns.map((p) => <span key={p}>{`${p},`}</span>)}
+                </div>
+              </div>
+            )
+          }
 
           {errorMsg
           && <p className={styles.errorMessage}>{errorMsg}</p>}
