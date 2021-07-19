@@ -1,163 +1,200 @@
-import { URL_SIGNUP, URL_SIGNIN, URL_SIGNEDIN, URL_SIGNOUT, URL_CHARACTERS } from './constants';
+import { URL_SIGNUP, URL_SIGNIN, URL_SIGNEDIN, URL_SIGNOUT, URL_CHARACTERS, URL_RESET } from './constants';
+import { validateCharacterFromResponse, validateCharacterArrayFromResponse } from './data';
 
 export const fetchSignup = async (user) => {
-  let res;
-
-  await fetch(URL_SIGNUP, {
-    method: 'post',
-    body: JSON.stringify(user),
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    credentials: 'include',
-  })
-    .then((response) => response.text())
-    .then((data) => {
-      res = JSON.parse(data);
-    })
-    .catch((error) => {
-      res = { message: 'Signup Error', error };
+  try {
+    const res = await fetch(URL_SIGNUP, {
+      method: 'post',
+      body: JSON.stringify(user),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
     });
 
-  return res;
+    if (res.status === 429) {
+      return { message: 'Too many sign up attempts', error: new Error('Too many sign up attempts') };
+    }
+
+    return await res.json();
+  } catch (err) {
+    return { message: 'Signup Error', error: err };
+  }
 };
 
 export const fetchSignin = async (user) => {
-  let res;
-
-  await fetch(URL_SIGNIN, {
-    credentials: 'include',
-    mode: 'cors',
-    method: 'post',
-    body: JSON.stringify(user),
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((response) => response.text())
-    .then((data) => {
-      res = JSON.parse(data);
-    })
-    .catch((error) => {
-      res = { message: 'Signin Error', error };
+  try {
+    const res = await fetch(URL_SIGNIN, {
+      credentials: 'include',
+      mode: 'cors',
+      method: 'post',
+      body: JSON.stringify(user),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
     });
 
-  return res;
+    if (res.status === 429) {
+      return { message: 'Too many sign in attempts', error: new Error('Too many sign in attempts') };
+    }
+
+    return await res.json();
+  } catch (err) {
+    return { message: 'Signin Error', error: err };
+  }
 };
 
 export const fetchSignedIn = async () => {
-  let res;
-
-  await fetch(URL_SIGNEDIN, {
-    credentials: 'include',
-    mode: 'cors',
-    method: 'get',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((response) => response.text())
-    .then((data) => {
-      res = JSON.parse(data);
-    })
-    .catch((error) => {
-      res = { message: 'SignedIn Error', error };
+  try {
+    const res = await fetch(URL_SIGNEDIN, {
+      credentials: 'include',
+      mode: 'cors',
+      method: 'get',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
     });
 
-  return res;
+    return await res.json();
+  } catch (err) {
+    return { message: 'SignedIn Error', error: err };
+  }
 };
 
 export const fetchSignOut = async () => {
-  let res;
-
-  await fetch(URL_SIGNOUT, {
-    credentials: 'include',
-    mode: 'cors',
-    method: 'get',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((response) => response.text())
-    .then((data) => {
-      res = JSON.parse(data);
-    })
-    .catch((error) => {
-      res = { message: 'Sign Out Error', error };
+  try {
+    const res = await fetch(URL_SIGNOUT, {
+      credentials: 'include',
+      mode: 'cors',
+      method: 'get',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
     });
 
-  return res;
+    return await res.json();
+  } catch (err) {
+    return { message: 'Sign Out Error', error: err };
+  }
 };
 
 export const fetchPostCharacter = async (character) => {
-  let res;
-
-  await fetch(URL_CHARACTERS, {
-    method: 'post',
-    body: JSON.stringify(character),
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    credentials: 'include',
-  })
-    .then((response) => response.text())
-    .then((data) => {
-      res = JSON.parse(data);
-    })
-    .catch((error) => {
-      res = { message: 'Save Error', error };
+  try {
+    let res = await fetch(URL_CHARACTERS, {
+      method: 'post',
+      body: JSON.stringify(character),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
     });
 
-  return res;
+    res = await res.json();
+
+    const characterHasRequiredkeys = validateCharacterFromResponse(res.character);
+
+    if (!characterHasRequiredkeys) {
+      return { message: 'Save Error', error: new Error('save error') };
+    }
+
+    return res;
+  } catch (err) {
+    return { message: 'Save Error', error: err };
+  }
 };
 
 export const fetchPutCharacter = async (character, characterId) => {
-  let res;
-
-  await fetch(`${URL_CHARACTERS}/${characterId}`, {
-    method: 'put',
-    body: JSON.stringify(character),
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    credentials: 'include',
-  })
-    .then((response) => response.text())
-    .then((data) => {
-      res = JSON.parse(data);
-    })
-    .catch((error) => {
-      res = { message: 'Save Error', error };
+  try {
+    let res = await fetch(`${URL_CHARACTERS}/${characterId}`, {
+      method: 'put',
+      body: JSON.stringify(character),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
     });
 
-  return res;
+    res = await res.json();
+
+    const characterHasRequiredkeys = validateCharacterFromResponse(res.character);
+
+    if (!characterHasRequiredkeys) {
+      return { message: 'Save Error', error: new Error('save error') };
+    }
+    return res;
+  } catch (err) {
+    return { message: 'Save Error', error: err };
+  }
 };
 
 export const fetchGetCharacters = async () => {
-  let res;
-
-  await fetch(URL_CHARACTERS, {
-    credentials: 'include',
-    mode: 'cors',
-    method: 'get',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((response) => response.text())
-    .then((data) => {
-      res = JSON.parse(data);
-    })
-    .catch((error) => {
-      res = { message: 'Get Characters Error', error };
+  try {
+    let res = await fetch(URL_CHARACTERS, {
+      credentials: 'include',
+      mode: 'cors',
+      method: 'get',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
     });
 
-  return res;
+    res = await res.json();
+
+    const isValidResponse = validateCharacterArrayFromResponse(res.characters);
+
+    if (!isValidResponse) {
+      return { message: 'Get Characters Error', error: new Error('get characters error') };
+    }
+
+    return res;
+  } catch (err) {
+    return { message: 'Get Characters Error', error: err };
+  }
+};
+
+export const fetchResetPassword = async (email) => {
+  try {
+    let res = await fetch(URL_RESET, {
+      method: 'post',
+      body: JSON.stringify({ email }),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    });
+
+    res = await res.json();
+
+    return res;
+  } catch (err) {
+    return { message: 'Reset Error', error: err };
+  }
+};
+
+export const fetchResettingPassword = async (email, password, token) => {
+  try {
+    let res = await fetch(`${URL_RESET}/${token}`, {
+      method: 'put',
+      body: JSON.stringify({ email, password }),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    });
+
+    res = await res.json();
+
+    return res;
+  } catch (err) {
+    return { message: 'Reset Error', error: err };
+  }
 };

@@ -39,8 +39,15 @@ export const getCombatActions = (maxSpeed, skillFactor) => {
   }
 
   let index;
+  let skillRange;
 
-  const skillRange = combatActionsTable.skillFactor;
+  if (skillFactor < 7) {
+    skillRange = combatActionsTable['7'];
+  }
+
+  if (skillFactor >= 7) {
+    skillRange = combatActionsTable.skillFactor;
+  }
 
   for (let i = 0; i < skillRange.length; i += 1) {
     if (skillRange[i] <= skillFactor) {

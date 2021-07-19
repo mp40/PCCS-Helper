@@ -4,6 +4,8 @@ import { act } from 'react-dom/test-utils';
 
 import Header from './component';
 
+import * as fetchModule from '../../fetch';
+
 const waitOneTick = (simulate) => new Promise((resolve) => {
   setTimeout(() => {
     resolve(simulate);
@@ -49,6 +51,18 @@ describe('The Header', () => {
 
       expect(wrapper.text()).toContain('Sign Out');
     });
+
+    it('should open open sign up modal when sign up button clicked', () => {
+      wrapper.find('button[children="Sign Up"]').simulate('click');
+
+      expect(wrapper.find('HeaderModal').props().type).toBe('signup');
+    });
+
+    it('should open open sign in modal when sign in button clicked', () => {
+      wrapper.find('button[children="Sign In"]').simulate('click');
+
+      expect(wrapper.find('HeaderModal').props().type).toBe('signin');
+    });
   });
 
   describe('sign up modal', () => {
@@ -93,14 +107,7 @@ describe('The Header', () => {
     });
 
     it('should close modal on sign up', async () => {
-      global.fetch = jest.fn(() => Promise.resolve({
-        text: () => JSON.stringify({
-          id: '1',
-          email: 'testSan@gmail.com',
-          password: 'hashed_password',
-        }),
-      }),
-      );
+      jest.spyOn(fetchModule, 'fetchSignup').mockImplementation(() => ({ message: 'Signed Up' }));
 
       wrapper.find('button').at(0).simulate('click');
 
@@ -112,7 +119,7 @@ describe('The Header', () => {
       wrapper
         .find('input')
         .at(1)
-        .simulate('change', { target: { value: 'password' } });
+        .simulate('change', { target: { value: 'reallyGoodPW' } });
 
       await act(async () => {
         await waitOneTick(wrapper.find('form').simulate('submit'));
@@ -125,13 +132,8 @@ describe('The Header', () => {
     });
 
     it('should not close modal on sign up error', async () => {
-      global.fetch = jest.fn(() => Promise.resolve({
-        text: () => JSON.stringify({
-          error: 'error',
-          message: 'Signup Error',
-        }),
-      }),
-      );
+      const err = new Error();
+      jest.spyOn(fetchModule, 'fetchSignup').mockImplementation(() => ({ error: err, message: 'Signup Error' }));
 
       wrapper.find('button').at(0).simulate('click');
 
@@ -143,7 +145,7 @@ describe('The Header', () => {
       wrapper
         .find('input')
         .at(1)
-        .simulate('change', { target: { value: 'password' } });
+        .simulate('change', { target: { value: 'reallyGoodPW' } });
 
       await act(async () => {
         await waitOneTick(wrapper.find('form').simulate('submit'));
@@ -153,6 +155,31 @@ describe('The Header', () => {
 
       expect(wrapper.text()).toContain('Email');
       expect(wrapper.text()).toContain('Password');
+    });
+
+    it('should send error message', async () => {
+      const err = new Error();
+      jest.spyOn(fetchModule, 'fetchSignup').mockImplementation(() => ({ error: err, message: 'Signup Error' }));
+
+      wrapper.find('button').at(0).simulate('click');
+
+      wrapper
+        .find('input')
+        .at(0)
+        .simulate('change', { target: { value: 'test@gmail.com' } });
+
+      wrapper
+        .find('input')
+        .at(1)
+        .simulate('change', { target: { value: 'reallyGoodPW' } });
+
+      await act(async () => {
+        await waitOneTick(wrapper.find('form').simulate('submit'));
+      });
+
+      wrapper.update();
+
+      expect(wrapper.text()).toContain('Signup Error');
     });
   });
 
@@ -198,10 +225,7 @@ describe('The Header', () => {
     });
 
     it('should be possible to sign in', async () => {
-      global.fetch = jest.fn(() => Promise.resolve({
-        text: () => JSON.stringify({ message: 'Signed In' }),
-      }),
-      );
+      jest.spyOn(fetchModule, 'fetchSignin').mockImplementation(() => ({ message: 'Signed In' }));
 
       wrapper.find('button').at(1).simulate('click');
 
@@ -213,7 +237,7 @@ describe('The Header', () => {
       wrapper
         .find('input')
         .at(1)
-        .simulate('change', { target: { value: 'password' } });
+        .simulate('change', { target: { value: 'reallyGoodPW' } });
 
       await act(async () => {
         await waitOneTick(wrapper.find('form').simulate('submit'));
@@ -225,10 +249,7 @@ describe('The Header', () => {
     });
 
     it('should store saved characters from database to session storage', async () => {
-      global.fetch = jest.fn(() => Promise.resolve({
-        text: () => JSON.stringify({ message: 'Signed In' }),
-      }),
-      );
+      jest.spyOn(fetchModule, 'fetchSignin').mockImplementation(() => ({ message: 'Signed In' }));
 
       const spy = jest.spyOn(Storage.prototype, 'setItem');
 
@@ -242,7 +263,7 @@ describe('The Header', () => {
       wrapper
         .find('input')
         .at(1)
-        .simulate('change', { target: { value: 'password' } });
+        .simulate('change', { target: { value: 'reallyGoodPW' } });
 
       await act(async () => {
         await waitOneTick(wrapper.find('form').simulate('submit'));
@@ -253,14 +274,9 @@ describe('The Header', () => {
       expect(spy).toHaveBeenCalledWith('savedCharacters', undefined);
     });
 
-    it('should not close modal on sign up error', async () => {
-      global.fetch = jest.fn(() => Promise.resolve({
-        text: () => JSON.stringify({
-          error: 'error',
-          message: 'Signup Error',
-        }),
-      }),
-      );
+    it('should not close modal on sign in error', async () => {
+      const err = new Error('err');
+      jest.spyOn(fetchModule, 'fetchSignin').mockImplementation(() => ({ message: 'Signin Error', error: err }));
 
       wrapper.find('button').at(1).simulate('click');
 
@@ -272,7 +288,7 @@ describe('The Header', () => {
       wrapper
         .find('input')
         .at(1)
-        .simulate('change', { target: { value: 'password' } });
+        .simulate('change', { target: { value: 'reallyGoodPW' } });
 
       await act(async () => {
         await waitOneTick(wrapper.find('form').simulate('submit'));
@@ -285,10 +301,95 @@ describe('The Header', () => {
       expect(wrapper.text()).toContain('Email');
       expect(wrapper.text()).toContain('Password');
     });
+
+    it('should be able to switch to reset password modal on sign in error', async () => {
+      const err = new Error('err');
+      jest.spyOn(fetchModule, 'fetchSignin').mockImplementation(() => ({ message: 'Signin Error', error: err }));
+
+      wrapper.find('button').at(1).simulate('click');
+
+      wrapper
+        .find('input')
+        .at(0)
+        .simulate('change', { target: { value: 'test@gmail.com' } });
+
+      wrapper
+        .find('input')
+        .at(1)
+        .simulate('change', { target: { value: 'reallyGoodPW' } });
+
+      await act(async () => {
+        await waitOneTick(wrapper.find('form').simulate('submit'));
+      });
+
+      wrapper.update();
+
+      wrapper.find('button[children="Forgot Password?"]').simulate('click');
+
+      expect(wrapper.text()).toContain('Reset Password');
+    });
+  });
+
+  describe('reset modal', () => {
+    let wrapper;
+
+    beforeEach(() => {
+      wrapper = shallow(
+        <Header
+          handleSetSignedIn={handleSetSignedIn}
+          signedIn={false}
+          selectCurrentView={() => {}}
+          updateSavedCharacters={() => {}}
+        />,
+      );
+
+      wrapper.find('HeaderButtons').invoke('handleShowSignIn')();
+      wrapper.find('HeaderModal').invoke('handleResetPassword')();
+    });
+
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
+    it('should close modal when setShowModal invoked', () => {
+      wrapper.find('HeaderModal').invoke('handleShowModal')();
+
+      expect(wrapper.find('HeaderModal').exists()).toBe(false);
+    });
+
+    it('should switch modal when handleSwitchModal invoked', () => {
+      wrapper.find('HeaderModal').invoke('handleSwitchModal')();
+
+      expect(wrapper.find('HeaderModal').props().type).toBe('signin');
+    });
+
+    it('should close modal on Email Sent fetch post success', async () => {
+      jest.spyOn(fetchModule, 'fetchResetPassword').mockImplementation(() => ({ message: 'Email Sent' }));
+
+      await act(async () => {
+        await waitOneTick(wrapper.find('HeaderModal').invoke('handleSubmitUser')());
+      });
+
+      expect(wrapper.find('HeaderModal').exists()).toBe(false);
+    });
+
+    it('should show error msg on Email Sent fetch post error', async () => {
+      const err = new Error('err');
+      jest.spyOn(fetchModule, 'fetchResetPassword').mockImplementation(() => ({ message: 'Reset Error', error: err }));
+
+      await act(async () => {
+        await waitOneTick(wrapper.find('HeaderModal').invoke('handleSubmitUser')());
+      });
+
+      expect(wrapper.find('HeaderModal').props().type).toBe('reset');
+      expect(wrapper.find('HeaderModal').props().errorMsg).toBe('Reset Error');
+    });
   });
 
   describe('Signing Out', () => {
     let wrapper;
+
+    let storage;
 
     beforeEach(() => {
       wrapper = shallow(
@@ -299,19 +400,17 @@ describe('The Header', () => {
           updateSavedCharacters={() => {}}
         />,
       );
+
+      storage = jest.spyOn(Storage.prototype, 'removeItem').mockImplementation(() => {});
     });
 
     afterEach(() => {
+      storage.mockRestore();
       jest.clearAllMocks();
     });
 
     it('should be possible to sign out', async () => {
-      global.fetch = jest.fn(() => Promise.resolve({
-        text: () => JSON.stringify({ message: 'Cookie Cleared' }),
-      }),
-      );
-
-      jest.spyOn(Storage.prototype, 'removeItem').mockImplementation(() => {});
+      const stubFetch = jest.spyOn(fetchModule, 'fetchSignOut').mockImplementation(() => ({ message: 'Cookie Cleared' }));
 
       await act(async () => {
         await waitOneTick(
@@ -319,17 +418,12 @@ describe('The Header', () => {
         );
       });
 
-      expect(fetch).toHaveBeenCalled();
+      expect(stubFetch).toHaveBeenCalled();
       expect(handleSetSignedIn).toHaveBeenCalled();
     });
 
     it('should clear session storage on sign out', async () => {
-      global.fetch = jest.fn(() => Promise.resolve({
-        text: () => JSON.stringify({ message: 'Cookie Cleared' }),
-      }),
-      );
-
-      const spy = jest.spyOn(Storage.prototype, 'removeItem').mockImplementation(() => {});
+      jest.spyOn(fetchModule, 'fetchSignOut').mockImplementation(() => ({ message: 'Cookie Cleared' }));
 
       await act(async () => {
         await waitOneTick(
@@ -337,17 +431,12 @@ describe('The Header', () => {
         );
       });
 
-      expect(spy).toHaveBeenCalledWith('savedCharacters');
+      expect(storage).toHaveBeenCalledWith('savedCharacters');
       expect(handleSetSignedIn).toHaveBeenCalled();
     });
 
     it('should not clear session storage if Cookie Cleared msg not recieved', async () => {
-      global.fetch = jest.fn(() => Promise.resolve({
-        text: () => JSON.stringify({ message: 'something else' }),
-      }),
-      );
-
-      const spy = jest.spyOn(Storage.prototype, 'removeItem').mockImplementation(() => {});
+      jest.spyOn(fetchModule, 'fetchSignOut').mockImplementation(() => ({ message: 'something else' }));
 
       await act(async () => {
         await waitOneTick(
@@ -355,15 +444,12 @@ describe('The Header', () => {
         );
       });
 
-      expect(spy).not.toHaveBeenCalled();
+      expect(storage).not.toHaveBeenCalled();
       expect(handleSetSignedIn).not.toHaveBeenCalled();
     });
 
     it('should not sign out if error', async () => {
-      global.fetch = jest.fn(() => Promise.resolve({
-        text: () => JSON.stringify({ message: 'Sign Out Error' }),
-      }),
-      );
+      const stubFetch = jest.spyOn(fetchModule, 'fetchSignOut').mockImplementation(() => ({ message: 'Sign Out Error' }));
 
       await act(async () => {
         await waitOneTick(
@@ -371,7 +457,7 @@ describe('The Header', () => {
         );
       });
 
-      expect(fetch).toHaveBeenCalled();
+      expect(stubFetch).toHaveBeenCalled();
       expect(handleSetSignedIn).not.toHaveBeenCalled();
     });
   });
@@ -422,6 +508,36 @@ describe('The Header', () => {
 
       wrapper.find('.burger').simulate('click');
       expect(wrapper.find('HeaderDropdown').exists()).toBe(true);
+    });
+
+    it('should open open sign up modal when burger sign up button clicked', () => {
+      act(() => {
+        window.innerWidth = 799;
+        window.dispatchEvent(new Event('resize'));
+      });
+
+      wrapper.update();
+
+      wrapper.find('.burger').simulate('click');
+
+      wrapper.find('button[children="Sign Up"]').simulate('click');
+
+      expect(wrapper.find('HeaderModal').props().type).toBe('signup');
+    });
+
+    it('should open open sign up modal when burger sign up button clicked', () => {
+      act(() => {
+        window.innerWidth = 799;
+        window.dispatchEvent(new Event('resize'));
+      });
+
+      wrapper.update();
+
+      wrapper.find('.burger').simulate('click');
+
+      wrapper.find('button[children="Sign In"]').simulate('click');
+
+      expect(wrapper.find('HeaderModal').props().type).toBe('signin');
     });
   });
 });

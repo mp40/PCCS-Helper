@@ -8,7 +8,6 @@
   width: 18em;
   padding: 0.5em 2em 2em;
   margin-top: 2em;
-  margin-left: 2em;
   z-index: 101;
   color: var(--panzer-grey);
 }
@@ -62,6 +61,16 @@
   color: var(--golden-olive);
 }
 
+.reset > .form > label:nth-of-type(1)::after {
+  content: "password reset link will be sent to your email";
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.reset > .form > label:nth-of-type(2) {
+  display: none;
+}
+
 .card > .switchModal {
   margin: 0.5em auto 0;
   display: block;
@@ -112,7 +121,45 @@
 .errorMessage {
   color: red;
   font-size: 0.9rem;
-  padding-left: 1rem;
+  text-align: center;
+  margin: 0;
+}
+
+.forgotPassword {
+  color: var(--golden-olive);
+  background-color: transparent;
+  border: none;
+  border-radius: 3px;
+  width: fit-content;
+  margin: 3px auto 0;
+}
+
+.forgotPassword:hover {
+  color: var(--golden-olive);
+  box-shadow: 0 0 1px 1px var(--golden-olive);
+}
+
+.forgotPassword:active {
+  color: var(--golden-olive);
+  box-shadow: inset 0 0 1px 1px var(--golden-olive);
+}
+
+.patterns {
+  font-size: 1rem;
+}
+
+.patterns > p {
+  margin: 0;
+  padding:0;
+}
+
+.patterns > div > span {
+  margin-right: 5px;
+}
+
+.patterns > div {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 @media screen and (max-width: 800px) {

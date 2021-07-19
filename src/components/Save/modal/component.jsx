@@ -49,6 +49,7 @@ const SaveModal = (
 
   const handleSaveCharacter = async () => {
     const res = await fetchPostCharacter(buildRequestPayload(currentCharacter));
+
     if (res.error) {
       setShowError(true);
       return;
@@ -98,7 +99,8 @@ const SaveModal = (
             </span>
 
           </button>
-        ))}
+        ),
+        )}
         {characters.length < 5 && (
         <button
           type="button"

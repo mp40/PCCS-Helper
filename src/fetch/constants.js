@@ -1,9 +1,13 @@
-export const URL_SIGNUP = 'http://localhost:3030/signup';
+const url = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3030';
 
-export const URL_SIGNIN = 'http://localhost:3030/signin';
+export const URL_SIGNUP = `${url}/user/signup`;
 
-export const URL_SIGNEDIN = 'http://localhost:3030/signedIn';
+export const URL_SIGNIN = `${url}/user/signin`;
 
-export const URL_SIGNOUT = 'http://localhost:3030/signOut';
+export const URL_SIGNEDIN = `${url}/user/signedIn`;
 
-export const URL_CHARACTERS = 'http://localhost:3030/characters';
+export const URL_SIGNOUT = `${url}/user/signOut`;
+
+export const URL_CHARACTERS = `${url}/user/characters`;
+
+export const URL_RESET = `${url}/user/reset`;

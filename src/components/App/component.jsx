@@ -6,6 +6,7 @@ import HomePage from '../Home';
 import CharacterGeneration from '../CharacterGeneration';
 import GameSheet from '../GameSheet';
 import LoadedCharacter from '../LoadedCharacter';
+import Reset from '../Reset';
 
 import { fetchSignedIn, fetchGetCharacters } from '../../fetch';
 
@@ -43,19 +44,28 @@ const App = ({ currentView, updateSavedCharacters }) => {
 
   return (
     <>
+
       <div className="App">
         <header className="App-header">
           <Header signedIn={signedIn} handleSetSignedIn={handleSetSignedIn} />
         </header>
-        <div className="App-body">
-          {currentView === 'home' && <HomePage />}
-          {(currentView === 'createChar' || currentView === 'printRefSheet') && (
-          <CharacterGeneration signedIn={signedIn} />
-          )}
-          {currentView === 'playCharacter' && <LoadedCharacter />}
-        </div>
+        {window.location.pathname === '/' && (
+          <>
+            <div className="App-body">
+              {currentView === 'home' && <HomePage />}
+              {(currentView === 'createChar' || currentView === 'printRefSheet') && (
+              <CharacterGeneration signedIn={signedIn} />
+              )}
+              {currentView === 'playCharacter' && <LoadedCharacter />}
+            </div>
+
+            {currentView === 'printRefSheet' && <GameSheet />}
+          </>
+        )}
+        {window.location.pathname === '/passwordReset' && (
+        <Reset />
+        )}
       </div>
-      {currentView === 'printRefSheet' && <GameSheet />}
     </>
   );
 };

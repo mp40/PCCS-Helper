@@ -5,19 +5,23 @@ import HeaderButtons from './buttons';
 import HeaderModal from './modal';
 import HeaderDropdown from './dropdown';
 
-import { fetchSignup, fetchSignin, fetchSignOut } from '../../fetch';
+import { fetchSignup, fetchSignin, fetchSignOut, fetchResetPassword } from '../../fetch';
 
 import './header.css';
+
+const SIGNUP = 'signup';
+const SIGNIN = 'signin';
+const RESET = 'reset';
 
 const Header = (
   { signedIn,
     handleSetSignedIn,
     updateSavedCharacters },
 ) => {
-  const [showSignUp, setShowSignUp] = useState(false);
-  const [showSignIn, setShowSignIn] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
+  const [errorMsg, setErrorMsg] = useState(null);
 
   useEffect(() => {
     const handleWindowResize = () => setWidth(window.innerWidth);
@@ -26,14 +30,9 @@ const Header = (
     return () => window.removeEventListener('resize', handleWindowResize);
   }, []);
 
-  const handleShowSignUp = () => {
-    setShowSignIn(false);
-    setShowSignUp(!showSignUp);
-  };
-
-  const handleShowSignIn = () => {
-    setShowSignUp(false);
-    setShowSignIn(!showSignIn);
+  const handleSwitchModal = (newModal) => {
+    setErrorMsg(null);
+    setShowModal(newModal);
   };
 
   const handleShowDropdown = () => {
@@ -44,16 +43,18 @@ const Header = (
     const res = await fetchSignup(user);
 
     if (res.error) {
+      setErrorMsg(res.message);
       return;
     }
 
-    setShowSignUp(false);
+    setShowModal(false);
   };
 
   const handleSigninUser = async (user) => {
     const res = await fetchSignin(user);
 
     if (res.error) {
+      setErrorMsg(res.message);
       return;
     }
 
@@ -62,7 +63,7 @@ const Header = (
     updateSavedCharacters(res.characters);
 
     setShowDropdown(false);
-    setShowSignIn(false);
+    setShowModal(false);
     handleSetSignedIn();
   };
 
@@ -75,13 +76,26 @@ const Header = (
     }
   };
 
+  const handleResetPassword = async (userEmail) => {
+    const res = await fetchResetPassword(userEmail);
+
+    if (res.message === 'Email Sent') {
+      setErrorMsg(null);
+      setShowModal(false);
+    }
+
+    if (res.message === 'Reset Error') {
+      setErrorMsg('Reset Error');
+    }
+  };
+
   return (
     <div className="menuBar">
       <div>PCCS</div>
 
       <HeaderButtons
-        handleShowSignUp={handleShowSignUp}
-        handleShowSignIn={handleShowSignIn}
+        handleShowSignUp={() => handleSwitchModal(SIGNUP)}
+        handleShowSignIn={() => handleSwitchModal(SIGNIN)}
         handleShowDropdown={handleShowDropdown}
         handleSignOut={handleSignOut}
         width={width}
@@ -90,28 +104,40 @@ const Header = (
 
       {showDropdown && (
         <HeaderDropdown
-          handleShowSignUp={handleShowSignUp}
-          handleShowSignIn={handleShowSignIn}
+          handleShowSignUp={() => handleSwitchModal(SIGNUP)}
+          handleShowSignIn={() => handleSwitchModal(SIGNIN)}
           handleSignOut={handleSignOut}
           signedIn={signedIn}
         />
       )}
 
-      {showSignUp && (
+      {showModal === SIGNUP && (
         <HeaderModal
-          type="signup"
-          handleShowModal={handleShowSignUp}
-          handleSwitchModal={handleShowSignIn}
+          type={showModal}
+          handleShowModal={() => setShowModal(false)}
+          handleSwitchModal={() => handleSwitchModal(SIGNIN)}
           handleSubmitUser={handleSignupUser}
+          errorMsg={errorMsg}
         />
       )}
-      {showSignIn && (
+      {showModal === SIGNIN && (
         <HeaderModal
-          type="signin"
-          handleShowModal={handleShowSignIn}
-          handleSwitchModal={handleShowSignUp}
+          type={showModal}
+          handleShowModal={() => setShowModal(false)}
+          handleSwitchModal={() => handleSwitchModal(SIGNUP)}
           handleSubmitUser={handleSigninUser}
+          handleResetPassword={() => handleSwitchModal(RESET)}
+          errorMsg={errorMsg}
         />
+      )}
+      {showModal === RESET && (
+      <HeaderModal
+        type={showModal}
+        handleShowModal={() => setShowModal(false)}
+        handleSwitchModal={() => handleSwitchModal(SIGNIN)}
+        handleSubmitUser={handleResetPassword}
+        errorMsg={errorMsg}
+      />
       )}
     </div>
   );

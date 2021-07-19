@@ -8,17 +8,11 @@ import ConnectedHeaderSaveModal from '.';
 
 import { buildRequestPayload } from './data';
 
-import { URL_CHARACTERS } from '../../../fetch/constants';
+import * as fetchModule from '../../../fetch';
 
 import { getStore } from '../../../helpers/testHelpers';
 import { NewCharacter } from '../../../reducers/newCharacter';
 import { MockState } from ' ../../../reducers/mockState';
-
-const m79 = {
-  name: 'M79',
-  qty: 1,
-  mag: [{ weight: 0.51, qty: 0 }, { weight: 0.51, qty: 0 }],
-};
 
 const m72 = {
   name: 'M72 A2 LAW',
@@ -27,8 +21,6 @@ const m72 = {
 };
 
 const l2 = { name: 'L2 A2', qty: 1 };
-
-const tnt = { name: 'TNT', qty: 1 };
 
 const m1911WithMods = {
   name: 'M1911A1',
@@ -43,6 +35,7 @@ const waitOneTick = (simulate) => new Promise((resolve) => {
   }, 0);
 });
 
+// eslint-disable-next-line babel/camelcase
 const updated_at = '2020-11-19T23:38:39.423Z';
 
 const mockCharacter1 = { character_name: 'Biggles', character_id: 1, updated_at };
@@ -143,6 +136,13 @@ describe('Save Character Modal', () => {
 
   describe('saving a character', () => {
     let stubGetStorage;
+    let stubFetch;
+
+    const postedCharacter = {
+      character_name: 'test name',
+      character_id: 3,
+      updated_at: '2020-12-20T23:38:39.423Z',
+    };
 
     beforeEach(() => {
       stubGetStorage = jest.spyOn(Storage.prototype, 'getItem')
@@ -153,36 +153,23 @@ describe('Save Character Modal', () => {
           ],
         ));
 
+      stubFetch = jest.spyOn(fetchModule, 'fetchPostCharacter').mockImplementation(() => ({ character: postedCharacter }));
+
       wrapper = getWrapper([mockCharacter1, mockCharacter2]);
     });
 
     afterEach(() => {
-      jest.clearAllMocks();
+      stubGetStorage.mockRestore();
+      stubFetch.mockRestore();
     });
 
     it('should save new characters', async () => {
-      global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-        text: () => JSON.stringify({
-          character_name: 'test name',
-        }),
-      }));
-
       wrapper.find('button[children="New"]').simulate('click');
 
-      expect(fetch).toHaveBeenCalled();
+      expect(stubFetch).toHaveBeenCalled();
     });
 
     it('should store new character on frontend', async () => {
-      const postedCharacter = {
-        character_name: 'test name',
-        character_id: 3,
-        updated_at: '2020-12-20T23:38:39.423Z',
-      };
-
-      global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-        text: () => JSON.stringify({ character: postedCharacter }),
-      }));
-
       const spy = jest.spyOn(Storage.prototype, 'setItem');
 
       await act(async () => {
@@ -199,16 +186,6 @@ describe('Save Character Modal', () => {
     });
 
     it('should not update session storage if getItem returns null', async () => {
-      const postedCharacter = {
-        character_name: 'test name',
-        character_id: 3,
-        updated_at: '2020-12-20T23:38:39.423Z',
-      };
-
-      global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-        text: () => JSON.stringify({ character: postedCharacter }),
-      }));
-
       stubGetStorage = jest.spyOn(Storage.prototype, 'getItem')
         .mockImplementation(() => null);
 
@@ -224,12 +201,6 @@ describe('Save Character Modal', () => {
     });
 
     it('should close save modal on successful save', async () => {
-      global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-        text: () => JSON.stringify({
-          character_name: 'test name',
-        }),
-      }));
-
       await act(async () => {
         await waitOneTick(wrapper.find('button[children="New"]').simulate('click'));
       });
@@ -238,7 +209,8 @@ describe('Save Character Modal', () => {
     });
 
     it('should not close save modal on unsuccessful save', async () => {
-      global.fetch = jest.fn().mockImplementation(() => Promise.reject('error'));
+      const err = new Error('error');
+      stubFetch = jest.spyOn(fetchModule, 'fetchPostCharacter').mockImplementation(() => ({ error: err }));
 
       await act(async () => {
         await waitOneTick(wrapper.find('button[children="New"]').simulate('click'));
@@ -248,7 +220,8 @@ describe('Save Character Modal', () => {
     });
 
     it('should display save error message on error', async () => {
-      global.fetch = jest.fn().mockImplementation(() => Promise.reject('error'));
+      const err = new Error('error');
+      stubFetch = jest.spyOn(fetchModule, 'fetchPostCharacter').mockImplementation(() => ({ error: err }));
 
       await act(async () => {
         await waitOneTick(wrapper.find('button[children="New"]').simulate('click'));
@@ -260,6 +233,13 @@ describe('Save Character Modal', () => {
 
   describe('updating a character slot', () => {
     let stubGetStorage;
+    let stubFetch;
+
+    const putCharacter = {
+      character_name: 'test name',
+      character_id: 1,
+      updated_at: '2020-12-20T23:38:39.423Z',
+    };
 
     beforeEach(() => {
       stubGetStorage = jest.spyOn(Storage.prototype, 'getItem')
@@ -270,43 +250,26 @@ describe('Save Character Modal', () => {
           ],
         ));
 
+      stubFetch = jest.spyOn(fetchModule, 'fetchPutCharacter').mockImplementation(() => ({ character: putCharacter }));
+
       wrapper = getWrapper([mockCharacter1, mockCharacter2]);
     });
 
     afterEach(() => {
-      jest.clearAllMocks();
+      stubGetStorage.mockRestore();
+      stubFetch.mockRestore();
     });
 
     it('should update character slot', async () => {
-      global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-        text: () => JSON.stringify({ character:
-          {
-            character_name: 'test name',
-            character_id: 1,
-          } }),
-      }));
-
-      const endpoint = URL_CHARACTERS;
-
       wrapper.find('span[children="Biggles"]').parent().simulate('click');
 
-      expect(fetch).toHaveBeenCalledWith(
-        `${endpoint}/1`,
+      expect(stubFetch).toHaveBeenCalledWith(
         expect.anything(),
+        putCharacter.character_id,
       );
     });
 
     it('should update the character data on frontend when put character', async () => {
-      const putCharacter = {
-        character_name: 'test name',
-        character_id: 1,
-        updated_at: '2020-12-20T23:38:39.423Z',
-      };
-
-      global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-        text: () => JSON.stringify({ character: putCharacter }),
-      }));
-
       const spy = jest.spyOn(Storage.prototype, 'setItem');
 
       await act(async () => {
@@ -322,16 +285,6 @@ describe('Save Character Modal', () => {
     });
 
     it('should not update session storage if getItem returns null', async () => {
-      const putCharacter = {
-        character_name: 'test name',
-        character_id: 1,
-        updated_at: '2020-12-20T23:38:39.423Z',
-      };
-
-      global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-        text: () => JSON.stringify({ character: putCharacter }),
-      }));
-
       stubGetStorage = jest.spyOn(Storage.prototype, 'getItem')
         .mockImplementation(() => null);
 
@@ -347,12 +300,6 @@ describe('Save Character Modal', () => {
     });
 
     it('should close save modal on successful update', async () => {
-      global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-        text: () => JSON.stringify({
-          character: { character_name: 'test name', character_id: 1 },
-        }),
-      }));
-
       await act(async () => {
         await waitOneTick(wrapper.find('span[children="Biggles"]').parent().simulate('click'));
       });
@@ -361,7 +308,8 @@ describe('Save Character Modal', () => {
     });
 
     it('should not close the modal on unsuccessful update', async () => {
-      global.fetch = jest.fn().mockImplementation(() => Promise.reject('error'));
+      const err = new Error('error');
+      stubFetch = jest.spyOn(fetchModule, 'fetchPutCharacter').mockImplementation(() => ({ error: err }));
 
       await act(async () => {
         await waitOneTick(wrapper.find('span[children="Biggles"]').parent().simulate('click'));
@@ -371,7 +319,8 @@ describe('Save Character Modal', () => {
     });
 
     it('should display save error message on error', async () => {
-      global.fetch = jest.fn().mockImplementation(() => Promise.reject('error'));
+      const err = new Error('error');
+      stubFetch = jest.spyOn(fetchModule, 'fetchPutCharacter').mockImplementation(() => ({ error: err }));
 
       await act(async () => {
         await waitOneTick(wrapper.find('span[children="Biggles"]').parent().simulate('click'));
@@ -403,15 +352,11 @@ describe('Save Character Modal', () => {
     });
 
     afterEach(() => {
-      jest.clearAllMocks();
+      stubGetStorage.mockRestore();
     });
 
     it('should save new character', async () => {
-      global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-        text: () => JSON.stringify({
-          character: { character_name: 'Winston', character_id: 2, updated_at: '2020-12-25T23:38:39.423Z' },
-        }),
-      }));
+      const stubFetchPost = jest.spyOn(fetchModule, 'fetchPostCharacter').mockImplementation(() => ({ character: { character_name: 'Winston', character_id: 2, updated_at: '2020-12-25T23:38:39.423Z' } }));
 
       await act(async () => {
         await waitOneTick(wrapper.find('button[children="New"]').simulate('click'));
@@ -420,14 +365,12 @@ describe('Save Character Modal', () => {
       wrapper.update();
 
       expect(wrapper.text()).toContain('Winston');
+
+      stubFetchPost.mockRestore();
     });
 
     it('should update character', async () => {
-      global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-        text: () => JSON.stringify({
-          character: { character_name: 'Updated Charles', character_id: 1, updated_at: '2020-12-25T23:38:39.423Z' },
-        }),
-      }));
+      const stubFetchPut = jest.spyOn(fetchModule, 'fetchPutCharacter').mockImplementation(() => ({ character: { character_name: 'Updated Charles', character_id: 1, updated_at: '2020-12-25T23:38:39.423Z' } }));
 
       await act(async () => {
         await waitOneTick(wrapper.find('button').at(1).simulate('click'));
@@ -436,6 +379,8 @@ describe('Save Character Modal', () => {
       wrapper.update();
 
       expect(wrapper.text()).toContain('Updated Charles');
+
+      stubFetchPut.mockRestore();
     });
   });
 });
@@ -466,19 +411,12 @@ describe('building request payload', () => {
     expect(Object.keys(payload)).toEqual(requiredKeys);
   });
 
-  // mptodo do I need this test
-  // it('should remove unneeded firearms information', () => {
-  //   const payload = buildRequestPayload(getCharacter());
+  it('should send undefined for body armour if none selected', () => {
+    const payload = buildRequestPayload(getCharacter());
 
-  //   expect(payload.firearms).toEqual([
-  //     {
-  //       name: testM1911A1WithMods().name,
-  //       qty: testM1911A1WithMods().qty,
-  //       mag: testM1911A1WithMods().mag,
-  //       modNotes: testM1911A1WithMods().modNotes,
-  //     },
-  //   ]);
-  // });
+    expect(payload.helmet).toBe(undefined);
+    expect(payload.vest).toBe(undefined);
+  });
 
   it('should store optic if attached', () => {
     const m16WithScope = {
@@ -532,28 +470,4 @@ describe('building request payload', () => {
       },
     ]);
   });
-
-  // mptodo - do I need these tests and associated code
-  // it('should remove unneeded grenade information', () => {
-  //   const payload = buildRequestPayload(getCharacter());
-
-  //   expect(payload.grenades).toEqual([
-  //     {
-  //       name: grenade().name,
-  //       qty: grenade().qty,
-  //     },
-  //   ]);
-  // });
-
-  // it('should remove unneeded launchers information', () => {
-  //   const payload = buildRequestPayload(getCharacter());
-
-  //   expect(payload.launchers).toEqual([
-  //     {
-  //       name: testM72().name,
-  //       qty: testM72().qty,
-  //       mag: testM72().mag,
-  //     },
-  //   ]);
-  // });
 });

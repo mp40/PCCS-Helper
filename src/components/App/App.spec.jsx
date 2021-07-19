@@ -4,6 +4,8 @@ import { act } from 'react-dom/test-utils';
 
 import App from './component';
 
+import * as fetchModule from '../../fetch';
+
 const mrLove = {
   character_id: 69,
   character_name: 'Mr Love',
@@ -29,7 +31,13 @@ describe('mounting component', () => {
 
   const updateSavedCharacters = jest.fn();
 
-  const stubCharactersFromStorage = () => {
+  const mockUseEffect = () => {
+    useEffect.mockImplementationOnce((f) => f());
+  };
+
+  beforeEach(async () => {
+    useEffect = jest.spyOn(React, 'useEffect');
+
     storage = jest.spyOn(Storage.prototype, 'getItem')
       .mockImplementation(() => JSON.stringify(
         [
@@ -37,34 +45,17 @@ describe('mounting component', () => {
           mrRock,
         ],
       ));
-  };
-
-  const stubNullFromStorage = () => {
-    storage = jest.spyOn(Storage.prototype, 'getItem')
-      .mockImplementation(() => null);
-  };
-
-  const mockUseEffect = () => {
-    useEffect.mockImplementationOnce((f) => f());
-  };
-
-  beforeEach(async () => {
-    useEffect = jest.spyOn(React, 'useEffect');
   });
 
   afterEach(() => {
+    storage.mockRestore();
     jest.clearAllMocks();
   });
 
   it('should pass prop signedIn as false if user has not signed in', async () => {
-    global.fetch = jest.fn(() => Promise.resolve({
-      text: () => JSON.stringify({
-        message: 'SignedIn Error',
-      }),
-    }),
-    );
-
-    stubCharactersFromStorage();
+    jest.spyOn(fetchModule, 'fetchSignedIn').mockImplementation(() => ({
+      message: 'SignedIn Error',
+    }));
 
     mockUseEffect();
 
@@ -81,14 +72,9 @@ describe('mounting component', () => {
   });
 
   it('should pass prop signedIn as true if user has signed in', async () => {
-    global.fetch = jest.fn(() => Promise.resolve({
-      text: () => JSON.stringify({
-        message: 'Signed In',
-      }),
-    }),
-    );
-
-    stubCharactersFromStorage();
+    jest.spyOn(fetchModule, 'fetchSignedIn').mockImplementation(() => ({
+      message: 'Signed In',
+    }));
 
     mockUseEffect();
 
@@ -105,14 +91,9 @@ describe('mounting component', () => {
   });
 
   it('should update saved characters from session storage in store if user has signed in', async () => {
-    global.fetch = jest.fn(() => Promise.resolve({
-      text: () => JSON.stringify({
-        message: 'Signed In',
-      }),
-    }),
-    );
-
-    stubCharactersFromStorage();
+    jest.spyOn(fetchModule, 'fetchSignedIn').mockImplementation(() => ({
+      message: 'Signed In',
+    }));
 
     mockUseEffect();
 
@@ -129,20 +110,16 @@ describe('mounting component', () => {
   });
 
   it('should fetch saved characters if not in session storage if user has signed in', async () => {
-    global.fetch = jest.fn()
-      .mockImplementationOnce(() => Promise.resolve({
-        text: () => JSON.stringify({
-          message: 'Signed In',
-        }),
-      }),
-      )
-      .mockImplementationOnce(() => Promise.resolve({
-        text: () => JSON.stringify({
-          characters: [mrLove, mrRock],
-        }),
-      }));
+    jest.spyOn(fetchModule, 'fetchSignedIn').mockImplementation(() => ({
+      message: 'Signed In',
+    }));
 
-    stubNullFromStorage();
+    jest.spyOn(fetchModule, 'fetchGetCharacters').mockImplementation(() => ({
+      characters: [mrLove, mrRock],
+    }));
+
+    storage = jest.spyOn(Storage.prototype, 'getItem')
+      .mockImplementation(() => null);
 
     mockUseEffect();
 
@@ -208,5 +185,25 @@ describe('App Views', () => {
     const wrapper = shallow(<App currentView="playCharacter" updateSavedCharacters={() => {}} />);
 
     expect(wrapper.find('Connect(LoadedCharacter)').exists()).toBe(true);
+  });
+});
+
+describe('Routes', () => {
+  beforeAll(() => {
+    window.history.pushState({}, '', '/passwordReset');
+  });
+
+  afterAll(() => {
+    window.history.pushState({}, '', '/');
+  });
+
+  it('should show Reset component if location pathname equals /passwordReset', () => {
+    const wrapper = shallow(
+      <App
+        currentView="home"
+        updateSavedCharacters={() => {}}
+      />);
+
+    expect(wrapper.find('Reset').exists()).toBe(true);
   });
 });

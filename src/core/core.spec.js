@@ -116,6 +116,13 @@ describe('Core Stat Calculations', () => {
 
       expect(getCombatActions(maxSpeed, skillFactor)).toBe(2);
     });
+
+    it('should treat skill factors less than 7 as 7', () => {
+      const maxSpeed = 1;
+      const skillFactor = 6;
+
+      expect(getCombatActions(maxSpeed, skillFactor)).toBe(1);
+    });
   });
 
   describe('Calculating Damage Bonus', () => {
