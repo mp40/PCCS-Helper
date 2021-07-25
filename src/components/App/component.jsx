@@ -58,14 +58,13 @@ const App = ({ currentView, updateSavedCharacters }) => {
               )}
               {currentView === 'playCharacter' && <LoadedCharacter />}
             </div>
-
-            {currentView === 'printRefSheet' && <GameSheet />}
           </>
         )}
         {window.location.pathname === '/passwordReset' && (
         <Reset />
         )}
       </div>
+      {currentView === 'printRefSheet' && <GameSheet />}
     </>
   );
 };

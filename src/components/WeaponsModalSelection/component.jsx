@@ -39,6 +39,7 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, addFirearm, firearms 
   return (
     <>
       <div className="modal-background" />
+
       <div className={`card-standard card-select-gear-modal ${styles.wrapper}`}>
 
         <div className={styles.header}>
@@ -80,22 +81,23 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, addFirearm, firearms 
           ))}
         </div>
 
-      </div>
-      <div className={styles.mask}>
+        <div className={styles.mask}>
 
-        {showFilters && (
-        <FirearmFilter
-          handleSetFilterByType={handleSetFilterByType}
-          handleSetShowFilters={handleSetShowFilters}
-        />
-        )}
+          {showFilters && (
+          <FirearmFilter
+            handleSetFilterByType={handleSetFilterByType}
+            handleSetShowFilters={handleSetShowFilters}
+          />
+          )}
 
-        {firearmToInspect && (
-        <FirearmInspection
-          firearmToInspect={firearmToInspect}
-          setFirearmToInspect={setFirearmToInspect}
-        />
-        )}
+          {firearmToInspect && (
+          <FirearmInspection
+            firearmToInspect={firearmToInspect}
+            setFirearmToInspect={setFirearmToInspect}
+          />
+          )}
+        </div>
+
       </div>
     </>
   );
