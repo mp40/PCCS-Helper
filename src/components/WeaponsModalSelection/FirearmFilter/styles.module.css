@@ -3,9 +3,9 @@
   padding: 0.55rem 2rem 0.75rem;
   z-index: 101;
   background-color: whitesmoke;
+  box-shadow: 1px 4px 8px 1px rgba(0, 0, 0, 0.2);
   border-radius: 3px;
   position: fixed;
-  z-index: 100;
   top: -2px;
   right: 2px;
 }

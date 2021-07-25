@@ -1,13 +1,12 @@
 .card {
   font-size: 0.85rem;
   background: whitesmoke;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 4px 8px 1px rgba(0, 0, 0, 0.2);
   border-radius: 3px;
   padding: 0.5rem 2rem 2rem;
   min-width: 41rem;
   min-height: 17.75rem;
   position: fixed;
-  z-index: 100;
   top: -2px;
   left: 2px;
 }
