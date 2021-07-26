@@ -38,7 +38,7 @@ export const aboveAverageRifle9Aims = {
 
 // SMGs
 
-// Carl Gustaf M45, Sten Mk2, AKs-74U, MP5 SD3, MAC 10
+// Sten Mk2, MP5 SD3, MAC 10
 export const averageSMG8Aims = {
   ac: [1, 2, 3, 4, 5, 6, 7, 8],
   mod: [-22, -12, -9, -7, -6, -5, -4, -3],

@@ -44,7 +44,7 @@ export const averageRifle30CarbineFMJ = {
 };
 
 // 9mm Para SMGs
-// Carl Gustaf M45, Sten Mk2, Owen Mk1
+// Sten Mk2, Owen Mk1
 export const averageSMG9mmParabellumFMJ = {
   type: 'FMJ',
   pen: [2.3, 2.1, 1.8, 1.4, 1.1, 0.5, 0.2, 0.1],
