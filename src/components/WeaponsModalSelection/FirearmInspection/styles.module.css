@@ -93,9 +93,9 @@
     transform: translate(0,-100%);
     min-width: unset;
     min-height: unset;
-    width: calc(100vw - 4px);
+    width: calc(100vw - 4px -15px);
     height: fit-content;
-    font-size: .61rem;
+    font-size: .5rem;
     margin-top: 13px;
   }
 

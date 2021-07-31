@@ -79,7 +79,9 @@ const WeaponsModalSelection = ({ toggleOffWeaponCardViews, addFirearm, firearms 
               </button>
             </div>
           ))}
+
         </div>
+        <div className={styles.fade} />
 
         <div className={styles.mask}>
 

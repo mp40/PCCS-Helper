@@ -1,13 +1,22 @@
-/* mptodo - fancy pants scroll without scrollbar */
 .contents {
-  max-height: calc(100% - 2.75rem);
   overflow: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  max-height: 19.5rem;
+  padding-bottom: 3rem !important;
 }
 
 .contents::-webkit-scrollbar {
   display: none;
+}
+
+.fade {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 0;
+  right: 0;
+  height: 2.8rem;
+  background: linear-gradient(0deg, rgba(245,245,245,1) 0%, rgba(245,245,245,0.50) 90%); 
 }
 
 .mask {
@@ -101,6 +110,11 @@
 }
 
 @media screen and (max-width: 1024px) {
+
+  .contents {
+    max-height: calc(100% - 2.75rem);
+}
+
   .mask {
    z-index: 102;
    transform: translate(0, 0);
@@ -111,6 +125,10 @@
    height: 10px;
    margin: 0 !important;
    width: 100%;
+  }
+
+  .fade {
+    display: none;
   }
 }
 
