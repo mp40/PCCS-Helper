@@ -2,6 +2,35 @@ import { averageRifle11Aims, belowAverageverageRifle11Aims, aboveAverageRifle11A
 import { averageRifle762FMJ, averageRifle762x39FMJ, averageRifle556FMJ, averageRifle556JHP, averageRifle556AP, averageRifle30CarbineFMJ } from '../projectiles';
 
 export const rifles = Object.freeze({
+  'Fusil Mle 1886 M93': {
+    name: 'Fusil Mle 1886 M93',
+    list: 'rifles',
+    calibre: '8 × 50mm R',
+    qty: 1,
+    length: 51,
+    baseWeight: 9.07,
+    rt: 39,
+    rof: '3',
+    mag: [{ type: 'Rnd', weight: 0.07, cap: 9, qty: 0 }],
+    kd: 9,
+    sab: 7,
+    aim: {
+      ac: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      mod: [-23, -13, -9, -6, -5, -4, -3, -2, -1, 0, 1, 2],
+    },
+    projectiles: [
+      {
+        type: 'FMJ',
+        pen: [17, 16, 14, 12, 11, 6.9, 4.4, 2.8],
+        dc: [8, 8, 8, 7, 7, 7, 6, 6],
+      },
+    ],
+    trb: null,
+    ma: null,
+    ba: [63, 54, 45, 38, 33, 24, 19, 15],
+    tof: [0, 0, 1, 2, 3, 7, 10, 14],
+    offical: false,
+  },
   'Kar 98k': {
     name: 'Kar 98k',
     list: 'rifles',
