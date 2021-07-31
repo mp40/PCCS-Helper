@@ -404,7 +404,7 @@ export const rifles = Object.freeze({
     length: '28/37',
     baseWeight: 6.8,
     rt: 8,
-    rof: '**',
+    rof: '*7',
     mag: [{ type: 'Mag', weight: 1, cap: 30, qty: 0 }, { type: 'Mag', weight: 0.7, cap: 20, qty: 0 }],
     kd: 4,
     sab: 3,
