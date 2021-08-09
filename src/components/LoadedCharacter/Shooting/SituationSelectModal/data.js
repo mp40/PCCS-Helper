@@ -1,4 +1,4 @@
-const pistols = [{ key: 'pistolOneHanded', text: 'Pistol One Handed' }, { key: 'pistolDoubleAction', text: 'Firing Pistol Double Action' }];
+const pistols = [{ key: 'pistolOneHand', text: 'Pistol One Handed' }, { key: 'pistolDoubleAction', text: 'Firing Pistol Double Action' }];
 
 const smgs = [{ key: 'smgOneHand', text: 'SMG One Handed' }];
 
