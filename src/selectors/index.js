@@ -170,7 +170,7 @@ export const selectMovementAndDamageBonus = (state) => {
 };
 
 export const selectKnockoutValue = (state) => {
-  const { agi, gunLevel, handLevel } = state.currentCharacter;
+  const { wil, gunLevel, handLevel } = state.currentCharacter;
 
   let highestLevel = 1;
 
@@ -182,5 +182,5 @@ export const selectKnockoutValue = (state) => {
     highestLevel = handLevel;
   }
 
-  return Math.floor((agi * 0.5) * highestLevel);
+  return Math.floor((wil * 0.5) * highestLevel);
 };
