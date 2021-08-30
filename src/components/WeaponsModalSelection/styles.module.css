@@ -113,7 +113,7 @@
 
   .contents {
     max-height: calc(100% - 2.75rem);
-}
+  }
 
   .mask {
    z-index: 102;
