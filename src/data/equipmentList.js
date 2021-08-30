@@ -94,6 +94,13 @@ export const equipment = () => [
     tags: ['Load Bearing', 'WW2'],
   },
   {
+    name: 'Crowbar',
+    weight: 2.5,
+    qty: 1,
+    tags: ['Melee', 'Tools'],
+    melee: ['Crowbar (1 hand)', 'Crowbar (2 hands)'],
+  },
+  {
     name: 'D-Ration (1 day)',
     weight: 0.25,
     qty: 1,
@@ -138,6 +145,13 @@ export const equipment = () => [
     tags: ['Load Bearing', 'WW2'],
   },
   {
+    name: 'Hammer',
+    weight: 1.5,
+    qty: 1,
+    tags: ['Melee', 'Tools'],
+    melee: ['Hammer (1 hand)', 'Hammer (2 hands)'],
+  },
+  {
     name: 'Hatchet',
     weight: 2.5,
     qty: 1,
@@ -161,6 +175,13 @@ export const equipment = () => [
     weight: 0.59,
     qty: 1,
     tags: ['Load Bearing', 'WW2'],
+  },
+  {
+    name: 'Ice Pick',
+    weight: 0.2,
+    qty: 1,
+    tags: ['Melee', 'Tools'],
+    melee: ['Ice Pick'],
   },
   {
     name: 'Katana ',

@@ -24,7 +24,6 @@ const SelectEquipment = ({
   };
 
   const renderEquipment = () => (
-    // <div className={styles.listWrapper}>
     <div className={`${styles.contents}`}>
       {filterEquipment(filteredTags).map((equipObj) => (
         <button
@@ -73,6 +72,7 @@ const SelectEquipment = ({
             type="button"
             onClick={() => handleSetShowEquipment()}
           />
+          <div className={styles.fade} />
         </div>
 
         {renderEquipment()}
