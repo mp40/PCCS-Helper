@@ -361,6 +361,13 @@ describe('Shooting Card', () => {
       expect(wrapper.find('AimsSelectModal').exists()).toBe(true);
     });
 
+    it('should show the Select Miscellaneous modal when visibility button clicked', () => {
+      wrapper.find('span[children="Miscellaneous"]').closest('button')
+        .simulate('click');
+
+      expect(wrapper.find('MiscellaneousSelectModal').exists()).toBe(true);
+    });
+
     it('should show the Select Aims modal when aims button clicked', () => {
       wrapper.find('span[children="Visibility"]').closest('button').simulate('click');
 
@@ -395,6 +402,25 @@ describe('Shooting Card', () => {
       wrapper.find('span[children="Situation"]').closest('button').simulate('click');
 
       expect(wrapper.find('SituationSelectModal').props().foldingStock).toBe(false);
+    });
+  });
+
+  describe('Ducking Buttons', () => {
+    const baseALM = -18;
+    it('should apply target ducking penalty', () => {
+      wrapper.find('button[children="Duck\nTarget"]').simulate('click');
+
+      const expectedALM = baseALM - 5;
+
+      expect(wrapper.text()).toContain(`ALM: ${expectedALM}`);
+    });
+
+    it('should apply shooter ducking penalty', () => {
+      wrapper.find('button[children="Duck\nShooter"]').simulate('click');
+
+      const expectedALM = baseALM - 10;
+
+      expect(wrapper.text()).toContain(`ALM: ${expectedALM}`);
     });
   });
 

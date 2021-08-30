@@ -8,6 +8,7 @@ import MovementSelectModal from './MovementSelectModal';
 import VisibilitySelectModal from './VisibilitySelectModal';
 import SituationSelectModal from './SituationSelectModal';
 import AimsSelectModal from './AimsSelectModal';
+import MiscellaneousSelectModal from './MiscellaneousSelectModal';
 import FireSelector from './FireSelector';
 import Aiming from './Aiming';
 
@@ -50,6 +51,8 @@ const LoadedCharacterShooting = ({
   const [size, setSize] = useState('Standing Exposed');
   const [movement, setMovement] = useState({ shooter: 0, target: 0 });
   const [visibility, setVisibility] = useState(defaultVisibilityState);
+  const [miscellaneous, setMiscellaneous] = useState(0);
+  const [ducking, setDucking] = useState({ shooter: false, target: false });
   const [weaponBasedALM, setWeaponBasedALM] = useState(defaultSituationState);
   const [modal, setModal] = useState(false);
 
@@ -75,6 +78,15 @@ const LoadedCharacterShooting = ({
     result += movementModInfo.mod;
     result += getVisibilityALM(visibility);
     result += getSituationALM(weaponBasedALM, stance, aims);
+    result += miscellaneous;
+
+    if (ducking.target) {
+      result -= 5;
+    }
+
+    if (ducking.shooter) {
+      result -= 10;
+    }
 
     if (firearm?.optics?.attached && weaponBasedALM.hipFire === false) {
       const optic = getScopeByName(firearm.optics.attached);
@@ -160,6 +172,11 @@ const LoadedCharacterShooting = ({
       key: 'visibility',
       value: `ALM: ${getVisibilityALM(visibility)}`,
     },
+    {
+      text: 'Miscellaneous',
+      key: 'miscellaneous',
+      value: `ALM: ${miscellaneous}`,
+    },
   ];
 
   const handleNewShot = () => {
@@ -183,6 +200,12 @@ const LoadedCharacterShooting = ({
     setSab(0);
     setAims(1);
     setRoundsFired(0);
+  };
+
+  const handleDucking = (key) => {
+    const updatedDucking = { ...ducking };
+    updatedDucking[key] = !ducking[key];
+    setDucking(updatedDucking);
   };
 
   return (
@@ -230,7 +253,8 @@ const LoadedCharacterShooting = ({
             <span>{button.value}</span>
           </button>
         ))}
-
+        <button type="button" className={`${ducking.shooter ? styles.selected : ''}`} onClick={() => handleDucking('shooter')}>{'Duck\nShooter'}</button>
+        <button type="button" className={`${ducking.target ? styles.selected : ''}`} onClick={() => handleDucking('target')}>{'Duck\nTarget'}</button>
       </div>
 
       <Aiming aims={aims} maxAims={maxAims} setAims={setAims} setModal={setModal} />
@@ -263,6 +287,7 @@ const LoadedCharacterShooting = ({
       {modal === 'situation' && <SituationSelectModal list={firearm.list} bipod={firearm.bipod || false} foldingStock={String(firearm.length).includes('/')} setModal={setModal} weaponBasedALM={weaponBasedALM} setWeaponBasedALM={setWeaponBasedALM} />}
       {modal === 'visibility' && <VisibilitySelectModal setModal={setModal} visibility={visibility} setVisibility={setVisibility} optics={firearm?.optics?.attached} />}
       {modal === 'aims' && <AimsSelectModal aims={aims} maxAims={maxAims} setAims={setAims} setModal={setModal} />}
+      {modal === 'miscellaneous' && <MiscellaneousSelectModal miscellaneous={miscellaneous} setMiscellaneous={setMiscellaneous} setModal={setModal} />}
     </div>
 
   );
