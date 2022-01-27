@@ -4,7 +4,7 @@ env:
 language: node_js
 dist: trusty
 node_js:
-  - '14.13.0'
+  - '17.4.0'
 
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
