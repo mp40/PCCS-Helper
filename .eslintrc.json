@@ -1,16 +1,22 @@
 {
   "parser": "@babel/eslint-parser",
-  "extends": "airbnb",
+  "parserOptions": {
+      "requireConfigFile": false,
+      "babelOptions": {
+        "presets": ["@babel/preset-react"]
+      }
+  },
+  "extends": ["airbnb"],
   "plugins": ["babel", "react", "jsx-a11y", "import"],
   "env": {
     "browser": true,
     "jest": true
   },
   "globals": {
-    "chai": true,
     "expect": true
   },
   "rules": {
+    "react/function-component-definition":  ["off"],
     "camelcase": ["off"],
     "no-alert": ["off"],
     "babel/camelcase": ["error", { "properties": "never" }],
