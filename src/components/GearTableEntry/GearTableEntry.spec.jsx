@@ -33,7 +33,8 @@ describe('Gear Table Entry', () => {
   });
 
   it('should show total weight', () => {
-    expect(wrapper.text()).toContain(weight * qty);
+    const total = weight * qty;
+    expect(wrapper.text()).toContain(total.toString());
   });
 
   it('should possible to increase qty', () => {
