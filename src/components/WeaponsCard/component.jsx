@@ -28,35 +28,35 @@ class WeaponsCard extends Component {
 
   toggleOffWeaponCardViews = (viewToToggle) => {
     this.setState({ [viewToToggle]: false });
-  }
+  };
 
   toggleOnWeaponsCardViews = (viewToToggle) => {
     this.setState({ [viewToToggle]: true });
-  }
+  };
 
   toggleModifyWeapon = (firearm) => {
     const { modifyFirearm } = this.state;
     this.setState({ firearmToModify: firearm });
     this.setState({ modifyFirearm: !modifyFirearm });
-  }
+  };
 
   renderWeaponSelect = () => (
     <WeaponsModalSelection
       toggleOffWeaponCardViews={this.toggleOffWeaponCardViews}
     />
-  )
+  );
 
   renderGrenadeSelect = () => (
     <GrenadeSelectModal
       toggleOffWeaponCardViews={this.toggleOffWeaponCardViews}
     />
-  )
+  );
 
   renderLauncherSelect = () => (
     <SelectLauncherModal
       toggleOffWeaponCardViews={this.toggleOffWeaponCardViews}
     />
-  )
+  );
 
   render() {
     const { firearms, grenades, launchers, removeAllWeapons } = this.props;

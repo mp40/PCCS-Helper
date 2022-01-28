@@ -53,7 +53,8 @@ import { increaseUnderslungLauncherAmmoReducer } from './increaseUnderslungLaunc
 
 const initialState = initialStore;
 
-function reduceActions(state = initialState, action) {
+// eslint-disable-next-line default-param-last
+const reduceActions = (state = initialState, action) => {
   switch (action.type) {
     case 'VIEW_SELECTED':
       return { ...state, currentView: action.payload };
@@ -161,6 +162,6 @@ function reduceActions(state = initialState, action) {
       return hydrateCurrentCharacterReducer(state, action);
     default: return state;
   }
-}
+};
 
 export default reduceActions;
