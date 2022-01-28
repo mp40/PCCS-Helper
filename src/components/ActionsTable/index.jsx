@@ -8,13 +8,11 @@ import styles from './styles.module.css';
 const headings = ['Imp', '1', '2', '3', '4'];
 
 const actionsRow = (heading, actionArray) => (
-  <>
-    <tr>
-      {[heading, actionArray[0], actionArray[1], actionArray[2], actionArray[3]].map((value, dex) => (
-        <td key={headings[dex]}>{value}</td>
-      ))}
-    </tr>
-  </>
+  <tr>
+    {[heading, actionArray[0], actionArray[1], actionArray[2], actionArray[3]].map((value, dex) => (
+      <td key={headings[dex]}>{value}</td>
+    ))}
+  </tr>
 );
 
 const ActionsTable = (

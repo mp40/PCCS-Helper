@@ -1,50 +1,65 @@
 {
-    "parser": "@babel/eslint-parser",
-    "extends": "airbnb",
-    "plugins": [
-      "babel",
-      "react",
-      "jsx-a11y",
-      "import"
-    ],
-    "env": {
-      "browser": true,
-      "jest": true
-    },
-    "globals": {
-      "chai": true,
-      "expect": true
-    },
-    "rules": {
-      "camelcase": ["off"],
-      "no-alert": ["off"],
-      "babel/camelcase": ["error", { "properties": "never" }],
-      "no-unused-expressions": ["off"],
-      "babel/no-unused-expressions": ["error", {
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+      "requireConfigFile": false,
+      "babelOptions": {
+        "presets": ["@babel/preset-react"]
+      }
+  },
+  "extends": ["airbnb"],
+  "plugins": ["babel", "react", "jsx-a11y", "import"],
+  "env": {
+    "browser": true,
+    "jest": true
+  },
+  "globals": {
+    "expect": true
+  },
+  "rules": {
+    "react/function-component-definition":  ["off"],
+    "camelcase": ["off"],
+    "no-alert": ["off"],
+    "babel/camelcase": ["error", { "properties": "never" }],
+    "no-unused-expressions": ["off"],
+    "babel/no-unused-expressions": [
+      "error",
+      {
         "allowShortCircuit": false,
         "allowTernary": false,
         "allowTaggedTemplates": false
-      }],
-      "quotes": ["off"],
-      "babel/quotes": ["error", "single", { "avoidEscape": true }],
-      "prefer-destructuring": ["error", { "object": true, "array": false }],
-      "object-curly-newline": ["error", { "consistent": true }],
-      "function-paren-newline": ["off"],
-      "jsx-a11y/label-has-for": [ "error", { "required": { "some": [ "nesting", "id" ] } }],
-      "max-len": ["error", 120, 2, {
+      }
+    ],
+    "quotes": ["off"],
+    "babel/quotes": ["error", "single", { "avoidEscape": true }],
+    "prefer-destructuring": ["error", { "object": true, "array": false }],
+    "object-curly-newline": ["error", { "consistent": true }],
+    "function-paren-newline": ["off"],
+    "jsx-a11y/label-has-for": [
+      "error",
+      { "required": { "some": ["nesting", "id"] } }
+    ],
+    "max-len": [
+      "error",
+      120,
+      2,
+      {
         "ignoreUrls": true,
         "ignoreComments": false,
         "ignoreRegExpLiterals": true,
         "ignoreStrings": true,
         "ignoreTemplateLiterals": true
-      }],
-      "class-methods-use-this": ["off"],
-      "no-unused-vars": ["error", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }],
-      "multiline-comment-style": ["off"],
-      "react/no-typos": ["off"],
-      "react/no-unused-prop-types": ["error", { "skipShapeProps": true }],
-      "react/require-default-props": ["off"],
-      "import/prefer-default-export": ["off"],
-      "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
-    }
+      }
+    ],
+    "class-methods-use-this": ["off"],
+    "no-unused-vars": [
+      "error",
+      { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
+    ],
+    "multiline-comment-style": ["off"],
+    "react/no-typos": ["off"],
+    "react/no-unused-prop-types": ["error", { "skipShapeProps": true }],
+    "react/require-default-props": ["off"],
+    "import/prefer-default-export": ["off"],
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
   }
+}

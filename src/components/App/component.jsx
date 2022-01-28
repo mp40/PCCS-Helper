@@ -13,7 +13,7 @@ import { fetchSignedIn, fetchGetCharacters } from '../../fetch';
 import '../../stylesheet/styles.css';
 import './App.css';
 
-const App = ({ currentView, updateSavedCharacters }) => {
+function App({ currentView, updateSavedCharacters }) {
   const [signedIn, setSignedIn] = useState(false);
 
   React.useEffect(() => {
@@ -50,15 +50,13 @@ const App = ({ currentView, updateSavedCharacters }) => {
           <Header signedIn={signedIn} handleSetSignedIn={handleSetSignedIn} />
         </header>
         {window.location.pathname === '/' && (
-          <>
-            <div className="App-body">
+          <div className="App-body">
               {currentView === 'home' && <HomePage />}
               {(currentView === 'createChar' || currentView === 'printRefSheet') && (
               <CharacterGeneration signedIn={signedIn} />
               )}
               {currentView === 'playCharacter' && <LoadedCharacter />}
-            </div>
-          </>
+          </div>
         )}
         {window.location.pathname === '/passwordReset' && (
         <Reset />
@@ -67,7 +65,7 @@ const App = ({ currentView, updateSavedCharacters }) => {
       {currentView === 'printRefSheet' && <GameSheet />}
     </>
   );
-};
+}
 
 App.propTypes = {
   currentView: PropTypes.string,
