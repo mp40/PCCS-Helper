@@ -2,6 +2,12 @@ import React from 'react';
 import { mount } from 'enzyme';
 import SelectLauncherModal from './component';
 
+const launcherInInventory = {
+  name: 'Armbrust',
+  qty: 1,
+  mag: [{ type: '', weight: '-', cap: 1 }],
+};
+
 describe('the select grenade/rocket launcher modal', () => {
   describe('the list of launchers', () => {
     let wrapper;
@@ -10,7 +16,11 @@ describe('the select grenade/rocket launcher modal', () => {
 
     beforeEach(() => {
       wrapper = mount(
-        <SelectLauncherModal toggleOffWeaponCardViews={toggleOffWeaponCardViews} addLauncher={addLauncher} />,
+        <SelectLauncherModal
+          launchers={[launcherInInventory]}
+          toggleOffWeaponCardViews={toggleOffWeaponCardViews}
+          addLauncher={addLauncher}
+        />,
       );
     });
 
@@ -32,6 +42,12 @@ describe('the select grenade/rocket launcher modal', () => {
       wrapper.find('span[children="M79"]').closest('button').simulate('click');
 
       expect(addLauncher).toHaveBeenCalledWith('M79');
+    });
+
+    it('should not be possible to select a launcher if has been previously selected', () => {
+      wrapper.find('span[children="Armbrust"]').closest('button').simulate('click');
+
+      expect(addLauncher).not.toHaveBeenCalled();
     });
 
     it('should close the modal when selection made', () => {

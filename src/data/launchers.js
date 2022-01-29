@@ -477,4 +477,4 @@ export const launcherList = Object.freeze({
 
 export const getLauncherWeightByName = (name) => launcherList[name].weight;
 
-export const getLauncherMagByName = (name) => [...launcherList[name].mag];
+export const getLauncherMagByName = (name) => JSON.parse(JSON.stringify(launcherList[name].mag));
