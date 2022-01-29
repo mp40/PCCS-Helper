@@ -5,13 +5,18 @@ import WeaponStatsTable from '../WeaponStatsTable';
 
 import { launcherList } from '../../data/launchers';
 import { emptyLauncher } from './data';
+import { launcherShape } from '../../helpers/proptypeShapes';
 
 import styles from './styles.module.css';
 
-const SelectLauncherModal = ({ toggleOffWeaponCardViews, addLauncher }) => {
+const SelectLauncherModal = ({ launchers, toggleOffWeaponCardViews, addLauncher }) => {
   const [launcherToView, setLauncherToView] = useState(emptyLauncher);
 
   const handleAddLauncher = (launcher) => {
+    if (launchers.filter((l) => l.name === launcher).length) {
+      return;
+    }
+
     addLauncher(launcher);
     toggleOffWeaponCardViews('showLaunchers');
   };
@@ -64,6 +69,7 @@ const SelectLauncherModal = ({ toggleOffWeaponCardViews, addLauncher }) => {
 };
 
 SelectLauncherModal.propTypes = {
+  launchers: PropTypes.arrayOf(launcherShape),
   toggleOffWeaponCardViews: PropTypes.func,
   addLauncher: PropTypes.func,
 };
