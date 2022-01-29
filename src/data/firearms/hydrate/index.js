@@ -4,7 +4,7 @@ export const hydrateFirearmByName = (name) => {
   const gun = {
     name,
     list: firearms[name].list,
-    mag: firearms[name].mag,
+    mag: JSON.parse(JSON.stringify(firearms[name].mag)),
   };
 
   if (firearms[name]?.optics?.attached) {
