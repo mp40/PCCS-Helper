@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": "17.4.0"
+    "node": "16.13.2"
   },
   "dependencies": {
-    "node": "17.4.0",
+    "node": "16.13.2",
     "node-static": "^0.7.11",
     "prop-types": "^15.7.2",
     "react": "17.0.2",
@@ -20,6 +20,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "coverage": "yarn test --verbose --coverage --watchAll=false",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run --browser chrome",
+    "start:e2e": "PORT=1337 BROWSER=none react-scripts start",
+    "e2e": "start-server-and-test start:e2e http://localhost:1337 cy:run",
     "eject": "react-scripts eject",
     "heroku-postbuild": "yarn run build",
     "server": "static build/ -a 0.0.0.0 -p $PORT"
@@ -35,12 +39,14 @@
   ],
   "devDependencies": {
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.6",
+    "cypress": "^9.3.1",
     "enzyme": "^3.11.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-babel": "^5.3.1",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-plugin-react": "^7.28.0"
+    "eslint-plugin-react": "^7.28.0",
+    "start-server-and-test": "^1.14.0"
   },
   "jest": {
     "collectCoverageFrom": [
