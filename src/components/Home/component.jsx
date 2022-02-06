@@ -1,45 +1,20 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-
-import LoadCharacterModal from '../loadCharacter';
-
+import React from 'react';
+import Link from '../widgets/link';
 import BetaTemp from '../BetaTemp'; // mptodo delete this once at MVP
 
 import styles from './styles.module.css';
 
-const HomePage = ({ viewCreateCharacter }) => {
-  const [showLoadModal, setShowLoadModal] = useState(false);
+const HomePage = () => (
+  <div className={styles.wrapper}>
+    <h1>
+      Welcome To Phoenix Command Tools
+    </h1>
 
-  return (
-    <div className={styles.wrapper}>
-      <h1>
-        Welcome To Phoenix Command Tools
-      </h1>
-      <button
-        type="button"
-        onClick={() => viewCreateCharacter()}
-      >
-        Create Character
-      </button>
+    <Link href="/edit" text="Create Character" />
+    <Link href="/use" text="Load Character" />
 
-      <button
-        type="button"
-        onClick={() => setShowLoadModal(!showLoadModal)}
-      >
-        Load Character
-      </button>
-
-      {showLoadModal && (
-        <LoadCharacterModal setShowLoadModal={setShowLoadModal} />
-      )}
-
-      <BetaTemp />
-    </div>
-  );
-};
-
-HomePage.propTypes = {
-  viewCreateCharacter: PropTypes.func.isRequired,
-};
+    <BetaTemp />
+  </div>
+);
 
 export default HomePage;
