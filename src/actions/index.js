@@ -1,8 +1,3 @@
-export const selectCurrentView = (view) => ({
-  type: 'VIEW_SELECTED',
-  payload: view,
-});
-
 export const viewCreateCharacter = () => ({
   type: 'CREATE_CHARACTER_VIEWED',
   payload: 'createChar',

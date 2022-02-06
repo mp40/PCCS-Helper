@@ -16,8 +16,6 @@ global.print = jest.fn();
 describe('<GameSheet>', () => {
   let wrapper;
 
-  const selectCurrentView = jest.fn();
-
   const getWrappedComponent = () => shallow(
     <GameSheet
       name="Biggles"
@@ -36,7 +34,6 @@ describe('<GameSheet>', () => {
       gunCombatActions={5}
       handCombatActions={3}
       knockoutValue={9}
-      selectCurrentView={selectCurrentView}
     />);
 
   wrapper = getWrappedComponent();
@@ -87,6 +84,7 @@ describe('<GameSheet>', () => {
 
   describe('the gamesheet lifecycle', () => {
     let useEffect;
+    const dispatch = jest.fn();
 
     const waitOneTick = (simulate) => new Promise((resolve) => {
       setTimeout(() => {
@@ -100,6 +98,7 @@ describe('<GameSheet>', () => {
 
     beforeEach(async () => {
       useEffect = jest.spyOn(React, 'useEffect');
+      jest.spyOn(React, 'useContext').mockImplementation(() => dispatch);
 
       mockUseEffect();
 
@@ -117,8 +116,8 @@ describe('<GameSheet>', () => {
       expect(global.print).toHaveBeenCalled();
     });
 
-    it('should call selectCurrentView with "createChar"', () => {
-      expect(selectCurrentView).toHaveBeenCalledWith('createChar');
+    it('should close modal after printing', () => {
+      expect(dispatch).toHaveBeenCalledWith({ payload: null, type: 'MODAL_SHOWN' });
     });
   });
 });

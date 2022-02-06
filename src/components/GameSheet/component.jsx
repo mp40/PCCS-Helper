@@ -1,6 +1,9 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
+import { DispatchContext } from '../App/context';
+import { showModal } from '../App/actions';
+
 import WeaponStatsTable from '../WeaponStatsTable';
 import CharacterInfo from '../CharacterInfo';
 import ActionsTable from '../ActionsTable';
@@ -39,12 +42,12 @@ const GameSheet = (
     firearms,
     grenades,
     helmet,
-    vest,
-    selectCurrentView },
+    vest },
 ) => {
+  const dispatch = React.useContext(DispatchContext);
   React.useEffect(() => {
     window.print();
-    selectCurrentView('createChar');
+    dispatch(showModal(null));
   });
 
   const meleeWeaponList = prepareHandToHandWeaponList(firearms, equipment);
@@ -56,9 +59,9 @@ const GameSheet = (
       <div className={styles.wrapper}>
         <div className={styles.main}>
           {name.length > 0 && (
-          <div className={styles.name}>
-            {`Name: ${name}`}
-          </div>
+            <div className={styles.name}>
+              {`Name: ${name}`}
+            </div>
           )}
           <div className={styles.firearm}>
             <div>
@@ -79,7 +82,7 @@ const GameSheet = (
               </div>
 
               { meleeWeaponList.length > 0 && (
-              <HandToHandTable meleeList={meleeWeaponList} meleeLevel={handLevel} />
+                <HandToHandTable meleeList={meleeWeaponList} meleeLevel={handLevel} />
               )}
 
               <div className={styles.armourReactionKnockoutRow}>
@@ -125,7 +128,6 @@ GameSheet.propTypes = {
   grenades: PropTypes.arrayOf(grenadeShape),
   helmet: PropTypes.string,
   vest: PropTypes.string,
-  selectCurrentView: PropTypes.func,
 };
 
 GameSheet.defaultProps = {

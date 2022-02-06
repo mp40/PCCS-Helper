@@ -23,7 +23,6 @@ describe('The Header', () => {
         <Header
           handleSetSignedIn={handleSetSignedIn}
           signedIn={false}
-          selectCurrentView={() => {}}
           updateSavedCharacters={() => {}}
           currentView="createChar"
         />,
@@ -73,7 +72,6 @@ describe('The Header', () => {
         <Header
           handleSetSignedIn={handleSetSignedIn}
           signedIn={false}
-          selectCurrentView={() => {}}
           updateSavedCharacters={() => {}}
         />,
       );
@@ -191,7 +189,6 @@ describe('The Header', () => {
         <Header
           handleSetSignedIn={handleSetSignedIn}
           signedIn={false}
-          selectCurrentView={() => {}}
           updateSavedCharacters={() => {}}
         />,
       );
@@ -338,7 +335,6 @@ describe('The Header', () => {
         <Header
           handleSetSignedIn={handleSetSignedIn}
           signedIn={false}
-          selectCurrentView={() => {}}
           updateSavedCharacters={() => {}}
         />,
       );
@@ -396,7 +392,6 @@ describe('The Header', () => {
         <Header
           handleSetSignedIn={handleSetSignedIn}
           signedIn
-          selectCurrentView={() => {}}
           updateSavedCharacters={() => {}}
         />,
       );
@@ -470,7 +465,6 @@ describe('The Header', () => {
         <Header
           handleSetSignedIn={handleSetSignedIn}
           signedIn={false}
-          selectCurrentView={() => {}}
           updateSavedCharacters={() => {}}
         />,
       );

@@ -1,19 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useReducer } from 'react';
 import PropTypes from 'prop-types';
 
+import reducer from './reducer';
+import { initialState } from './data';
+
 import Header from '../header';
-import HomePage from '../Home';
-import CharacterGeneration from '../CharacterGeneration';
-import GameSheet from '../GameSheet';
-import LoadedCharacter from '../LoadedCharacter';
-import Reset from '../Reset';
+import Body from '../Body';
 
 import { fetchSignedIn, fetchGetCharacters } from '../../fetch';
+
+import { DispatchProvider } from './context';
+
+import Modal from '../widgets/modal';
 
 import '../../stylesheet/styles.css';
 import './App.css';
 
-function App({ currentView, updateSavedCharacters }) {
+function App({ updateSavedCharacters }) {
+  const [state, dispatch] = useReducer(reducer, initialState);
   const [signedIn, setSignedIn] = useState(false);
 
   React.useEffect(() => {
@@ -43,32 +47,19 @@ function App({ currentView, updateSavedCharacters }) {
   };
 
   return (
-    <>
-
+    <DispatchProvider dispatch={dispatch}>
       <div className="App">
-        <header className="App-header">
-          <Header signedIn={signedIn} handleSetSignedIn={handleSetSignedIn} />
-        </header>
-        {window.location.pathname === '/' && (
-          <div className="App-body">
-              {currentView === 'home' && <HomePage />}
-              {(currentView === 'createChar' || currentView === 'printRefSheet') && (
-              <CharacterGeneration signedIn={signedIn} />
-              )}
-              {currentView === 'playCharacter' && <LoadedCharacter />}
-          </div>
-        )}
-        {window.location.pathname === '/passwordReset' && (
-        <Reset />
+        <Header signedIn={signedIn} handleSetSignedIn={handleSetSignedIn} />
+        <Body signedIn={signedIn} />
+        {state.activeModal && (
+          <Modal Component={state.activeModal} />
         )}
       </div>
-      {currentView === 'printRefSheet' && <GameSheet />}
-    </>
+    </DispatchProvider>
   );
 }
 
 App.propTypes = {
-  currentView: PropTypes.string,
   updateSavedCharacters: PropTypes.func.isRequired,
 };
 
