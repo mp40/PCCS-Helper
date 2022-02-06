@@ -13,9 +13,11 @@ import NameCard from '../NameCard';
 import Print from '../Print';
 import Save from '../Save';
 
+import Link from '../widgets/link';
+
 import styles from './styles.module.css';
 
-const CharacterGeneration = ({ totalWeight, selectCurrentView, signedIn }) => (
+const CharacterGeneration = ({ totalWeight, signedIn }) => (
   <div className={styles.wrapper}>
 
     <div className={`${styles.topCard} --card`}>
@@ -24,12 +26,7 @@ const CharacterGeneration = ({ totalWeight, selectCurrentView, signedIn }) => (
         <h2>
           {`Total Lbs: ${totalWeight}`}
         </h2>
-        <button
-          type="button"
-          onClick={() => selectCurrentView('playCharacter')}
-        >
-          Use Character
-        </button>
+        <Link href="/use" text="Use Character" />
       </div>
 
       <div>
@@ -58,7 +55,6 @@ const CharacterGeneration = ({ totalWeight, selectCurrentView, signedIn }) => (
 
 CharacterGeneration.propTypes = {
   totalWeight: PropTypes.number.isRequired,
-  selectCurrentView: PropTypes.func.isRequired,
   signedIn: PropTypes.bool.isRequired,
 };
 

@@ -12,7 +12,6 @@ import { salAndCeTable } from '../../core/tables';
 import styles from './styles.module.css';
 
 const LoadedCharacter = ({
-  selectCurrentView,
   name,
   gunLevel,
   knockoutValue,
@@ -48,7 +47,6 @@ const LoadedCharacter = ({
         sal={sal}
         helmet={helmet}
         vest={vest}
-        selectCurrentView={selectCurrentView}
       />
       <LoadedCharacterWeapons
         firearms={firearms}
@@ -63,7 +61,6 @@ const LoadedCharacter = ({
 };
 
 LoadedCharacter.propTypes = {
-  selectCurrentView: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   gunLevel: PropTypes.number.isRequired,
   knockoutValue: PropTypes.number.isRequired,

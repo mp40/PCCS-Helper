@@ -7,7 +7,7 @@ import HeaderDropdown from './dropdown';
 
 import { fetchSignup, fetchSignin, fetchSignOut, fetchResetPassword } from '../../fetch';
 
-import './header.css';
+import styles from './styles.module.css';
 
 const SIGNUP = 'signup';
 const SIGNIN = 'signin';
@@ -90,8 +90,9 @@ const Header = (
   };
 
   return (
-    <div className="menuBar">
-      <div>PCCS</div>
+    <header className={styles.wrapper}>
+      {window.location.pathname === '/' && <div className={styles.icon}>PCCS</div>}
+      {window.location.pathname !== '/' && (<a className={styles.icon} href="./"><span>Home</span></a>)}
 
       <HeaderButtons
         handleShowSignUp={() => handleSwitchModal(SIGNUP)}
@@ -139,7 +140,7 @@ const Header = (
         errorMsg={errorMsg}
       />
       )}
-    </div>
+    </header>
   );
 };
 

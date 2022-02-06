@@ -1,0 +1,63 @@
+.wrapper {
+  font-size: 1.4rem;
+  background-color: #49531f;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 4rem;
+  color: whitesmoke;
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon {
+  margin-left: 2rem;
+}
+
+.wrapper > a {
+  height: 2rem;
+  width: 2rem;
+  text-decoration: none;
+  position: relative;
+}
+
+.wrapper > a:before {
+  font-family: FontAwesome;
+  text-decoration: inherit;
+  color: whitesmoke;
+  font-size: 1.5rem;
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  content: "\f015";
+}
+
+.wrapper > a > span {
+  height: 1px;
+  width: 1px;
+  position: absolute;
+  overflow: hidden;
+  top: -10px;
+}
+
+@media screen and (max-width: 1024px) {
+  .wrapper {
+    font-size: 1.25rem;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .wrapper {
+    font-size: 0.9rem;
+  }
+
+  .wrapper > .icon {
+    font-size: 1rem;
+    margin-left: 30px;
+  }
+}
