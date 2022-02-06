@@ -7,6 +7,8 @@ import KnockoutTable from '../../KnockoutTable';
 import ReactionTable from '../../reactionTable';
 import BodyArmourTable from '../../BodyArmourTable';
 
+import Link from '../../widgets/link';
+
 import styles from './styles.module.css';
 
 const LoadedCharacterReferenceTables = ({
@@ -15,7 +17,6 @@ const LoadedCharacterReferenceTables = ({
   sal,
   helmet,
   vest,
-  selectCurrentView,
   gunCombatActions,
   handCombatActions,
 }) => (
@@ -28,12 +29,7 @@ const LoadedCharacterReferenceTables = ({
       <ReactionTable sal={sal} />
     </div>
     <BodyArmourTable helmet={helmet} vest={vest} />
-    <button
-      type="button"
-      onClick={() => selectCurrentView('createChar')}
-    >
-      Edit Character
-    </button>
+    <Link href="/edit" text="Edit Character" />
   </div>
 
 );
@@ -46,7 +42,6 @@ LoadedCharacterReferenceTables.propTypes = {
   vest: PropTypes.string,
   gunCombatActions: PropTypes.number.isRequired,
   handCombatActions: PropTypes.number.isRequired,
-  selectCurrentView: PropTypes.func.isRequired,
 };
 
 export default LoadedCharacterReferenceTables;

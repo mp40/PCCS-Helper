@@ -56,8 +56,6 @@ const initialState = initialStore;
 // eslint-disable-next-line default-param-last
 const reduceActions = (state = initialState, action) => {
   switch (action.type) {
-    case 'VIEW_SELECTED':
-      return { ...state, currentView: action.payload };
     case 'CREATE_CHARACTER_VIEWED':
       return viewCreateCharacterReducer(state, action);
     case 'GUN_COMBAT_LEVEL_UPDATED':
