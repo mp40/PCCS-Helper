@@ -39,7 +39,7 @@ describe('Character Generation', () => {
   });
 
   it('should show print character button', () => {
-    expect(wrapper.find('Connect(Print)').exists()).toBe(true);
+    expect(wrapper.find('Print').exists()).toBe(true);
   });
 
   it('should not show save character button if not signed in', () => {
@@ -51,5 +51,4 @@ describe('Character Generation', () => {
 
     expect(wrapper.find('Save').exists()).toBe(true);
   });
-
 });

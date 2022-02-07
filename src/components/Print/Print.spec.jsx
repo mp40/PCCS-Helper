@@ -11,11 +11,13 @@ describe('Printing the reference sheet', () => {
     const dispatch = jest.fn();
     jest.spyOn(React, 'useContext').mockImplementation(() => dispatch);
     jest.spyOn(actions, 'showModal').mockImplementation(() => {});
+
     const wrapper = shallow(<Print />);
-    wrapper.find('button').simulate('click');
+    wrapper.dive().find('button').simulate('click');
 
     expect(dispatch).toHaveBeenCalled();
     expect(actions.showModal).toHaveBeenCalledWith(GameSheet);
+
     jest.clearAllMocks();
   });
 });

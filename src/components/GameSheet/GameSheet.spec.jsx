@@ -15,6 +15,7 @@ global.print = jest.fn();
 
 describe('<GameSheet>', () => {
   let wrapper;
+  const closeModal = jest.fn();
 
   const getWrappedComponent = () => shallow(
     <GameSheet
@@ -34,6 +35,7 @@ describe('<GameSheet>', () => {
       gunCombatActions={5}
       handCombatActions={3}
       knockoutValue={9}
+      closeModal={closeModal}
     />);
 
   wrapper = getWrappedComponent();
@@ -84,7 +86,6 @@ describe('<GameSheet>', () => {
 
   describe('the gamesheet lifecycle', () => {
     let useEffect;
-    const dispatch = jest.fn();
 
     const waitOneTick = (simulate) => new Promise((resolve) => {
       setTimeout(() => {
@@ -98,8 +99,6 @@ describe('<GameSheet>', () => {
 
     beforeEach(async () => {
       useEffect = jest.spyOn(React, 'useEffect');
-      jest.spyOn(React, 'useContext').mockImplementation(() => dispatch);
-
       mockUseEffect();
 
       await act(async () => {
@@ -117,7 +116,7 @@ describe('<GameSheet>', () => {
     });
 
     it('should close modal after printing', () => {
-      expect(dispatch).toHaveBeenCalledWith({ payload: null, type: 'MODAL_SHOWN' });
+      expect(closeModal).toHaveBeenCalled();
     });
   });
 });
