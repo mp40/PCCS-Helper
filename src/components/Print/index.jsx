@@ -1,19 +1,17 @@
 import React from 'react';
+
+import IconButton from '../widgets/buttons/IconButton';
 import GameSheet from '../GameSheet';
 
 import { DispatchContext } from '../App/context';
 import { showModal } from '../App/actions';
 
-import styles from './styles.module.css';
-
 const Print = () => {
   const dispatch = React.useContext(DispatchContext);
 
   return (
-    <button
-      aria-label="print"
-      type="button"
-      className={styles.icon}
+    <IconButton
+      type="print"
       onClick={() => dispatch(showModal(GameSheet))}
     />
   );

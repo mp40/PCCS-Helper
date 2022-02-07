@@ -1,9 +1,6 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
-import { DispatchContext } from '../App/context';
-import { showModal } from '../App/actions';
-
 import WeaponStatsTable from '../WeaponStatsTable';
 import CharacterInfo from '../CharacterInfo';
 import ActionsTable from '../ActionsTable';
@@ -42,12 +39,12 @@ const GameSheet = (
     firearms,
     grenades,
     helmet,
-    vest },
+    vest,
+    closeModal },
 ) => {
-  const dispatch = React.useContext(DispatchContext);
   React.useEffect(() => {
     window.print();
-    dispatch(showModal(null));
+    closeModal();
   });
 
   const meleeWeaponList = prepareHandToHandWeaponList(firearms, equipment);
@@ -128,6 +125,7 @@ GameSheet.propTypes = {
   grenades: PropTypes.arrayOf(grenadeShape),
   helmet: PropTypes.string,
   vest: PropTypes.string,
+  closeModal: PropTypes.func.isRequired,
 };
 
 GameSheet.defaultProps = {

@@ -1,27 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 
+import IconButton from '../widgets/buttons/IconButton';
 import SaveModal from './modal';
 
-import styles from './styles.module.css';
+import { DispatchContext } from '../App/context';
+import { showModal } from '../App/actions';
 
 const Save = () => {
-  const [showModal, setShowModal] = useState(false);
+  const dispatch = React.useContext(DispatchContext);
 
   return (
-    <>
-      {showModal
-   && (
-   <SaveModal
-     setShowSaveCharacter={setShowModal}
-   />
-   )}
-      <button
-        aria-label="save"
-        type="button"
-        className={styles.icon}
-        onClick={() => setShowModal(true)}
-      />
-    </>
+    <IconButton
+      type="save"
+      onClick={() => dispatch(showModal(SaveModal))}
+    />
   );
 };
 

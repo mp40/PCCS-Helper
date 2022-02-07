@@ -1,4 +1,3 @@
-  
 .icon {
     position: relative;
     padding: 1.25rem;
@@ -8,7 +7,6 @@
 }
 
 .icon:before {
-    content: "\f02f";
     font-family: FontAwesome;
     font-style: normal;
     font-weight: normal;
@@ -27,5 +25,17 @@
 
 .icon:active {
     box-shadow: inset 0 0 3px 1px var(--london-grey);
+}
+
+.print:before {
+    content: "\f02f";
+}
+
+.save:before {
+    content: "\f0c7";
+}
+
+.load:before {
+    content: "\f0ea"
 }
   

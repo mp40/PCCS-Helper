@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import styles from './styles.module.css';
 
-const LoadCharacterModal = ({ setShowLoadModal, selectCurrentView, hydrateCurrentCharacter, savedCharacters }) => {
+const LoadCharacterModal = ({ closeModal, hydrateCurrentCharacter, savedCharacters }) => {
   const parseDate = (date) => {
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
@@ -13,8 +13,7 @@ const LoadCharacterModal = ({ setShowLoadModal, selectCurrentView, hydrateCurren
   };
 
   const handleLoadCharacter = (character) => {
-    setShowLoadModal(false);
-    selectCurrentView('playCharacter');
+    closeModal();
     hydrateCurrentCharacter(character);
   };
 
@@ -26,7 +25,7 @@ const LoadCharacterModal = ({ setShowLoadModal, selectCurrentView, hydrateCurren
           aria-label="close"
           className={styles.close}
           type="button"
-          onClick={() => setShowLoadModal(false)}
+          onClick={() => closeModal()}
         />
         <div>Load Character</div>
         {
@@ -56,9 +55,8 @@ const LoadCharacterModal = ({ setShowLoadModal, selectCurrentView, hydrateCurren
 };
 
 LoadCharacterModal.propTypes = {
-  selectCurrentView: PropTypes.func.isRequired,
   hydrateCurrentCharacter: PropTypes.func.isRequired,
-  setShowLoadModal: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
   savedCharacters: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
