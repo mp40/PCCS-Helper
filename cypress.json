@@ -1,0 +1,6 @@
+{
+    "baseUrl": "http://localhost:1337",
+    "screenshotOnRunFailure": false,
+    "video": false,
+    "videoUploadOnPasses": false
+}

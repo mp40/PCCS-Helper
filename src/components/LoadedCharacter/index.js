@@ -1,8 +1,6 @@
 import { connect } from 'react-redux';
 import LoadedCharacter from './component';
 
-import { selectCurrentView } from '../../actions';
-
 import { selectKnockoutValue, selectGunCombatActions, selectHandCombatActions } from '../../selectors';
 
 const mapStateToProps = (state) => ({
@@ -18,4 +16,4 @@ const mapStateToProps = (state) => ({
   launchers: state.currentCharacter.launchers,
 });
 
-export default connect(mapStateToProps, { selectCurrentView })(LoadedCharacter);
+export default connect(mapStateToProps, null)(LoadedCharacter);

@@ -12,7 +12,6 @@ const m1911 = {
 describe('Loaded Character', () => {
   let wrapper;
   const firearms = [{ ...m1911 }];
-  const selectCurrentView = jest.fn();
 
   beforeEach(() => {
     wrapper = shallow(<LoadedCharacter
@@ -26,7 +25,6 @@ describe('Loaded Character', () => {
       firearms={firearms}
       grenades={[]}
       launchers={[]}
-      selectCurrentView={selectCurrentView}
     />);
   });
 

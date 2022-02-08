@@ -15,8 +15,7 @@ global.print = jest.fn();
 
 describe('<GameSheet>', () => {
   let wrapper;
-
-  const selectCurrentView = jest.fn();
+  const closeModal = jest.fn();
 
   const getWrappedComponent = () => shallow(
     <GameSheet
@@ -36,7 +35,7 @@ describe('<GameSheet>', () => {
       gunCombatActions={5}
       handCombatActions={3}
       knockoutValue={9}
-      selectCurrentView={selectCurrentView}
+      closeModal={closeModal}
     />);
 
   wrapper = getWrappedComponent();
@@ -100,7 +99,6 @@ describe('<GameSheet>', () => {
 
     beforeEach(async () => {
       useEffect = jest.spyOn(React, 'useEffect');
-
       mockUseEffect();
 
       await act(async () => {
@@ -117,8 +115,8 @@ describe('<GameSheet>', () => {
       expect(global.print).toHaveBeenCalled();
     });
 
-    it('should call selectCurrentView with "createChar"', () => {
-      expect(selectCurrentView).toHaveBeenCalledWith('createChar');
+    it('should close modal after printing', () => {
+      expect(closeModal).toHaveBeenCalled();
     });
   });
 });

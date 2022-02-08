@@ -29,8 +29,7 @@ const mrRock = {
 };
 
 describe('Load Character Modal', () => {
-  const setShowLoadModal = jest.fn();
-  const selectCurrentView = jest.fn();
+  const closeModal = jest.fn();
   const hydrateCurrentCharacter = jest.fn();
 
   const savedCharacters = [mrLove, mrRock];
@@ -41,8 +40,7 @@ describe('Load Character Modal', () => {
   const getWrapper = (characters) => {
     wrapper = shallow(
       <LoadCharacterModal
-        setShowLoadModal={setShowLoadModal}
-        selectCurrentView={selectCurrentView}
+        closeModal={closeModal}
         hydrateCurrentCharacter={hydrateCurrentCharacter}
         savedCharacters={characters}
       />,
@@ -65,8 +63,7 @@ describe('Load Character Modal', () => {
 
     wrapper.find('span[children="Mr Love"]').parent().simulate('click');
 
-    expect(setShowLoadModal).toHaveBeenCalledWith(false);
-    expect(selectCurrentView).toHaveBeenCalledWith('playCharacter');
+    expect(closeModal).toHaveBeenCalled();
     expect(hydrateCurrentCharacter).toHaveBeenCalledWith(mrLove);
   });
 
@@ -82,12 +79,14 @@ describe('Load Character Modal', () => {
 
     wrapper.find('.close').simulate('click');
 
-    expect(setShowLoadModal).toHaveBeenCalledWith(false);
+    expect(closeModal).toHaveBeenCalled();
   });
 });
 
 describe('Load Character Intergration', () => {
   let wrapper;
+
+  window.history.pushState({}, '', '/use');
 
   const mrLoad = {
     character_id: 1337,
@@ -114,6 +113,10 @@ describe('Load Character Intergration', () => {
     jest.clearAllMocks();
   });
 
+  afterAll(() => {
+    window.history.pushState({}, '', '/');
+  });
+
   it('should load hydrated character', async () => {
     jest.spyOn(fetchModule, 'fetchSignedIn').mockImplementation(() => ({ message: 'Signed In' }));
 
@@ -136,7 +139,7 @@ describe('Load Character Intergration', () => {
 
     wrapper.update();
 
-    wrapper.find('button[children="Load Character"]').simulate('click');
+    wrapper.find('IconButton').simulate('click');
     wrapper.find('button').find('span[children="Mr Load"]').simulate('click');
 
     expect(wrapper.find('LoadedCharacter').exists()).toBe(true);

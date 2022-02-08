@@ -62,7 +62,6 @@ describe('mounting component', () => {
     await act(async () => {
       await waitOneTick((wrapper = await shallow(
         <App
-          currentView="home"
           updateSavedCharacters={() => {}}
         />,
       )));
@@ -81,7 +80,6 @@ describe('mounting component', () => {
     await act(async () => {
       await waitOneTick((wrapper = await shallow(
         <App
-          currentView="home"
           updateSavedCharacters={() => {}}
         />,
       )));
@@ -100,7 +98,6 @@ describe('mounting component', () => {
     await act(async () => {
       await waitOneTick((wrapper = await shallow(
         <App
-          currentView="home"
           updateSavedCharacters={updateSavedCharacters}
         />,
       )));
@@ -126,7 +123,6 @@ describe('mounting component', () => {
     await act(async () => {
       await waitOneTick((wrapper = await shallow(
         <App
-          currentView="home"
           updateSavedCharacters={updateSavedCharacters}
         />,
       )));
@@ -142,7 +138,6 @@ describe('handleSetSignIn', () => {
   beforeEach(() => {
     wrapper = shallow(
       <App
-        currentView="home"
         updateSavedCharacters={() => {}}
       />,
     );
@@ -154,56 +149,5 @@ describe('handleSetSignIn', () => {
     wrapper.find('Connect(Header)').invoke('handleSetSignedIn')();
 
     expect(wrapper.find('Connect(Header)').prop('signedIn')).toBe(true);
-  });
-});
-
-describe('App Views', () => {
-  it('should render the home page', () => {
-    const wrapper = shallow(
-      <App
-        currentView="home"
-        updateSavedCharacters={() => {}}
-      />,
-    );
-
-    expect(wrapper.find('Connect(HomePage)').exists()).toBe(true);
-  });
-
-  it('should render the create character page', () => {
-    const wrapper = shallow(<App currentView="createChar" updateSavedCharacters={() => {}} />);
-
-    expect(wrapper.find('Connect(CharacterGeneration)').exists()).toBe(true);
-  });
-
-  it('should render the print page', () => {
-    const wrapper = shallow(<App currentView="printRefSheet" updateSavedCharacters={() => {}} />);
-
-    expect(wrapper.find('Connect(GameSheet)').exists()).toBe(true);
-  });
-
-  it('should render the loaded character page', () => {
-    const wrapper = shallow(<App currentView="playCharacter" updateSavedCharacters={() => {}} />);
-
-    expect(wrapper.find('Connect(LoadedCharacter)').exists()).toBe(true);
-  });
-});
-
-describe('Routes', () => {
-  beforeAll(() => {
-    window.history.pushState({}, '', '/passwordReset');
-  });
-
-  afterAll(() => {
-    window.history.pushState({}, '', '/');
-  });
-
-  it('should show Reset component if location pathname equals /passwordReset', () => {
-    const wrapper = shallow(
-      <App
-        currentView="home"
-        updateSavedCharacters={() => {}}
-      />);
-
-    expect(wrapper.find('Reset').exists()).toBe(true);
   });
 });

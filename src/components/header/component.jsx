@@ -5,9 +5,11 @@ import HeaderButtons from './buttons';
 import HeaderModal from './modal';
 import HeaderDropdown from './dropdown';
 
+import Link from '../widgets/link';
+
 import { fetchSignup, fetchSignin, fetchSignOut, fetchResetPassword } from '../../fetch';
 
-import './header.css';
+import styles from './styles.module.css';
 
 const SIGNUP = 'signup';
 const SIGNIN = 'signin';
@@ -90,8 +92,8 @@ const Header = (
   };
 
   return (
-    <div className="menuBar">
-      <div>PCCS</div>
+    <header className={styles.wrapper}>
+      <Link href="/" text="" />
 
       <HeaderButtons
         handleShowSignUp={() => handleSwitchModal(SIGNUP)}
@@ -139,7 +141,7 @@ const Header = (
         errorMsg={errorMsg}
       />
       )}
-    </div>
+    </header>
   );
 };
 

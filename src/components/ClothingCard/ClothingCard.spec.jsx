@@ -1,28 +1,18 @@
-import React from 'react';
-import { mount } from 'enzyme';
+import { mountAppWithStore } from '../../helpers/testHelpers';
 
-import { Provider } from 'react-redux';
+describe('Clothing Card intergration test', () => {
+  window.history.pushState({}, '', '/edit');
+  const wrapper = mountAppWithStore();
 
-import { getStore } from '../../helpers/testHelpers';
+  afterAll(() => {
+    window.history.pushState({}, '', '/');
+  });
 
-import ConnectedClothingCard from '.';
+  it('should be possible to change uniform types', () => {
+    wrapper.find('ClothingCard').find('tbody').find('tr').simulate('click');
 
-describe('the Clothing Card', () => {
-  describe('clothing intergration test', () => {
-    const store = getStore();
+    wrapper.find('.uniforms').find('button').at(1).simulate('click');
 
-    const wrapper = mount(
-      <Provider store={store}>
-        <ConnectedClothingCard />
-      </Provider>,
-    );
-
-    it('should be possible to change uniform types', () => {
-      wrapper.find('tbody').find('tr').simulate('click');
-
-      wrapper.find('.uniforms').find('button').at(1).simulate('click');
-
-      expect(wrapper.find('tbody').find('tr').text()).toBe('Tropical4.5');
-    });
+    expect(wrapper.find('ClothingCard').find('tbody').find('tr').text()).toBe('Tropical4.5');
   });
 });

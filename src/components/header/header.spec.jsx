@@ -23,11 +23,14 @@ describe('The Header', () => {
         <Header
           handleSetSignedIn={handleSetSignedIn}
           signedIn={false}
-          selectCurrentView={() => {}}
           updateSavedCharacters={() => {}}
-          currentView="createChar"
         />,
       );
+    });
+
+    it('should have link to home', () => {
+      const link = wrapper.find('Link').find('button');
+      expect(link.exists()).toBe(true);
     });
 
     it('should show Sign Up and Sign In buttons if not signed in', () => {
@@ -73,7 +76,6 @@ describe('The Header', () => {
         <Header
           handleSetSignedIn={handleSetSignedIn}
           signedIn={false}
-          selectCurrentView={() => {}}
           updateSavedCharacters={() => {}}
         />,
       );
@@ -84,32 +86,32 @@ describe('The Header', () => {
     });
 
     it('should open sign up modal when Sign Up clicked', () => {
-      wrapper.find('button').at(0).simulate('click');
-      const title = wrapper.find('HeaderModal').find('div').at(2);
+      wrapper.find('button[children="Sign Up"]').simulate('click');
+      const title = wrapper.find('div[children="Sign Up"]');
 
-      expect(title.text()).toBe('Sign Up');
+      expect(title.exists()).toBe(true);
     });
 
     it('should be possible to close modal', () => {
-      wrapper.find('button').at(0).simulate('click');
+      wrapper.find('button[children="Sign Up"]').simulate('click');
       wrapper.find('.close').simulate('click');
 
-      expect(wrapper.find('HeaderModal').exists()).toBe(false);
+      const title = wrapper.find('div[children="Sign Up"]');
+      expect(title.exists()).toBe(false);
     });
 
     it('should be possible to switch modal', () => {
-      wrapper.find('button').at(0).simulate('click');
+      wrapper.find('button[children="Sign Up"]').simulate('click');
       wrapper.find('.switchModal').simulate('click');
 
-      const title = wrapper.find('HeaderModal').find('div').at(2);
-
-      expect(title.text()).toContain('Sign In');
+      const title = wrapper.find('div[children="Sign In"]');
+      expect(title.exists()).toBe(true);
     });
 
     it('should close modal on sign up', async () => {
       jest.spyOn(fetchModule, 'fetchSignup').mockImplementation(() => ({ message: 'Signed Up' }));
 
-      wrapper.find('button').at(0).simulate('click');
+      wrapper.find('button[children="Sign Up"]').simulate('click');
 
       wrapper
         .find('input')
@@ -135,7 +137,7 @@ describe('The Header', () => {
       const err = new Error();
       jest.spyOn(fetchModule, 'fetchSignup').mockImplementation(() => ({ error: err, message: 'Signup Error' }));
 
-      wrapper.find('button').at(0).simulate('click');
+      wrapper.find('button[children="Sign Up"]').simulate('click');
 
       wrapper
         .find('input')
@@ -161,7 +163,7 @@ describe('The Header', () => {
       const err = new Error();
       jest.spyOn(fetchModule, 'fetchSignup').mockImplementation(() => ({ error: err, message: 'Signup Error' }));
 
-      wrapper.find('button').at(0).simulate('click');
+      wrapper.find('button[children="Sign Up"]').simulate('click');
 
       wrapper
         .find('input')
@@ -191,7 +193,6 @@ describe('The Header', () => {
         <Header
           handleSetSignedIn={handleSetSignedIn}
           signedIn={false}
-          selectCurrentView={() => {}}
           updateSavedCharacters={() => {}}
         />,
       );
@@ -202,32 +203,32 @@ describe('The Header', () => {
     });
 
     it('should open sign in modal', () => {
-      wrapper.find('button').at(1).simulate('click');
-      const title = wrapper.find('HeaderModal').find('div').at(2);
+      wrapper.find('button[children="Sign In"]').simulate('click');
+      const title = wrapper.find('div[children="Sign In"]');
 
-      expect(title.text()).toContain('Sign In');
+      expect(title.exists()).toBe(true);
     });
 
     it('should be possible to close modal', () => {
-      wrapper.find('button').at(1).simulate('click');
+      wrapper.find('button[children="Sign In"]').simulate('click');
       wrapper.find('.close').simulate('click');
 
-      expect(wrapper.find('HeaderModal').exists()).toBe(false);
+      const title = wrapper.find('div[children="Sign In"]');
+      expect(title.exists()).toBe(false);
     });
 
     it('should be possible to switch modal', () => {
-      wrapper.find('button').at(1).simulate('click');
+      wrapper.find('button[children="Sign In"]').simulate('click');
       wrapper.find('.switchModal').simulate('click');
 
-      const title = wrapper.find('HeaderModal').find('div').at(2);
-
-      expect(title.text()).toContain('Sign Up');
+      const title = wrapper.find('div[children="Sign Up"]');
+      expect(title.exists()).toBe(true);
     });
 
     it('should be possible to sign in', async () => {
       jest.spyOn(fetchModule, 'fetchSignin').mockImplementation(() => ({ message: 'Signed In' }));
 
-      wrapper.find('button').at(1).simulate('click');
+      wrapper.find('button[children="Sign In"]').simulate('click');
 
       wrapper
         .find('input')
@@ -253,7 +254,7 @@ describe('The Header', () => {
 
       const spy = jest.spyOn(Storage.prototype, 'setItem');
 
-      wrapper.find('button').at(1).simulate('click');
+      wrapper.find('button[children="Sign In"]').simulate('click');
 
       wrapper
         .find('input')
@@ -278,7 +279,7 @@ describe('The Header', () => {
       const err = new Error('err');
       jest.spyOn(fetchModule, 'fetchSignin').mockImplementation(() => ({ message: 'Signin Error', error: err }));
 
-      wrapper.find('button').at(1).simulate('click');
+      wrapper.find('button[children="Sign In"]').simulate('click');
 
       wrapper
         .find('input')
@@ -306,7 +307,7 @@ describe('The Header', () => {
       const err = new Error('err');
       jest.spyOn(fetchModule, 'fetchSignin').mockImplementation(() => ({ message: 'Signin Error', error: err }));
 
-      wrapper.find('button').at(1).simulate('click');
+      wrapper.find('button[children="Sign In"]').simulate('click');
 
       wrapper
         .find('input')
@@ -338,7 +339,6 @@ describe('The Header', () => {
         <Header
           handleSetSignedIn={handleSetSignedIn}
           signedIn={false}
-          selectCurrentView={() => {}}
           updateSavedCharacters={() => {}}
         />,
       );
@@ -396,7 +396,6 @@ describe('The Header', () => {
         <Header
           handleSetSignedIn={handleSetSignedIn}
           signedIn
-          selectCurrentView={() => {}}
           updateSavedCharacters={() => {}}
         />,
       );
@@ -470,7 +469,6 @@ describe('The Header', () => {
         <Header
           handleSetSignedIn={handleSetSignedIn}
           signedIn={false}
-          selectCurrentView={() => {}}
           updateSavedCharacters={() => {}}
         />,
       );

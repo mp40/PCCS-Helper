@@ -1,6 +1,5 @@
 export class MockState {
   constructor() {
-    this.currentView = 'home';
     this.currentCharacter = {
       name: '',
       str: 10,

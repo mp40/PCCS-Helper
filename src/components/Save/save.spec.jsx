@@ -2,22 +2,18 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import Save from './index';
+import SaveModal from './modal';
 
-describe('Save', () => {
-  describe('signed in', () => {
-    const wrapper = shallow(
-      <Save />);
+describe('Save button', () => {
+  const dispatch = jest.fn();
+  jest.spyOn(React, 'useContext').mockImplementation(() => dispatch);
 
-    it('should open the modal', () => {
-      wrapper.find('button').simulate('click');
+  const wrapper = shallow(
+    <Save />);
 
-      expect(wrapper.find('Connect(SaveModal)').exists()).toBe(true);
-    });
+  it('should open the modal', () => {
+    wrapper.dive().find('button').simulate('click');
 
-    it('should close the modal', () => {
-      wrapper.find('Connect(SaveModal)').props().setShowSaveCharacter(false);
-
-      expect(wrapper.find('Connect(SaveModal)').exists()).toBe(false);
-    });
+    expect(dispatch).toHaveBeenCalledWith({ type: 'MODAL_SHOWN', payload: SaveModal });
   });
 });

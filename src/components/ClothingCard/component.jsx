@@ -1,19 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
 import SelectUniformModal from './modal';
 
 import { uniformWeights } from '../../data/uniformAndArmourTypes';
 
+import { DispatchContext } from '../App/context';
+
 import styles from './styles.module.css';
 
-const ClothingCard = ({ uniform, changeUniform }) => {
-  const [showSelectModal, setShowSelectModal] = useState(false);
-
-  const handleChangeUniform = (newUniform) => {
-    changeUniform(newUniform);
-    setShowSelectModal(false);
-  };
+const ClothingCard = ({ uniform }) => {
+  const dispatch = useContext(DispatchContext);
 
   return (
     <div className="--card">
@@ -29,7 +26,12 @@ const ClothingCard = ({ uniform, changeUniform }) => {
         <tbody>
           <tr
             className="--selectableRow"
-            onClick={() => setShowSelectModal(true)}
+            onClick={() => {
+              dispatch({
+                type: 'MODAL_SHOWN',
+                payload: SelectUniformModal,
+              });
+            }}
           >
             <td>{uniform}</td>
             <td>{uniformWeights[uniform]}</td>
@@ -37,18 +39,11 @@ const ClothingCard = ({ uniform, changeUniform }) => {
         </tbody>
 
       </table>
-      {showSelectModal && (
-      <SelectUniformModal
-        handleChangeUniform={handleChangeUniform}
-        setShowSelectModal={setShowSelectModal}
-      />
-      )}
     </div>
   );
 };
 
 ClothingCard.propTypes = {
-  changeUniform: PropTypes.func.isRequired,
   uniform: PropTypes.string.isRequired,
 };
 

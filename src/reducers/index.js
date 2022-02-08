@@ -39,7 +39,6 @@ import { increaseLauncherReducer } from './increaseLauncherReducer';
 import { decreaseLauncherReducer } from './decreaseLauncherReducer';
 import { increaseLauncherAmmoReducer } from './increaseLauncherAmmoReducer';
 import { decreaseLauncherAmmoReducer } from './decreaseLauncherAmmoReducer';
-import { viewCreateCharacterReducer } from './viewCreateCharacterReducer';
 import { updateSavedCharactersReducer } from './updateSavedCharactersReducer';
 import { addSavedCharacterReducer } from './addSavedCharacterReducer';
 import { updateSavedCharacterReducer } from './updateSavedCharacterReducer';
@@ -56,10 +55,6 @@ const initialState = initialStore;
 // eslint-disable-next-line default-param-last
 const reduceActions = (state = initialState, action) => {
   switch (action.type) {
-    case 'VIEW_SELECTED':
-      return { ...state, currentView: action.payload };
-    case 'CREATE_CHARACTER_VIEWED':
-      return viewCreateCharacterReducer(state, action);
     case 'GUN_COMBAT_LEVEL_UPDATED':
       return modifyGunCombatLevelReducer(state, action);
     case 'MELEE_COMBAT_LEVEL_UPDATED':

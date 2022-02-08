@@ -1,8 +1,6 @@
 import { connect } from 'react-redux';
 import GameSheet from './component';
 
-import { selectCurrentView } from '../../actions';
-
 import { selectKnockoutValue, selectHandCombatActions, selectGunCombatActions } from '../../selectors';
 
 const mapStateToProps = (state) => ({
@@ -24,4 +22,4 @@ const mapStateToProps = (state) => ({
   knockoutValue: selectKnockoutValue(state),
 });
 
-export default connect(mapStateToProps, { selectCurrentView })(GameSheet);
+export default connect(mapStateToProps)(GameSheet);

@@ -1,21 +1,20 @@
 .a4GameSheet {
-  display: none;
+  visibility: hidden;
 }
 
 @media print {
   .App {
-    display: none;
+    visibility: hidden;
+
   }
 
   .a4GameSheet {
-    display: block;
+    z-index: 101;
+    position: fixed;
+    top: 0;
+    left: 0;
+    visibility: visible;
     color-adjust: exact !important;
     -webkit-print-color-adjust: exact !important;
   }
-}
-
-.a4GameSheet {
-  background-color: white;
-  width: 29.7cm;
-  height: 21cm;
 }

@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { currentCharacterShape } from '../../../helpers/proptypeShapes';
-
 import { fetchPostCharacter, fetchPutCharacter } from '../../../fetch';
-
 import { parseDate, buildRequestPayload } from './data';
+import { currentCharacterShape } from '../../../helpers/proptypeShapes';
 
 import styles from './styles.module.css';
 
 const SaveModal = (
-  { characters, currentCharacter, setShowSaveCharacter, addSavedCharacter, updateSavedCharacter },
+  { characters, currentCharacter, addSavedCharacter, updateSavedCharacter, closeModal },
 ) => {
   const [showError, setShowError] = useState(false);
 
@@ -57,7 +55,7 @@ const SaveModal = (
 
     storeNewCharacter(res.character);
 
-    setShowSaveCharacter(false);
+    closeModal();
   };
 
   const handleUpdateCharacter = async (characterId) => {
@@ -70,57 +68,54 @@ const SaveModal = (
 
     updateStoredCharacter(res.character);
 
-    setShowSaveCharacter(false);
+    closeModal();
   };
 
   return (
-    <>
-      <div className="modal-background" />
-      <div className={styles.card}>
+    <div className={styles.card}>
+      <button
+        aria-label="close"
+        className={styles.close}
+        type="button"
+        onClick={() => closeModal()}
+      />
+      <div>Save Character</div>
+      {characters.map((character) => (
         <button
-          aria-label="close"
-          className={styles.close}
+          key={character.character_id}
           type="button"
-          onClick={() => setShowSaveCharacter(false)}
-        />
-        <div>Save Character</div>
-        {characters.map((character) => (
-          <button
-            key={character.character_id}
-            type="button"
-            onClick={() => handleUpdateCharacter(character.character_id)}
-          >
-            <span>
-              {character.character_name}
-            </span>
+          onClick={() => handleUpdateCharacter(character.character_id)}
+        >
+          <span>
+            {character.character_name}
+          </span>
 
-            <span>
-              {parseDate(new Date(character.updated_at))}
-            </span>
+          <span>
+            {parseDate(new Date(character.updated_at))}
+          </span>
 
-          </button>
-        ),
-        )}
-        {characters.length < 5 && (
+        </button>
+      ),
+      )}
+      {characters.length < 5 && (
         <button
           type="button"
           onClick={() => handleSaveCharacter()}
         >
           New
         </button>
-        )}
-        {showError && (
-          <p>Save Error</p>
-        )}
-      </div>
-    </>
+      )}
+      {showError && (
+      <p>Save Error</p>
+      )}
+    </div>
   );
 };
 
 SaveModal.propTypes = {
   characters: PropTypes.arrayOf(PropTypes.object).isRequired,
   currentCharacter: currentCharacterShape.isRequired,
-  setShowSaveCharacter: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
   addSavedCharacter: PropTypes.func.isRequired,
   updateSavedCharacter: PropTypes.func.isRequired,
 };

@@ -3,6 +3,7 @@ import { shallow, mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import { act } from 'react-dom/test-utils';
 
+import { MockState } from ' ../../../reducers/mockState';
 import HeaderSaveModal from './component';
 import ConnectedHeaderSaveModal from '.';
 
@@ -12,7 +13,6 @@ import * as fetchModule from '../../../fetch';
 
 import { getStore } from '../../../helpers/testHelpers';
 import { NewCharacter } from '../../../reducers/newCharacter';
-import { MockState } from ' ../../../reducers/mockState';
 
 const m72 = {
   name: 'M72 A2 LAW',
@@ -62,7 +62,7 @@ const getCharacter = () => {
 describe('Save Character Modal', () => {
   let wrapper;
 
-  const setShowSaveCharacter = jest.fn();
+  const closeModal = jest.fn();
   const addSavedCharacter = jest.fn();
   const updateSavedCharacter = jest.fn();
 
@@ -70,7 +70,7 @@ describe('Save Character Modal', () => {
     <HeaderSaveModal
       characters={characters}
       currentCharacter={getCharacter()}
-      setShowSaveCharacter={setShowSaveCharacter}
+      closeModal={closeModal}
       addSavedCharacter={addSavedCharacter}
       updateSavedCharacter={updateSavedCharacter}
     />);
@@ -84,7 +84,7 @@ describe('Save Character Modal', () => {
       wrapper = getWrapper([]);
       wrapper.find('.close').simulate('click');
 
-      expect(setShowSaveCharacter).toHaveBeenCalledWith(false);
+      expect(closeModal).toHaveBeenCalled();
     });
 
     it('should render peviously saved characters', () => {
@@ -205,7 +205,7 @@ describe('Save Character Modal', () => {
         await waitOneTick(wrapper.find('button[children="New"]').simulate('click'));
       });
 
-      expect(setShowSaveCharacter).toHaveBeenCalledWith(false);
+      expect(closeModal).toHaveBeenCalled();
     });
 
     it('should not close save modal on unsuccessful save', async () => {
@@ -216,7 +216,7 @@ describe('Save Character Modal', () => {
         await waitOneTick(wrapper.find('button[children="New"]').simulate('click'));
       });
 
-      expect(setShowSaveCharacter).not.toHaveBeenCalled();
+      expect(closeModal).not.toHaveBeenCalled();
     });
 
     it('should display save error message on error', async () => {
@@ -304,7 +304,7 @@ describe('Save Character Modal', () => {
         await waitOneTick(wrapper.find('span[children="Biggles"]').parent().simulate('click'));
       });
 
-      expect(setShowSaveCharacter).toHaveBeenCalledWith(false);
+      expect(closeModal).toHaveBeenCalled();
     });
 
     it('should not close the modal on unsuccessful update', async () => {
@@ -315,7 +315,7 @@ describe('Save Character Modal', () => {
         await waitOneTick(wrapper.find('span[children="Biggles"]').parent().simulate('click'));
       });
 
-      expect(setShowSaveCharacter).not.toHaveBeenCalled();
+      expect(closeModal).not.toHaveBeenCalled();
     });
 
     it('should display save error message on error', async () => {
@@ -345,7 +345,7 @@ describe('Save Character Modal', () => {
       wrapper = mount(
         <Provider store={store}>
           <ConnectedHeaderSaveModal
-            setShowSaveCharacter={setShowSaveCharacter}
+            closeModal={closeModal}
           />
         </Provider>,
       );

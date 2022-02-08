@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import LoadCharacterModal from './component';
-import { selectCurrentView, hydrateCurrentCharacter } from '../../actions';
+import { hydrateCurrentCharacter } from '../../actions';
 
 const mapStateToProps = (state) => ({
   savedCharacters: state.savedCharacters,
@@ -8,7 +8,6 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps,
   {
-    selectCurrentView,
     hydrateCurrentCharacter,
   },
 )(LoadCharacterModal);

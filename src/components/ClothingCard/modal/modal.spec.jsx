@@ -1,21 +1,16 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import SelectUniformModal from './index';
+import SelectUniformModal from './component';
 
 describe('SelectUniformModal', () => {
   let wrapper;
 
-  const handleChangeUniform = jest.fn();
-  const setShowSelectModal = jest.fn();
+  const changeUniform = jest.fn();
+  const closeModal = jest.fn();
 
   beforeEach(() => {
-    wrapper = shallow(
-      <SelectUniformModal
-        handleChangeUniform={handleChangeUniform}
-        setShowSelectModal={setShowSelectModal}
-      />,
-    );
+    wrapper = shallow(<SelectUniformModal changeUniform={changeUniform} closeModal={closeModal} />);
   });
 
   afterEach(() => {
@@ -25,12 +20,12 @@ describe('SelectUniformModal', () => {
   it('should select uniform when clicked', () => {
     wrapper.find('span[children="Winter"]').parent().simulate('click');
 
-    expect(handleChangeUniform).toHaveBeenCalledWith('Winter');
+    expect(changeUniform).toHaveBeenCalledWith('Winter');
   });
 
   it('should close modal when close button clicked', () => {
     wrapper.find('.close').simulate('click');
 
-    expect(setShowSelectModal).toHaveBeenCalledWith(false);
+    expect(closeModal).toHaveBeenCalled();
   });
 });

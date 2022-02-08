@@ -7,10 +7,11 @@
       }
   },
   "extends": ["airbnb"],
-  "plugins": ["babel", "react", "jsx-a11y", "import"],
+  "plugins": ["babel", "react", "jsx-a11y", "import", "cypress"],
   "env": {
     "browser": true,
-    "jest": true
+    "jest": true,
+    "cypress/globals": true
   },
   "globals": {
     "expect": true
