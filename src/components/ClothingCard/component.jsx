@@ -6,6 +6,7 @@ import SelectUniformModal from './modal';
 import { uniformWeights } from '../../data/uniformAndArmourTypes';
 
 import { DispatchContext } from '../App/context';
+import { showModal } from '../App/actions';
 
 import styles from './styles.module.css';
 
@@ -27,10 +28,7 @@ const ClothingCard = ({ uniform }) => {
           <tr
             className="--selectableRow"
             onClick={() => {
-              dispatch({
-                type: 'MODAL_SHOWN',
-                payload: SelectUniformModal,
-              });
+              dispatch(showModal(SelectUniformModal));
             }}
           >
             <td>{uniform}</td>
