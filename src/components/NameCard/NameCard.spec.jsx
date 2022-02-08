@@ -1,48 +1,20 @@
-import React from 'react';
-import { mount, shallow } from 'enzyme';
-import { Provider } from 'react-redux';
+import { mountAppWithStore } from '../../helpers/testHelpers';
 
-import { getStore } from '../../helpers/testHelpers';
+describe('NameCard intergration test', () => {
+  window.history.pushState({}, '', '/edit');
+  const wrapper = mountAppWithStore();
 
-import NameCard from './component';
-import ConnectedNameCard from '.';
-
-describe('<NameCard>', () => {
-  const changeCharacterName = jest.fn();
-
-  describe('NameCard behaviour', () => {
-    const wrapper = shallow(<NameCard changeCharacterName={changeCharacterName} />);
-
-    it('should be possible to open text input', () => {
-      wrapper.find('button').simulate('click');
-
-      expect(wrapper.find('TextInput').exists()).toBe(true);
-    });
-
-    it('should close the open text input when submit button clicked', () => {
-      wrapper.find('button[children="Submit"]').simulate('click');
-
-      expect(wrapper.find('TextInput').exists()).toBe(false);
-    });
+  afterAll(() => {
+    window.history.pushState({}, '', '/');
   });
 
-  describe('NameCard intergration test', () => {
-    const store = getStore();
+  it('should be possible to update name', () => {
+    wrapper.find('NameCard').find('button').simulate('click');
 
-    const wrapper = mount(
-      <Provider store={store}>
-        <ConnectedNameCard />
-      </Provider>,
-    );
+    wrapper.find('input').simulate('change', { target: { value: 'Biggles' } });
 
-    it('should be possible to update name', () => {
-      wrapper.find('button').simulate('click');
+    wrapper.find('button[children="Submit"]').simulate('click');
 
-      wrapper.find('input').simulate('change', { target: { value: 'Biggles' } });
-
-      wrapper.find('button[children="Submit"]').simulate('click');
-
-      expect(wrapper.text()).toContain('Biggles');
-    });
+    expect(wrapper.text()).toContain('Biggles');
   });
 });

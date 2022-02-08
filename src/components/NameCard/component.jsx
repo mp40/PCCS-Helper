@@ -1,22 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { PropTypes } from 'prop-types';
 
-import TextInput from '../widgets/TextInput';
+import { DispatchContext } from '../App/context';
+import { showModal } from '../App/actions';
+
+import NameCardModal from './modal';
 
 import styles from './styles.module.css';
 
-const NameCard = ({ name, changeCharacterName }) => {
-  const [textInput, toogleTextInput] = useState(false);
-  const [newName, setNewName] = useState('');
-
-  const handleSubmitName = () => {
-    toogleTextInput(false);
-    changeCharacterName(newName);
-  };
-
-  const handleNameOnChange = (event) => {
-    setNewName(event.target.value);
-  };
+const NameCard = ({ name }) => {
+  const dispatch = useContext(DispatchContext);
 
   return (
     <div className={`card-standard ${styles.wrapper}`}>
@@ -24,31 +17,18 @@ const NameCard = ({ name, changeCharacterName }) => {
       <button
         type="button"
         className={`button-clickable-item-row ${name.length ? '' : styles.empty}`}
-        onClick={() => toogleTextInput(true)}
+        onClick={() => {
+          dispatch(showModal(NameCardModal));
+        }}
       >
         {name}
       </button>
-      {textInput
-      && (
-        <div className={styles.inputWrapper}>
-          <div className={`card-standard ${styles.inputCard}`}>
-            <TextInput
-              heading="Enter Name"
-              value={newName}
-              onChange={handleNameOnChange}
-            />
-            <button type="button" className="button--standard" onClick={() => handleSubmitName()}>Submit</button>
-          </div>
-          <div className="modal-background" />
-        </div>
-      )}
+
     </div>
   );
 };
-
 NameCard.propTypes = {
   name: PropTypes.string,
-  changeCharacterName: PropTypes.func,
 };
 
 NameCard.defaultProps = {
