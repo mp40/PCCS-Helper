@@ -62,7 +62,6 @@ describe('mounting component', () => {
     await act(async () => {
       await waitOneTick((wrapper = await shallow(
         <App
-          currentView="home"
           updateSavedCharacters={() => {}}
         />,
       )));
@@ -81,7 +80,6 @@ describe('mounting component', () => {
     await act(async () => {
       await waitOneTick((wrapper = await shallow(
         <App
-          currentView="home"
           updateSavedCharacters={() => {}}
         />,
       )));
@@ -100,7 +98,6 @@ describe('mounting component', () => {
     await act(async () => {
       await waitOneTick((wrapper = await shallow(
         <App
-          currentView="home"
           updateSavedCharacters={updateSavedCharacters}
         />,
       )));
@@ -126,7 +123,6 @@ describe('mounting component', () => {
     await act(async () => {
       await waitOneTick((wrapper = await shallow(
         <App
-          currentView="home"
           updateSavedCharacters={updateSavedCharacters}
         />,
       )));
@@ -142,7 +138,6 @@ describe('handleSetSignIn', () => {
   beforeEach(() => {
     wrapper = shallow(
       <App
-        currentView="home"
         updateSavedCharacters={() => {}}
       />,
     );

@@ -5,6 +5,8 @@ import HeaderButtons from './buttons';
 import HeaderModal from './modal';
 import HeaderDropdown from './dropdown';
 
+import Link from '../widgets/link';
+
 import { fetchSignup, fetchSignin, fetchSignOut, fetchResetPassword } from '../../fetch';
 
 import styles from './styles.module.css';
@@ -91,8 +93,7 @@ const Header = (
 
   return (
     <header className={styles.wrapper}>
-      {window.location.pathname === '/' && <div className={styles.icon}>PCCS</div>}
-      {window.location.pathname !== '/' && (<a className={styles.icon} href="./"><span>Home</span></a>)}
+      <Link href="/" text="" />
 
       <HeaderButtons
         handleShowSignUp={() => handleSwitchModal(SIGNUP)}

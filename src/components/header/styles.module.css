@@ -14,15 +14,12 @@
   align-items: center;
 }
 
-.icon {
-  margin-left: 2rem;
-}
-
 .wrapper > a {
   height: 2rem;
   width: 2rem;
   text-decoration: none;
   position: relative;
+  margin-left: 2rem;
 }
 
 .wrapper > a:before {
@@ -37,12 +34,8 @@
   content: "\f015";
 }
 
-.wrapper > a > span {
-  height: 1px;
-  width: 1px;
-  position: absolute;
-  overflow: hidden;
-  top: -10px;
+.wrapper > a > button {
+  display:none;
 }
 
 @media screen and (max-width: 1024px) {

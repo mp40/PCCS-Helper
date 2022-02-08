@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import reducer from './reducer';
 import { initialState } from './data';
 
+import Router from '../Router';
+
 import Header from '../header';
-import Body from '../Body';
 
 import { fetchSignedIn, fetchGetCharacters } from '../../fetch';
 
@@ -50,7 +51,7 @@ function App({ updateSavedCharacters }) {
     <DispatchProvider dispatch={dispatch}>
       <div className="App">
         <Header signedIn={signedIn} handleSetSignedIn={handleSetSignedIn} />
-        <Body signedIn={signedIn} />
+        <Router signedIn={signedIn} />
         {state.activeModal && (
           <Modal Component={state.activeModal} />
         )}

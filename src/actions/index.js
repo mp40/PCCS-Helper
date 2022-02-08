@@ -1,8 +1,3 @@
-export const viewCreateCharacter = () => ({
-  type: 'CREATE_CHARACTER_VIEWED',
-  payload: 'createChar',
-});
-
 export const modifyGunCombatLevel = (newGunCombatLevel) => ({
   type: 'GUN_COMBAT_LEVEL_UPDATED',
   payload: newGunCombatLevel,

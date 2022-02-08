@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import Body from '.';
+import { mountAppWithStore } from '../../helpers/testHelpers';
 
 describe('Routes', () => {
   afterEach(() => {
@@ -11,7 +12,7 @@ describe('Routes', () => {
   it('should render the home page when pathname /', () => {
     const wrapper = shallow(<Body signedIn={false} />);
 
-    expect(wrapper.find('Connect(HomePage)').exists()).toBe(true);
+    expect(wrapper.find('HomePage').exists()).toBe(true);
   });
 
   it('should render the create character page when pathname /edit', () => {
@@ -33,5 +34,33 @@ describe('Routes', () => {
     const wrapper = shallow(<Body signedIn={false} />);
 
     expect(wrapper.find('Reset').exists()).toBe(true);
+  });
+});
+
+describe('Router integration', () => {
+  const wrapper = mountAppWithStore();
+
+  it('should navigate to edit character page via href link', () => {
+    wrapper.find('button[children="Create Character"]').simulate('click');
+
+    expect(wrapper.find('CharacterGeneration').exists()).toBe(true);
+  });
+
+  it('should navigate home via home link', () => {
+    wrapper.find('Header').find('Link').find('button').simulate('click');
+
+    expect(wrapper.find('CharacterGeneration').exists()).toBe(false);
+    expect(wrapper.find('HomePage').exists()).toBe(true);
+  });
+
+  it('should clean up event listener on unmount', () => {
+    const remover = jest
+      .spyOn(global, 'removeEventListener')
+      .mockImplementation(() => {});
+
+    return Promise.resolve().then(() => {
+      wrapper.unmount();
+      expect(remover).toHaveBeenCalled();
+    });
   });
 });
