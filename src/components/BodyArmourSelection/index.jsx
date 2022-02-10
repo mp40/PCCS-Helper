@@ -29,7 +29,7 @@ const renderBody = (armourList, handleDispatch, type) => Object.keys(armourList)
 const BodyArmourSelection = ({ armourType, armourList, handleDispatch }) => (
   <>
     <div className="modal-background" />
-    <div className={`--card ${styles.card}`}>
+    <div className={`card-standard ${styles.card}`}>
       <div className={styles.header}>
         <div>
           {renderHeading(armourType)}

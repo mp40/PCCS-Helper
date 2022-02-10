@@ -14,7 +14,7 @@ const StanceSelectModal = ({ setStance, setModal }) => {
   return (
     <>
       <div className="modal-background" />
-      <div className={`--card ${styles.card}`}>
+      <div className={`card-standard ${styles.card}`}>
         {stances.map((stance) => (
           <button type="button" key={stance} onClick={() => handleClick(stance)}>
             {stance}

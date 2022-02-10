@@ -20,7 +20,7 @@ import styles from './styles.module.css';
 const CharacterGeneration = ({ totalWeight, signedIn }) => (
   <div className={styles.wrapper}>
 
-    <div className={`${styles.topCard} --card`}>
+    <div className={`${styles.topCard} card-standard`}>
       <div>
         <h1>Edit Character</h1>
         <h2>

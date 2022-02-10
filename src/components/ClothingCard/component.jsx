@@ -14,7 +14,7 @@ const ClothingCard = ({ uniform }) => {
   const dispatch = useContext(DispatchContext);
 
   return (
-    <div className="--card">
+    <div className="card-standard">
       <table className={styles.table}>
 
         <thead>

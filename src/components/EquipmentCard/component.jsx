@@ -58,7 +58,7 @@ const EquipmentCard = ({
       );
 
   return (
-    <div className="--card gear-card">
+    <div className="card-standard gear-card">
       <div>
         <button
           type="button"

@@ -14,7 +14,7 @@ const SelectUniformModal = ({ changeUniform, closeModal }) => {
   };
 
   return (
-    <div className={`--card ${styles.card}`}>
+    <div className={`card-standard ${styles.card}`}>
 
       <div className={styles.header}>
         <div>

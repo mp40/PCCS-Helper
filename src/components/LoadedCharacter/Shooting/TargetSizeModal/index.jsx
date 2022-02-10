@@ -14,7 +14,7 @@ const TargetSizeSelectModal = ({ setSize, setModal }) => {
   return (
     <>
       <div className="modal-background" />
-      <div className={`--card ${styles.card}`}>
+      <div className={`card-standard ${styles.card}`}>
         {Object.keys(targetSizeMods).map((size) => (
           <button type="button" key={size} onClick={() => handleClick(size)}>
             {size}
