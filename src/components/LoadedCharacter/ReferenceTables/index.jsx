@@ -29,7 +29,7 @@ const LoadedCharacterReferenceTables = ({
   const dispatch = React.useContext(DispatchContext);
 
   return (
-    <div className={`${styles.card} --card`}>
+    <div className={`${styles.card} card-standard`}>
       <div>
         <h1>
           {name}

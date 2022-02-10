@@ -1,14 +1,4 @@
-/* mptodo replace with standard-card below */
-.--card {
-  color: var(--panzer-grey);
-  background-color: whitesmoke;
-  border-radius: 3px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
-  padding: 1rem;
-}
-
-.--card > table {
+.card-standard > table {
   border-collapse: collapse;
 }
 
@@ -126,6 +116,7 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   padding: 1rem;
+  height: fit-content;
 }
 
 .card-select-gear-modal {

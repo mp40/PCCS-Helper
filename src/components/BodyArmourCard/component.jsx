@@ -29,7 +29,7 @@ const BodyArmourCard = ({ helmet, vest, changeHelmet, changeVest }) => {
   );
 
   return (
-    <div className="--card">
+    <div className="card-standard">
       <table>
         <thead>
           <tr>

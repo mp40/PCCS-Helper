@@ -209,7 +209,7 @@ const LoadedCharacterShooting = ({
   };
 
   return (
-    <div className={`${styles.wrapper} --card`}>
+    <div className={`${styles.wrapper} card-standard`}>
       <div className={styles.header}>
         <span>{firearm.name}</span>
         <button
