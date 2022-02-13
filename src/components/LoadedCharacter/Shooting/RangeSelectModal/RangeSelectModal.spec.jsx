@@ -33,4 +33,10 @@ describe('Range Select Modal', () => {
 
     expect(setModal).toHaveBeenCalledWith(false);
   });
+
+  it('should not show ranges above the the max range', () => {
+    const keypad = wrapper.dive().find('KeyPad').dive();
+
+    expect(keypad.text()).not.toContain('100');
+  });
 });
