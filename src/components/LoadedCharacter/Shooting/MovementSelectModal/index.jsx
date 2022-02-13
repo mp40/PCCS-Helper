@@ -24,8 +24,8 @@ const MovementSelectModal = ({ setMovement, setModal, movement }) => {
   return (
     <>
       <div className="modal-background" />
-      <div className={`card-standard ${styles.card}`}>
 
+      <div className={`card-standard ${styles.card}`}>
         {['shooter', 'target'].map((person) => (
           <Fragment key={person}>
             <div className={styles.heading}>{`${person}, Hex Per Imp`}</div>
@@ -36,9 +36,7 @@ const MovementSelectModal = ({ setMovement, setModal, movement }) => {
             />
           </Fragment>
         ))}
-
         <button type="button" className={styles.done} onClick={() => setModal(false)}>Done</button>
-
       </div>
     </>
   );
