@@ -1,5 +1,8 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 import PropTypes from 'prop-types';
+
+import { AlmDispatchContext, AlmStateContext } from '../alm/context';
+import { updateMovement } from '../alm/actions';
 
 import KeyPad from '../../../widgets/keyPad';
 
@@ -13,12 +16,15 @@ const speeds = [
   4.5, 5,
 ];
 
-const MovementSelectModal = ({ setMovement, setModal, movement }) => {
+const MovementSelectModal = ({ setModal }) => {
+  const dispatch = useContext(AlmDispatchContext);
+  const { movement } = useContext(AlmStateContext);
+
   const handleClick = (value, person) => {
     const updatedMovement = { ...movement };
     updatedMovement[person] = value;
 
-    setMovement(updatedMovement);
+    dispatch(updateMovement(updatedMovement));
   };
 
   return (
@@ -43,9 +49,7 @@ const MovementSelectModal = ({ setMovement, setModal, movement }) => {
 };
 
 MovementSelectModal.propTypes = {
-  setMovement: PropTypes.func.isRequired,
   setModal: PropTypes.func.isRequired,
-  movement: PropTypes.objectOf(PropTypes.number),
 };
 
 export default MovementSelectModal;

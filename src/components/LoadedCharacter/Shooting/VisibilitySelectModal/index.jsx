@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+
+import { AlmDispatchContext, AlmStateContext } from '../alm/context';
+import { updateVisibility } from '../alm/actions';
 
 import { lightingOptions, getOthers } from './data';
 
@@ -7,19 +10,24 @@ import CheckBox from '../../../widgets/buttons/CheckBox';
 
 import styles from './styles.module.css';
 
-const VisibilitySelectModal = ({ visibility, setModal, setVisibility, optics }) => {
+const VisibilitySelectModal = ({ setModal }) => {
+  const dispatch = useContext(AlmDispatchContext);
+  const { visibility, firearm } = useContext(AlmStateContext);
+
+  const optics = firearm?.optics?.attached;
+
   const handleUpdateLighting = (type) => {
     const updatedVisibility = { ...visibility };
     updatedVisibility.lighting = type;
 
-    setVisibility(updatedVisibility);
+    dispatch(updateVisibility(updatedVisibility));
   };
 
   const handleUpdateOther = (key) => {
     const updatedVisibility = { ...visibility };
     updatedVisibility[key] = !updatedVisibility[key];
 
-    setVisibility(updatedVisibility);
+    dispatch(updateVisibility(updatedVisibility));
   };
 
   const getClassName = (type) => {
@@ -60,13 +68,7 @@ const VisibilitySelectModal = ({ visibility, setModal, setVisibility, optics }) 
 };
 
 VisibilitySelectModal.propTypes = {
-  visibility: PropTypes.objectOf(PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.bool,
-  ])).isRequired,
   setModal: PropTypes.func.isRequired,
-  setVisibility: PropTypes.func.isRequired,
-  optics: PropTypes.string,
 };
 
 export default VisibilitySelectModal;

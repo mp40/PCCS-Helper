@@ -1,19 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+
+import { AlmDispatchContext, AlmStateContext } from '../alm/context';
+import { updateRange } from '../alm/actions';
 
 import KeyPadModal from '../../../widgets/keyPadModal';
 
-import { rangeMods } from '../data';
+import { getWeaponMaxRange } from './data';
 
-const RangeSelectModal = ({ range, maxRange, setRange, setModal }) => {
+const RangeSelectModal = ({ setModal }) => {
+  const dispatch = useContext(AlmDispatchContext);
+  const { range, firearm } = useContext(AlmStateContext);
+
   const handleClick = (rng) => {
-    setRange(rng);
+    dispatch(updateRange(rng));
     setModal(false);
   };
 
+  const maxRange = getWeaponMaxRange(firearm.list);
+
   return (
     <KeyPadModal
-      values={Object.keys(rangeMods).filter((n) => n <= maxRange)}
+      values={maxRange}
       handleClick={handleClick}
       selected={range}
     />
@@ -21,9 +29,6 @@ const RangeSelectModal = ({ range, maxRange, setRange, setModal }) => {
 };
 
 RangeSelectModal.propTypes = {
-  range: PropTypes.number.isRequired,
-  maxRange: PropTypes.number.isRequired,
-  setRange: PropTypes.func.isRequired,
   setModal: PropTypes.func.isRequired,
 };
 

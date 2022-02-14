@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+
+import { AlmDispatchContext, AlmStateContext } from '../alm/context';
+import { updateAims } from '../alm/actions';
 
 import KeyPadModal from '../../../widgets/keyPadModal';
 
-const AimsSelectModal = ({ aims, maxAims, setAims, setModal }) => {
+const AimsSelectModal = ({ setModal }) => {
+  const dispatch = useContext(AlmDispatchContext);
+  const { aims, firearm } = useContext(AlmStateContext);
+
+  const maxAims = firearm.aim.ac.slice(-1)[0];
+
   const handleClick = (aim) => {
-    setAims(aim);
+    dispatch(updateAims(aim));
     setModal(false);
   };
 
@@ -15,9 +23,6 @@ const AimsSelectModal = ({ aims, maxAims, setAims, setModal }) => {
 };
 
 AimsSelectModal.propTypes = {
-  aims: PropTypes.number.isRequired,
-  maxAims: PropTypes.number.isRequired,
-  setAims: PropTypes.func.isRequired,
   setModal: PropTypes.func.isRequired,
 };
 

@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+
+import { AlmDispatchContext } from '../alm/context';
+import { updateStance } from '../alm/actions';
 
 import styles from './styles.module.css';
 
-const StanceSelectModal = ({ setStance, setModal }) => {
+const StanceSelectModal = ({ setModal }) => {
+  const dispatch = useContext(AlmDispatchContext);
+
   const stances = ['Standing', 'Kneeling', 'Prone'];
 
   const handleClick = (stance) => {
-    setStance(stance);
+    dispatch(updateStance(stance));
     setModal(false);
   };
 
@@ -26,7 +31,6 @@ const StanceSelectModal = ({ setStance, setModal }) => {
 };
 
 StanceSelectModal.propTypes = {
-  setStance: PropTypes.func.isRequired,
   setModal: PropTypes.func.isRequired,
 };
 

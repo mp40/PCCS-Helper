@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+
+import { AlmDispatchContext, AlmStateContext } from '../alm/context';
+import { updateSituation } from '../alm/actions';
 
 import CheckBox from '../../../widgets/buttons/CheckBox';
 
@@ -7,12 +10,15 @@ import { getModifierList } from './data';
 
 import styles from './styles.module.css';
 
-const SituationSelectModal = ({ list, bipod, foldingStock, setModal, weaponBasedALM, setWeaponBasedALM }) => {
-  const handleClick = (key) => {
-    const updatedObject = { ...weaponBasedALM };
-    updatedObject[key] = !updatedObject[key];
+const SituationSelectModal = ({ setModal }) => {
+  const dispatch = useContext(AlmDispatchContext);
+  const { situation, firearm } = useContext(AlmStateContext);
 
-    setWeaponBasedALM(updatedObject);
+  const handleClick = (key) => {
+    const updatedSituation = { ...situation };
+    updatedSituation[key] = !updatedSituation[key];
+
+    dispatch(updateSituation(updatedSituation));
   };
 
   const applyScreen = (key) => {
@@ -24,7 +30,7 @@ const SituationSelectModal = ({ list, bipod, foldingStock, setModal, weaponBased
     }
 
     for (let i = 0; i < bracedAndBipodSituations.length; i += 1) {
-      if (weaponBasedALM[bracedAndBipodSituations[i]] === true && bracedAndBipodSituations[i] !== key) {
+      if (situation[bracedAndBipodSituations[i]] === true && bracedAndBipodSituations[i] !== key) {
         block = true;
         break;
       }
@@ -37,13 +43,13 @@ const SituationSelectModal = ({ list, bipod, foldingStock, setModal, weaponBased
     <>
       <div className="modal-background" />
       <div className={`card-standard ${styles.card}`}>
-        {getModifierList(list, bipod, foldingStock).map((situation) => (
-          <div key={situation.key} className={styles.checkbox}>
-            <span>{situation.text}</span>
+        {getModifierList(firearm.list, firearm.bipod || false, String(firearm.length).includes('/')).map((s) => (
+          <div key={s.key} className={styles.checkbox}>
+            <span>{s.text}</span>
             <span>
-              <CheckBox onClick={() => handleClick(situation.key)} isActive={weaponBasedALM[situation.key]} />
+              <CheckBox onClick={() => handleClick(s.key)} isActive={situation[s.key]} />
             </span>
-            {applyScreen(situation.key)
+            {applyScreen(s.key)
              && <span className={styles.screen} />}
           </div>
         ))}
@@ -54,12 +60,7 @@ const SituationSelectModal = ({ list, bipod, foldingStock, setModal, weaponBased
 };
 
 SituationSelectModal.propTypes = {
-  list: PropTypes.string.isRequired,
-  foldingStock: PropTypes.bool.isRequired,
-  bipod: PropTypes.bool.isRequired,
   setModal: PropTypes.func.isRequired,
-  weaponBasedALM: PropTypes.objectOf(PropTypes.bool).isRequired,
-  setWeaponBasedALM: PropTypes.func.isRequired,
 };
 
 export default SituationSelectModal;

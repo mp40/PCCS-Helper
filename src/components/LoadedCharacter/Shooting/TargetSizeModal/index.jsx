@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { targetSizeMods } from '../data';
+import { AlmDispatchContext } from '../alm/context';
+import { updateTarget } from '../alm/actions';
+
+import { targetSizeMods } from '../alm/data';
 
 import styles from './styles.module.css';
 
-const TargetSizeSelectModal = ({ setSize, setModal }) => {
+const TargetSizeSelectModal = ({ setModal }) => {
+  const dispatch = useContext(AlmDispatchContext);
+
   const handleClick = (size) => {
-    setSize(size);
+    dispatch(updateTarget(size));
     setModal(false);
   };
 
@@ -26,7 +31,6 @@ const TargetSizeSelectModal = ({ setSize, setModal }) => {
 };
 
 TargetSizeSelectModal.propTypes = {
-  setSize: PropTypes.func.isRequired,
   setModal: PropTypes.func.isRequired,
 };
 
