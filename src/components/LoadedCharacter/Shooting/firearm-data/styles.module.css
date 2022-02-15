@@ -1,0 +1,78 @@
+.ammoTypes {
+    margin: 1rem auto 0;
+    width: calc(1.5rem * 3 + 3rem);
+    box-shadow: inset 0px 0px 1.25px 1.25px #5d5d5d;
+    height: 0.75rem;
+    position: relative;
+    border-radius: 0.75rem;
+  }
+  
+  .ammoTypes > button {
+    width: 1.5rem;
+    height: 1.5rem;
+    opacity: 0;
+    position: relative;
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .ammoTypes > .ammoName {
+    position: absolute;
+    font-size: 0.75rem;
+    top: -0.85rem;
+  }
+  
+  .ammoTypes > .ammoMarker {
+    background-color: var(--german-yellow);
+    border: 1px solid var(--london-grey);
+    box-shadow: 0 0 1px 0 var(--panzer-grey);
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(0%, -50%);
+    opacity: 0;
+  }
+  
+  .ammoTypes > .selected {
+    opacity: 1;
+  }
+  
+  .ammoTypes > button:nth-of-type(2),
+  .ammoTypes > div:nth-of-type(4) {
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .ammoTypes > div:nth-of-type(3) {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .ammoTypes > button:last-of-type,
+  .ammoTypes > div:nth-last-of-type(1) {
+    left: 100%;
+    transform: translate(-100%, -50%);
+  }
+  
+  .ammoTypes > div:nth-last-of-type(2) {
+    left: 100%;
+    transform: translateX(-100%);
+  }
+  
+  .data {
+    display: flex;
+    justify-content: space-between;
+    height: 4.5rem;
+  }
+  
+  .data > div {
+    width: fit-content;
+  }
+  
+  .data > div > span {
+    display: block;
+  }

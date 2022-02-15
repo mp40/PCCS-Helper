@@ -1,8 +1,8 @@
 import React, { Fragment, useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { AlmDispatchContext, AlmStateContext } from '../alm/context';
-import { updateMovement } from '../alm/actions';
+import { AlmDispatchContext, AlmStateContext } from '../context';
+import { updateMovement } from '../actions';
 
 import KeyPad from '../../../widgets/keyPad';
 

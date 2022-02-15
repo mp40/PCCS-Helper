@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { AlmDispatchContext, AlmStateContext } from '../alm/context';
-import { updateSituation } from '../alm/actions';
+import { AlmDispatchContext, AlmStateContext, FirearmContext } from '../context';
+import { updateSituation } from '../actions';
 
 import CheckBox from '../../../widgets/buttons/CheckBox';
 
@@ -12,7 +12,8 @@ import styles from './styles.module.css';
 
 const SituationSelectModal = ({ setModal }) => {
   const dispatch = useContext(AlmDispatchContext);
-  const { situation, firearm } = useContext(AlmStateContext);
+  const { situation } = useContext(AlmStateContext);
+  const firearm = useContext(FirearmContext);
 
   const handleClick = (key) => {
     const updatedSituation = { ...situation };

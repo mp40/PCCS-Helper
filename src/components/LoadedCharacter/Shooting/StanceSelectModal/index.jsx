@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { AlmDispatchContext } from '../alm/context';
-import { updateStance } from '../alm/actions';
+import { AlmDispatchContext } from '../context';
+import { updateStance } from '../actions';
 
 import styles from './styles.module.css';
 

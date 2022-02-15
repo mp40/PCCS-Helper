@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { AlmDispatchContext, AlmStateContext } from '../alm/context';
-import { updateMiscellaneous } from '../alm/actions';
+import { AlmDispatchContext, AlmStateContext } from '../context';
+import { updateMiscellaneous } from '../actions';
 
 import KeyPadModal from '../../../widgets/keyPadModal';
 
-const values = [-10, -9, -8, -7, -6, -5, -4, -3, -2 - 1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const values = [-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 const MiscellaneousSelectModal = ({ setModal }) => {
   const dispatch = useContext(AlmDispatchContext);

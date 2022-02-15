@@ -1,14 +1,15 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { AlmDispatchContext, AlmStateContext } from '../alm/context';
-import { updateAims } from '../alm/actions';
+import { AlmDispatchContext, AlmStateContext, FirearmContext } from '../context';
+import { updateAims } from '../actions';
 
 import styles from './styles.module.css';
 
 const Aiming = ({ setModal }) => {
   const dispatch = useContext(AlmDispatchContext);
-  const { aims, firearm } = useContext(AlmStateContext);
+  const firearm = useContext(FirearmContext);
+  const { aims } = useContext(AlmStateContext);
 
   const maxAims = firearm.aim.ac.slice(-1)[0];
 

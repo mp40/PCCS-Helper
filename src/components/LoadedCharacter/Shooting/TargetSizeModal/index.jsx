@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { AlmDispatchContext } from '../alm/context';
-import { updateTarget } from '../alm/actions';
+import { AlmDispatchContext } from '../context';
+import { updateTarget } from '../actions';
 
 import { targetSizeMods } from '../alm/data';
 
