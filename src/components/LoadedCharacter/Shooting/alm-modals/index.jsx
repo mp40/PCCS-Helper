@@ -31,7 +31,7 @@ const AlmModals = ({ modal, setModal }) => {
 };
 
 AlmModals.propTypes = {
-  modal: PropTypes.oneOfType([PropTypes.string, null]).isRequired,
+  modal: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
   setModal: PropTypes.func.isRequired,
 };
 

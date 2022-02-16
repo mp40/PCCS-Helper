@@ -1,1 +1,3 @@
-export const initialState = { activeModal: null };
+export const initialState = {
+  activeModal: false,
+};

@@ -11,7 +11,7 @@ const Modal = ({ Component }) => {
   return (
     <>
       <div className={styles.background} />
-      <Component closeModal={() => dispatch(showModal(null))} />
+      <Component closeModal={() => dispatch(showModal(false))} />
     </>
   );
 };
