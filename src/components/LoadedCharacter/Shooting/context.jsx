@@ -20,15 +20,32 @@ export const FirearmProvider = (
 
 AlmDispatchProvider.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  children: PropTypes.elementType.isRequired,
+  children: PropTypes.oneOfType(
+    [PropTypes.elementType, PropTypes.object],
+  ).isRequired,
 };
 
 AlmStateProvider.propTypes = {
-  state: PropTypes.objectOf().isRequired,
-  children: PropTypes.elementType.isRequired,
+  state: PropTypes.shape({
+    range: PropTypes.number,
+    aims: PropTypes.number,
+    stance: PropTypes.string,
+    target: PropTypes.string,
+    movement: PropTypes.objectOf(PropTypes.number),
+    situation: PropTypes.objectOf(PropTypes.bool),
+    visibility: PropTypes.objectOf(
+      PropTypes.oneOf([PropTypes.bool, PropTypes.string]),
+    ),
+    miscellaneous: PropTypes.number,
+  }),
+  children: PropTypes.oneOfType(
+    [PropTypes.elementType, PropTypes.object],
+  ).isRequired,
 };
 
 FirearmProvider.propTypes = {
   firearm: gunObjShape.isRequired,
-  children: PropTypes.elementType.isRequired,
+  children: PropTypes.oneOfType(
+    [PropTypes.elementType, PropTypes.object],
+  ).isRequired,
 };

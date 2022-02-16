@@ -1,4 +1,4 @@
-import React, { useState, useContext, Fragment } from 'react';
+import React, { useState, useContext, useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import { AlmStateContext, FirearmContext } from '../context';
@@ -11,7 +11,12 @@ import styles from './styles.module.css';
 const FirearmData = ({ level, alm, rof }) => {
   const state = useContext(AlmStateContext);
   const firearm = useContext(FirearmContext);
+
   const [ammoType, setAmmoType] = useState(0);
+
+  useEffect(() => {
+    setAmmoType(0);
+  }, [firearm]);
 
   const { list, projectiles, ma, ba, kd } = firearm;
 
