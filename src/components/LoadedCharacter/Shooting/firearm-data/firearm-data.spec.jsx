@@ -8,37 +8,68 @@ import { firearms } from '../../../../data/firearms';
 import { hydrateFirearmByObject } from '../../../../data/firearms/hydrate';
 
 const testFAMAS = () => ({ ...firearms.FAMAS });
+const testM1911A1 = () => ({ ...firearms.M1911A1 });
 
 describe('Weapon Data', () => {
-  const getWrapper = (range, rof) => mount(
+  const getWrapper = (range, rof, alm, firearm) => mount(
     <AlmStateProvider state={{ range, target: 'Standing Exposed' }}>
-      <FirearmProvider firearm={{ ...hydrateFirearmByObject(testFAMAS()) }}>
-        <FirearmData level={0} alm={10} rof={rof} />
+      <FirearmProvider firearm={firearm}>
+        <FirearmData level={0} alm={alm} rof={rof} />
       </FirearmProvider>
     </AlmStateProvider>,
   );
 
+  const getWrapperWithFamas = (range, rof) => getWrapper(range, rof, 10, { ...hydrateFirearmByObject(testFAMAS()) });
+
+  const getWrapperWithM1911 = (range, alm) => getWrapper(range, 'Single', alm, { ...hydrateFirearmByObject(testM1911A1()) });
+
+  describe('Ballastic Accuracy', () => {
+    it('should use firearm ballistic accuracy instead of ALM if it is less', () => {
+      const wrapper = getWrapperWithM1911(100, 16);
+
+      expect(wrapper.text()).toContain('ALM: 15');
+    });
+
+    it('should not use firearm ballistic accuracy if it is greater than ALM', () => {
+      const wrapper = getWrapperWithM1911(100, 14);
+
+      expect(wrapper.find('.data').text()).toContain('ALM: 14');
+    });
+
+    it('should provide visual feed back if BA used', () => {
+      const wrapper = getWrapperWithM1911(100, 15);
+
+      expect(wrapper.find('.baReached').exists()).toBe(true);
+    });
+
+    it('should not show the visual feed back if BA not used', () => {
+      const wrapper = getWrapperWithM1911(100, 14);
+
+      expect(wrapper.find('.baReached').exists()).toBe(false);
+    });
+  });
+
   describe('Minimum Arc by range', () => {
     it('should not show the MA if Single rof selected', () => {
-      const wrapper = getWrapper(85, 'Single');
+      const wrapper = getWrapperWithFamas(85, 'Single');
 
       expect(wrapper.text()).not.toContain('MA:');
     });
 
     it('should show the MA if in Auto based on selected range of 85', () => {
-      const wrapper = getWrapper(85, 'Auto');
+      const wrapper = getWrapperWithFamas(85, 'Auto');
 
       expect(wrapper.text()).toContain('MA: 4');
     });
 
     it('should show the MA if in 3RB based on selected range of 85', () => {
-      const wrapper = getWrapper(85, '3RB');
+      const wrapper = getWrapperWithFamas(85, '3RB');
 
       expect(wrapper.text()).toContain('MA: 4');
     });
 
     it('should show the MA if in Auto based on selected range of 1', () => {
-      const wrapper = getWrapper(1, 'Auto');
+      const wrapper = getWrapperWithFamas(1, 'Auto');
 
       expect(wrapper.text()).toContain('MA: 0.4');
     });
@@ -46,7 +77,7 @@ describe('Weapon Data', () => {
 
   describe('Selecting available ammo types', () => {
     it('should show ammo type as FMJ if it is the default', () => {
-      const wrapper = getWrapper(85, 'Single');
+      const wrapper = getWrapperWithFamas(85, 'Single');
 
       expect(wrapper.find('.ammoMarker').at(0).props().className).toContain('selected');
       expect(wrapper.find('.ammoMarker').at(1).props().className).not.toContain('selected');
@@ -54,7 +85,7 @@ describe('Weapon Data', () => {
     });
 
     it('should be possible to select JHP if available', () => {
-      const wrapper = getWrapper(85, 'Single');
+      const wrapper = getWrapperWithFamas(85, 'Single');
       wrapper.find('.ammoTypes').find('button[children="JHP"]').simulate('click');
 
       expect(wrapper.find('.ammoMarker').at(0).props().className).not.toContain('selected');
@@ -63,7 +94,7 @@ describe('Weapon Data', () => {
     });
 
     it('should be possible to select AP if available', () => {
-      const wrapper = getWrapper(85, 'Single');
+      const wrapper = getWrapperWithFamas(85, 'Single');
       wrapper.find('.ammoTypes').find('button[children="AP"]').simulate('click');
 
       expect(wrapper.find('.ammoMarker').at(0).props().className).not.toContain('selected');
@@ -74,73 +105,73 @@ describe('Weapon Data', () => {
 
   describe('Default FMJ ammo stats', () => {
     it('should show the PEN based on range of 100', () => {
-      const wrapper = getWrapper(100, 'Single');
+      const wrapper = getWrapperWithFamas(100, 'Single');
 
       expect(wrapper.text()).toContain('PEN: 10');
     });
 
     it('should show the DC based on range of 100', () => {
-      const wrapper = getWrapper(100, 'Single');
+      const wrapper = getWrapperWithFamas(100, 'Single');
 
       expect(wrapper.text()).toContain('DC: 5');
     });
 
     it('should show the PEN based on selected range of 85', () => {
-      const wrapper = getWrapper(85, 'Single');
+      const wrapper = getWrapperWithFamas(85, 'Single');
 
       expect(wrapper.text()).toContain('PEN: 10');
     });
 
     it('should show the DC based on selected range of 85', () => {
-      const wrapper = getWrapper(85, 'Single');
+      const wrapper = getWrapperWithFamas(85, 'Single');
 
       expect(wrapper.text()).toContain('DC: 5');
     });
 
     it('should show the PEN based on selected range of 75', () => {
-      const wrapper = getWrapper(75, 'Single');
+      const wrapper = getWrapperWithFamas(75, 'Single');
 
       expect(wrapper.text()).toContain('PEN: 10');
     });
 
     it('should show the DC based on selected range of 75', () => {
-      const wrapper = getWrapper(75, 'Single');
+      const wrapper = getWrapperWithFamas(75, 'Single');
 
       expect(wrapper.text()).toContain('DC: 5');
     });
 
     it('should show the PEN based on selected range of 65', () => {
-      const wrapper = getWrapper(65, 'Single');
+      const wrapper = getWrapperWithFamas(65, 'Single');
 
       expect(wrapper.text()).toContain('PEN: 12');
     });
 
     it('should show the DC based on selected range of 65', () => {
-      const wrapper = getWrapper(65, 'Single');
+      const wrapper = getWrapperWithFamas(65, 'Single');
 
       expect(wrapper.text()).toContain('DC: 6');
     });
 
     it('should show the PEN based on selected range of 1', () => {
-      const wrapper = getWrapper(1, 'Single');
+      const wrapper = getWrapperWithFamas(1, 'Single');
 
       expect(wrapper.text()).toContain('PEN: 15');
     });
 
     it('should show the DC based on selected range of 1', () => {
-      const wrapper = getWrapper(1, 'Single');
+      const wrapper = getWrapperWithFamas(1, 'Single');
 
       expect(wrapper.text()).toContain('DC: 6');
     });
 
     it('should show the PEN based on selected range of 350', () => {
-      const wrapper = getWrapper(350, 'Single');
+      const wrapper = getWrapperWithFamas(350, 'Single');
 
       expect(wrapper.text()).toContain('PEN: 2.6');
     });
 
     it('should show the DC based on selected range of 350', () => {
-      const wrapper = getWrapper(350, 'Single');
+      const wrapper = getWrapperWithFamas(350, 'Single');
 
       expect(wrapper.text()).toContain('DC: 2');
     });
@@ -148,28 +179,28 @@ describe('Weapon Data', () => {
 
   describe('JHP ammo stats', () => {
     it('should show the PEN based on selected range of 1', () => {
-      const wrapper = getWrapper(1, 'Single');
+      const wrapper = getWrapperWithFamas(1, 'Single');
       wrapper.find('.ammoTypes').find('button[children="JHP"]').simulate('click');
 
       expect(wrapper.text()).toContain('PEN: 15');
     });
 
     it('should show the DC based on selected range of 1', () => {
-      const wrapper = getWrapper(1, 'Single');
+      const wrapper = getWrapperWithFamas(1, 'Single');
       wrapper.find('.ammoTypes').find('button[children="JHP"]').simulate('click');
 
       expect(wrapper.text()).toContain('DC: 8');
     });
 
     it('should show the PEN based on selected range of 350', () => {
-      const wrapper = getWrapper(350, 'Single');
+      const wrapper = getWrapperWithFamas(350, 'Single');
       wrapper.find('.ammoTypes').find('button[children="JHP"]').simulate('click');
 
       expect(wrapper.text()).toContain('PEN: 2.5');
     });
 
     it('should show the DC based on selected range of 350', () => {
-      const wrapper = getWrapper(350, 'Single');
+      const wrapper = getWrapperWithFamas(350, 'Single');
       wrapper.find('.ammoTypes').find('button[children="JHP"]').simulate('click');
 
       expect(wrapper.text()).toContain('DC: 3');
@@ -178,28 +209,28 @@ describe('Weapon Data', () => {
 
   describe('AP ammo stats', () => {
     it('should show the PEN based on selected range of 1', () => {
-      const wrapper = getWrapper(1, 'Single');
+      const wrapper = getWrapperWithFamas(1, 'Single');
       wrapper.find('.ammoTypes').find('button[children="AP"]').simulate('click');
 
       expect(wrapper.text()).toContain('PEN: 22');
     });
 
     it('should show the DC based on selected range of 1', () => {
-      const wrapper = getWrapper(1, 'Single');
+      const wrapper = getWrapperWithFamas(1, 'Single');
       wrapper.find('.ammoTypes').find('button[children="AP"]').simulate('click');
 
       expect(wrapper.text()).toContain('DC: 6');
     });
 
     it('should show the PEN based on selected range of 350', () => {
-      const wrapper = getWrapper(350, 'Single');
+      const wrapper = getWrapperWithFamas(350, 'Single');
       wrapper.find('.ammoTypes').find('button[children="AP"]').simulate('click');
 
       expect(wrapper.text()).toContain('PEN: 3.7');
     });
 
     it('should show the DC based on selected range of 350', () => {
-      const wrapper = getWrapper(350, 'Single');
+      const wrapper = getWrapperWithFamas(350, 'Single');
       wrapper.find('.ammoTypes').find('button[children="AP"]').simulate('click');
 
       expect(wrapper.text()).toContain('DC: 2');

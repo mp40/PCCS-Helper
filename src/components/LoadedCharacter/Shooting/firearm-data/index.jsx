@@ -12,17 +12,26 @@ const FirearmData = ({ level, alm, rof }) => {
   const state = useContext(AlmStateContext);
   const firearm = useContext(FirearmContext);
 
+  const [ballisticAlm, setBallisticAlm] = useState();
   const [ammoType, setAmmoType] = useState(0);
-
-  useEffect(() => {
-    setAmmoType(0);
-  }, [firearm]);
 
   const { list, projectiles, ma, ba, kd } = firearm;
 
   const rangeIndex = getWeaponRangeIndex(list, state.range);
 
   const targetSizeMod = getTargetSizeMod(rof, state.target);
+
+  useEffect(() => {
+    setAmmoType(0);
+  }, [firearm]);
+
+  useEffect(() => {
+    if (alm > ba[rangeIndex]) {
+      setBallisticAlm(ba[rangeIndex]);
+    } else {
+      setBallisticAlm(alm);
+    }
+  }, [alm]);
 
   return (
     <>
@@ -40,8 +49,8 @@ const FirearmData = ({ level, alm, rof }) => {
 
       <div className={styles.data}>
         <div>
-          <span className={`${alm === ba[rangeIndex] ? styles.baReached : ''}`}>{`ALM: ${alm}`}</span>
-          <span>{`EAL: ${alm + targetSizeMod}`}</span>
+          <span className={`${ballisticAlm === ba[rangeIndex] ? styles.baReached : ''}`}>{`ALM: ${ballisticAlm}`}</span>
+          <span>{`EAL: ${ballisticAlm + targetSizeMod}`}</span>
         </div>
         <div>
           <span>{`PEN: ${projectiles[ammoType].pen[rangeIndex]}`}</span>
