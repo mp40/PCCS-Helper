@@ -9,6 +9,8 @@ import Aiming from '../Aiming';
 import AlmModals from '../alm-modals';
 import AlmButton from '../../../widgets/buttons/AlmButton';
 
+import { getScopeByName } from '../../../../data/firearms/optics';
+
 import {
   rangeMods,
   getAimTimeMod,
@@ -20,12 +22,28 @@ import {
 
 import styles from './styles.module.css';
 
-const Alm = ({ setAlm, setDuckAlm }) => {
+const Alm = ({ setAlm }) => {
   const state = useContext(AlmStateContext);
   const firearm = useContext(FirearmContext);
+  const [duckAlm, setDuckAlm] = useState(0);
   const [modal, setModal] = useState(false);
 
   const { stance, aims, situation, visibility, range, movement, miscellaneous } = state;
+
+  const getOpticAlm = () => {
+    const attached = firearm?.optics?.attached;
+    if (!attached || state.situation.hipFire === true) {
+      return 0;
+    }
+
+    const optic = getScopeByName(firearm.optics.attached);
+
+    if (range < optic.minimumRange) {
+      return -6;
+    }
+
+    return optic.bonus[aims - 1];
+  };
 
   useEffect(() => {
     let result = miscellaneous;
@@ -35,8 +53,10 @@ const Alm = ({ setAlm, setDuckAlm }) => {
     result += findSpeedMods(movement.shooter + movement.target, range).mod;
     result += getVisibilityALM(visibility);
     result += getSituationALM(situation, stance, aims);
+    result += getOpticAlm();
+    result += duckAlm;
     setAlm(result);
-  }, [state]);
+  }, [state, duckAlm]);
 
   const almButtons = [
     {
@@ -97,7 +117,6 @@ const Alm = ({ setAlm, setDuckAlm }) => {
 
 Alm.propTypes = {
   setAlm: PropTypes.func.isRequired,
-  setDuckAlm: PropTypes.func.isRequired,
 };
 
 export default Alm;

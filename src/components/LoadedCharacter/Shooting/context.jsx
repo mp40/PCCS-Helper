@@ -34,7 +34,7 @@ AlmStateProvider.propTypes = {
     movement: PropTypes.objectOf(PropTypes.number),
     situation: PropTypes.objectOf(PropTypes.bool),
     visibility: PropTypes.objectOf(
-      PropTypes.oneOf([PropTypes.bool, PropTypes.string]),
+      PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     ),
     miscellaneous: PropTypes.number,
   }),

@@ -107,3 +107,170 @@ describe('Clicking Fire Buttons', () => {
     expect(wrapper.find('button[children="Cease Fire"]').exists()).toBe(false);
   });
 });
+
+describe('Ammo Used Tally', () => {
+  const setRof = jest.fn();
+  const dispatch = jest.fn();
+
+  const getWrapper = (rof, firearm = testFAMAS()) => mount(
+    <AlmDispatchProvider dispatch={dispatch}>
+      <AlmStateProvider state={{ target: 'Standing Exposed' }}>
+        <FirearmProvider firearm={{ ...hydrateFirearmByObject(firearm) }}>
+          <PewPew rof={rof} setRof={setRof} alm={0} />
+        </FirearmProvider>
+      </AlmStateProvider>
+    </AlmDispatchProvider>,
+  );
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('should add one for single fire', () => {
+    const wrapper = getWrapper('Single');
+    wrapper.find('button[children="FIRE"]').simulate('click');
+
+    expect(wrapper.find('.firing').text()).toContain('Rounds Fired: 1');
+  });
+
+  it('should track multiple shots in single fire', () => {
+    const wrapper = getWrapper('Single');
+    wrapper.find('button[children="FIRE"]').simulate('click');
+    wrapper.find('button[children="FIRE"]').simulate('click');
+    wrapper.find('button[children="FIRE"]').simulate('click');
+
+    expect(wrapper.find('.firing').text()).toContain('Rounds Fired: 3');
+  });
+
+  it('should add auto fire rate for auto fire', () => {
+    const wrapper = getWrapper('Auto');
+    wrapper.find('button[children="FIRE"]').simulate('click');
+
+    expect(wrapper.find('.firing').text()).toContain('Rounds Fired: 8');
+  });
+
+  it('should track multiple bursts for auto fire', () => {
+    const wrapper = getWrapper('Auto');
+    wrapper.find('button[children="FIRE"]').simulate('click');
+    wrapper.find('button[children="FIRE"]').simulate('click');
+
+    expect(wrapper.find('.firing').text()).toContain('Rounds Fired: 16');
+  });
+
+  it('should track expended rounds in sustained fire for auto fire', () => {
+    const wrapper = getWrapper('Auto');
+    wrapper.find('button[children="Sustained Fire"]').simulate('click');
+    wrapper.find('button[children="Sustained Fire"]').simulate('click');
+
+    expect(wrapper.find('.firing').text()).toContain('Rounds Fired: 16');
+  });
+
+  it('should not expend rounds on Cease Fire', () => {
+    const wrapper = getWrapper('Auto');
+    wrapper.find('button[children="Sustained Fire"]').simulate('click');
+    wrapper.find('button[children="Sustained Fire"]').simulate('click');
+
+    wrapper.find('button[children="Cease Fire"]').simulate('click');
+
+    expect(wrapper.find('.firing').text()).toContain('Rounds Fired: 16');
+  });
+
+  it('should add 3 rounds for three round burst', () => {
+    const wrapper = getWrapper('3RB');
+    wrapper.find('button[children="FIRE"]').simulate('click');
+
+    expect(wrapper.find('.firing').text()).toContain('Rounds Fired: 3');
+  });
+
+  it('should track multiple three round bursts', () => {
+    const wrapper = getWrapper('3RB');
+    wrapper.find('button[children="FIRE"]').simulate('click');
+    wrapper.find('button[children="FIRE"]').simulate('click');
+
+    expect(wrapper.find('.firing').text()).toContain('Rounds Fired: 6');
+  });
+
+  it('should reset used rounds when reload button clicked', () => {
+    const wrapper = getWrapper('3RB');
+    wrapper.find('button[children="FIRE"]').simulate('click');
+    wrapper.find('button[children="FIRE"]').simulate('click');
+
+    wrapper.find('button[children="Reload"]').simulate('click');
+
+    expect(wrapper.find('.firing').text()).toContain('Rounds Fired: 0');
+  });
+
+  it('should reset sab and aims reload button clicked', () => {
+    const firearm = testFAMAS();
+    firearm.mag[0].cap = 0;
+    const wrapper = getWrapper('Auto');
+
+    wrapper.find('button[children="Sustained Fire"]').simulate('click');
+    wrapper.find('button[children="Sustained Fire"]').simulate('click');
+
+    wrapper.find('button[children="Reload"]').simulate('click');
+
+    expect(dispatch).toHaveBeenCalledWith({ payload: 1, type: 'AIMS_UPDATED' });
+    expect(wrapper.text()).toContain('Hit Chance: 52%');
+  });
+
+  it('should show warning when 1 shot left in Single fire', () => {
+    const firearm = testFAMAS();
+    firearm.mag[0].cap = 1;
+    const wrapper = getWrapper('Single');
+
+    const roundsFiredDiv = wrapper.find('span[children="Rounds Fired: "]').closest('div');
+
+    expect(roundsFiredDiv.childAt(1).props().className).toBe('lowMag');
+  });
+
+  it('should show warning when 3 rounds left in 3RB', () => {
+    const firearm = testFAMAS();
+    firearm.mag[0].cap = 3;
+    const wrapper = getWrapper('3RB');
+
+    const roundsFiredDiv = wrapper.find('span[children="Rounds Fired: "]').closest('div');
+
+    expect(roundsFiredDiv.childAt(1).props().className).toBe('lowMag');
+  });
+
+  it('should show warning when less than 3 rounds left in 3RB', () => {
+    const firearm = testFAMAS();
+    firearm.mag[0].cap = 2;
+    const wrapper = getWrapper('3RB');
+
+    const roundsFiredDiv = wrapper.find('span[children="Rounds Fired: "]').closest('div');
+
+    expect(roundsFiredDiv.childAt(1).props().className).toBe('lowMag');
+  });
+
+  it('should show warning when 1 burst left in Auto', () => {
+    const firearm = testFAMAS();
+    firearm.mag[0].cap = 8;
+    const wrapper = getWrapper('Auto');
+
+    const roundsFiredDiv = wrapper.find('span[children="Rounds Fired: "]').closest('div');
+
+    expect(roundsFiredDiv.childAt(1).props().className).toBe('lowMag');
+  });
+
+  it('should show warning when less than 1 burst left in Auto', () => {
+    const firearm = testFAMAS();
+    firearm.mag[0].cap = 7;
+    const wrapper = getWrapper('Auto');
+
+    const roundsFiredDiv = wrapper.find('span[children="Rounds Fired: "]').closest('div');
+
+    expect(roundsFiredDiv.childAt(1).props().className).toBe('lowMag');
+  });
+
+  it('should show warning when out of ammo', () => {
+    const firearm = testFAMAS();
+    firearm.mag[0].cap = 0;
+    const wrapper = getWrapper('Single', firearm);
+
+    const roundsFiredDiv = wrapper.find('span[children="Rounds Fired: "]').closest('div');
+
+    expect(roundsFiredDiv.childAt(1).props().className).toBe('emptyMag');
+  });
+});
