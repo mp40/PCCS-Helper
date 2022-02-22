@@ -10,584 +10,308 @@ const testM16 = () => ({ ...firearms.M16 });
 const testM1911A1 = () => ({ ...firearms.M1911A1 });
 const testM60 = () => ({ ...firearms.M60 });
 
-describe('Shooting Card', () => {
-  let wrapper;
+describe('Changing Firearm', () => {
+  const firearm = testFAMAS();
   const setFirearm = jest.fn();
+  const wrapper = mount(<Shooting firearm={firearm} level={0} setFirearm={setFirearm} />);
+  wrapper.find('PewPew').invoke('setRof')('Auto');
 
-  beforeEach(() => {
-    wrapper = shallow(<Shooting sal={0} level={0} firearm={testFAMAS()} setFirearm={setFirearm} />);
-  });
+  it('should reset ROF on weapon change', () => {
+    wrapper.setProps({ firearm: testM16() });
+    wrapper.update();
 
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
-
-  it('should set maxAims based on weapon max aim time allowed', () => {
-    expect(wrapper.find('Aiming').props().maxAims).toBe(9);
+    expect(wrapper.find('PewPew').props().rof).toBe('Single');
   });
 
   it('should clear aims on weapon change', () => {
-    wrapper = mount(<Shooting sal={0} level={0} firearm={testFAMAS()} setFirearm={setFirearm} />);
-
-    wrapper.find('Aiming').invoke('setAims')(5);
-
-    wrapper.setProps({ sal: 0, level: 0, firearm: testM16(), setFirearm });
+    wrapper.find('button[children="+"]').simulate('click');
+    wrapper.setProps({ firearm: testM16() });
     wrapper.update();
 
-    expect(wrapper.find('Aiming').props().aims).toBe(1);
+    expect(wrapper.text()).toContain('Aims1');
   });
 
   it('should clear situation mods on weapon change', () => {
-    wrapper = mount(<Shooting sal={0} level={0} firearm={testFAMAS()} setFirearm={setFirearm} />);
-
     wrapper.find('span[children="Situation"]').closest('button').simulate('click');
     wrapper.find('CheckBox').at(0).simulate('click');
     wrapper.find('SituationSelectModal').invoke('setModal')(false);
 
-    wrapper.setProps({ sal: 0, level: 0, firearm: testM16(), setFirearm });
+    wrapper.setProps({ firearm: testM16() });
     wrapper.update();
 
     expect(wrapper.find('span[children="Situation"]').closest('button').text()).toBe('SituationALM: 0');
   });
+});
 
-  it('should clear sab on weapon change', () => {
-    const m16 = testM16();
-    wrapper = mount(<Shooting sal={0} level={0} firearm={testFAMAS()} setFirearm={setFirearm} />);
+describe('Shooting Card Integration', () => {
+  // it('should set maxAims based on weapon max aim time allowed', () => {
+  //   expect(wrapper.find('Aiming').props().maxAims).toBe(9);
+  // });
 
-    wrapper.find('span[children="Range"]').closest('button').simulate('click');
-    wrapper.find('RangeSelectModal').invoke('setRange')(100);
+  // it('should clear selected ammo on weapon change', () => {
+  //   wrapper = mount(<Shooting sal={0} level={0} firearm={testFAMAS()} setFirearm={setFirearm} />);
 
-    wrapper.find('FireSelector').invoke('setRof')('Auto');
-    wrapper.find('button[children="Sustained Fire"]').simulate('click');
+  //   wrapper.find('button[children="JHP"]').simulate('click');
 
-    wrapper.setProps({ sal: 0, level: 0, firearm: m16, setFirearm });
-    wrapper.update();
+  //   wrapper.setProps({ sal: 0, level: 0, firearm: testM16(), setFirearm });
+  //   wrapper.update();
 
-    expect(wrapper.find('.data').text()).toContain(`ALM: ${m16.aim.mod[0]}`);
-  });
+  //   expect(wrapper.find('.ammoMarker').at(0).props().className).toContain('selected');
+  //   expect(wrapper.find('.ammoMarker').at(1).props().className).not.toContain('selected');
+  //   expect(wrapper.find('.ammoMarker').at(2).props().className).not.toContain('selected');
+  // });
 
-  it('should reset fire selector on weapon change', () => {
-    wrapper = mount(<Shooting sal={0} level={0} firearm={testM60()} setFirearm={setFirearm} />);
+  // it('should be possible to close Shooting Card', () => {
+  //   wrapper.find('.close').simulate('click');
 
-    wrapper.find('button[children="Sustained Fire"]').simulate('click');
+  //   expect(setFirearm).toHaveBeenCalledWith(false);
+  // });
 
-    wrapper.setProps({ sal: 0, level: 0, firearm: testM16(), setFirearm });
-    wrapper.update();
+  // describe('Fire selector defaults', () => {
+  //   it('should default to Single if weapon is capable of single fire', () => {
+  //     const fireSelector = wrapper.find('FireSelector').dive();
+  //     const selector = fireSelector.find('.switchHub');
 
-    expect(wrapper.find('button[children="Cease Fire"]').exists()).toBe(false);
-    expect(wrapper.find('button[children="FIRE"]').exists()).toBe(true);
-
-    expect(wrapper.find('FireSelector').props().rof).toBe('Single');
-  });
-
-  it('should clear rounds fired on weapon change', () => {
-    wrapper = mount(<Shooting sal={0} level={0} firearm={testFAMAS()} setFirearm={setFirearm} />);
-
-    wrapper.find('button[children="FIRE"]').simulate('click');
-
-    wrapper.setProps({ sal: 0, level: 0, firearm: testM16(), setFirearm });
-    wrapper.update();
-
-    expect(wrapper.find('.firing').text()).toContain('Rounds Fired: 0');
-  });
-
-  it('should clear selected ammo on weapon change', () => {
-    wrapper = mount(<Shooting sal={0} level={0} firearm={testFAMAS()} setFirearm={setFirearm} />);
-
-    wrapper.find('button[children="JHP"]').simulate('click');
-
-    wrapper.setProps({ sal: 0, level: 0, firearm: testM16(), setFirearm });
-    wrapper.update();
-
-    expect(wrapper.find('.ammoMarker').at(0).props().className).toContain('selected');
-    expect(wrapper.find('.ammoMarker').at(1).props().className).not.toContain('selected');
-    expect(wrapper.find('.ammoMarker').at(2).props().className).not.toContain('selected');
-  });
-
-  it('should be possible to close Shooting Card', () => {
-    wrapper.find('.close').simulate('click');
-
-    expect(setFirearm).toHaveBeenCalledWith(false);
-  });
-
-  describe('Modals', () => {
-    it('should show the the Range Select modal when range button clicked', () => {
-      wrapper.find('span[children="Range"]').closest('button').simulate('click');
-
-      expect(wrapper.find('RangeSelectModal').exists()).toBe(true);
-    });
-
-    it('should show the Select Stance modal when shooter stance button clicked', () => {
-      wrapper.find('span[children="Shooter Stance"]').closest('button').simulate('click');
-
-      expect(wrapper.find('StanceSelectModal').exists()).toBe(true);
-    });
-
-    it('should show the Select Target Size modal when target size button clicked', () => {
-      wrapper.find('span[children="Target Size"]').closest('button').simulate('click');
-
-      expect(wrapper.find('TargetSizeSelectModal').exists()).toBe(true);
-    });
-
-    it('should show the Select Movement modal when movement button clicked', () => {
-      wrapper.find('span[children="Movement"]').closest('button').simulate('click');
-
-      expect(wrapper.find('MovementSelectModal').exists()).toBe(true);
-    });
-
-    it('should show the Select Situation modal when situation button clicked', () => {
-      wrapper.find('span[children="Situation"]').closest('button').simulate('click');
-
-      expect(wrapper.find('SituationSelectModal').exists()).toBe(true);
-    });
-
-    it('should show the Select Visibility modal when visibility button clicked', () => {
-      wrapper.find('Aiming').dive().find('span[children="Aims"]').closest('button')
-        .simulate('click');
-
-      expect(wrapper.find('AimsSelectModal').exists()).toBe(true);
-    });
-
-    it('should show the Select Miscellaneous modal when visibility button clicked', () => {
-      wrapper.find('span[children="Miscellaneous"]').closest('button')
-        .simulate('click');
-
-      expect(wrapper.find('MiscellaneousSelectModal').exists()).toBe(true);
-    });
-
-    it('should show the Select Aims modal when aims button clicked', () => {
-      wrapper.find('span[children="Visibility"]').closest('button').simulate('click');
-
-      expect(wrapper.find('VisibilitySelectModal').exists()).toBe(true);
-    });
-
-    it('should pass bipod prop to Situation Select Modal as true if weapon has bipod', () => {
-      wrapper.find('span[children="Situation"]').closest('button').simulate('click');
-
-      expect(wrapper.find('SituationSelectModal').props().bipod).toBe(true);
-    });
-
-    it('should pass bipod prop to Situation Select Modal as false if weapon has no bipod', () => {
-      wrapper = shallow(<Shooting sal={0} level={0} firearm={testM16()} setFirearm={setFirearm} />);
-
-      wrapper.find('span[children="Situation"]').closest('button').simulate('click');
-
-      expect(wrapper.find('SituationSelectModal').props().bipod).toBe(false);
-    });
-
-    it('should pass foldingStock prop to Situation Select Modal as true if weapon has folding stock', () => {
-      const firearm = testFAMAS();
-      firearm.length = '25/30';
-      wrapper = shallow(<Shooting sal={0} level={0} firearm={firearm} setFirearm={setFirearm} />);
-
-      wrapper.find('span[children="Situation"]').closest('button').simulate('click');
-
-      expect(wrapper.find('SituationSelectModal').props().foldingStock).toBe(true);
-    });
-
-    it('should pass foldingStock prop to Situation Select Modal as false if weapon does not have folding stock', () => {
-      wrapper.find('span[children="Situation"]').closest('button').simulate('click');
-
-      expect(wrapper.find('SituationSelectModal').props().foldingStock).toBe(false);
-    });
-  });
-
-  // mptodo?
-  // describe('Ducking Buttons', () => {
-  //   const baseALM = -18;
-  //   it('should apply target ducking penalty', () => {
-  //     wrapper.find('button[children="Duck\nTarget"]').simulate('click');
-
-  //     const expectedALM = baseALM - 5;
-
-  //     expect(wrapper.text()).toContain(`ALM: ${expectedALM}`);
+  //     expect(selector.props().className).toContain('Single');
   //   });
 
-  //   it('should apply shooter ducking penalty', () => {
-  //     wrapper.find('button[children="Duck\nShooter"]').simulate('click');
+  //   it('should default to Auto if weapon is not capable of single fire', () => {
+  //     const firearm = testFAMAS();
+  //     firearm.selector = 'full auto only';
 
-  //     const expectedALM = baseALM - 10;
+  //     wrapper = shallow(<Shooting sal={0} level={0} firearm={firearm} setFirearm={setFirearm} />);
 
-  //     expect(wrapper.text()).toContain(`ALM: ${expectedALM}`);
+  //     const fireSelector = wrapper.find('FireSelector').dive();
+  //     const selector = fireSelector.find('.switchHub');
+
+  //     expect(selector.props().className).toContain('Auto');
   //   });
   // });
 
-  describe('Fire selector defaults', () => {
-    it('should default to Single if weapon is capable of single fire', () => {
-      const fireSelector = wrapper.find('FireSelector').dive();
-      const selector = fireSelector.find('.switchHub');
+  const firearm = testFAMAS();
+  const setFirearm = jest.fn();
+  const getWrapper = (level = 0) => mount(<Shooting firearm={firearm} level={level} setFirearm={setFirearm} />);
 
-      expect(selector.props().className).toContain('Single');
+  describe('level 0 Standing Shooter vs Standing Target, 1 Aim, Single Shot', () => {
+    it('should have 5% chance to hit at Range 5', () => {
+      const wrapper = getWrapper();
+      wrapper.find('span[children="Range"]').closest('button').simulate('click');
+      wrapper.find('button[children=5]').simulate('click');
+
+      expect(wrapper.text()).toContain('Hit Chance: 5%');
     });
 
-    it('should default to Auto if weapon is not capable of single fire', () => {
-      const firearm = testFAMAS();
-      firearm.selector = 'full auto only';
+    it('should have no chance to hit at Range 25', () => {
+      const wrapper = getWrapper();
+      wrapper.find('span[children="Range"]').closest('button').simulate('click');
+      wrapper.find('button[children=25]').simulate('click');
 
-      wrapper = shallow(<Shooting sal={0} level={0} firearm={firearm} setFirearm={setFirearm} />);
+      expect(wrapper.text()).toContain('Hit Chance: NA');
+    });
 
-      const fireSelector = wrapper.find('FireSelector').dive();
-      const selector = fireSelector.find('.switchHub');
+    it('should have no chance to hit at Range 50', () => {
+      const wrapper = getWrapper();
+      wrapper.find('span[children="Range"]').closest('button').simulate('click');
+      wrapper.find('button[children=50]').simulate('click');
 
-      expect(selector.props().className).toContain('Auto');
+      expect(wrapper.text()).toContain('Hit Chance: NA');
+    });
+
+    it('should have no chance to hit at Range 100', () => {
+      const wrapper = getWrapper();
+      wrapper.find('span[children="Range"]').closest('button').simulate('click');
+      wrapper.find('button[children=100]').simulate('click');
+
+      expect(wrapper.text()).toContain('Hit Chance: NA');
+    });
+
+    it('should have no chance to hit at Range 400', () => {
+      const wrapper = getWrapper();
+      wrapper.find('span[children="Range"]').closest('button').simulate('click');
+      wrapper.find('button[children=400]').simulate('click');
+
+      expect(wrapper.text()).toContain('Hit Chance: NA');
     });
   });
 
-  describe('Firing the firearm', () => {
-    it('should use firearm ballistic accuracy instead of ALM if it is less', () => {
-      wrapper = shallow(<Shooting sal={21} level={15} firearm={testM1911A1()} setFirearm={setFirearm} />);
+  describe('level 0 Standing Shooter vs Standing Target, 1 Aim, Auto Shot', () => {
+    it('should have 47% chance to hit elevation at Range 5', () => {
+      const wrapper = getWrapper();
       wrapper.find('span[children="Range"]').closest('button').simulate('click');
-      wrapper.find('RangeSelectModal').invoke('setRange')(100);
+      wrapper.find('button[children=5]').simulate('click');
+      wrapper.find('button[children="Auto"]').simulate('click');
+
+      expect(wrapper.text()).toContain('Hit Chance: 47%');
+    });
+
+    it('should have 11% chance to hit elevation at Range 25', () => {
+      const wrapper = getWrapper();
+      wrapper.find('span[children="Range"]').closest('button').simulate('click');
+      wrapper.find('button[children=25]').simulate('click');
+      wrapper.find('button[children="Auto"]').simulate('click');
+
+      expect(wrapper.text()).toContain('Hit Chance: 11%');
+    });
+
+    it('should have 6% chance to hit elevation at Range 50', () => {
+      const wrapper = getWrapper();
+      wrapper.find('span[children="Range"]').closest('button').simulate('click');
+      wrapper.find('button[children=50]').simulate('click');
+      wrapper.find('button[children="Auto"]').simulate('click');
+
+      expect(wrapper.text()).toContain('Hit Chance: 6%');
+    });
+
+    it('should have 2% chance to hit elevation at Range 100', () => {
+      const wrapper = getWrapper();
+      wrapper.find('span[children="Range"]').closest('button').simulate('click');
+      wrapper.find('button[children=100]').simulate('click');
+      wrapper.find('button[children="Auto"]').simulate('click');
+
+      expect(wrapper.text()).toContain('Hit Chance: 2%');
+    });
+
+    it('should have 1% chance to hit elevation at Range 200', () => {
+      const wrapper = getWrapper();
+      wrapper.find('span[children="Range"]').closest('button').simulate('click');
+      wrapper.find('button[children=200]').simulate('click');
+      wrapper.find('button[children="Auto"]').simulate('click');
+
+      expect(wrapper.text()).toContain('Hit Chance: 1%');
+    });
+
+    it('should have 0% chance to hit elevation at Range 300', () => {
+      const wrapper = getWrapper();
+      wrapper.find('span[children="Range"]').closest('button').simulate('click');
+      wrapper.find('button[children=300]').simulate('click');
+      wrapper.find('button[children="Auto"]').simulate('click');
+
+      expect(wrapper.text()).toContain('Hit Chance: 0%');
+    });
+
+    it('should have no chance to hit elevation at Range 400', () => {
+      const wrapper = getWrapper();
+      wrapper.find('span[children="Range"]').closest('button').simulate('click');
+      wrapper.find('button[children=400]').simulate('click');
+      wrapper.find('button[children="Auto"]').simulate('click');
+
+      expect(wrapper.text()).toContain('Hit Chance: NA');
+    });
+  });
+
+  describe('level 4 Kneeling Shooter vs Target Firing Over Cover, 3 Aims, Single Shot', () => {
+    let wrapper;
+
+    beforeEach(() => {
+      wrapper = getWrapper(4);
 
       wrapper.find('span[children="Shooter Stance"]').closest('button').simulate('click');
-      wrapper.find('StanceSelectModal').invoke('setStance')('Prone');
+      wrapper.find('button[children="Kneeling"]').simulate('click');
 
-      wrapper.find('Aiming').invoke('setAims')(6);
+      wrapper.find('span[children="Target Size"]').closest('button').simulate('click');
+      wrapper.find('button[children="Fire Over/Around"]').simulate('click');
 
-      expect(wrapper.find('.data').text()).toContain('ALM: 15');
-      expect(wrapper.find('.firing').text()).toContain('Hit Chance: 80%');
+      wrapper.find('span[children="Aims"]').closest('button').simulate('click');
+      wrapper.find('button[children=3]').simulate('click');
     });
 
-    it('should not use firearm ballistic accuracy if it is greater than ALM', () => {
-      wrapper = shallow(<Shooting sal={10} level={4} firearm={testM1911A1()} setFirearm={setFirearm} />);
-
+    it('should have 96% chance to hit at Range 5', () => {
       wrapper.find('span[children="Range"]').closest('button').simulate('click');
-      wrapper.find('RangeSelectModal').invoke('setRange')(100);
+      wrapper.find('button[children=5]').simulate('click');
+
+      expect(wrapper.text()).toContain('Hit Chance: 96%');
+    });
+
+    it('should have 27% chance to hit at Range 25', () => {
+      wrapper.find('span[children="Range"]').closest('button').simulate('click');
+      wrapper.find('button[children=25]').simulate('click');
+
+      expect(wrapper.text()).toContain('Hit Chance: 27%');
+    });
+
+    it('should have 9% chance to hit at Range 50', () => {
+      wrapper.find('span[children="Range"]').closest('button').simulate('click');
+      wrapper.find('button[children=50]').simulate('click');
+
+      expect(wrapper.text()).toContain('Hit Chance: 9%');
+    });
+
+    it('should have 3% chance to hit at Range 100', () => {
+      wrapper.find('span[children="Range"]').closest('button').simulate('click');
+      wrapper.find('button[children=100]').simulate('click');
+
+      expect(wrapper.text()).toContain('Hit Chance: 3%');
+    });
+  });
+
+  describe('level 4 Kneeling Shooter vs Target Firing Over Cover, 3 Aims, Auto fire', () => {
+    let wrapper;
+
+    beforeEach(() => {
+      wrapper = getWrapper(4);
 
       wrapper.find('span[children="Shooter Stance"]').closest('button').simulate('click');
-      wrapper.find('StanceSelectModal').invoke('setStance')('Prone');
+      wrapper.find('button[children="Kneeling"]').simulate('click');
 
-      wrapper.find('Aiming').invoke('setAims')(6);
+      wrapper.find('span[children="Target Size"]').closest('button').simulate('click');
+      wrapper.find('button[children="Fire Over/Around"]').simulate('click');
 
-      expect(wrapper.find('.data').text()).toContain('ALM: 9');
-      expect(wrapper.find('.firing').text()).toContain('Hit Chance: 39%');
+      wrapper.find('span[children="Aims"]').closest('button').simulate('click');
+      wrapper.find('button[children=3]').simulate('click');
+
+      wrapper.find('button[children="Auto"]').simulate('click');
     });
 
-    it('should provide visual feed back if ALM equals weapon BA', () => {
-      wrapper = shallow(<Shooting sal={21} level={15} firearm={testM1911A1()} setFirearm={setFirearm} />);
-
+    it('should have 99% chance to hit elevation at Range 5', () => {
       wrapper.find('span[children="Range"]').closest('button').simulate('click');
-      wrapper.find('RangeSelectModal').invoke('setRange')(100);
+      wrapper.find('button[children=5]').simulate('click');
 
-      wrapper.find('span[children="Shooter Stance"]').closest('button').simulate('click');
-      wrapper.find('StanceSelectModal').invoke('setStance')('Prone');
-
-      wrapper.find('Aiming').invoke('setAims')(6);
-
-      expect(wrapper.find('.data').find('.baReached').exists()).toBe(true);
+      expect(wrapper.text()).toContain('Hit Chance: 99%');
     });
 
-    it('should not show the visual feed back if ALM is greater than BA', () => {
-      wrapper = shallow(<Shooting sal={10} level={4} firearm={testM1911A1()} setFirearm={setFirearm} />);
-
+    it('should have 62% chance to hit elevation at Range 25', () => {
       wrapper.find('span[children="Range"]').closest('button').simulate('click');
-      wrapper.find('RangeSelectModal').invoke('setRange')(100);
+      wrapper.find('button[children=25]').simulate('click');
 
-      wrapper.find('span[children="Shooter Stance"]').closest('button').simulate('click');
-      wrapper.find('StanceSelectModal').invoke('setStance')('Prone');
-
-      wrapper.find('Aiming').invoke('setAims')(6);
-
-      expect(wrapper.find('.data').find('.baReached').exists()).toBe(false);
+      expect(wrapper.text()).toContain('Hit Chance: 62%');
     });
 
-    describe('level 0 Standing Shooter vs Standing Target, 1 Aim, Single Shot', () => {
-      it('should have 5% chance to hit at Range 5', () => {
-        wrapper.find('span[children="Range"]').closest('button').simulate('click');
-        wrapper.find('RangeSelectModal').invoke('setRange')(5);
+    it('should have 38% chance to hit elevation at Range 50', () => {
+      wrapper.find('span[children="Range"]').closest('button').simulate('click');
+      wrapper.find('button[children=50]').simulate('click');
 
-        const firingUI = wrapper.find('.firing');
-
-        expect(firingUI.text()).toContain('Hit Chance: 5%');
-      });
-
-      it('should have no chance to hit at Range 25', () => {
-        wrapper.find('span[children="Range"]').closest('button').simulate('click');
-        wrapper.find('RangeSelectModal').invoke('setRange')(25);
-
-        const firingUI = wrapper.find('.firing');
-
-        expect(firingUI.text()).toContain('Hit Chance: NA');
-      });
-
-      it('should have no chance to hit at Range 50', () => {
-        wrapper.find('span[children="Range"]').closest('button').simulate('click');
-        wrapper.find('RangeSelectModal').invoke('setRange')(50);
-
-        const firingUI = wrapper.find('.firing');
-
-        expect(firingUI.text()).toContain('Hit Chance: NA');
-      });
-
-      it('should have no chance to hit at Range 100', () => {
-        wrapper.find('span[children="Range"]').closest('button').simulate('click');
-        wrapper.find('RangeSelectModal').invoke('setRange')(100);
-
-        const firingUI = wrapper.find('.firing');
-
-        expect(firingUI.text()).toContain('Hit Chance: NA');
-      });
-
-      it('should have no chance to hit at Range 400', () => {
-        wrapper.find('span[children="Range"]').closest('button').simulate('click');
-        wrapper.find('RangeSelectModal').invoke('setRange')(400);
-
-        const firingUI = wrapper.find('.firing');
-
-        expect(firingUI.text()).toContain('Hit Chance: NA');
-      });
+      expect(wrapper.text()).toContain('Hit Chance: 38%');
     });
 
-    describe('level 0 Standing Shooter vs Standing Target, 1 Aim, Auto Shot', () => {
-      beforeEach(() => {
-        wrapper.find('FireSelector').invoke('setRof')('Auto');
-      });
+    it('should have 21% chance to hit elevation at Range 100', () => {
+      wrapper.find('span[children="Range"]').closest('button').simulate('click');
+      wrapper.find('button[children=100]').simulate('click');
 
-      it('should have 47% chance to hit elevation at Range 5', () => {
-        wrapper.find('span[children="Range"]').closest('button').simulate('click');
-        wrapper.find('RangeSelectModal').invoke('setRange')(5);
+      expect(wrapper.text()).toContain('Hit Chance: 21%');
+    });
+  });
 
-        const firingUI = wrapper.find('.firing');
+  describe('level 0 standing Shooter vs Standing Target, 1 Aim, Three Round Burst', () => {
+    let wrapper;
 
-        expect(firingUI.text()).toContain('Hit Chance: 47%');
-      });
+    beforeEach(() => {
+      wrapper = getWrapper(0);
 
-      it('should have 11% chance to hit elevation at Range 25', () => {
-        wrapper.find('span[children="Range"]').closest('button').simulate('click');
-        wrapper.find('RangeSelectModal').invoke('setRange')(25);
-
-        const firingUI = wrapper.find('.firing');
-
-        expect(firingUI.text()).toContain('Hit Chance: 11%');
-      });
-
-      it('should have 6% chance to hit elevation at Range 50', () => {
-        wrapper.find('span[children="Range"]').closest('button').simulate('click');
-        wrapper.find('RangeSelectModal').invoke('setRange')(50);
-
-        const firingUI = wrapper.find('.firing');
-
-        expect(firingUI.text()).toContain('Hit Chance: 6%');
-      });
-
-      it('should have 2% chance to hit elevation at Range 100', () => {
-        wrapper.find('span[children="Range"]').closest('button').simulate('click');
-        wrapper.find('RangeSelectModal').invoke('setRange')(100);
-
-        const firingUI = wrapper.find('.firing');
-
-        expect(firingUI.text()).toContain('Hit Chance: 2%');
-      });
-
-      it('should have 1% chance to hit elevation at Range 200', () => {
-        wrapper.find('span[children="Range"]').closest('button').simulate('click');
-        wrapper.find('RangeSelectModal').invoke('setRange')(200);
-
-        const firingUI = wrapper.find('.firing');
-
-        expect(firingUI.text()).toContain('Hit Chance: 1%');
-      });
-
-      it('should have 0% chance to hit elevation at Range 300', () => {
-        wrapper.find('span[children="Range"]').closest('button').simulate('click');
-        wrapper.find('RangeSelectModal').invoke('setRange')(300);
-
-        const firingUI = wrapper.find('.firing');
-
-        expect(firingUI.text()).toContain('Hit Chance: 0%');
-      });
-
-      it('should have no chance to hit elevation at Range 400', () => {
-        wrapper.find('span[children="Range"]').closest('button').simulate('click');
-        wrapper.find('RangeSelectModal').invoke('setRange')(400);
-
-        const firingUI = wrapper.find('.firing');
-
-        expect(firingUI.text()).toContain('Hit Chance: NA');
-      });
+      wrapper.find('button[children="3RB"]').simulate('click');
     });
 
-    describe('level 4 Kneeling Shooter vs Target Firing Over Cover, 3 Aims, Single Shot', () => {
-      beforeEach(() => {
-        wrapper = shallow(<Shooting sal={10} level={4} firearm={testFAMAS()} setFirearm={setFirearm} />);
+    it('should have 47% chance to hit elevation at Range 5', () => {
+      wrapper.find('span[children="Range"]').closest('button').simulate('click');
+      wrapper.find('button[children=5]').simulate('click');
 
-        wrapper.find('span[children="Shooter Stance"]').closest('button').simulate('click');
-        wrapper.find('StanceSelectModal').invoke('setStance')('Kneeling');
-
-        wrapper.find('span[children="Target Size"]').closest('button').simulate('click');
-        wrapper.find('TargetSizeSelectModal').invoke('setSize')('Fire Over/Around');
-
-        wrapper.find('Aiming').invoke('setAims')(3);
-      });
-
-      it('should have 96% chance to hit at Range 5', () => {
-        wrapper.find('span[children="Range"]').closest('button').simulate('click');
-        wrapper.find('RangeSelectModal').invoke('setRange')(5);
-
-        const firingUI = wrapper.find('.firing');
-
-        expect(firingUI.text()).toContain('Hit Chance: 96%');
-      });
-
-      it('should have 27% chance to hit at Range 25', () => {
-        wrapper.find('span[children="Range"]').closest('button').simulate('click');
-        wrapper.find('RangeSelectModal').invoke('setRange')(25);
-
-        const firingUI = wrapper.find('.firing');
-
-        expect(firingUI.text()).toContain('Hit Chance: 27%');
-      });
-
-      it('should have 9% chance to hit at Range 50', () => {
-        wrapper.find('span[children="Range"]').closest('button').simulate('click');
-        wrapper.find('RangeSelectModal').invoke('setRange')(50);
-
-        const firingUI = wrapper.find('.firing');
-
-        expect(firingUI.text()).toContain('Hit Chance: 9%');
-      });
-
-      it('should have 3% chance to hit at Range 100', () => {
-        wrapper.find('span[children="Range"]').closest('button').simulate('click');
-        wrapper.find('RangeSelectModal').invoke('setRange')(100);
-
-        const firingUI = wrapper.find('.firing');
-
-        expect(firingUI.text()).toContain('Hit Chance: 3%');
-      });
+      expect(wrapper.text()).toContain('Hit Chance: 47%');
     });
 
-    describe('level 4 Kneeling Shooter vs Target Firing Over Cover, 3 Aims, Auto fire', () => {
-      beforeEach(() => {
-        wrapper = shallow(<Shooting sal={10} level={4} firearm={testFAMAS()} setFirearm={setFirearm} />);
+    it('should have 11% chance to hit elevation at Range 25', () => {
+      wrapper.find('span[children="Range"]').closest('button').simulate('click');
+      wrapper.find('button[children=25]').simulate('click');
 
-        wrapper.find('span[children="Shooter Stance"]').closest('button').simulate('click');
-        wrapper.find('StanceSelectModal').invoke('setStance')('Kneeling');
-
-        wrapper.find('span[children="Target Size"]').closest('button').simulate('click');
-        wrapper.find('TargetSizeSelectModal').invoke('setSize')('Fire Over/Around');
-
-        wrapper.find('Aiming').invoke('setAims')(3);
-
-        wrapper.find('FireSelector').invoke('setRof')('Auto');
-      });
-
-      it('should have 99% chance to hit elevation at Range 5', () => {
-        wrapper.find('span[children="Range"]').closest('button').simulate('click');
-        wrapper.find('RangeSelectModal').invoke('setRange')(5);
-
-        const firingUI = wrapper.find('.firing');
-
-        expect(firingUI.text()).toContain('Hit Chance: 99%');
-      });
-
-      it('should have 62% chance to hit elevation at Range 25', () => {
-        wrapper.find('span[children="Range"]').closest('button').simulate('click');
-        wrapper.find('RangeSelectModal').invoke('setRange')(25);
-
-        const firingUI = wrapper.find('.firing');
-
-        expect(firingUI.text()).toContain('Hit Chance: 62%');
-      });
-
-      it('should have 38% chance to hit elevation at Range 50', () => {
-        wrapper.find('span[children="Range"]').closest('button').simulate('click');
-        wrapper.find('RangeSelectModal').invoke('setRange')(50);
-
-        const firingUI = wrapper.find('.firing');
-
-        expect(firingUI.text()).toContain('Hit Chance: 38%');
-      });
-
-      it('should have 21% chance to hit elevation at Range 100', () => {
-        wrapper.find('span[children="Range"]').closest('button').simulate('click');
-        wrapper.find('RangeSelectModal').invoke('setRange')(100);
-
-        const firingUI = wrapper.find('.firing');
-
-        expect(firingUI.text()).toContain('Hit Chance: 21%');
-      });
-    });
-
-    describe('level 0 standing Shooter vs Standing Target, 2 Aims, Three Round Burst', () => {
-      beforeEach(() => {
-        wrapper.find('FireSelector').invoke('setRof')('3RB');
-      });
-
-      it('should have 47% chance to hit elevation at Range 5', () => {
-        wrapper.find('span[children="Range"]').closest('button').simulate('click');
-        wrapper.find('RangeSelectModal').invoke('setRange')(5);
-
-        const firingUI = wrapper.find('.firing');
-
-        expect(firingUI.text()).toContain('Hit Chance: 47%');
-      });
-
-      it('should have 11% chance to hit elevation at Range 25', () => {
-        wrapper.find('span[children="Range"]').closest('button').simulate('click');
-        wrapper.find('RangeSelectModal').invoke('setRange')(25);
-
-        const firingUI = wrapper.find('.firing');
-
-        expect(firingUI.text()).toContain('Hit Chance: 11%');
-      });
-    });
-
-    describe('using optics', () => {
-      const firearm = { ...testFAMAS() };
-      firearm.optics = { attached: 'Medium Power Scope' };
-
-      beforeEach(() => {
-        wrapper = shallow(<Shooting sal={10} level={4} firearm={firearm} setFirearm={setFirearm} />);
-
-        wrapper.find('span[children="Range"]').closest('button').simulate('click');
-        wrapper.find('RangeSelectModal').invoke('setRange')(12);
-      });
-
-      it('should add optics bonus for 1 aim at 12 hexes', () => {
-        const firingUI = wrapper.find('.firing');
-
-        expect(firingUI.text()).toContain('Hit Chance: 12%');
-      });
-
-      it('should not add optics bonus if hip firing for 1 aim at 12 hexes', () => {
-        wrapper.find('span[children="Situation"]').closest('button').simulate('click');
-        const { weaponBasedALM } = wrapper.find('SituationSelectModal').props();
-        wrapper.find('SituationSelectModal').invoke('setWeaponBasedALM')({ ...weaponBasedALM, hipFire: true });
-
-        const firingUI = wrapper.find('.firing');
-
-        expect(firingUI.text()).toContain('Hit Chance: 2%');
-      });
-
-      it('should add optics bonus for 3 aims at 12 hexes', () => {
-        wrapper.find('Aiming').invoke('setAims')(3);
-
-        const firingUI = wrapper.find('.firing');
-
-        expect(firingUI.text()).toContain('Hit Chance: 94%');
-      });
-
-      it('should not add optics bonus if hip firing for 3 aims at 12 hexes', () => {
-        wrapper.find('Aiming').invoke('setAims')(3);
-
-        wrapper.find('span[children="Situation"]').closest('button').simulate('click');
-        const { weaponBasedALM } = wrapper.find('SituationSelectModal').props();
-        wrapper.find('SituationSelectModal').invoke('setWeaponBasedALM')({ ...weaponBasedALM, hipFire: true });
-
-        const firingUI = wrapper.find('.firing');
-
-        expect(firingUI.text()).toContain('Hit Chance: 46%');
-      });
-
-      it('should add penality if optics under minimum range bonus', () => {
-        wrapper.find('span[children="Range"]').closest('button').simulate('click');
-        wrapper.find('RangeSelectModal').invoke('setRange')(7);
-
-        const firingUI = wrapper.find('.firing');
-
-        expect(firingUI.text()).toContain('Hit Chance: 6%');
-      });
+      expect(wrapper.text()).toContain('Hit Chance: 11%');
     });
   });
 });

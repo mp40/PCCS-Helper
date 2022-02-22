@@ -1,15 +1,20 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
+import { AlmDispatchProvider } from '../context';
 
 import StanceSelectModal from './index';
 
 describe('Stance Select Modal', () => {
   let wrapper;
-  const setStance = jest.fn();
   const setModal = jest.fn();
+  const dispatch = jest.fn();
 
   beforeEach(() => {
-    wrapper = shallow(<StanceSelectModal setStance={setStance} setModal={setModal} />);
+    wrapper = mount(
+      <AlmDispatchProvider dispatch={dispatch}>
+        <StanceSelectModal setModal={setModal} />
+      </AlmDispatchProvider>,
+    );
   });
 
   afterEach(() => {
@@ -19,19 +24,19 @@ describe('Stance Select Modal', () => {
   it('should be possible to select Standing stance', () => {
     wrapper.find('button[children="Standing"]').simulate('click');
 
-    expect(setStance).toHaveBeenCalledWith('Standing');
+    expect(dispatch).toHaveBeenCalledWith({ payload: 'Standing', type: 'STANCE_UPDATED' });
   });
 
   it('should be possible to select Kneeling stance', () => {
     wrapper.find('button[children="Kneeling"]').simulate('click');
 
-    expect(setStance).toHaveBeenCalledWith('Kneeling');
+    expect(dispatch).toHaveBeenCalledWith({ payload: 'Kneeling', type: 'STANCE_UPDATED' });
   });
 
   it('should be possible to select Prone stance', () => {
     wrapper.find('button[children="Prone"]').simulate('click');
 
-    expect(setStance).toHaveBeenCalledWith('Prone');
+    expect(dispatch).toHaveBeenCalledWith({ payload: 'Prone', type: 'STANCE_UPDATED' });
   });
 
   it('should close modal when stance selected', () => {

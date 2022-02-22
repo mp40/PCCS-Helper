@@ -33,7 +33,6 @@ const LoadedCharacter = ({
       && (
       <LoadedCharacterShooting
         firearm={hydrateFirearmByObject(firearm)}
-        sal={sal}
         level={gunLevel}
         setFirearm={setFirearm}
       />

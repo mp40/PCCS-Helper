@@ -1,19 +1,21 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
+import { AlmDispatchProvider } from '../context';
 
 import TargetSizeSelectModal from './index';
 
 describe('Target Size Modal', () => {
   let wrapper;
-  const setSize = jest.fn();
+  const dispatch = jest.fn();
   const setModal = jest.fn();
 
   beforeEach(() => {
-    wrapper = shallow(
-      <TargetSizeSelectModal
-        setSize={setSize}
-        setModal={setModal}
-      />);
+    wrapper = mount(
+      <AlmDispatchProvider dispatch={dispatch}>
+        <TargetSizeSelectModal
+          setModal={setModal}
+        />
+      </AlmDispatchProvider>);
   });
 
   afterEach(() => {
@@ -23,13 +25,13 @@ describe('Target Size Modal', () => {
   it('should be possible to select small target size', () => {
     wrapper.find('button[children="Fire Over/Around"]').simulate('click');
 
-    expect(setSize).toHaveBeenCalledWith('Fire Over/Around');
+    expect(dispatch).toHaveBeenCalledWith({ payload: 'Fire Over/Around', type: 'TARGET_UPDATED' });
   });
 
   it('should be possible to select large target size', () => {
     wrapper.find('button[children="Standing Exposed"]').simulate('click');
 
-    expect(setSize).toHaveBeenCalledWith('Standing Exposed');
+    expect(dispatch).toHaveBeenCalledWith({ payload: 'Standing Exposed', type: 'TARGET_UPDATED' });
   });
 
   it('should close modal on target size select', () => {

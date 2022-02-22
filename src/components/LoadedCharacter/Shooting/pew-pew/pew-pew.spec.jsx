@@ -8,6 +8,7 @@ import { firearms } from '../../../../data/firearms';
 import { hydrateFirearmByObject } from '../../../../data/firearms/hydrate';
 
 const testFAMAS = () => ({ ...firearms.FAMAS });
+const testM16 = () => ({ ...firearms.M16 });
 
 describe('Firing interface', () => {
   const setRof = jest.fn();
@@ -272,5 +273,53 @@ describe('Ammo Used Tally', () => {
     const roundsFiredDiv = wrapper.find('span[children="Rounds Fired: "]').closest('div');
 
     expect(roundsFiredDiv.childAt(1).props().className).toBe('emptyMag');
+  });
+});
+
+describe('Changing Firearm', () => {
+  const setRof = jest.fn();
+  const dispatch = jest.fn();
+
+  const getWrapper = () => mount(
+    <FirearmProvider firearm={{ ...hydrateFirearmByObject(testFAMAS()) }}>
+      <AlmDispatchProvider dispatch={dispatch}>
+        <AlmStateProvider state={{ target: 'Standing Exposed' }}>
+          <PewPew rof="Auto" setRof={setRof} alm={0} />
+        </AlmStateProvider>
+      </AlmDispatchProvider>
+    </FirearmProvider>,
+  );
+  it('should clear sab on weapon change', () => {
+    const wrapper = getWrapper();
+
+    wrapper.find('button[children="Sustained Fire"]').simulate('click');
+    wrapper.find('button[children="Sustained Fire"]').simulate('click');
+
+    wrapper.setProps({ firearm: { ...hydrateFirearmByObject(testM16()) } });
+
+    expect(wrapper.text()).toContain('Hit Chance: 52%');
+  });
+
+  // mptodo
+  //   it('should reset fire selector on weapon change', () => {
+  //     const wrapper = getWrapper();
+
+  //     wrapper.find('button[children="Sustained Fire"]').simulate('click');
+  //     wrapper.find('button[children="Sustained Fire"]').simulate('click');
+
+  //     wrapper.setProps({ firearm: { ...hydrateFirearmByObject(testM16()) } });
+
+  //     expect(wrapper.text()).toContain('Hit Chance: 6%');
+  //   });
+
+  it('should clear rounds fired on weapon change', () => {
+    const wrapper = getWrapper();
+
+    wrapper.find('button[children="Sustained Fire"]').simulate('click');
+    wrapper.find('button[children="Sustained Fire"]').simulate('click');
+
+    wrapper.setProps({ firearm: { ...hydrateFirearmByObject(testM16()) } });
+
+    expect(wrapper.text()).toContain('Rounds Fired: 0');
   });
 });

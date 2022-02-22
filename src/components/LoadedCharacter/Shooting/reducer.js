@@ -6,6 +6,7 @@ const updateSituationReducer = (state, payload) => ({ ...state, situation: { ...
 const updateVisibilityReducer = (state, payload) => ({ ...state, visibility: { ...payload } });
 const updateMiscellaneousReducer = (state, payload) => ({ ...state, miscellaneous: payload });
 const updateAimsReducer = (state, payload) => ({ ...state, aims: payload });
+const resetSituationReducer = (state, payload) => ({ ...state, situation: payload });
 
 export default (state, action) => {
   switch (action.type) {
@@ -25,6 +26,8 @@ export default (state, action) => {
       return updateMiscellaneousReducer(state, action.payload);
     case 'AIMS_UPDATED':
       return updateAimsReducer(state, action.payload);
+    case 'SITUATION_RESET':
+      return resetSituationReducer(state, action.payload);
     default:
       return state;
   }

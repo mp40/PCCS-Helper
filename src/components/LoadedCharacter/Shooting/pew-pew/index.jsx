@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { AlmStateContext, FirearmContext, AlmDispatchContext } from '../context';
@@ -18,6 +18,11 @@ const PewPew = ({ rof, setRof, alm }) => {
   const dispatch = useContext(AlmDispatchContext);
   const { target } = useContext(AlmStateContext);
   const firearm = useContext(FirearmContext);
+
+  useEffect(() => {
+    setSab(0);
+    setRoundsFired(0);
+  }, [firearm]);
 
   const autoROF = Number(String(firearm.rof).split('*').pop());
 
