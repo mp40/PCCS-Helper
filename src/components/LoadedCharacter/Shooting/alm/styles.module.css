@@ -1,0 +1,39 @@
+.modalButtonWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .modalButtonWrapper > button:nth-of-type(n + 8){
+    white-space: pre-line;
+    width: calc(25% - 4px);
+  }
+
+  .modalButtonWrapper > button:nth-of-type(10){
+    width: calc(50% - 4px);
+  }
+  
+  .modalButtonWrapper > .selected {
+    box-shadow: 0 0 1px 1px var(--golden-olive) !important;
+    background-color: var(--ivory) !important;
+  }
+
+.modalButtonWrapper > button {
+    background-color: var(--usaf-light-grey);
+    box-shadow: 0 0 1px 1px var(--london-grey);
+    border: none;
+    width: calc(50% - 2px);
+    font-size: 1rem;
+    padding: 5px 0;
+    margin-top: 5px;
+    color: var(--panzer-grey);
+    border-radius: 3px;
+  }
+  
+  .modalButtonWrapper > button > span {
+    display: block;
+  }
+  
+  .modalButtonWrapper > button > span:nth-of-type(2) {
+    font-size: 0.75rem;
+  }

@@ -1,0 +1,4 @@
+.selected {
+    box-shadow: 0 0 1px 1px var(--golden-olive) !important;
+    background-color: var(--ivory) !important;
+  }

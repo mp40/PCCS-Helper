@@ -1,4 +1,4 @@
-export const showModal = (component) => ({
+export const showModal = (payload) => ({
   type: 'MODAL_SHOWN',
-  payload: component,
+  payload,
 });

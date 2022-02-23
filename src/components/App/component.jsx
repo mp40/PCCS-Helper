@@ -53,7 +53,7 @@ function App({ updateSavedCharacters }) {
         <Header signedIn={signedIn} handleSetSignedIn={handleSetSignedIn} />
         <Router signedIn={signedIn} />
         {state.activeModal && (
-          <Modal Component={state.activeModal} />
+        <Modal Component={state.activeModal} />
         )}
       </div>
     </DispatchProvider>

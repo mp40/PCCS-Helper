@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+
+import { AlmDispatchContext, AlmStateContext, FirearmContext } from '../context';
+import { updateAims } from '../actions';
 
 import styles from './styles.module.css';
 
-const Aiming = ({ aims, maxAims, setAims, setModal }) => {
+const Aiming = ({ setModal }) => {
+  const dispatch = useContext(AlmDispatchContext);
+  const firearm = useContext(FirearmContext);
+  const { aims } = useContext(AlmStateContext);
+
+  const maxAims = firearm.aim.ac.slice(-1)[0];
+
   const handleIncrement = () => {
     if (aims === maxAims) {
       return;
     }
 
-    setAims(aims + 1);
+    dispatch(updateAims(aims + 1));
   };
 
   const handleDecrement = () => {
@@ -17,11 +26,11 @@ const Aiming = ({ aims, maxAims, setAims, setModal }) => {
       return;
     }
 
-    setAims(aims - 1);
+    dispatch(updateAims(aims - 1));
   };
 
   return (
-    <div className={styles.wrapper}>
+    <>
       <button type="button" onClick={() => setModal('aims')}>
         <span>
           Aims
@@ -32,14 +41,11 @@ const Aiming = ({ aims, maxAims, setAims, setModal }) => {
       </button>
       <button className={aims === maxAims ? styles.unavailable : ''} type="button" onClick={() => handleIncrement()}>+</button>
       <button className={aims === 1 ? styles.unavailable : ''} type="button" onClick={() => handleDecrement()}>-</button>
-    </div>
+    </>
   );
 };
 
 Aiming.propTypes = {
-  aims: PropTypes.number.isRequired,
-  maxAims: PropTypes.number.isRequired,
-  setAims: PropTypes.func.isRequired,
   setModal: PropTypes.func.isRequired,
 };
 
