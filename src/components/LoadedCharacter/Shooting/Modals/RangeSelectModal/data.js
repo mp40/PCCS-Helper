@@ -1,4 +1,4 @@
-import { getRangeBrackets } from '../../../../data/firearms/rangeBrackets';
+import { getRangeBrackets } from '../../../../../data/firearms/rangeBrackets';
 
 export const ranges = [
   1,

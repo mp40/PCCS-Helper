@@ -3,10 +3,10 @@ import { mount } from 'enzyme';
 
 import RangeSelectModal from './index';
 
-import { AlmStateProvider, FirearmProvider, AlmDispatchProvider } from '../context';
+import { AlmStateProvider, FirearmProvider, AlmDispatchProvider } from '../../context';
 
-import { firearms } from '../../../../data/firearms';
-import { hydrateFirearmByObject } from '../../../../data/firearms/hydrate';
+import { firearms } from '../../../../../data/firearms';
+import { hydrateFirearmByObject } from '../../../../../data/firearms/hydrate';
 
 const testFAMAS = () => ({ ...firearms.FAMAS });
 

@@ -1,10 +1,10 @@
 import React, { Fragment, useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { AlmDispatchContext, AlmStateContext } from '../context';
-import { updateMovement } from '../actions';
+import { AlmDispatchContext, AlmStateContext } from '../../context';
+import { updateMovement } from '../../actions';
 
-import KeyPad from '../../../widgets/keyPad';
+import KeyPad from '../../../../widgets/keyPad';
 
 import styles from './styles.module.css';
 

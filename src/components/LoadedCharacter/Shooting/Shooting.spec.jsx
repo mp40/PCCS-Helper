@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 
 import Shooting from './index';
 
@@ -7,8 +7,6 @@ import { firearms } from '../../../data/firearms';
 
 const testFAMAS = () => ({ ...firearms.FAMAS });
 const testM16 = () => ({ ...firearms.M16 });
-const testM1911A1 = () => ({ ...firearms.M1911A1 });
-const testM60 = () => ({ ...firearms.M60 });
 
 describe('Changing Firearm', () => {
   const firearm = testFAMAS();
@@ -44,50 +42,6 @@ describe('Changing Firearm', () => {
 });
 
 describe('Shooting Card Integration', () => {
-  // it('should set maxAims based on weapon max aim time allowed', () => {
-  //   expect(wrapper.find('Aiming').props().maxAims).toBe(9);
-  // });
-
-  // it('should clear selected ammo on weapon change', () => {
-  //   wrapper = mount(<Shooting sal={0} level={0} firearm={testFAMAS()} setFirearm={setFirearm} />);
-
-  //   wrapper.find('button[children="JHP"]').simulate('click');
-
-  //   wrapper.setProps({ sal: 0, level: 0, firearm: testM16(), setFirearm });
-  //   wrapper.update();
-
-  //   expect(wrapper.find('.ammoMarker').at(0).props().className).toContain('selected');
-  //   expect(wrapper.find('.ammoMarker').at(1).props().className).not.toContain('selected');
-  //   expect(wrapper.find('.ammoMarker').at(2).props().className).not.toContain('selected');
-  // });
-
-  // it('should be possible to close Shooting Card', () => {
-  //   wrapper.find('.close').simulate('click');
-
-  //   expect(setFirearm).toHaveBeenCalledWith(false);
-  // });
-
-  // describe('Fire selector defaults', () => {
-  //   it('should default to Single if weapon is capable of single fire', () => {
-  //     const fireSelector = wrapper.find('FireSelector').dive();
-  //     const selector = fireSelector.find('.switchHub');
-
-  //     expect(selector.props().className).toContain('Single');
-  //   });
-
-  //   it('should default to Auto if weapon is not capable of single fire', () => {
-  //     const firearm = testFAMAS();
-  //     firearm.selector = 'full auto only';
-
-  //     wrapper = shallow(<Shooting sal={0} level={0} firearm={firearm} setFirearm={setFirearm} />);
-
-  //     const fireSelector = wrapper.find('FireSelector').dive();
-  //     const selector = fireSelector.find('.switchHub');
-
-  //     expect(selector.props().className).toContain('Auto');
-  //   });
-  // });
-
   const firearm = testFAMAS();
   const setFirearm = jest.fn();
   const getWrapper = (level = 0) => mount(<Shooting firearm={firearm} level={level} setFirearm={setFirearm} />);
@@ -312,6 +266,47 @@ describe('Shooting Card Integration', () => {
       wrapper.find('button[children=25]').simulate('click');
 
       expect(wrapper.text()).toContain('Hit Chance: 11%');
+    });
+  });
+
+  describe('level 0 standing Shooter vs Standing Target, 1 Aim, Single Fire, Range 5', () => {
+    let wrapper;
+
+    beforeEach(() => {
+      wrapper = getWrapper(0);
+
+      wrapper.find('span[children="Range"]').closest('button').simulate('click');
+      wrapper.find('button[children=4]').simulate('click');
+    });
+
+    it('should have 4% chance to hit at Dusk', () => {
+      wrapper.find('span[children="Visibility"]').closest('button').simulate('click');
+      wrapper.find('button[children="Dusk"]').simulate('click');
+      wrapper.find('button[children="Done"]').simulate('click');
+
+      expect(wrapper.text()).toContain('Hit Chance: 4%');
+    });
+
+    it('should have 2% chance with broken iron sights', () => {
+      wrapper.find('span[children="Visibility"]').closest('button').simulate('click');
+      wrapper.find('span[children="Iron Sights Broken"]').closest('div').find('CheckBox').simulate('click');
+      wrapper.find('button[children="Done"]').simulate('click');
+
+      expect(wrapper.text()).toContain('Hit Chance: 2%');
+    });
+
+    it('should have 1% chance to hit moving target', () => {
+      wrapper.find('span[children="Movement"]').closest('button').simulate('click');
+      wrapper.find('KeyPad').at(1).find('button[children=0.25]').simulate('click');
+
+      expect(wrapper.text()).toContain('Hit Chance: 1%');
+    });
+
+    it('should have 9% chance to hit target with misc bonus of 2', () => {
+      wrapper.find('span[children="Miscellaneous"]').closest('button').simulate('click');
+      wrapper.find('KeyPad').find('button[children=2]').simulate('click');
+
+      expect(wrapper.text()).toContain('Hit Chance: 9%');
     });
   });
 });

@@ -3,11 +3,11 @@ import { mount } from 'enzyme';
 
 import SituationSelectModal from './index';
 
-import { AlmStateProvider, FirearmProvider, AlmDispatchProvider } from '../context';
-import { initialState } from '../data';
+import { AlmStateProvider, FirearmProvider, AlmDispatchProvider } from '../../context';
+import { initialState } from '../../data';
 
-import { firearms } from '../../../../data/firearms';
-import { hydrateFirearmByObject } from '../../../../data/firearms/hydrate';
+import { firearms } from '../../../../../data/firearms';
+import { hydrateFirearmByObject } from '../../../../../data/firearms/hydrate';
 
 const testFAMAS = () => ({ ...firearms.FAMAS });
 const testM1911A1 = () => ({ ...firearms.M1911A1 });

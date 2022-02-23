@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { AlmDispatchContext, AlmStateContext, FirearmContext } from '../context';
-import { updateRange } from '../actions';
+import { AlmDispatchContext, AlmStateContext, FirearmContext } from '../../context';
+import { updateRange } from '../../actions';
 
-import KeyPadModal from '../../../widgets/keyPadModal';
+import KeyPadModal from '../../../../widgets/keyPadModal';
 
 import { getWeaponMaxRange } from './data';
 

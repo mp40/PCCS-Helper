@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { AlmDispatchProvider } from '../context';
+import { AlmDispatchProvider } from '../../context';
 
 import StanceSelectModal from './index';
 

@@ -3,10 +3,10 @@ import { mount } from 'enzyme';
 
 import VisibilitySelectModal from './index';
 
-import { AlmStateProvider, FirearmProvider, AlmDispatchProvider } from '../context';
+import { AlmStateProvider, FirearmProvider, AlmDispatchProvider } from '../../context';
 
-import { firearms } from '../../../../data/firearms';
-import { hydrateFirearmByObject } from '../../../../data/firearms/hydrate';
+import { firearms } from '../../../../../data/firearms';
+import { hydrateFirearmByObject } from '../../../../../data/firearms/hydrate';
 
 const testFAMAS = () => ({ ...firearms.FAMAS });
 const testScopedFAMAS = () => ({ ...firearms.FAMAS, attachedOptic: 'Medium Power Scope' });

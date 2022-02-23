@@ -22,9 +22,11 @@ const range50 = 5;
 
 const famasOneAim = -23;
 const famasThreeAims = -9;
+const famasEightAims = -2;
 
 const hipFire = -6;
 const opticUnderEight = -6;
+const sling = 1;
 
 const mediumScope = [1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3];
 
@@ -37,17 +39,17 @@ const getState = () => ({
   visibility: { ...initialState.visibility },
 });
 
+const setAlm = jest.fn();
+
+const getWrapper = (firearm, state) => mount(
+  <AlmStateProvider state={{ ...state }}>
+    <FirearmProvider firearm={{ ...hydrateFirearmByObject(firearm) }}>
+      <Alm setAlm={setAlm} />
+    </FirearmProvider>
+  </AlmStateProvider>,
+);
+
 describe('using optics', () => {
-  const setAlm = jest.fn();
-
-  const getWrapper = (firearm, state) => mount(
-    <AlmStateProvider state={{ ...state }}>
-      <FirearmProvider firearm={{ ...hydrateFirearmByObject(firearm) }}>
-        <Alm setAlm={setAlm} />
-      </FirearmProvider>
-    </AlmStateProvider>,
-  );
-
   afterEach(() => {
     jest.clearAllMocks();
   });
@@ -98,5 +100,23 @@ describe('using optics', () => {
     getWrapper(firearm, state);
 
     expect(setAlm).toHaveBeenCalledWith(range7 + famasOneAim + opticUnderEight);
+  });
+});
+
+describe('using sling', () => {
+  it('should not add bonus when aims 7 or less', () => {
+    const firearm = { ...testFAMAS() };
+    const state = { ...getState(), situation: { ...getState().situation, slingSupport: true } };
+    getWrapper(firearm, state);
+
+    expect(setAlm).toHaveBeenCalledWith(initialAlm);
+  });
+
+  it('should add bonus when aims over 7', () => {
+    const firearm = { ...testFAMAS() };
+    const state = { ...getState(), aims: 8, situation: { ...getState().situation, slingSupport: true } };
+    getWrapper(firearm, state);
+
+    expect(setAlm).toHaveBeenCalledWith(famasEightAims + sling + range50);
   });
 });

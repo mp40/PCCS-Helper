@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { AlmDispatchContext, AlmStateContext, FirearmContext } from '../context';
-import { updateSituation } from '../actions';
+import { AlmDispatchContext, AlmStateContext, FirearmContext } from '../../context';
+import { updateSituation } from '../../actions';
 
-import CheckBox from '../../../widgets/buttons/CheckBox';
+import CheckBox from '../../../../widgets/buttons/CheckBox';
 
 import { getModifierList } from './data';
 

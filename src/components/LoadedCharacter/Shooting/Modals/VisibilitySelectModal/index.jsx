@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { AlmDispatchContext, AlmStateContext, FirearmContext } from '../context';
-import { updateVisibility } from '../actions';
+import { AlmDispatchContext, AlmStateContext, FirearmContext } from '../../context';
+import { updateVisibility } from '../../actions';
 
 import { lightingOptions, getOthers } from './data';
 
-import CheckBox from '../../../widgets/buttons/CheckBox';
+import CheckBox from '../../../../widgets/buttons/CheckBox';
 
 import styles from './styles.module.css';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 
 import MovementSelectModal from './index';
-import { AlmDispatchProvider, AlmStateProvider } from '../context';
+import { AlmDispatchProvider, AlmStateProvider } from '../../context';
 
 describe('Movement Select Modal', () => {
   let wrapper;

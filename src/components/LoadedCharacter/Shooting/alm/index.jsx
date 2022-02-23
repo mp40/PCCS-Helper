@@ -6,7 +6,7 @@ import { AlmStateContext, FirearmContext } from '../context';
 import Duck from '../duck';
 import Aiming from '../Aiming';
 
-import AlmModals from '../alm-modals';
+import AlmModals from '../Modals';
 import AlmButton from '../../../widgets/buttons/AlmButton';
 
 import { getScopeByName } from '../../../../data/firearms/optics';
