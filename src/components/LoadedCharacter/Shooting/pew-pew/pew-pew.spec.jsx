@@ -300,18 +300,6 @@ describe('Changing Firearm', () => {
     expect(wrapper.text()).toContain('Hit Chance: 52%');
   });
 
-  // mptodo
-  //   it('should reset fire selector on weapon change', () => {
-  //     const wrapper = getWrapper();
-
-  //     wrapper.find('button[children="Sustained Fire"]').simulate('click');
-  //     wrapper.find('button[children="Sustained Fire"]').simulate('click');
-
-  //     wrapper.setProps({ firearm: { ...hydrateFirearmByObject(testM16()) } });
-
-  //     expect(wrapper.text()).toContain('Hit Chance: 6%');
-  //   });
-
   it('should clear rounds fired on weapon change', () => {
     const wrapper = getWrapper();
 
