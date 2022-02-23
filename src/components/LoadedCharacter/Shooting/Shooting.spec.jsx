@@ -7,6 +7,24 @@ import { firearms } from '../../../data/firearms';
 
 const testFAMAS = () => ({ ...firearms.FAMAS });
 const testM16 = () => ({ ...firearms.M16 });
+const testM60 = () => ({ ...firearms.M60 });
+
+describe('Default ROF Selection', () => {
+  const setFirearm = jest.fn();
+  const getWrapper = (firearm) => mount(<Shooting firearm={firearm} level={0} setFirearm={setFirearm} />);
+
+  it('should set selector to Single by default', () => {
+    const selector = getWrapper(testFAMAS()).find('.selector');
+
+    expect(selector.find('.Single').exists()).toBe(true);
+  });
+
+  it('should set selector to Auto if not able to fire Single', () => {
+    const selector = getWrapper(testM60()).find('.selector');
+
+    expect(selector.find('.Auto').exists()).toBe(true);
+  });
+});
 
 describe('Changing Firearm', () => {
   const firearm = testFAMAS();

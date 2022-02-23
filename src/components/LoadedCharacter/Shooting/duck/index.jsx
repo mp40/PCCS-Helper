@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import styles from '../styles.module.css';
+import styles from './styles.module.css';
 
 const Duck = ({ setDuckAlm }) => {
   const [ducking, setDucking] = useState({ shooter: false, target: false });

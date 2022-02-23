@@ -5,6 +5,7 @@ import { AlmDispatchProvider, AlmStateProvider, FirearmProvider } from './contex
 import { updateAims, resetSituation } from './actions';
 import reducer from './reducer';
 
+import LoadedCharacterShootingHeader from './header';
 import Alm from './alm';
 import FirearmData from './firearm-data';
 import PewPew from './pew-pew';
@@ -12,8 +13,6 @@ import PewPew from './pew-pew';
 import { gunObjShape } from '../../../helpers/proptypeShapes';
 import { salAndCeTable } from '../../../core/tables';
 import { initialState } from './data';
-
-import styles from './styles.module.css';
 
 const LoadedCharacterShooting = ({
   firearm,
@@ -37,21 +36,11 @@ const LoadedCharacterShooting = ({
       <FirearmProvider firearm={{ ...firearm }}>
         <AlmStateProvider state={{ ...state }}>
 
-          <div className={`${styles.wrapper} card-standard`}>
-            <div className={styles.header}>
-              <span>{firearm.name}</span>
-              <button
-                aria-label="close"
-                className={styles.close}
-                type="button"
-                onClick={() => setFirearm(false)}
-              />
-            </div>
-
+          <div className="card-standard">
+            <LoadedCharacterShootingHeader setFirearm={setFirearm} firearmName={firearm.name} />
             <FirearmData alm={alm} rof={rof} level={level} />
             <Alm setAlm={setAlm} />
             <PewPew rof={rof} setRof={setRof} alm={alm + sal} />
-
           </div>
 
         </AlmStateProvider>
