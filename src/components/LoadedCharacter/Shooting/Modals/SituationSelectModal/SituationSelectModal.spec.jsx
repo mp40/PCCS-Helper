@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 
 import SituationSelectModal from './index';
 
-import { AlmStateProvider, FirearmProvider, AlmDispatchProvider } from '../../context';
+import { AlmStateProvider, WeaponProvider, AlmDispatchProvider } from '../../context';
 import { initialState } from '../../data';
 
 import { firearms } from '../../../../../data/firearms';
@@ -36,11 +36,11 @@ describe('Situation Select Modal', () => {
   const getWrapper = (firearm, state = initialState) => mount(
     <AlmDispatchProvider dispatch={dispatch}>
       <AlmStateProvider state={{ ...state }}>
-        <FirearmProvider firearm={{ ...hydrateFirearmByObject(firearm) }}>
+        <WeaponProvider weapon={{ ...hydrateFirearmByObject(firearm) }}>
           <SituationSelectModal
             setModal={setModal}
           />
-        </FirearmProvider>
+        </WeaponProvider>
       </AlmStateProvider>
     </AlmDispatchProvider>,
   );

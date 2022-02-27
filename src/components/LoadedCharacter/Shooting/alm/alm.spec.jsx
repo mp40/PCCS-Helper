@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { AlmStateProvider, FirearmProvider } from '../context';
+import { AlmStateProvider, WeaponProvider } from '../context';
 
 import Alm from './index';
 
@@ -43,9 +43,9 @@ const setAlm = jest.fn();
 
 const getWrapper = (firearm, state) => mount(
   <AlmStateProvider state={{ ...state }}>
-    <FirearmProvider firearm={{ ...hydrateFirearmByObject(firearm) }}>
+    <WeaponProvider weapon={{ ...hydrateFirearmByObject(firearm) }}>
       <Alm setAlm={setAlm} />
-    </FirearmProvider>
+    </WeaponProvider>
   </AlmStateProvider>,
 );
 

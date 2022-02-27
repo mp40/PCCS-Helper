@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { AlmDispatchContext, AlmStateContext, FirearmContext } from '../../context';
+import { AlmDispatchContext, AlmStateContext, WeaponContext } from '../../context';
 import { updateAims } from '../../actions';
 
 import KeyPadModal from '../../../../widgets/keyPadModal';
@@ -9,7 +9,7 @@ import KeyPadModal from '../../../../widgets/keyPadModal';
 const AimsSelectModal = ({ setModal }) => {
   const dispatch = useContext(AlmDispatchContext);
   const { aims } = useContext(AlmStateContext);
-  const firearm = useContext(FirearmContext);
+  const firearm = useContext(WeaponContext);
 
   const maxAims = firearm.aim.ac.slice(-1)[0];
 

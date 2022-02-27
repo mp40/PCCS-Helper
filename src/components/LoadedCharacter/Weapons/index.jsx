@@ -7,7 +7,7 @@ import { gunObjShape, launcherShape } from '../../../helpers/proptypeShapes';
 
 import styles from './styles.module.css';
 
-const LoadedCharacterWeapons = ({ firearms, grenades, launchers, setFirearm }) => {
+const LoadedCharacterWeapons = ({ firearms, grenades, launchers, setWeapon }) => {
   const getSpareAmmoNotes = (magazines) => {
     const text = [];
 
@@ -44,7 +44,7 @@ const LoadedCharacterWeapons = ({ firearms, grenades, launchers, setFirearm }) =
       <h2>Weapons</h2>
       <h3>Firearms</h3>
       {firearms.map((firearm) => (
-        <button type="button" key={firearm.name} className={styles.firearm} onClick={() => setFirearm(firearm)}>
+        <button type="button" key={firearm.name} className={styles.firearm} onClick={() => setWeapon(firearm)}>
           <div>
             {firearm.name}
           </div>
@@ -71,17 +71,21 @@ const LoadedCharacterWeapons = ({ firearms, grenades, launchers, setFirearm }) =
       <>
         <h3>Launchers</h3>
         {launchersAndUnderslung.map((launcher) => (
-          <div key={launcher.name} className={styles.launcher}>
-            <span>{`${launcher.name} x ${launcher.qty}`}</span>
-            {launcher.mag.map((m) => {
-              if (m.weight === '-') {
-                return null;
-              }
-              return (
-                <span key={m.class}>{`${m.class} x ${m.qty}`}</span>
-              );
-            })}
-          </div>
+          <button type="button" key={launcher.name} className={styles.firearm} onClick={() => setWeapon(launcher)}>
+
+            <div key={launcher.name} className={styles.launcher}>
+              <span>{`${launcher.name} x ${launcher.qty}`}</span>
+              {launcher.mag.map((m) => {
+                if (m.weight === '-') {
+                  return null;
+                }
+                return (
+                  <span key={m.class}>{`${m.class} x ${m.qty}`}</span>
+                );
+              })}
+            </div>
+
+          </button>
 
         ))}
       </>
@@ -94,7 +98,7 @@ LoadedCharacterWeapons.propTypes = {
   firearms: PropTypes.arrayOf(gunObjShape).isRequired,
   grenades: PropTypes.arrayOf(PropTypes.object).isRequired,
   launchers: PropTypes.arrayOf(launcherShape).isRequired,
-  setFirearm: PropTypes.func.isRequired,
+  setWeapon: PropTypes.func.isRequired,
 };
 
 export default LoadedCharacterWeapons;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { AlmStateProvider, FirearmProvider, AlmDispatchProvider } from '../context';
+import { AlmStateProvider, WeaponProvider, AlmDispatchProvider } from '../context';
 
 import PewPew from './index';
 
@@ -15,9 +15,9 @@ describe('Firing interface', () => {
 
   const getWrapper = (rof) => mount(
     <AlmStateProvider state={{ target: 'Standing Exposed' }}>
-      <FirearmProvider firearm={{ ...hydrateFirearmByObject(testFAMAS()) }}>
+      <WeaponProvider weapon={{ ...hydrateFirearmByObject(testFAMAS()) }}>
         <PewPew rof={rof} setRof={setRof} alm={10} />
-      </FirearmProvider>
+      </WeaponProvider>
     </AlmStateProvider>,
   );
 
@@ -46,9 +46,9 @@ describe('Clicking Fire Buttons', () => {
   const getWrapper = (rof) => mount(
     <AlmDispatchProvider dispatch={dispatch}>
       <AlmStateProvider state={{ target: 'Standing Exposed' }}>
-        <FirearmProvider firearm={{ ...hydrateFirearmByObject(testFAMAS()) }}>
+        <WeaponProvider weapon={{ ...hydrateFirearmByObject(testFAMAS()) }}>
           <PewPew rof={rof} setRof={setRof} alm={0} />
-        </FirearmProvider>
+        </WeaponProvider>
       </AlmStateProvider>
     </AlmDispatchProvider>,
   );
@@ -116,9 +116,9 @@ describe('Ammo Used Tally', () => {
   const getWrapper = (rof, firearm = testFAMAS()) => mount(
     <AlmDispatchProvider dispatch={dispatch}>
       <AlmStateProvider state={{ target: 'Standing Exposed' }}>
-        <FirearmProvider firearm={{ ...hydrateFirearmByObject(firearm) }}>
+        <WeaponProvider weapon={{ ...hydrateFirearmByObject(firearm) }}>
           <PewPew rof={rof} setRof={setRof} alm={0} />
-        </FirearmProvider>
+        </WeaponProvider>
       </AlmStateProvider>
     </AlmDispatchProvider>,
   );
@@ -281,13 +281,13 @@ describe('Changing Firearm', () => {
   const dispatch = jest.fn();
 
   const getWrapper = () => mount(
-    <FirearmProvider firearm={{ ...hydrateFirearmByObject(testFAMAS()) }}>
+    <WeaponProvider weapon={{ ...hydrateFirearmByObject(testFAMAS()) }}>
       <AlmDispatchProvider dispatch={dispatch}>
         <AlmStateProvider state={{ target: 'Standing Exposed' }}>
           <PewPew rof="Auto" setRof={setRof} alm={0} />
         </AlmStateProvider>
       </AlmDispatchProvider>
-    </FirearmProvider>,
+    </WeaponProvider>,
   );
   it('should clear sab on weapon change', () => {
     const wrapper = getWrapper();
@@ -295,7 +295,7 @@ describe('Changing Firearm', () => {
     wrapper.find('button[children="Sustained Fire"]').simulate('click');
     wrapper.find('button[children="Sustained Fire"]').simulate('click');
 
-    wrapper.setProps({ firearm: { ...hydrateFirearmByObject(testM16()) } });
+    wrapper.setProps({ weapon: { ...hydrateFirearmByObject(testM16()) } });
 
     expect(wrapper.text()).toContain('Hit Chance: 52%');
   });
@@ -306,7 +306,7 @@ describe('Changing Firearm', () => {
     wrapper.find('button[children="Sustained Fire"]').simulate('click');
     wrapper.find('button[children="Sustained Fire"]').simulate('click');
 
-    wrapper.setProps({ firearm: { ...hydrateFirearmByObject(testM16()) } });
+    wrapper.setProps({ weapon: { ...hydrateFirearmByObject(testM16()) } });
 
     expect(wrapper.text()).toContain('Rounds Fired: 0');
   });

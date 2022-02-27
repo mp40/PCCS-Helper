@@ -3,21 +3,21 @@ import PropTypes from 'prop-types';
 
 import styles from './styles.module.css';
 
-const LoadedCharacterShootingHeader = ({ setFirearm, firearmName }) => (
+const LoadedCharacterShootingHeader = ({ setWeapon, weaponName }) => (
   <div className={styles.header}>
-    <span>{firearmName}</span>
+    <span>{weaponName}</span>
     <button
       aria-label="close"
       className={styles.close}
       type="button"
-      onClick={() => setFirearm(false)}
+      onClick={() => setWeapon(false)}
     />
   </div>
 );
 
 LoadedCharacterShootingHeader.propTypes = {
-  setFirearm: PropTypes.func.isRequired,
-  firearmName: PropTypes.string.isRequired,
+  setWeapon: PropTypes.func.isRequired,
+  weaponName: PropTypes.string.isRequired,
 };
 
 export default LoadedCharacterShootingHeader;

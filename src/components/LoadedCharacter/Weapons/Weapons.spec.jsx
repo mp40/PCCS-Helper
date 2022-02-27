@@ -50,7 +50,7 @@ const mockM72 = {
 
 describe('Loaded Character Reference Card', () => {
   let wrapper;
-  const setFirearm = jest.fn();
+  const setWeapon = jest.fn();
 
   beforeEach(() => {
     wrapper = shallow(
@@ -58,7 +58,7 @@ describe('Loaded Character Reference Card', () => {
         firearms={[mockRifle, mockPistol, mockShotgun, mockSingleShotGun, mockRifleWithUnderslung]}
         grenades={[mockGrenade]}
         launchers={[mockM79, mockM72]}
-        setFirearm={setFirearm}
+        setWeapon={setWeapon}
       />,
     );
   });
@@ -108,7 +108,7 @@ describe('Loaded Character Reference Card', () => {
   it('should set firearm to use when firearm button clicked', () => {
     wrapper.find('.firearm').at(0).simulate('click');
 
-    expect(setFirearm).toHaveBeenCalledWith(mockRifle);
+    expect(setWeapon).toHaveBeenCalledWith(mockRifle);
   });
 
   it('should render characters grenades', () => {

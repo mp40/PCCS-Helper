@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import { AlmStateContext, FirearmContext } from '../context';
+import { AlmStateContext, WeaponContext } from '../context';
 
 import { getWeaponRangeIndex, getTargetSizeMod } from './data';
 import { getRecoilRecoveryValue } from '../../../../data/advancedRules/recoilRecovery';
@@ -10,12 +10,12 @@ import styles from './styles.module.css';
 
 const FirearmData = ({ level, alm, rof }) => {
   const state = useContext(AlmStateContext);
-  const firearm = useContext(FirearmContext);
+  const weapon = useContext(WeaponContext);
 
   const [ballisticAlm, setBallisticAlm] = useState();
   const [ammoType, setAmmoType] = useState(0);
 
-  const { list, projectiles, ma, ba, kd } = firearm;
+  const { list, projectiles, ma, ba, kd } = weapon;
 
   const rangeIndex = getWeaponRangeIndex(list, state.range);
 
@@ -23,7 +23,7 @@ const FirearmData = ({ level, alm, rof }) => {
 
   useEffect(() => {
     setAmmoType(0);
-  }, [firearm]);
+  }, [weapon]);
 
   useEffect(() => {
     if (alm > ba[rangeIndex]) {
@@ -51,12 +51,13 @@ const FirearmData = ({ level, alm, rof }) => {
         <div>
           <span className={`${ballisticAlm === ba[rangeIndex] ? styles.baReached : ''}`}>{`ALM: ${ballisticAlm}`}</span>
           <span>{`EAL: ${ballisticAlm + targetSizeMod}`}</span>
+          <span>{`ROF: ${weapon.rof}`}</span>
         </div>
         <div>
           <span>{`PEN: ${projectiles[ammoType].pen[rangeIndex]}`}</span>
           <span>{`DC: ${projectiles[ammoType].dc[rangeIndex]}`}</span>
           {rof !== 'Single' && ma
-            && <span>{`MA: ${firearm.ma[rangeIndex]}`}</span>}
+            && <span>{`MA: ${weapon.ma[rangeIndex]}`}</span>}
         </div>
         <span>{`Recoil Recovery: ${getRecoilRecoveryValue(kd, level)}`}</span>
       </div>

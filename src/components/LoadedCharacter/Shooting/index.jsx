@@ -1,7 +1,7 @@
 import React, { useReducer, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { AlmDispatchProvider, AlmStateProvider, FirearmProvider } from './context';
+import { AlmDispatchProvider, AlmStateProvider, WeaponProvider } from './context';
 import { updateAims, resetSituation } from './actions';
 import reducer from './reducer';
 
@@ -10,50 +10,61 @@ import Alm from './alm';
 import FirearmData from './firearm-data';
 import PewPew from './pew-pew';
 
-import { gunObjShape } from '../../../helpers/proptypeShapes';
+import { hydrateFirearmByObject } from '../../../data/firearms/hydrate';
+import { launcherList } from '../../../data/launchers';
+
+import { gunObjShape, launcherShape } from '../../../helpers/proptypeShapes';
 import { salAndCeTable } from '../../../core/tables';
 import { initialState } from './data';
 
 const LoadedCharacterShooting = ({
-  firearm,
+  weapon,
   level,
-  setFirearm,
+  setWeapon,
 }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [alm, setAlm] = useState(0);
-  const [rof, setRof] = useState(!firearm.selector ? 'Single' : 'Auto');
+  const [rof, setRof] = useState();
+
+  const firearms = ['pistols', 'rifles', 'smgs', 'mgs', 'shotguns', 'sniperRifles'];
+  let hydratedWeapon = weapon;
+  if (firearms.includes(weapon.list)) {
+    hydratedWeapon = hydrateFirearmByObject(weapon);
+  }
+
+  if (weapon.list === 'launchers') {
+    hydratedWeapon = launcherList[weapon.name];
+  }
 
   useEffect(() => {
     dispatch(resetSituation());
     dispatch(updateAims(1));
-    setRof(!firearm.selector ? 'Single' : 'Auto');
-  }, [firearm]);
+    setRof(hydratedWeapon.selector ? 'Auto' : 'Single');
+  }, [weapon]);
 
   const sal = salAndCeTable[level];
 
   return (
     <AlmDispatchProvider dispatch={dispatch}>
-      <FirearmProvider firearm={{ ...firearm }}>
+      <WeaponProvider weapon={{ ...hydratedWeapon }}>
         <AlmStateProvider state={{ ...state }}>
-
           <div className="card-standard">
-            <LoadedCharacterShootingHeader setFirearm={setFirearm} firearmName={firearm.name} />
+            <LoadedCharacterShootingHeader setWeapon={setWeapon} weaponName={weapon.name} />
             <FirearmData alm={alm} rof={rof} level={level} />
             <Alm setAlm={setAlm} />
             <PewPew rof={rof} setRof={setRof} alm={alm + sal} />
           </div>
-
         </AlmStateProvider>
-      </FirearmProvider>
+      </WeaponProvider>
     </AlmDispatchProvider>
 
   );
 };
 
 LoadedCharacterShooting.propTypes = {
-  firearm: gunObjShape.isRequired,
+  weapon: PropTypes.oneOfType([gunObjShape, launcherShape]).isRequired,
   level: PropTypes.number.isRequired,
-  setFirearm: PropTypes.func.isRequired,
+  setWeapon: PropTypes.func.isRequired,
 };
 
 export default LoadedCharacterShooting;

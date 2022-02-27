@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { AlmDispatchProvider, AlmStateProvider, FirearmProvider } from '../../context';
+import { AlmDispatchProvider, AlmStateProvider, WeaponProvider } from '../../context';
 
 import { firearms } from '../../../../../data/firearms';
 import { hydrateFirearmByObject } from '../../../../../data/firearms/hydrate';
@@ -18,9 +18,9 @@ describe('Aim Select Modal', () => {
     wrapper = mount(
       <AlmDispatchProvider dispatch={dispatch}>
         <AlmStateProvider state={{ aims: 1 }}>
-          <FirearmProvider firearm={{ ...hydrateFirearmByObject(testFAMAS()) }}>
+          <WeaponProvider weapon={{ ...hydrateFirearmByObject(testFAMAS()) }}>
             <AimsSelectModal setModal={setModal} />
-          </FirearmProvider>
+          </WeaponProvider>
         </AlmStateProvider>
       </AlmDispatchProvider>,
     );

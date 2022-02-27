@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { AlmStateProvider, FirearmProvider } from '../context';
+import { AlmStateProvider, WeaponProvider } from '../context';
 
 import FirearmData from './index';
 
@@ -13,9 +13,9 @@ const testM1911A1 = () => ({ ...firearms.M1911A1 });
 describe('Weapon Data', () => {
   const getWrapper = (range, rof, alm, firearm) => mount(
     <AlmStateProvider state={{ range, target: 'Standing Exposed' }}>
-      <FirearmProvider firearm={firearm}>
+      <WeaponProvider weapon={firearm}>
         <FirearmData level={0} alm={alm} rof={rof} />
-      </FirearmProvider>
+      </WeaponProvider>
     </AlmStateProvider>,
   );
 

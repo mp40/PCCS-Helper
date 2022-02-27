@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { AlmDispatchContext, AlmStateContext, FirearmContext } from '../../context';
+import { AlmDispatchContext, AlmStateContext, WeaponContext } from '../../context';
 import { updateRange } from '../../actions';
 
 import KeyPadModal from '../../../../widgets/keyPadModal';
@@ -10,7 +10,7 @@ import { getWeaponMaxRange } from './data';
 
 const RangeSelectModal = ({ setModal }) => {
   const dispatch = useContext(AlmDispatchContext);
-  const firearm = useContext(FirearmContext);
+  const weapon = useContext(WeaponContext);
   const { range } = useContext(AlmStateContext);
 
   const handleClick = (rng) => {
@@ -18,7 +18,7 @@ const RangeSelectModal = ({ setModal }) => {
     setModal(false);
   };
 
-  const maxRange = getWeaponMaxRange(firearm.list);
+  const maxRange = getWeaponMaxRange(weapon.list);
 
   return (
     <KeyPadModal

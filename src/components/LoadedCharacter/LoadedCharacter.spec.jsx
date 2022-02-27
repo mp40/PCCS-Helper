@@ -33,7 +33,7 @@ describe('Loaded Character', () => {
   });
 
   it('should render firearm shooting card when firearm selected', () => {
-    wrapper.find('LoadedCharacterWeapons').invoke('setFirearm')(m1911);
+    wrapper.find('LoadedCharacterWeapons').invoke('setWeapon')(m1911);
 
     expect(wrapper.find('LoadedCharacterShooting').exists()).toBe(true);
   });

@@ -10,8 +10,8 @@ const testM16 = () => ({ ...firearms.M16 });
 const testM60 = () => ({ ...firearms.M60 });
 
 describe('Default ROF Selection', () => {
-  const setFirearm = jest.fn();
-  const getWrapper = (firearm) => mount(<Shooting firearm={firearm} level={0} setFirearm={setFirearm} />);
+  const setWeapon = jest.fn();
+  const getWrapper = (firearm) => mount(<Shooting weapon={firearm} level={0} setWeapon={setWeapon} />);
 
   it('should set selector to Single by default', () => {
     const selector = getWrapper(testFAMAS()).find('.selector');
@@ -28,12 +28,12 @@ describe('Default ROF Selection', () => {
 
 describe('Changing Firearm', () => {
   const firearm = testFAMAS();
-  const setFirearm = jest.fn();
-  const wrapper = mount(<Shooting firearm={firearm} level={0} setFirearm={setFirearm} />);
+  const setWeapon = jest.fn();
+  const wrapper = mount(<Shooting weapon={firearm} level={0} setWeapon={setWeapon} />);
   wrapper.find('PewPew').invoke('setRof')('Auto');
 
   it('should reset ROF on weapon change', () => {
-    wrapper.setProps({ firearm: testM16() });
+    wrapper.setProps({ weapon: testM16() });
     wrapper.update();
 
     expect(wrapper.find('PewPew').props().rof).toBe('Single');
@@ -41,7 +41,7 @@ describe('Changing Firearm', () => {
 
   it('should clear aims on weapon change', () => {
     wrapper.find('button[children="+"]').simulate('click');
-    wrapper.setProps({ firearm: testM16() });
+    wrapper.setProps({ weapon: testM16() });
     wrapper.update();
 
     expect(wrapper.text()).toContain('Aims1');
@@ -52,7 +52,7 @@ describe('Changing Firearm', () => {
     wrapper.find('CheckBox').at(0).simulate('click');
     wrapper.find('SituationSelectModal').invoke('setModal')(false);
 
-    wrapper.setProps({ firearm: testM16() });
+    wrapper.setProps({ weapon: testM16() });
     wrapper.update();
 
     expect(wrapper.find('span[children="Situation"]').closest('button').text()).toBe('SituationALM: 0');
@@ -61,8 +61,8 @@ describe('Changing Firearm', () => {
 
 describe('Shooting Card Integration', () => {
   const firearm = testFAMAS();
-  const setFirearm = jest.fn();
-  const getWrapper = (level = 0) => mount(<Shooting firearm={firearm} level={level} setFirearm={setFirearm} />);
+  const setWeapon = jest.fn();
+  const getWrapper = (level = 0) => mount(<Shooting weapon={firearm} level={level} setWeapon={setWeapon} />);
 
   describe('level 0 Standing Shooter vs Standing Target, 1 Aim, Single Shot', () => {
     it('should have 5% chance to hit at Range 5', () => {
