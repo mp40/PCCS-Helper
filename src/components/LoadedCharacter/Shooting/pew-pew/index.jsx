@@ -19,10 +19,12 @@ const PewPew = ({ rof, setRof, alm }) => {
   const { target } = useContext(AlmStateContext);
   const weapon = useContext(WeaponContext);
 
+  const { name } = weapon;
+
   useEffect(() => {
     setSab(0);
     setRoundsFired(0);
-  }, [weapon]);
+  }, [name]);
 
   const autoROF = Number(String(weapon.rof).split('*').pop());
 
