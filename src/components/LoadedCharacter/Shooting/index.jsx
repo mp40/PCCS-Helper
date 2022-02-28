@@ -12,10 +12,13 @@ import PewPew from './pew-pew';
 
 import { hydrateFirearmByObject } from '../../../data/firearms/hydrate';
 import { launcherList } from '../../../data/launchers';
+import { launchers as underslugList } from '../../../data/firearms/launchers';
 
 import { gunObjShape, launcherShape } from '../../../helpers/proptypeShapes';
 import { salAndCeTable } from '../../../core/tables';
 import { initialState } from './data';
+
+const launchers = { ...launcherList, ...underslugList };
 
 const LoadedCharacterShooting = ({
   weapon,
@@ -33,7 +36,7 @@ const LoadedCharacterShooting = ({
   }
 
   if (weapon.list === 'launchers') {
-    hydratedWeapon = launcherList[weapon.name];
+    hydratedWeapon = launchers[weapon.name];
   }
 
   useEffect(() => {

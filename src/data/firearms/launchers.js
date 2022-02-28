@@ -1,5 +1,6 @@
-const m203 = {
+const m203 = Object.freeze({
   name: 'M203',
+  list: 'launchers',
   calibre: '40mm',
   weight: 3,
   rt: 12,
@@ -46,10 +47,11 @@ const m203 = {
   aoi: ['', 1, 4, ''],
   ba: [23, 10, 1, ''],
   tof: [11, 33, 80, ''],
-};
+});
 
-const gp25 = {
+const gp25 = Object.freeze({
   name: 'GP-25',
+  list: 'launchers',
   calibre: '30mm',
   weight: 3.3,
   rt: 12,
@@ -82,11 +84,11 @@ const gp25 = {
   aoi: ['', 1, 4, ''],
   ba: [23, 5, -4, ''],
   tof: [11, 35, 81, ''],
-};
+});
 
-const launchers = {
-  M203: m203,
-  'GP-25': gp25,
+export const launchers = {
+  M203: { ...m203 },
+  'GP-25': { ...gp25 },
 };
 
 export const getLauncherByName = (name) => launchers[name];
