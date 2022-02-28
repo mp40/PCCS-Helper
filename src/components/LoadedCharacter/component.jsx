@@ -5,9 +5,6 @@ import LoadedCharacterReferenceTables from './ReferenceTables';
 import LoadedCharacterWeapons from './Weapons';
 import LoadedCharacterShooting from './Shooting';
 
-import { hydrateFirearmByObject } from '../../data/firearms/hydrate';
-import { launcherList } from '../../data/launchers';
-
 import { salAndCeTable } from '../../core/tables';
 
 import styles from './styles.module.css';
@@ -28,20 +25,11 @@ const LoadedCharacter = ({
 
   const sal = salAndCeTable[gunLevel];
 
-  let hydratedWeapon = weapon;
-  if (firearms.includes(weapon.list)) {
-    hydratedWeapon = hydrateFirearmByObject(weapon);
-  }
-
-  if (weapon.list === 'launchers') {
-    hydratedWeapon = launcherList[weapon.name];
-  }
-
   return (
     <div className={styles.wrapper}>
       {weapon && (
       <LoadedCharacterShooting
-        weapon={hydratedWeapon}
+        weapon={weapon}
         level={gunLevel}
         setWeapon={setWeapon}
       />

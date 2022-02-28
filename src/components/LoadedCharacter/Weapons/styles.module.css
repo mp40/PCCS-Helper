@@ -6,7 +6,7 @@
   margin: 5px 0 0;
 }
 
-.firearm {
+.weapon {
   background-color: whitesmoke;
   display: block;
   text-align: left;
@@ -17,7 +17,7 @@
   box-shadow: inset 0px 0px 1.5px 1.5px var(--usaf-light-grey);
 }
 
-.card > .firearm:nth-of-type(n + 2) {
+.card > .weapon:nth-of-type(n + 2) {
   margin-top: 3px;
 }
 

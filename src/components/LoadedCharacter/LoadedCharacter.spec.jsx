@@ -5,6 +5,7 @@ import LoadedCharacter from './component';
 
 const m1911 = {
   name: 'M1911A1',
+  list: 'pistols',
   qty: 1,
   mag: [{ type: 'Mag', weight: 0.7, cap: 7, qty: 0 }],
 };
@@ -26,6 +27,10 @@ describe('Loaded Character', () => {
       grenades={[]}
       launchers={[]}
     />);
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
   it('should render without firearm selected for shooting', () => {

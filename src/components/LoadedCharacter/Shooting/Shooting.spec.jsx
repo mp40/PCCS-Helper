@@ -4,10 +4,12 @@ import { mount } from 'enzyme';
 import Shooting from './index';
 
 import { firearms } from '../../../data/firearms';
+import { launcherList } from '../../../data/launchers';
 
 const testFAMAS = () => ({ ...firearms.FAMAS });
 const testM16 = () => ({ ...firearms.M16 });
 const testM60 = () => ({ ...firearms.M60 });
+const testM79 = () => ({ ...launcherList.M79 });
 
 describe('Default ROF Selection', () => {
   const setWeapon = jest.fn();
@@ -326,5 +328,21 @@ describe('Shooting Card Integration', () => {
 
       expect(wrapper.text()).toContain('Hit Chance: 9%');
     });
+  });
+});
+
+describe('Grenade Launcher Integration', () => {
+  const weapon = testM79();
+  const setWeapon = jest.fn();
+  const wrapper = mount(<Shooting weapon={weapon} level={0} setWeapon={setWeapon} />);
+
+  it('it should have 1% change to hit hex with M79, Range 25', () => {
+    wrapper.find('span[children="Target Size"]').closest('button').simulate('click');
+    wrapper.find('button[children="Hex - indirect"]').simulate('click');
+
+    wrapper.find('span[children="Range"]').closest('button').simulate('click');
+    wrapper.find('button[children=25]').simulate('click');
+
+    expect(wrapper.text()).toContain('Hit Chance: 1%');
   });
 });

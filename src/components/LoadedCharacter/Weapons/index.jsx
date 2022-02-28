@@ -44,7 +44,7 @@ const LoadedCharacterWeapons = ({ firearms, grenades, launchers, setWeapon }) =>
       <h2>Weapons</h2>
       <h3>Firearms</h3>
       {firearms.map((firearm) => (
-        <button type="button" key={firearm.name} className={styles.firearm} onClick={() => setWeapon(firearm)}>
+        <button type="button" key={firearm.name} className={styles.weapon} onClick={() => setWeapon(firearm)}>
           <div>
             {firearm.name}
           </div>
@@ -71,7 +71,7 @@ const LoadedCharacterWeapons = ({ firearms, grenades, launchers, setWeapon }) =>
       <>
         <h3>Launchers</h3>
         {launchersAndUnderslung.map((launcher) => (
-          <button type="button" key={launcher.name} className={styles.firearm} onClick={() => setWeapon(launcher)}>
+          <button type="button" key={launcher.name} className={styles.weapon} onClick={() => setWeapon(launcher)}>
 
             <div key={launcher.name} className={styles.launcher}>
               <span>{`${launcher.name} x ${launcher.qty}`}</span>
