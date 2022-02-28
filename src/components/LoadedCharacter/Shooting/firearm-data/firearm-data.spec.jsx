@@ -5,10 +5,12 @@ import { AlmStateProvider, WeaponProvider } from '../context';
 import FirearmData from './index';
 
 import { firearms } from '../../../../data/firearms';
+import { launcherList } from '../../../../data/launchers';
 import { hydrateFirearmByObject } from '../../../../data/firearms/hydrate';
 
 const testFAMAS = () => ({ ...firearms.FAMAS });
 const testM1911A1 = () => ({ ...firearms.M1911A1 });
+const testM79 = () => ({ ...launcherList.M79 });
 
 describe('Weapon Data', () => {
   const getWrapper = (range, rof, alm, firearm) => mount(
@@ -20,8 +22,8 @@ describe('Weapon Data', () => {
   );
 
   const getWrapperWithFamas = (range, rof) => getWrapper(range, rof, 10, { ...hydrateFirearmByObject(testFAMAS()) });
-
   const getWrapperWithM1911 = (range, alm) => getWrapper(range, 'Single', alm, { ...hydrateFirearmByObject(testM1911A1()) });
+  const getWrapperWithM79 = () => getWrapper(50, 'Single', 0, { ...testM79() });
 
   describe('Ballastic Accuracy', () => {
     it('should use firearm ballistic accuracy instead of ALM if it is less', () => {
@@ -234,6 +236,14 @@ describe('Weapon Data', () => {
       wrapper.find('.ammoTypes').find('button[children="AP"]').simulate('click');
 
       expect(wrapper.text()).toContain('DC: 2');
+    });
+  });
+
+  describe('Grenade Launchers', () => {
+    it('should show TOF converted to master phase impluses', () => {
+      const wrapper = getWrapperWithM79();
+
+      expect(wrapper.text()).toContain('TOF: 6.4');
     });
   });
 });

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { AlmStateContext, WeaponContext } from '../context';
 
-import { getWeaponRangeIndex, getTargetSizeMod } from './data';
+import { getWeaponRangeIndex, getTargetSizeMod, getMasterPhaseImpluse } from './data';
 import { getRecoilRecoveryValue } from '../../../../data/advancedRules/recoilRecovery';
 
 import styles from './styles.module.css';
@@ -51,15 +51,18 @@ const FirearmData = ({ level, alm, rof }) => {
         <div>
           <span className={`${ballisticAlm === ba[rangeIndex] ? styles.baReached : ''}`}>{`ALM: ${ballisticAlm}`}</span>
           <span>{`EAL: ${ballisticAlm + targetSizeMod}`}</span>
-          <span>{`ROF: ${weapon.rof}`}</span>
         </div>
         <div>
           <span>{`PEN: ${projectiles[ammoType].pen[rangeIndex]}`}</span>
           <span>{`DC: ${projectiles[ammoType].dc[rangeIndex]}`}</span>
           {rof !== 'Single' && ma
             && <span>{`MA: ${weapon.ma[rangeIndex]}`}</span>}
+          {list === 'launchers' && <span>{`TOF: ${getMasterPhaseImpluse(weapon.tof[rangeIndex])}`}</span>}
         </div>
-        <span>{`Recoil Recovery: ${getRecoilRecoveryValue(kd, level)}`}</span>
+        <div>
+          <span>{`ROF: ${weapon.rof}`}</span>
+          <span>{`Recoil Recovery: ${getRecoilRecoveryValue(kd, level)}`}</span>
+        </div>
       </div>
     </>
   );

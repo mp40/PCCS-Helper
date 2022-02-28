@@ -23,3 +23,10 @@ export const getTargetSizeMod = (rof, size) => {
 
   return expandedTargetSizeMods[size].elev;
 };
+
+export const getMasterPhaseImpluse = (tof) => {
+  const raw = tof / 5;
+  const imp = Math.floor(raw);
+  const masterPhase = ((tof % 5) / 10) + 0.1;
+  return imp + masterPhase;
+};
