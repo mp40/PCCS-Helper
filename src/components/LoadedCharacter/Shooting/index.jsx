@@ -27,7 +27,7 @@ const LoadedCharacterShooting = ({
 }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [alm, setAlm] = useState(0);
-  const [rof, setRof] = useState();
+  const [rof, setRof] = useState('Single');
 
   const firearms = ['pistols', 'rifles', 'smgs', 'mgs', 'shotguns', 'sniperRifles'];
   let hydratedWeapon = weapon;
