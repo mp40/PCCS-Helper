@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { AlmDispatchContext, AlmStateContext, FirearmContext } from '../../context';
+import { AlmDispatchContext, AlmStateContext, WeaponContext } from '../../context';
 import { updateVisibility } from '../../actions';
 
 import { lightingOptions, getOthers } from './data';
@@ -13,7 +13,7 @@ import styles from './styles.module.css';
 const VisibilitySelectModal = ({ setModal }) => {
   const dispatch = useContext(AlmDispatchContext);
   const { visibility } = useContext(AlmStateContext);
-  const firearm = useContext(FirearmContext);
+  const firearm = useContext(WeaponContext);
 
   const optics = firearm?.optics?.attached;
 

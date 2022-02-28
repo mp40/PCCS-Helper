@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { AlmDispatchContext, AlmStateContext, FirearmContext } from '../../context';
+import { AlmDispatchContext, AlmStateContext, WeaponContext } from '../../context';
 import { updateSituation } from '../../actions';
 
 import CheckBox from '../../../../widgets/buttons/CheckBox';
@@ -13,7 +13,7 @@ import styles from './styles.module.css';
 const SituationSelectModal = ({ setModal }) => {
   const dispatch = useContext(AlmDispatchContext);
   const { situation } = useContext(AlmStateContext);
-  const firearm = useContext(FirearmContext);
+  const weapon = useContext(WeaponContext);
 
   const handleClick = (key) => {
     const updatedSituation = { ...situation };
@@ -44,7 +44,7 @@ const SituationSelectModal = ({ setModal }) => {
     <>
       <div className="modal-background" />
       <div className={`card-standard ${styles.card}`}>
-        {getModifierList(firearm.list, firearm.bipod || false, String(firearm.length).includes('/')).map((s) => (
+        {getModifierList(weapon.list, weapon.bipod || false, String(weapon.length).includes('/')).map((s) => (
           <div key={s.key} className={styles.checkbox}>
             <span>{s.text}</span>
             <span>

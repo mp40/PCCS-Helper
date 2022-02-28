@@ -1,8 +1,13 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { AlmDispatchProvider } from '../../context';
+import { WeaponProvider, AlmDispatchProvider } from '../../context';
+
+import { firearms } from '../../../../../data/firearms';
+import { hydrateFirearmByObject } from '../../../../../data/firearms/hydrate';
 
 import TargetSizeSelectModal from './index';
+
+const testFAMAS = () => ({ ...firearms.FAMAS });
 
 describe('Target Size Modal', () => {
   let wrapper;
@@ -12,9 +17,11 @@ describe('Target Size Modal', () => {
   beforeEach(() => {
     wrapper = mount(
       <AlmDispatchProvider dispatch={dispatch}>
-        <TargetSizeSelectModal
-          setModal={setModal}
-        />
+        <WeaponProvider weapon={{ ...hydrateFirearmByObject(testFAMAS()) }}>
+          <TargetSizeSelectModal
+            setModal={setModal}
+          />
+        </WeaponProvider>
       </AlmDispatchProvider>);
   });
 

@@ -39,6 +39,9 @@ export const ranges = [
 ];
 
 export const getWeaponMaxRange = (list) => {
+  if (list === 'launchers') {
+    return ranges;
+  }
   const rangeBrackets = getRangeBrackets(list);
 
   const maxRange = rangeBrackets[rangeBrackets.length - 1];

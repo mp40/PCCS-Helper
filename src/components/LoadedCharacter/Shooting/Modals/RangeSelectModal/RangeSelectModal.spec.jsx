@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 
 import RangeSelectModal from './index';
 
-import { AlmStateProvider, FirearmProvider, AlmDispatchProvider } from '../../context';
+import { AlmStateProvider, WeaponProvider, AlmDispatchProvider } from '../../context';
 
 import { firearms } from '../../../../../data/firearms';
 import { hydrateFirearmByObject } from '../../../../../data/firearms/hydrate';
@@ -17,11 +17,11 @@ describe('Range Select Modal', () => {
   const getWrapper = () => mount(
     <AlmDispatchProvider dispatch={dispatch}>
       <AlmStateProvider state={{ range: 50 }}>
-        <FirearmProvider firearm={{ ...hydrateFirearmByObject(testFAMAS()) }}>
+        <WeaponProvider weapon={{ ...hydrateFirearmByObject(testFAMAS()) }}>
           <RangeSelectModal
             setModal={setModal}
           />
-        </FirearmProvider>
+        </WeaponProvider>
       </AlmStateProvider>
     </AlmDispatchProvider>);
 

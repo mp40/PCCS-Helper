@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 
 import VisibilitySelectModal from './index';
 
-import { AlmStateProvider, FirearmProvider, AlmDispatchProvider } from '../../context';
+import { AlmStateProvider, WeaponProvider, AlmDispatchProvider } from '../../context';
 
 import { firearms } from '../../../../../data/firearms';
 import { hydrateFirearmByObject } from '../../../../../data/firearms/hydrate';
@@ -32,12 +32,12 @@ describe('Visibility Select Modal', () => {
   const getWrapper = (firearm, visState = visibility) => mount(
     <AlmDispatchProvider dispatch={dispatch}>
       <AlmStateProvider state={{ visibility: { ...visState } }}>
-        <FirearmProvider firearm={{ ...hydrateFirearmByObject(firearm) }}>
+        <WeaponProvider weapon={{ ...hydrateFirearmByObject(firearm) }}>
           <VisibilitySelectModal
             setModal={setModal}
           />
           );
-        </FirearmProvider>
+        </WeaponProvider>
       </AlmStateProvider>
     </AlmDispatchProvider>,
   );

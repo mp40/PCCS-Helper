@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
-import { AlmStateProvider, FirearmProvider, AlmDispatchProvider } from '../context';
+import { AlmStateProvider, WeaponProvider, AlmDispatchProvider } from '../context';
 
 import Aiming from './index';
 
@@ -17,9 +17,9 @@ describe('Aiming buttons', () => {
   const getWrapper = (aims = 1) => mount(
     <AlmDispatchProvider dispatch={dispatch}>
       <AlmStateProvider state={{ aims }}>
-        <FirearmProvider firearm={{ ...hydrateFirearmByObject(testFAMAS()) }}>
+        <WeaponProvider weapon={{ ...hydrateFirearmByObject(testFAMAS()) }}>
           <Aiming setModal={setModal} />
-        </FirearmProvider>
+        </WeaponProvider>
       </AlmStateProvider>
     </AlmDispatchProvider>,
   );

@@ -1,10 +1,10 @@
 import React, { createContext } from 'react';
 import PropTypes from 'prop-types';
-import { gunObjShape } from '../../../helpers/proptypeShapes';
+import { gunObjShape, launcherShape } from '../../../helpers/proptypeShapes';
 
 export const AlmDispatchContext = createContext();
 export const AlmStateContext = createContext();
-export const FirearmContext = createContext();
+export const WeaponContext = createContext();
 
 export const AlmDispatchProvider = (
   { children, dispatch },
@@ -14,9 +14,9 @@ export const AlmStateProvider = (
   { children, state },
 ) => <AlmStateContext.Provider value={state}>{children}</AlmStateContext.Provider>;
 
-export const FirearmProvider = (
-  { children, firearm },
-) => <FirearmContext.Provider value={firearm}>{children}</FirearmContext.Provider>;
+export const WeaponProvider = (
+  { children, weapon },
+) => <WeaponContext.Provider value={weapon}>{children}</WeaponContext.Provider>;
 
 AlmDispatchProvider.propTypes = {
   dispatch: PropTypes.func.isRequired,
@@ -43,8 +43,8 @@ AlmStateProvider.propTypes = {
   ).isRequired,
 };
 
-FirearmProvider.propTypes = {
-  firearm: gunObjShape.isRequired,
+WeaponProvider.propTypes = {
+  weapon: PropTypes.oneOfType([gunObjShape, launcherShape]).isRequired,
   children: PropTypes.oneOfType(
     [PropTypes.elementType, PropTypes.object],
   ).isRequired,

@@ -5,6 +5,7 @@ import LoadedCharacter from './component';
 
 const m1911 = {
   name: 'M1911A1',
+  list: 'pistols',
   qty: 1,
   mag: [{ type: 'Mag', weight: 0.7, cap: 7, qty: 0 }],
 };
@@ -28,12 +29,16 @@ describe('Loaded Character', () => {
     />);
   });
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('should render without firearm selected for shooting', () => {
     expect(wrapper.find('LoadedCharacterShooting').exists()).toBe(false);
   });
 
   it('should render firearm shooting card when firearm selected', () => {
-    wrapper.find('LoadedCharacterWeapons').invoke('setFirearm')(m1911);
+    wrapper.find('LoadedCharacterWeapons').invoke('setWeapon')(m1911);
 
     expect(wrapper.find('LoadedCharacterShooting').exists()).toBe(true);
   });

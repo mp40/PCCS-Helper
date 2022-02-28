@@ -93,18 +93,6 @@ export const findSpeedMods = (combinedSpeed, range) => {
   return result;
 };
 
-export const targetSizeMods = {
-  'Look Over/Around': { size: -4, elev: -3, width: -3 },
-  'Fire Over/Around': { size: 0, elev: 2, width: 2 },
-  'Standing Exposed': { size: 7, elev: 14, width: 1 },
-  'Kneeling Exposed': { size: 6, elev: 11, width: 3 },
-  'Prone/Crawl': { size: 2, elev: 2, width: 2 },
-  Running: { size: 8, elev: 14, width: 1 },
-  'Low Crouch': { size: 7, elev: 11, width: 2 },
-  'Hands and Knees': { size: 6, elev: 8, width: 1 },
-  'Low Prone': { size: 1, elev: 0, width: 5 },
-};
-
 const lightingALM = {
   Good: 0,
   Dusk: -2,

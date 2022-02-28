@@ -1,26 +1,29 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { AlmDispatchContext } from '../../context';
+import { AlmDispatchContext, WeaponContext } from '../../context';
 import { updateTarget } from '../../actions';
 
-import { targetSizeMods } from '../../alm/data';
+import { directFireSizes, indirectFireSizes } from '../../data';
 
 import styles from './styles.module.css';
 
 const TargetSizeSelectModal = ({ setModal }) => {
   const dispatch = useContext(AlmDispatchContext);
+  const { list } = useContext(WeaponContext);
 
   const handleClick = (size) => {
     dispatch(updateTarget(size));
     setModal(false);
   };
 
+  const sizes = list === 'launchers' ? indirectFireSizes : directFireSizes;
+
   return (
     <>
       <div className="modal-background" />
       <div className={`card-standard ${styles.card}`}>
-        {Object.keys(targetSizeMods).map((size) => (
+        {sizes.map((size) => (
           <button type="button" key={size} onClick={() => handleClick(size)}>
             {size}
           </button>

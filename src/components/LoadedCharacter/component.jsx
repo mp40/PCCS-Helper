@@ -5,8 +5,6 @@ import LoadedCharacterReferenceTables from './ReferenceTables';
 import LoadedCharacterWeapons from './Weapons';
 import LoadedCharacterShooting from './Shooting';
 
-import { hydrateFirearmByObject } from '../../data/firearms/hydrate';
-
 import { salAndCeTable } from '../../core/tables';
 
 import styles from './styles.module.css';
@@ -23,18 +21,17 @@ const LoadedCharacter = ({
   gunCombatActions,
   handCombatActions,
 }) => {
-  const [firearm, setFirearm] = useState(false);
+  const [weapon, setWeapon] = useState(false);
 
   const sal = salAndCeTable[gunLevel];
 
   return (
     <div className={styles.wrapper}>
-      {firearm
-      && (
+      {weapon && (
       <LoadedCharacterShooting
-        firearm={hydrateFirearmByObject(firearm)}
+        weapon={weapon}
         level={gunLevel}
-        setFirearm={setFirearm}
+        setWeapon={setWeapon}
       />
       )}
 
@@ -51,7 +48,7 @@ const LoadedCharacter = ({
         firearms={firearms}
         grenades={grenades}
         launchers={launchers}
-        setFirearm={setFirearm}
+        setWeapon={setWeapon}
       />
 
     </div>

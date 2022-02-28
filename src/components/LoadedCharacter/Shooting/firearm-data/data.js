@@ -1,4 +1,5 @@
 import { getRangeBrackets } from '../../../../data/firearms/rangeBrackets';
+import { expandedTargetSizeMods } from '../data';
 
 export const getWeaponRangeIndex = (list, range) => {
   const rangeBrackets = getRangeBrackets(list);
@@ -15,22 +16,17 @@ export const getWeaponRangeIndex = (list, range) => {
   return index;
 };
 
-export const targetSizeMods = {
-  'Look Over/Around': { size: -4, elev: -3, width: -3 },
-  'Fire Over/Around': { size: 0, elev: 2, width: 2 },
-  'Standing Exposed': { size: 7, elev: 14, width: 1 },
-  'Kneeling Exposed': { size: 6, elev: 11, width: 3 },
-  'Prone/Crawl': { size: 2, elev: 2, width: 2 },
-  Running: { size: 8, elev: 14, width: 1 },
-  'Low Crouch': { size: 7, elev: 11, width: 2 },
-  'Hands and Knees': { size: 6, elev: 8, width: 1 },
-  'Low Prone': { size: 1, elev: 0, width: 5 },
-};
-
 export const getTargetSizeMod = (rof, size) => {
   if (rof === 'Single') {
-    return targetSizeMods[size].size;
+    return expandedTargetSizeMods[size].size;
   }
 
-  return targetSizeMods[size].elev;
+  return expandedTargetSizeMods[size].elev;
+};
+
+export const getMasterPhaseImpluse = (tof) => {
+  const raw = tof / 5;
+  const imp = Math.floor(raw);
+  const masterPhase = ((tof % 5) / 10) + 0.1;
+  return imp + masterPhase;
 };

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { AlmStateContext, FirearmContext } from '../context';
+import { AlmStateContext, WeaponContext } from '../context';
 
 import Duck from '../duck';
 import Aiming from '../Aiming';
@@ -24,19 +24,19 @@ import styles from './styles.module.css';
 
 const Alm = ({ setAlm }) => {
   const state = useContext(AlmStateContext);
-  const firearm = useContext(FirearmContext);
+  const weapon = useContext(WeaponContext);
   const [duckAlm, setDuckAlm] = useState(0);
   const [modal, setModal] = useState(false);
 
   const { stance, aims, situation, visibility, range, movement, miscellaneous } = state;
 
   const getOpticAlm = () => {
-    const attached = firearm?.optics?.attached;
+    const attached = weapon?.optics?.attached;
     if (!attached || state.situation.hipFire === true) {
       return 0;
     }
 
-    const optic = getScopeByName(firearm.optics.attached);
+    const optic = getScopeByName(weapon.optics.attached);
 
     if (range < optic.minimumRange) {
       return -6;
@@ -47,7 +47,7 @@ const Alm = ({ setAlm }) => {
 
   useEffect(() => {
     let result = miscellaneous;
-    result += getAimTimeMod(firearm.aim, aims);
+    result += getAimTimeMod(weapon.aim, aims);
     result += rangeMods[range];
     result += shooterStance[stance];
     result += findSpeedMods(movement.shooter + movement.target, range).mod;
