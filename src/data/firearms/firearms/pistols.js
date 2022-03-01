@@ -1,4 +1,4 @@
-import { averagePistol6Aims, belowAveragePistol6Aims } from '../aimTimes';
+import { averagePistol6Aims, belowAveragePistol6Aims, averagePistol5Aims } from '../aimTimes';
 import { averagePistol9mmParabellumFMJ } from '../projectiles';
 
 export const pistols = Object.freeze({
@@ -182,10 +182,7 @@ export const pistols = Object.freeze({
     mag: [{ type: 'Mag', weight: 0.4, cap: 8, qty: 0 }],
     kd: 2,
     sab: 3,
-    aim: {
-      ac: [1, 2, 3, 4, 5],
-      mod: [-16, -11, -10, -9, -8],
-    },
+    aim: averagePistol5Aims,
     projectiles: [
       {
         type: 'FMJ',
@@ -302,6 +299,35 @@ export const pistols = Object.freeze({
     ],
     ba: [46, 38, 29, 22, 17, 8, 3, -1],
     tof: [0, 1, 2, 3, 5, 12, 20, 29],
+    offical: true,
+  },
+  'Walther PPK': {
+    name: 'Walther PPK',
+    list: 'pistols',
+    calibre: '32 ACP',
+    qty: 1,
+    length: 6,
+    baseWeight: 1.09,
+    rt: 4,
+    rof: '*',
+    mag: [{ type: 'Mag', weight: 0.31, cap: 7, qty: 0 }],
+    kd: 2,
+    sab: 2,
+    aim: averagePistol5Aims,
+    projectiles: [
+      {
+        type: 'FMJ',
+        pen: [1.0, 0.9, 0.7, 0.5, 0.3, 0.1, '', ''],
+        dc: [1, 1, 1, 1, 1, 1, '', ''],
+      },
+      {
+        type: 'JHP',
+        pen: [0.9, 0.8, 0.7, 0.5, 0.3, 0.1, '', ''],
+        dc: [2, 1, 1, 1, 1, 1, '', ''],
+      },
+    ],
+    ba: [44, 36, 27, 19, 14, 5, '', ''],
+    tof: [1, 1, 3, 5, 8, 20, '', ''],
     offical: true,
   },
 });

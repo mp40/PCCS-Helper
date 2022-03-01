@@ -57,3 +57,9 @@ export const belowAveragePistol6Aims = {
   ac: [1, 2, 3, 4, 5, 6],
   mod: [-18, -11, -10, -9, -8, -7],
 };
+
+// Makarov PM, Walther PPK
+export const averagePistol5Aims = {
+  ac: [1, 2, 3, 4, 5],
+  mod: [-16, -11, -10, -9, -8],
+};
