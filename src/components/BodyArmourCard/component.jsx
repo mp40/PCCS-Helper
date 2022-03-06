@@ -1,32 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import BodyArmourSelection from '../BodyArmourSelection';
+import Helmet from '../BodyArmourSelection/helmet';
+import Vest from '../BodyArmourSelection/vest';
+
+import { DispatchContext } from '../App/context';
+import { showModal } from '../App/actions';
 
 import { helmets, vests } from '../../data/uniformAndArmourTypes';
 
-import './BodyArmour.css';
-
-const BodyArmourCard = ({ helmet, vest, changeHelmet, changeVest }) => {
-  const [showBodyArmour, toggleBodyArmourSelect] = useState(false);
-
-  const selectArmourList = (armourType) => (armourType === 'helmet' ? helmets : vests);
-
-  const handleDispatch = (type, payload) => {
-    if (type === 'helmet') {
-      changeHelmet(payload);
-    }
-    if (type === 'vest') {
-      changeVest(payload);
-    }
-    toggleBodyArmourSelect(false);
-  };
-
-  const renderArmourRow = (type, name) => (
-    <tr className="--selectableRow " onClick={() => toggleBodyArmourSelect(type)}>
-      <td>{name}</td>
-      <td>{selectArmourList(type)[name].weight}</td>
-    </tr>
-  );
+const BodyArmourCard = ({ helmet, vest }) => {
+  const dispatch = useContext(DispatchContext);
 
   return (
     <div className="card-standard">
@@ -38,18 +21,16 @@ const BodyArmourCard = ({ helmet, vest, changeHelmet, changeVest }) => {
           </tr>
         </thead>
         <tbody>
-          {renderArmourRow('helmet', helmet)}
-          {renderArmourRow('vest', vest)}
+          <tr className="--selectableRow " onClick={() => dispatch(showModal(Helmet))}>
+            <td>{helmets[helmet].name}</td>
+            <td>{helmets[helmet].weight}</td>
+          </tr>
+          <tr className="--selectableRow " onClick={() => dispatch(showModal(Vest))}>
+            <td>{vests[vest].name}</td>
+            <td>{vests[vest].weight}</td>
+          </tr>
         </tbody>
       </table>
-      {showBodyArmour
-      && (
-      <BodyArmourSelection
-        armourType={showBodyArmour}
-        armourList={selectArmourList(showBodyArmour)}
-        handleDispatch={handleDispatch}
-      />
-      )}
     </div>
   );
 };
@@ -57,8 +38,6 @@ const BodyArmourCard = ({ helmet, vest, changeHelmet, changeVest }) => {
 BodyArmourCard.propTypes = {
   helmet: PropTypes.string,
   vest: PropTypes.string,
-  changeHelmet: PropTypes.func,
-  changeVest: PropTypes.func,
 };
 
 BodyArmourCard.defaultProps = {
