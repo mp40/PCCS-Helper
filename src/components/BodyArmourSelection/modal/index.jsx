@@ -45,6 +45,7 @@ const BodyArmourSelection = ({ armourType, armourList, dispatch, closeModal }) =
 
             return (
               <tr
+                key={name}
                 className="--selectableRow"
                 onClick={() => handleDispatch(name)}
               >

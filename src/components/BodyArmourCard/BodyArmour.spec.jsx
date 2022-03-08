@@ -1,47 +1,35 @@
-import React from 'react';
-import { mount } from 'enzyme';
+import { mountAppWithStore } from '../../helpers/testHelpers';
 
-import { Provider } from 'react-redux';
-import { getStore } from '../../helpers/testHelpers';
+describe('Select helmet intergration test', () => {
+  window.history.pushState({}, '', '/edit');
+  const wrapper = mountAppWithStore();
 
-import ConnectedBodyArmourCard from '.';
+  afterAll(() => {
+    window.history.pushState({}, '', '/');
+  });
 
-describe('the BodyArmourCard', () => {
-  describe('body armour intergration tests', () => {
-    const store = getStore();
+  it('should be possible to select helmet', () => {
+    wrapper.find('td[children="No Helmet"]').simulate('click');
+    wrapper.find('td[children="SPECTRA"]').simulate('click');
 
-    const wrapper = mount(
-      <Provider store={store}>
-        <ConnectedBodyArmourCard />
-      </Provider>,
-    );
+    const bodyArmourCard = wrapper.find('BodyArmourCard');
+    expect(bodyArmourCard.text()).toContain('SPECTRA1.4');
+  });
+});
 
-    it('should update body armour card and total weight when helmet selected', () => {
-      wrapper.find('td[children="No Helmet"]').simulate('click');
-      wrapper.find('td[children="M1"]').closest('tr').simulate('click')
+describe('Select vest intergration test', () => {
+  window.history.pushState({}, '', '/edit');
+  const wrapper = mountAppWithStore();
 
-      expect(wrapper.text()).toContain('M12.5');
-    });
+  afterAll(() => {
+    window.history.pushState({}, '', '/');
+  });
 
-    it('should update body armour card and total weight when vest selected', () => {
-      wrapper.find('td[children="No Vest"]').simulate('click');
-      wrapper.find('td[children="M69"]').closest('tr').simulate('click')
+  it('should be possible to select helmet', () => {
+    wrapper.find('td[children="No Vest"]').simulate('click');
+    wrapper.find('td[children="M69"]').simulate('click');
 
-      expect(wrapper.text()).toContain('M698.5');
-    });
-
-    it('should be able to remove helmet', () => {
-      wrapper.find('td[children="M1"]').simulate('click');
-      wrapper.find('button[children="Remove"]').simulate('click');
-
-      expect(wrapper.text()).not.toContain('M12.5');
-    });
-
-    it('should be able to remove vest', () => {
-      wrapper.find('td[children="M69"]').simulate('click');
-      wrapper.find('button[children="Remove"]').simulate('click');
-
-      expect(wrapper.text()).not.toContain('M698.5');
-    });
+    const bodyArmourCard = wrapper.find('BodyArmourCard');
+    expect(bodyArmourCard.text()).toContain('M698.5');
   });
 });
