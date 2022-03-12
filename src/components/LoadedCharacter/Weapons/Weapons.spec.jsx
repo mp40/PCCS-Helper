@@ -48,7 +48,7 @@ const mockM72 = {
   mag: [{ weight: '-' }],
 };
 
-describe('Loaded Character Reference Card', () => {
+describe.skip('Loaded Character Reference Card', () => {
   let wrapper;
   const setWeapon = jest.fn();
 
