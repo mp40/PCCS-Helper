@@ -1,1 +1,1 @@
-web: PORT=$PORT yarn run server
+web: bin/boot
