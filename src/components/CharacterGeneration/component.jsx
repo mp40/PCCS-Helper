@@ -32,7 +32,7 @@ const CharacterGeneration = ({ totalWeight, signedIn }) => (
       <div>
         <Print />
         {signedIn && (
-        <Save />
+          <Save />
         )}
       </div>
 

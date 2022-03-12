@@ -23,6 +23,14 @@
   align-items: center;
 }
 
+.header > div > span:nth-of-type(1):after {
+  content: "\00a0";
+}
+
+.header > div > span:nth-of-type(2) {
+  text-transform: capitalize;
+}
+
 .header > div > button {
   background-color: var(--panzer-grey);
   border: none;

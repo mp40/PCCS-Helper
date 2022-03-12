@@ -2,7 +2,6 @@ import React, { createContext } from 'react';
 import PropTypes from 'prop-types';
 
 export const DispatchContext = createContext();
-export const StateContext = createContext();
 
 export const DispatchProvider = (
   { children, dispatch },
