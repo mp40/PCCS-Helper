@@ -97,7 +97,7 @@ describe('Loaded Character Reference Card', () => {
   });
 
   it('should set hydrated firearm to use when firearm button clicked', () => {
-    wrapper.find('.weapon').at(0).simulate('click');
+    wrapper.find('button').at(0).simulate('click');
 
     expect(setWeapon).toHaveBeenCalledWith(hydratedFirearmDoube);
   });

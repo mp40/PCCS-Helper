@@ -58,7 +58,7 @@ describe('Loaded Character Reference Card', () => {
 
   it('should set hydrated launcher to use when launcher button clicked', () => {
     wrapper.setProps({ launchers: [mockM79] });
-    wrapper.find('.weapon').at(0).simulate('click');
+    wrapper.find('button').at(0).simulate('click');
 
     expect(setWeapon).toHaveBeenCalledWith(hydratedM79Double);
   });
