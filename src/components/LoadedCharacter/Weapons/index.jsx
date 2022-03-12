@@ -1,11 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { getLauncherByName } from '../../../data/firearms/launchers';
-
+import { getLauncherByName, launchers as underslugList } from '../../../data/firearms/launchers';
+import { hydrateFirearmByObject } from '../../../data/firearms/hydrate';
 import { gunObjShape, launcherShape } from '../../../helpers/proptypeShapes';
 
 import styles from './styles.module.css';
+
+import { launcherList } from '../../../data/launchers';
+
+// import { gunObjShape, launcherShape } from '../../../helpers/proptypeShapes';
+// import { salAndCeTable } from '../../../core/tables';
+// import { initialState } from './data';
+
+const hydratedLaunchers = { ...launcherList, ...underslugList };
 
 const LoadedCharacterWeapons = ({ firearms, grenades, launchers, setWeapon }) => {
   const getSpareAmmoNotes = (magazines) => {
@@ -44,7 +52,7 @@ const LoadedCharacterWeapons = ({ firearms, grenades, launchers, setWeapon }) =>
       <h2>Weapons</h2>
       <h3>Firearms</h3>
       {firearms.map((firearm) => (
-        <button type="button" key={firearm.name} className={styles.weapon} onClick={() => setWeapon(firearm)}>
+        <button type="button" key={firearm.name} className={styles.weapon} onClick={() => setWeapon(hydrateFirearmByObject(firearm))}>
           <div>
             {firearm.name}
           </div>
@@ -71,7 +79,7 @@ const LoadedCharacterWeapons = ({ firearms, grenades, launchers, setWeapon }) =>
       <>
         <h3>Launchers</h3>
         {launchersAndUnderslung.map((launcher) => (
-          <button type="button" key={launcher.name} className={styles.weapon} onClick={() => setWeapon(launcher)}>
+          <button type="button" key={launcher.name} className={styles.weapon} onClick={() => setWeapon(hydratedLaunchers[launcher.name])}>
 
             <div key={launcher.name} className={styles.launcher}>
               <span>{`${launcher.name} x ${launcher.qty}`}</span>

@@ -32,6 +32,13 @@ const svdNoScopeAttached = {
 };
 
 describe('Hydrating Firearm By Object', () => {
+  it('should add firearm list', () => {
+    const firearm = { ...m16 };
+
+    const hydratedFirearm = hydrateFirearmByObject(firearm);
+    expect(hydratedFirearm.list).toBe('rifles');
+  });
+
   it('should add modification notes if required', () => {
     const modNote = { note: 'test', weightMod: 1 };
     const firearm = { ...m16, modNotes: [modNote] };
