@@ -64,8 +64,8 @@ export const launcherShape = PropTypes.shape({
   aim: PropTypes.objectOf(PropTypes.array),
   projectiles: PropTypes.arrayOf(PropTypes.object),
   aoi: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
-  ba: PropTypes.arrayOf(PropTypes.number),
-  tof: PropTypes.arrayOf(PropTypes.number),
+  ba: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+  tof: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
 });
 
 export const armourShape = PropTypes.shape({
