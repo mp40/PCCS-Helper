@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { hydrateFirearmByObject } from '../../../../data/firearms/hydrate';
 import { gunObjShape } from '../../../../helpers/proptypeShapes';
 
-import styles from '../styles.module.css';
+import styles from './styles.module.css';
 
 const CharacterFirearms = ({ firearms, setWeapon }) => {
   const getSpareAmmoNotes = (magazines) => {
@@ -31,7 +31,7 @@ const CharacterFirearms = ({ firearms, setWeapon }) => {
     <>
       <h3>Firearms</h3>
       {firearms.map((firearm) => (
-        <button type="button" key={firearm.name} className={styles.weapon} onClick={() => setWeapon(hydrateFirearmByObject(firearm))}>
+        <button type="button" key={firearm.name} onClick={() => setWeapon(hydrateFirearmByObject(firearm))}>
           <div>
             {firearm.name}
           </div>

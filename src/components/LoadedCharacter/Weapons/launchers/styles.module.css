@@ -1,0 +1,14 @@
+.launcher {
+    margin-left: 5px;
+    font-size: 0.9rem;
+  }
+  
+  .launcher {
+    display:flex;
+    flex-direction: column;
+  }
+  
+  .launcher > span:nth-of-type(n+2) {
+    font-size: 0.75rem;
+    padding-left: 10px;
+  }
