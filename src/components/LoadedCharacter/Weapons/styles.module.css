@@ -6,7 +6,8 @@
   margin: 5px 0 0;
 }
 
-.weapon {
+.card > button {
+  margin-top: 3px;
   background-color: whitesmoke;
   display: block;
   text-align: left;
@@ -15,28 +16,4 @@
   width: 100%;
   min-height: 3rem;
   box-shadow: inset 0px 0px 1.5px 1.5px var(--usaf-light-grey);
-}
-
-.card > .weapon:nth-of-type(n + 2) {
-  margin-top: 3px;
-}
-
-.mag {
-  margin-left: 5px;
-}
-
-.grenade,
-.launcher {
-  margin-left: 5px;
-  font-size: 0.9rem;
-}
-
-.launcher {
-  display:flex;
-  flex-direction: column;
-}
-
-.launcher > span:nth-of-type(n+2) {
-  font-size: 0.75rem;
-  padding-left: 10px;
 }
