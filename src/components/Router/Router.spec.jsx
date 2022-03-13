@@ -35,6 +35,13 @@ describe('Routes', () => {
 
     expect(wrapper.find('Reset').exists()).toBe(true);
   });
+
+  it('should render 404 if pathname does not match', () => {
+    window.history.pushState({}, '', '/this/does/not/exist');
+    const wrapper = shallow(<Body signedIn={false} />);
+
+    expect(wrapper.find('FourOhFour').dive().text()).toBe('404');
+  });
 });
 
 describe('Router integration', () => {
