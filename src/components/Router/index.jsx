@@ -6,6 +6,8 @@ import CharacterGeneration from '../CharacterGeneration';
 import LoadedCharacter from '../LoadedCharacter';
 import Reset from '../Reset';
 
+import FourOhFour from './FourOhFour';
+
 const Router = ({ signedIn }) => {
   const [currentPath, setCurrentPath] = React.useState(window.location.pathname);
 
@@ -25,14 +27,18 @@ const Router = ({ signedIn }) => {
     };
   }, []);
 
-  return (
-    <div className="App-body">
-      {currentPath === '/' && <HomePage />}
-      {currentPath === '/edit' && <CharacterGeneration signedIn={signedIn} />}
-      {currentPath === '/use' && <LoadedCharacter />}
-      {currentPath === '/reset' && <Reset />}
-    </div>
-  );
+  switch (currentPath) {
+    case '/':
+      return <HomePage />;
+    case '/edit':
+      return <CharacterGeneration signedIn={signedIn} />;
+    case '/use':
+      return <LoadedCharacter />;
+    case '/reset':
+      return <Reset />;
+    default:
+      return <FourOhFour />;
+  }
 };
 
 Router.propTypes = {
