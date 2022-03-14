@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import styles from './styles.module.css';
 
-const CharacterGrenades = ({ grenades }) => {
+const CharacterGrenades = ({ grenades, setWeapon }) => {
   if (!grenades.length) {
     return null;
   }
@@ -12,7 +12,10 @@ const CharacterGrenades = ({ grenades }) => {
     <>
       <h3>Grenades</h3>
       {grenades.map((grenade) => (
-        <div key={grenade.name} className={styles.grenade}>{`${grenade.name} x ${grenade.qty}`}</div>
+        <button key={grenade.name} type="button" onClick={() => setWeapon({ ...grenade, list: 'grenades' })}>
+          <div className={styles.grenade}>{`${grenade.name} x ${grenade.qty}`}</div>
+        </button>
+
       ))}
     </>
   );
@@ -20,6 +23,7 @@ const CharacterGrenades = ({ grenades }) => {
 
 CharacterGrenades.propTypes = {
   grenades: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setWeapon: PropTypes.func.isRequired,
 };
 
 export default CharacterGrenades;

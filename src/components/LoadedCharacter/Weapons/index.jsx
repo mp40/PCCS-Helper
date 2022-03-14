@@ -26,7 +26,7 @@ const LoadedCharacterWeapons = ({ firearms, grenades, launchers, setWeapon }) =>
     <div className={`card-standard ${styles.card}`}>
       <h2>Weapons</h2>
       <CharacterFirearms firearms={firearms} setWeapon={setWeapon} />
-      <CharacterGrenades grenades={grenades} />
+      <CharacterGrenades grenades={grenades} setWeapon={setWeapon} />
       <CharacterLaunchers launchers={launchersAndUnderslung} setWeapon={setWeapon} />
     </div>
   );
