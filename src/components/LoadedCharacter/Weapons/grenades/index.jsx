@@ -8,11 +8,16 @@ const CharacterGrenades = ({ grenades, setWeapon }) => {
     return null;
   }
 
+  const aim = {
+    ac: [1, 2, 3, 4, 6, 8],
+    mod: [-26, -18, -14, -12, -11, -10],
+  };
+
   return (
     <>
       <h3>Grenades</h3>
       {grenades.map((grenade) => (
-        <button key={grenade.name} type="button" onClick={() => setWeapon({ ...grenade, list: 'grenades' })}>
+        <button key={grenade.name} type="button" onClick={() => setWeapon({ ...grenade, list: 'grenades', aim })}>
           <div className={styles.grenade}>{`${grenade.name} x ${grenade.qty}`}</div>
         </button>
 
