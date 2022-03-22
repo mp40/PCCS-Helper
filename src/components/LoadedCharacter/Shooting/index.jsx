@@ -7,7 +7,7 @@ import reducer from './reducer';
 
 import LoadedCharacterShootingHeader from './header';
 import Alm from './alm';
-import FirearmData from './firearm-data';
+import WeaponData from './weapon-data';
 import PewPew from './pew-pew';
 
 import { gunObjShape, launcherShape } from '../../../helpers/proptypeShapes';
@@ -37,7 +37,7 @@ const LoadedCharacterShooting = ({
         <AlmStateProvider state={{ ...state }}>
           <div className="card-standard">
             <LoadedCharacterShootingHeader setWeapon={setWeapon} weaponName={weapon.name} />
-            <FirearmData alm={alm} rof={rof} level={level} />
+            <WeaponData alm={alm} rof={rof} level={level} />
             <Alm setAlm={setAlm} />
             <PewPew rof={rof} setRof={setRof} alm={alm + sal} />
           </div>

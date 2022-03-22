@@ -7,7 +7,7 @@ import { updateAims } from '../actions';
 import FireSelector from '../FireSelector';
 
 import { getOddsOfHitting } from './data';
-import { getTargetSizeMod } from '../firearm-data/data';
+import { getTargetSizeMod } from '../weapon-data/ballistic/data';
 
 import styles from './styles.module.css';
 
@@ -19,13 +19,16 @@ const PewPew = ({ rof, setRof, alm }) => {
   const { target } = useContext(AlmStateContext);
   const weapon = useContext(WeaponContext);
 
-  const { name } = weapon;
+  const { name, list } = weapon;
 
   useEffect(() => {
     setSab(0);
     setRoundsFired(0);
   }, [name]);
 
+  if (list === 'grenades') {
+    return null;
+  }
   const autoROF = Number(String(weapon.rof).split('*').pop());
 
   const targetSizeMod = getTargetSizeMod(rof, target);

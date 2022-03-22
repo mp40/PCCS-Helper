@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { grenadeList } from '../../../../data/grenades';
+
 import styles from './styles.module.css';
 
 const CharacterGrenades = ({ grenades, setWeapon }) => {
@@ -13,11 +15,16 @@ const CharacterGrenades = ({ grenades, setWeapon }) => {
     mod: [-26, -18, -14, -12, -11, -10],
   };
 
+  const handleSetWeapon = (grenade) => {
+    const { at, fl } = grenadeList[grenade.name];
+    setWeapon({ ...grenade, list: 'grenades', aim, at, fl });
+  };
+
   return (
     <>
       <h3>Grenades</h3>
       {grenades.map((grenade) => (
-        <button key={grenade.name} type="button" onClick={() => setWeapon({ ...grenade, list: 'grenades', aim })}>
+        <button key={grenade.name} type="button" onClick={() => handleSetWeapon(grenade)}>
           <div className={styles.grenade}>{`${grenade.name} x ${grenade.qty}`}</div>
         </button>
 

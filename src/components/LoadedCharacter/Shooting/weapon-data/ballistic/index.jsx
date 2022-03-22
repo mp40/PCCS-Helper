@@ -1,14 +1,14 @@
 import React, { useState, useContext, useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import { AlmStateContext, WeaponContext } from '../context';
+import { AlmStateContext, WeaponContext } from '../../context';
 
 import { getWeaponRangeIndex, getTargetSizeMod, getMasterPhaseImpluse } from './data';
-import { getRecoilRecoveryValue } from '../../../../data/advancedRules/recoilRecovery';
+import { getRecoilRecoveryValue } from '../../../../../data/advancedRules/recoilRecovery';
 
 import styles from './styles.module.css';
 
-const FirearmData = ({ level, alm, rof }) => {
+const BallisticData = ({ level, alm, rof }) => {
   const state = useContext(AlmStateContext);
   const weapon = useContext(WeaponContext);
 
@@ -68,10 +68,10 @@ const FirearmData = ({ level, alm, rof }) => {
   );
 };
 
-FirearmData.propTypes = {
+BallisticData.propTypes = {
   level: PropTypes.number.isRequired,
   alm: PropTypes.number.isRequired,
   rof: PropTypes.string.isRequired,
 };
 
-export default FirearmData;
+export default BallisticData;

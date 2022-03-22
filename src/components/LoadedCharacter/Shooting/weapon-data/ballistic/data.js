@@ -1,5 +1,5 @@
-import { getRangeBrackets } from '../../../../data/firearms/rangeBrackets';
-import { expandedTargetSizeMods } from '../data';
+import { getRangeBrackets } from '../../../../../data/firearms/rangeBrackets';
+import { expandedTargetSizeMods } from '../../data';
 
 export const getWeaponRangeIndex = (list, range) => {
   const rangeBrackets = getRangeBrackets(list);

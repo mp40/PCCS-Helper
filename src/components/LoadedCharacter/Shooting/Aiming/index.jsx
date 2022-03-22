@@ -11,7 +11,15 @@ const Aiming = ({ setModal }) => {
   const firearm = useContext(WeaponContext);
   const { aims } = useContext(AlmStateContext);
 
-  const maxAims = firearm.aim.ac.slice(-1)[0];
+  const { list } = firearm;
+
+  let maxAims;
+  if (list === 'grenades') {
+    maxAims = 8;
+  }
+  if (list !== 'grenades') {
+    maxAims = firearm.aim.ac.slice(-1)[0];
+  }
 
   const handleIncrement = () => {
     if (aims === maxAims) {

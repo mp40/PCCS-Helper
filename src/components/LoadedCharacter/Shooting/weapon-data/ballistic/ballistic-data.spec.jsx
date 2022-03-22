@@ -1,12 +1,12 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { AlmStateProvider, WeaponProvider } from '../context';
+import { AlmStateProvider, WeaponProvider } from '../../context';
 
 import FirearmData from './index';
 
-import { firearms } from '../../../../data/firearms';
-import { launcherList } from '../../../../data/launchers';
-import { hydrateFirearmByObject } from '../../../../data/firearms/hydrate';
+import { firearms } from '../../../../../data/firearms';
+import { launcherList } from '../../../../../data/launchers';
+import { hydrateFirearmByObject } from '../../../../../data/firearms/hydrate';
 
 const testFAMAS = () => ({ ...firearms.FAMAS });
 const testM1911A1 = () => ({ ...firearms.M1911A1 });

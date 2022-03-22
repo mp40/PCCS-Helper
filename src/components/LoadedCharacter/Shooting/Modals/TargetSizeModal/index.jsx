@@ -17,7 +17,10 @@ const TargetSizeSelectModal = ({ setModal }) => {
     setModal(false);
   };
 
-  const sizes = list === 'launchers' ? indirectFireSizes : directFireSizes;
+  let sizes = directFireSizes;
+  if (list === 'launchers' || list === 'grenades') {
+    sizes = indirectFireSizes;
+  }
 
   return (
     <>
