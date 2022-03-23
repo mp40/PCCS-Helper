@@ -16,7 +16,7 @@ const GearTableEntry = ({
 }) => (
   <div className={`gear-table-row--container ${!removeItem && !modifyItem ? styles.magazineRow : ''}`}>
     {removeItem && modifyItem && (
-    <span>
+    <span className={styles.clickable}>
       <button aria-label="remove" type="button" className="button--standard button--close" onClick={() => removeItem()} />
       <button type="button" className="button-clickable-item-row" onClick={() => modifyItem()}>{text}</button>
     </span>

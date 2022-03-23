@@ -5,3 +5,10 @@
 .noButtons {
     margin: 0 -2rem 0 2rem;
 }
+
+.clickable > button:nth-of-type(2):after {
+    content: "\f0ad";
+    font-family: FontAwesome;
+    font-size: 0.75rem;
+    color: var(--golden-olive);;
+}
