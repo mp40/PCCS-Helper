@@ -26,9 +26,16 @@
 .gear-card-body {
   display: flex;
   flex-direction: column;
-  overflow: scroll;
   min-height: 2.5rem;
   max-height: 10rem;
+  overflow-y: scroll;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+.gear-card-body::-webkit-scrollbar { /* WebKit */
+  width: 0;
+  height: 0;
 }
 
 .gear-card > div {
