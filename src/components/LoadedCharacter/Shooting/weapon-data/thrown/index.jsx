@@ -10,16 +10,22 @@ import { grenadeShape } from '../../../../../helpers/proptypeShapes';
 
 import { getGrenadeTof } from './data';
 
+import styles from './styles.module.css';
+
 const ThrownData = ({ alm, grenade }) => {
   const { target, range } = useContext(AlmStateContext);
 
   const targetSizeMod = getTargetSizeMod('Single', target);
   return (
-    <div>
-      <div>{`Hit Chance: ${getOddsOfHitting(alm, targetSizeMod, 'Single')}%`}</div>
-      <div>{`FL: ${grenade.fl}`}</div>
-      <div>{`AT: ${grenade.at}`}</div>
-      <div>{`TOF: ${getGrenadeTof(range)}`}</div>
+    <div className={styles.wrapper}>
+      <div>
+        <div>{`Hit Chance: ${getOddsOfHitting(alm, targetSizeMod, 'Single')}%`}</div>
+        <div>{`TOF: ${getGrenadeTof(range)}`}</div>
+      </div>
+      <div>
+        <div>{`FL: ${grenade.fl}`}</div>
+        <div>{`AT: ${grenade.at}`}</div>
+      </div>
     </div>
   );
 };
