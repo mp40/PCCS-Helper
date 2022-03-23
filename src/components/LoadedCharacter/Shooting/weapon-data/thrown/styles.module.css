@@ -1,0 +1,8 @@
+.wrapper {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.wrapper > div:first-of-type {
+    margin-right: 1rem;
+}

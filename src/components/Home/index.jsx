@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from '../widgets/link';
-import BetaTemp from '../BetaTemp'; // mptodo delete this once at MVP
 
 import styles from './styles.module.css';
 
@@ -13,7 +12,6 @@ const HomePage = () => (
     <Link href="/edit" text="Create Character" />
     <Link href="/use" text="Load Character" />
 
-    <BetaTemp />
   </div>
 );
 

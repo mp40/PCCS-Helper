@@ -13,27 +13,33 @@ const testM16 = () => ({ ...firearms.M16 });
 describe('Firing interface', () => {
   const setRof = jest.fn();
 
-  const getWrapper = (rof) => mount(
+  const getWrapper = (rof, weapon = hydrateFirearmByObject(testFAMAS())) => mount(
     <AlmStateProvider state={{ target: 'Standing Exposed' }}>
-      <WeaponProvider weapon={{ ...hydrateFirearmByObject(testFAMAS()) }}>
+      <WeaponProvider weapon={{ ...weapon }}>
         <PewPew rof={rof} setRof={setRof} alm={10} />
       </WeaponProvider>
     </AlmStateProvider>,
   );
 
+  it('should not render weapons on grenade list', () => {
+    const wrapper = getWrapper('Single', { list: 'grenades' });
+
+    expect(wrapper.find('PewPew').html()).toBe(null);
+  });
+
   it('should not render Sustained Fire button if Weapon is set to Single', () => {
-    const wrapper = getWrapper('Single', 10);
+    const wrapper = getWrapper('Single');
     expect(wrapper.find('button[children="Sustained Fire"]').exists()).toBe(false);
   });
 
   it('should render Sustained Fire button if Weapon is set to Auto', () => {
-    const wrapper = getWrapper('Auto', 10);
+    const wrapper = getWrapper('Auto');
 
     expect(wrapper.find('button[children="Sustained Fire"]').exists()).toBe(true);
   });
 
   it('should not render Sustained Fire button if Weapon is set to 3RB', () => {
-    const wrapper = getWrapper('3RB', 10);
+    const wrapper = getWrapper('3RB');
 
     expect(wrapper.find('button[children="Sustained Fire"]').exists()).toBe(false);
   });
