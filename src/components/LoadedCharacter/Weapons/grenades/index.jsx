@@ -5,15 +5,15 @@ import { grenadeList } from '../../../../data/grenades';
 
 import styles from './styles.module.css';
 
+export const aim = {
+  ac: [1, 2, 3, 4, 6, 8],
+  mod: [-26, -18, -14, -12, -11, -10],
+};
+
 const CharacterGrenades = ({ grenades, setWeapon }) => {
   if (!grenades.length) {
     return null;
   }
-
-  const aim = {
-    ac: [1, 2, 3, 4, 6, 8],
-    mod: [-26, -18, -14, -12, -11, -10],
-  };
 
   const handleSetWeapon = (grenade) => {
     const { at, fl } = grenadeList[grenade.name];

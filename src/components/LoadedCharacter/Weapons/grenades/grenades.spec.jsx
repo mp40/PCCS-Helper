@@ -1,11 +1,27 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import CharacterGrenades from './index';
+import CharacterGrenades, { aim } from './index';
+
+jest.mock('../../../../data/grenades', () => ({
+  __esModule: true,
+  grenadeList: {
+    M2: {
+      name: 'M2',
+      at: 3,
+      fl: 2,
+    },
+    'The Holy Hand Grenade Of Antioch': {
+      name: 'The Holy Hand Grenade Of Antioch',
+      at: 1,
+      fl: 5,
+    },
+  },
+}));
 
 const mockGrenade = { name: 'The Holy Hand Grenade Of Antioch', qty: 1 };
 
-const mockSetGrenade = { ...mockGrenade, list: 'grenades' };
+const mockSetGrenade = { ...mockGrenade, list: 'grenades', at: 1, fl: 5, aim };
 
 describe('Loaded Character Reference Card', () => {
   const setWeapon = jest.fn();

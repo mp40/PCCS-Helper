@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { AlmDispatchContext, AlmStateContext, WeaponContext } from '../context';
 import { updateAims } from '../actions';
 
+import { getMaxAims } from './data';
+
 import styles from './styles.module.css';
 
 const Aiming = ({ setModal }) => {
@@ -13,13 +15,7 @@ const Aiming = ({ setModal }) => {
 
   const { list } = firearm;
 
-  let maxAims;
-  if (list === 'grenades') {
-    maxAims = 8;
-  }
-  if (list !== 'grenades') {
-    maxAims = firearm.aim.ac.slice(-1)[0];
-  }
+  const maxAims = getMaxAims(list, firearm.aim.ac);
 
   const handleIncrement = () => {
     if (aims === maxAims) {
