@@ -107,7 +107,7 @@ const Alm = ({ setAlm }) => {
             onClick={() => setModal(button.key)}
           />
         ))}
-        <Duck setDuckAlm={() => setDuckAlm} />
+        <Duck setDuckAlm={setDuckAlm} />
         <Aiming setModal={setModal} />
       </div>
       <AlmModals modal={modal} setModal={setModal} />

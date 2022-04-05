@@ -329,6 +329,39 @@ describe('Shooting Card Integration', () => {
       expect(wrapper.text()).toContain('Hit Chance: 9%');
     });
   });
+
+  describe('Ducking', () => {
+    let wrapper;
+    beforeEach(() => {
+      wrapper = getWrapper(4);
+
+      wrapper.find('span[children="Range"]').closest('button').simulate('click');
+      wrapper.find('button[children=4]').simulate('click');
+    });
+
+    it('should have standard odds of hitting if no one ducking', () => {
+      expect(wrapper.text()).toContain('Hit Chance: 46%');
+    });
+
+    it('should apply -5 penalty to ALM if target ducking', () => {
+      wrapper.find('button[children="Duck\nTarget"]').simulate('click');
+
+      expect(wrapper.text()).toContain('Hit Chance: 18%');
+    });
+
+    it('should apply -10 penalty to ALM if shooter ducking', () => {
+      wrapper.find('button[children="Duck\nShooter"]').simulate('click');
+
+      expect(wrapper.text()).toContain('Hit Chance: 6%');
+    });
+
+    it('should apply -15 penalty to ALM if both ducking', () => {
+      wrapper.find('button[children="Duck\nShooter"]').simulate('click');
+      wrapper.find('button[children="Duck\nTarget"]').simulate('click');
+
+      expect(wrapper.text()).toContain('Hit Chance: 2%');
+    });
+  });
 });
 
 describe('Grenade Launcher Integration', () => {
