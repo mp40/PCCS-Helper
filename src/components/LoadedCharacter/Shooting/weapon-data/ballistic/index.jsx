@@ -15,7 +15,7 @@ const BallisticData = ({ level, alm, rof }) => {
   const [ballisticAlm, setBallisticAlm] = useState();
   const [ammoType, setAmmoType] = useState(0);
 
-  const { list, projectiles, ma, ba, kd } = weapon;
+  const { list, projectiles, ma, ba, kd, name } = weapon;
 
   const rangeIndex = getWeaponRangeIndex(list, state.range);
 
@@ -23,7 +23,7 @@ const BallisticData = ({ level, alm, rof }) => {
 
   useEffect(() => {
     setAmmoType(0);
-  }, [weapon]);
+  }, [name]);
 
   useEffect(() => {
     if (alm > ba[rangeIndex]) {
