@@ -44,6 +44,12 @@ export const averageSMG8Aims = {
   mod: [-22, -12, -9, -7, -6, -5, -4, -3],
 };
 
+// M3A1, Uzi
+export const belowaverageSMG8Aims = {
+  ac: [1, 2, 3, 4, 5, 6, 7, 8],
+  mod: [-23, -12, -9, -8, -6, -5, -4, -3],
+};
+
 // Pistols
 
 // FN Mk1, Lebel M1892, Tokarev TT33, M92F

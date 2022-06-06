@@ -1,5 +1,5 @@
-import { averageSMG8Aims } from '../aimTimes';
-import { averageSMG9mmParabellumFMJ, belowAverageSMG9mmParabellumFMJ, averageSMG45AcpFMJ, averageSMG762TokarevFMJ } from '../projectiles';
+import { averageSMG8Aims, belowaverageSMG8Aims } from '../aimTimes';
+import { averageSMG9mmParabellumFMJ, belowAverageSMG9mmParabellumFMJ, aboveAverageSMG9mmParabellumFMJ, aboveAverageSMG9mmParabellumJHP, averageSMG45AcpFMJ, averageSMG762TokarevFMJ } from '../projectiles';
 
 export const smgs = Object.freeze({
   'AKS-74U': {
@@ -189,10 +189,7 @@ export const smgs = Object.freeze({
     mag: [{ type: 'Mag', weight: 2.0, cap: 30, qty: 0 }],
     kd: 5,
     sab: 3,
-    aim: {
-      ac: [1, 2, 3, 4, 5, 6, 7, 8],
-      mod: [-23, -12, -9, -8, -6, -5, -4, -3],
-    },
+    aim: belowaverageSMG8Aims,
     projectiles: [averageSMG45AcpFMJ],
     ma: [0.2, 0.5, 0.9, 2, 2, 5, 9, 12],
     ba: [45, 36, 27, 20, 15, 5, 0, -4],
@@ -217,23 +214,14 @@ export const smgs = Object.freeze({
       mod: [-20, -10, -8, -6, -5, -4, -3, -2, -1],
     },
     projectiles: [
-      {
-        type: 'FMJ',
-        pen: [2.5, 2.3, 2, 1.5, 1.2, 0.5, 0.2, 0.1],
-        dc: [3, 3, 3, 2, 2, 1, 1, 1],
-      },
-      {
-        type: 'JHP',
-        pen: [2.4, 2.2, 1.9, 1.5, 1.1, 0.5, 0.2, 0.1],
-        dc: [5, 5, 4, 3, 2, 1, 1, 1],
-      },
+      aboveAverageSMG9mmParabellumFMJ,
+      aboveAverageSMG9mmParabellumJHP,
     ],
     ma: [0.4, 0.7, 1, 2, 4, 7, 11, 14],
     ba: [46, 37, 28, 21, 16, 7, 2, -2],
     tof: [0, 1, 2, 4, 6, 13, 21, 31],
     offical: true,
   },
-
   MP5K: {
     name: 'MP5K',
     list: 'smgs',
@@ -386,6 +374,28 @@ export const smgs = Object.freeze({
     ba: [45, 36, 27, 20, 15, 5, 0, -4],
     tof: [1, 1, 3, 5, 8, 18, 30, 44],
     selector: 'Full Auto Only',
+    offical: true,
+  },
+  Uzi: {
+    name: 'Uzi',
+    list: 'smgs',
+    calibre: '9mm Parabellum',
+    qty: 1,
+    length: '19/26',
+    baseWeight: 7.7,
+    rt: 8,
+    rof: '*5',
+    mag: [{ type: 'Mag', weight: 1.3, cap: 32, qty: 0 }],
+    kd: 4,
+    sab: 3,
+    aim: belowaverageSMG8Aims,
+    projectiles: [
+      aboveAverageSMG9mmParabellumFMJ,
+      aboveAverageSMG9mmParabellumJHP,
+    ],
+    ma: [0.2, 0.4, 0.9, 1, 2, 4, 6, 9],
+    ba: [46, 37, 28, 21, 16, 7, 1, -2],
+    tof: [0, 1, 2, 4, 6, 13, 21, 31],
     offical: true,
   },
 });
