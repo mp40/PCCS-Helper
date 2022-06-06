@@ -233,6 +233,41 @@ export const smgs = Object.freeze({
     tof: [0, 1, 2, 4, 6, 13, 21, 31],
     offical: true,
   },
+
+  MP5K: {
+    name: 'MP5K',
+    list: 'smgs',
+    calibre: '9mm Parabellum',
+    qty: 1,
+    length: '13',
+    baseWeight: 4.4,
+    rt: 7,
+    rof: '**8',
+    mag: [{ type: 'Mag', weight: 1.2, cap: 30, qty: 0 }],
+    kd: 3,
+    sab: 3,
+    aim: {
+      ac: [1, 2, 3, 4, 5, 6, 7],
+      mod: [-19, -11, -10, -9, -8, -7, -6],
+    },
+    projectiles: [
+      {
+        type: 'FMJ',
+        pen: [2.2, 2, 1.7, 1.3, 1, 0.4, 0.2, 0.1],
+        dc: [3, 3, 2, 2, 1, 1, 1, 1],
+      },
+      {
+        type: 'JHP',
+        pen: [2.1, 2, 1.6, 1.3, 1, 0.4, 0.2, 0.1],
+        dc: [5, 4, 4, 3, 2, 1, 1, 1],
+      },
+    ],
+    trb: [-6, -1, 4, 8, 11, 16, 19, 21],
+    ma: [0.4, 0.8, 2, 3, 4, 8, 12, 17],
+    ba: [46, 37, 28, 21, 16, 6, 1, -2],
+    tof: [0, 1, 2, 4, 6, 14, 23, 33],
+    offical: true,
+  },
   'MP5 SD3': {
     name: 'MP5 SD3',
     list: 'smgs',
