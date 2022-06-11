@@ -39,6 +39,38 @@ export const pistols = Object.freeze({
     tof: [0, 1, 2, 3, 5, 11, 19, 27],
     offical: true,
   },
+  'Desert Eagle (.50)': {
+    name: 'Desert Eagle (.50)',
+    list: 'pistols',
+    calibre: '.50 AE',
+    qty: 1,
+    length: 10.6,
+    baseWeight: 4.4,
+    rt: 7,
+    rof: 1,
+    mag: [{ type: 'Mag', weight: 0.7, cap: 7, qty: 0 }],
+    kd: 9,
+    sab: 7,
+    aim: {
+      ac: [1, 2, 3, 4, 5, 6, 7],
+      mod: [-20, -11, -8, -7, -6, -5, -4],
+    },
+    projectiles: [
+      {
+        type: 'FMJ',
+        pen: [6.1, 5.7, 4.7, 3.6, 2.8, 1.2, 0.5, 0.2],
+        dc: [8, 8, 7, 7, 7, 6, 3, 2],
+      },
+      {
+        type: 'JHP',
+        pen: [5.5, 5.1, 4.3, 3.3, 2.5, 1, 0.4, 0.2],
+        dc: [9, 9, 8, 8, 7, 6, 4, 3],
+      },
+    ],
+    ba: [46, 37, 28, 21, 16, 7, 2, -2],
+    tof: [0, 1, 2, 3, 5, 10, 15, 21],
+    offical: false,
+  },
   'FN Mk 1': {
     name: 'FN Mk 1',
     list: 'pistols',

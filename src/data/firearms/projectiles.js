@@ -44,6 +44,20 @@ export const averageRifle30CarbineFMJ = {
 };
 
 // 9mm Para SMGs
+// Mp5, Uzi
+export const aboveAverageSMG9mmParabellumFMJ = {
+  type: 'FMJ',
+  pen: [2.5, 2.3, 2, 1.5, 1.2, 0.5, 0.2, 0.1],
+  dc: [3, 3, 3, 2, 2, 1, 1, 1],
+};
+
+// Mp5, Uzi
+export const aboveAverageSMG9mmParabellumJHP = {
+  type: 'JHP',
+  pen: [2.4, 2.2, 1.9, 1.5, 1.1, 0.5, 0.2, 0.1],
+  dc: [5, 5, 4, 3, 2, 1, 1, 1],
+};
+
 // Sten Mk2, Owen Mk1
 export const averageSMG9mmParabellumFMJ = {
   type: 'FMJ',
