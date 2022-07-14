@@ -75,24 +75,4 @@ describe('preparing Hand To Hand weapon array', () => {
       )).toStrictEqual(['Knife, Combat', 'Billy Club', 'Screw Driver']);
     });
   });
-  describe('list to pass to component', () => {
-    const pistol = { list: 'pistols' };
-    const smg = { list: 'smgs' };
-    const shotgun = { list: 'shotguns' };
-    const billyClub = { name: 'Billy Club', tags: ['Melee'], melee: ['Billy Club'] };
-    const screwDriver = { name: 'Screw Driver', tags: ['Tools', 'Melee'], melee: ['Screw Driver'] };
-    const entrenchingTool = { name: 'Entrenching Tool', tags: ['Melee', 'Tools'], melee: ['Entrenching Tool (1 hand)', 'Entrenching Tool (2 hands)'] };
-    const bayonet = { name: 'Bayonet', tags: ['Melee'], melee: ['Knife, Combat'] };
-    const basicPouch = { name: 'Basic Pouch', tags: ['not melee'] };
-    it('should have firearm first', () => {
-      expect(prepareHandToHandWeaponList([smg], [billyClub])).toStrictEqual(['SMG', 'Billy Club']);
-    });
-    it('should have a max length of four', () => {
-      const result = prepareHandToHandWeaponList(
-        [smg, shotgun, pistol], [basicPouch, bayonet, billyClub, entrenchingTool, screwDriver],
-      );
-      expect(result.length).toBe(4);
-      expect(result).toStrictEqual(['SMG', 'Knife, Combat', 'Billy Club', 'Entrenching Tool (1 hand)']);
-    });
-  });
 });

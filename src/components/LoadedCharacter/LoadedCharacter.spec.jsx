@@ -18,6 +18,7 @@ describe('Loaded Character', () => {
     wrapper = shallow(<LoadedCharacter
       name="Chuck Norris"
       gunLevel={10}
+      handLevel={0}
       gunCombatActions={16}
       handCombatActions={16}
       knockoutValue={99}
@@ -26,6 +27,7 @@ describe('Loaded Character', () => {
       firearms={firearms}
       grenades={[]}
       launchers={[]}
+      melee={[]}
     />);
   });
 
