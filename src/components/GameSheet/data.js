@@ -47,8 +47,6 @@ const getEquipmentForMeleeList = (equipmentArray) => {
 };
 
 export const prepareHandToHandWeaponList = (
-  firearmsArray, equipmentArray,
-) => [
-  ...getFirearmForMeleeList(firearmsArray),
-  ...getEquipmentForMeleeList(equipmentArray),
-].slice(0, 4);
+  firearmsArray, equipmentArray, limit,
+) => Array.from(new Set([...getFirearmForMeleeList(firearmsArray),
+  ...getEquipmentForMeleeList(equipmentArray)])).slice(0, limit);

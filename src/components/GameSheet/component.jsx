@@ -4,7 +4,7 @@ import { PropTypes } from 'prop-types';
 import WeaponStatsTable from '../WeaponStatsTable';
 import CharacterInfo from '../CharacterInfo';
 import ActionsTable from '../ActionsTable';
-import HandToHandTable from '../HandToHandTable/HandToHandTable';
+import HandToHandTable from '../HandToHandTable';
 import BodyArmourTable from '../BodyArmourTable';
 import FirearmNotes from '../FirearmNotes';
 import KnockoutTable from '../KnockoutTable';
@@ -47,7 +47,7 @@ const GameSheet = (
     closeModal();
   });
 
-  const meleeWeaponList = prepareHandToHandWeaponList(firearms, equipment);
+  const meleeWeaponList = prepareHandToHandWeaponList(firearms, equipment, 4);
 
   const sal = salAndCeTable[gunLevel];
 
@@ -79,7 +79,9 @@ const GameSheet = (
               </div>
 
               { meleeWeaponList.length > 0 && (
-                <HandToHandTable meleeList={meleeWeaponList} meleeLevel={handLevel} />
+                <div className={styles.melee}>
+                  <HandToHandTable meleeList={meleeWeaponList} meleeLevel={handLevel} />
+                </div>
               )}
 
               <div className={styles.armourReactionKnockoutRow}>

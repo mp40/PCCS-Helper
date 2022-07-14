@@ -1,7 +1,5 @@
-// mptodo update below to object based system like firearms?
-
-export const meleeData = () => [
-  {
+export const meleeData = Object.freeze({
+  'Baseball Bat (1 hand)': {
     Name: 'Baseball Bat (1 hand)',
     ws: '2.5',
     wc: '1',
@@ -9,7 +7,7 @@ export const meleeData = () => [
     IDs: '(3)',
     Rng: '2',
   },
-  {
+  'Baseball Bat (2 hands)': {
     Name: 'Baseball Bat (2 hands)',
     ws: '2.6',
     wc: '1',
@@ -17,7 +15,7 @@ export const meleeData = () => [
     IDs: '(5)',
     Rng: '2',
   },
-  {
+  'Billy Club': {
     Name: 'Billy Club',
     ws: '2.8',
     wc: '2',
@@ -25,7 +23,7 @@ export const meleeData = () => [
     IDs: '(3)',
     Rng: '1',
   },
-  {
+  'Crowbar (1 hand)': {
     Name: 'Crowbar (1 hand)',
     ws: '2.3',
     wc: '0',
@@ -33,7 +31,7 @@ export const meleeData = () => [
     IDs: '(3)',
     Rng: '1',
   },
-  {
+  'Crowbar (2 hands)': {
     Name: 'Crowbar (2 hands)',
     ws: '2.4',
     wc: '0',
@@ -41,7 +39,7 @@ export const meleeData = () => [
     IDs: '(5)',
     Rng: '1',
   },
-  {
+  'Entrenching Tool (1 hand)': {
     Name: 'Entrenching Tool (1 hand)',
     ws: '2.5',
     wc: '-1',
@@ -49,7 +47,7 @@ export const meleeData = () => [
     IDs: '(3)',
     Rng: '1',
   },
-  {
+  'Entrenching Tool (2 hands)': {
     Name: 'Entrenching Tool (2 hands)',
     ws: '2.6',
     wc: '-1',
@@ -57,7 +55,7 @@ export const meleeData = () => [
     IDs: '(4)',
     Rng: '1',
   },
-  {
+  'Heavy Rifle': {
     Name: 'Heavy Rifle',
     ws: '1.8',
     wc: '-2',
@@ -65,7 +63,7 @@ export const meleeData = () => [
     IDs: '(6)+3',
     Rng: '2+',
   },
-  {
+  'Hammer (1 hand)': {
     Name: 'Hammer (1 hand)',
     ws: '2.6',
     wc: '-1',
@@ -73,7 +71,7 @@ export const meleeData = () => [
     IDs: '(3)',
     Rng: '1',
   },
-  {
+  'Hammer (2 hands)': {
     Name: 'Hammer (2 hands)',
     ws: '2.7',
     wc: '-1',
@@ -81,7 +79,7 @@ export const meleeData = () => [
     IDs: '(3)',
     Rng: '1',
   },
-  {
+  'Hatchet (1 hand)': {
     Name: 'Hatchet (1 hand)',
     ws: '2.3',
     wc: '-1',
@@ -89,7 +87,7 @@ export const meleeData = () => [
     IDs: '(3)',
     Rng: '1',
   },
-  {
+  'Hatchet (2 hands)': {
     Name: 'Hatchet (2 hands)',
     ws: '2.3',
     wc: '-1',
@@ -97,7 +95,7 @@ export const meleeData = () => [
     IDs: '(4)',
     Rng: '1',
   },
-  {
+  'Ice Pick': {
     Name: 'Ice Pick',
     ws: '2.9',
     wc: '+2',
@@ -105,7 +103,7 @@ export const meleeData = () => [
     IDs: '(3)',
     Rng: '1',
   },
-  {
+  'Katana (1 hand)': {
     Name: 'Katana (1 hand)',
     ws: '2.1',
     wc: '0',
@@ -113,7 +111,7 @@ export const meleeData = () => [
     IDs: '(3)',
     Rng: '2',
   },
-  {
+  'Katana (2 hands)': {
     Name: 'Katana (2 hands)',
     ws: '2.2',
     wc: '0',
@@ -121,7 +119,7 @@ export const meleeData = () => [
     IDs: '(5)',
     Rng: '2',
   },
-  {
+  'Knife, Bowie': {
     Name: 'Knife, Bowie',
     ws: '2.8',
     wc: '2',
@@ -129,7 +127,7 @@ export const meleeData = () => [
     IDs: '(3)',
     Rng: '1',
   },
-  {
+  'Knife, Combat': {
     Name: 'Knife, Combat',
     ws: '2.8',
     wc: '2',
@@ -137,7 +135,7 @@ export const meleeData = () => [
     IDs: '(3)',
     Rng: '1',
   },
-  {
+  'Knife, Switch Blade': {
     Name: 'Knife, Switch Blade',
     ws: '2.9',
     wc: '2',
@@ -145,7 +143,7 @@ export const meleeData = () => [
     IDs: '(3)',
     Rng: '1',
   },
-  {
+  'Light Rifle': {
     Name: 'Light Rifle',
     ws: '1.9',
     wc: '-1',
@@ -153,7 +151,7 @@ export const meleeData = () => [
     IDs: '(6)+2',
     Rng: '2+',
   },
-  {
+  'Machete (1 hand)': {
     Name: 'Machete (1 hand)',
     ws: '2.3',
     wc: '0',
@@ -161,7 +159,7 @@ export const meleeData = () => [
     IDs: '(3)',
     Rng: '1',
   },
-  {
+  'Machete (2 hands)': {
     Name: 'Machete (2 hands)',
     ws: '2.4',
     wc: '0',
@@ -169,7 +167,7 @@ export const meleeData = () => [
     IDs: '(3)',
     Rng: '1',
   },
-  {
+  'Pipe, 24" (1 hand)': {
     Name: 'Pipe, 24" (1 hand)',
     ws: '2.5',
     wc: '0',
@@ -177,7 +175,7 @@ export const meleeData = () => [
     IDs: '(3)',
     Rng: '1+',
   },
-  {
+  'Pipe, 24" (2 hands)': {
     Name: 'Pipe, 24" (2 hands)',
     ws: '2.6',
     wc: '0',
@@ -185,7 +183,7 @@ export const meleeData = () => [
     IDs: '(4)',
     Rng: '1+',
   },
-  {
+  Pistol: {
     Name: 'Pistol',
     ws: '2.4',
     wc: '0',
@@ -193,7 +191,7 @@ export const meleeData = () => [
     IDs: '-',
     Rng: '1',
   },
-  {
+  Rock: {
     Name: 'Rock',
     ws: '2.6',
     wc: '0',
@@ -201,7 +199,7 @@ export const meleeData = () => [
     IDs: '-',
     Rng: '1',
   },
-  {
+  Saber: {
     Name: 'Saber',
     ws: '2.3',
     wc: '0',
@@ -209,7 +207,7 @@ export const meleeData = () => [
     IDs: '(3)',
     Rng: '2+',
   },
-  {
+  'Scimitar (1 hand)': {
     Name: 'Scimitar (1 hand)',
     ws: '2.0',
     wc: '0',
@@ -217,7 +215,7 @@ export const meleeData = () => [
     IDs: '(3)',
     Rng: '2+',
   },
-  {
+  'Scimitar (2 hands)': {
     Name: 'Scimitar (2 hands)',
     ws: '2.1',
     wc: '0',
@@ -225,7 +223,7 @@ export const meleeData = () => [
     IDs: '(5)',
     Rng: '2+',
   },
-  {
+  SMG: {
     Name: 'SMG',
     ws: '2.0',
     wc: '-1',
@@ -233,7 +231,7 @@ export const meleeData = () => [
     IDs: '(6)+1',
     Rng: '2',
   },
-  {
+  'Stick (1 hand)': {
     Name: 'Stick (1 hand)',
     ws: '2.5',
     wc: '0',
@@ -241,7 +239,7 @@ export const meleeData = () => [
     IDs: '(3)',
     Rng: '2',
   },
-  {
+  'Stick (2 hands)': {
     Name: 'Stick (2 hands)',
     ws: '2.6',
     wc: '0',
@@ -249,7 +247,7 @@ export const meleeData = () => [
     IDs: '(5)',
     Rng: '2',
   },
-  {
+  'Two by Four (1 hand)': {
     Name: 'Two by Four (1 hand)',
     ws: '2.4',
     wc: '0',
@@ -257,7 +255,7 @@ export const meleeData = () => [
     IDs: '(3)',
     Rng: '2',
   },
-  {
+  'Two by Four (2 hands)': {
     Name: 'Two by Four (2 hands)',
     ws: '2.5',
     wc: '0',
@@ -265,7 +263,7 @@ export const meleeData = () => [
     IDs: '(5)',
     Rng: '2',
   },
-  {
+  'Wood Axe (2 hands)': {
     Name: 'Wood Axe (2 hands)',
     ws: '1.7',
     wc: '-2',
@@ -273,14 +271,13 @@ export const meleeData = () => [
     IDs: '(5)',
     Rng: '2',
   },
-];
+});
 
-// [weaponSpeed, parry, set, strike, recover]
-export const weaponSpeedActionCosts = () => [
-  [1, 3, 3, 1, 3],
-  [1.2, 2, 2, 1, 2],
-  [1.5, 1, 2, 1, 2],
-  [1.8, 1, 2, 1, 1],
-  [2.3, 1, 1, 1, 1],
-  [3.1, 1, 1, 0.5, 0.5],
-];
+export const weaponSpeedActionCosts = Object.freeze([
+  { ws: 1, parry: 3, set: 3, strike: 1, rec: 3 },
+  { ws: 1.2, parry: 2, set: 2, strike: 1, rec: 2 },
+  { ws: 1.5, parry: 1, set: 2, strike: 1, rec: 2 },
+  { ws: 1.8, parry: 1, set: 2, strike: 1, rec: 1 },
+  { ws: 2.3, parry: 1, set: 1, strike: 1, rec: 1 },
+  { ws: 3.1, parry: 1, set: 2, strike: 0.5, rec: 0.5 },
+]);

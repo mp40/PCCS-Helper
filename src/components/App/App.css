@@ -1,7 +1,7 @@
 .App {
   background-color: #aeb885;
   min-height: calc(100vh - 4rem);
-  padding-top: 4rem;
+  padding: 4rem 0;
 }
 
 .App-body {

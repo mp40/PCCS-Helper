@@ -31,6 +31,15 @@
   padding: 0.2cm;
 }
 
+.melee {
+  font-size: 12pt;
+  width: 13.45cm;
+  margin-top: .5cm;
+}
+.melee * td {
+  font-size: 10pt;
+}
+
 .mainLower {
   display: flex;
   justify-content: space-between;
