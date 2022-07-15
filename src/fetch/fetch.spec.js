@@ -71,11 +71,14 @@ describe('Calling the Server', () => {
 
       expect(fetch).toHaveBeenCalled();
 
-      expect(res).toEqual({ error: err, message: 'Signup Error' });
+      expect(res).toEqual({ status: 'error', error: err, message: 'Signup Error' });
     });
 
     it('should return error message on 429 response', async () => {
-      global.fetch = jest.fn().mockImplementation(() => Promise.resolve({ status: 429 }));
+      global.fetch = jest.fn().mockImplementation(() => Promise.resolve(
+        { status: 429,
+          json: () => Promise.resolve({}) },
+      ));
 
       const user = {
         email: 'testSan@gmail.com',
@@ -86,7 +89,12 @@ describe('Calling the Server', () => {
 
       expect(fetch).toHaveBeenCalled();
 
-      expect(res).toEqual({ message: 'Too many sign up attempts', error: new Error('Too many sign up attempts') });
+      expect(res).toEqual(
+        {
+          message: 'Too many sign up attempts',
+          error: new Error('Too many sign up attempts'),
+        },
+      );
     });
   });
 
@@ -128,11 +136,14 @@ describe('Calling the Server', () => {
 
       expect(fetch).toHaveBeenCalled();
 
-      expect(res).toEqual({ error: err, message: 'Signin Error' });
+      expect(res).toEqual({ status: 'error', error: err, message: 'Signin Error' });
     });
 
     it('should return error message on 429 response', async () => {
-      global.fetch = jest.fn().mockImplementation(() => Promise.resolve({ status: 429 }));
+      global.fetch = jest.fn().mockImplementation(() => Promise.resolve(
+        { status: 429,
+          json: () => Promise.resolve({}) },
+      ));
 
       const user = {
         email: 'testSan@gmail.com',
@@ -176,6 +187,7 @@ describe('Calling the Server', () => {
       expect(fetch).toHaveBeenCalled();
 
       expect(res).toEqual({
+        status: 'error',
         error: err,
         message: 'SignedIn Error',
       });
@@ -211,6 +223,7 @@ describe('Calling the Server', () => {
       expect(fetch).toHaveBeenCalled();
 
       expect(res).toEqual({
+        status: 'error',
         error: err,
         message: 'Sign Out Error',
       });
@@ -250,6 +263,7 @@ describe('Calling the Server', () => {
       expect(fetch).toHaveBeenCalled();
 
       expect(res).toEqual({
+        status: 'error',
         error: err,
         message: 'Save Error',
       });
@@ -317,6 +331,7 @@ describe('Calling the Server', () => {
       expect(fetch).toHaveBeenCalled();
 
       expect(res).toEqual({
+        status: 'error',
         error: err,
         message: 'Save Error',
       });
@@ -378,6 +393,7 @@ describe('Calling the Server', () => {
       expect(fetch).toHaveBeenCalled();
 
       expect(res).toEqual({
+        status: 'error',
         error: err,
         message: 'Get Characters Error',
       });
@@ -453,7 +469,7 @@ describe('Calling the Server', () => {
 
       const res = await fetchResetPassword('reset@email.com');
 
-      expect(res).toEqual({ message: 'Reset Error' });
+      expect(res).toEqual({ status: 'error', message: 'Reset Error' });
     });
   });
 
@@ -499,7 +515,7 @@ describe('Calling the Server', () => {
 
       const res = await fetchResetPassword('reset@email.com');
 
-      expect(res).toEqual({ message: 'Reset Error' });
+      expect(res).toEqual({ status: 'error', message: 'Reset Error' });
     });
 
     it('should return error msg if fetch resetting fails', async () => {
@@ -507,7 +523,7 @@ describe('Calling the Server', () => {
 
       const res = await fetchResettingPassword('reset@email.com', 'password', 'token');
 
-      expect(res).toEqual({ message: 'Reset Error' });
+      expect(res).toEqual({ status: 'error', message: 'Reset Error' });
     });
   });
 });
