@@ -17,7 +17,8 @@ import TargetSizeTable from './subComponents/shootingMods/TargetSizeTable';
 
 import { hydrateFirearmByObject } from '../../data/firearms/hydrate';
 
-import { getFirearmNameAndRecoil, prepareHandToHandWeaponList } from './data';
+import { getFirearmNameAndRecoil } from './data';
+import { parseFirearmsForMelee, parseEquipmentForMelee } from '../../helpers/melee';
 
 import { salAndCeTable } from '../../core/tables';
 
@@ -47,7 +48,10 @@ const GameSheet = (
     closeModal();
   });
 
-  const meleeWeaponList = prepareHandToHandWeaponList(firearms, equipment, 4);
+  const meleeWeaponList = [
+    ...parseFirearmsForMelee(firearms),
+    ...parseEquipmentForMelee(equipment),
+  ];
 
   const sal = salAndCeTable[gunLevel];
 
