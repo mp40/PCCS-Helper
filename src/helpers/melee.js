@@ -1,6 +1,6 @@
 import { firearms as firearmData } from '../data/firearms';
 
-const mapListToMelee = {
+const mapFirearmListToMelee = {
   pistols: 'Pistol',
   smgs: 'SMG',
   lightRifles: 'Light Rifle',
@@ -21,7 +21,7 @@ export const parseFirearmsForMelee = (firearms) => {
     const { list, baseWeight, mag } = firearmData[name];
     const weight = baseWeight + mag[0].weight;
 
-    let meleeWeapon = mapListToMelee[list];
+    let meleeWeapon = mapFirearmListToMelee[list];
 
     if (list === 'rifles' || list === 'shotguns' || list === 'sniperRifles') {
       if (name === 'Sawed-Off Shotgun') {
@@ -36,6 +36,29 @@ export const parseFirearmsForMelee = (firearms) => {
     if (meleeWeapon && !added[meleeWeapon]) {
       result.push(meleeWeapon);
       added[meleeWeapon] = true;
+    }
+  });
+
+  return result;
+};
+
+export const parseEquipmentForMelee = (equipment) => {
+  if (!equipment.length) {
+    return [];
+  }
+
+  const result = [];
+
+  const added = {};
+
+  equipment.forEach((e) => {
+    if (e.melee) {
+      e.melee.forEach((m) => {
+        if (!added[m]) {
+          result.push(m);
+          added[m] = true;
+        }
+      });
     }
   });
 

@@ -1,4 +1,4 @@
-import { parseFirearmsForMelee } from './melee';
+import { parseFirearmsForMelee, parseEquipmentForMelee } from './melee';
 
 jest.mock('../data/firearms', () => ({
   __esModule: true,
@@ -151,5 +151,49 @@ describe('parsing firearms to melee', () => {
     const result = parseFirearmsForMelee(firearms);
 
     expect(result).toEqual(['Pistol', 'SMG', 'Heavy Rifle', 'Light Rifle']);
+  });
+});
+
+describe('parsing equipment to melee', () => {
+  it('should return empty array if no equipment', () => {
+    const equipment = [];
+    const result = parseEquipmentForMelee(equipment);
+
+    expect(result).toEqual([]);
+  });
+
+  it('should not add equipment without melee key', () => {
+    const equipment = [{ name: 'not melee' }];
+    const result = parseEquipmentForMelee(equipment);
+
+    expect(result).toEqual([]);
+  });
+
+  it('should add equipment with melee key', () => {
+    const equipment = [{ melee: ['Knife, Combat'] }];
+    const result = parseEquipmentForMelee(equipment);
+
+    expect(result).toEqual(['Knife, Combat']);
+  });
+
+  it('should add all types for melee weapon', () => {
+    const equipment = [{ melee: ['Baseball Bat (1 hand)', 'Baseball Bat (2 hands)'] }];
+    const result = parseEquipmentForMelee(equipment);
+
+    expect(result).toEqual(['Baseball Bat (1 hand)', 'Baseball Bat (2 hands)']);
+  });
+
+  it('should not add equipment twice with same melee key', () => {
+    const equipment = [{ name: 'k-bar', melee: ['Knife, Combat'] }, { name: 'bayonet', melee: ['Knife, Combat'] }];
+    const result = parseEquipmentForMelee(equipment);
+
+    expect(result).toEqual(['Knife, Combat']);
+  });
+
+  it('should parse list of equipment', () => {
+    const equipment = [{ name: 'not melee' }, { melee: ['Knife, Combat'] }, { name: 'other not melee' }, { melee: ['Baseball Bat (1 hand)', 'Baseball Bat (2 hands)'] }];
+    const result = parseEquipmentForMelee(equipment);
+
+    expect(result).toEqual(['Knife, Combat', 'Baseball Bat (1 hand)', 'Baseball Bat (2 hands)']);
   });
 });
