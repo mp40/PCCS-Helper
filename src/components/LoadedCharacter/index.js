@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import LoadedCharacter from './component';
-import { prepareHandToHandWeaponList } from '../GameSheet/data';
+import { parseFirearmsForMelee, parseEquipmentForMelee } from '../../helpers/melee';
 
 import { selectKnockoutValue, selectGunCombatActions, selectHandCombatActions } from '../../selectors';
 
@@ -16,7 +16,10 @@ const mapStateToProps = (state) => ({
   firearms: state.currentCharacter.firearms,
   grenades: state.currentCharacter.grenades,
   launchers: state.currentCharacter.launchers,
-  melee: prepareHandToHandWeaponList(state.currentCharacter.firearms, state.currentCharacter.equipment),
+  melee: [
+    ...parseFirearmsForMelee(state.currentCharacter.firearms),
+    ...parseEquipmentForMelee(state.currentCharacter.equipment),
+  ],
 });
 
 export default connect(mapStateToProps, null)(LoadedCharacter);
