@@ -12,6 +12,8 @@ const HomePage = () => (
     <Link href="/edit" text="Create Character" />
     <Link href="/use" text="Load Character" />
 
+    <Link href="https://pccstools.gtsb.io/" text="More Tools" external />
+
   </div>
 );
 

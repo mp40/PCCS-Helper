@@ -11,6 +11,6 @@
   margin: 2rem 0;
 }
 
-.wrapper > a:first-of-type {
-    margin-bottom: 0.5rem;
+.wrapper > a:nth-of-type(n + 2) {
+    margin-top: 0.5rem;
 }
