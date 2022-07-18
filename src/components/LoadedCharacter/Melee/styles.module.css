@@ -5,4 +5,14 @@
 .card > h2 {
     margin: 0 0 5px;
 }
+
+@media screen and (max-width: 800px) {
+    .card > table {
+        font-size: 0.75rem;
+    }
+    
+    .card > table > tbody {
+      font-size: 0.7rem;
+    }
+}
   
