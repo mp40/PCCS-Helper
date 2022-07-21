@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import HomePage from '../components/Home';
+import HomePage from '../pages/home';
 import CharacterGeneration from '../components/CharacterGeneration';
 import LoadedCharacter from '../components/LoadedCharacter';
 import Reset from '../components/Reset';

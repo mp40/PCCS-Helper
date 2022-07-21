@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from '../widgets/link';
+import Link from '../../components/widgets/link';
 
 import styles from './styles.module.css';
 
