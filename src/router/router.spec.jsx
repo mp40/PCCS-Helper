@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import Body from '.';
-import { mountAppWithStore } from '../../helpers/testHelpers';
+import { mountAppWithStore } from '../helpers/testHelpers';
 
 describe('Routes', () => {
   afterEach(() => {

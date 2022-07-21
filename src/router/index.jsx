@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import HomePage from '../Home';
-import CharacterGeneration from '../CharacterGeneration';
-import LoadedCharacter from '../LoadedCharacter';
-import Reset from '../Reset';
+import HomePage from '../components/Home';
+import CharacterGeneration from '../components/CharacterGeneration';
+import LoadedCharacter from '../components/LoadedCharacter';
+import Reset from '../components/Reset';
 
 import FourOhFour from './FourOhFour';
 
