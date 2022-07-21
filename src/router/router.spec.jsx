@@ -40,7 +40,7 @@ describe('Routes', () => {
     window.history.pushState({}, '', '/this/does/not/exist');
     const wrapper = shallow(<Body signedIn={false} />);
 
-    expect(wrapper.find('FourOhFour').dive().text()).toBe('404');
+    expect(wrapper.find('FourOhFourPage').dive().text()).toBe('404');
   });
 });
 

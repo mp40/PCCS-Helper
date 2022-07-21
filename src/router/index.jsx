@@ -6,7 +6,7 @@ import CharacterGeneration from '../components/CharacterGeneration';
 import LoadedCharacter from '../components/LoadedCharacter';
 import Reset from '../components/Reset';
 
-import FourOhFour from './FourOhFour';
+import FourOhFourPage from '../pages/four-oh-four';
 
 const Router = ({ signedIn }) => {
   const [currentPath, setCurrentPath] = React.useState(window.location.pathname);
@@ -37,7 +37,7 @@ const Router = ({ signedIn }) => {
     case '/reset':
       return <Reset />;
     default:
-      return <FourOhFour />;
+      return <FourOhFourPage />;
   }
 };
 
