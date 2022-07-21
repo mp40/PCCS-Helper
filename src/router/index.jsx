@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import HomePage from '../pages/home';
-import CharacterGeneration from '../components/CharacterGeneration';
+import EditPage from '../pages/edit';
 import UsePage from '../pages/use';
 import ResetPage from '../pages/reset';
 
@@ -31,7 +31,7 @@ const Router = ({ signedIn }) => {
     case '/':
       return <HomePage />;
     case '/edit':
-      return <CharacterGeneration signedIn={signedIn} />;
+      return <EditPage signedIn={signedIn} />;
     case '/use':
       return <UsePage />;
     case '/reset':

@@ -19,14 +19,14 @@ describe('Routes', () => {
     window.history.pushState({}, '', '/edit');
     const wrapper = shallow(<Body signedIn={false} />);
 
-    expect(wrapper.find('Connect(CharacterGeneration)').exists()).toBe(true);
+    expect(wrapper.find('Connect(EditPage)').exists()).toBe(true);
   });
 
   it('should render the loaded character page when pathname /use', () => {
     window.history.pushState({}, '', '/use');
     const wrapper = shallow(<Body signedIn={false} />);
 
-    expect(wrapper.find('Connect(LoadedCharacter)').exists()).toBe(true);
+    expect(wrapper.find('Connect(UsePage)').exists()).toBe(true);
   });
 
   it('should render the password reset page when pathname /reset', () => {
@@ -50,7 +50,7 @@ describe('Router integration', () => {
   it('should navigate to edit character page via href link', () => {
     wrapper.find('button[children="Create Character"]').simulate('click');
 
-    expect(wrapper.find('CharacterGeneration').exists()).toBe(true);
+    expect(wrapper.find('EditPage').exists()).toBe(true);
   });
 
   it('should navigate home via home link', () => {

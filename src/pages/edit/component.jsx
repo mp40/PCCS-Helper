@@ -1,23 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import AttributeCard from '../AttributeCard';
-import CombatCard from '../CombatCard';
-import ActionsCard from '../ActionsCard';
-import EquipmentCard from '../EquipmentCard';
-import ClothingCard from '../ClothingCard';
-import WeaponsCard from '../WeaponsCard';
-import BodyArmourCard from '../BodyArmourCard';
-import NameCard from '../NameCard';
+import AttributeCard from '../../components/AttributeCard';
+import CombatCard from '../../components/CombatCard';
+import ActionsCard from '../../components/ActionsCard';
+import EquipmentCard from '../../components/EquipmentCard';
+import ClothingCard from '../../components/ClothingCard';
+import WeaponsCard from '../../components/WeaponsCard';
+import BodyArmourCard from '../../components/BodyArmourCard';
+import NameCard from '../../components/NameCard';
 
-import Print from '../Print';
-import Save from '../Save';
+import Print from '../../components/Print';
+import Save from '../../components/Save';
 
-import Link from '../widgets/link';
+import Link from '../../components/widgets/link';
 
 import styles from './styles.module.css';
 
-const CharacterGeneration = ({ totalWeight, signedIn }) => (
+const EditPage = ({ totalWeight, signedIn }) => (
   <div className={styles.wrapper}>
 
     <div className={`${styles.topCard} card-standard`}>
@@ -53,9 +53,9 @@ const CharacterGeneration = ({ totalWeight, signedIn }) => (
   </div>
 );
 
-CharacterGeneration.propTypes = {
+EditPage.propTypes = {
   totalWeight: PropTypes.number.isRequired,
   signedIn: PropTypes.bool.isRequired,
 };
 
-export default CharacterGeneration;
+export default EditPage;
