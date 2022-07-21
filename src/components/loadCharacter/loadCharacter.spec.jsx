@@ -35,7 +35,6 @@ describe('Load Character Modal', () => {
   const savedCharacters = [mrLove, mrRock];
 
   let wrapper;
-  let storage;
 
   const getWrapper = (characters) => {
     wrapper = shallow(
