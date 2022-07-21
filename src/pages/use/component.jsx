@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import LoadedCharacterReferenceTables from './ReferenceTables';
-import LoadedCharacterWeapons from './Weapons';
-import LoadedCharacterShooting from './Shooting';
-import LoadedCharacterMelee from './Melee';
+import LoadedCharacterReferenceTables from '../../components/use/reference-tables';
+import LoadedCharacterWeapons from '../../components/use/weapons';
+import LoadedCharacterShooting from '../../components/use/shooting';
+import LoadedCharacterMelee from '../../components/use/melee';
 
 import { salAndCeTable } from '../../core/tables';
 
 import styles from './styles.module.css';
 
-const LoadedCharacter = ({
+const UsePage = ({
   name,
   gunLevel,
   handLevel,
@@ -62,7 +62,7 @@ const LoadedCharacter = ({
   );
 };
 
-LoadedCharacter.propTypes = {
+UsePage.propTypes = {
   name: PropTypes.string.isRequired,
   gunLevel: PropTypes.number.isRequired,
   handLevel: PropTypes.number.isRequired,
@@ -77,4 +77,4 @@ LoadedCharacter.propTypes = {
   handCombatActions: PropTypes.number.isRequired,
 };
 
-export default LoadedCharacter;
+export default UsePage;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import HomePage from '../pages/home';
 import CharacterGeneration from '../components/CharacterGeneration';
-import LoadedCharacter from '../components/LoadedCharacter';
+import UsePage from '../pages/use';
 import ResetPage from '../pages/reset';
 
 import FourOhFourPage from '../pages/four-oh-four';
@@ -33,7 +33,7 @@ const Router = ({ signedIn }) => {
     case '/edit':
       return <CharacterGeneration signedIn={signedIn} />;
     case '/use':
-      return <LoadedCharacter />;
+      return <UsePage />;
     case '/reset':
       return <ResetPage />;
     default:
