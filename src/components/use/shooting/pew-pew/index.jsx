@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { AlmStateContext, WeaponContext, AlmDispatchContext } from '../context';
 import { updateAims } from '../actions';
 
-import FireSelector from '../FireSelector';
+import FireSelector from '../fire-selector';
 
 import { getOddsOfHitting } from './data';
 import { getTargetSizeMod } from '../weapon-data/ballistic/data';
