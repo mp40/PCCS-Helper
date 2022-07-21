@@ -33,7 +33,7 @@ describe('Routes', () => {
     window.history.pushState({}, '', '/reset');
     const wrapper = shallow(<Body signedIn={false} />);
 
-    expect(wrapper.find('Reset').exists()).toBe(true);
+    expect(wrapper.find('ResetPage').exists()).toBe(true);
   });
 
   it('should render 404 if pathname does not match', () => {

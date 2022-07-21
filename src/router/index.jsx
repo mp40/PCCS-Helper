@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import HomePage from '../pages/home';
 import CharacterGeneration from '../components/CharacterGeneration';
 import LoadedCharacter from '../components/LoadedCharacter';
-import Reset from '../components/Reset';
+import ResetPage from '../pages/reset';
 
 import FourOhFourPage from '../pages/four-oh-four';
 
@@ -35,7 +35,7 @@ const Router = ({ signedIn }) => {
     case '/use':
       return <LoadedCharacter />;
     case '/reset':
-      return <Reset />;
+      return <ResetPage />;
     default:
       return <FourOhFourPage />;
   }

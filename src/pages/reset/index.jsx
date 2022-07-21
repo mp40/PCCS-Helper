@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import HeaderModal from '../header/modal';
+import HeaderModal from '../../components/header/modal';
 
 import { fetchResettingPassword } from '../../fetch';
 
@@ -8,7 +8,7 @@ import styles from './styles.module.css';
 
 const noop = () => {};
 
-const Reset = () => {
+const ResetPage = () => {
   const [errorMsg, setErrorMsg] = useState(null);
 
   const token = window.location.search.substring(1);
@@ -49,4 +49,4 @@ const Reset = () => {
   );
 };
 
-export default Reset;
+export default ResetPage;
