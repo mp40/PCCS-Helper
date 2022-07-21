@@ -5,6 +5,7 @@ import HomePage from '../pages/home';
 import EditPage from '../pages/edit';
 import UsePage from '../pages/use';
 import ResetPage from '../pages/reset';
+import ModifyPage from '../pages/modify';
 
 import FourOhFourPage from '../pages/four-oh-four';
 
@@ -27,18 +28,34 @@ const Router = ({ signedIn }) => {
     };
   }, []);
 
-  switch (currentPath) {
-    case '/':
-      return <HomePage />;
-    case '/edit':
-      return <EditPage signedIn={signedIn} />;
-    case '/use':
-      return <UsePage />;
-    case '/reset':
-      return <ResetPage />;
-    default:
-      return <FourOhFourPage />;
+  if (currentPath === '/') {
+    return <HomePage />;
   }
+
+  if (currentPath === '/edit') {
+    return <EditPage signedIn={signedIn} />;
+  }
+
+  /**
+  * Regex notes
+  * ^ -> start of string
+  * $ -> end of string
+  * \/ - > "/" with escape character
+  * [0-9] -> digit between 0 and 9
+  */
+  if (currentPath.match(/^\/modify\/[0-9]$/)) {
+    return <ModifyPage />;
+  }
+
+  if (currentPath === '/use') {
+    return <UsePage />;
+  }
+
+  if (currentPath === '/reset') {
+    return <ResetPage />;
+  }
+
+  return <FourOhFourPage />;
 };
 
 Router.propTypes = {
