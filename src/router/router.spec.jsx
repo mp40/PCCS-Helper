@@ -22,6 +22,20 @@ describe('Routes', () => {
     expect(wrapper.find('Connect(EditPage)').exists()).toBe(true);
   });
 
+  it('should render the modify firearm page when pathname /modify/n', () => {
+    window.history.pushState({}, '', '/modify/0');
+    const wrapper = shallow(<Body signedIn={false} />);
+
+    expect(wrapper.find('ModifyPage').exists()).toBe(true);
+  });
+
+  it('should use the firearm index to modify in url as prop', () => {
+    window.history.pushState({}, '', '/modify/0');
+    const wrapper = shallow(<Body signedIn={false} />);
+
+    expect(wrapper.props()).toEqual({ firearmIndex: 0 });
+  });
+
   it('should render the loaded character page when pathname /use', () => {
     window.history.pushState({}, '', '/use');
     const wrapper = shallow(<Body signedIn={false} />);

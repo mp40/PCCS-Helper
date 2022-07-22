@@ -44,7 +44,8 @@ const Router = ({ signedIn }) => {
   * [0-9] -> digit between 0 and 9
   */
   if (currentPath.match(/^\/modify\/[0-9]$/)) {
-    return <ModifyPage />;
+    const firearmIndex = currentPath.slice(-1);
+    return <ModifyPage firearmIndex={Number(firearmIndex)} />;
   }
 
   if (currentPath === '/use') {
