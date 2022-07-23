@@ -1,9 +1,9 @@
 const firearmFormDetails = {
-  title: 'Modify Weapon Weight',
+  title: 'Add Modification',
   formClassName: 'modifyWeightForm',
   fields: [
     {
-      heading: 'Note',
+      heading: 'Modification',
       idRef: 'modifyWeightNoteInput',
     },
     {
@@ -14,7 +14,7 @@ const firearmFormDetails = {
 };
 
 const magazineFormDetails = {
-  title: 'Custom Magazine Details',
+  title: 'Add Custom Magazine',
   formClassName: 'customMagazineForm',
   fields: [
     {

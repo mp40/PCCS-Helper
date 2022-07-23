@@ -33,11 +33,10 @@ const Optics = ({ firearm, optics, updateOptic, removeOptic }) => {
   const scope = getScopeByName(optics?.attached);
 
   return (
-    <>
-      <div className={styles.wrapper}>
-        <span className={styles.scopeDetails}>
-          <h4>Optics</h4>
-          {optics?.attached && (
+    <div className={styles.wrapper}>
+      <span className={styles.scopeDetails}>
+        <h4>Optics</h4>
+        {optics?.attached && (
           <>
             <span>{optics.attached}</span>
             <span>
@@ -46,25 +45,28 @@ const Optics = ({ firearm, optics, updateOptic, removeOptic }) => {
             </span>
             <span>{`Min Rng: ${scope.minimumRange}`}</span>
           </>
-          )}
-        </span>
-        <span className={styles.scopeButtons}>
-          <button type="button" className={styles.opticButton} onClick={() => removeOptic(firearm)}>Remove Optic</button>
-          <button type="button" className={styles.opticButton} onClick={() => setShowSelectOptic(true)}>Update Optic</button>
-        </span>
-      </div>
+        )}
+      </span>
+      <span className={styles.scopeButtons}>
+        <button type="button" className={styles.opticButton} onClick={() => removeOptic(firearm)}>Remove Optic</button>
+        <button type="button" className={styles.opticButton} onClick={() => setShowSelectOptic(true)}>Update Optic</button>
+      </span>
+
       {showSelectOptic
       && (
-      <div className={styles.opticModal}>
-        <div>Select Optic</div>
-        <div>
-          {getScopes().map((optic) => (
-            <button key={optic} type="button" className={styles.opticButton} onClick={() => handleUpdateOptic({ firearmToUpdate: firearm, optic })}>{optic}</button>
-          ))}
-        </div>
-      </div>
+        <>
+          <div className="modal-background" />
+          <div className={`card-standard card-modify-firearm-modal ${styles.opticModal}`}>
+            <div>Select Optic</div>
+            <div>
+              {getScopes().map((optic) => (
+                <button key={optic} type="button" className={styles.opticButton} onClick={() => handleUpdateOptic({ firearmToUpdate: firearm, optic })}>{optic}</button>
+              ))}
+            </div>
+          </div>
+        </>
       )}
-    </>
+    </div>
   );
 };
 

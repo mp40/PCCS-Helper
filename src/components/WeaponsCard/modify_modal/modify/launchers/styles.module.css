@@ -27,20 +27,9 @@
     box-shadow: 0 0 1px 1px var(--usaf-light-grey);
 }
 
-.launcherModal {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-color: whitesmoke;
-    z-index: 5;
-    box-shadow: 0 0 5px 1px var(--usaf-light-grey);
-}
-
 .launcherModal > div:first-of-type {
     font-weight: bold;
-    margin: 6px auto 4px;
+    margin: 0 auto 4px;
     text-align: center;
 }
 

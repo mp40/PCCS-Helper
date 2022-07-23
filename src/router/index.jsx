@@ -28,6 +28,9 @@ const Router = ({ signedIn }) => {
     };
   }, []);
 
+  // mptodo
+  console.log('PATH >', currentPath);
+
   if (currentPath === '/') {
     return <HomePage />;
   }

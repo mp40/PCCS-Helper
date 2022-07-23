@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import LinkWrapper from '../widgets/link/link-wrapper';
+
 import { correctFloatingPoint } from '../../utils';
 
 import styles from './styles.module.css';
@@ -15,21 +17,29 @@ const GearTableEntry = ({
   decreaseItem,
 }) => (
   <div className={`gear-table-row--container ${!removeItem && !modifyItem ? styles.magazineRow : ''}`}>
-    {removeItem && modifyItem && (
+    {removeItem && typeof modifyItem === 'number' && (
     <span className={styles.clickable}>
       <button aria-label="remove" type="button" className="button--standard button--close" onClick={() => removeItem()} />
-      <button type="button" className="button-clickable-item-row" onClick={() => modifyItem()}>{text}</button>
+      <LinkWrapper href={`modify/${modifyItem}`}>
+        <button
+          aria-label="modify"
+          className="button-clickable-item-row"
+          type="button"
+        >
+          {text}
+        </button>
+      </LinkWrapper>
     </span>
     )}
 
-    {removeItem && !modifyItem && (
+    {removeItem && typeof modifyItem !== 'number' && (
     <span>
       <button aria-label="remove" type="button" className="button--standard button--close" onClick={() => removeItem()} />
       <span>{text}</span>
     </span>
     )}
 
-    {!removeItem && !modifyItem && (
+    {!removeItem && typeof modifyItem !== 'number' && (
     <span className={styles.noButtons}>{text}</span>
     )}
 
@@ -46,7 +56,7 @@ const GearTableEntry = ({
 GearTableEntry.propTypes = {
   text: PropTypes.string.isRequired,
   removeItem: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]).isRequired,
-  modifyItem: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]).isRequired,
+  modifyItem: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]).isRequired,
   weight: PropTypes.number.isRequired,
   qty: PropTypes.number.isRequired,
   increaseItem: PropTypes.func.isRequired,

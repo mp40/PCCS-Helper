@@ -136,6 +136,16 @@
   z-index: 101;
 }
 
+.card-modify-firearm-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30rem;
+  padding: 0.5rem 2rem 2rem;
+  z-index: 101;
+}
+
 .button--standard {
   border: none;
   border-radius: 3px;

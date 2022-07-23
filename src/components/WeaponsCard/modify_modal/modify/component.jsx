@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { gunObjShape } from '../../../../helpers/proptypeShapes';
 
@@ -21,21 +21,16 @@ const FirearmModify = ({
   replaceMagazine,
   removeAllModificationsFromFirearm,
 }) => {
-  const [createCustomMag, toggleCreateCustomMag] = useState(false);
-  const [modifyFirearmWeight, toggleModifyFirearmWeight] = useState(false);
-
   const setPrimaryMag = (index) => {
     setPrimaryMagazine({ firearm: gunObj.name, magazine: index });
   };
 
   const handleAddCustomMag = (newCustomMagazine) => {
     addCustomMagazine({ firearmToUpdate: gunObj.name, magazine: newCustomMagazine });
-    toggleCreateCustomMag(false);
   };
 
   const handleModifyFirearmWeight = (modNote) => {
     modifyFirearm({ firearm: gunObj.name, modNote });
-    toggleModifyFirearmWeight(false);
   };
 
   const handleMagazineExistence = (payload, isRemoved) => (
@@ -44,65 +39,44 @@ const FirearmModify = ({
 
   return (
     <div className={styles.wrapper}>
-      {(!createCustomMag && !modifyFirearmWeight)
-        && (
-          <>
-            <div className={styles.header}>
-              <button
-                type="button"
-                onClick={() => toggleCreateCustomMag(true)}
-              >
-                add magazine
-              </button>
-              <button
-                type="button"
-                onClick={() => toggleModifyFirearmWeight(true)}
-              >
-                add modification
-              </button>
-              <button
-                type="button"
-                onClick={() => removeAllModificationsFromFirearm(gunObj.name)}
-              >
-                remove all mods
-              </button>
-            </div>
-            <Magazines
-              gunObj={gunObj}
-              setPrimaryMag={setPrimaryMag}
-              handleMagazineExistence={handleMagazineExistence}
-            />
-            <Modifications
-              firearmName={gunObj.name}
-              modNotes={gunObj.modNotes}
-              removeFirearmModification={removeFirearmModification}
-            />
 
-            <Optics firearm={gunObj.name} optics={gunObj.optics} />
+      <div className={styles.header}>
+        <span>Modifications</span>
+        <button
+          type="button"
+          onClick={() => removeAllModificationsFromFirearm(gunObj.name)}
+        >
+          Remove All
+        </button>
+      </div>
+      <Magazines
+        gunObj={gunObj}
+        setPrimaryMag={setPrimaryMag}
+        handleMagazineExistence={handleMagazineExistence}
+      />
+      <Modifications
+        firearmName={gunObj.name}
+        modNotes={gunObj.modNotes}
+        removeFirearmModification={removeFirearmModification}
+      />
 
-            {gunObj?.launcher?.ableToAttach && (
-            <Launchers
-              firearm={gunObj.name}
-              ableToAttach={gunObj.launcher.ableToAttach}
-              attachedLauncher={gunObj.launcher.attached}
-            />
-            )}
-          </>
-        )}
-      {createCustomMag && (
-        <Form
-          formType="Magazine"
-          handleModification={handleAddCustomMag}
-          toggleOffWeaponCardViews={() => toggleCreateCustomMag(false)}
-        />
+      <Optics firearm={gunObj.name} optics={gunObj.optics} />
+
+      {gunObj?.launcher?.ableToAttach && (
+      <Launchers
+        firearm={gunObj.name}
+        ableToAttach={gunObj.launcher.ableToAttach}
+        attachedLauncher={gunObj.launcher.attached}
+      />
       )}
-      {modifyFirearmWeight && (
-        <Form
-          formType="Firearm"
-          handleModification={handleModifyFirearmWeight}
-          toggleOffWeaponCardViews={() => toggleModifyFirearmWeight(false)}
-        />
-      )}
+      <Form
+        formType="Magazine"
+        handleModification={handleAddCustomMag}
+      />
+      <Form
+        formType="Firearm"
+        handleModification={handleModifyFirearmWeight}
+      />
     </div>
   );
 };

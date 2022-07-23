@@ -1,12 +1,14 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// import styles from './styles.module.css';
+import ModifyCard from '../../components/modify';
+
+import styles from './styles.module.css';
 
 const ModifyPage = ({ firearmIndex }) => (
-  <div>
-    Placeholder
-    <p>{firearmIndex}</p>
+  <div className={styles.wrapper}>
+    <ModifyCard firearmIndex={firearmIndex} />
   </div>
 
 );

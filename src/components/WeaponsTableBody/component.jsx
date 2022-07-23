@@ -13,7 +13,7 @@ import { gunObjShape, launcherShape } from '../../helpers/proptypeShapes';
 
 const WeaponsTableBody = ({
   totalWeaponWeight,
-  toggleModifyWeapon,
+  // toggleModifyWeapon,
   firearms,
   grenades,
   launchers,
@@ -67,13 +67,16 @@ const WeaponsTableBody = ({
       </div>
 
       <div className="gear-card-body">
-        {firearms.map((firearm) => (
+        {firearms.map((firearm, index) => (
           <Fragment key={firearm.name}>
 
             <GearTableEntry
               text={`${firearm.name}${firearm?.launcher ? ` - ${firearm.launcher.attached}` : ''}`}
               removeItem={() => removeFirearm(firearm.name)}
-              modifyItem={() => toggleModifyWeapon(firearm.name)}
+              // mptodo
+              // modifyItem={() => toggleModifyWeapon(firearm.name)}
+              // modifyItem={() => toggleModifyWeapon(index)}
+              modifyItem={index}
               weight={getFullFirearmSystemWeightByObject(firearm)}
               qty={firearm.qty}
               increaseItem={() => increaseFirearmQty(firearm.name)}
@@ -182,7 +185,7 @@ WeaponsTableBody.propTypes = {
   decreaseLauncherAmmo: PropTypes.func.isRequired,
   increaseUnderslungLauncherAmmo: PropTypes.func.isRequired,
   decreaseUnderslungLauncherAmmo: PropTypes.func.isRequired,
-  toggleModifyWeapon: PropTypes.func.isRequired,
+  // toggleModifyWeapon: PropTypes.func.isRequired,
   firearms: PropTypes.arrayOf(gunObjShape).isRequired,
   grenades: PropTypes.arrayOf(PropTypes.object).isRequired,
   launchers: PropTypes.arrayOf(launcherShape).isRequired,

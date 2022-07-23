@@ -27,14 +27,17 @@ const Launchers = ({ firearm, ableToAttach, attachedLauncher, updateUnderslungLa
 
       {showModal
       && (
-      <div className={styles.launcherModal}>
-        <div>Select Launcher</div>
-        <div>
-          {ableToAttach.map((launcher) => (
-            <button key={launcher} type="button" className={styles.launcherButton} onClick={() => handleUpdate({ firearmToUpdate: firearm, launcher })}>{launcher}</button>
-          ))}
-        </div>
-      </div>
+        <>
+          <div className="modal-background" />
+          <div className={`card-standard card-modify-firearm-modal ${styles.launcherModal}`}>
+            <div>Select Launcher</div>
+            <div>
+              {ableToAttach.map((launcher) => (
+                <button key={launcher} type="button" className={styles.launcherButton} onClick={() => handleUpdate({ firearmToUpdate: firearm, launcher })}>{launcher}</button>
+              ))}
+            </div>
+          </div>
+        </>
       )}
 
     </>
