@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// import WeaponStatsTable from '../../WeaponStatsTable';
 import WeaponStatsTable from '../WeaponStatsTable';
-import FirearmModify from '../WeaponsCard/modify_modal/modify';
+import ModifyFirearm from './firearm';
 
 import LinkWrapper from '../widgets/link/link-wrapper';
 
@@ -17,11 +16,14 @@ import styles from './styles.module.css';
 const ModifyCard = ({ firearms, firearmIndex }) => {
   const firearm = firearms[firearmIndex];
 
-  let headerText;
-  if (firearm) {
-    headerText = firearm.name;
-  } else {
-    headerText = 'Error: Firearm Not Found';
+  if (!firearm) {
+    return (
+      <div className="card-standard">
+        <div className={styles.header}>
+          <span>Error: Firearm Not Found</span>
+        </div>
+      </div>
+    );
   }
 
   const hydratedFirearm = hydrateFirearmByObject(firearm);
@@ -29,7 +31,7 @@ const ModifyCard = ({ firearms, firearmIndex }) => {
   return (
     <div className="card-standard">
       <div className={styles.header}>
-        <span>{headerText}</span>
+        <span>{firearm.name}</span>
         <LinkWrapper href="/edit">
           <button
             aria-label="close"
@@ -42,7 +44,7 @@ const ModifyCard = ({ firearms, firearmIndex }) => {
         <WeaponStatsTable
           weapon={{ ...hydratedFirearm, weight: getFullFirearmSystemWeightByObject(firearm) }}
         />
-        <FirearmModify
+        <ModifyFirearm
           gunObj={hydratedFirearm}
         />
       </div>

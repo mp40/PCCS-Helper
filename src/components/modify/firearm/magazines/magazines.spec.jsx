@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 
 import Magazines from './index';
 
-import { firearms } from '../../../../../data/firearms';
+import { firearms } from '../../../../data/firearms';
 
 const testM16 = () => ({ ...firearms.M16 });
 

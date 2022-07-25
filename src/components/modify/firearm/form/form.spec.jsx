@@ -7,25 +7,6 @@ describe('The Firearm Modification Form', () => {
   const toggleOffWeaponCardViews = jest.fn();
   const handleModification = jest.fn();
 
-  describe('the form', () => {
-    const wrapper = shallow(
-      <FirearmModificationForm
-        formType="Magazine"
-        toggleOffWeaponCardViews={toggleOffWeaponCardViews}
-        handleModification={handleModification}
-      />);
-
-    afterEach(() => {
-      jest.clearAllMocks();
-    });
-
-    it('should be possible to close form', () => {
-      wrapper.find('.close').simulate('click');
-
-      expect(toggleOffWeaponCardViews).toHaveBeenCalled();
-    });
-  });
-
   describe('magazine form', () => {
     let wrapper;
 
@@ -51,7 +32,7 @@ describe('The Firearm Modification Form', () => {
     });
 
     it('should render the correct heading and text', () => {
-      expect(wrapper.text()).toContain('Custom Magazine Details');
+      expect(wrapper.text()).toContain('Add Custom Magazine');
       expect(capacity.text()).toBe('Capacity');
       expect(weight.text()).toBe('Weight');
       expect(type.text()).toBe('Type');
@@ -110,7 +91,7 @@ describe('The Firearm Modification Form', () => {
   describe('modification form', () => {
     let wrapper;
 
-    let note;
+    let modification;
     let weight;
 
     beforeEach(() => {
@@ -121,7 +102,7 @@ describe('The Firearm Modification Form', () => {
           handleModification={handleModification}
         />);
 
-      note = wrapper.find('TextInput').find('[heading="Note"]');
+      modification = wrapper.find('TextInput').find('[heading="Modification"]');
       weight = wrapper.find('TextInput').find('[heading="Weight"]');
     });
 
@@ -130,13 +111,13 @@ describe('The Firearm Modification Form', () => {
     });
 
     it('should render the correct heading and text', () => {
-      expect(wrapper.text()).toContain('Modify Weapon Weight');
-      expect(note.text()).toBe('Note');
+      expect(wrapper.text()).toContain('Add Modification');
+      expect(modification.text()).toBe('Modification');
       expect(weight.text()).toBe('Weight');
     });
 
     it('should to possible to submit modification details', () => {
-      note.find('input').simulate('change', { target: { value: 'torch' } });
+      modification.find('input').simulate('change', { target: { value: 'torch' } });
       weight.find('input').simulate('change', { target: { value: '.5' } });
 
       wrapper.find('button[children="Submit"]').simulate('click');
@@ -148,7 +129,7 @@ describe('The Firearm Modification Form', () => {
     });
 
     it('should show error msg if the weight is not a number', () => {
-      note.find('input').simulate('change', { target: { value: 'torch' } });
+      modification.find('input').simulate('change', { target: { value: 'torch' } });
       weight.find('input').simulate('change', { target: { value: 'x.5' } });
 
       wrapper.find('button[children="Submit"]').simulate('click');
@@ -158,7 +139,7 @@ describe('The Firearm Modification Form', () => {
     });
 
     it('should show error msg if the mote is less than one character', () => {
-      note.find('input').simulate('change', { target: { value: '' } });
+      modification.find('input').simulate('change', { target: { value: '' } });
       weight.find('input').simulate('change', { target: { value: '.5' } });
 
       wrapper.find('button[children="Submit"]').simulate('click');

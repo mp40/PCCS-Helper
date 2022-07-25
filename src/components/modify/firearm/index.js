@@ -7,7 +7,7 @@ import { removeFirearmModification,
   addCustomMagazine,
   removeMagazine,
   replaceMagazine,
-  removeAllModificationsFromFirearm } from '../../../../actions';
+  removeAllModificationsFromFirearm } from '../../../actions';
 
 const mapStateToProps = (state) => ({
   firearms: state.currentCharacter.firearms,

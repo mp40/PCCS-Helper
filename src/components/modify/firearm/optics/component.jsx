@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 
 import PropTypes from 'prop-types';
 
-import { getScopeByName } from '../../../../../data/firearms/optics';
+import { getScopeByName } from '../../../../data/firearms/optics';
 
-import { opticsShape } from '../../../../../helpers/proptypeShapes';
+import { opticsShape } from '../../../../helpers/proptypeShapes';
 
 import styles from './styles.module.css';
 

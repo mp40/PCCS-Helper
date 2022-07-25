@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { gunObjShape } from '../../../../helpers/proptypeShapes';
+import { gunObjShape } from '../../../helpers/proptypeShapes';
 
 import Magazines from './magazines';
 import Modifications from './modifications';
@@ -11,7 +11,7 @@ import Form from './form';
 
 import styles from './styles.module.css';
 
-const FirearmModify = ({
+const ModifyFirearm = ({
   gunObj,
   setPrimaryMagazine,
   removeFirearmModification,
@@ -81,7 +81,7 @@ const FirearmModify = ({
   );
 };
 
-FirearmModify.propTypes = {
+ModifyFirearm.propTypes = {
   replaceMagazine: PropTypes.func.isRequired,
   removeMagazine: PropTypes.func.isRequired,
   modifyFirearm: PropTypes.func.isRequired,
@@ -92,4 +92,4 @@ FirearmModify.propTypes = {
   gunObj: gunObjShape.isRequired,
 };
 
-export default FirearmModify;
+export default ModifyFirearm;
