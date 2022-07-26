@@ -89,30 +89,26 @@ describe('Selected Firearms Table', () => {
   it('should return "Single Rounds" if type is "Rnd"', () => {
     wrapper.setProps({ firearms: [pistolSingleRounds] });
 
-    expect(wrapper.find('GearTableEntry').at(1).props().text).toBe('Single Round');
+    expect(wrapper.find('MagazineRow').props().text).toBe('Single Round');
   });
 
-  it('should return "Single Rounds" if type is "Rnd"', () => {
+  it('should return magzine details if type is not single round', () => {
     wrapper.setProps({ firearms: [m1911Qty1] });
 
-    expect(wrapper.find('GearTableEntry').at(1).props().text).toBe('7 round Mag');
-  });
-
-  it('should render no weapons if none provided', () => {
-    expect(wrapper.find('GearTableEntry').exists()).toBe(false);
+    expect(wrapper.find('MagazineRow').props().text).toBe('7 round Mag');
   });
 
   it('should render provided firearms', () => {
     wrapper.setProps({ firearms: [testFAMAS(), testM1911A1()] });
 
-    expect(wrapper.find('GearTableEntry').at(0).props().text).toBe('FAMAS');
-    expect(wrapper.find('GearTableEntry').at(2).props().text).toBe('M1911A1');
+    expect(wrapper.find('FirearmRow').at(0).props().text).toBe('FAMAS');
+    expect(wrapper.find('FirearmRow').at(1).props().text).toBe('M1911A1');
   });
 
   it('should not decrease firearm less than one', () => {
     wrapper.setProps({ firearms: [testFAMAS()] });
 
-    wrapper.find('GearTableEntry').at(0).invoke('decreaseItem')();
+    wrapper.find('FirearmRow').invoke('decreaseItem')();
 
     expect(decreaseFirearmQty).not.toHaveBeenCalled();
   });
@@ -120,15 +116,23 @@ describe('Selected Firearms Table', () => {
   it('should not decrease magazine less than zero', () => {
     wrapper.setProps({ firearms: [testFAMAS()] });
 
-    wrapper.find('GearTableEntry').at(1).invoke('decreaseItem')();
+    wrapper.find('FirearmRow').invoke('decreaseItem')();
 
     expect(decreaseMagazineQty).not.toHaveBeenCalled();
+  });
+
+  it('should not render magazines tagged as removed', () => {
+    const pistol = { ...m1911Qty1 };
+    pistol.mag.push({ type: 'Removed Mag', weight: 0.5, cap: 5, qty: 1, removed: true });
+    wrapper.setProps({ firearms: [pistol] });
+
+    expect(wrapper.text()).not.toContain('Removed Mag');
   });
 
   it('should render provided grenades', () => {
     wrapper.setProps({ grenades: [m2Grenade] });
 
-    expect(wrapper.find('GearTableEntry').at(0).props().text).toBe('M2');
+    expect(wrapper.find('EquipmentRow').props().text).toBe('M2');
   });
 
   it('should render provided launchers', () => {
@@ -146,7 +150,7 @@ describe('Selected Firearms Table', () => {
 
     wrapper.setProps({ launchers: [m72, m79] });
 
-    expect(wrapper.find('GearTableEntry').at(0).props().text).toBe('M72 A2 LAW');
-    expect(wrapper.find('GearTableEntry').at(1).props().text).toBe('M79');
+    expect(wrapper.find('LauncherRow').at(0).props().text).toBe('M72 A2 LAW');
+    expect(wrapper.find('LauncherRow').at(1).props().text).toBe('M79');
   });
 });

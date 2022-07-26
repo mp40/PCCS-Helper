@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import GearTableEntry from '../../GearTableEntry';
+import EquipmentRow from '../../gear-rows/equipment-row';
 
 const EquipmentCardTable = (
   { equipment,
@@ -31,7 +31,7 @@ const EquipmentCardTable = (
 
       <div className="gear-card-body">
         {equipment.map((item) => (
-          <GearTableEntry
+          <EquipmentRow
             key={item.name}
             text={item.name}
             removeItem={() => removeEquipment(item.name)}

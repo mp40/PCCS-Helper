@@ -1,8 +1,12 @@
 /* eslint-disable max-len */
+// mptodo
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import GearTableEntry from '../GearTableEntry';
+import FirearmRow from '../gear-rows/firearm-row';
+import MagazineRow from '../gear-rows/magazine-row';
+import LauncherRow from '../gear-rows/launcher-row';
+import EquipmentRow from '../gear-rows/equipment-row';
 
 import { getFullFirearmSystemWeightByObject } from '../../data/firearms';
 import { getGrenadeWeightByName } from '../../data/grenades';
@@ -69,10 +73,10 @@ const WeaponsTableBody = ({
         {firearms.map((firearm, index) => (
           <Fragment key={firearm.name}>
 
-            <GearTableEntry
+            <FirearmRow
               text={`${firearm.name}${firearm?.launcher ? ` - ${firearm.launcher.attached}` : ''}`}
               removeItem={() => removeFirearm(firearm.name)}
-              modifyItem={index}
+              firearmIndex={index}
               weight={getFullFirearmSystemWeightByObject(firearm)}
               qty={firearm.qty}
               increaseItem={() => increaseFirearmQty(firearm.name)}
@@ -84,7 +88,7 @@ const WeaponsTableBody = ({
                 return null;
               }
               return (
-                <GearTableEntry
+                <MagazineRow
                   key={`${m.type}${m.cap}${m.weight}`}
                   text={getMagazineText(m.type, m.cap)}
                   removeItem={false}
@@ -100,11 +104,9 @@ const WeaponsTableBody = ({
             {firearm?.launcher && firearm.launcher.mag.map((m, i) => {
               const launcher = getLauncherByName(firearm.launcher.attached);
               return (
-                <GearTableEntry
+                <MagazineRow
                   key={`${launcher.mag[i].class}`}
                   text={`${launcher.mag[i].class} Rnd`}
-                  removeItem={false}
-                  modifyItem={false}
                   weight={launcher.mag[i].weight}
                   qty={m.qty}
                   increaseItem={() => increaseUnderslungLauncherAmmo({ firearmToModify: firearm.name, magazineIndex: i })}
@@ -116,11 +118,10 @@ const WeaponsTableBody = ({
         ))}
 
         {grenades.map((grenade) => (
-          <GearTableEntry
+          <EquipmentRow
             key={grenade.name}
             text={grenade.name}
             removeItem={() => removeGrenade(grenade.name)}
-            modifyItem={false}
             weight={getGrenadeWeightByName(grenade.name)}
             qty={grenade.qty}
             increaseItem={() => increaseGrenadeQty(grenade.name)}
@@ -130,10 +131,9 @@ const WeaponsTableBody = ({
 
         {launchers.map((launcher) => (
           <Fragment key={launcher.name}>
-            <GearTableEntry
+            <LauncherRow
               text={launcher.name}
               removeItem={() => removeLauncher(launcher.name)}
-              modifyItem={false}
               weight={getLauncherWeightByName(launcher.name)}
               qty={launcher.qty}
               increaseItem={() => increaseLauncherQty(launcher.name)}
@@ -145,11 +145,9 @@ const WeaponsTableBody = ({
               }
 
               return (
-                <GearTableEntry
+                <MagazineRow
                   key={m.class}
                   text={`${m.class} Rnd`}
-                  removeItem={false}
-                  modifyItem={false}
                   weight={m.weight}
                   qty={m.qty}
                   increaseItem={() => increaseLauncherAmmo({ launcherToModify: launcher.name, magazineIndex: i })}
@@ -181,7 +179,6 @@ WeaponsTableBody.propTypes = {
   decreaseLauncherAmmo: PropTypes.func.isRequired,
   increaseUnderslungLauncherAmmo: PropTypes.func.isRequired,
   decreaseUnderslungLauncherAmmo: PropTypes.func.isRequired,
-  // toggleModifyWeapon: PropTypes.func.isRequired,
   firearms: PropTypes.arrayOf(gunObjShape).isRequired,
   grenades: PropTypes.arrayOf(PropTypes.object).isRequired,
   launchers: PropTypes.arrayOf(launcherShape).isRequired,

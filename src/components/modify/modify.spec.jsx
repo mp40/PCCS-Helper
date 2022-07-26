@@ -7,7 +7,7 @@ import { getStore } from '../../helpers/testHelpers';
 import ConnectedModifyCard from '.';
 import ModifyCard from './component';
 
-import { initialStore } from '../../helpers/initialStore';
+import { getInitialReduxState } from '../../helpers/initialStore';
 
 const m16 = {
   name: 'M16',
@@ -15,16 +15,6 @@ const m16 = {
   mag: [{ type: 'Mag', weight: 0.7, cap: 20, qty: 0 }, { type: 'Mag', weight: 1, cap: 30, qty: 0 }],
 };
 
-initialStore.currentCharacter.firearms.push(m16);
-
-// const firearm = firearms[firearmIndex];
-
-// let headerText;
-// if (firearm) {
-//   headerText = firearm.name;
-// } else {
-//   headerText = 'Error: Firearm Not Found';
-// }
 describe('Modify Card', () => {
   it('should render firearm name', () => {
     const wrapper = shallow(<ModifyCard firearms={[{ ...m16 }]} firearmIndex={0} />);
@@ -40,6 +30,9 @@ describe('Modify Card', () => {
 });
 
 describe('Modify Firearm Intergration', () => {
+  const initialStore = getInitialReduxState();
+  initialStore.currentCharacter.firearms.push(m16);
+
   const store = getStore(initialStore);
 
   const wrapper = mount(
