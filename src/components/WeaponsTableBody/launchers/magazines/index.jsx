@@ -36,7 +36,7 @@ const Magazines = ({
 };
 
 Magazines.propTypes = {
-  LauncherName: PropTypes.string.isRequired,
+  launcherName: PropTypes.string.isRequired,
   magazines: PropTypes.arrayOf(PropTypes.object).isRequired,
   increaseLauncherAmmo: PropTypes.func.isRequired,
   decreaseLauncherAmmo: PropTypes.func.isRequired,
