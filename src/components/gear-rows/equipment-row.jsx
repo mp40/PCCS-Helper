@@ -30,7 +30,7 @@ const EquipmentRow = ({
 
 EquipmentRow.propTypes = {
   text: PropTypes.string.isRequired,
-  removeItem: PropTypes.oneOfType([PropTypes.func]).isRequired,
+  removeItem: PropTypes.func.isRequired,
   weight: PropTypes.number.isRequired,
   qty: PropTypes.number.isRequired,
   increaseItem: PropTypes.func.isRequired,
