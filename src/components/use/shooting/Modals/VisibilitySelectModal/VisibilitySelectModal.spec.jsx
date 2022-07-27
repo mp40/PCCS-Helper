@@ -36,7 +36,6 @@ describe('Visibility Select Modal', () => {
           <VisibilitySelectModal
             setModal={setModal}
           />
-          );
         </WeaponProvider>
       </AlmStateProvider>
     </AlmDispatchProvider>,

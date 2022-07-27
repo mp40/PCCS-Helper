@@ -9,7 +9,7 @@ describe('Header', () => {
   const wrapper = shallow(
     <LoadedCharacterShootingHeader
       setWeapon={setWeapon}
-      firearmName="PewPew Stick"
+      weaponName="PewPew Stick"
     />,
   );
 
