@@ -174,7 +174,7 @@ describe('Situation Select Modal', () => {
       ).toBe(false);
     });
 
-    it('should exclude other bipod and bracing options if bipod brace selected', async () => {
+    it('should exclude other bipod and bracing options if bipod brace selected', () => {
       const mockState = { ...initialState, situation: { ...initialState.situation, bipodBraced: true } };
       const wrapper = getWrapper(testFAMAS(), mockState);
 
@@ -199,7 +199,7 @@ describe('Situation Select Modal', () => {
       ).toBe(false);
     });
 
-    it('should exclude other bipod and bracing options if bipod not braced selected', async () => {
+    it('should exclude other bipod and bracing options if bipod not braced selected', () => {
       const mockState = { ...initialState, situation: { ...initialState.situation, bipodNotBraced: true } };
       const wrapper = getWrapper(testFAMAS(), mockState);
 
@@ -222,7 +222,7 @@ describe('Situation Select Modal', () => {
       ).toBe(false);
     });
 
-    it('should exclude other bipod and bracing options if braced selected', async () => {
+    it('should exclude other bipod and bracing options if braced selected', () => {
       const mockState = { ...initialState, situation: { ...initialState.situation, braced: true } };
       const wrapper = getWrapper(testFAMAS(), mockState);
 
@@ -245,7 +245,7 @@ describe('Situation Select Modal', () => {
       ).toBe(false);
     });
 
-    it('should exclude other bipod and bracing options if sling support selected', async () => {
+    it('should exclude other bipod and bracing options if sling support selected', () => {
       const mockState = { ...initialState, situation: { ...initialState.situation, slingSupport: true } };
       const wrapper = getWrapper(testFAMAS(), mockState);
 
