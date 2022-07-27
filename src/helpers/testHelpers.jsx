@@ -4,8 +4,6 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducers from '../reducers';
 import App from '../components/App';
-// import { initialStore } from './initialStore';
-// mptodo
 import { getInitialReduxState } from './initialStore';
 
 export const getStore = (mockStore = getInitialReduxState()) => createStore(
