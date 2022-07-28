@@ -1,122 +1,56 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-
-import { act } from 'react-dom/test-utils';
+import { Provider } from 'react-redux';
+import { mount } from 'enzyme';
 
 import { firearms } from '../../data/firearms';
 
-import GameSheet from './component';
+import ConnectedGameSheet from '.';
+
+import { getStore } from '../../helpers/testStore';
+import { getInitialReduxState } from '../../helpers/initialStore';
 
 const testFAMAS = () => ({ ...firearms.FAMAS });
-
-const grenadeDouble = { name: 'The Holy Hand Grenade Of Antioch', qty: 1, length: 1, weight: 1, r: 1, data: {}, heading: '' };
 
 global.print = jest.fn();
 
 describe('<GameSheet>', () => {
-  let wrapper;
+  const initialStore = getInitialReduxState();
+
+  const currentCharacter = {
+    name: 'Biggles',
+    str: 10,
+    int: 10,
+    hlt: 10,
+    wil: 10,
+    agi: 10,
+    gunLevel: 4,
+    handLevel: 1,
+    uniform: 'Normal',
+    equipment: [],
+    firearms: [testFAMAS()],
+    grenades: [],
+    launchers: [],
+    helmet: undefined,
+    vest: undefined,
+  };
   const closeModal = jest.fn();
 
-  const getWrappedComponent = () => shallow(
-    <GameSheet
-      name="Biggles"
-      str={10}
-      int={10}
-      hlt={10}
-      wil={10}
-      agi={10}
-      gunLevel={4}
-      handLevel={1}
-      equipment={[]}
-      firearms={[testFAMAS()]}
-      grenades={[]}
-      helmet={undefined}
-      vest={undefined}
-      gunCombatActions={5}
-      handCombatActions={3}
-      knockoutValue={9}
-      closeModal={closeModal}
-    />);
+  const getWrapper = (store) => mount(
+    <Provider store={getStore(store)}>
+      <ConnectedGameSheet
+        closeModal={closeModal}
+      />
+    </Provider>);
 
-  wrapper = getWrappedComponent();
+  it('should render first gun in firearms list with recoil recovery', () => {
+    const wrapper = getWrapper({ ...initialStore, currentCharacter: { ...currentCharacter } });
 
-  it('should render the character name', () => {
-    expect(wrapper.find('.name').text()).toContain('Name: Biggles');
+    expect(wrapper.text()).toContain('FAMAS - recoil recovery: 0');
   });
 
-  it('should not render the character name line if name does not exist', () => {
-    wrapper.setProps({ name: undefined });
+  it('should inform if no firearmns selected', () => {
+    const wrapper = getWrapper({ ...initialStore, currentCharacter: { ...currentCharacter, firearms: [] } });
 
-    expect(wrapper.find('.name').exists()).toBe(false);
-  });
-
-  it('should render first gun in firearms list', () => {
-    expect(wrapper.text()).toContain('FAMAS');
-  });
-
-  it('should css for a4 size paper', () => {
-    const wrapperGunTable = wrapper.find('WeaponStatsTable').dive();
-
-    expect(wrapperGunTable.find('.a4WeaponStatTable').exists()).toBe(true);
-  });
-
-  it('should render combat stats info box', () => {
-    expect(wrapper.find('Connect(CharacterInfo)').exists()).toBe(true);
-  });
-
-  it('should not render grenade list if no grenades in inventory', () => {
-    expect(wrapper.find('GrenadeList').exists()).toBe(false);
-  });
-
-  it('should render grenade list if grenades in inventory', () => {
-    wrapper.setProps({ grenades: [grenadeDouble] });
-
-    expect(wrapper.find('GrenadeList').exists()).toBe(true);
-  });
-
-  it('should render melee list if melee weapons in inventory', () => {
-    expect(wrapper.find('HandToHandTable').exists()).toBe(true);
-  });
-
-  it('should not render melee list if no melee weapons in inventory', () => {
-    wrapper.setProps({ firearms: [] });
-
-    expect(wrapper.find('HandToHandTable').exists()).toBe(false);
-  });
-
-  describe('the gamesheet lifecycle', () => {
-    let useEffect;
-
-    const waitOneTick = (simulate) => new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(simulate);
-      }, 0);
-    });
-
-    const mockUseEffect = () => {
-      useEffect.mockImplementationOnce((f) => f());
-    };
-
-    beforeEach(async () => {
-      useEffect = jest.spyOn(React, 'useEffect');
-      mockUseEffect();
-
-      await act(async () => {
-        await waitOneTick((wrapper = await getWrappedComponent()
-        ));
-      });
-    });
-
-    afterEach(() => {
-      jest.clearAllMocks();
-    });
-
-    it('should call window.print after rendering', () => {
-      expect(global.print).toHaveBeenCalled();
-    });
-
-    it('should close modal after printing', () => {
-      expect(closeModal).toHaveBeenCalled();
-    });
+    expect(wrapper.text()).toContain('None');
   });
 });

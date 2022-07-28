@@ -11,7 +11,7 @@ import { buildRequestPayload } from './data';
 
 import * as fetchModule from '../../../fetch';
 
-import { getStore } from '../../../helpers/testHelpers';
+import { getStore } from '../../../helpers/testStore';
 import { NewCharacter } from '../../../reducers/newCharacter';
 
 const m72 = {

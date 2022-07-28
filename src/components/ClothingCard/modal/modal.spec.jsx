@@ -1,29 +1,29 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { Provider } from 'react-redux';
+import { mount } from 'enzyme';
 
-import SelectUniformModal from './component';
+import ConnectedSelectUniformModal from '.';
 
-describe('SelectUniformModal', () => {
-  let wrapper;
+import { getStore } from '../../../helpers/testStore';
 
-  const changeUniform = jest.fn();
+describe('select uniform integration', () => {
+  const store = getStore();
+
   const closeModal = jest.fn();
 
-  beforeEach(() => {
-    wrapper = shallow(<SelectUniformModal changeUniform={changeUniform} closeModal={closeModal} />);
+  const wrapper = mount(
+    <Provider store={store}>
+      <ConnectedSelectUniformModal closeModal={closeModal} />
+    </Provider>,
+  );
+
+  it('should update uniform', () => {
+    wrapper.find('span[children="Winter"]').closest('button').simulate('click');
+
+    expect(store.getState().currentCharacter.uniform).toBe('Winter');
   });
 
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
-
-  it('should select uniform when clicked', () => {
-    wrapper.find('span[children="Winter"]').parent().simulate('click');
-
-    expect(changeUniform).toHaveBeenCalledWith('Winter');
-  });
-
-  it('should close modal when close button clicked', () => {
+  it('should be possible to exit modal', () => {
     wrapper.find('.close').simulate('click');
 
     expect(closeModal).toHaveBeenCalled();

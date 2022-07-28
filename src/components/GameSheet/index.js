@@ -5,11 +5,6 @@ import { selectKnockoutValue, selectHandCombatActions, selectGunCombatActions } 
 
 const mapStateToProps = (state) => ({
   name: state.currentCharacter.name,
-  str: state.currentCharacter.str,
-  int: state.currentCharacter.int,
-  hlt: state.currentCharacter.hlt,
-  wil: state.currentCharacter.wil,
-  agi: state.currentCharacter.agi,
   gunLevel: state.currentCharacter.gunLevel,
   handLevel: state.currentCharacter.handLevel,
   equipment: state.currentCharacter.equipment,

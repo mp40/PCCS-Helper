@@ -3,27 +3,6 @@ import { shallow } from 'enzyme';
 
 import CharacterGeneration from './component';
 
-import { mountAppWithStore } from '../../helpers/testHelpers';
-
-describe('Selecting Charcter Generation', () => {
-  window.history.pushState({}, '', '/edit');
-  const wrapper = mountAppWithStore();
-
-  afterAll(() => {
-    window.history.pushState({}, '', '/');
-  });
-
-  it('should be possible to print character', () => {
-    const spyGlobalPrint = jest.fn();
-
-    global.print = spyGlobalPrint;
-
-    wrapper.find('Print').find('button').simulate('click');
-
-    expect(spyGlobalPrint).toHaveBeenCalled();
-  });
-});
-
 describe('Character Generation', () => {
   let wrapper;
 
@@ -36,10 +15,6 @@ describe('Character Generation', () => {
 
   afterEach(() => {
     jest.clearAllMocks();
-  });
-
-  it('should show print character button', () => {
-    expect(wrapper.find('Print').exists()).toBe(true);
   });
 
   it('should not show save character button if not signed in', () => {

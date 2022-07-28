@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { Provider } from 'react-redux';
-import { getStore } from '../../helpers/testHelpers';
+import { getStore } from '../../helpers/testStore';
 
 import ConnectedEquipmentCard from '.';
 import EquipmentCard from './component';

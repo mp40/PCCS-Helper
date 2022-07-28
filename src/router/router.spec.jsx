@@ -1,8 +1,11 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
+import { Provider } from 'react-redux';
 
+import App from '../components/App';
 import Body from '.';
-import { mountAppWithStore } from '../helpers/testHelpers';
+
+import { getStore } from '../helpers/testStore';
 
 describe('Routes', () => {
   afterEach(() => {
@@ -59,7 +62,11 @@ describe('Routes', () => {
 });
 
 describe('Router integration', () => {
-  const wrapper = mountAppWithStore();
+  const wrapper = mount(
+    <Provider store={getStore()}>
+      <App />
+    </Provider>,
+  );
 
   it('should navigate to edit character page via href link', () => {
     wrapper.find('button[children="Create Character"]').simulate('click');

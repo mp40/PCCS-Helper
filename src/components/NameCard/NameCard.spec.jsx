@@ -1,20 +1,33 @@
-import { mountAppWithStore } from '../../helpers/testHelpers';
+import React from 'react';
+import { mount } from 'enzyme';
 
-describe('NameCard intergration test', () => {
-  window.history.pushState({}, '', '/edit');
-  const wrapper = mountAppWithStore();
+import { DispatchProvider } from '../App/context';
 
-  afterAll(() => {
-    window.history.pushState({}, '', '/');
+import NameCard from './component';
+
+import * as actions from '../App/actions';
+
+jest.mock('./modal', () => '<ModalDouble />');
+
+describe('Name Card', () => {
+  jest.spyOn(actions, 'showModal').mockImplementation(() => {});
+
+  const dispatch = jest.fn();
+
+  const wrapper = mount(
+    <DispatchProvider dispatch={dispatch}>
+      <NameCard name="fake name" />
+    </DispatchProvider>,
+  );
+
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
-  it('should be possible to update name', () => {
-    wrapper.find('NameCard').find('button').simulate('click');
+  it('should be possible to open model to update name', () => {
+    wrapper.find('button').simulate('click');
 
-    wrapper.find('input').simulate('change', { target: { value: 'Biggles' } });
-
-    wrapper.find('button[children="Submit"]').simulate('click');
-
-    expect(wrapper.text()).toContain('Biggles');
+    expect(dispatch).toHaveBeenCalled();
+    expect(actions.showModal).toHaveBeenCalledWith('<ModalDouble />');
   });
 });
