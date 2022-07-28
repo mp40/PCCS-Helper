@@ -82,11 +82,9 @@ const GameSheet = (
                 />
               </div>
 
-              { meleeWeaponList.length > 0 && (
-                <div className={styles.melee}>
-                  <HandToHandTable meleeList={meleeWeaponList} meleeLevel={handLevel} />
-                </div>
-              )}
+              <div className={styles.melee}>
+                <HandToHandTable meleeList={meleeWeaponList} meleeLevel={handLevel} />
+              </div>
 
               <div className={styles.armourReactionKnockoutRow}>
                 <BodyArmourTable helmet={helmet} vest={vest} />
@@ -94,11 +92,9 @@ const GameSheet = (
                 <KnockoutTable knockoutValue={knockoutValue} />
               </div>
 
-              {grenades.length > 0 && (
-                <div className={styles.grenades}>
-                  <GrenadeList grenades={grenades} />
-                </div>
-              )}
+              <div className={styles.grenades}>
+                <GrenadeList grenades={grenades} />
+              </div>
 
             </div>
 
