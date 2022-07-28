@@ -35,3 +35,12 @@
   color: whitesmoke;
   font-size: 1rem;
 }
+
+@media screen and (max-width: 450px) {
+  .body > div:first-of-type > table {
+    max-width: fit-content;
+    height: fit-content;
+    font-size: .5rem;
+    margin-top: 13px;
+  }
+}
