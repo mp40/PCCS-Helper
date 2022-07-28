@@ -1,18 +1,38 @@
-import { mountAppWithStore } from '../../helpers/testHelpers';
+import React from 'react';
+import { mount } from 'enzyme';
 
-describe('Clothing Card intergration test', () => {
-  window.history.pushState({}, '', '/edit');
-  const wrapper = mountAppWithStore();
+import { DispatchProvider } from '../App/context';
 
-  afterAll(() => {
-    window.history.pushState({}, '', '/');
+import ClothingCard from './component';
+
+import * as actions from '../App/actions';
+
+jest.mock('../../data/uniformAndArmourTypes', () => ({
+  __esModule: true,
+  uniformWeights: { 'mock uniform': 5 },
+}));
+
+jest.mock('./modal', () => '<ModalDouble />');
+
+describe('Clothing Card', () => {
+  jest.spyOn(actions, 'showModal').mockImplementation(() => {});
+
+  const dispatch = jest.fn();
+
+  const wrapper = mount(
+    <DispatchProvider dispatch={dispatch}>
+      <ClothingCard uniform="mock uniform" />
+    </DispatchProvider>,
+  );
+
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
-  it('should be possible to change uniform types', () => {
-    wrapper.find('ClothingCard').find('tbody').find('tr').simulate('click');
+  it('should be possible to open model to select uniform', () => {
+    wrapper.find('td[children="mock uniform"]').closest('tr').simulate('click');
 
-    wrapper.find('.uniforms').find('button').at(1).simulate('click');
-
-    expect(wrapper.find('ClothingCard').find('tbody').find('tr').text()).toBe('Tropical4.5');
+    expect(dispatch).toHaveBeenCalled();
+    expect(actions.showModal).toHaveBeenCalledWith('<ModalDouble />');
   });
 });
