@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { mount } from 'enzyme';
 
-import { getStore } from '../../helpers/testHelpers';
+import { getStore } from '../../helpers/testStore';
 import { getInitialReduxState } from '../../helpers/initialStore';
 
 import ConnectedWeaponsCard from '.';

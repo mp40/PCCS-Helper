@@ -3,7 +3,7 @@ import { shallow, mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 
 import { Provider } from 'react-redux';
-import { getStore } from '../../helpers/testHelpers';
+import { getStore } from '../../helpers/testStore';
 
 import LoadCharacterModal from './component';
 import App from '../App';

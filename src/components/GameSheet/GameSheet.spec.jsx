@@ -6,7 +6,7 @@ import { firearms } from '../../data/firearms';
 
 import ConnectedGameSheet from '.';
 
-import { getStore } from '../../helpers/testHelpers';
+import { getStore } from '../../helpers/testStore';
 import { getInitialReduxState } from '../../helpers/initialStore';
 
 const testFAMAS = () => ({ ...firearms.FAMAS });

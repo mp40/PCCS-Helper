@@ -4,12 +4,10 @@ import { mount } from 'enzyme';
 
 import ConnectedVest from '.';
 
-import { getStore } from '../../../helpers/testHelpers';
-import { getInitialReduxState } from '../../../helpers/initialStore';
+import { getStore } from '../../../helpers/testStore';
 
 describe('select helmet integration', () => {
-  const initialStore = getInitialReduxState();
-  const store = getStore(initialStore);
+  const store = getStore();
 
   const closeModal = jest.fn();
 

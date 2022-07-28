@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 
 import { Provider } from 'react-redux';
 
-import { getStore } from '../../helpers/testHelpers';
+import { getStore } from '../../helpers/testStore';
 
 import ConnectedAttributeCard from '.';
 
