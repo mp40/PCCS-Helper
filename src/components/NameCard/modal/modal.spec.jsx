@@ -6,7 +6,7 @@ import ConnectedNameCardModal from '.';
 
 import { getStore } from '../../../helpers/testStore';
 
-describe('select helmet integration', () => {
+describe('update name integration', () => {
   const store = getStore();
 
   const closeModal = jest.fn();
@@ -17,7 +17,7 @@ describe('select helmet integration', () => {
     </Provider>,
   );
 
-  it('should update uniform', () => {
+  it('should update name', () => {
     wrapper.find('input').simulate('change', { target: { value: 'Biggles' } });
     wrapper.find('button').simulate('click');
 

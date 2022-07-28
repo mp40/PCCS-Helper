@@ -6,7 +6,7 @@ import ConnectedSelectUniformModal from '.';
 
 import { getStore } from '../../../helpers/testStore';
 
-describe('select helmet integration', () => {
+describe('select uniform integration', () => {
   const store = getStore();
 
   const closeModal = jest.fn();

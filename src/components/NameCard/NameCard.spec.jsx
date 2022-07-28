@@ -9,7 +9,7 @@ import * as actions from '../App/actions';
 
 jest.mock('./modal', () => '<ModalDouble />');
 
-describe('Clothing Card', () => {
+describe('Name Card', () => {
   jest.spyOn(actions, 'showModal').mockImplementation(() => {});
 
   const dispatch = jest.fn();
