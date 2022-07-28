@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { AlmStateContext, WeaponContext } from '../context';
 
 import Duck from '../duck';
-import Aiming from '../aiming-temp';
+import Aiming from '../aiming';
 
-import AlmModals from '../modals-temp';
+import AlmModals from '../modals';
 import AlmButton from '../../../widgets/buttons/AlmButton';
 
 import { getScopeByName } from '../../../../data/firearms/optics';
