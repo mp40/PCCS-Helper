@@ -12,7 +12,6 @@ const Helmet = ({ changeHelmet, closeModal }) => (
     dispatch={changeHelmet}
     closeModal={closeModal}
   />
-
 );
 
 Helmet.propTypes = {
