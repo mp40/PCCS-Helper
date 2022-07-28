@@ -1,23 +1,24 @@
-.link {
-    text-decoration: none;
+.link,
+.linkWrapper {
+  text-decoration: none;
 }
 
 .link > button {
-    font-size: 1.25rem;
-    color: var(--insignia-white);
-    background-color: var(--basalt-grey);
-    border-radius: 5px;
-    padding: 0.5rem 0.75rem;
-    width: 12.5rem;
-    border: none;
-    box-shadow: 0 0 1px 1px var(--panzer-grey)
+  font-size: 1.25rem;
+  color: var(--insignia-white);
+  background-color: var(--basalt-grey);
+  border-radius: 5px;
+  padding: 0.5rem 0.75rem;
+  width: 12.5rem;
+  border: none;
+  box-shadow: 0 0 1px 1px var(--panzer-grey)
 }
 
 .link > button:hover {
-    box-shadow: 0px 0px 1.25px 1.25px var(--panzer-grey);
-  }
+  box-shadow: 0px 0px 1.25px 1.25px var(--panzer-grey);
+}
   
-  .link > button:active {
-    box-shadow: inset 0px 0px 1px 1px var(--panzer-grey);
-    opacity: 0.9;
-  }
+.link > button:active {
+  box-shadow: inset 0px 0px 1px 1px var(--panzer-grey);
+  opacity: 0.9;
+}

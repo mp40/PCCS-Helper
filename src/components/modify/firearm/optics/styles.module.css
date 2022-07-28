@@ -1,0 +1,59 @@
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.wrapper > span {
+    display: inline-block;
+}
+
+.scopeDetails {
+    width: 49%;
+    font-size: 1rem;
+} 
+
+.scopeDetails > span {
+   display: block;
+   font-size: 0.8rem;
+} 
+
+.scopeButtons {
+    width: 49%;
+}
+
+.scopeButtons > button {
+    width: 100%;
+}
+
+.opticModal > div:first-of-type {
+    font-weight: bold;
+    margin: 0 auto 4px;
+    text-align: center;
+}
+
+.opticModal > div:last-of-type {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.opticModal > div:last-of-type > button {
+    margin-bottom: 2px;
+}
+
+.opticButton {
+    width: 200px;
+    border: 1px solid var(--golden-olive);
+    background-color: whitesmoke;
+    border-radius: 3px;
+}
+
+.opticButton:hover {
+    background-color: white;
+}
+
+.opticButton:active {
+    background-color: white;
+    border: 1px solid var(--fluorescent-green);
+    box-shadow: 0 0 1px 1px var(--usaf-light-grey);
+}

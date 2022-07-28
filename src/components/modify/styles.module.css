@@ -1,0 +1,37 @@
+.header {
+  margin-bottom: 0.5rem;
+  background-color: var(--panzer-grey);
+  color: whitesmoke;
+  display: flex;
+  padding: 0.25rem;
+  justify-content: space-between;
+}
+  
+.header > span {
+  margin: 0 1rem 0 0.5rem;
+  font-weight: 600;
+}
+
+.close {
+  border: none;
+  border-radius: 3px;
+  background-color: transparent;
+  float: right;
+}
+
+.close:hover {
+  box-shadow: 0px 0px 1.25px 1.25px whitesmoke;
+}
+  
+.close:active {
+  box-shadow: 0px 0px 1px 1px whitesmoke;
+  opacity: 0.9;
+}
+
+.close:before {
+  content: "\f00d";
+  font-family: FontAwesome;
+  text-decoration: inherit;
+  color: whitesmoke;
+  font-size: 1rem;
+}

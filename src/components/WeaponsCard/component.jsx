@@ -1,133 +1,80 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-
-import { gunObjShape } from '../../helpers/proptypeShapes';
 
 import WeaponsTableBody from '../WeaponsTableBody';
 import WeaponsModalSelection from '../WeaponsModalSelection';
-import FirearmModifyModal from './modify_modal';
 
 import GrenadeSelectModal from '../GrenadeSelectModal';
 import SelectLauncherModal from '../SelectLauncherModal';
 
-import { hydrateFirearmByObject } from '../../data/firearms/hydrate';
+const WeaponsCard = ({ removeAllWeapons }) => {
+  const [showFirearmsModal, setShowFirearmsModal] = useState(false);
+  const [showGrenadesModal, setShowGrenadesModal] = useState(false);
+  const [showLaunchersModal, setShowLaunchersModal] = useState(false);
 
-// mptodo -> functional component
+  return (
+    <div className="card-standard gear-card">
+      <div>
 
-class WeaponsCard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showFirearms: false,
-      modifyFirearm: false,
-      firearmToModify: null,
-      showGrenades: false,
-      showLaunchers: false,
-    };
-  }
+        <button
+          type="button"
+          className="button--standard"
+          onClick={() => setShowFirearmsModal(true)}
+        >
+          Add Firearm
+        </button>
 
-  toggleOffWeaponCardViews = (viewToToggle) => {
-    this.setState({ [viewToToggle]: false });
-  };
+        <button
+          type="button"
+          className="button--standard"
+          onClick={() => setShowGrenadesModal(true)}
+        >
+          Add Grenade
+        </button>
 
-  toggleOnWeaponsCardViews = (viewToToggle) => {
-    this.setState({ [viewToToggle]: true });
-  };
+        <button
+          type="button"
+          className="button--standard"
+          onClick={() => setShowLaunchersModal(true)}
+        >
+          Add Launcher
+        </button>
 
-  toggleModifyWeapon = (firearm) => {
-    const { modifyFirearm } = this.state;
-    this.setState({ firearmToModify: firearm });
-    this.setState({ modifyFirearm: !modifyFirearm });
-  };
+        <button
+          type="button"
+          className="button--standard"
+          onClick={() => removeAllWeapons([])}
+        >
+          Clear All
+        </button>
 
-  renderWeaponSelect = () => (
-    <WeaponsModalSelection
-      toggleOffWeaponCardViews={this.toggleOffWeaponCardViews}
-    />
-  );
-
-  renderGrenadeSelect = () => (
-    <GrenadeSelectModal
-      toggleOffWeaponCardViews={this.toggleOffWeaponCardViews}
-    />
-  );
-
-  renderLauncherSelect = () => (
-    <SelectLauncherModal
-      toggleOffWeaponCardViews={this.toggleOffWeaponCardViews}
-    />
-  );
-
-  render() {
-    const { firearms, grenades, launchers, removeAllWeapons } = this.props;
-    const { showFirearms, modifyFirearm, showGrenades, showLaunchers, firearmToModify } = this.state;
-
-    const gunToModify = firearms.filter((gunObj) => gunObj.name === firearmToModify)[0];
-
-    return (
-      <div className="card-standard gear-card">
-        <div>
-
-          <button
-            type="button"
-            className="button--standard"
-            onClick={() => this.toggleOnWeaponsCardViews('showFirearms')}
-          >
-            Add Firearm
-          </button>
-
-          <button
-            type="button"
-            className="button--standard"
-            onClick={() => this.toggleOnWeaponsCardViews('showGrenades')}
-          >
-            Add Grenade
-          </button>
-
-          <button
-            type="button"
-            className="button--standard"
-            onClick={() => this.toggleOnWeaponsCardViews('showLaunchers')}
-          >
-            Add Launcher
-          </button>
-
-          <button
-            type="button"
-            className="button--standard"
-            onClick={() => removeAllWeapons([])}
-          >
-            Clear All
-          </button>
-
-        </div>
-
-        <WeaponsTableBody
-          firearms={firearms}
-          grenades={grenades}
-          launchers={launchers}
-          toggleOnWeaponsCardViews={this.toggleOnWeaponsCardViews}
-          toggleModifyWeapon={this.toggleModifyWeapon}
-        />
-
-        {showFirearms && this.renderWeaponSelect()}
-        {modifyFirearm && (
-          <FirearmModifyModal
-            gunToModify={hydrateFirearmByObject(gunToModify)}
-            toggleOffWeaponCardViews={this.toggleOffWeaponCardViews}
-          />
-        )}
-        {showGrenades && this.renderGrenadeSelect()}
-        {showLaunchers && this.renderLauncherSelect()}
       </div>
-    );
-  }
-}
+
+      <WeaponsTableBody />
+
+      {showFirearmsModal && (
+      <WeaponsModalSelection
+        toggleOffWeaponCardViews={() => setShowFirearmsModal(false)}
+      />
+      )}
+
+      {showGrenadesModal && (
+      <GrenadeSelectModal
+        toggleOffWeaponCardViews={() => setShowGrenadesModal(false)}
+      />
+      )}
+
+      {showLaunchersModal && (
+      <SelectLauncherModal
+        toggleOffWeaponCardViews={() => setShowLaunchersModal(false)}
+      />
+      )}
+
+    </div>
+  );
+};
 
 WeaponsCard.propTypes = {
-  firearms: PropTypes.arrayOf(gunObjShape).isRequired,
-  grenades: PropTypes.arrayOf(PropTypes.object).isRequired,
-  launchers: PropTypes.arrayOf(PropTypes.object).isRequired,
   removeAllWeapons: PropTypes.func.isRequired,
 };
 

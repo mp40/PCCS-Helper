@@ -1,0 +1,15 @@
+.magazineRow {
+    background-color: var(--light-grey);
+}
+
+.noButtons {
+    margin: 0 -2rem 0 2rem;
+}
+
+.clickable > a > button:after {
+    content: "\f0ad";
+    font-family: FontAwesome;
+    font-size: 0.75rem;
+    color: var(--golden-olive);;
+    margin-left: 5px;
+}

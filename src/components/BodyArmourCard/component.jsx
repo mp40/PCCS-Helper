@@ -21,11 +21,11 @@ const BodyArmourCard = ({ helmet, vest }) => {
           </tr>
         </thead>
         <tbody>
-          <tr className="--selectableRow " onClick={() => dispatch(showModal(Helmet))}>
+          <tr className="--selectableRow" onClick={() => dispatch(showModal(Helmet))}>
             <td>{helmets[helmet].name}</td>
             <td>{helmets[helmet].weight}</td>
           </tr>
-          <tr className="--selectableRow " onClick={() => dispatch(showModal(Vest))}>
+          <tr className="--selectableRow" onClick={() => dispatch(showModal(Vest))}>
             <td>{vests[vest].name}</td>
             <td>{vests[vest].weight}</td>
           </tr>

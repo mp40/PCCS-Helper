@@ -1,4 +1,4 @@
-import { initialStore } from '../helpers/initialStore';
+import { getInitialReduxState } from '../helpers/initialStore';
 import { modifyGunCombatLevelReducer } from './gunCombatLevelReducer';
 import { modifyMeleeCombatLevelReducer } from './meleeCombatLevelReducer';
 import { modifyStrengthValueReducer } from './strengthStatReducer';
@@ -50,7 +50,7 @@ import { removeUnderslungLauncherReducer } from './removeUnderslungLauncherReduc
 import { decreaseUnderslungLauncherAmmoReducer } from './decreaseUnderslungLauncherAmmoReducer';
 import { increaseUnderslungLauncherAmmoReducer } from './increaseUnderslungLauncherAmmoReducer';
 
-const initialState = initialStore;
+const initialState = getInitialReduxState();
 
 // eslint-disable-next-line default-param-last
 const reduceActions = (state = initialState, action) => {

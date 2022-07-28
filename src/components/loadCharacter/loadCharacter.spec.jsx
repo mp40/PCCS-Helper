@@ -35,7 +35,6 @@ describe('Load Character Modal', () => {
   const savedCharacters = [mrLove, mrRock];
 
   let wrapper;
-  let storage;
 
   const getWrapper = (characters) => {
     wrapper = shallow(
@@ -142,7 +141,7 @@ describe('Load Character Intergration', () => {
     wrapper.find('IconButton').simulate('click');
     wrapper.find('button').find('span[children="Mr Load"]').simulate('click');
 
-    expect(wrapper.find('LoadedCharacter').exists()).toBe(true);
+    expect(wrapper.find('UsePage').exists()).toBe(true);
     expect(wrapper.text()).toContain('Mr Load');
   });
 });

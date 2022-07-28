@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import reducer from './reducer';
 import { initialState } from './data';
 
-import Router from '../Router';
+import Router from '../../router';
 
 import Header from '../header';
 

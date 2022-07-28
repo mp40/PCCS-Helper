@@ -4,14 +4,14 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducers from '../reducers';
 import App from '../components/App';
-import { initialStore } from './initialStore';
+import { getInitialReduxState } from './initialStore';
 
-export const getStore = (mockStore = initialStore) => createStore(
+export const getStore = (mockStore = getInitialReduxState()) => createStore(
   reducers,
   mockStore,
 );
 
-export const mountAppWithStore = (mockStore = initialStore) => {
+export const mountAppWithStore = (mockStore = getInitialReduxState()) => {
   const store = createStore(
     reducers,
     mockStore,

@@ -19,7 +19,7 @@ describe('the equipment list table', () => {
   it('should not be possible to decrease equipment less than one', () => {
     wrapper.setProps({ equipment: [{ name: 'gear', qty: 1, weight: 1 }] });
 
-    wrapper.find('GearTableEntry').invoke('decreaseItem')();
+    wrapper.find('EquipmentRow').invoke('decreaseItem')();
 
     expect(decreaseEquipmentQty).not.toHaveBeenCalled();
   });

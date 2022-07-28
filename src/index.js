@@ -4,13 +4,13 @@ import reducers from './reducers';
 
 import ProvideApp from './ProvideApp';
 
-import { initialStore } from './helpers/initialStore';
+import { getInitialReduxState } from './helpers/initialStore';
 
 import './index.css';
 
 const store = createStore(
   reducers,
-  initialStore,
+  getInitialReduxState(),
   // eslint-disable-next-line no-underscore-dangle
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 );

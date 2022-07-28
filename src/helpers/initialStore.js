@@ -1,6 +1,6 @@
 import { NewCharacter } from '../reducers/newCharacter';
 
-export const initialStore = {
+export const getInitialReduxState = () => ({
   currentCharacter: new NewCharacter(),
   savedCharacters: [],
-};
+});

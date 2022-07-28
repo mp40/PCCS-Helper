@@ -91,4 +91,10 @@ export const launchers = {
   'GP-25': { ...gp25 },
 };
 
-export const getLauncherByName = (name) => launchers[name];
+export const getLauncherByName = (name) => {
+  if (launchers[name]) {
+    return launchers[name];
+  }
+
+  return false;
+};
