@@ -75,4 +75,12 @@ describe('Hydrating Firearm By Object', () => {
 
     expect(hydratedFirearm.launcher).toEqual(expectedLauncherData);
   });
+
+  it('should add bipod key if modificatons includes bipod', () => {
+    const modNote = { note: 'BiPod', weightMod: 1 };
+    const firearm = { ...m16, modNotes: [modNote] };
+    const hydratedFirearm = hydrateFirearmByObject(firearm);
+
+    expect(hydratedFirearm.bipod).toBe(true);
+  });
 });
