@@ -54,6 +54,14 @@ export const hydrateFirearmByObject = (firearm) => {
     launcher.mag = firearm?.launcher?.mag || null;
   }
 
+  let bipodAttached = bipod;
+  if (!bipodAttached && firearm.modNotes) {
+    bipodAttached = firearm.modNotes.find((mod) => {
+      const modification = mod.note.toLowerCase();
+      return modification === 'bipod';
+    });
+  }
+
   return {
     name,
     qty,
@@ -72,7 +80,7 @@ export const hydrateFirearmByObject = (firearm) => {
     ba,
     tof,
     offical,
-    bipod,
+    bipod: !!bipodAttached,
     selector,
     modNotes: firearm.modNotes || [],
     optics,
