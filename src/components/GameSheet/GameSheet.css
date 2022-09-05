@@ -14,7 +14,7 @@
     top: 0;
     left: 0;
     visibility: visible;
-    color-adjust: exact !important;
+    print-color-adjust: exact !important;
     -webkit-print-color-adjust: exact !important;
   }
 }
