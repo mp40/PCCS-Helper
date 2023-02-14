@@ -36,6 +36,12 @@ export const aboveAverageRifle9Aims = {
   mod: [-22, -11, -9, -7, -5, -4, -3, -2, -1],
 };
 
+// Marlin M1984 357 and 44
+export const improvedRifle9Aims = {
+  ac: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  mod: [-21, -11, -8, -7, -5, -4, -3, -2, -1],
+};
+
 // SMGs
 
 // Sten Mk2, MP5 SD3, MAC 10, Mini Uzi
