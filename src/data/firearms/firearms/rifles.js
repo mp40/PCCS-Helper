@@ -1,4 +1,4 @@
-import { averageRifle11Aims, belowAverageverageRifle11Aims, aboveAverageRifle11Aims, improvedRifle11Aims, averageRifle9Aims, aboveAverageRifle9Aims } from '../aimTimes';
+import { averageRifle11Aims, belowAverageverageRifle11Aims, aboveAverageRifle11Aims, improvedRifle11Aims, averageRifle9Aims, aboveAverageRifle9Aims, improvedRifle9Aims } from '../aimTimes';
 import { averageRifle762FMJ, averageRifle762x39FMJ, averageRifle556FMJ, averageRifle556JHP, averageRifle556AP, averageRifle30CarbineFMJ } from '../projectiles';
 
 export const rifles = Object.freeze({
@@ -652,6 +652,54 @@ export const rifles = Object.freeze({
     ],
     ba: [63, 56, 48, 41, 36, 27, 21, 17],
     tof: [0, 0, 1, 2, 2, 5, 8, 11],
+    offical: true,
+  },
+  'Marlin M1984 (.357)': {
+    name: 'Marlin M1984 (.357)',
+    list: 'rifles',
+    calibre: '357 Magnum',
+    qty: 1,
+    length: 36,
+    baseWeight: 5.94,
+    rt: 30,
+    rof: '2',
+    mag: [{ type: 'Rnd', weight: 0.04, cap: 9, qty: 0 }],
+    kd: 6,
+    sab: 5,
+    aim: improvedRifle9Aims,
+    projectiles: [
+      {
+        type: 'JSP',
+        pen: [5.6, 5.3, 4.8, 4.1, 3.5, 2.0, 1.2, 0.7],
+        dc: [7, 7, 7, 6, 6, 3, 1, 1],
+      },
+    ],
+    ba: [49, 42, 34, 28, 23, 14, 8, 5],
+    tof: [0, 1, 2, 3, 4, 9, 15, 21],
+    offical: true,
+  },
+  'Marlin M1984 (.44)': {
+    name: 'Marlin M1984 (.44)',
+    list: 'rifles',
+    calibre: '44 Magnum',
+    qty: 1,
+    length: 37,
+    baseWeight: 6,
+    rt: 33,
+    rof: '2',
+    mag: [{ type: 'Rnd', weight: 0.05, cap: 10, qty: 0 }],
+    kd: 11,
+    sab: 8,
+    aim: improvedRifle9Aims,
+    projectiles: [
+      {
+        type: 'JSP',
+        pen: [7.7, 7.3, 6.6, 5.6, 4.8, 2.9, 1.8, 1.1],
+        dc: [9, 9, 8, 8, 8, 6, 3, 1],
+      },
+    ],
+    ba: [48, 41, 32, 25, 21, 11, 6, 2],
+    tof: [0, 1, 1, 2, 4, 8, 13, 19],
     offical: true,
   },
 });
