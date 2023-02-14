@@ -12,11 +12,11 @@ This was started during my time as a student at Code Chrysalis
 A React-Redux application to assist running calculations required for the Phoenix Command Combat System wargaming/roleplaying rules.
 
 ### This is a work in progress
-A beta version for QA testing and user feedback is [deployed here](https://pccs.herokuapp.com/)<br>
-Documentation on how to use the application can be found on [the wiki](https://github.com/mp40/PCCS-Helper/wiki)
+A beta version for QA testing and user feedback is [deployed here](https://pccs-helper.vercel.app)<br>
 
 Currently the application has the following features:
 
+Generate 
 - Accepts input value for name
 - Accepts input values for attributes
 - Accepts input values for combat levels
@@ -27,11 +27,16 @@ Currently the application has the following features:
 - Firearms selection, filtereable by firearm type and calibre
 - Supports multiple magazine types for firearms, with ability to specify primary magazine and hide non-primary magazines
 - Ability to add custom magazines to firearm
+- Ability to add/remove optics and grenade launchers
 - Ability modify firearm weight, changing primary magazine automatically updates firearm weight
 - Grenade selection
+- Rocket and underslung grenade launcher selection
 - Body armour selection
 - Automatically generates hand to hand weapon data from selected equipment and firearms
-- Able to print basic reference sheet for game play
+- Able to print basic reference sheet for offline game play
+
+Use
+- Calculate odds of hitting with selected weapons
 
 ## Install procedure for development
 
