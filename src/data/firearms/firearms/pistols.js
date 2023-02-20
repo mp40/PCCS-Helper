@@ -2,6 +2,30 @@ import { averagePistol6Aims, belowAveragePistol6Aims, averagePistol5Aims, averag
 import { averagePistol9mmParabellumFMJ } from '../projectiles';
 
 export const pistols = Object.freeze({
+  'Colt Commando': {
+    name: 'Colt Commando',
+    list: 'pistols',
+    calibre: '38 Special',
+    qty: 1,
+    length: 7,
+    baseWeight: 1.25,
+    rt: 7,
+    rof: 1,
+    mag: [{ type: 'SL', weight: 0.35, cap: 6, qty: 0 }],
+    kd: 3,
+    sab: 4,
+    aim: averagePistol5Aims,
+    projectiles: [
+      {
+        type: 'JSP',
+        pen: [1.1, 1, 0.9, 0.7, 0.5, 0.3, 0.1, 0.1],
+        dc: [1, 1, 1, 1, 1, 1, 1, 1],
+      },
+    ],
+    ba: [51, 41, 31, 23, 18, 9, 3, 0],
+    tof: [1, 2, 3, 6, 10, 22, 37, 53],
+    offical: true,
+  },
   'Colt Python (4")': {
     name: 'Colt Python (4")',
     list: 'pistols',
