@@ -58,19 +58,25 @@ export const belowaverageSMG8Aims = {
 
 // Pistols
 
+// Smith & Wesson M29 .375", Colt Python 8"
+export const averagePistol7Aims = {
+  ac: [1, 2, 3, 4, 5, 6, 7],
+  mod: [-18, -11, -10, -9, -8, -7, -6],
+};
+
 // FN Mk1, Lebel M1892, Tokarev TT33, M92F
 export const averagePistol6Aims = {
   ac: [1, 2, 3, 4, 5, 6],
   mod: [-17, -11, -10, -9, -8, -7],
 };
 
-// M1911A1, MAB PA15
+// M1911A1, MAB PA15, S&W 4", S&W 4"
 export const belowAveragePistol6Aims = {
   ac: [1, 2, 3, 4, 5, 6],
   mod: [-18, -11, -10, -9, -8, -7],
 };
 
-// Makarov PM, Walther PPK
+// Makarov PM, Walther PPK, Colt Commando
 export const averagePistol5Aims = {
   ac: [1, 2, 3, 4, 5],
   mod: [-16, -11, -10, -9, -8],

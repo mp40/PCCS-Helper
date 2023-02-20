@@ -1,7 +1,60 @@
-import { averagePistol6Aims, belowAveragePistol6Aims, averagePistol5Aims } from '../aimTimes';
+import { averagePistol6Aims, belowAveragePistol6Aims, averagePistol5Aims, averagePistol7Aims } from '../aimTimes';
 import { averagePistol9mmParabellumFMJ } from '../projectiles';
 
 export const pistols = Object.freeze({
+  'Colt Commando': {
+    name: 'Colt Commando',
+    list: 'pistols',
+    calibre: '38 Special',
+    qty: 1,
+    length: 7,
+    baseWeight: 1.25,
+    rt: 7,
+    rof: 1,
+    mag: [{ type: 'SL', weight: 0.35, cap: 6, qty: 0 }],
+    kd: 3,
+    sab: 4,
+    aim: averagePistol5Aims,
+    projectiles: [
+      {
+        type: 'JSP',
+        pen: [1.1, 1, 0.9, 0.7, 0.5, 0.3, 0.1, 0.1],
+        dc: [1, 1, 1, 1, 1, 1, 1, 1],
+      },
+    ],
+    ba: [51, 41, 31, 23, 18, 9, 3, 0],
+    tof: [1, 2, 3, 6, 10, 22, 37, 53],
+    offical: true,
+  },
+  'Colt Python (4")': {
+    name: 'Colt Python (4")',
+    list: 'pistols',
+    calibre: '357 Magnum',
+    qty: 1,
+    length: 9,
+    baseWeight: 2.43,
+    rt: 7,
+    rof: 1,
+    mag: [{ type: 'SL', weight: 0.37, cap: 6, qty: 0 }],
+    kd: 4,
+    sab: 5,
+    aim: belowAveragePistol6Aims,
+    projectiles: [
+      {
+        type: 'JSP',
+        pen: [2.6, 2.4, 2.1, 1.8, 1.5, 0.8, 0.4, 0.2],
+        dc: [4, 4, 3, 3, 2, 1, 1, 1],
+      },
+      {
+        type: 'JHP',
+        pen: [2.5, 2.4, 2.1, 1.7, 1.4, 0.8, 0.4, 0.2],
+        dc: [5, 5, 4, 3, 2, 1, 1, 1],
+      },
+    ],
+    ba: [52, 42, 33, 25, 20, 10, 4, 1],
+    tof: [1, 1, 2, 4, 6, 14, 23, 33],
+    offical: true,
+  },
   'Colt Python (8")': {
     name: 'Colt Python (8")',
     list: 'pistols',
@@ -12,12 +65,9 @@ export const pistols = Object.freeze({
     rt: 7,
     rof: 1,
     mag: [{ type: 'SL', weight: 0.37, cap: 6, qty: 0 }],
-    kd: 3,
-    sab: 4,
-    aim: {
-      ac: [1, 2, 3, 4, 5, 6, 7],
-      mod: [-18, -11, -10, -9, -8, -7, -6],
-    },
+    kd: 5,
+    sab: 6,
+    aim: averagePistol7Aims,
     projectiles: [
       {
         type: 'JSP',
@@ -37,6 +87,64 @@ export const pistols = Object.freeze({
     ],
     ba: [53, 43, 33, 25, 20, 10, 5, 1],
     tof: [0, 1, 2, 3, 5, 11, 19, 27],
+    offical: true,
+  },
+  'S&W M29 (4")': {
+    name: 'S&W M29 (4")',
+    list: 'pistols',
+    calibre: '44 Magnum',
+    qty: 1,
+    length: 9,
+    baseWeight: 2.5,
+    rt: 7,
+    rof: 1,
+    mag: [{ type: 'SL', weight: 0.5, cap: 6, qty: 0 }],
+    kd: 7,
+    sab: 7,
+    aim: belowAveragePistol6Aims,
+    projectiles: [
+      {
+        type: 'JSP',
+        pen: [3.4, 3.2, 2.8, 2.4, 2, 1.1, 0.6, 0.3],
+        dc: [7, 6, 6, 5, 4, 1, 1, 1],
+      },
+      {
+        type: 'JHP',
+        pen: [3.3, 3.2, 2.8, 2.3, 1.9, 1.1, 0.6, 0.3],
+        dc: [7, 7, 6, 6, 4, 1, 1, 1],
+      },
+    ],
+    ba: [50, 40, 30, 22, 17, 7, 2, -2],
+    tof: [0, 1, 2, 4, 6, 12, 21, 30],
+    offical: true,
+  },
+  'S&W M29 (8.375")': {
+    name: 'S&W M29 (8.375")',
+    list: 'pistols',
+    calibre: '44 Magnum',
+    qty: 1,
+    length: 14,
+    baseWeight: 3,
+    rt: 7,
+    rof: 1,
+    mag: [{ type: 'SL', weight: 0.5, cap: 6, qty: 0 }],
+    kd: 9,
+    sab: 8,
+    aim: averagePistol7Aims,
+    projectiles: [
+      {
+        type: 'JSP',
+        pen: [4.9, 4.7, 4.2, 3.5, 3, 1.7, 1, 0.6],
+        dc: [8, 8, 7, 7, 6, 3, 1, 1],
+      },
+      {
+        type: 'JHP',
+        pen: [4.9, 4.6, 4.1, 3.5, 2.9, 1.7, 1, 0.5],
+        dc: [8, 8, 8, 7, 7, 3, 1, 1],
+      },
+    ],
+    ba: [50, 40, 30, 23, 17, 8, 2, -2],
+    tof: [0, 1, 2, 3, 5, 10, 17, 24],
     offical: true,
   },
   'Desert Eagle (.50)': {
