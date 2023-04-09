@@ -70,14 +70,14 @@ describe('Save Character Modal', () => {
     expect(spy).toHaveBeenCalledWith({}, '', '/');
   });
 
-  it('should call noop when handleShowModal invoked', async () => {
+  it('should navigate home when handleShowModal invoked', async () => {
     const spy = jest.spyOn(window.history, 'pushState').mockImplementation(() => {});
     const stub = jest.spyOn(fetchModule, 'fetchResettingPassword')
       .mockImplementation(() => {});
 
     wrapper.find('HeaderModal').invoke('handleShowModal')();
 
-    expect(spy).not.toHaveBeenCalled();
+    expect(spy).toHaveBeenCalledWith({}, '', '/');
     expect(stub).not.toHaveBeenCalled();
   });
 });
