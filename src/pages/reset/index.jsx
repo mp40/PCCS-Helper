@@ -4,10 +4,6 @@ import HeaderModal from '../../components/header/modal';
 
 import { fetchResettingPassword } from '../../fetch';
 
-import styles from './styles.module.css';
-
-const noop = () => {};
-
 const ResetPage = () => {
   const [errorMsg, setErrorMsg] = useState(null);
 
@@ -34,17 +30,13 @@ const ResetPage = () => {
   };
 
   return (
-    <div className={`card-standard ${styles.wrapper}`}>
-      <h2>Password Reset</h2>
-      <HeaderModal
-        type="resetting"
-        handleShowModal={noop}
-        handleSwitchModal={handleHome}
-        handleSubmitUser={handleSubmitUser}
-        errorMsg={errorMsg}
-      />
-      <button type="button">Submit</button>
-    </div>
+    <HeaderModal
+      type="resetting"
+      handleShowModal={handleHome}
+      handleSwitchModal={handleHome}
+      handleSubmitUser={handleSubmitUser}
+      errorMsg={errorMsg}
+    />
 
   );
 };
