@@ -181,9 +181,9 @@ export const fetchResetPassword = async (email) => {
 
 export const fetchResettingPassword = async (email, password, token) => {
   try {
-    let res = await fetch(`${URL_RESET}/${token}`, {
+    let res = await fetch(URL_RESET, {
       method: 'put',
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ email, password, token }),
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
