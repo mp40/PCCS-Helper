@@ -462,14 +462,14 @@ describe('Calling the Server', () => {
       global.fetch.mockClear();
     });
 
-    it('should submit token as url params on put /reset', async () => {
+    it('should submit put /reset request', async () => {
       global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
         json: () => Promise.resolve({ message: 'Password Updated' }),
       }));
 
       await fetchResettingPassword('reset@email.com', 'password', 'token');
 
-      expect(global.fetch).toHaveBeenCalledWith(`${URL_RESET}/token`, expect.anything());
+      expect(global.fetch).toHaveBeenCalledWith(URL_RESET, expect.objectContaining({ method: 'put' }));
     });
 
     it('should submit user email and new password on put /reset', async () => {
@@ -481,7 +481,7 @@ describe('Calling the Server', () => {
 
       const secondArg = global.fetch.mock.calls[0][1];
 
-      expect(secondArg.body).toBe(JSON.stringify({ email: 'reset@email.com', password: 'password' }));
+      expect(secondArg.body).toBe(JSON.stringify({ email: 'reset@email.com', password: 'password', token: 'token' }));
     });
 
     it('should return password updated message on success', async () => {
