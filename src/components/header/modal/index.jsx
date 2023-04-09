@@ -124,7 +124,7 @@ const HeaderModal = ({
           {errorMsg
           && <p className={styles.errorMessage}>{errorMsg}</p>}
 
-          {errorMsg && type === 'signin'
+          {type === 'signin'
           && (
           <button
             type="button"
