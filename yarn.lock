@@ -6826,10 +6826,10 @@ node-static@^0.7.11:
     mime "^1.2.9"
     optimist ">=0.3.4"
 
-node@16.19.0:
-  version "16.19.0"
-  resolved "https://registry.yarnpkg.com/node/-/node-16.19.0.tgz#7e9b96a37aeb5b18312a9f796d3c71583fa6035a"
-  integrity sha512-gVpwPuk8KZQjNYcuilyEcNLOAm97Q4GNvCrW5pZ9SiQH/shy/G4gInNzITEqF00lb6bjSzmYWCvGlomGkLm3/A==
+node@18.17.0:
+  version "18.17.0"
+  resolved "https://registry.yarnpkg.com/node/-/node-18.17.0.tgz#467f09bba6caefb3eba4048fa7f8163533f436ca"
+  integrity sha512-CxckUPKuJ6Mjvo5v0YnuQNULBVoijqMX0+5i/vVD7OO6igu920nwkZMTeUoUwGLB6Wq0CUtyfh8LeVmCda3kPw==
   dependencies:
     node-bin-setup "^1.0.0"
 
